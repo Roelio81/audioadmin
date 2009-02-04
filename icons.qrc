@@ -1,0 +1,10 @@
+<RCC>
+  <qresource>
+    <file>icons/agt_print-64.png</file>
+    <file>icons/agt_softwareD-64.png</file>
+    <file>icons/edit_add-64.png</file>
+    <file>icons/edit_remove-64.png</file>
+    <file>icons/filesave-64.png</file>
+    <file>icons/mail_find-64.png</file>
+  </qresource>
+</RCC>

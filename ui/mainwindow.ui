@@ -1,0 +1,1405 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>872</width>
+    <height>761</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>MainWindow</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../icons.qrc" >
+    <normaloff>:/icons/agt_softwareD-64.png</normaloff>:/icons/agt_softwareD-64.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QGridLayout" name="gridLayout_8" >
+    <item row="0" column="0" >
+     <widget class="QTabWidget" name="tabWidget" >
+      <property name="currentIndex" >
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabDossier" >
+       <attribute name="title" >
+        <string>Dossiers</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_7" >
+        <item row="0" column="0" >
+         <layout class="QHBoxLayout" name="horizontalLayout_9" >
+          <item>
+           <widget class="QGroupBox" name="groupBoxKlant" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title" >
+             <string>Klantgegevens</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout" >
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_2" >
+               <item>
+                <widget class="QLabel" name="label_10" >
+                 <property name="text" >
+                  <string>Aanspreektitel</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox" />
+               </item>
+               <item>
+                <widget class="QLabel" name="label_11" >
+                 <property name="text" >
+                  <string>Naam</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_11" />
+               </item>
+               <item>
+                <widget class="QLabel" name="label_12" >
+                 <property name="text" >
+                  <string>Voornaam</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_12" >
+                 <property name="sizePolicy" >
+                  <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_3" >
+               <item>
+                <widget class="QLabel" name="label_13" >
+                 <property name="text" >
+                  <string>Straat (+ huisnummer / adres)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_10" />
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_4" >
+               <item>
+                <widget class="QLabel" name="label_14" >
+                 <property name="text" >
+                  <string>Postcode</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSpinBox" name="spinBox" >
+                 <property name="sizePolicy" >
+                  <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize" >
+                  <size>
+                   <width>80</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_15" >
+                 <property name="text" >
+                  <string>Gemeente</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_13" />
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_5" >
+               <item>
+                <widget class="QLabel" name="label_16" >
+                 <property name="text" >
+                  <string>Telefoon</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_16" />
+               </item>
+               <item>
+                <widget class="QLabel" name="label_20" >
+                 <property name="text" >
+                  <string>Geboortedatum</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDateEdit" name="dateEdit" >
+                 <property name="maximumSize" >
+                  <size>
+                   <width>200</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_6" >
+               <item>
+                <widget class="QLabel" name="label_17" >
+                 <property name="text" >
+                  <string>Mutualiteit</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="comboBox_2" />
+               </item>
+               <item>
+                <widget class="QLabel" name="label_19" >
+                 <property name="text" >
+                  <string>Aansluitingsnummer</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_15" >
+                 <property name="sizePolicy" >
+                  <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_7" >
+               <item>
+                <widget class="QLabel" name="label_18" >
+                 <property name="text" >
+                  <string>Plaats aanpassing</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit_14" />
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_8" >
+               <item>
+                <widget class="QLabel" name="label_31" >
+                 <property name="text" >
+                  <string>Opmerkingen</string>
+                 </property>
+                 <property name="alignment" >
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextEdit" name="textEdit" >
+                 <property name="sizePolicy" >
+                  <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize" >
+                  <size>
+                   <width>16777215</width>
+                   <height>80</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBoxDatums" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="MinimumExpanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize" >
+             <size>
+              <width>350</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="title" >
+             <string>Datums</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_2" >
+             <item row="0" column="0" >
+              <widget class="QLabel" name="label" >
+               <property name="text" >
+                <string>Onderzoek</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" >
+              <widget class="QDateEdit" name="dateEdit_2" />
+             </item>
+             <item row="1" column="0" >
+              <widget class="QLabel" name="label_2" >
+               <property name="text" >
+                <string>Proef</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1" >
+              <widget class="QDateEdit" name="dateEdit_3" />
+             </item>
+             <item row="2" column="0" >
+              <widget class="QLabel" name="label_3" >
+               <property name="text" >
+                <string>NKO Rapport</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1" >
+              <widget class="QDateEdit" name="dateEdit_4" />
+             </item>
+             <item row="3" column="0" >
+              <widget class="QLabel" name="label_4" >
+               <property name="text" >
+                <string>Dokter adviseur</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1" >
+              <widget class="QDateEdit" name="dateEdit_5" />
+             </item>
+             <item row="4" column="0" >
+              <widget class="QLabel" name="label_5" >
+               <property name="text" >
+                <string>Akkoord mut.</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1" >
+              <widget class="QDateEdit" name="dateEdit_6" />
+             </item>
+             <item row="5" column="0" >
+              <widget class="QLabel" name="label_6" >
+               <property name="text" >
+                <string>Betaling</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1" >
+              <widget class="QDateEdit" name="dateEdit_7" />
+             </item>
+             <item row="6" column="0" >
+              <widget class="QLabel" name="label_7" >
+               <property name="text" >
+                <string>Aflevering</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1" >
+              <widget class="QDateEdit" name="dateEdit_8" />
+             </item>
+             <item row="7" column="0" >
+              <widget class="QLabel" name="label_8" >
+               <property name="text" >
+                <string>Wissel</string>
+               </property>
+              </widget>
+             </item>
+             <item rowspan="2" row="7" column="1" >
+              <widget class="QDateEdit" name="dateEdit_9" />
+             </item>
+             <item rowspan="2" row="8" column="0" >
+              <widget class="QLabel" name="label_9" >
+               <property name="text" >
+                <string>OHK</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="1" >
+              <widget class="QDateEdit" name="dateEdit_10" />
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0" >
+         <layout class="QHBoxLayout" name="horizontalLayout_10" >
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_2" >
+            <item>
+             <widget class="QGroupBox" name="groupBoxKlantArts" >
+              <property name="minimumSize" >
+               <size>
+                <width>300</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="title" >
+               <string>NKO Arts</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_6" >
+               <item row="0" column="0" >
+                <widget class="QComboBox" name="comboBox_7" />
+               </item>
+               <item row="1" column="0" >
+                <widget class="QLabel" name="label_29" >
+                 <property name="text" >
+                  <string>Adres</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" >
+                <widget class="QLabel" name="label_30" >
+                 <property name="text" >
+                  <string>Gemeente</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox" >
+              <property name="title" >
+               <string>Meetgegevens</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout" >
+               <item row="0" column="0" >
+                <widget class="QPushButton" name="pushButton" >
+                 <property name="sizePolicy" >
+                  <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text" >
+                  <string>Meetgegevens...</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupBoxKlantApparaat" >
+            <property name="title" >
+             <string>Hoorapparaten</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_5" >
+             <item row="0" column="0" >
+              <widget class="QGroupBox" name="groupBoxKlantRechtsApparaat" >
+               <property name="title" >
+                <string>Rechts</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_3" >
+                <item row="0" column="0" >
+                 <widget class="QLabel" name="label_21" >
+                  <property name="text" >
+                   <string>Merk</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1" >
+                 <widget class="QComboBox" name="comboBox_3" />
+                </item>
+                <item row="1" column="0" >
+                 <widget class="QLabel" name="label_22" >
+                  <property name="text" >
+                   <string>Type</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1" >
+                 <widget class="QComboBox" name="comboBox_4" />
+                </item>
+                <item row="2" column="0" >
+                 <widget class="QLabel" name="label_23" >
+                  <property name="text" >
+                   <string>Serienummer</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1" >
+                 <widget class="QLineEdit" name="lineEdit_17" />
+                </item>
+                <item row="3" column="0" >
+                 <widget class="QLabel" name="label_24" >
+                  <property name="text" >
+                   <string>Prijs (excl. BTW)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1" >
+                 <widget class="QLineEdit" name="lineEdit_18" />
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="0" column="1" >
+              <widget class="QGroupBox" name="groupBoxKlantRechtsApparaat_2" >
+               <property name="title" >
+                <string>Links</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_4" >
+                <item row="0" column="0" >
+                 <widget class="QLabel" name="label_25" >
+                  <property name="text" >
+                   <string>Merk</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1" >
+                 <widget class="QComboBox" name="comboBox_5" />
+                </item>
+                <item row="1" column="0" >
+                 <widget class="QLabel" name="label_26" >
+                  <property name="text" >
+                   <string>Type</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1" >
+                 <widget class="QComboBox" name="comboBox_6" />
+                </item>
+                <item row="2" column="0" >
+                 <widget class="QLabel" name="label_27" >
+                  <property name="text" >
+                   <string>Serienummer</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1" >
+                 <widget class="QLineEdit" name="lineEdit_19" />
+                </item>
+                <item row="3" column="0" >
+                 <widget class="QLabel" name="label_28" >
+                  <property name="text" >
+                   <string>Prijs (excl. BTW)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1" >
+                 <widget class="QLineEdit" name="lineEdit_20" />
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0" >
+         <spacer name="verticalSpacer" >
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType" >
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="3" column="0" >
+         <widget class="QTableWidget" name="tableWidget" >
+          <property name="columnCount" >
+           <number>4</number>
+          </property>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+         </widget>
+        </item>
+        <item row="4" column="0" >
+         <layout class="QHBoxLayout" name="horizontalLayout" >
+          <item>
+           <spacer name="horizontalSpacer" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0" >
+             <size>
+              <width>383</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton" >
+            <property name="text" >
+             <string>Bewaren</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normalon>:/icons/filesave-64.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_4" >
+            <property name="text" >
+             <string>Toevoegen</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normalon>:/icons/edit_add-64.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_3" >
+            <property name="text" >
+             <string>Verwijderen</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normalon>:/icons/edit_remove-64.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_2" >
+            <property name="text" >
+             <string>Zoeken</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normalon>:/icons/mail_find-64.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_2" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0" >
+             <size>
+              <width>317</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabNko" >
+       <attribute name="title" >
+        <string>NKO Artsen</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_10" >
+        <item row="0" column="0" >
+         <widget class="QGroupBox" name="groupBoxKlant_2" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title" >
+           <string>Artsgegevens</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_9" >
+           <item row="0" column="0" >
+            <layout class="QHBoxLayout" name="horizontalLayout_11" >
+             <item>
+              <widget class="QLabel" name="label_33" >
+               <property name="text" >
+                <string>Naam</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_21" />
+             </item>
+             <item>
+              <widget class="QLabel" name="label_34" >
+               <property name="text" >
+                <string>Voornaam</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_22" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0" >
+            <layout class="QHBoxLayout" name="horizontalLayout_12" >
+             <item>
+              <widget class="QLabel" name="label_35" >
+               <property name="text" >
+                <string>Straat (+ huisnummer / adres)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_23" />
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0" >
+            <layout class="QHBoxLayout" name="horizontalLayout_13" >
+             <item>
+              <widget class="QLabel" name="label_36" >
+               <property name="text" >
+                <string>Postcode</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="spinBox_2" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize" >
+                <size>
+                 <width>80</width>
+                 <height>0</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_37" >
+               <property name="text" >
+                <string>Gemeente</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_24" />
+             </item>
+            </layout>
+           </item>
+           <item row="3" column="0" >
+            <layout class="QHBoxLayout" name="horizontalLayout_14" >
+             <item>
+              <widget class="QLabel" name="label_38" >
+               <property name="text" >
+                <string>Telefoon</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_25" />
+             </item>
+             <item>
+              <widget class="QLabel" name="label_39" >
+               <property name="text" >
+                <string>E-mail</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_28" />
+             </item>
+            </layout>
+           </item>
+           <item row="4" column="0" >
+            <layout class="QHBoxLayout" name="horizontalLayout_17" >
+             <item>
+              <widget class="QLabel" name="label_43" >
+               <property name="text" >
+                <string>Opmerkingen</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="textEdit_2" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize" >
+                <size>
+                 <width>16777215</width>
+                 <height>80</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <spacer name="verticalSpacer_2" >
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType" >
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>827</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="0" >
+         <widget class="QTableWidget" name="tableWidget_2" >
+          <property name="columnCount" >
+           <number>4</number>
+          </property>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+         </widget>
+        </item>
+        <item row="3" column="0" >
+         <layout class="QHBoxLayout" name="horizontalLayout_18" >
+          <item>
+           <spacer name="horizontalSpacer3" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0" >
+             <size>
+              <width>383</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_5" >
+            <property name="text" >
+             <string>Bewaren</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normalon>:/icons/filesave-64.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_6" >
+            <property name="text" >
+             <string>Toevoegen</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normalon>:/icons/edit_add-64.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_7" >
+            <property name="text" >
+             <string>Verwijderen</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normalon>:/icons/edit_remove-64.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_8" >
+            <property name="text" >
+             <string>Zoeken</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normalon>:/icons/mail_find-64.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_4" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0" >
+             <size>
+              <width>317</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabMutualiteit" >
+       <attribute name="title" >
+        <string>Mutualiteiten</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_12" >
+        <item row="0" column="0" >
+         <widget class="QGroupBox" name="groupBoxKlant_3" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title" >
+           <string>Mutualiteitsgegevens</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_11" >
+           <item row="0" column="0" >
+            <layout class="QHBoxLayout" name="horizontalLayout_15" >
+             <item>
+              <widget class="QLabel" name="label_40" >
+               <property name="text" >
+                <string>Naam</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_26" />
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0" >
+            <layout class="QHBoxLayout" name="horizontalLayout_16" >
+             <item>
+              <widget class="QLabel" name="label_42" >
+               <property name="text" >
+                <string>Straat (+ huisnummer / adres)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_29" />
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0" >
+            <layout class="QHBoxLayout" name="horizontalLayout_19" >
+             <item>
+              <widget class="QLabel" name="label_44" >
+               <property name="text" >
+                <string>Postcode</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="spinBox_3" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize" >
+                <size>
+                 <width>80</width>
+                 <height>0</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_45" >
+               <property name="text" >
+                <string>Gemeente</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_30" />
+             </item>
+            </layout>
+           </item>
+           <item row="3" column="0" >
+            <layout class="QHBoxLayout" name="horizontalLayout_20" >
+             <item>
+              <widget class="QLabel" name="label_46" >
+               <property name="text" >
+                <string>Telefoon</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_31" />
+             </item>
+             <item>
+              <widget class="QLabel" name="label_47" >
+               <property name="text" >
+                <string>E-mail</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_32" />
+             </item>
+            </layout>
+           </item>
+           <item row="4" column="0" >
+            <layout class="QHBoxLayout" name="horizontalLayout_21" >
+             <item>
+              <widget class="QLabel" name="label_48" >
+               <property name="text" >
+                <string>Opmerkingen</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTextEdit" name="textEdit_3" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize" >
+                <size>
+                 <width>16777215</width>
+                 <height>80</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <spacer name="verticalSpacer_3" >
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType" >
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>827</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="0" >
+         <widget class="QTableWidget" name="tableWidget_3" >
+          <property name="columnCount" >
+           <number>4</number>
+          </property>
+          <column/>
+          <column/>
+          <column/>
+          <column/>
+         </widget>
+        </item>
+        <item row="3" column="0" >
+         <layout class="QHBoxLayout" name="horizontalLayout_26" >
+          <item>
+           <spacer name="horizontalSpacer_5" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0" >
+             <size>
+              <width>383</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_9" >
+            <property name="text" >
+             <string>Bewaren</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normalon>:/icons/filesave-64.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_10" >
+            <property name="text" >
+             <string>Toevoegen</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normalon>:/icons/edit_add-64.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_11" >
+            <property name="text" >
+             <string>Verwijderen</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normalon>:/icons/edit_remove-64.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_12" >
+            <property name="text" >
+             <string>Zoeken</string>
+            </property>
+            <property name="icon" >
+             <iconset>
+              <normalon>:/icons/mail_find-64.png</normalon>
+             </iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_6" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0" >
+             <size>
+              <width>317</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabHoorapparaat" >
+       <attribute name="title" >
+        <string>Hoorapparaten</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_15" >
+        <item row="0" column="0" >
+         <widget class="QGroupBox" name="groupBox_2" >
+          <property name="title" >
+           <string>Soorten hoorapparaat</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_13" >
+           <item row="0" column="0" >
+            <widget class="QLabel" name="label_41" >
+             <property name="text" >
+              <string>Merk</string>
+             </property>
+             <property name="alignment" >
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" >
+            <widget class="QListView" name="listView_2" />
+           </item>
+           <item row="0" column="2" >
+            <spacer name="horizontalSpacer_7" >
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType" >
+              <enum>QSizePolicy::Maximum</enum>
+             </property>
+             <property name="sizeHint" stdset="0" >
+              <size>
+               <width>100</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="3" >
+            <widget class="QLabel" name="label_49" >
+             <property name="text" >
+              <string>Merk</string>
+             </property>
+             <property name="alignment" >
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4" >
+            <widget class="QListView" name="listView_3" />
+           </item>
+           <item row="1" column="1" >
+            <layout class="QHBoxLayout" name="horizontalLayout_22" >
+             <item>
+              <widget class="QToolButton" name="toolButton_14" >
+               <property name="text" >
+                <string>Toevoegen</string>
+               </property>
+               <property name="icon" >
+                <iconset>
+                 <normalon>:/icons/edit_add-64.png</normalon>
+                </iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_13" >
+               <property name="text" >
+                <string>Verwijderen</string>
+               </property>
+               <property name="icon" >
+                <iconset>
+                 <normalon>:/icons/edit_remove-64.png</normalon>
+                </iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="4" >
+            <layout class="QHBoxLayout" name="horizontalLayout_23" >
+             <item>
+              <widget class="QToolButton" name="toolButton_15" >
+               <property name="text" >
+                <string>Toevoegen</string>
+               </property>
+               <property name="icon" >
+                <iconset>
+                 <normalon>:/icons/edit_add-64.png</normalon>
+                </iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_16" >
+               <property name="text" >
+                <string>Verwijderen</string>
+               </property>
+               <property name="icon" >
+                <iconset>
+                 <normalon>:/icons/edit_remove-64.png</normalon>
+                </iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="1" >
+         <widget class="QGroupBox" name="groupBox_3" >
+          <property name="title" >
+           <string>Stock</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_14" >
+           <item row="0" column="0" >
+            <widget class="QLabel" name="label_32" >
+             <property name="text" >
+              <string>Serienummers</string>
+             </property>
+             <property name="alignment" >
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" >
+            <widget class="QListView" name="listView" />
+           </item>
+           <item row="1" column="1" >
+            <layout class="QHBoxLayout" name="horizontalLayout_24" >
+             <item>
+              <widget class="QToolButton" name="toolButton_17" >
+               <property name="text" >
+                <string>Toevoegen</string>
+               </property>
+               <property name="icon" >
+                <iconset>
+                 <normalon>:/icons/edit_add-64.png</normalon>
+                </iconset>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_18" >
+               <property name="text" >
+                <string>Verwijderen</string>
+               </property>
+               <property name="icon" >
+                <iconset>
+                 <normalon>:/icons/edit_remove-64.png</normalon>
+                </iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>872</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuBestand" >
+    <property name="title" >
+     <string>Bestand</string>
+    </property>
+    <addaction name="actionBackup_maken" />
+    <addaction name="actionBackup_terugzetten" />
+    <addaction name="separator" />
+    <addaction name="actionEtiketten_afdrukken" />
+    <addaction name="separator" />
+    <addaction name="actionAfsluiten" />
+   </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>Help</string>
+    </property>
+    <addaction name="actionVersie_informatie" />
+   </widget>
+   <widget class="QMenu" name="menuInstellingen" >
+    <property name="title" >
+     <string>Instellingen</string>
+    </property>
+    <addaction name="actionInstellingen_wijzigen" />
+   </widget>
+   <addaction name="menuBestand" />
+   <addaction name="menuInstellingen" />
+   <addaction name="menuHelp" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <action name="actionBackup_maken" >
+   <property name="text" >
+    <string>Backup maken...</string>
+   </property>
+  </action>
+  <action name="actionBackup_terugzetten" >
+   <property name="text" >
+    <string>Backup terugzetten...</string>
+   </property>
+  </action>
+  <action name="actionEtiketten_afdrukken" >
+   <property name="icon" >
+    <iconset resource="../icons.qrc" >
+     <normaloff>:/icons/agt_print-64.png</normaloff>:/icons/agt_print-64.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Etiketten afdrukken...</string>
+   </property>
+  </action>
+  <action name="actionAfsluiten" >
+   <property name="text" >
+    <string>Afsluiten</string>
+   </property>
+  </action>
+  <action name="actionVersie_informatie" >
+   <property name="text" >
+    <string>Versie informatie...</string>
+   </property>
+  </action>
+  <action name="actionInstellingen_wijzigen" >
+   <property name="text" >
+    <string>Instellingen wijzigen...</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../icons.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionAfsluiten</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>435</x>
+     <y>380</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
