@@ -13,7 +13,6 @@ FORMS = ui/aboutdialog.ui \
 HEADERS = src/artsmodel.h \
  src/artspresenter.h \
  src/artsview.h \
- src/backupdialogimpl.h \
  src/briefarts.h \
  src/briefartsdialogimpl.h \
  src/briefklant.h \
@@ -31,7 +30,6 @@ HEADERS = src/artsmodel.h \
  src/mutualiteitmodel.h \
  src/mutualiteitpresenter.h \
  src/mutualiteitview.h \
- src/restoredialogimpl.h \
  src/worldmodel.h \
  src/worldpresenter.h \
  src/briefklantdialogimpl.h \
@@ -43,7 +41,6 @@ RESOURCES += icons.qrc
 SOURCES = src/artsmodel.cpp \
  src/artspresenter.cpp \
  src/artsview.cpp \
- src/backupdialogimpl.cpp \
  src/briefarts.cpp \
  src/briefartsdialogimpl.cpp \
  src/briefklant.cpp \
@@ -62,7 +59,6 @@ SOURCES = src/artsmodel.cpp \
  src/mutualiteitmodel.cpp \
  src/mutualiteitpresenter.cpp \
  src/mutualiteitview.cpp \
- src/restoredialogimpl.cpp \
  src/worldmodel.cpp \
  src/worldpresenter.cpp \
  src/briefklantdialogimpl.cpp \

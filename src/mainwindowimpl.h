@@ -11,5 +11,10 @@ public:
 	MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
 private slots:
 	void printLabels();
+	void backup();
+	void restore();
+signals:
+	void backupSignal(QString bestandsNaam);
+	void restoreSignal(QString bestandsNaam);
 };
 #endif
