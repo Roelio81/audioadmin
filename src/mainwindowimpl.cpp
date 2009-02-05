@@ -1,5 +1,5 @@
 #include "mainwindowimpl.h"
-#include "printlabeldialogimpl.h"
+#include "etikettendialogimpl.h"
 
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f) 
 	: QMainWindow(parent, f)
@@ -10,6 +10,6 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 
 void MainWindowImpl::printLabels()
 {
-	PrintLabelDialogImpl *printLabelDialog = new PrintLabelDialogImpl(this);
-	printLabelDialog->show();
+	EtikettenDialogImpl *etikettenDialog = new EtikettenDialogImpl(this);
+	etikettenDialog->show();
 }

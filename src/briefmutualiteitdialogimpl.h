@@ -1,0 +1,6 @@
+#ifndef __BRIEFMUTUALITEITDIALOGIMPL_H__
+#define __BRIEFMUTUALITEITDIALOGIMPL_H__
+
+// place your code here
+
+#endif // __BRIEFMUTUALITEITDIALOGIMPL_H__

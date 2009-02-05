@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>PrintLabelDialog</class>
- <widget class="QDialog" name="PrintLabelDialog" >
+ <class>EtikettenDialog</class>
+ <widget class="QDialog" name="EtikettenDialog" >
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -80,7 +80,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>PrintLabelDialog</receiver>
+   <receiver>EtikettenDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel" >
@@ -96,7 +96,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>PrintLabelDialog</receiver>
+   <receiver>EtikettenDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel" >

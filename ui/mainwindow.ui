@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>872</width>
-    <height>761</height>
+    <width>989</width>
+    <height>775</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -17,7 +17,7 @@
     <normaloff>:/icons/agt_softwareD-64.png</normaloff>:/icons/agt_softwareD-64.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <layout class="QGridLayout" name="gridLayout_8" >
+   <layout class="QGridLayout" name="gridLayout_13" >
     <item row="0" column="0" >
      <widget class="QTabWidget" name="tabWidget" >
       <property name="currentIndex" >
@@ -27,7 +27,7 @@
        <attribute name="title" >
         <string>Dossiers</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_7" >
+       <layout class="QGridLayout" name="gridLayout_8" >
         <item row="0" column="0" >
          <layout class="QHBoxLayout" name="horizontalLayout_9" >
           <item>
@@ -120,6 +120,12 @@
                    <height>0</height>
                   </size>
                  </property>
+                 <property name="minimum" >
+                  <number>1000</number>
+                 </property>
+                 <property name="maximum" >
+                  <number>9999</number>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -155,6 +161,12 @@
                </item>
                <item>
                 <widget class="QDateEdit" name="dateEdit" >
+                 <property name="minimumSize" >
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
+                 </property>
                  <property name="maximumSize" >
                   <size>
                    <width>200</width>
@@ -175,7 +187,14 @@
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="comboBox_2" />
+                <widget class="QComboBox" name="comboBox_2" >
+                 <property name="sizePolicy" >
+                  <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
                </item>
                <item>
                 <widget class="QLabel" name="label_19" >
@@ -187,7 +206,7 @@
                <item>
                 <widget class="QLineEdit" name="lineEdit_15" >
                  <property name="sizePolicy" >
-                  <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+                  <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -262,7 +281,7 @@
             </property>
             <layout class="QGridLayout" name="gridLayout_2" >
              <item row="0" column="0" >
-              <widget class="QLabel" name="label" >
+              <widget class="QCheckBox" name="checkBox" >
                <property name="text" >
                 <string>Onderzoek</string>
                </property>
@@ -272,7 +291,7 @@
               <widget class="QDateEdit" name="dateEdit_2" />
              </item>
              <item row="1" column="0" >
-              <widget class="QLabel" name="label_2" >
+              <widget class="QCheckBox" name="checkBox_2" >
                <property name="text" >
                 <string>Proef</string>
                </property>
@@ -282,7 +301,7 @@
               <widget class="QDateEdit" name="dateEdit_3" />
              </item>
              <item row="2" column="0" >
-              <widget class="QLabel" name="label_3" >
+              <widget class="QCheckBox" name="checkBox_3" >
                <property name="text" >
                 <string>NKO Rapport</string>
                </property>
@@ -292,7 +311,7 @@
               <widget class="QDateEdit" name="dateEdit_4" />
              </item>
              <item row="3" column="0" >
-              <widget class="QLabel" name="label_4" >
+              <widget class="QCheckBox" name="checkBox_4" >
                <property name="text" >
                 <string>Dokter adviseur</string>
                </property>
@@ -302,7 +321,7 @@
               <widget class="QDateEdit" name="dateEdit_5" />
              </item>
              <item row="4" column="0" >
-              <widget class="QLabel" name="label_5" >
+              <widget class="QCheckBox" name="checkBox_5" >
                <property name="text" >
                 <string>Akkoord mut.</string>
                </property>
@@ -312,7 +331,7 @@
               <widget class="QDateEdit" name="dateEdit_6" />
              </item>
              <item row="5" column="0" >
-              <widget class="QLabel" name="label_6" >
+              <widget class="QCheckBox" name="checkBox_6" >
                <property name="text" >
                 <string>Betaling</string>
                </property>
@@ -322,7 +341,7 @@
               <widget class="QDateEdit" name="dateEdit_7" />
              </item>
              <item row="6" column="0" >
-              <widget class="QLabel" name="label_7" >
+              <widget class="QCheckBox" name="checkBox_7" >
                <property name="text" >
                 <string>Aflevering</string>
                </property>
@@ -332,23 +351,23 @@
               <widget class="QDateEdit" name="dateEdit_8" />
              </item>
              <item row="7" column="0" >
-              <widget class="QLabel" name="label_8" >
+              <widget class="QCheckBox" name="checkBox_8" >
                <property name="text" >
                 <string>Wissel</string>
                </property>
               </widget>
              </item>
-             <item rowspan="2" row="7" column="1" >
+             <item row="7" column="1" >
               <widget class="QDateEdit" name="dateEdit_9" />
              </item>
-             <item rowspan="2" row="8" column="0" >
-              <widget class="QLabel" name="label_9" >
+             <item row="8" column="0" >
+              <widget class="QCheckBox" name="checkBox_9" >
                <property name="text" >
                 <string>OHK</string>
                </property>
               </widget>
              </item>
-             <item row="9" column="1" >
+             <item row="8" column="1" >
               <widget class="QDateEdit" name="dateEdit_10" />
              </item>
             </layout>
@@ -369,7 +388,7 @@
                </size>
               </property>
               <property name="title" >
-               <string>NKO Arts</string>
+               <string>Arts</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_6" >
                <item row="0" column="0" >
@@ -436,7 +455,11 @@
                  </widget>
                 </item>
                 <item row="0" column="1" >
-                 <widget class="QComboBox" name="comboBox_3" />
+                 <widget class="QComboBox" name="comboBox_3" >
+                  <property name="editable" >
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                 <item row="1" column="0" >
                  <widget class="QLabel" name="label_22" >
@@ -446,7 +469,11 @@
                  </widget>
                 </item>
                 <item row="1" column="1" >
-                 <widget class="QComboBox" name="comboBox_4" />
+                 <widget class="QComboBox" name="comboBox_4" >
+                  <property name="editable" >
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                 <item row="2" column="0" >
                  <widget class="QLabel" name="label_23" >
@@ -485,7 +512,11 @@
                  </widget>
                 </item>
                 <item row="0" column="1" >
-                 <widget class="QComboBox" name="comboBox_5" />
+                 <widget class="QComboBox" name="comboBox_5" >
+                  <property name="editable" >
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                 <item row="1" column="0" >
                  <widget class="QLabel" name="label_26" >
@@ -495,7 +526,11 @@
                  </widget>
                 </item>
                 <item row="1" column="1" >
-                 <widget class="QComboBox" name="comboBox_6" />
+                 <widget class="QComboBox" name="comboBox_6" >
+                  <property name="editable" >
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                 <item row="2" column="0" >
                  <widget class="QLabel" name="label_27" >
@@ -523,6 +558,91 @@
             </layout>
            </widget>
           </item>
+          <item>
+           <widget class="QGroupBox" name="groupBox_2" >
+            <property name="title" >
+             <string>Brieven</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_7" >
+             <item row="0" column="0" >
+              <widget class="QPushButton" name="pushButton_2" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize" >
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text" >
+                <string>Klant</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0" >
+              <widget class="QPushButton" name="pushButton_3" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize" >
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text" >
+                <string>Arts</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0" >
+              <widget class="QPushButton" name="pushButton_4" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize" >
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text" >
+                <string>Mutualiteit</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0" >
+              <widget class="QPushButton" name="pushButton_5" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize" >
+                <size>
+                 <width>100</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text" >
+                <string>Factuur</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
          </layout>
         </item>
         <item row="2" column="0" >
@@ -543,13 +663,32 @@
         </item>
         <item row="3" column="0" >
          <widget class="QTableWidget" name="tableWidget" >
+          <property name="sortingEnabled" >
+           <bool>true</bool>
+          </property>
           <property name="columnCount" >
            <number>4</number>
           </property>
-          <column/>
-          <column/>
-          <column/>
-          <column/>
+          <column>
+           <property name="text" >
+            <string>Naam</string>
+           </property>
+          </column>
+          <column>
+           <property name="text" >
+            <string>Straat</string>
+           </property>
+          </column>
+          <column>
+           <property name="text" >
+            <string>Postcode</string>
+           </property>
+          </column>
+          <column>
+           <property name="text" >
+            <string>Gemeente</string>
+           </property>
+          </column>
          </widget>
         </item>
         <item row="4" column="0" >
@@ -634,7 +773,7 @@
       </widget>
       <widget class="QWidget" name="tabNko" >
        <attribute name="title" >
-        <string>NKO Artsen</string>
+        <string>Artsen</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_10" >
         <item row="0" column="0" >
@@ -809,10 +948,26 @@
           <property name="columnCount" >
            <number>4</number>
           </property>
-          <column/>
-          <column/>
-          <column/>
-          <column/>
+          <column>
+           <property name="text" >
+            <string>Naam</string>
+           </property>
+          </column>
+          <column>
+           <property name="text" >
+            <string>Straat</string>
+           </property>
+          </column>
+          <column>
+           <property name="text" >
+            <string>Postcode</string>
+           </property>
+          </column>
+          <column>
+           <property name="text" >
+            <string>Gemeente</string>
+           </property>
+          </column>
          </widget>
         </item>
         <item row="3" column="0" >
@@ -1055,10 +1210,26 @@
           <property name="columnCount" >
            <number>4</number>
           </property>
-          <column/>
-          <column/>
-          <column/>
-          <column/>
+          <column>
+           <property name="text" >
+            <string>Naam</string>
+           </property>
+          </column>
+          <column>
+           <property name="text" >
+            <string>Straat</string>
+           </property>
+          </column>
+          <column>
+           <property name="text" >
+            <string>Postcode</string>
+           </property>
+          </column>
+          <column>
+           <property name="text" >
+            <string>Gemeente</string>
+           </property>
+          </column>
          </widget>
         </item>
         <item row="3" column="0" >
@@ -1141,170 +1312,6 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabHoorapparaat" >
-       <attribute name="title" >
-        <string>Hoorapparaten</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_15" >
-        <item row="0" column="0" >
-         <widget class="QGroupBox" name="groupBox_2" >
-          <property name="title" >
-           <string>Soorten hoorapparaat</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_13" >
-           <item row="0" column="0" >
-            <widget class="QLabel" name="label_41" >
-             <property name="text" >
-              <string>Merk</string>
-             </property>
-             <property name="alignment" >
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1" >
-            <widget class="QListView" name="listView_2" />
-           </item>
-           <item row="0" column="2" >
-            <spacer name="horizontalSpacer_7" >
-             <property name="orientation" >
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeType" >
-              <enum>QSizePolicy::Maximum</enum>
-             </property>
-             <property name="sizeHint" stdset="0" >
-              <size>
-               <width>100</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="0" column="3" >
-            <widget class="QLabel" name="label_49" >
-             <property name="text" >
-              <string>Merk</string>
-             </property>
-             <property name="alignment" >
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="4" >
-            <widget class="QListView" name="listView_3" />
-           </item>
-           <item row="1" column="1" >
-            <layout class="QHBoxLayout" name="horizontalLayout_22" >
-             <item>
-              <widget class="QToolButton" name="toolButton_14" >
-               <property name="text" >
-                <string>Toevoegen</string>
-               </property>
-               <property name="icon" >
-                <iconset>
-                 <normalon>:/icons/edit_add-64.png</normalon>
-                </iconset>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QToolButton" name="toolButton_13" >
-               <property name="text" >
-                <string>Verwijderen</string>
-               </property>
-               <property name="icon" >
-                <iconset>
-                 <normalon>:/icons/edit_remove-64.png</normalon>
-                </iconset>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="1" column="4" >
-            <layout class="QHBoxLayout" name="horizontalLayout_23" >
-             <item>
-              <widget class="QToolButton" name="toolButton_15" >
-               <property name="text" >
-                <string>Toevoegen</string>
-               </property>
-               <property name="icon" >
-                <iconset>
-                 <normalon>:/icons/edit_add-64.png</normalon>
-                </iconset>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QToolButton" name="toolButton_16" >
-               <property name="text" >
-                <string>Verwijderen</string>
-               </property>
-               <property name="icon" >
-                <iconset>
-                 <normalon>:/icons/edit_remove-64.png</normalon>
-                </iconset>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="0" column="1" >
-         <widget class="QGroupBox" name="groupBox_3" >
-          <property name="title" >
-           <string>Stock</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_14" >
-           <item row="0" column="0" >
-            <widget class="QLabel" name="label_32" >
-             <property name="text" >
-              <string>Serienummers</string>
-             </property>
-             <property name="alignment" >
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1" >
-            <widget class="QListView" name="listView" />
-           </item>
-           <item row="1" column="1" >
-            <layout class="QHBoxLayout" name="horizontalLayout_24" >
-             <item>
-              <widget class="QToolButton" name="toolButton_17" >
-               <property name="text" >
-                <string>Toevoegen</string>
-               </property>
-               <property name="icon" >
-                <iconset>
-                 <normalon>:/icons/edit_add-64.png</normalon>
-                </iconset>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QToolButton" name="toolButton_18" >
-               <property name="text" >
-                <string>Verwijderen</string>
-               </property>
-               <property name="icon" >
-                <iconset>
-                 <normalon>:/icons/edit_remove-64.png</normalon>
-                </iconset>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
      </widget>
     </item>
    </layout>
@@ -1314,7 +1321,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>872</width>
+     <width>989</width>
      <height>21</height>
     </rect>
    </property>
