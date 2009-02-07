@@ -1,3 +1,7 @@
 #include "briefklantdialogimpl.h"
 
-// place your code here
+BriefKlantDialogImpl::BriefKlantDialogImpl( QWidget * parent) 
+	: QDialog(parent)
+{
+	setupUi(this);
+}

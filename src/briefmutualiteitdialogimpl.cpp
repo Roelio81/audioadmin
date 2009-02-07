@@ -1,3 +1,7 @@
 #include "briefmutualiteitdialogimpl.h"
 
-// place your code here
+BriefMutualiteitDialogImpl::BriefMutualiteitDialogImpl( QWidget * parent) 
+	: QDialog(parent)
+{
+	setupUi(this);
+}

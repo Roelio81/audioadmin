@@ -1,3 +1,8 @@
 #include "instellingendialogimpl.h"
 
-// place your code here
+InstellingenDialogImpl::InstellingenDialogImpl( QWidget * parent) 
+	: QDialog(parent)
+{
+	setupUi(this);
+	setModal(true);
+}

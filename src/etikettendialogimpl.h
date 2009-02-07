@@ -1,5 +1,5 @@
-#ifndef __ETIKETTENDIALOG_H__
-#define __ETIKETTENDIALOG_H__
+#ifndef __ETIKETTENDIALOGIMPL_H__
+#define __ETIKETTENDIALOGIMPL_H__
 
 #include <QDialog>
 #include "ui_etikettendialog.h"
@@ -11,4 +11,4 @@ public:
 	EtikettenDialogImpl( QWidget * parent = 0 );
 };
 
-#endif // __ETIKETTENDIALOG_H__
+#endif // __ETIKETTENDIALOGIMPL_H__

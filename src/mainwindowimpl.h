@@ -13,6 +13,8 @@ private slots:
 	void printLabels();
 	void backup();
 	void restore();
+	void settings();
+	void about();
 signals:
 	void backupSignal(QString bestandsNaam);
 	void restoreSignal(QString bestandsNaam);

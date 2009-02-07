@@ -88,7 +88,7 @@
                <item>
                 <widget class="QLabel" name="label_13" >
                  <property name="text" >
-                  <string>Straat (+ huisnummer / adres)</string>
+                  <string>Straat (+ huisnummer / bus)</string>
                  </property>
                 </widget>
                </item>
@@ -824,7 +824,7 @@
              <item>
               <widget class="QLabel" name="label_35" >
                <property name="text" >
-                <string>Straat (+ huisnummer / adres)</string>
+                <string>Straat (+ huisnummer / bus)</string>
                </property>
               </widget>
              </item>
@@ -1086,7 +1086,7 @@
              <item>
               <widget class="QLabel" name="label_42" >
                <property name="text" >
-                <string>Straat (+ huisnummer / adres)</string>
+                <string>Straat (+ huisnummer / bus)</string>
                </property>
               </widget>
              </item>
@@ -1340,7 +1340,7 @@
     <property name="title" >
      <string>Help</string>
     </property>
-    <addaction name="actionVersie_informatie" />
+    <addaction name="actionOmtrend" />
    </widget>
    <widget class="QMenu" name="menuInstellingen" >
     <property name="title" >
@@ -1377,9 +1377,9 @@
     <string>Afsluiten</string>
    </property>
   </action>
-  <action name="actionVersie_informatie" >
+  <action name="actionOmtrend" >
    <property name="text" >
-    <string>Versie informatie...</string>
+    <string>Omtrend AudioAdmin...</string>
    </property>
   </action>
   <action name="actionInstellingen_wijzigen" >

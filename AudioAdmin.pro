@@ -1,22 +1,23 @@
 CONFIG += console debug_and_release qt warn_on
 DESTDIR = bin
 FORMS = ui/aboutdialog.ui \
- ui/backupdialog.ui \
  ui/briefartsdialog.ui \
  ui/briefklantdialog.ui \
  ui/briefmutualiteitdialog.ui \
  ui/etikettendialog.ui \
  ui/factuurdialog.ui \
  ui/instellingendialog.ui \
- ui/mainwindow.ui \
- ui/restoredialog.ui
-HEADERS = src/artsmodel.h \
+ ui/mainwindow.ui
+HEADERS = src/aboutdialogimpl.h \
+ src/artsmodel.h \
  src/artspresenter.h \
  src/artsview.h \
  src/briefarts.h \
  src/briefartsdialogimpl.h \
  src/briefklant.h \
+ src/briefklantdialogimpl.h \
  src/briefmutualiteit.h \
+ src/briefmutualiteitdialogimpl.h \
  src/dossiermodel.h \
  src/dossierpresenter.h \
  src/dossierview.h \
@@ -31,20 +32,21 @@ HEADERS = src/artsmodel.h \
  src/mutualiteitpresenter.h \
  src/mutualiteitview.h \
  src/worldmodel.h \
- src/worldpresenter.h \
- src/briefklantdialogimpl.h \
- src/briefmutualiteitdialogimpl.h
+ src/worldpresenter.h
 MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml
 RESOURCES += icons.qrc
-SOURCES = src/artsmodel.cpp \
+SOURCES = src/aboutdialogimpl.cpp \
+ src/artsmodel.cpp \
  src/artspresenter.cpp \
  src/artsview.cpp \
  src/briefarts.cpp \
  src/briefartsdialogimpl.cpp \
  src/briefklant.cpp \
+ src/briefklantdialogimpl.cpp \
  src/briefmutualiteit.cpp \
+ src/briefmutualiteitdialogimpl.cpp \
  src/dossiermodel.cpp \
  src/dossierpresenter.cpp \
  src/dossierview.cpp \
@@ -60,8 +62,6 @@ SOURCES = src/artsmodel.cpp \
  src/mutualiteitpresenter.cpp \
  src/mutualiteitview.cpp \
  src/worldmodel.cpp \
- src/worldpresenter.cpp \
- src/briefklantdialogimpl.cpp \
- src/briefmutualiteitdialogimpl.cpp
+ src/worldpresenter.cpp
 TEMPLATE = app
 UI_DIR = build

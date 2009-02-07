@@ -1,3 +1,7 @@
 #include "briefartsdialogimpl.h"
 
-// place your code here
+BriefArtsDialogImpl::BriefArtsDialogImpl( QWidget * parent) 
+	: QDialog(parent)
+{
+	setupUi(this);
+}

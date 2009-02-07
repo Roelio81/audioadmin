@@ -1,5 +1,7 @@
 #include "mainwindowimpl.h"
+#include "aboutdialogimpl.h"
 #include "etikettendialogimpl.h"
+#include "instellingendialogimpl.h"
 #include <QFileDialog>
 
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f) 
@@ -9,6 +11,8 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	connect(actionEtiketten_afdrukken, SIGNAL(activated()), this, SLOT(printLabels()));
 	connect(actionBackup_maken, SIGNAL(activated()), this, SLOT(backup()));
 	connect(actionBackup_terugzetten, SIGNAL(activated()), this, SLOT(restore()));
+	connect(actionInstellingen_wijzigen, SIGNAL(activated()), this, SLOT(settings()));
+	connect(actionOmtrend, SIGNAL(activated()), this, SLOT(about()));
 }
 
 void MainWindowImpl::printLabels()
@@ -39,4 +43,16 @@ void MainWindowImpl::restore()
 	dialog.setDefaultSuffix("xml");
 	QString bestandsNaam = dialog.getOpenFileName();
 	emit restoreSignal(bestandsNaam);
+}
+
+void MainWindowImpl::settings()
+{
+	InstellingenDialogImpl *instellingenDialog = new InstellingenDialogImpl(this);
+	instellingenDialog->show();
+}
+
+void MainWindowImpl::about()
+{
+	AboutDialogImpl *aboutDialog = new AboutDialogImpl(this);
+	aboutDialog->show();
 }
