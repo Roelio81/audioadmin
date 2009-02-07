@@ -7,7 +7,8 @@ FORMS = ui/aboutdialog.ui \
  ui/etikettendialog.ui \
  ui/factuurdialog.ui \
  ui/instellingendialog.ui \
- ui/mainwindow.ui
+ ui/mainwindow.ui \
+ ui/meetgegevensdialog.ui
 HEADERS = src/aboutdialogimpl.h \
  src/artsmodel.h \
  src/artspresenter.h \
@@ -28,6 +29,7 @@ HEADERS = src/aboutdialogimpl.h \
  src/klantmodel.h \
  src/mainwindowimpl.h \
  src/meetgegevens.h \
+ src/meetgegevensdialogimpl.h \
  src/mutualiteitmodel.h \
  src/mutualiteitpresenter.h \
  src/mutualiteitview.h \
@@ -58,6 +60,7 @@ SOURCES = src/aboutdialogimpl.cpp \
  src/main.cpp \
  src/mainwindowimpl.cpp \
  src/meetgegevens.cpp \
+ src/meetgegevensdialogimpl.cpp \
  src/mutualiteitmodel.cpp \
  src/mutualiteitpresenter.cpp \
  src/mutualiteitview.cpp \

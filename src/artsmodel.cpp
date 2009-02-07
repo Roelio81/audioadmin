@@ -1,3 +1,12 @@
 #include "artsmodel.h"
 
-// place your code here
+ArtsModel::ArtsModel(QDomElement &e)
+: QObject()
+{
+	
+}
+
+ArtsModel::~ArtsModel()
+{
+	
+}

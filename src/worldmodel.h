@@ -6,9 +6,10 @@
 #include <QString>
 #include <QVector>
 
+class ArtsModel;
 class DossierModel;
 class MutualiteitModel;
-class ArtsModel;
+class QDomElement;
 
 class WorldModel : public QObject
 {
@@ -29,11 +30,12 @@ public slots:
 	void save(QString bestandsNaam);
 	
 private:
+	void loadInstellingen(QDomElement &e);
+
 	QString m_bestandsNaam;
 	QVector<DossierModel *> m_dossierLijst;
 	QVector<ArtsModel *> m_artsenLijst;
 	QVector<MutualiteitModel *> m_mutualiteitenLijst;
-	QMap<QString, QVector<QString> > m_apparatenLijst;
 };
 
 #endif // __MAINDOCUMENT_H__

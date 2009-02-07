@@ -1,3 +1,12 @@
 #include "dossiermodel.h"
 
-// place your code here
+DossierModel::DossierModel(QDomElement &e)
+: QObject()
+{
+	
+}
+
+DossierModel::~DossierModel()
+{
+	
+}

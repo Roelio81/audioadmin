@@ -1,3 +1,12 @@
 #include "mutualiteitmodel.h"
 
-// place your code here
+MutualiteitModel::MutualiteitModel(QDomElement &e)
+: QObject()
+{
+	
+}
+
+MutualiteitModel::~MutualiteitModel()
+{
+	
+}
