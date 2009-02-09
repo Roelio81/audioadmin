@@ -1,7 +1,6 @@
-CONFIG += console debug_and_release qt warn_on
+CONFIG += debug_and_release qt warn_on designer
 DESTDIR = bin
-FORMS = ui/aboutdialog.ui \
- ui/briefartsdialog.ui \
+FORMS = ui/briefartsdialog.ui \
  ui/briefklantdialog.ui \
  ui/briefmutualiteitdialog.ui \
  ui/etikettendialog.ui \
@@ -9,8 +8,7 @@ FORMS = ui/aboutdialog.ui \
  ui/instellingendialog.ui \
  ui/mainwindow.ui \
  ui/meetgegevensdialog.ui
-HEADERS = src/aboutdialogimpl.h \
- src/artsmodel.h \
+HEADERS = src/artsmodel.h \
  src/artspresenter.h \
  src/artsview.h \
  src/briefarts.h \
@@ -34,13 +32,14 @@ HEADERS = src/aboutdialogimpl.h \
  src/mutualiteitpresenter.h \
  src/mutualiteitview.h \
  src/worldmodel.h \
- src/worldpresenter.h
+ src/worldpresenter.h \
+ src/vocaleaudiometriewidget.h \
+ src/vocaleaudiometrieplugin.h
 MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml
 RESOURCES += icons.qrc
-SOURCES = src/aboutdialogimpl.cpp \
- src/artsmodel.cpp \
+SOURCES = src/artsmodel.cpp \
  src/artspresenter.cpp \
  src/artsview.cpp \
  src/briefarts.cpp \
@@ -65,6 +64,8 @@ SOURCES = src/aboutdialogimpl.cpp \
  src/mutualiteitpresenter.cpp \
  src/mutualiteitview.cpp \
  src/worldmodel.cpp \
- src/worldpresenter.cpp
+ src/worldpresenter.cpp \
+ src/vocaleaudiometriewidget.cpp \
+ src/vocaleaudiometrieplugin.cpp
 TEMPLATE = app
 UI_DIR = build

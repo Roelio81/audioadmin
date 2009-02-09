@@ -1,6 +1,9 @@
 <ui version="4.0" >
  <class>MeetgegevensDialog</class>
  <widget class="QDialog" name="MeetgegevensDialog" >
+  <property name="windowModality" >
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -49,6 +52,11 @@
          <property name="title" >
           <string>Zonder hoorapparaat (onder koptelefoon)</string>
          </property>
+         <layout class="QGridLayout" name="gridLayout_7" >
+          <item row="0" column="0" >
+           <widget class="QWidget" native="1" name="vocAudiometrieZonderApparaat" />
+          </item>
+         </layout>
         </widget>
        </item>
        <item row="1" column="0" >
@@ -56,6 +64,7 @@
          <property name="title" >
           <string>Met hoorapparaat (in vrij veld)</string>
          </property>
+         <layout class="QGridLayout" name="gridLayout_8" />
         </widget>
        </item>
       </layout>

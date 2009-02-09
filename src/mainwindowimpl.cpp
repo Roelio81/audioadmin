@@ -1,8 +1,9 @@
 #include "mainwindowimpl.h"
-#include "aboutdialogimpl.h"
 #include "etikettendialogimpl.h"
 #include "instellingendialogimpl.h"
+#include "meetgegevensdialogimpl.h"
 #include <QFileDialog>
+#include <QMessageBox>
 
 MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f) 
 	: QMainWindow(parent, f)
@@ -13,6 +14,7 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	connect(actionBackup_terugzetten, SIGNAL(activated()), this, SLOT(restore()));
 	connect(actionInstellingen_wijzigen, SIGNAL(activated()), this, SLOT(settings()));
 	connect(actionOmtrend, SIGNAL(activated()), this, SLOT(about()));
+	connect(meetgegevensButton, SIGNAL(clicked()), this, SLOT(showMeetgegevens()));
 }
 
 void MainWindowImpl::printLabels()
@@ -53,6 +55,14 @@ void MainWindowImpl::settings()
 
 void MainWindowImpl::about()
 {
-	AboutDialogImpl *aboutDialog = new AboutDialogImpl(this);
-	aboutDialog->show();
+	QMessageBox::about(this, "Omtrent AudioAdmin", "<p>AudioAdmin 2.0</p>"
+		"<p>Vrijgegeven onder de GPL licentie, versie 3</p>"
+		"<p>Februari 2009</p>");
+
+}
+
+void MainWindowImpl::showMeetgegevens()
+{
+	MeetgegevensDialogImpl *meetgegevensDialog = new MeetgegevensDialogImpl(this);
+	meetgegevensDialog->show();
 }
