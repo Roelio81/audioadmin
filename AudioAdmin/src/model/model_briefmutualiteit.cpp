@@ -1,4 +1,4 @@
-#include "briefmutualiteit.h"
+#include "model_briefmutualiteit.h"
 
 using namespace Model;
 

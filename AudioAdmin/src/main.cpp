@@ -1,7 +1,7 @@
 #include <QApplication>
-#include "model/universum.h"
-#include "presenter/universum.h"
-#include "view/universum.h"
+#include "model/model_universum.h"
+#include "presenter/presenter_universum.h"
+#include "view/view_universum.h"
 
 int main(int argc, char ** argv)
 {

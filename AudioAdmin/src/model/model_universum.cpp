@@ -82,11 +82,11 @@ bool Universum::openen()
 	return true;
 }
 
-void Universum::openen(::QString bestandsNaam)
+void Universum::openen(const ::QString &bestandsNaam)
 {
 	const ::QString &origNaam = m_bestandsNaam;
 	m_bestandsNaam = bestandsNaam;
-	bool succes = load();
+	bool succes = openen();
 	Q_ASSERT(succes);
 	m_bestandsNaam = origNaam;
 }
@@ -96,11 +96,11 @@ bool Universum::bewaren()
 	return true;
 }
 
-void Universum::bewaren(QString bestandsNaam)
+void Universum::bewaren(const ::QString &bestandsNaam)
 {
 	const ::QString &origNaam = m_bestandsNaam;
 	m_bestandsNaam = bestandsNaam;
-	bool succes = save();
+	bool succes = bewaren();
 	Q_ASSERT(succes);
 	m_bestandsNaam = origNaam;
 }

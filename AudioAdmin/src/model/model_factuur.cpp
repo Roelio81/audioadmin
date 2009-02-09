@@ -1,4 +1,4 @@
-#include "factuur.h"
+#include "model_factuur.h"
 
 using namespace Model;
 

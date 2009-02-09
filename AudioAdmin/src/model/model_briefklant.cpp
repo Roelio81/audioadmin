@@ -1,4 +1,4 @@
-#include "briefklant.h"
+#include "model_briefklant.h"
 
 using namespace Model;
 
