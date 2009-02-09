@@ -1,4 +1,4 @@
-#include "briefarts.h"
+#include "view_briefarts.h"
 
 using namespace View;
 

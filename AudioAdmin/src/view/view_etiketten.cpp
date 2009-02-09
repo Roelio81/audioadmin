@@ -1,4 +1,4 @@
-#include "etiketten.h"
+#include "view_etiketten.h"
 
 using namespace View;
 

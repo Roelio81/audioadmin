@@ -1,4 +1,4 @@
-#include "arts.h"
+#include "model_arts.h"
 
 using namespace Model;
 

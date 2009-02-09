@@ -15,7 +15,7 @@ namespace Model
 
 namespace Presenter
 {
-	class Dossier : public QObject
+	class Dossier : public ::QObject
 	{
 		public:
 			Dossier(View::Dossier &view, Model::Dossier &model);

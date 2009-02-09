@@ -1,4 +1,4 @@
-#include "briefklant.h"
+#include "view_briefklant.h"
 
 using namespace View;
 

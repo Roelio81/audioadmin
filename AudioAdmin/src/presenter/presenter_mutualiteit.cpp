@@ -1,6 +1,6 @@
-#include "mutualiteit.h"
-#include "../model/mutualiteit.h"
-#include "../view/mutualiteit.h"
+#include "presenter_mutualiteit.h"
+#include "../model/model_mutualiteit.h"
+#include "../view/view_mutualiteit.h"
 
 using namespace Presenter;
 

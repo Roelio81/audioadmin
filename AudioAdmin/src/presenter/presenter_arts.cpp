@@ -1,6 +1,6 @@
-#include "arts.h"
-#include "../model/arts.h"
-#include "../view/arts.h"
+#include "presenter_arts.h"
+#include "../model/model_arts.h"
+#include "../view/view_arts.h"
 
 using namespace Presenter;
 

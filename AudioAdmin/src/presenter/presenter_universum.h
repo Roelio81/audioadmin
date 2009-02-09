@@ -15,7 +15,7 @@ namespace Model
 
 namespace Presenter
 {
-	class Universum : public QObject
+	class Universum : public ::QObject
 	{
 		public:
 			Universum(View::Universum &view, Model::Universum &model);

@@ -15,7 +15,7 @@ namespace Model
 
 namespace Presenter
 {
-	class Mutualiteit : public QObject
+	class Mutualiteit : public ::QObject
 	{
 		public:
 			Mutualiteit(View::Mutualiteit &view, Model::Mutualiteit &model);

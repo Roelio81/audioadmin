@@ -1,6 +1,6 @@
-#include "dossier.h"
-#include "../model/dossier.h"
-#include "../view/dossier.h"
+#include "presenter_dossier.h"
+#include "../model/model_dossier.h"
+#include "../view/view_dossier.h"
 
 using namespace Presenter;
 

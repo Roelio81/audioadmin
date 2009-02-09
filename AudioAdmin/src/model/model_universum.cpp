@@ -1,8 +1,8 @@
-#include "universum.h"
+#include "model_universum.h"
 
-#include "arts.h"
-#include "dossier.h"
-#include "mutualiteit.h"
+#include "model_arts.h"
+#include "model_dossier.h"
+#include "model_mutualiteit.h"
 
 #include <QDomDocument>
 #include <QDomElement>

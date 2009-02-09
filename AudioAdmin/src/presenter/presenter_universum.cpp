@@ -1,6 +1,6 @@
-#include "universum.h"
-#include "../model/universum.h"
-#include "../view/universum.h"
+#include "presenter_universum.h"
+#include "../model/model_universum.h"
+#include "../view/view_universum.h"
 
 using namespace Presenter;
 

@@ -6,7 +6,7 @@
 
 namespace View
 {
-	class Universum : public QMainWindow, public Ui::MainWindow
+	class Universum : public ::QMainWindow, public Ui::MainWindow
 	{
 	Q_OBJECT
 	public:

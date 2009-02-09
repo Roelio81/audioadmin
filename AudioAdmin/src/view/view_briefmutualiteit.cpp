@@ -1,4 +1,4 @@
-#include "briefmutualiteit.h"
+#include "view_briefmutualiteit.h"
 
 using namespace View;
 

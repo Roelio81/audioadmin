@@ -1,7 +1,7 @@
-#include "universum.h"
-#include "etiketten.h"
-#include "instellingen.h"
-#include "meetgegevens.h"
+#include "view_universum.h"
+#include "view_etiketten.h"
+#include "view_instellingen.h"
+#include "view_meetgegevens.h"
 
 #include <QFileDialog>
 #include <QMessageBox>

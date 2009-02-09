@@ -1,4 +1,4 @@
-#include "instellingen.h"
+#include "view_instellingen.h"
 
 using namespace View;
 
