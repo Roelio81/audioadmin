@@ -2,7 +2,7 @@
 #define _VIEW_MEETGEGEVENS_H
 
 #include <QDialog>
-#include "../ui_meetgegevensdialog.h"
+#include "ui_meetgegevensdialog.h"
 
 namespace View
 {

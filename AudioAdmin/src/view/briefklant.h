@@ -2,7 +2,7 @@
 #define _VIEW_BRIEFKLANT_H
 
 #include <QDialog>
-#include "../ui_briefklantdialog.h"
+#include "ui_briefklantdialog.h"
 
 namespace View
 {

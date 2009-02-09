@@ -2,7 +2,7 @@
 #define _VIEW_BRIEFARTS_H
 
 #include <QDialog>
-#include "../ui_briefartsdialog.h"
+#include "ui_briefartsdialog.h"
 
 namespace View
 {

@@ -11,8 +11,8 @@ namespace Model
 	{
 		Q_OBJECT
 		public:
-			Klant(::QDomElement &e);
-			virtual ~Klant();
+			Factuur(::QDomElement &e);
+			virtual ~Factuur();
 	};
 }
 

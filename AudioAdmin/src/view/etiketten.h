@@ -2,7 +2,7 @@
 #define _VIEW_ETIKETTEN_H
 
 #include <QDialog>
-#include "../ui_etikettendialog.h"
+#include "ui_etikettendialog.h"
 
 namespace View
 {

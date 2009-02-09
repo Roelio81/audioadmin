@@ -2,7 +2,7 @@
 #define _VIEW_UNIVERSUM_H
 
 #include <QMainWindow>
-#include "../ui_mainwindow.h"
+#include "ui_mainwindow.h"
 
 namespace View
 {

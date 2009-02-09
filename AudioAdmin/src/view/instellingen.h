@@ -2,7 +2,7 @@
 #define _VIEW_INSTELLINGEN_H
 
 #include <QDialog>
-#include "../ui_instellingendialog.h"
+#include "ui_instellingendialog.h"
 
 namespace View
 {

@@ -2,7 +2,7 @@
 #define _VIEW_BRIEFMUTUALITEIT_H
 
 #include <QDialog>
-#include "../ui_briefmutualiteitdialog.h"
+#include "ui_briefmutualiteitdialog.h"
 
 namespace View
 {

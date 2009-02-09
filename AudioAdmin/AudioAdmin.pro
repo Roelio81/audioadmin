@@ -1,4 +1,4 @@
-CONFIG += debug_and_release qt warn_on designer
+CONFIG += qt warn_on designer release
 DESTDIR = bin
 FORMS = ui/briefartsdialog.ui \
  ui/briefklantdialog.ui \
@@ -8,64 +8,59 @@ FORMS = ui/briefartsdialog.ui \
  ui/instellingendialog.ui \
  ui/mainwindow.ui \
  ui/meetgegevensdialog.ui
-HEADERS = src/artsmodel.h \
- src/artspresenter.h \
- src/artsview.h \
- src/briefarts.h \
- src/briefartsdialogimpl.h \
- src/briefklant.h \
- src/briefklantdialogimpl.h \
- src/briefmutualiteit.h \
- src/briefmutualiteitdialogimpl.h \
- src/dossiermodel.h \
- src/dossierpresenter.h \
- src/dossierview.h \
- src/etikettendialogimpl.h \
- src/factuur.h \
- src/factuurdialogimpl.h \
- src/instellingendialogimpl.h \
- src/klantmodel.h \
- src/mainwindowimpl.h \
- src/meetgegevens.h \
- src/meetgegevensdialogimpl.h \
- src/mutualiteitmodel.h \
- src/mutualiteitpresenter.h \
- src/mutualiteitview.h \
- src/worldmodel.h \
- src/worldpresenter.h \
- src/vocaleaudiometriewidget.h \
- src/vocaleaudiometrieplugin.h
+HEADERS = src/model/arts.h \
+ src/model/briefarts.h \
+ src/model/briefklant.h \
+ src/model/briefmutualiteit.h \
+ src/model/dossier.h \
+ src/model/factuur.h \
+ src/model/klant.h \
+ src/model/meetgegevens.h \
+ src/model/mutualiteit.h \
+ src/model/universum.h \
+ src/presenter/universum.h \
+ src/presenter/arts.h \
+ src/presenter/dossier.h \
+ src/presenter/mutualiteit.h \
+ src/view/universum.h \
+ src/view/arts.h \
+ src/view/briefarts.h \
+ src/view/briefklant.h \
+ src/view/briefmutualiteit.h \
+ src/view/dossier.h \
+ src/view/etiketten.h \
+ src/view/factuur.h \
+ src/view/instellingen.h \
+ src/view/meetgegevens.h \
+ src/view/mutualiteit.h
 MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml
 RESOURCES += icons.qrc
-SOURCES = src/artsmodel.cpp \
- src/artspresenter.cpp \
- src/artsview.cpp \
- src/briefarts.cpp \
- src/briefartsdialogimpl.cpp \
- src/briefklant.cpp \
- src/briefklantdialogimpl.cpp \
- src/briefmutualiteit.cpp \
- src/briefmutualiteitdialogimpl.cpp \
- src/dossiermodel.cpp \
- src/dossierpresenter.cpp \
- src/dossierview.cpp \
- src/etikettendialogimpl.cpp \
- src/factuur.cpp \
- src/factuurdialogimpl.cpp \
- src/instellingendialogimpl.cpp \
- src/klantmodel.cpp \
- src/main.cpp \
- src/mainwindowimpl.cpp \
- src/meetgegevens.cpp \
- src/meetgegevensdialogimpl.cpp \
- src/mutualiteitmodel.cpp \
- src/mutualiteitpresenter.cpp \
- src/mutualiteitview.cpp \
- src/worldmodel.cpp \
- src/worldpresenter.cpp \
- src/vocaleaudiometriewidget.cpp \
- src/vocaleaudiometrieplugin.cpp
+SOURCES = src/model/arts.cpp \
+ src/model/briefarts.cpp \
+ src/model/briefklant.cpp \
+ src/model/briefmutualiteit.cpp \
+ src/model/dossier.cpp \
+ src/model/factuur.cpp \
+ src/model/klant.cpp \
+ src/model/meetgegevens.cpp \
+ src/model/mutualiteit.cpp \
+ src/model/universum.cpp \
+ src/presenter/arts.cpp \
+ src/presenter/dossier.cpp \
+ src/presenter/mutualiteit.cpp \
+ src/presenter/universum.cpp \
+ src/view/arts.cpp \
+ src/view/briefarts.cpp \
+ src/view/briefklant.cpp \
+ src/view/briefmutualiteit.cpp \
+ src/view/dossier.cpp \
+ src/view/etiketten.cpp \
+ src/view/factuur.cpp \
+ src/view/instellingen.cpp \
+ src/view/meetgegevens.cpp \
+ src/view/mutualiteit.cpp \
+ src/view/universum.cpp
 TEMPLATE = app
 UI_DIR = build
