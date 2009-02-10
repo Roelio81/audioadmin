@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "ui_mainwindow.h"
+#include "view_instellingen.h"
 
 namespace View
 {
@@ -12,18 +13,27 @@ namespace View
 	public:
 		Universum(::QWidget *parent = 0, Qt::WFlags f = 0);
 		virtual ~Universum();
+		
+		Instellingen &getInstellingen();
+
 	public slots:
-		void toonMeetgegevens();
+		void instellingen();
+		void meetgegevens();
+
 	private slots:
 		void printLabels();
 		void backup();
 		void restore();
-		void instellingen();
 		void omtrent();
+
 	signals:
-		void backupSignal(::QString bestandsNaam);
-		void restoreSignal(::QString bestandsNaam);
-		void toonMeetgegevensSignal();
+		void backupSignal(const QString &bestandsNaam);
+		void restoreSignal(const QString &bestandsNaam);
+		void instellingenSignal();
+		void meetgegevensSignal();
+
+	private:
+		Instellingen m_instellingen;
 	};
 }
 

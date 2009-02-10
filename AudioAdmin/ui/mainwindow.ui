@@ -1340,7 +1340,7 @@
     <property name="title" >
      <string>Help</string>
     </property>
-    <addaction name="actionOmtrend" />
+    <addaction name="actionOmtrent" />
    </widget>
    <widget class="QMenu" name="menuInstellingen" >
     <property name="title" >
@@ -1377,9 +1377,9 @@
     <string>Afsluiten</string>
    </property>
   </action>
-  <action name="actionOmtrend" >
+  <action name="actionOmtrent" >
    <property name="text" >
-    <string>Omtrend AudioAdmin...</string>
+    <string>Omtrent AudioAdmin...</string>
    </property>
   </action>
   <action name="actionInstellingen_wijzigen" >

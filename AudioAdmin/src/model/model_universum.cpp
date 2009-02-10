@@ -12,7 +12,7 @@
 
 using namespace Model;
 
-Universum::Universum(const ::QString &bestandsNaam)
+Universum::Universum(const QString &bestandsNaam)
 : QObject()
 , m_bestandsNaam(bestandsNaam)
 {
@@ -26,8 +26,8 @@ Universum::~Universum()
 bool Universum::openen()
 {
 	// Eerst het bestand proberen te openen alvorens het model leeg te maken
-	::QFile file(m_bestandsNaam);
-	if (!file.open(::QIODevice::ReadOnly)) 
+	QFile file(m_bestandsNaam);
+	if (!file.open(QIODevice::ReadOnly)) 
 	{
 		return false;
 	}
@@ -36,13 +36,13 @@ bool Universum::openen()
 	m_mutualiteitenLijst.clear();
 	m_dossierLijst.clear();
 
-	::QDomDocument doc;
+	QDomDocument doc;
 	if (!doc.setContent(&file)) 
 	{
 		return false;
 	}
-	::QDomElement root = doc.documentElement();
-	::Q_ASSERT( root.tagName() == "administratie");
+	QDomElement root = doc.documentElement();
+	Q_ASSERT( root.tagName() == "administratie");
 	
 	for (QDomElement e = root.firstChildElement(); !e.isNull(); e = e.nextSiblingElement())
 	{
@@ -52,7 +52,7 @@ bool Universum::openen()
 		}
 		else if (e.tagName() == "nkoArtsen")
 		{
-			for (::QDomElement artsElement = e.firstChildElement(); !artsElement.isNull(); artsElement = artsElement.nextSiblingElement())
+			for (QDomElement artsElement = e.firstChildElement(); !artsElement.isNull(); artsElement = artsElement.nextSiblingElement())
 			{
 				Q_ASSERT(artsElement.tagName() == "dokter");
 				m_artsenLijst.push_back(new Arts(artsElement));
@@ -76,7 +76,7 @@ bool Universum::openen()
 		}
 		else
 		{
-			Q_ASSERT(false);
+			// Gewoon negeren
 		}
 	}
 	return true;
@@ -86,8 +86,7 @@ void Universum::openen(const ::QString &bestandsNaam)
 {
 	const ::QString &origNaam = m_bestandsNaam;
 	m_bestandsNaam = bestandsNaam;
-	bool succes = openen();
-	Q_ASSERT(succes);
+	openen();
 	m_bestandsNaam = origNaam;
 }
 
@@ -100,12 +99,22 @@ void Universum::bewaren(const ::QString &bestandsNaam)
 {
 	const ::QString &origNaam = m_bestandsNaam;
 	m_bestandsNaam = bestandsNaam;
-	bool succes = bewaren();
-	Q_ASSERT(succes);
+	bewaren();
 	m_bestandsNaam = origNaam;
 }
 
-void Universum::openInstellingen(QDomElement &e)
+void Universum::openInstellingen(QDomElement &element)
 {
-	
+	for (QDomElement e = element.firstChildElement(); !e.isNull(); e = e.nextSiblingElement())
+	{
+		if (e.tagName() == "naam")
+		{
+			m_naam = e.text();
+		}
+	}
+}
+
+QString Universum::getNaam() const
+{
+	return m_naam;
 }

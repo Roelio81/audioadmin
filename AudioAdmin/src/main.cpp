@@ -7,7 +7,7 @@ int main(int argc, char ** argv)
 {
 	QApplication app( argc, argv );
 	View::Universum view;
-	Model::Universum model("audio.xml");
+	Model::Universum model(QString("audio.xml"));
 	Presenter::Universum presenter(view, model);
 	view.show(); 
 	app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );

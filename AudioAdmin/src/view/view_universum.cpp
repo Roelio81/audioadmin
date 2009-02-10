@@ -9,25 +9,25 @@
 using namespace View;
 
 Universum::Universum(::QWidget *parent, Qt::WFlags f)
-: ::QMainWindow(parent, f)
+: QMainWindow(parent, f)
+, m_instellingen(this)
 {
 	setupUi(this);
 	connect(actionEtiketten_afdrukken, SIGNAL(activated()), this, SLOT(printLabels()));
 	connect(actionBackup_maken, SIGNAL(activated()), this, SLOT(backup()));
 	connect(actionBackup_terugzetten, SIGNAL(activated()), this, SLOT(restore()));
 	connect(actionInstellingen_wijzigen, SIGNAL(activated()), this, SLOT(instellingen()));
-	connect(actionOmtrend, SIGNAL(activated()), this, SLOT(omtrent()));
-	connect(meetgegevensButton, SIGNAL(clicked()), this, SLOT(toonMeetgegevens()));
+	connect(actionOmtrent, SIGNAL(activated()), this, SLOT(omtrent()));
+	connect(meetgegevensButton, SIGNAL(clicked()), this, SLOT(meetgegevens()));
 }
 
 Universum::~Universum()
 {
 }
 
-void Universum::toonMeetgegevens()
+Instellingen &Universum::getInstellingen()
 {
-	Meetgegevens *meetgegevens = new Meetgegevens(this);
-	meetgegevens->show();
+	return m_instellingen;
 }
 
 void Universum::printLabels()
@@ -62,8 +62,7 @@ void Universum::restore()
 
 void Universum::instellingen()
 {
-	Instellingen *instellingen = new Instellingen(this);
-	instellingen->show();
+	emit instellingenSignal();
 }
 
 void Universum::omtrent()
@@ -72,4 +71,10 @@ void Universum::omtrent()
 		"<p>Vrijgegeven onder de GPL licentie, versie 3</p>"
 		"<p>Februari 2009</p>");
 
+}
+
+void Universum::meetgegevens()
+{
+	Meetgegevens *meetgegevens = new Meetgegevens(this);
+	meetgegevens->show();
 }
