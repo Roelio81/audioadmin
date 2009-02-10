@@ -7,11 +7,12 @@ class QDomElement;
 
 namespace Model
 {
-	class Factuur : public ::QObject
+	class Factuur : public QObject
 	{
 		Q_OBJECT
 		public:
-			Factuur(::QDomElement &e);
+			Factuur();
+			explicit Factuur(QDomElement &e);
 			virtual ~Factuur();
 	};
 }

@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>InstellingenDialog</class>
- <widget class="QDialog" name="InstellingenDialog" >
+ <class>Instellingen</class>
+ <widget class="QDialog" name="Instellingen" >
   <property name="windowModality" >
    <enum>Qt::WindowModal</enum>
   </property>
@@ -11,6 +11,9 @@
     <width>608</width>
     <height>333</height>
    </rect>
+  </property>
+  <property name="contextMenuPolicy" >
+   <enum>Qt::DefaultContextMenu</enum>
   </property>
   <property name="windowTitle" >
    <string>Instellingen</string>
@@ -27,13 +30,13 @@
   </property>
   <layout class="QGridLayout" name="gridLayout_3" >
    <item row="0" column="0" >
-    <widget class="QGroupBox" name="groupBox" >
+    <widget class="QGroupBox" name="g_contactgegevens" >
      <property name="title" >
       <string>Contactgegevens</string>
      </property>
      <layout class="QGridLayout" name="gridLayout" >
       <item row="0" column="0" >
-       <widget class="QLabel" name="label_11" >
+       <widget class="QLabel" name="l_naam" >
         <property name="text" >
          <string>Naam</string>
         </property>
@@ -43,24 +46,24 @@
        <widget class="QLineEdit" name="m_naam" />
       </item>
       <item row="1" column="0" colspan="4" >
-       <widget class="QLabel" name="label_13" >
+       <widget class="QLabel" name="l_straat" >
         <property name="text" >
          <string>Straat (+ huisnummer / bus)</string>
         </property>
        </widget>
       </item>
       <item row="1" column="4" colspan="4" >
-       <widget class="QLineEdit" name="lineEdit_10" />
+       <widget class="QLineEdit" name="m_straat" />
       </item>
       <item row="2" column="0" >
-       <widget class="QLabel" name="label_14" >
+       <widget class="QLabel" name="l_postcode" >
         <property name="text" >
          <string>Postcode</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1" colspan="2" >
-       <widget class="QSpinBox" name="spinBox" >
+       <widget class="QSpinBox" name="m_postcode" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
           <horstretch>0</horstretch>
@@ -82,83 +85,83 @@
        </widget>
       </item>
       <item row="2" column="3" colspan="2" >
-       <widget class="QLabel" name="label_15" >
+       <widget class="QLabel" name="l_gemeente" >
         <property name="text" >
          <string>Gemeente</string>
         </property>
        </widget>
       </item>
       <item row="2" column="5" colspan="3" >
-       <widget class="QLineEdit" name="lineEdit_13" />
+       <widget class="QLineEdit" name="m_gemeente" />
       </item>
       <item row="3" column="0" >
-       <widget class="QLabel" name="label_16" >
+       <widget class="QLabel" name="l_telefoon" >
         <property name="text" >
          <string>Telefoon</string>
         </property>
        </widget>
       </item>
       <item row="3" column="1" colspan="5" >
-       <widget class="QLineEdit" name="lineEdit_16" />
+       <widget class="QLineEdit" name="m_telefoon" />
       </item>
       <item row="3" column="6" >
-       <widget class="QLabel" name="label_17" >
+       <widget class="QLabel" name="l_gsm" >
         <property name="text" >
          <string>GSM</string>
         </property>
        </widget>
       </item>
       <item row="3" column="7" >
-       <widget class="QLineEdit" name="lineEdit_17" />
+       <widget class="QLineEdit" name="m_gsm" />
       </item>
       <item row="4" column="0" >
-       <widget class="QLabel" name="label_12" >
+       <widget class="QLabel" name="l_email" >
         <property name="text" >
          <string>E-mail</string>
         </property>
        </widget>
       </item>
       <item row="4" column="1" colspan="7" >
-       <widget class="QLineEdit" name="lineEdit_12" />
+       <widget class="QLineEdit" name="m_email" />
       </item>
       <item row="5" column="0" colspan="2" >
-       <widget class="QLabel" name="label_18" >
+       <widget class="QLabel" name="l_onderschrift" >
         <property name="text" >
          <string>Onderschrift</string>
         </property>
        </widget>
       </item>
       <item row="5" column="2" colspan="6" >
-       <widget class="QLineEdit" name="lineEdit_14" />
+       <widget class="QLineEdit" name="m_onderschrift" />
       </item>
      </layout>
     </widget>
    </item>
    <item row="1" column="0" >
-    <widget class="QGroupBox" name="groupBox_2" >
+    <widget class="QGroupBox" name="g_instellingen" >
      <property name="title" >
       <string>Instellingen</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2" >
       <item row="0" column="0" >
-       <widget class="QLabel" name="label" >
+       <widget class="QLabel" name="l_riziv" >
         <property name="text" >
          <string>Riziv</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1" colspan="2" >
-       <widget class="QLineEdit" name="lineEdit_18" />
+       <widget class="QLineEdit" name="m_riziv" />
       </item>
       <item row="0" column="3" >
-       <widget class="QLabel" name="label_3" >
+       <widget class="QLabel" name="l_btwpercentage" >
         <property name="text" >
          <string>BTW percentage</string>
         </property>
        </widget>
       </item>
       <item row="0" column="4" >
-       <widget class="QSpinBox" name="spinBox_2" >
+       <widget class="QSpinBox" name="m_btwpercentage" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
           <horstretch>0</horstretch>
@@ -174,24 +177,24 @@
        </widget>
       </item>
       <item row="1" column="0" colspan="2" >
-       <widget class="QLabel" name="label_2" >
+       <widget class="QLabel" name="l_btwnummer" >
         <property name="text" >
          <string>BTW nummer</string>
         </property>
        </widget>
       </item>
       <item row="1" column="2" >
-       <widget class="QLineEdit" name="lineEdit_19" />
+       <widget class="QLineEdit" name="m_btwnummer" />
       </item>
       <item row="1" column="3" >
-       <widget class="QLabel" name="label_4" >
+       <widget class="QLabel" name="l_rekeningnummer" >
         <property name="text" >
          <string>Rekeningnummer</string>
         </property>
        </widget>
       </item>
       <item row="1" column="4" >
-       <widget class="QLineEdit" name="lineEdit" >
+       <widget class="QLineEdit" name="m_rekeningnummer" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
           <horstretch>0</horstretch>
@@ -232,14 +235,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton" >
+      <widget class="QPushButton" name="b_bewaren" >
        <property name="text" >
         <string>Bewaren</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2" >
+      <widget class="QPushButton" name="b_sluiten" >
        <property name="text" >
         <string>Sluiten</string>
        </property>

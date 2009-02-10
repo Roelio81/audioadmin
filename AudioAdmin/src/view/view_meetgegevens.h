@@ -2,11 +2,11 @@
 #define _VIEW_MEETGEGEVENS_H
 
 #include <QDialog>
-#include "ui_meetgegevensdialog.h"
+#include "ui_meetgegevens.h"
 
 namespace View
 {
-	class Meetgegevens : public ::QDialog, public Ui::MeetgegevensDialog
+	class Meetgegevens : public ::QDialog, public Ui::Meetgegevens
 	{
 	Q_OBJECT
 	public:

@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>EtikettenDialog</class>
- <widget class="QDialog" name="EtikettenDialog" >
+ <class>Etiketten</class>
+ <widget class="QDialog" name="Etiketten" >
   <property name="windowModality" >
    <enum>Qt::WindowModal</enum>
   </property>
@@ -30,31 +30,31 @@
   </property>
   <layout class="QGridLayout" name="gridLayout" >
    <item row="0" column="0" >
-    <widget class="QCheckBox" name="checkBox" >
+    <widget class="QCheckBox" name="c_onderzoekNa" >
      <property name="text" >
       <string>Het onderzoek moet gebeurd zijn na</string>
      </property>
     </widget>
    </item>
    <item row="0" column="1" >
-    <widget class="QDateEdit" name="dateEdit" />
+    <widget class="QDateEdit" name="m_onderzoekNa" />
    </item>
    <item row="1" column="0" >
-    <widget class="QCheckBox" name="checkBox_2" >
+    <widget class="QCheckBox" name="c_plaats" >
      <property name="text" >
       <string>Plaats aanpassing moet de volgende zijn</string>
      </property>
     </widget>
    </item>
    <item row="1" column="1" >
-    <widget class="QComboBox" name="comboBox" >
+    <widget class="QComboBox" name="m_plaats" >
      <property name="editable" >
       <bool>true</bool>
      </property>
     </widget>
    </item>
    <item row="3" column="0" colspan="2" >
-    <widget class="QLabel" name="label" >
+    <widget class="QLabel" name="l_opgelet" >
      <property name="text" >
       <string>Opgelet: gelieve etiketten van het type 63,5 x 38,1 mm (21 stuks per vel) te gebruiken</string>
      </property>
@@ -92,7 +92,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>EtikettenDialog</receiver>
+   <receiver>Etiketten</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel" >
@@ -108,7 +108,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>EtikettenDialog</receiver>
+   <receiver>Etiketten</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel" >

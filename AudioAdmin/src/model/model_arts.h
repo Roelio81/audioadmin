@@ -7,11 +7,12 @@ class QDomElement;
 
 namespace Model
 {
-	class Arts : public ::QObject
+	class Arts : public QObject
 	{
 		Q_OBJECT
 		public:
-			Arts(::QDomElement &e);
+			Arts();
+			explicit Arts(QDomElement &e);
 			virtual ~Arts();
 	};
 }

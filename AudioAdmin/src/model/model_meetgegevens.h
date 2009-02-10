@@ -7,11 +7,12 @@ class QDomElement;
 
 namespace Model
 {
-	class Meetgegevens : public ::QObject
+	class Meetgegevens : public QObject
 	{
 		Q_OBJECT
 		public:
-			Meetgegevens(::QDomElement &e);
+			Meetgegevens();
+			explicit Meetgegevens(QDomElement &e);
 			virtual ~Meetgegevens();
 	};
 }

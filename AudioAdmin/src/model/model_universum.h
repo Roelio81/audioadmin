@@ -12,6 +12,7 @@ namespace Model
 {
 	class Arts;
 	class Dossier;
+	class Instellingen;
 	class Mutualiteit;
 
 	class Universum : public QObject
@@ -28,21 +29,20 @@ namespace Model
 			void verwijderenDossier();
 			QVector<Dossier *> &getDossiers();
 			
-			QString getNaam() const;
+			Instellingen *getInstellingen();
 
 		public slots:
 			void openen(const QString &bestandsNaam);
 			void bewaren(const QString &bestandsNaam);
 			
 		private:
-			void openInstellingen(::QDomElement &element);
+			void openInstellingen(QDomElement &element);
 
 			QString m_bestandsNaam;
-			QVector<Dossier *> m_dossierLijst;
 			QVector<Arts *> m_artsenLijst;
+			QVector<Dossier *> m_dossierLijst;
 			QVector<Mutualiteit *> m_mutualiteitenLijst;
-			
-			QString m_naam;
+			Instellingen *m_instellingen;
 	};
 }
 

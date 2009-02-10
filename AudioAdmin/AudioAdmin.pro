@@ -1,14 +1,15 @@
-CONFIG += qt warn_on designer release
+CONFIG += designer qt warn_on debug_and_release
 DESTDIR = bin
-FORMS = ui/briefartsdialog.ui \
- ui/briefklantdialog.ui \
- ui/briefmutualiteitdialog.ui \
- ui/etikettendialog.ui \
- ui/factuurdialog.ui \
- ui/instellingendialog.ui \
- ui/mainwindow.ui \
- ui/meetgegevensdialog.ui
-HEADERS = src/model/model_universum.h \
+FORMS = ui/meetgegevens.ui \
+ ui/instellingen.ui \
+ ui/factuur.ui \
+ ui/etiketten.ui \
+ ui/universum.ui \
+ ui/briefarts.ui \
+ ui/briefklant.ui \
+ ui/briefmutualiteit.ui
+HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
+ ../AudioPlugin/src/vocaleaudiometriewidget.h \
  src/model/model_arts.h \
  src/model/model_briefarts.h \
  src/model/model_briefklant.h \
@@ -18,11 +19,11 @@ HEADERS = src/model/model_universum.h \
  src/model/model_klant.h \
  src/model/model_meetgegevens.h \
  src/model/model_mutualiteit.h \
- src/presenter/presenter_universum.h \
+ src/model/model_universum.h \
  src/presenter/presenter_arts.h \
  src/presenter/presenter_dossier.h \
  src/presenter/presenter_mutualiteit.h \
- src/view/view_universum.h \
+ src/presenter/presenter_universum.h \
  src/view/view_arts.h \
  src/view/view_briefarts.h \
  src/view/view_briefklant.h \
@@ -33,13 +34,16 @@ HEADERS = src/model/model_universum.h \
  src/view/view_instellingen.h \
  src/view/view_meetgegevens.h \
  src/view/view_mutualiteit.h \
- ../AudioPlugin/src/vocaleaudiometriewidget.h \
- ../AudioPlugin/src/tonaleaudiometriewidget.h
+ src/view/view_universum.h \
+ src/model/model_instellingen.h
 MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml
 RESOURCES += icons.qrc
-SOURCES = src/model/model_arts.cpp \
+SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
+ ../AudioPlugin/src/vocaleaudiometriewidget.cpp \
+ src/main.cpp \
+ src/model/model_arts.cpp \
  src/model/model_briefarts.cpp \
  src/model/model_briefklant.cpp \
  src/model/model_briefmutualiteit.cpp \
@@ -64,8 +68,6 @@ SOURCES = src/model/model_arts.cpp \
  src/view/view_meetgegevens.cpp \
  src/view/view_mutualiteit.cpp \
  src/view/view_universum.cpp \
- src/main.cpp \
- ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
- ../AudioPlugin/src/vocaleaudiometriewidget.cpp
+ src/model/model_instellingen.cpp
 TEMPLATE = app
 UI_DIR = build

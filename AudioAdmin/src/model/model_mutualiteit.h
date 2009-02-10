@@ -7,11 +7,12 @@ class QDomElement;
 
 namespace Model
 {
-	class Mutualiteit : public ::QObject
+	class Mutualiteit : public QObject
 	{
 		Q_OBJECT
 		public:
-			Mutualiteit(::QDomElement &e);
+			Mutualiteit();
+			explicit Mutualiteit(QDomElement &e);
 			virtual ~Mutualiteit();
 	};
 }

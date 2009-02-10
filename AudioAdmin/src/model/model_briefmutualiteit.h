@@ -11,7 +11,8 @@ namespace Model
 	{
 		Q_OBJECT
 		public:
-			BriefMutualiteit(::QDomElement &e);
+			BriefMutualiteit();
+			explicit BriefMutualiteit(QDomElement &e);
 			virtual ~BriefMutualiteit();
 	};
 }

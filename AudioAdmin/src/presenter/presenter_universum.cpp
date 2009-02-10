@@ -1,5 +1,6 @@
 #include "presenter_universum.h"
 #include "../model/model_universum.h"
+#include "../model/model_instellingen.h"
 #include "../view/view_universum.h"
 
 using namespace Presenter;
@@ -25,7 +26,13 @@ void Universum::instellingen()
 
 void Universum::setupInstellingen()
 {
-	m_view.getInstellingen().setNaam(m_model.getNaam());
+	Model::Instellingen *modelInstellingen = m_model.getInstellingen();
+	View::Instellingen &viewInstellingen = m_view.getInstellingen();
+	Q_ASSERT(modelInstellingen);
+	viewInstellingen.setNaam(modelInstellingen->getNaam());
+	viewInstellingen.setStraat(modelInstellingen->getStraat());
+	viewInstellingen.setPostcode(modelInstellingen->getPostcode());
+	viewInstellingen.setGemeente(modelInstellingen->getGemeente());
 }
 
 void Universum::teardownInstellingen()

@@ -7,11 +7,12 @@ class QDomElement;
 
 namespace Model
 {
-	class Klant : public ::QObject
+	class Klant : public QObject
 	{
 		Q_OBJECT
 		public:
-			Klant(::QDomElement &e);
+			Klant();
+			explicit Klant(QDomElement &e);
 			virtual ~Klant();
 	};
 }

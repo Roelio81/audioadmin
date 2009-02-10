@@ -7,11 +7,12 @@ class QDomElement;
 
 namespace Model
 {
-	class BriefKlant : public ::QObject
+	class BriefKlant : public QObject
 	{
 		Q_OBJECT
 		public:
-			BriefKlant(::QDomElement &e);
+			BriefKlant();
+			explicit BriefKlant(QDomElement &e);
 			virtual ~BriefKlant();
 	};
 }

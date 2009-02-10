@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow" >
+ <class>Universum</class>
+ <widget class="QMainWindow" name="Universum" >
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -15,6 +15,9 @@
   <property name="windowIcon" >
    <iconset resource="../icons.qrc" >
     <normaloff>:/icons/agt_softwareD-64.png</normaloff>:/icons/agt_softwareD-64.png</iconset>
+  </property>
+  <property name="locale" >
+   <locale country="Belgium" language="Dutch" />
   </property>
   <widget class="QWidget" name="centralwidget" >
    <layout class="QGridLayout" name="gridLayout_13" >
@@ -1395,7 +1398,7 @@
   <connection>
    <sender>actionAfsluiten</sender>
    <signal>activated()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>Universum</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel" >

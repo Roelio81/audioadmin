@@ -1,6 +1,9 @@
 <ui version="4.0" >
- <class>BriefKlantDialog</class>
- <widget class="QDialog" name="BriefKlantDialog" >
+ <class>BriefKlant</class>
+ <widget class="QDialog" name="BriefKlant" >
+  <property name="windowModality" >
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -10,7 +13,14 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Dialog</string>
+   <string>Brief Klant</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../icons.qrc" >
+    <normaloff>:/icons/agt_softwareD-64.png</normaloff>:/icons/agt_softwareD-64.png</iconset>
+  </property>
+  <property name="locale" >
+   <locale country="Belgium" language="Dutch" />
   </property>
   <layout class="QGridLayout" name="gridLayout" >
    <item row="0" column="0" colspan="2" >
@@ -263,6 +273,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../icons.qrc" />
+ </resources>
  <connections/>
 </ui>

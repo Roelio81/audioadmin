@@ -7,11 +7,12 @@ class QDomElement;
 
 namespace Model
 {
-	class Dossier : public ::QObject
+	class Dossier : public QObject
 	{
 		Q_OBJECT
 		public:
-			Dossier(::QDomElement &e);
+			Dossier();
+			explicit Dossier(QDomElement &e);
 			virtual ~Dossier();
 	};
 }

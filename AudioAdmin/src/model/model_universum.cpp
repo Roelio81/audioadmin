@@ -2,6 +2,7 @@
 
 #include "model_arts.h"
 #include "model_dossier.h"
+#include "model_instellingen.h"
 #include "model_mutualiteit.h"
 
 #include <QDomDocument>
@@ -15,6 +16,7 @@ using namespace Model;
 Universum::Universum(const QString &bestandsNaam)
 : QObject()
 , m_bestandsNaam(bestandsNaam)
+, m_instellingen(0)
 {
 	openen();
 }
@@ -48,7 +50,7 @@ bool Universum::openen()
 	{
 		if (e.tagName() == "instellingen")
 		{
-			openInstellingen(e);
+			m_instellingen = new Instellingen(e);
 		}
 		else if (e.tagName() == "nkoArtsen")
 		{
@@ -82,7 +84,7 @@ bool Universum::openen()
 	return true;
 }
 
-void Universum::openen(const ::QString &bestandsNaam)
+void Universum::openen(const QString &bestandsNaam)
 {
 	const ::QString &origNaam = m_bestandsNaam;
 	m_bestandsNaam = bestandsNaam;
@@ -95,7 +97,7 @@ bool Universum::bewaren()
 	return true;
 }
 
-void Universum::bewaren(const ::QString &bestandsNaam)
+void Universum::bewaren(const QString &bestandsNaam)
 {
 	const ::QString &origNaam = m_bestandsNaam;
 	m_bestandsNaam = bestandsNaam;
@@ -103,18 +105,9 @@ void Universum::bewaren(const ::QString &bestandsNaam)
 	m_bestandsNaam = origNaam;
 }
 
-void Universum::openInstellingen(QDomElement &element)
+Instellingen *Universum::getInstellingen()
 {
-	for (QDomElement e = element.firstChildElement(); !e.isNull(); e = e.nextSiblingElement())
-	{
-		if (e.tagName() == "naam")
-		{
-			m_naam = e.text();
-		}
-	}
-}
-
-QString Universum::getNaam() const
-{
-	return m_naam;
+	if (! m_instellingen)
+		m_instellingen = new Instellingen();
+	return m_instellingen;
 }

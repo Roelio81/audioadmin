@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>MeetgegevensDialog</class>
- <widget class="QDialog" name="MeetgegevensDialog" >
+ <class>Meetgegevens</class>
+ <widget class="QDialog" name="Meetgegevens" >
   <property name="windowModality" >
    <enum>Qt::WindowModal</enum>
   </property>
@@ -15,6 +15,10 @@
   <property name="windowTitle" >
    <string>Dialog</string>
   </property>
+  <property name="windowIcon" >
+   <iconset resource="../icons.qrc" >
+    <normaloff>:/icons/agt_softwareD-64.png</normaloff>:/icons/agt_softwareD-64.png</iconset>
+  </property>
   <property name="locale" >
    <locale country="Belgium" language="Dutch" />
   </property>
@@ -27,81 +31,81 @@
      <property name="currentIndex" >
       <number>0</number>
      </property>
-     <widget class="QWidget" name="TonaleAudiometrieTab" >
+     <widget class="QWidget" name="t_tonaleAudiometrie" >
       <attribute name="title" >
        <string>Tonale audiometrie</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_5" >
        <item row="0" column="0" >
-        <widget class="QGroupBox" name="groupBox_3" >
+        <widget class="QGroupBox" name="g_tonaleAudiometrieRechts" >
          <property name="title" >
           <string>Tonale audiometrie rechts</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_10" >
           <item row="0" column="0" >
-           <widget class="TonaleAudiometrieWidget" name="tonaleaudiometriewidget" />
+           <widget class="TonaleAudiometrieWidget" name="m_tonaleAudiometrieRechts" />
           </item>
          </layout>
         </widget>
        </item>
        <item row="0" column="1" >
-        <widget class="QGroupBox" name="groupBox_4" >
+        <widget class="QGroupBox" name="g_tonaleAudiometrieLinks" >
          <property name="title" >
           <string>Tonale audiometrie links</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_9" >
           <item row="0" column="0" >
-           <widget class="TonaleAudiometrieWidget" name="tonaleaudiometriewidget_2" />
+           <widget class="TonaleAudiometrieWidget" name="m_tonaleAudiometrieLinks" />
           </item>
          </layout>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="VocaleAudiometrieTab" >
+     <widget class="QWidget" name="m_vocaleAudiometrie" >
       <attribute name="title" >
        <string>Vocale audiometrie</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_6" >
        <item row="0" column="0" >
-        <widget class="QGroupBox" name="groupBox_5" >
+        <widget class="QGroupBox" name="g_vocaleAudiometrieZonder" >
          <property name="title" >
           <string>Zonder hoorapparaat (onder koptelefoon)</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_7" >
           <item row="0" column="0" >
-           <widget class="VocaleAudiometrieWidget" name="vocaleaudiometriewidget" />
+           <widget class="VocaleAudiometrieWidget" name="m_vocaleAudiometrieZonder" />
           </item>
          </layout>
         </widget>
        </item>
        <item row="1" column="0" >
-        <widget class="QGroupBox" name="groupBox_6" >
+        <widget class="QGroupBox" name="g_vocaleAudiometrieMet" >
          <property name="title" >
           <string>Met hoorapparaat (in vrij veld)</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_8" >
           <item row="0" column="0" >
-           <widget class="VocaleAudiometrieWidget" name="vocaleaudiometriewidget_2" />
+           <widget class="VocaleAudiometrieWidget" name="m_vocaleAudiometrieMet" />
           </item>
          </layout>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="ResultatenTab" >
+     <widget class="QWidget" name="t_resultaten" >
       <attribute name="title" >
        <string>Resultaten</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_3" >
        <item row="0" column="0" >
-        <widget class="QGroupBox" name="groupBox" >
+        <widget class="QGroupBox" name="g_prothetischeWinst" >
          <property name="title" >
           <string>Prothetische winst</string>
          </property>
          <layout class="QGridLayout" name="gridLayout" >
           <item row="0" column="1" >
-           <widget class="QLabel" name="label" >
+           <widget class="QLabel" name="l_zonderApparaat" >
             <property name="text" >
              <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 &lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
@@ -112,7 +116,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="0" column="2" >
-           <widget class="QLabel" name="label_2" >
+           <widget class="QLabel" name="l_metApparaat" >
             <property name="text" >
              <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 &lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
@@ -123,7 +127,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="0" column="3" >
-           <widget class="QLabel" name="label_3" >
+           <widget class="QLabel" name="l_winst" >
             <property name="text" >
              <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 &lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
@@ -134,14 +138,14 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="1" column="0" >
-           <widget class="QLabel" name="label_4" >
+           <widget class="QLabel" name="l_RO" >
             <property name="text" >
              <string>R.O.</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1" >
-           <widget class="QLabel" name="label_7" >
+           <widget class="QLabel" name="m_zonderApparaatRO" >
             <property name="text" >
              <string>...</string>
             </property>
@@ -151,7 +155,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="1" column="2" >
-           <widget class="QLabel" name="label_8" >
+           <widget class="QLabel" name="m_metApparaatRO" >
             <property name="text" >
              <string>...</string>
             </property>
@@ -161,7 +165,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="1" column="3" >
-           <widget class="QLabel" name="label_9" >
+           <widget class="QLabel" name="m_winstRO" >
             <property name="text" >
              <string>...</string>
             </property>
@@ -171,14 +175,14 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="2" column="0" >
-           <widget class="QLabel" name="label_5" >
+           <widget class="QLabel" name="l_LO" >
             <property name="text" >
              <string>L.O.</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1" >
-           <widget class="QLabel" name="label_13" >
+           <widget class="QLabel" name="m_zonderApparaatLO" >
             <property name="text" >
              <string>...</string>
             </property>
@@ -188,7 +192,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="2" column="2" >
-           <widget class="QLabel" name="label_14" >
+           <widget class="QLabel" name="m_metApparaatLO" >
             <property name="text" >
              <string>...</string>
             </property>
@@ -198,7 +202,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="2" column="3" >
-           <widget class="QLabel" name="label_15" >
+           <widget class="QLabel" name="m_winstLO" >
             <property name="text" >
              <string>...</string>
             </property>
@@ -208,14 +212,14 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="3" column="0" >
-           <widget class="QLabel" name="label_6" >
+           <widget class="QLabel" name="l_ROLO" >
             <property name="text" >
              <string>(R.O. + L.O.)</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1" >
-           <widget class="QLabel" name="label_10" >
+           <widget class="QLabel" name="m_zonderApparaatROLO" >
             <property name="text" >
              <string>...</string>
             </property>
@@ -225,7 +229,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="3" column="2" >
-           <widget class="QLabel" name="label_11" >
+           <widget class="QLabel" name="m_metApparaatROLO" >
             <property name="text" >
              <string>...</string>
             </property>
@@ -235,7 +239,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="3" column="3" >
-           <widget class="QLabel" name="label_12" >
+           <widget class="QLabel" name="m_winstROLO" >
             <property name="text" >
              <string>...</string>
             </property>
@@ -248,7 +252,7 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item row="1" column="0" >
-        <widget class="QGroupBox" name="groupBox_2" >
+        <widget class="QGroupBox" name="g_localisatieTesten" >
          <property name="title" >
           <string>Localisatietesten</string>
          </property>
@@ -261,7 +265,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item rowspan="2" row="0" column="1" >
-           <widget class="QLineEdit" name="lineEdit" >
+           <widget class="QLineEdit" name="m_localisatieMetTwee" >
             <property name="sizePolicy" >
              <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
               <horstretch>0</horstretch>
@@ -304,7 +308,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item rowspan="2" row="0" column="5" >
-           <widget class="QLineEdit" name="lineEdit_3" >
+           <widget class="QLineEdit" name="m_localisatieMetRechts" >
             <property name="sizePolicy" >
              <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
               <horstretch>0</horstretch>
@@ -334,7 +338,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="2" column="1" >
-           <widget class="QLineEdit" name="lineEdit_2" >
+           <widget class="QLineEdit" name="m_localisatieZonder" >
             <property name="sizePolicy" >
              <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
               <horstretch>0</horstretch>
@@ -364,7 +368,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="2" column="5" >
-           <widget class="QLineEdit" name="lineEdit_4" >
+           <widget class="QLineEdit" name="m_localisatieMetLinks" >
             <property name="sizePolicy" >
              <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
               <horstretch>0</horstretch>
@@ -420,14 +424,14 @@ p, li { white-space: pre-wrap; }
     </spacer>
    </item>
    <item row="1" column="1" >
-    <widget class="QPushButton" name="pushButton" >
+    <widget class="QPushButton" name="b_bewaren" >
      <property name="text" >
       <string>Bewaren</string>
      </property>
     </widget>
    </item>
    <item row="1" column="2" >
-    <widget class="QPushButton" name="pushButton_2" >
+    <widget class="QPushButton" name="b_sluiten" >
      <property name="text" >
       <string>Sluiten</string>
      </property>
@@ -447,6 +451,8 @@ p, li { white-space: pre-wrap; }
    <header>../../AudioPlugin/src/tonaleaudiometriewidget.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../icons.qrc" />
+ </resources>
  <connections/>
 </ui>

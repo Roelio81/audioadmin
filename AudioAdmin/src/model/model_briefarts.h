@@ -7,11 +7,12 @@ class QDomElement;
 
 namespace Model
 {
-	class BriefArts : public ::QObject
+	class BriefArts : public QObject
 	{
 		Q_OBJECT
 		public:
-			BriefArts(::QDomElement &e);
+			BriefArts();
+			explicit BriefArts(QDomElement &e);
 			virtual ~BriefArts();
 	};
 }
