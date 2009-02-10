@@ -1,6 +1,9 @@
 <ui version="4.0" >
  <class>InstellingenDialog</class>
  <widget class="QDialog" name="InstellingenDialog" >
+  <property name="windowModality" >
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -11,6 +14,16 @@
   </property>
   <property name="windowTitle" >
    <string>Instellingen</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../icons.qrc" >
+    <normaloff>:/icons/agt_softwareD-64.png</normaloff>:/icons/agt_softwareD-64.png</iconset>
+  </property>
+  <property name="locale" >
+   <locale country="Belgium" language="Dutch" />
+  </property>
+  <property name="modal" >
+   <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout_3" >
    <item row="0" column="0" >
@@ -236,6 +249,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../icons.qrc" />
+ </resources>
  <connections/>
 </ui>

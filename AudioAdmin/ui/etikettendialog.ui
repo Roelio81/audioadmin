@@ -1,6 +1,9 @@
 <ui version="4.0" >
  <class>EtikettenDialog</class>
  <widget class="QDialog" name="EtikettenDialog" >
+  <property name="windowModality" >
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -9,12 +12,21 @@
     <height>137</height>
    </rect>
   </property>
+  <property name="contextMenuPolicy" >
+   <enum>Qt::DefaultContextMenu</enum>
+  </property>
   <property name="windowTitle" >
-   <string>Dialog</string>
+   <string>Etiketten</string>
   </property>
   <property name="windowIcon" >
    <iconset resource="../icons.qrc" >
     <normaloff>:/icons/agt_print-64.png</normaloff>:/icons/agt_print-64.png</iconset>
+  </property>
+  <property name="locale" >
+   <locale country="Belgium" language="Dutch" />
+  </property>
+  <property name="modal" >
+   <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout" >
    <item row="0" column="0" >

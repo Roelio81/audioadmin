@@ -13,7 +13,7 @@ TonaleAudiometriePlugin::TonaleAudiometriePlugin(QObject *parent)
 
 QString TonaleAudiometriePlugin::name() const
 {
-	return "TonaleAudiometrie";
+	return "TonaleAudiometrieWidget";
 }
 
 QString TonaleAudiometriePlugin::group() const
@@ -33,7 +33,7 @@ QString TonaleAudiometriePlugin::whatsThis() const
 
 QString TonaleAudiometriePlugin::includeFile() const
 {
-	return "tonaleaudiometriewidget.h";
+	return "../../AudioPlugin/src/tonaleaudiometriewidget.h";
 }
 
 QIcon TonaleAudiometriePlugin::icon() const

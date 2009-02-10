@@ -13,7 +13,7 @@ VocaleAudiometriePlugin::VocaleAudiometriePlugin(QObject *parent)
 
 QString VocaleAudiometriePlugin::name() const
 {
-	return "VocaleAudiometrie";
+	return "VocaleAudiometrieWidget";
 }
 
 QString VocaleAudiometriePlugin::group() const
@@ -33,7 +33,7 @@ QString VocaleAudiometriePlugin::whatsThis() const
 
 QString VocaleAudiometriePlugin::includeFile() const
 {
-	return "vocaleaudiometriewidget.h";
+	return "../../AudioPlugin/src/vocaleaudiometriewidget.h";
 }
 
 QIcon VocaleAudiometriePlugin::icon() const

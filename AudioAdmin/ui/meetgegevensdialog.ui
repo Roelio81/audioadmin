@@ -15,11 +15,17 @@
   <property name="windowTitle" >
    <string>Dialog</string>
   </property>
+  <property name="locale" >
+   <locale country="Belgium" language="Dutch" />
+  </property>
+  <property name="modal" >
+   <bool>true</bool>
+  </property>
   <layout class="QGridLayout" name="gridLayout_4" >
    <item row="0" column="0" colspan="3" >
     <widget class="QTabWidget" name="tabWidget" >
      <property name="currentIndex" >
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="TonaleAudiometrieTab" >
       <attribute name="title" >
@@ -31,6 +37,11 @@
          <property name="title" >
           <string>Tonale audiometrie rechts</string>
          </property>
+         <layout class="QGridLayout" name="gridLayout_10" >
+          <item row="0" column="0" >
+           <widget class="TonaleAudiometrieWidget" name="tonaleaudiometriewidget" />
+          </item>
+         </layout>
         </widget>
        </item>
        <item row="0" column="1" >
@@ -38,6 +49,11 @@
          <property name="title" >
           <string>Tonale audiometrie links</string>
          </property>
+         <layout class="QGridLayout" name="gridLayout_9" >
+          <item row="0" column="0" >
+           <widget class="TonaleAudiometrieWidget" name="tonaleaudiometriewidget_2" />
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
@@ -54,7 +70,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_7" >
           <item row="0" column="0" >
-           <widget class="QWidget" native="1" name="vocAudiometrieZonderApparaat" />
+           <widget class="VocaleAudiometrieWidget" name="vocaleaudiometriewidget" />
           </item>
          </layout>
         </widget>
@@ -64,7 +80,11 @@
          <property name="title" >
           <string>Met hoorapparaat (in vrij veld)</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8" />
+         <layout class="QGridLayout" name="gridLayout_8" >
+          <item row="0" column="0" >
+           <widget class="VocaleAudiometrieWidget" name="vocaleaudiometriewidget_2" />
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>
@@ -415,6 +435,18 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>VocaleAudiometrieWidget</class>
+   <extends>QWidget</extends>
+   <header>../../AudioPlugin/src/vocaleaudiometriewidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TonaleAudiometrieWidget</class>
+   <extends>QWidget</extends>
+   <header>../../AudioPlugin/src/tonaleaudiometriewidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

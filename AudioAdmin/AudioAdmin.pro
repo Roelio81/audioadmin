@@ -32,7 +32,9 @@ HEADERS = src/model/model_universum.h \
  src/view/view_factuur.h \
  src/view/view_instellingen.h \
  src/view/view_meetgegevens.h \
- src/view/view_mutualiteit.h
+ src/view/view_mutualiteit.h \
+ ../AudioPlugin/src/vocaleaudiometriewidget.h \
+ ../AudioPlugin/src/tonaleaudiometriewidget.h
 MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml
@@ -62,6 +64,8 @@ SOURCES = src/model/model_arts.cpp \
  src/view/view_meetgegevens.cpp \
  src/view/view_mutualiteit.cpp \
  src/view/view_universum.cpp \
- src/main.cpp
+ src/main.cpp \
+ ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
+ ../AudioPlugin/src/vocaleaudiometriewidget.cpp
 TEMPLATE = app
 UI_DIR = build
