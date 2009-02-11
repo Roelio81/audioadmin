@@ -17,11 +17,11 @@ namespace View
 		Instellingen &getInstellingen();
 
 		void leegArtsenLijst();
-		void toevoegenArts(const QString &naam, const QString &Straat, int postcode, const QString &gemeente);
+		void toevoegenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
 		void leegKlantenLijst();
-		void toevoegenKlant(const QString &naam, const QString &Straat, int postcode, const QString &gemeente);
+		void toevoegenKlant(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
 		void leegMutualiteitenLijst();
-		void toevoegenMutualiteit(const QString &naam, const QString &Straat, int postcode, const QString &gemeente);
+		void toevoegenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
 
 	public slots:
 		void instellingen();
