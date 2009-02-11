@@ -1,19 +1,18 @@
 #ifndef _MODEL_MEETGEGEVENS_H
 #define _MODEL_MEETGEGEVENS_H
 
-#include <QObject>
-
 class QDomElement;
 
 namespace Model
 {
-	class Meetgegevens : public QObject
+	class Meetgegevens
 	{
-		Q_OBJECT
 		public:
 			Meetgegevens();
-			explicit Meetgegevens(QDomElement &e);
 			virtual ~Meetgegevens();
+
+			void fromDomElement(const QDomElement &e);
+			QDomElement toDomElement() const;
 	};
 }
 

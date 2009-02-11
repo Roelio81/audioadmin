@@ -22,12 +22,18 @@ namespace Presenter
 			Universum(View::Universum &view, Model::Universum &model);
 			virtual ~Universum();
 
-		private slots:
+		public slots:
+			void openen(const QString &bestandsNaam);
+			void bewaren(const QString &bestandsNaam);
 			void instellingen();
 
 		private:
 			void setupInstellingen();
 			void teardownInstellingen();
+
+			void refreshArtsenLijst();
+			void refreshKlantenLijst();
+			void refreshMutualiteitenLijst();
 
 			View::Universum &m_view;
 			Model::Universum &m_model;

@@ -78,3 +78,30 @@ void Universum::meetgegevens()
 	Meetgegevens *meetgegevens = new Meetgegevens(this);
 	meetgegevens->show();
 }
+
+void Universum::leegArtsenLijst()
+{
+	m_artsenLijst->clearContents();
+}
+
+void Universum::toevoegenArts(const QString &naam, const QString &Straat, int postcode, const QString &gemeente)
+{
+}
+
+void Universum::leegKlantenLijst()
+{
+	m_klantenLijst->clearContents();
+}
+
+void Universum::toevoegenKlant(const QString &naam, const QString &Straat, int postcode, const QString &gemeente)
+{
+}
+
+void Universum::leegMutualiteitenLijst()
+{
+	m_mutualiteitenLijst->clearContents();
+}
+
+void Universum::toevoegenMutualiteit(const QString &naam, const QString &Straat, int postcode, const QString &gemeente)
+{
+}

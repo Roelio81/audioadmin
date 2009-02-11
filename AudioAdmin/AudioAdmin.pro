@@ -1,13 +1,13 @@
-CONFIG += designer qt warn_on debug_and_release
+CONFIG += debug_and_release designer qt warn_on
 DESTDIR = bin
-FORMS = ui/meetgegevens.ui \
- ui/instellingen.ui \
- ui/factuur.ui \
- ui/etiketten.ui \
- ui/universum.ui \
- ui/briefarts.ui \
+FORMS = ui/briefarts.ui \
  ui/briefklant.ui \
- ui/briefmutualiteit.ui
+ ui/briefmutualiteit.ui \
+ ui/etiketten.ui \
+ ui/factuur.ui \
+ ui/instellingen.ui \
+ ui/meetgegevens.ui \
+ ui/universum.ui
 HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
  ../AudioPlugin/src/vocaleaudiometriewidget.h \
  src/model/model_arts.h \
@@ -15,7 +15,9 @@ HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
  src/model/model_briefklant.h \
  src/model/model_briefmutualiteit.h \
  src/model/model_dossier.h \
+ src/model/model_entiteit.h \
  src/model/model_factuur.h \
+ src/model/model_instellingen.h \
  src/model/model_klant.h \
  src/model/model_meetgegevens.h \
  src/model/model_mutualiteit.h \
@@ -34,8 +36,7 @@ HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
  src/view/view_instellingen.h \
  src/view/view_meetgegevens.h \
  src/view/view_mutualiteit.h \
- src/view/view_universum.h \
- src/model/model_instellingen.h
+ src/view/view_universum.h
 MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml
@@ -48,7 +49,9 @@ SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
  src/model/model_briefklant.cpp \
  src/model/model_briefmutualiteit.cpp \
  src/model/model_dossier.cpp \
+ src/model/model_entiteit.cpp \
  src/model/model_factuur.cpp \
+ src/model/model_instellingen.cpp \
  src/model/model_klant.cpp \
  src/model/model_meetgegevens.cpp \
  src/model/model_mutualiteit.cpp \
@@ -67,7 +70,6 @@ SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
  src/view/view_instellingen.cpp \
  src/view/view_meetgegevens.cpp \
  src/view/view_mutualiteit.cpp \
- src/view/view_universum.cpp \
- src/model/model_instellingen.cpp
+ src/view/view_universum.cpp
 TEMPLATE = app
 UI_DIR = build

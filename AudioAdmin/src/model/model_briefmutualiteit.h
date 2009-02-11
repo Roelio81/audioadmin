@@ -1,19 +1,18 @@
 #ifndef _MODEL_BRIEFMUTUALITEIT_H
 #define _MODEL_BRIEFMUTUALITEIT_H
 
-#include <QObject>
-
 class QDomElement;
 
 namespace Model
 {
-	class BriefMutualiteit : public ::QObject
+	class BriefMutualiteit
 	{
-		Q_OBJECT
 		public:
 			BriefMutualiteit();
-			explicit BriefMutualiteit(QDomElement &e);
 			virtual ~BriefMutualiteit();
+
+			void fromDomElement(const QDomElement &e);
+			QDomElement toDomElement() const;
 	};
 }
 

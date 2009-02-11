@@ -1,19 +1,18 @@
 #ifndef _MODEL_BRIEFKLANT_H
 #define _MODEL_BRIEFKLANT_H
 
-#include <QObject>
-
 class QDomElement;
 
 namespace Model
 {
-	class BriefKlant : public QObject
+	class BriefKlant
 	{
-		Q_OBJECT
 		public:
 			BriefKlant();
-			explicit BriefKlant(QDomElement &e);
 			virtual ~BriefKlant();
+
+			void fromDomElement(const QDomElement &e);
+			QDomElement toDomElement() const;
 	};
 }
 

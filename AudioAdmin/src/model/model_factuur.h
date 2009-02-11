@@ -1,19 +1,18 @@
 #ifndef _MODEL_FACTUUR_H
 #define _MODEL_FACTUUR_H
 
-#include <QObject>
-
 class QDomElement;
 
 namespace Model
 {
-	class Factuur : public QObject
+	class Factuur
 	{
-		Q_OBJECT
 		public:
 			Factuur();
-			explicit Factuur(QDomElement &e);
 			virtual ~Factuur();
+
+			void fromDomElement(const QDomElement &e);
+			QDomElement toDomElement() const;
 	};
 }
 

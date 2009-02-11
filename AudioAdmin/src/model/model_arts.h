@@ -1,19 +1,20 @@
 #ifndef _MODEL_ARTS_H
 #define _MODEL_ARTS_H
 
-#include <QObject>
+#include "model_entiteit.h"
 
 class QDomElement;
 
 namespace Model
 {
-	class Arts : public QObject
+	class Arts : public Entiteit
 	{
-		Q_OBJECT
 		public:
 			Arts();
-			explicit Arts(QDomElement &e);
 			virtual ~Arts();
+			
+			void fromDomElement(const QDomElement &e);
+			QDomElement toDomElement() const;
 	};
 }
 

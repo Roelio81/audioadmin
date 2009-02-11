@@ -2,12 +2,12 @@
 #define _VIEW_UNIVERSUM_H
 
 #include <QMainWindow>
-#include "ui_mainwindow.h"
+#include "ui_universum.h"
 #include "view_instellingen.h"
 
 namespace View
 {
-	class Universum : public ::QMainWindow, public Ui::MainWindow
+	class Universum : public ::QMainWindow, public Ui::Universum
 	{
 	Q_OBJECT
 	public:
@@ -15,6 +15,13 @@ namespace View
 		virtual ~Universum();
 		
 		Instellingen &getInstellingen();
+
+		void leegArtsenLijst();
+		void toevoegenArts(const QString &naam, const QString &Straat, int postcode, const QString &gemeente);
+		void leegKlantenLijst();
+		void toevoegenKlant(const QString &naam, const QString &Straat, int postcode, const QString &gemeente);
+		void leegMutualiteitenLijst();
+		void toevoegenMutualiteit(const QString &naam, const QString &Straat, int postcode, const QString &gemeente);
 
 	public slots:
 		void instellingen();

@@ -1,19 +1,20 @@
 #ifndef _MODEL_MUTUALITEIT_H
 #define _MODEL_MUTUALITEIT_H
 
-#include <QObject>
+#include "model_entiteit.h"
 
 class QDomElement;
 
 namespace Model
 {
-	class Mutualiteit : public QObject
+	class Mutualiteit : public Entiteit
 	{
-		Q_OBJECT
 		public:
 			Mutualiteit();
-			explicit Mutualiteit(QDomElement &e);
 			virtual ~Mutualiteit();
+
+			void fromDomElement(const QDomElement &e);
+			QDomElement toDomElement() const;
 	};
 }
 

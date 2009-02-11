@@ -1,19 +1,25 @@
 #ifndef _MODEL_DOSSIER_H
 #define _MODEL_DOSSIER_H
 
-#include <QObject>
+#include "model_klant.h"
 
 class QDomElement;
 
 namespace Model
 {
-	class Dossier : public QObject
+	class Dossier
 	{
-		Q_OBJECT
 		public:
 			Dossier();
-			explicit Dossier(QDomElement &e);
 			virtual ~Dossier();
+
+			void fromDomElement(const QDomElement &e);
+			QDomElement toDomElement() const;
+
+			Klant &getKlant();
+
+		private:
+			Klant m_klant;
 	};
 }
 

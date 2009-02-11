@@ -2,11 +2,11 @@
 #define _VIEW_BRIEFARTS_H
 
 #include <QDialog>
-#include "ui_briefartsdialog.h"
+#include "ui_briefarts.h"
 
 namespace View
 {
-	class BriefArts : public ::QDialog, public Ui::BriefArtsDialog
+	class BriefArts : public ::QDialog, public Ui::BriefArts
 	{
 	Q_OBJECT
 	public:

@@ -2,11 +2,11 @@
 #define _VIEW_BRIEFKLANT_H
 
 #include <QDialog>
-#include "ui_briefklantdialog.h"
+#include "ui_briefklant.h"
 
 namespace View
 {
-	class BriefKlant : public ::QDialog, public Ui::BriefKlantDialog
+	class BriefKlant : public QDialog, public Ui::BriefKlant
 	{
 	Q_OBJECT
 	public:

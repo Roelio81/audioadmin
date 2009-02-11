@@ -5,13 +5,14 @@
 using namespace Model;
 
 Instellingen::Instellingen()
-: QObject()
 {
-	
 }
 
-Instellingen::Instellingen(QDomElement &e)
-: QObject()
+Instellingen::~Instellingen()
+{
+}
+
+void Instellingen::fromDomElement(const QDomElement &e)
 {
 	for (QDomElement element = e.firstChildElement(); !element.isNull(); element = element.nextSiblingElement())
 	{
@@ -32,15 +33,18 @@ Instellingen::Instellingen(QDomElement &e)
 					m_gemeente = subelement.text();
 					m_postcode = subelement.attributeNode("postcode").value().toInt();
 				}
-				
 			}
+		}
+		else if (element.tagName() == "telefoon")
+		{
+			m_telefoon = element.text();
 		}
 	}
 }
 
-Instellingen::~Instellingen()
+QDomElement Instellingen::toDomElement() const
 {
-	
+	return QDomElement();
 }
 
 QString Instellingen::getNaam() const
@@ -61,4 +65,9 @@ int Instellingen::getPostcode() const
 QString Instellingen::getGemeente() const
 {
 	return m_gemeente;
+}
+
+QString Instellingen::getTelefoon() const
+{
+	return m_telefoon;
 }

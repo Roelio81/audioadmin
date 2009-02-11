@@ -1,19 +1,20 @@
 #ifndef _MODEL_KLANT_H
 #define _MODEL_KLANT_H
 
-#include <QObject>
+#include "model_entiteit.h"
 
 class QDomElement;
 
 namespace Model
 {
-	class Klant : public QObject
+	class Klant : public Entiteit
 	{
-		Q_OBJECT
 		public:
 			Klant();
-			explicit Klant(QDomElement &e);
 			virtual ~Klant();
+
+			void fromDomElement(const QDomElement &e);
+			QDomElement toDomElement() const;
 	};
 }
 

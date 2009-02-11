@@ -2,7 +2,6 @@
 #define _MODEL_UNIVERSUM_H
 
 #include <QMap>
-#include <QObject>
 #include <QString>
 #include <QVector>
 
@@ -15,26 +14,31 @@ namespace Model
 	class Instellingen;
 	class Mutualiteit;
 
-	class Universum : public QObject
+	class Universum
 	{
-		Q_OBJECT
 		public:
-			Universum(const ::QString &bestandsNaam);
+			Universum(const QString &bestandsNaam);
 			virtual ~Universum();
 
-			bool bewaren();
 			bool openen();
+			bool openen(const QString &bestandsNaam);
+			bool bewaren();
+			bool bewaren(const QString &bestandsNaam);
+
+			void toevoegenArts(Arts *arts);
+			void verwijderenArts();
+			QVector<Arts *> &getArtsen();
 
 			void toevoegenDossier(Dossier *dossier);
 			void verwijderenDossier();
 			QVector<Dossier *> &getDossiers();
-			
+
+			void toevoegenMutualiteit(Mutualiteit *mutualiteit);
+			void verwijderenMutualiteit();
+			QVector<Mutualiteit *> &getMutualiteiten();
+
 			Instellingen *getInstellingen();
 
-		public slots:
-			void openen(const QString &bestandsNaam);
-			void bewaren(const QString &bestandsNaam);
-			
 		private:
 			void openInstellingen(QDomElement &element);
 

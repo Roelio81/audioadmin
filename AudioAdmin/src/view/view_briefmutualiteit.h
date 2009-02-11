@@ -2,11 +2,11 @@
 #define _VIEW_BRIEFMUTUALITEIT_H
 
 #include <QDialog>
-#include "ui_briefmutualiteitdialog.h"
+#include "ui_briefmutualiteit.h"
 
 namespace View
 {
-	class BriefMutualiteit : public ::QDialog, public Ui::BriefMutualiteitDialog
+	class BriefMutualiteit : public QDialog, public Ui::BriefMutualiteit
 	{
 	Q_OBJECT
 	public:

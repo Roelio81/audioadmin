@@ -2,11 +2,11 @@
 #define _VIEW_ETIKETTEN_H
 
 #include <QDialog>
-#include "ui_etikettendialog.h"
+#include "ui_etiketten.h"
 
 namespace View
 {
-	class Etiketten : public ::QDialog, public Ui::EtikettenDialog
+	class Etiketten : public QDialog, public Ui::Etiketten
 	{
 	Q_OBJECT
 	public:
