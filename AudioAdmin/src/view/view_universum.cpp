@@ -5,6 +5,7 @@
 
 #include <QFileDialog>
 #include <QMessageBox>
+#include <iostream>
 
 using namespace View;
 
@@ -19,19 +20,22 @@ Universum::Universum(::QWidget *parent, Qt::WFlags f)
 	connect(actionInstellingen_wijzigen, SIGNAL(activated()), this, SLOT(instellingen()));
 	connect(actionOmtrent, SIGNAL(activated()), this, SLOT(omtrent()));
 	connect(meetgegevensButton, SIGNAL(clicked()), this, SLOT(meetgegevens()));
+	connect(m_artsenLijst, SIGNAL(itemSelectionChanged(int, int, int, int)), this, SLOT(selecteerArts(int, int, int, int)));
+	connect(m_klantenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerKlant(int, int, int, int)));
+	connect(m_mutualiteitenLijst, SIGNAL(itemSelectionChanged(int, int, int, int)), this, SLOT(selecteerMutualiteit(int, int, int, int)));
 	
 	// De kolombreedtes wat aanpassen
 	m_artsenLijst->setColumnWidth(0, 200);
-	m_artsenLijst->setColumnWidth(1, 200);
-	m_artsenLijst->setColumnWidth(2, 200);
+	m_artsenLijst->setColumnWidth(1, 300);
+	m_artsenLijst->setColumnWidth(2, 100);
 	m_artsenLijst->setColumnWidth(3, 200);
 	m_klantenLijst->setColumnWidth(0, 200);
-	m_klantenLijst->setColumnWidth(1, 200);
-	m_klantenLijst->setColumnWidth(2, 200);
+	m_klantenLijst->setColumnWidth(1, 300);
+	m_klantenLijst->setColumnWidth(2, 100);
 	m_klantenLijst->setColumnWidth(3, 200);
 	m_mutualiteitenLijst->setColumnWidth(0, 200);
-	m_mutualiteitenLijst->setColumnWidth(1, 200);
-	m_mutualiteitenLijst->setColumnWidth(2, 200);
+	m_mutualiteitenLijst->setColumnWidth(1, 300);
+	m_mutualiteitenLijst->setColumnWidth(2, 100);
 	m_mutualiteitenLijst->setColumnWidth(3, 200);
 }
 
@@ -137,3 +141,28 @@ void Universum::toevoegenMutualiteit(int id, const QString &naam, const QString 
 	m_mutualiteitenLijst->setCellWidget(id, 3, new QLabel(gemeente));
 	m_mutualiteitenLijst->resizeRowToContents(id);
 }
+
+void Universum::selecteerArts(int currentRow, int currentColumn, int previousRow, int previousColumn)
+{
+	if (currentRow != previousRow)
+	{
+		artsSelectieSignal(currentRow);
+	}
+}
+
+void Universum::selecteerKlant(int currentRow, int currentColumn, int previousRow, int previousColumn)
+{
+	if (currentRow != previousRow)
+	{
+		klantSelectieSignal(currentRow);
+	}
+}
+
+void Universum::selecteerMutualiteit(int currentRow, int currentColumn, int previousRow, int previousColumn)
+{
+	if (currentRow != previousRow)
+	{
+		mutualiteitSelectieSignal(currentRow);
+	}
+}
+

@@ -666,6 +666,9 @@
         </item>
         <item row="3" column="0" >
          <widget class="QTableWidget" name="m_klantenLijst" >
+          <property name="selectionMode" >
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
           <property name="sortingEnabled" >
            <bool>true</bool>
           </property>
@@ -948,6 +951,12 @@
         </item>
         <item row="2" column="0" >
          <widget class="QTableWidget" name="m_artsenLijst" >
+          <property name="selectionMode" >
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="sortingEnabled" >
+           <bool>true</bool>
+          </property>
           <property name="columnCount" >
            <number>4</number>
           </property>
@@ -1210,6 +1219,12 @@
         </item>
         <item row="2" column="0" >
          <widget class="QTableWidget" name="m_mutualiteitenLijst" >
+          <property name="selectionMode" >
+           <enum>QAbstractItemView::SingleSelection</enum>
+          </property>
+          <property name="sortingEnabled" >
+           <bool>true</bool>
+          </property>
           <property name="columnCount" >
            <number>4</number>
           </property>

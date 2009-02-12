@@ -23,21 +23,25 @@ namespace View
 		void leegMutualiteitenLijst();
 		void toevoegenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
 
-	public slots:
+	private slots:
 		void instellingen();
 		void meetgegevens();
-
-	private slots:
 		void printLabels();
 		void backup();
 		void restore();
 		void omtrent();
+		void selecteerArts(int currentRow, int currentColumn, int previousRow, int previousColumn);
+		void selecteerKlant(int currentRow, int currentColumn, int previousRow, int previousColumn);
+		void selecteerMutualiteit(int currentRow, int currentColumn, int previousRow, int previousColumn);
 
 	signals:
 		void backupSignal(const QString &bestandsNaam);
 		void restoreSignal(const QString &bestandsNaam);
 		void instellingenSignal();
 		void meetgegevensSignal();
+		void artsSelectieSignal(int id);
+		void klantSelectieSignal(int id);
+		void mutualiteitSelectieSignal(int id);
 
 	private:
 		Instellingen m_instellingen;
