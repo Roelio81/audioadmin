@@ -10,11 +10,16 @@ namespace Model
 	class Arts : public Entiteit
 	{
 		public:
-			Arts();
+			Arts(int id);
 			virtual ~Arts();
-			
+
 			void fromDomElement(const QDomElement &e);
 			QDomElement toDomElement() const;
+
+			int getId() const;
+
+		private:
+			const int m_id;
 	};
 }
 

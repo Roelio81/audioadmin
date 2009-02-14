@@ -4,7 +4,8 @@
 
 using namespace Model;
 
-Mutualiteit::Mutualiteit()
+Mutualiteit::Mutualiteit(int id)
+: m_id(id)
 {
 }
 
@@ -20,4 +21,9 @@ void Mutualiteit::fromDomElement(const QDomElement &e)
 QDomElement Mutualiteit::toDomElement() const
 {
 	return Mutualiteit::toDomElement();
+}
+
+int Mutualiteit::getId() const
+{
+	return m_id;
 }

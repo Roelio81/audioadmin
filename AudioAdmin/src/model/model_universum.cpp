@@ -58,7 +58,9 @@ bool Universum::openen()
 			for (QDomElement artsElement = e.firstChildElement(); !artsElement.isNull(); artsElement = artsElement.nextSiblingElement())
 			{
 				Q_ASSERT(artsElement.tagName() == "dokter");
-				Arts *arts = new Arts();
+				Q_ASSERT(artsElement.hasAttribute("id"));
+				int artsId = artsElement.attributeNode("id").value().toInt();
+				Arts *arts = new Arts(artsId);
 				arts->fromDomElement(artsElement);
 				m_artsenLijst.push_back(arts);
 			}
@@ -68,7 +70,9 @@ bool Universum::openen()
 			for (::QDomElement mutElement = e.firstChildElement(); !mutElement.isNull(); mutElement = mutElement.nextSiblingElement())
 			{
 				Q_ASSERT(mutElement.tagName() == "mutualiteit");
-				Mutualiteit *mutualiteit = new Mutualiteit();
+				Q_ASSERT(mutElement.hasAttribute("id"));
+				int mutId = mutElement.attributeNode("id").value().toInt();
+				Mutualiteit *mutualiteit = new Mutualiteit(mutId);
 				mutualiteit->fromDomElement(mutElement);
 				m_mutualiteitenLijst.push_back(mutualiteit);
 			}
@@ -78,7 +82,9 @@ bool Universum::openen()
 			for (::QDomElement dossierElement = e.firstChildElement(); !dossierElement.isNull(); dossierElement = dossierElement.nextSiblingElement())
 			{
 				Q_ASSERT(dossierElement.tagName() == "dossier");
-				Dossier *dossier = new Dossier();
+				Q_ASSERT(dossierElement.hasAttribute("id"));
+				int dossierId = dossierElement.attributeNode("id").value().toInt();
+				Dossier *dossier = new Dossier(dossierId);
 				dossier->fromDomElement(dossierElement);
 				m_dossierLijst.push_back(dossier);
 			}
@@ -129,7 +135,12 @@ QVector<Dossier *> &Universum::getDossiers()
 
 Dossier *Universum::getDossier(int klantId)
 {
-	return m_dossierLijst[klantId];
+	for (QVector<Dossier *>::iterator itDossier = m_dossierLijst.begin(); itDossier != m_dossierLijst.end(); ++itDossier)
+	{
+		Dossier *dossier = *itDossier;
+		if (dossier->getId() == klantId) return dossier;
+	}
+	return 0;
 }
 
 QVector<Mutualiteit *> &Universum::getMutualiteiten()

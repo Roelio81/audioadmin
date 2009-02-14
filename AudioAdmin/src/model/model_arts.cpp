@@ -4,8 +4,9 @@
 
 using namespace Model;
 
-Arts::Arts()
+Arts::Arts(int id)
 : Entiteit()
+, m_id(id)
 {
 }
 
@@ -21,4 +22,9 @@ void Arts::fromDomElement(const QDomElement &e)
 QDomElement Arts::toDomElement() const
 {
 	return Entiteit::toDomElement();
+}
+
+int Arts::getId() const
+{
+	return m_id;
 }

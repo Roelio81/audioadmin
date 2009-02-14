@@ -4,8 +4,9 @@
 
 using namespace Model;
 
-Dossier::Dossier()
-: m_klant()
+Dossier::Dossier(int id)
+: m_id(id)
+, m_klant()
 {
 }
 
@@ -26,4 +27,9 @@ QDomElement Dossier::toDomElement() const
 Klant &Dossier::getKlant()
 {
 	return m_klant;
+}
+
+int Dossier::getId() const
+{
+	return m_id;
 }

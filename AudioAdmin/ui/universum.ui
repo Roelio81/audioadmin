@@ -55,7 +55,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="comboBox" />
+                <widget class="QComboBox" name="m_aanspreektitel" />
                </item>
                <item>
                 <widget class="QLabel" name="l_klantNaam" >
@@ -110,7 +110,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QSpinBox" name="spinBox" >
+                <widget class="QSpinBox" name="m_klantPostcode" >
                  <property name="sizePolicy" >
                   <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
                    <horstretch>0</horstretch>
@@ -139,31 +139,31 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_13" />
+                <widget class="QLineEdit" name="m_klantGemeente" />
                </item>
               </layout>
              </item>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_5" >
                <item>
-                <widget class="QLabel" name="label_16" >
+                <widget class="QLabel" name="l_klantTelefoon" >
                  <property name="text" >
                   <string>Telefoon</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_16" />
+                <widget class="QLineEdit" name="m_klantTelefoon" />
                </item>
                <item>
-                <widget class="QLabel" name="label_20" >
+                <widget class="QLabel" name="l_klantGeboorteDatum" >
                  <property name="text" >
                   <string>Geboortedatum</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QDateEdit" name="dateEdit" >
+                <widget class="QDateEdit" name="m_klantGeboorteDatum" >
                  <property name="minimumSize" >
                   <size>
                    <width>100</width>
@@ -183,14 +183,14 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_6" >
                <item>
-                <widget class="QLabel" name="label_17" >
+                <widget class="QLabel" name="l_klantMutualiteit" >
                  <property name="text" >
                   <string>Mutualiteit</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="comboBox_2" >
+                <widget class="QComboBox" name="m_klantMutualiteit" >
                  <property name="sizePolicy" >
                   <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
                    <horstretch>0</horstretch>
@@ -200,14 +200,14 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="label_19" >
+                <widget class="QLabel" name="l_aansluitingsnummer" >
                  <property name="text" >
                   <string>Aansluitingsnummer</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_15" >
+                <widget class="QLineEdit" name="m_aansluitingsnummer" >
                  <property name="sizePolicy" >
                   <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
                    <horstretch>0</horstretch>
@@ -284,94 +284,94 @@
             </property>
             <layout class="QGridLayout" name="gridLayout_2" >
              <item row="0" column="0" >
-              <widget class="QCheckBox" name="checkBox" >
+              <widget class="QCheckBox" name="c_datumOnderzoek" >
                <property name="text" >
                 <string>Onderzoek</string>
                </property>
               </widget>
              </item>
              <item row="0" column="1" >
-              <widget class="QDateEdit" name="dateEdit_2" />
+              <widget class="QDateEdit" name="m_datumOnderzoek" />
              </item>
              <item row="1" column="0" >
-              <widget class="QCheckBox" name="checkBox_2" >
+              <widget class="QCheckBox" name="c_datumProef" >
                <property name="text" >
                 <string>Proef</string>
                </property>
               </widget>
              </item>
              <item row="1" column="1" >
-              <widget class="QDateEdit" name="dateEdit_3" />
+              <widget class="QDateEdit" name="m_datumProef" />
              </item>
              <item row="2" column="0" >
-              <widget class="QCheckBox" name="checkBox_3" >
+              <widget class="QCheckBox" name="c_datumNKO" >
                <property name="text" >
                 <string>NKO Rapport</string>
                </property>
               </widget>
              </item>
              <item row="2" column="1" >
-              <widget class="QDateEdit" name="dateEdit_4" />
+              <widget class="QDateEdit" name="m_datumNKO" />
              </item>
              <item row="3" column="0" >
-              <widget class="QCheckBox" name="checkBox_4" >
+              <widget class="QCheckBox" name="c_datumAdviseur" >
                <property name="text" >
                 <string>Dokter adviseur</string>
                </property>
               </widget>
              </item>
              <item row="3" column="1" >
-              <widget class="QDateEdit" name="dateEdit_5" />
+              <widget class="QDateEdit" name="m_datumAdviseur" />
              </item>
              <item row="4" column="0" >
-              <widget class="QCheckBox" name="checkBox_5" >
+              <widget class="QCheckBox" name="c_datumMutualiteit" >
                <property name="text" >
                 <string>Akkoord mut.</string>
                </property>
               </widget>
              </item>
              <item row="4" column="1" >
-              <widget class="QDateEdit" name="dateEdit_6" />
+              <widget class="QDateEdit" name="m_datumMutualiteit" />
              </item>
              <item row="5" column="0" >
-              <widget class="QCheckBox" name="checkBox_6" >
+              <widget class="QCheckBox" name="c_datumBetaling" >
                <property name="text" >
                 <string>Betaling</string>
                </property>
               </widget>
              </item>
              <item row="5" column="1" >
-              <widget class="QDateEdit" name="dateEdit_7" />
+              <widget class="QDateEdit" name="m_datumBetaling" />
              </item>
              <item row="6" column="0" >
-              <widget class="QCheckBox" name="checkBox_7" >
+              <widget class="QCheckBox" name="c_datumAflevering" >
                <property name="text" >
                 <string>Aflevering</string>
                </property>
               </widget>
              </item>
              <item row="6" column="1" >
-              <widget class="QDateEdit" name="dateEdit_8" />
+              <widget class="QDateEdit" name="m_datumAflevering" />
              </item>
              <item row="7" column="0" >
-              <widget class="QCheckBox" name="checkBox_8" >
+              <widget class="QCheckBox" name="c_datumWissel" >
                <property name="text" >
                 <string>Wissel</string>
                </property>
               </widget>
              </item>
              <item row="7" column="1" >
-              <widget class="QDateEdit" name="dateEdit_9" />
+              <widget class="QDateEdit" name="m_datumWissel" />
              </item>
              <item row="8" column="0" >
-              <widget class="QCheckBox" name="checkBox_9" >
+              <widget class="QCheckBox" name="c_datumOHK" >
                <property name="text" >
                 <string>OHK</string>
                </property>
               </widget>
              </item>
              <item row="8" column="1" >
-              <widget class="QDateEdit" name="dateEdit_10" />
+              <widget class="QDateEdit" name="m_datumOHK" />
              </item>
             </layout>
            </widget>

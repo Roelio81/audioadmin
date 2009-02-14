@@ -10,7 +10,7 @@ namespace Model
 	class Dossier
 	{
 		public:
-			Dossier();
+			Dossier(int id);
 			virtual ~Dossier();
 
 			void fromDomElement(const QDomElement &e);
@@ -18,7 +18,10 @@ namespace Model
 
 			Klant &getKlant();
 
+			int getId() const;
+
 		private:
+			const int m_id;
 			Klant m_klant;
 	};
 }

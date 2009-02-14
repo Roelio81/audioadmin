@@ -25,6 +25,11 @@ namespace View
 		void leegMutualiteitenLijst();
 		void toevoegenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
 
+		int artsIndexToId(int index) const;
+		int artsIdToIndex(int id) const;
+		int mutualiteitIndexToId(int index) const;
+		int mutualiteitIdToIndex(int id) const;
+
 	private slots:
 		void instellingen();
 		void meetgegevens();
@@ -46,6 +51,13 @@ namespace View
 		void mutualiteitSelectieSignal(int id);
 
 	private:
+		QMap<int, int> m_artsIdToIndex;
+		QMap<int, int> m_artsIndexToId;
+		QMap<int, int> m_klantIdToIndex;
+		QMap<int, int> m_klantIndexToId;
+		QMap<int, int> m_mutualiteitIdToIndex;
+		QMap<int, int> m_mutualiteitIndexToId;
+
 		Dossier m_dossier;
 		Instellingen m_instellingen;
 	};

@@ -106,46 +106,81 @@ void Universum::meetgegevens()
 void Universum::leegArtsenLijst()
 {
 	m_artsenLijst->clearContents();
+	m_artsIdToIndex.clear();
+	m_artsIndexToId.clear();
 }
 
 void Universum::toevoegenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
-	m_artsenLijst->insertRow(id);
-	m_artsenLijst->setCellWidget(id, 0, new QLabel(naam));
-	m_artsenLijst->setCellWidget(id, 1, new QLabel(straat));
-	m_artsenLijst->setCellWidget(id, 2, new QLabel(QString::number(postcode)));
-	m_artsenLijst->setCellWidget(id, 3, new QLabel(gemeente));
-	m_artsenLijst->resizeRowToContents(id);
+	int index = m_artsenLijst->rowCount();
+	m_artsIdToIndex[id] = index;
+	m_artsIndexToId[index] = id;
+	m_artsenLijst->insertRow(index);
+	m_artsenLijst->setCellWidget(index, 0, new QLabel(naam));
+	m_artsenLijst->setCellWidget(index, 1, new QLabel(straat));
+	m_artsenLijst->setCellWidget(index, 2, new QLabel(QString::number(postcode)));
+	m_artsenLijst->setCellWidget(index, 3, new QLabel(gemeente));
+	m_artsenLijst->resizeRowToContents(index);
 }
 
 void Universum::leegKlantenLijst()
 {
 	m_klantenLijst->clearContents();
+	m_klantIdToIndex.clear();
+	m_klantIndexToId.clear();
 }
 
 void Universum::toevoegenKlant(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
-	m_klantenLijst->insertRow(id);
-	m_klantenLijst->setCellWidget(id, 0, new QLabel(naam));
-	m_klantenLijst->setCellWidget(id, 1, new QLabel(straat));
-	m_klantenLijst->setCellWidget(id, 2, new QLabel(QString::number(postcode)));
-	m_klantenLijst->setCellWidget(id, 3, new QLabel(gemeente));
-	m_klantenLijst->resizeRowToContents(id);
+	int index = m_klantenLijst->rowCount();
+	m_klantIdToIndex[id] = index;
+	m_klantIndexToId[index] = id;
+	m_klantenLijst->insertRow(index);
+	m_klantenLijst->setCellWidget(index, 0, new QLabel(naam));
+	m_klantenLijst->setCellWidget(index, 1, new QLabel(straat));
+	m_klantenLijst->setCellWidget(index, 2, new QLabel(QString::number(postcode)));
+	m_klantenLijst->setCellWidget(index, 3, new QLabel(gemeente));
+	m_klantenLijst->resizeRowToContents(index);
 }
 
 void Universum::leegMutualiteitenLijst()
 {
 	m_mutualiteitenLijst->clearContents();
+	m_mutualiteitIdToIndex.clear();
+	m_mutualiteitIndexToId.clear();
 }
 
 void Universum::toevoegenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
-	m_mutualiteitenLijst->insertRow(id);
-	m_mutualiteitenLijst->setCellWidget(id, 0, new QLabel(naam));
-	m_mutualiteitenLijst->setCellWidget(id, 1, new QLabel(straat));
-	m_mutualiteitenLijst->setCellWidget(id, 2, new QLabel(QString::number(postcode)));
-	m_mutualiteitenLijst->setCellWidget(id, 3, new QLabel(gemeente));
-	m_mutualiteitenLijst->resizeRowToContents(id);
+	int index = m_mutualiteitenLijst->rowCount();
+	m_mutualiteitIdToIndex[id] = index;
+	m_mutualiteitIndexToId[index] = id;
+	m_mutualiteitenLijst->insertRow(index);
+	m_mutualiteitenLijst->setCellWidget(index, 0, new QLabel(naam));
+	m_mutualiteitenLijst->setCellWidget(index, 1, new QLabel(straat));
+	m_mutualiteitenLijst->setCellWidget(index, 2, new QLabel(QString::number(postcode)));
+	m_mutualiteitenLijst->setCellWidget(index, 3, new QLabel(gemeente));
+	m_mutualiteitenLijst->resizeRowToContents(index);
+}
+
+int Universum::artsIndexToId(int index) const
+{
+	return m_artsIndexToId.value(index, -1);
+}
+
+int Universum::artsIdToIndex(int id) const
+{
+	return m_artsIdToIndex.value(id, -1);
+}
+
+int Universum::mutualiteitIndexToId(int index) const
+{
+	return m_mutualiteitIndexToId.value(index, -1);
+}
+
+int Universum::mutualiteitIdToIndex(int id) const
+{
+	return m_mutualiteitIdToIndex.value(id, -1);
 }
 
 void Universum::selecteerArts(int currentRow, int currentColumn, int previousRow, int previousColumn)
@@ -160,7 +195,7 @@ void Universum::selecteerKlant(int currentRow, int currentColumn, int previousRo
 {
 	if (currentRow != previousRow)
 	{
-		klantSelectieSignal(currentRow);
+		klantSelectieSignal(m_klantIndexToId.value(currentRow, -1));
 	}
 }
 
