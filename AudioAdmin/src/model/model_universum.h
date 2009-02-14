@@ -32,6 +32,7 @@ namespace Model
 			void toevoegenDossier(Dossier *dossier);
 			void verwijderenDossier();
 			QVector<Dossier *> &getDossiers();
+			Dossier *getDossier(int klantId);
 
 			void toevoegenMutualiteit(Mutualiteit *mutualiteit);
 			void verwijderenMutualiteit();

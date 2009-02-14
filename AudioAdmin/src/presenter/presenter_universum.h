@@ -15,6 +15,8 @@ namespace Model
 
 namespace Presenter
 {
+	class Dossier;
+	
 	class Universum : public ::QObject
 	{
 	Q_OBJECT
@@ -26,6 +28,7 @@ namespace Presenter
 			void openen(const QString &bestandsNaam);
 			void bewaren(const QString &bestandsNaam);
 			void instellingen();
+			void toonDossier(int klantId);
 
 		private:
 			void setupInstellingen();
@@ -37,6 +40,8 @@ namespace Presenter
 
 			View::Universum &m_view;
 			Model::Universum &m_model;
+			
+			Presenter::Dossier *m_dossierPresenter;
 	};
 }
 

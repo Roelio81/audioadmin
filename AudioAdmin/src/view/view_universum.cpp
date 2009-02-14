@@ -11,6 +11,7 @@ using namespace View;
 
 Universum::Universum(::QWidget *parent, Qt::WFlags f)
 : QMainWindow(parent, f)
+, m_dossier(*this)
 , m_instellingen(this)
 {
 	setupUi(this);
@@ -46,6 +47,11 @@ Universum::~Universum()
 Instellingen &Universum::getInstellingen()
 {
 	return m_instellingen;
+}
+
+Dossier &Universum::getDossier()
+{
+	return m_dossier;
 }
 
 void Universum::printLabels()

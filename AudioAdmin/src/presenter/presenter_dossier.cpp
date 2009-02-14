@@ -13,3 +13,9 @@ Dossier::Dossier(View::Dossier &view, Model::Dossier &model)
 Dossier::~Dossier()
 {
 }
+
+void Dossier::setup()
+{
+	Model::Klant &klantModel = m_model.getKlant();
+	m_view.setKlantNaam(klantModel.getNaam());
+}

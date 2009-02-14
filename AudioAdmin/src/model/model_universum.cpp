@@ -127,6 +127,11 @@ QVector<Dossier *> &Universum::getDossiers()
 	return m_dossierLijst;
 }
 
+Dossier *Universum::getDossier(int klantId)
+{
+	return m_dossierLijst[klantId];
+}
+
 QVector<Mutualiteit *> &Universum::getMutualiteiten()
 {
 	return m_mutualiteitenLijst;

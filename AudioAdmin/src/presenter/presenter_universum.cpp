@@ -1,4 +1,5 @@
 #include "presenter_universum.h"
+#include "presenter_dossier.h"
 #include "../model/model_arts.h"
 #include "../model/model_dossier.h"
 #include "../model/model_instellingen.h"
@@ -11,10 +12,12 @@ using namespace Presenter;
 Universum::Universum(View::Universum &view, Model::Universum &model)
 : m_view(view)
 , m_model(model)
+, m_dossierPresenter(0)
 {
 	connect(&m_view, SIGNAL(backupSignal(const ::QString &)), this, SLOT(openen(const ::QString &)));
 	connect(&m_view, SIGNAL(restoreSignal(const ::QString &)), this, SLOT(bewaren(const ::QString &)));
 	connect(&m_view, SIGNAL(instellingenSignal()), this, SLOT(instellingen()));
+	connect(&m_view, SIGNAL(klantSelectieSignal(int)), this, SLOT(toonDossier(int)));
 	refreshArtsenLijst();
 	refreshKlantenLijst();
 	refreshMutualiteitenLijst();
@@ -84,7 +87,7 @@ void Universum::refreshMutualiteitenLijst()
 		Model::Mutualiteit &mutualiteit = *(*itMutualiteit);
 		m_view.toevoegenMutualiteit(i++, mutualiteit.getNaam(), mutualiteit.getStraat(), mutualiteit.getPostcode(), mutualiteit.getGemeente());	
 	}
-} 
+}
 
 void Universum::openen(const QString &bestandsNaam)
 {
@@ -97,4 +100,12 @@ void Universum::openen(const QString &bestandsNaam)
 void Universum::bewaren(const QString &bestandsNaam)
 {
 	m_model.bewaren(bestandsNaam);
+}
+
+void Universum::toonDossier(int klantId)
+{
+	Model::Dossier *dossierModel = m_model.getDossier(klantId);
+	Q_ASSERT(dossierModel);
+	m_dossierPresenter = new Presenter::Dossier(m_view.getDossier(), *dossierModel);
+	m_dossierPresenter->setup();
 }

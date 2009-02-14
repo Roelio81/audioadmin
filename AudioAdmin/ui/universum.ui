@@ -34,7 +34,7 @@
         <item row="0" column="0" >
          <layout class="QHBoxLayout" name="horizontalLayout_9" >
           <item>
-           <widget class="QGroupBox" name="groupBoxKlant" >
+           <widget class="QGroupBox" name="g_klantgegevens" >
             <property name="sizePolicy" >
              <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
               <horstretch>0</horstretch>
@@ -48,7 +48,7 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_2" >
                <item>
-                <widget class="QLabel" name="label_10" >
+                <widget class="QLabel" name="l_aanspreektitel" >
                  <property name="text" >
                   <string>Aanspreektitel</string>
                  </property>
@@ -58,24 +58,24 @@
                 <widget class="QComboBox" name="comboBox" />
                </item>
                <item>
-                <widget class="QLabel" name="label_11" >
+                <widget class="QLabel" name="l_klantNaam" >
                  <property name="text" >
                   <string>Naam</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_11" />
+                <widget class="QLineEdit" name="m_klantNaam" />
                </item>
                <item>
-                <widget class="QLabel" name="label_12" >
+                <widget class="QLabel" name="l_klantVoornaam" >
                  <property name="text" >
                   <string>Voornaam</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_12" >
+                <widget class="QLineEdit" name="m_klantVoornaam" >
                  <property name="sizePolicy" >
                   <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
                    <horstretch>0</horstretch>
@@ -89,14 +89,14 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_3" >
                <item>
-                <widget class="QLabel" name="label_13" >
+                <widget class="QLabel" name="l_klantStraat" >
                  <property name="text" >
                   <string>Straat (+ huisnummer / bus)</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_10" />
+                <widget class="QLineEdit" name="m_klantStraat" />
                </item>
               </layout>
              </item>
@@ -221,21 +221,21 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_7" >
                <item>
-                <widget class="QLabel" name="label_18" >
+                <widget class="QLabel" name="l_plaatsAanpassing" >
                  <property name="text" >
                   <string>Plaats aanpassing</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_14" />
+                <widget class="QLineEdit" name="m_plaatsAanpassing" />
                </item>
               </layout>
              </item>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_8" >
                <item>
-                <widget class="QLabel" name="label_31" >
+                <widget class="QLabel" name="l_klantOpmerkingen" >
                  <property name="text" >
                   <string>Opmerkingen</string>
                  </property>
@@ -245,7 +245,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QTextEdit" name="textEdit" >
+                <widget class="QTextEdit" name="m_klantOpmerkingen" >
                  <property name="sizePolicy" >
                   <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
                    <horstretch>0</horstretch>
@@ -266,7 +266,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="groupBoxDatums" >
+           <widget class="QGroupBox" name="g_datums" >
             <property name="sizePolicy" >
              <sizepolicy vsizetype="Preferred" hsizetype="MinimumExpanding" >
               <horstretch>0</horstretch>

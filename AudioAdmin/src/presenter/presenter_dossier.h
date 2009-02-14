@@ -21,6 +21,8 @@ namespace Presenter
 			Dossier(View::Dossier &view, Model::Dossier &model);
 			virtual ~Dossier();
 
+			void setup();
+
 		private:
 			View::Dossier &m_view;
 			Model::Dossier &m_model;

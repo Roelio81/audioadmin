@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "ui_universum.h"
+#include "view_dossier.h"
 #include "view_instellingen.h"
 
 namespace View
@@ -13,7 +14,8 @@ namespace View
 	public:
 		Universum(::QWidget *parent = 0, Qt::WFlags f = 0);
 		virtual ~Universum();
-		
+
+		Dossier &getDossier();
 		Instellingen &getInstellingen();
 
 		void leegArtsenLijst();
@@ -44,6 +46,7 @@ namespace View
 		void mutualiteitSelectieSignal(int id);
 
 	private:
+		Dossier m_dossier;
 		Instellingen m_instellingen;
 	};
 }
