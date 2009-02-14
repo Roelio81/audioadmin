@@ -783,7 +783,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_10" >
         <item row="0" column="0" >
-         <widget class="QGroupBox" name="groupBoxKlant_2" >
+         <widget class="QGroupBox" name="g_artsgegevens" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
             <horstretch>0</horstretch>
@@ -797,24 +797,24 @@
            <item row="0" column="0" >
             <layout class="QHBoxLayout" name="horizontalLayout_11" >
              <item>
-              <widget class="QLabel" name="label_33" >
+              <widget class="QLabel" name="l_artsNaam" >
                <property name="text" >
                 <string>Naam</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_21" />
+              <widget class="QLineEdit" name="m_artsNaam" />
              </item>
              <item>
-              <widget class="QLabel" name="label_34" >
+              <widget class="QLabel" name="l_artsVoornaam" >
                <property name="text" >
                 <string>Voornaam</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_22" >
+              <widget class="QLineEdit" name="m_artsVoornaam" >
                <property name="sizePolicy" >
                 <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
                  <horstretch>0</horstretch>
@@ -828,14 +828,14 @@
            <item row="1" column="0" >
             <layout class="QHBoxLayout" name="horizontalLayout_12" >
              <item>
-              <widget class="QLabel" name="label_35" >
+              <widget class="QLabel" name="l_artsStraat" >
                <property name="text" >
                 <string>Straat (+ huisnummer / bus)</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_23" />
+              <widget class="QLineEdit" name="m_artsStraat" />
              </item>
             </layout>
            </item>
@@ -849,7 +849,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox_2" >
+              <widget class="QSpinBox" name="m_artsPostcode" >
                <property name="sizePolicy" >
                 <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
                  <horstretch>0</horstretch>
@@ -865,45 +865,45 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="label_37" >
+              <widget class="QLabel" name="l_artsGemeente" >
                <property name="text" >
                 <string>Gemeente</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_24" />
+              <widget class="QLineEdit" name="m_artsGemeente" />
              </item>
             </layout>
            </item>
            <item row="3" column="0" >
             <layout class="QHBoxLayout" name="horizontalLayout_14" >
              <item>
-              <widget class="QLabel" name="label_38" >
+              <widget class="QLabel" name="l_artsTelefoon" >
                <property name="text" >
                 <string>Telefoon</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_25" />
+              <widget class="QLineEdit" name="m_artsTelefoon" />
              </item>
              <item>
-              <widget class="QLabel" name="label_39" >
+              <widget class="QLabel" name="l_artsEmail" >
                <property name="text" >
                 <string>E-mail</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_28" />
+              <widget class="QLineEdit" name="m_artsEmail" />
              </item>
             </layout>
            </item>
            <item row="4" column="0" >
             <layout class="QHBoxLayout" name="horizontalLayout_17" >
              <item>
-              <widget class="QLabel" name="label_43" >
+              <widget class="QLabel" name="l_artsOpmerkingen" >
                <property name="text" >
                 <string>Opmerkingen</string>
                </property>
@@ -913,7 +913,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QTextEdit" name="textEdit_2" >
+              <widget class="QTextEdit" name="m_artsOpmerkingen" >
                <property name="sizePolicy" >
                 <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
                  <horstretch>0</horstretch>
@@ -1068,7 +1068,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_12" >
         <item row="0" column="0" >
-         <widget class="QGroupBox" name="groupBoxKlant_3" >
+         <widget class="QGroupBox" name="g_mutualiteitsgegevens" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
             <horstretch>0</horstretch>
@@ -1082,28 +1082,28 @@
            <item row="0" column="0" >
             <layout class="QHBoxLayout" name="horizontalLayout_15" >
              <item>
-              <widget class="QLabel" name="label_40" >
+              <widget class="QLabel" name="l_mutualiteitNaam" >
                <property name="text" >
                 <string>Naam</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_26" />
+              <widget class="QLineEdit" name="m_mutualiteitNaam" />
              </item>
             </layout>
            </item>
            <item row="1" column="0" >
             <layout class="QHBoxLayout" name="horizontalLayout_16" >
              <item>
-              <widget class="QLabel" name="label_42" >
+              <widget class="QLabel" name="l_mutualiteitStraat" >
                <property name="text" >
                 <string>Straat (+ huisnummer / bus)</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_29" />
+              <widget class="QLineEdit" name="m_mutualiteitStraat" />
              </item>
             </layout>
            </item>
@@ -1117,7 +1117,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox_3" >
+              <widget class="QSpinBox" name="m_mutualiteitPostcode" >
                <property name="sizePolicy" >
                 <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
                  <horstretch>0</horstretch>
@@ -1133,45 +1133,49 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="label_45" >
+              <widget class="QLabel" name="l_mutualiteitGemeente" >
                <property name="text" >
                 <string>Gemeente</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_30" />
+              <widget class="QLineEdit" name="m_mutualiteitGemeente" />
              </item>
             </layout>
            </item>
            <item row="3" column="0" >
             <layout class="QHBoxLayout" name="horizontalLayout_20" >
              <item>
-              <widget class="QLabel" name="label_46" >
+              <widget class="QLabel" name="l_mutualiteitTelefoon" >
                <property name="text" >
                 <string>Telefoon</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_31" />
+              <widget class="QLineEdit" name="m_mutualiteitTelefoon" >
+               <property name="text" >
+                <string/>
+               </property>
+              </widget>
              </item>
              <item>
-              <widget class="QLabel" name="label_47" >
+              <widget class="QLabel" name="l_mutualiteitEmail" >
                <property name="text" >
                 <string>E-mail</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_32" />
+              <widget class="QLineEdit" name="m_mutualiteitEmail" />
              </item>
             </layout>
            </item>
            <item row="4" column="0" >
             <layout class="QHBoxLayout" name="horizontalLayout_21" >
              <item>
-              <widget class="QLabel" name="label_48" >
+              <widget class="QLabel" name="l_mutualiteitOpmerkingen" >
                <property name="text" >
                 <string>Opmerkingen</string>
                </property>
@@ -1181,7 +1185,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QTextEdit" name="textEdit_3" >
+              <widget class="QTextEdit" name="m_mutualiteitOpmerkingen" >
                <property name="sizePolicy" >
                 <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
                  <horstretch>0</horstretch>

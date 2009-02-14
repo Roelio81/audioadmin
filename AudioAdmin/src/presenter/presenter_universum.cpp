@@ -1,5 +1,7 @@
 #include "presenter_universum.h"
+#include "presenter_arts.h"
 #include "presenter_dossier.h"
+#include "presenter_mutualiteit.h"
 #include "../model/model_arts.h"
 #include "../model/model_dossier.h"
 #include "../model/model_instellingen.h"
@@ -12,12 +14,16 @@ using namespace Presenter;
 Universum::Universum(View::Universum &view, Model::Universum &model)
 : m_view(view)
 , m_model(model)
+, m_artsPresenter(0)
 , m_dossierPresenter(0)
+, m_mutualiteitPresenter(0)
 {
 	connect(&m_view, SIGNAL(backupSignal(const ::QString &)), this, SLOT(openen(const ::QString &)));
 	connect(&m_view, SIGNAL(restoreSignal(const ::QString &)), this, SLOT(bewaren(const ::QString &)));
 	connect(&m_view, SIGNAL(instellingenSignal()), this, SLOT(instellingen()));
+	connect(&m_view, SIGNAL(artsSelectieSignal(int)), this, SLOT(toonArts(int)));
 	connect(&m_view, SIGNAL(klantSelectieSignal(int)), this, SLOT(toonDossier(int)));
+	connect(&m_view, SIGNAL(mutualiteitSelectieSignal(int)), this, SLOT(toonMutualiteit(int)));
 	refreshArtsenLijst();
 	refreshKlantenLijst();
 	refreshMutualiteitenLijst();
@@ -99,10 +105,26 @@ void Universum::bewaren(const QString &bestandsNaam)
 	m_model.bewaren(bestandsNaam);
 }
 
-void Universum::toonDossier(int klantId)
+void Universum::toonArts(int id)
 {
-	Model::Dossier *dossierModel = m_model.getDossier(klantId);
+	Model::Arts *artsModel = m_model.getArts(id);
+	Q_ASSERT(artsModel);
+	m_artsPresenter = new Presenter::Arts(m_view.getArts(), *artsModel);
+	m_artsPresenter->setup();
+}
+
+void Universum::toonDossier(int id)
+{
+	Model::Dossier *dossierModel = m_model.getDossier(id);
 	Q_ASSERT(dossierModel);
 	m_dossierPresenter = new Presenter::Dossier(m_view.getDossier(), *dossierModel);
 	m_dossierPresenter->setup();
+}
+
+void Universum::toonMutualiteit(int id)
+{
+	Model::Mutualiteit *mutualiteitModel = m_model.getMutualiteit(id);
+	Q_ASSERT(mutualiteitModel);
+	m_mutualiteitPresenter = new Presenter::Mutualiteit(m_view.getMutualiteit(), *mutualiteitModel);
+	m_mutualiteitPresenter->setup();
 }

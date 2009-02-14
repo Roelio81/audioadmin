@@ -15,33 +15,39 @@ namespace Model
 
 namespace Presenter
 {
+	class Arts;
 	class Dossier;
+	class Mutualiteit;
 	
 	class Universum : public ::QObject
 	{
 	Q_OBJECT
-		public:
-			Universum(View::Universum &view, Model::Universum &model);
-			virtual ~Universum();
+	public:
+		Universum(View::Universum &view, Model::Universum &model);
+		virtual ~Universum();
 
-		public slots:
-			void openen(const QString &bestandsNaam);
-			void bewaren(const QString &bestandsNaam);
-			void instellingen();
-			void toonDossier(int klantId);
+	public slots:
+		void openen(const QString &bestandsNaam);
+		void bewaren(const QString &bestandsNaam);
+		void instellingen();
+		void toonArts(int id);
+		void toonDossier(int id);
+		void toonMutualiteit(int id);
 
-		private:
-			void setupInstellingen();
-			void teardownInstellingen();
+	private:
+		void setupInstellingen();
+		void teardownInstellingen();
 
-			void refreshArtsenLijst();
-			void refreshKlantenLijst();
-			void refreshMutualiteitenLijst();
+		void refreshArtsenLijst();
+		void refreshKlantenLijst();
+		void refreshMutualiteitenLijst();
 
-			View::Universum &m_view;
-			Model::Universum &m_model;
-			
-			Presenter::Dossier *m_dossierPresenter;
+		View::Universum &m_view;
+		Model::Universum &m_model;
+
+		Presenter::Arts *m_artsPresenter;
+		Presenter::Dossier *m_dossierPresenter;
+		Presenter::Mutualiteit *m_mutualiteitPresenter;
 	};
 }
 

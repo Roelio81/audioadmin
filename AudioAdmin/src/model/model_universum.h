@@ -16,38 +16,40 @@ namespace Model
 
 	class Universum
 	{
-		public:
-			Universum(const QString &bestandsNaam);
-			virtual ~Universum();
+	public:
+		Universum(const QString &bestandsNaam);
+		virtual ~Universum();
 
-			bool openen();
-			bool openen(const QString &bestandsNaam);
-			bool bewaren();
-			bool bewaren(const QString &bestandsNaam);
+		bool openen();
+		bool openen(const QString &bestandsNaam);
+		bool bewaren();
+		bool bewaren(const QString &bestandsNaam);
 
-			void toevoegenArts(Arts *arts);
-			void verwijderenArts();
-			QVector<Arts *> &getArtsen();
+		void toevoegenArts(Arts *arts);
+		void verwijderenArts();
+		QVector<Arts *> &getArtsen();
+		Arts *getArts(int id);
 
-			void toevoegenDossier(Dossier *dossier);
-			void verwijderenDossier();
-			QVector<Dossier *> &getDossiers();
-			Dossier *getDossier(int klantId);
+		void toevoegenDossier(Dossier *dossier);
+		void verwijderenDossier();
+		QVector<Dossier *> &getDossiers();
+		Dossier *getDossier(int klantId);
 
-			void toevoegenMutualiteit(Mutualiteit *mutualiteit);
-			void verwijderenMutualiteit();
-			QVector<Mutualiteit *> &getMutualiteiten();
+		void toevoegenMutualiteit(Mutualiteit *mutualiteit);
+		void verwijderenMutualiteit();
+		QVector<Mutualiteit *> &getMutualiteiten();
+		Mutualiteit *getMutualiteit(int id);
 
-			Instellingen *getInstellingen();
+		Instellingen *getInstellingen();
 
-		private:
-			void openInstellingen(QDomElement &element);
+	private:
+		void openInstellingen(QDomElement &element);
 
-			QString m_bestandsNaam;
-			QVector<Arts *> m_artsenLijst;
-			QVector<Dossier *> m_dossierLijst;
-			QVector<Mutualiteit *> m_mutualiteitenLijst;
-			Instellingen *m_instellingen;
+		QString m_bestandsNaam;
+		QVector<Arts *> m_artsenLijst;
+		QVector<Dossier *> m_dossierLijst;
+		QVector<Mutualiteit *> m_mutualiteitenLijst;
+		Instellingen *m_instellingen;
 	};
 }
 

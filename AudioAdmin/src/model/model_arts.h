@@ -18,8 +18,13 @@ namespace Model
 
 			int getId() const;
 
+			QString getVoornaam() const;
+
+			void setVoornaam(const QString &value);
+
 		private:
 			const int m_id;
+			QString m_voornaam;
 	};
 }
 

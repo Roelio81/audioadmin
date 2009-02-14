@@ -128,17 +128,27 @@ QVector<Arts *> &Universum::getArtsen()
 	return m_artsenLijst;
 }
 
+Arts *Universum::getArts(int id)
+{
+	for (QVector<Arts *>::iterator itArts = m_artsenLijst.begin(); itArts != m_artsenLijst.end(); ++itArts)
+	{
+		Arts *arts = *itArts;
+		if (arts->getId() == id) return arts;
+	}
+	return 0;
+}
+
 QVector<Dossier *> &Universum::getDossiers()
 {
 	return m_dossierLijst;
 }
 
-Dossier *Universum::getDossier(int klantId)
+Dossier *Universum::getDossier(int id)
 {
 	for (QVector<Dossier *>::iterator itDossier = m_dossierLijst.begin(); itDossier != m_dossierLijst.end(); ++itDossier)
 	{
 		Dossier *dossier = *itDossier;
-		if (dossier->getId() == klantId) return dossier;
+		if (dossier->getId() == id) return dossier;
 	}
 	return 0;
 }
@@ -146,4 +156,14 @@ Dossier *Universum::getDossier(int klantId)
 QVector<Mutualiteit *> &Universum::getMutualiteiten()
 {
 	return m_mutualiteitenLijst;
+}
+
+Mutualiteit *Universum::getMutualiteit(int id)
+{
+	for (QVector<Mutualiteit *>::iterator itMutualiteit = m_mutualiteitenLijst.begin(); itMutualiteit != m_mutualiteitenLijst.end(); ++itMutualiteit)
+	{
+		Mutualiteit *mutualiteit = *itMutualiteit;
+		if (mutualiteit->getId() == id) return mutualiteit;
+	}
+	return 0;
 }

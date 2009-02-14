@@ -1,6 +1,5 @@
 #include "view_dossier.h"
 #include "view_universum.h"
-#include <QComboBox>
 
 using namespace View;
 
@@ -28,42 +27,42 @@ QString Dossier::getAanspreektitel() const
 	return m_universum.m_aanspreektitel->currentText();
 }
 
-QString Dossier::getKlantNaam() const
+QString Dossier::getNaam() const
 {
 	return m_universum.m_klantNaam->text();
 }
 
-QString Dossier::getKlantVoornaam() const
+QString Dossier::getVoornaam() const
 {
 	return m_universum.m_klantVoornaam->text();
 }
 
-QString Dossier::getKlantStraat() const
+QString Dossier::getStraat() const
 {
 	return m_universum.m_klantStraat->text();
 }
 
-int Dossier::getKlantPostcode() const
+int Dossier::getPostcode() const
 {
 	return m_universum.m_klantPostcode->value();
 }
 
-QString Dossier::getKlantGemeente() const
+QString Dossier::getGemeente() const
 {
 	return m_universum.m_klantGemeente->text();
 }
 
-QString Dossier::getKlantTelefoon() const
+QString Dossier::getTelefoon() const
 {
 	return m_universum.m_klantTelefoon->text();
 }
 
-QDate Dossier::getKlantGeboorteDatum() const
+QDate Dossier::getGeboorteDatum() const
 {
 	return m_universum.m_klantGeboorteDatum->date();
 }
 
-int Dossier::getKlantMutualiteit() const
+int Dossier::getMutualiteit() const
 {
 	return m_universum.mutualiteitIndexToId(m_universum.m_klantMutualiteit->currentIndex());
 }
@@ -78,7 +77,7 @@ QString Dossier::getPlaatsAanpassing() const
 	return m_universum.m_plaatsAanpassing->text();
 }
 
-QString Dossier::getKlantOpmerkingen() const
+QString Dossier::getOpmerkingen() const
 {
 	return m_universum.m_klantOpmerkingen->toPlainText();
 }
@@ -90,42 +89,42 @@ void Dossier::setAanspreektitel(const QString &value)
 	m_universum.m_aanspreektitel->setCurrentIndex(index);
 }
 
-void Dossier::setKlantNaam(const QString &value)
+void Dossier::setNaam(const QString &value)
 {
 	m_universum.m_klantNaam->setText(value);
 }
 
-void Dossier::setKlantVoornaam(const QString &value)
+void Dossier::setVoornaam(const QString &value)
 {
 	m_universum.m_klantVoornaam->setText(value);
 }
 
-void Dossier::setKlantStraat(const QString &value)
+void Dossier::setStraat(const QString &value)
 {
 	m_universum.m_klantStraat->setText(value);
 }
 
-void Dossier::setKlantPostcode(int value)
+void Dossier::setPostcode(int value)
 {
 	m_universum.m_klantPostcode->setValue(value);
 }
 
-void Dossier::setKlantGemeente(const QString &value)
+void Dossier::setGemeente(const QString &value)
 {
 	m_universum.m_klantGemeente->setText(value);
 }
 
-void Dossier::setKlantTelefoon(const QString &value)
+void Dossier::setTelefoon(const QString &value)
 {
 	m_universum.m_klantTelefoon->setText(value);
 }
 
-void Dossier::setKlantGeboorteDatum(const QDate &value)
+void Dossier::setGeboorteDatum(const QDate &value)
 {
 	m_universum.m_klantGeboorteDatum->setDate(value);
 }
 
-void Dossier::setKlantMutualiteit(int value)
+void Dossier::setMutualiteit(int value)
 {
 	m_universum.m_klantMutualiteit->setCurrentIndex(m_universum.mutualiteitIdToIndex(value));
 }
@@ -140,7 +139,7 @@ void Dossier::setPlaatsAanpassing(const QString &value)
 	m_universum.m_plaatsAanpassing->setText(value);
 }
 
-void Dossier::setKlantOpmerkingen(const QString &value)
+void Dossier::setOpmerkingen(const QString &value)
 {
 	m_universum.m_klantOpmerkingen->setPlainText(value);
 }

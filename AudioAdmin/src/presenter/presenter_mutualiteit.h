@@ -17,13 +17,15 @@ namespace Presenter
 {
 	class Mutualiteit : public ::QObject
 	{
-		public:
-			Mutualiteit(View::Mutualiteit &view, Model::Mutualiteit &model);
-			virtual ~Mutualiteit();
+	public:
+		Mutualiteit(View::Mutualiteit &view, Model::Mutualiteit &model);
+		virtual ~Mutualiteit();
 
-		private:
-			View::Mutualiteit &m_view;
-			Model::Mutualiteit &m_model;
+		void setup();
+
+	private:
+		View::Mutualiteit &m_view;
+		Model::Mutualiteit &m_model;
 	};
 }
 

@@ -17,13 +17,15 @@ namespace Presenter
 {
 	class Arts : public QObject
 	{
-		public:
-			Arts(View::Arts &view, Model::Arts &model);
-			virtual ~Arts();
+	public:
+		Arts(View::Arts &view, Model::Arts &model);
+		virtual ~Arts();
 
-		private:
-			View::Arts &m_view;
-			Model::Arts &m_model;
+		void setup();
+
+	private:
+		View::Arts &m_view;
+		Model::Arts &m_model;
 	};
 }
 

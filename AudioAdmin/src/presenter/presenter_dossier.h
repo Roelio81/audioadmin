@@ -17,15 +17,15 @@ namespace Presenter
 {
 	class Dossier : public ::QObject
 	{
-		public:
-			Dossier(View::Dossier &view, Model::Dossier &model);
-			virtual ~Dossier();
+	public:
+		Dossier(View::Dossier &view, Model::Dossier &model);
+		virtual ~Dossier();
 
-			void setup();
+		void setup();
 
-		private:
-			View::Dossier &m_view;
-			Model::Dossier &m_model;
+	private:
+		View::Dossier &m_view;
+		Model::Dossier &m_model;
 	};
 }
 

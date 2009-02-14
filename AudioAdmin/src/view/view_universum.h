@@ -3,7 +3,9 @@
 
 #include <QMainWindow>
 #include "ui_universum.h"
+#include "view_arts.h"
 #include "view_dossier.h"
+#include "view_mutualiteit.h"
 #include "view_instellingen.h"
 
 namespace View
@@ -15,7 +17,9 @@ namespace View
 		Universum(::QWidget *parent = 0, Qt::WFlags f = 0);
 		virtual ~Universum();
 
+		Arts &getArts();
 		Dossier &getDossier();
+		Mutualiteit &getMutualiteit();
 		Instellingen &getInstellingen();
 
 		void leegArtsenLijst();
@@ -58,7 +62,9 @@ namespace View
 		QMap<int, int> m_mutualiteitIdToIndex;
 		QMap<int, int> m_mutualiteitIndexToId;
 
+		Arts m_arts;
 		Dossier m_dossier;
+		Mutualiteit m_mutualiteit;
 		Instellingen m_instellingen;
 	};
 }

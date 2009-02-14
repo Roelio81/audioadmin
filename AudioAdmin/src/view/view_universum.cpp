@@ -11,7 +11,9 @@ using namespace View;
 
 Universum::Universum(::QWidget *parent, Qt::WFlags f)
 : QMainWindow(parent, f)
+, m_arts(*this)
 , m_dossier(*this)
+, m_mutualiteit(*this)
 , m_instellingen(this)
 {
 	setupUi(this);
@@ -21,9 +23,9 @@ Universum::Universum(::QWidget *parent, Qt::WFlags f)
 	connect(actionInstellingen_wijzigen, SIGNAL(activated()), this, SLOT(instellingen()));
 	connect(actionOmtrent, SIGNAL(activated()), this, SLOT(omtrent()));
 	connect(meetgegevensButton, SIGNAL(clicked()), this, SLOT(meetgegevens()));
-	connect(m_artsenLijst, SIGNAL(itemSelectionChanged(int, int, int, int)), this, SLOT(selecteerArts(int, int, int, int)));
+	connect(m_artsenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerArts(int, int, int, int)));
 	connect(m_klantenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerKlant(int, int, int, int)));
-	connect(m_mutualiteitenLijst, SIGNAL(itemSelectionChanged(int, int, int, int)), this, SLOT(selecteerMutualiteit(int, int, int, int)));
+	connect(m_mutualiteitenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerMutualiteit(int, int, int, int)));
 	
 	// De kolombreedtes wat aanpassen
 	m_artsenLijst->setColumnWidth(0, 200);
@@ -49,9 +51,19 @@ Instellingen &Universum::getInstellingen()
 	return m_instellingen;
 }
 
+Arts &Universum::getArts()
+{
+	return m_arts;
+}
+
 Dossier &Universum::getDossier()
 {
 	return m_dossier;
+}
+
+Mutualiteit &Universum::getMutualiteit()
+{
+	return m_mutualiteit;
 }
 
 void Universum::printLabels()
@@ -187,7 +199,7 @@ void Universum::selecteerArts(int currentRow, int currentColumn, int previousRow
 {
 	if (currentRow != previousRow)
 	{
-		artsSelectieSignal(currentRow);
+		emit artsSelectieSignal(m_artsIndexToId.value(currentRow, -1));
 	}
 }
 
@@ -195,7 +207,7 @@ void Universum::selecteerKlant(int currentRow, int currentColumn, int previousRo
 {
 	if (currentRow != previousRow)
 	{
-		klantSelectieSignal(m_klantIndexToId.value(currentRow, -1));
+		emit klantSelectieSignal(m_klantIndexToId.value(currentRow, -1));
 	}
 }
 
@@ -203,7 +215,7 @@ void Universum::selecteerMutualiteit(int currentRow, int currentColumn, int prev
 {
 	if (currentRow != previousRow)
 	{
-		mutualiteitSelectieSignal(currentRow);
+		emit mutualiteitSelectieSignal(m_mutualiteitIndexToId.value(currentRow, -1));
 	}
 }
 
