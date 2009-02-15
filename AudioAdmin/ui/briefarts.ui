@@ -22,6 +22,9 @@
   <property name="locale" >
    <locale country="Belgium" language="Dutch" />
   </property>
+  <property name="modal" >
+   <bool>true</bool>
+  </property>
   <layout class="QGridLayout" name="gridLayout" >
    <item row="0" column="0" colspan="2" >
     <widget class="QLabel" name="label" >

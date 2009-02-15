@@ -48,6 +48,14 @@ void Universum::setupInstellingen()
 	viewInstellingen.setStraat(modelInstellingen->getStraat());
 	viewInstellingen.setPostcode(modelInstellingen->getPostcode());
 	viewInstellingen.setGemeente(modelInstellingen->getGemeente());
+	viewInstellingen.setTelefoon(modelInstellingen->getTelefoon());
+	viewInstellingen.setGsm(modelInstellingen->getGsm());
+	viewInstellingen.setEmail(modelInstellingen->getEmail());
+	viewInstellingen.setOnderschrift(modelInstellingen->getOnderschrift());
+	viewInstellingen.setRiziv(modelInstellingen->getRiziv());
+	viewInstellingen.setBtwPercentage(modelInstellingen->getBtwPercentage());
+	viewInstellingen.setBtwNummer(modelInstellingen->getBtwNummer());
+	viewInstellingen.setRekeningNummer(modelInstellingen->getRekeningNummer());
 }
 
 void Universum::teardownInstellingen()
@@ -107,6 +115,11 @@ void Universum::bewaren(const QString &bestandsNaam)
 
 void Universum::toonArts(int id)
 {
+	if (m_artsPresenter)
+	{
+		delete m_artsPresenter;
+		m_artsPresenter = 0;
+	}
 	Model::Arts *artsModel = m_model.getArts(id);
 	Q_ASSERT(artsModel);
 	m_artsPresenter = new Presenter::Arts(m_view.getArts(), *artsModel);
@@ -115,6 +128,11 @@ void Universum::toonArts(int id)
 
 void Universum::toonDossier(int id)
 {
+	if (m_dossierPresenter)
+	{
+		delete m_dossierPresenter;
+		m_dossierPresenter = 0;
+	}
 	Model::Dossier *dossierModel = m_model.getDossier(id);
 	Q_ASSERT(dossierModel);
 	m_dossierPresenter = new Presenter::Dossier(m_view.getDossier(), *dossierModel);
@@ -123,6 +141,11 @@ void Universum::toonDossier(int id)
 
 void Universum::toonMutualiteit(int id)
 {
+	if (m_mutualiteitPresenter)
+	{
+		delete m_mutualiteitPresenter;
+		m_mutualiteitPresenter = 0;
+	}
 	Model::Mutualiteit *mutualiteitModel = m_model.getMutualiteit(id);
 	Q_ASSERT(mutualiteitModel);
 	m_mutualiteitPresenter = new Presenter::Mutualiteit(m_view.getMutualiteit(), *mutualiteitModel);

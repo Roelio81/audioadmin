@@ -10,7 +10,7 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>MainWindow</string>
+   <string>AudioAdmin</string>
   </property>
   <property name="windowIcon" >
    <iconset resource="../icons.qrc" >
@@ -568,7 +568,7 @@
             </property>
             <layout class="QGridLayout" name="gridLayout_7" >
              <item row="0" column="0" >
-              <widget class="QPushButton" name="pushButton_2" >
+              <widget class="QPushButton" name="b_klantBrief" >
                <property name="sizePolicy" >
                 <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
                  <horstretch>0</horstretch>
@@ -587,7 +587,7 @@
               </widget>
              </item>
              <item row="1" column="0" >
-              <widget class="QPushButton" name="pushButton_3" >
+              <widget class="QPushButton" name="b_artsBrief" >
                <property name="sizePolicy" >
                 <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
                  <horstretch>0</horstretch>
@@ -606,7 +606,7 @@
               </widget>
              </item>
              <item row="2" column="0" >
-              <widget class="QPushButton" name="pushButton_4" >
+              <widget class="QPushButton" name="b_mutualiteitBrief" >
                <property name="sizePolicy" >
                 <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
                  <horstretch>0</horstretch>
@@ -625,7 +625,7 @@
               </widget>
              </item>
              <item row="3" column="0" >
-              <widget class="QPushButton" name="pushButton_5" >
+              <widget class="QPushButton" name="b_factuur" >
                <property name="sizePolicy" >
                 <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
                  <horstretch>0</horstretch>

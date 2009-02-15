@@ -6,7 +6,7 @@
 
 namespace View
 {
-	class BriefArts : public ::QDialog, public Ui::BriefArts
+	class BriefArts : public QDialog, public Ui::BriefArts
 	{
 	Q_OBJECT
 	public:

@@ -12,6 +12,11 @@ Dossier::~Dossier()
 {
 }
 
+QWidget *Dossier::getParentWindow()
+{
+	return &m_universum;
+}
+
 void Dossier::leegAanspreektitels()
 {
 	m_universum.m_aanspreektitel->clear();
@@ -174,6 +179,26 @@ void Dossier::setArts(int value)
 void Dossier::toonArtsAdres(int value)
 {
 	int artsId = m_universum.artsIndexToId(value - 1);
-	m_universum.l_klantArtsStraat->setText(m_artsIdToStraat.value(artsId, ""));	
-	m_universum.l_klantArtsGemeente->setText(m_artsIdToGemeente.value(artsId, ""));	
+	m_universum.l_klantArtsStraat->setText(m_artsIdToStraat.value(artsId, ""));
+	m_universum.l_klantArtsGemeente->setText(m_artsIdToGemeente.value(artsId, ""));
+}
+
+void Dossier::toonBriefArts()
+{
+	emit briefArtsSignal();
+}
+
+void Dossier::toonBriefKlant()
+{
+	emit briefKlantSignal();
+}
+
+void Dossier::toonBriefMutualiteit()
+{
+	emit briefMutualiteitSignal();
+}
+
+void Dossier::toonFactuur()
+{
+	emit factuurSignal();
 }

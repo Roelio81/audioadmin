@@ -1,3 +1,13 @@
 #include "view_factuur.h"
 
-// place your code here
+using namespace View;
+
+Factuur::Factuur(QWidget *parent) 
+: QDialog(parent)
+{
+	setupUi(this);
+}
+
+Factuur::~Factuur()
+{
+}

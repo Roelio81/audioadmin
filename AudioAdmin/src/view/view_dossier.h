@@ -16,6 +16,8 @@ namespace View
 		Dossier(Universum &universum);
 		virtual ~Dossier();
 
+		QWidget *getParentWindow();
+
 		void leegAanspreektitels();
 		void toevoegenAanspreektitel(const QString &value);
 		void leegArtsenLijst();
@@ -51,6 +53,16 @@ namespace View
 
 	public slots:
 		void toonArtsAdres(int value);
+		void toonBriefArts();
+		void toonBriefKlant();
+		void toonBriefMutualiteit();
+		void toonFactuur();
+
+	signals:
+		void briefArtsSignal();
+		void briefKlantSignal();
+		void briefMutualiteitSignal();
+		void factuurSignal();
 
 	private:
 		Universum &m_universum;

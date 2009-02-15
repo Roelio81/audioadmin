@@ -11,9 +11,6 @@ FORMS = ui/briefarts.ui \
 HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
  ../AudioPlugin/src/vocaleaudiometriewidget.h \
  src/model/model_arts.h \
- src/model/model_briefarts.h \
- src/model/model_briefklant.h \
- src/model/model_briefmutualiteit.h \
  src/model/model_dossier.h \
  src/model/model_entiteit.h \
  src/model/model_factuur.h \
@@ -45,9 +42,6 @@ SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
  ../AudioPlugin/src/vocaleaudiometriewidget.cpp \
  src/main.cpp \
  src/model/model_arts.cpp \
- src/model/model_briefarts.cpp \
- src/model/model_briefklant.cpp \
- src/model/model_briefmutualiteit.cpp \
  src/model/model_dossier.cpp \
  src/model/model_entiteit.cpp \
  src/model/model_factuur.cpp \

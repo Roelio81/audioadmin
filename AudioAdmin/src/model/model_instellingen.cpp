@@ -39,6 +39,34 @@ void Instellingen::fromDomElement(const QDomElement &e)
 		{
 			m_telefoon = element.text();
 		}
+		else if (element.tagName() == "gsm")
+		{
+			m_gsm = element.text();
+		}
+		else if (element.tagName() == "email")
+		{
+			m_email = element.text();
+		}
+		else if (element.tagName() == "onderschrift")
+		{
+			m_onderschrift = element.text();
+		}
+		else if (element.tagName() == "riziv")
+		{
+			m_riziv = element.text();
+		}
+		else if (element.tagName() == "btwnr")
+		{
+			m_btwNummer = element.text();
+		}
+		else if (element.tagName() == "btwpct")
+		{
+			m_btwPercentage = element.text().toInt();
+		}
+		else if (element.tagName() == "rekeningnr")
+		{
+			m_rekeningNummer = element.text();
+		}
 	}
 }
 
@@ -70,4 +98,38 @@ QString Instellingen::getGemeente() const
 QString Instellingen::getTelefoon() const
 {
 	return m_telefoon;
+}
+
+QString Instellingen::getGsm() const
+{
+	return m_gsm;
+}
+
+QString Instellingen::getEmail() const
+{
+	return m_email;
+}
+
+QString Instellingen::getOnderschrift() const
+{
+	return m_onderschrift;
+}
+QString Instellingen::getRiziv() const
+{
+	return m_riziv;
+}
+
+int Instellingen::getBtwPercentage() const
+{
+	return m_btwPercentage;
+}
+
+QString Instellingen::getBtwNummer() const
+{
+	return m_btwNummer;
+}
+
+QString Instellingen::getRekeningNummer() const
+{
+	return m_rekeningNummer;
 }

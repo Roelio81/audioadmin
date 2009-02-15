@@ -2,8 +2,8 @@
 
 using namespace View;
 
-BriefMutualiteit::BriefMutualiteit(::QWidget *parent) 
-: ::QDialog(parent)
+BriefMutualiteit::BriefMutualiteit(QWidget *parent) 
+: QDialog(parent)
 {
 	setupUi(this);
 }

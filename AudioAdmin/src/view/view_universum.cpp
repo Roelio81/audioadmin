@@ -39,7 +39,11 @@ Universum::Universum(::QWidget *parent, Qt::WFlags f)
 	connect(b_mutualiteitVerwijderen, SIGNAL(clicked()), this, SLOT(verwijderenMutualiteit()));
 	connect(b_mutualiteitZoeken, SIGNAL(clicked()), this, SLOT(zoekenMutualiteit()));
 	connect(m_klantArts, SIGNAL(currentIndexChanged(int)), &m_dossier, SLOT(toonArtsAdres(int)));
-	
+	connect(b_artsBrief, SIGNAL(clicked()), &m_dossier, SLOT(toonBriefArts()));
+	connect(b_klantBrief, SIGNAL(clicked()), &m_dossier, SLOT(toonBriefKlant()));
+	connect(b_mutualiteitBrief, SIGNAL(clicked()), &m_dossier, SLOT(toonBriefMutualiteit()));
+	connect(b_factuur, SIGNAL(clicked()), &m_dossier, SLOT(toonFactuur()));
+
 	// De kolombreedtes wat aanpassen
 	m_artsenLijst->setColumnWidth(0, 200);
 	m_artsenLijst->setColumnWidth(1, 300);
