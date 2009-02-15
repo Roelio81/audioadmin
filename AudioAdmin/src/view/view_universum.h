@@ -44,6 +44,18 @@ namespace View
 		void selecteerArts(int currentRow, int currentColumn, int previousRow, int previousColumn);
 		void selecteerKlant(int currentRow, int currentColumn, int previousRow, int previousColumn);
 		void selecteerMutualiteit(int currentRow, int currentColumn, int previousRow, int previousColumn);
+		void bewarenArts();
+		void toevoegenArts();
+		void verwijderenArts();
+		void zoekenArts();
+		void bewarenDossier();
+		void toevoegenDossier();
+		void verwijderenDossier();
+		void zoekenDossier();
+		void bewarenMutualiteit();
+		void toevoegenMutualiteit();
+		void verwijderenMutualiteit();
+		void zoekenMutualiteit();
 
 	signals:
 		void backupSignal(const QString &bestandsNaam);

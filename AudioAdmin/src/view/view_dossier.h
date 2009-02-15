@@ -1,6 +1,7 @@
 #ifndef _VIEW_DOSSIER_H
 #define _VIEW_DOSSIER_H
 
+#include <QMap>
 #include <QObject>
 #include <QDate>
 
@@ -8,7 +9,7 @@ namespace View
 {
 	class Universum;
 	
-	class Dossier : QObject
+	class Dossier : public QObject
 	{
 	Q_OBJECT
 	public:
@@ -17,6 +18,8 @@ namespace View
 
 		void leegAanspreektitels();
 		void toevoegenAanspreektitel(const QString &value);
+		void leegArtsenLijst();
+		void toevoegenArts(int id, const QString &naam, const QString &straat, const QString &gemeente);
 
 		QString getAanspreektitel() const;
 		QString getNaam() const;
@@ -30,6 +33,7 @@ namespace View
 		QString getAansluitingsnummer() const;
 		QString getPlaatsAanpassing() const;
 		QString getOpmerkingen() const;
+		int getArts() const;
 
 		void setAanspreektitel(const QString &value);
 		void setNaam(const QString &value);
@@ -43,9 +47,15 @@ namespace View
 		void setAansluitingsnummer(const QString &value);
 		void setPlaatsAanpassing(const QString &value);
 		void setOpmerkingen(const QString &value);
+		void setArts(int value);
+
+	public slots:
+		void toonArtsAdres(int value);
 
 	private:
 		Universum &m_universum;
+		QMap<int, QString> m_artsIdToStraat;
+		QMap<int, QString> m_artsIdToGemeente;
 	};
 }
 

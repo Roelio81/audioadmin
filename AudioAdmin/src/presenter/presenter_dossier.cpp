@@ -32,4 +32,5 @@ void Dossier::setup()
 	m_view.setAansluitingsnummer(klantModel.getAansluitingsnummer());
 	m_view.setPlaatsAanpassing(klantModel.getPlaatsAanpassing());
 	m_view.setOpmerkingen(klantModel.getOpmerkingen());
+	m_view.setArts(m_model.getArts());
 }

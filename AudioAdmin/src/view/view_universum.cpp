@@ -26,6 +26,19 @@ Universum::Universum(::QWidget *parent, Qt::WFlags f)
 	connect(m_artsenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerArts(int, int, int, int)));
 	connect(m_klantenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerKlant(int, int, int, int)));
 	connect(m_mutualiteitenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerMutualiteit(int, int, int, int)));
+	connect(b_artsBewaren, SIGNAL(clicked()), this, SLOT(bewarenArts()));
+	connect(b_artsToevoegen, SIGNAL(clicked()), this, SLOT(toevoegenArts()));
+	connect(b_artsVerwijderen, SIGNAL(clicked()), this, SLOT(verwijderenArts()));
+	connect(b_artsZoeken, SIGNAL(clicked()), this, SLOT(zoekenArts()));
+	connect(b_dossierBewaren, SIGNAL(clicked()), this, SLOT(bewarenDossier()));
+	connect(b_dossierToevoegen, SIGNAL(clicked()), this, SLOT(toevoegenDossier()));
+	connect(b_dossierVerwijderen, SIGNAL(clicked()), this, SLOT(verwijderenDossier()));
+	connect(b_dossierZoeken, SIGNAL(clicked()), this, SLOT(zoekenDossier()));
+	connect(b_mutualiteitBewaren, SIGNAL(clicked()), this, SLOT(bewarenMutualiteit()));
+	connect(b_mutualiteitToevoegen, SIGNAL(clicked()), this, SLOT(toevoegenMutualiteit()));
+	connect(b_mutualiteitVerwijderen, SIGNAL(clicked()), this, SLOT(verwijderenMutualiteit()));
+	connect(b_mutualiteitZoeken, SIGNAL(clicked()), this, SLOT(zoekenMutualiteit()));
+	connect(m_klantArts, SIGNAL(currentIndexChanged(int)), &m_dossier, SLOT(toonArtsAdres(int)));
 	
 	// De kolombreedtes wat aanpassen
 	m_artsenLijst->setColumnWidth(0, 200);
@@ -120,6 +133,7 @@ void Universum::leegArtsenLijst()
 	m_artsenLijst->clearContents();
 	m_artsIdToIndex.clear();
 	m_artsIndexToId.clear();
+	m_dossier.leegArtsenLijst();
 }
 
 void Universum::toevoegenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
@@ -133,6 +147,7 @@ void Universum::toevoegenArts(int id, const QString &naam, const QString &straat
 	m_artsenLijst->setCellWidget(index, 2, new QLabel(QString::number(postcode)));
 	m_artsenLijst->setCellWidget(index, 3, new QLabel(gemeente));
 	m_artsenLijst->resizeRowToContents(index);
+	m_dossier.toevoegenArts(id, naam, straat, QString::number(postcode) + " " + gemeente);
 }
 
 void Universum::leegKlantenLijst()
@@ -160,6 +175,8 @@ void Universum::leegMutualiteitenLijst()
 	m_mutualiteitenLijst->clearContents();
 	m_mutualiteitIdToIndex.clear();
 	m_mutualiteitIndexToId.clear();
+	m_klantMutualiteit->clear();
+	m_klantMutualiteit->addItem("");
 }
 
 void Universum::toevoegenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
@@ -173,6 +190,7 @@ void Universum::toevoegenMutualiteit(int id, const QString &naam, const QString 
 	m_mutualiteitenLijst->setCellWidget(index, 2, new QLabel(QString::number(postcode)));
 	m_mutualiteitenLijst->setCellWidget(index, 3, new QLabel(gemeente));
 	m_mutualiteitenLijst->resizeRowToContents(index);
+	m_klantMutualiteit->addItem(naam);
 }
 
 int Universum::artsIndexToId(int index) const
@@ -219,3 +237,50 @@ void Universum::selecteerMutualiteit(int currentRow, int currentColumn, int prev
 	}
 }
 
+void Universum::bewarenArts()
+{
+}
+
+void Universum::toevoegenArts()
+{
+}
+
+void Universum::verwijderenArts()
+{
+}
+
+void Universum::zoekenArts()
+{
+}
+
+void Universum::bewarenDossier()
+{
+}
+
+void Universum::toevoegenDossier()
+{
+}
+
+void Universum::verwijderenDossier()
+{
+}
+
+void Universum::zoekenDossier()
+{
+}
+
+void Universum::bewarenMutualiteit()
+{
+}
+
+void Universum::toevoegenMutualiteit()
+{
+}
+
+void Universum::verwijderenMutualiteit()
+{
+}
+
+void Universum::zoekenMutualiteit()
+{
+}

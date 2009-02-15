@@ -20,9 +20,14 @@ namespace Model
 
 			int getId() const;
 
+			int getArts() const;
+
+			void setArts(int value);
+
 		private:
 			const int m_id;
 			Klant m_klant;
+			int m_arts;
 	};
 }
 

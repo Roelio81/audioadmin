@@ -12,14 +12,31 @@ Dossier::~Dossier()
 {
 }
 
+void Dossier::leegAanspreektitels()
+{
+	m_universum.m_aanspreektitel->clear();
+}
+
 void Dossier::toevoegenAanspreektitel(const QString &value)
 {
 	m_universum.m_aanspreektitel->addItem(value);
 }
 
-void Dossier::leegAanspreektitels()
+void Dossier::leegArtsenLijst()
 {
-	m_universum.m_aanspreektitel->clear();
+	m_universum.m_klantArts->clear();
+	m_universum.m_klantArts->addItem("");
+	m_universum.l_klantArtsStraat->setText("");
+	m_universum.l_klantArtsGemeente->setText("");
+	m_artsIdToStraat.clear();
+	m_artsIdToGemeente.clear();
+}
+
+void Dossier::toevoegenArts(int id, const QString &naam, const QString &straat, const QString &gemeente)
+{
+	m_universum.m_klantArts->addItem(naam);
+	m_artsIdToStraat[id] = straat;
+	m_artsIdToGemeente[id] = gemeente;
 }
 
 QString Dossier::getAanspreektitel() const
@@ -64,7 +81,7 @@ QDate Dossier::getGeboorteDatum() const
 
 int Dossier::getMutualiteit() const
 {
-	return m_universum.mutualiteitIndexToId(m_universum.m_klantMutualiteit->currentIndex());
+	return m_universum.mutualiteitIndexToId(m_universum.m_klantMutualiteit->currentIndex() - 1);
 }
 
 QString Dossier::getAansluitingsnummer() const
@@ -80,6 +97,11 @@ QString Dossier::getPlaatsAanpassing() const
 QString Dossier::getOpmerkingen() const
 {
 	return m_universum.m_klantOpmerkingen->toPlainText();
+}
+
+int Dossier::getArts() const
+{
+	return m_universum.artsIndexToId(m_universum.m_klantArts->currentIndex() - 1);
 }
 
 void Dossier::setAanspreektitel(const QString &value)
@@ -126,7 +148,7 @@ void Dossier::setGeboorteDatum(const QDate &value)
 
 void Dossier::setMutualiteit(int value)
 {
-	m_universum.m_klantMutualiteit->setCurrentIndex(m_universum.mutualiteitIdToIndex(value));
+	m_universum.m_klantMutualiteit->setCurrentIndex(m_universum.mutualiteitIdToIndex(value) + 1);
 }
 
 void Dossier::setAansluitingsnummer(const QString &value)
@@ -142,4 +164,16 @@ void Dossier::setPlaatsAanpassing(const QString &value)
 void Dossier::setOpmerkingen(const QString &value)
 {
 	m_universum.m_klantOpmerkingen->setPlainText(value);
+}
+
+void Dossier::setArts(int value)
+{
+	m_universum.m_klantArts->setCurrentIndex(m_universum.artsIdToIndex(value) + 1);
+}
+
+void Dossier::toonArtsAdres(int value)
+{
+	int artsId = m_universum.artsIndexToId(value - 1);
+	m_universum.l_klantArtsStraat->setText(m_artsIdToStraat.value(artsId, ""));	
+	m_universum.l_klantArtsGemeente->setText(m_artsIdToGemeente.value(artsId, ""));	
 }
