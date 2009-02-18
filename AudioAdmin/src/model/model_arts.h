@@ -9,22 +9,22 @@ namespace Model
 {
 	class Arts : public Entiteit
 	{
-		public:
-			Arts(int id);
-			virtual ~Arts();
+	public:
+		Arts(int id);
+		virtual ~Arts();
 
-			void fromDomElement(const QDomElement &e);
-			QDomElement toDomElement() const;
+		void fromDomElement(const QDomElement &e);
+		QDomElement toDomElement() const;
 
-			int getId() const;
+		int getId() const;
 
-			QString getVoornaam() const;
+		QString getVoornaam() const;
 
-			void setVoornaam(const QString &value);
+		void setVoornaam(const QString &value);
 
-		private:
-			const int m_id;
-			QString m_voornaam;
+	private:
+		const int m_id;
+		QString m_voornaam;
 	};
 }
 

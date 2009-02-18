@@ -1,95 +1,66 @@
 #include "tonaleaudiometriewidget.h"
 
- #include <QtGui>
+#include <QPainter>
+#include <QtGui>
 
 TonaleAudiometrieWidget::TonaleAudiometrieWidget(QWidget *parent)
-    : QWidget(parent)
+: QWidget(parent)
 {
-     setAttribute(Qt::WA_StaticContents);
-     modified = false;
-     scribbling = false;
-     myPenWidth = 1;
-     myPenColor = Qt::blue;
- }
+	tekenLeegRaster();
+}
 
- void TonaleAudiometrieWidget::setPenColor(const QColor &newColor)
- {
-     myPenColor = newColor;
- }
+TonaleAudiometrieWidget::~TonaleAudiometrieWidget()
+{
+}
 
- void TonaleAudiometrieWidget::setPenWidth(int newWidth)
- {
-     myPenWidth = newWidth;
- }
+void TonaleAudiometrieWidget::mouseClickEvent(QMouseEvent *event)
+{
+	if (event->button() == Qt::LeftButton)
+	{
+	}
+}
 
- void TonaleAudiometrieWidget::clearImage()
- {
-     image.fill(qRgb(255, 255, 255));
-     modified = true;
-     update();
- }
+void TonaleAudiometrieWidget::paintEvent(QPaintEvent *event)
+{
+	QPainter painter(this);
+	painter.drawPicture(QPoint(0, 0), m_rooster);
+}
 
- void TonaleAudiometrieWidget::mousePressEvent(QMouseEvent *event)
- {
-     if (event->button() == Qt::LeftButton) {
-         lastPoint = event->pos();
-         scribbling = true;
-     }
- }
+void TonaleAudiometrieWidget::tekenLeegRaster()
+{
+	int width  = m_rooster.width();
+	int height = m_rooster.height();
+	width = 250;
+	height = 250;
+	int realWidth = static_cast<int>((width-51)/12 + 0.5) * 12;
+	int realHeight = static_cast<int>((height-41)/29 + 0.5) * 29;
 
- void TonaleAudiometrieWidget::mouseMoveEvent(QMouseEvent *event)
- {
-     if ((event->buttons() & Qt::LeftButton) && scribbling)
-         drawLineTo(event->pos());
- }
+	QPainter paint;
+	paint.begin(&m_rooster);
 
- void TonaleAudiometrieWidget::mouseReleaseEvent(QMouseEvent *event)
- {
-     if (event->button() == Qt::LeftButton && scribbling) {
-         drawLineTo(event->pos());
-         scribbling = false;
-     }
- }
+	// Teken de verticale assen
+	int j = 40;
+	int dB[] = {125, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 6000, 8000};
+	for (int i = 0; i < 11; ++i)
+	{
+		paint.drawText((i < 4) ? j-10 : j-15, (i > 2  && i % 2 == 0) ? 5 : 25 + realHeight, QString::number(dB[i]));
+		paint.setPen((i == 4) ? Qt::black : Qt::lightGray);
+		paint.drawLine(j, 20, j, 20 + realHeight);
+		j += (i < 2) ? (realWidth / 6) : (realWidth / 12);
+	}
 
- void TonaleAudiometrieWidget::paintEvent(QPaintEvent * /* event */)
- {
-     QPainter painter(this);
-     painter.drawImage(QPoint(0, 0), image);
- }
-
- void TonaleAudiometrieWidget::resizeEvent(QResizeEvent *event)
- {
-     if (width() > image.width() || height() > image.height()) {
-         int newWidth = qMax(width() + 128, image.width());
-         int newHeight = qMax(height() + 128, image.height());
-         resizeImage(&image, QSize(newWidth, newHeight));
-         update();
-     }
-     QWidget::resizeEvent(event);
- }
-
- void TonaleAudiometrieWidget::drawLineTo(const QPoint &endPoint)
- {
-     QPainter painter(&image);
-     painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap,
-                         Qt::RoundJoin));
-     painter.drawLine(lastPoint, endPoint);
-     modified = true;
-
-     int rad = (myPenWidth / 2) + 2;
-     update(QRect(lastPoint, endPoint).normalized()
-                                      .adjusted(-rad, -rad, +rad, +rad));
-     lastPoint = endPoint;
- }
-
- void TonaleAudiometrieWidget::resizeImage(QImage *image, const QSize &newSize)
- {
-     if (image->size() == newSize)
-         return;
-
-     QImage newImage(newSize, QImage::Format_RGB32);
-     newImage.fill(qRgb(255, 255, 255));
-     QPainter painter(&newImage);
-     painter.drawImage(QPoint(0, 0), *image);
-     *image = newImage;
- }
+	// Teken de horizonale assen
+	j = 20;
+	for (int i = 0; i < 30; ++i)
+	{
+		if ((i != 0) && (i % 2 == 0))
+		{
+			paint.setPen(Qt::black);
+			paint.drawText(15 + (((std::max(0, 22-i) / 2) + 9) / 10) * 5, j - 6, QString::number((i - 2) * 5));
+		}
+		paint.setPen((i == 0) ? Qt::black : Qt::lightGray);
+		paint.drawLine(40, j, 40 + realWidth, j);
+		j += realHeight / 29;
+	}
+	paint.end();
+}

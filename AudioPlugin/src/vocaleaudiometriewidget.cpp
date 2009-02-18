@@ -1,95 +1,86 @@
 #include "vocaleaudiometriewidget.h"
 
- #include <QtGui>
+#include <QPainter>
+#include <QtGui>
 
- VocaleAudiometrieWidget::VocaleAudiometrieWidget(QWidget *parent)
-     : QWidget(parent)
- {
-     setAttribute(Qt::WA_StaticContents);
-     modified = false;
-     scribbling = false;
-     myPenWidth = 1;
-     myPenColor = Qt::blue;
- }
+VocaleAudiometrieWidget::VocaleAudiometrieWidget(QWidget *parent)
+: QWidget(parent)
+{
+	tekenLeegRaster();
+}
 
- void VocaleAudiometrieWidget::setPenColor(const QColor &newColor)
- {
-     myPenColor = newColor;
- }
+VocaleAudiometrieWidget::~VocaleAudiometrieWidget()
+{
+}
 
- void VocaleAudiometrieWidget::setPenWidth(int newWidth)
- {
-     myPenWidth = newWidth;
- }
+void VocaleAudiometrieWidget::mouseClickEvent(QMouseEvent *event)
+{
+	if (event->button() == Qt::LeftButton)
+	{
+	}
+}
 
- void VocaleAudiometrieWidget::clearImage()
- {
-     image.fill(qRgb(255, 255, 255));
-     modified = true;
-     update();
- }
+void VocaleAudiometrieWidget::paintEvent(QPaintEvent *event)
+{
+	QPainter painter(this);
+	painter.drawPicture(QPoint(0, 0), m_rooster);
+}
 
- void VocaleAudiometrieWidget::mousePressEvent(QMouseEvent *event)
- {
-     if (event->button() == Qt::LeftButton) {
-         lastPoint = event->pos();
-         scribbling = true;
-     }
- }
+void VocaleAudiometrieWidget::tekenLeegRaster()
+{
+	int width  = m_rooster.width();
+	int height = m_rooster.height();
+	width = 450;
+	height = 200;
+	int realWidth = static_cast<int>((width-51)/22 + 0.5) * 22;
+	int realHeight = static_cast<int>((height-31)/20 + 0.5) * 20;
 
- void VocaleAudiometrieWidget::mouseMoveEvent(QMouseEvent *event)
- {
-     if ((event->buttons() & Qt::LeftButton) && scribbling)
-         drawLineTo(event->pos());
- }
+	QPainter paint;
+	paint.begin(&m_rooster);
 
- void VocaleAudiometrieWidget::mouseReleaseEvent(QMouseEvent *event)
- {
-     if (event->button() == Qt::LeftButton && scribbling) {
-         drawLineTo(event->pos());
-         scribbling = false;
-     }
- }
+	int j = 40;
+	for (int i = 0; i < 23; ++i)
+	{
+		if ((i % 2 == 0) && (i != 0) && (i < 20))
+			paint.drawText(j-6, realHeight+15, QString::number(i*5));
+		else if (i == 20)
+			paint.drawText(j-9, realHeight+15, QString::number(i*5));
 
- void VocaleAudiometrieWidget::paintEvent(QPaintEvent * /* event */)
- {
-     QPainter painter(this);
-     painter.drawImage(QPoint(0, 0), image);
- }
+		paint.setPen((i == 8 || i == 11 || i == 14) ? Qt::black : Qt::lightGray); 
+		paint.drawLine(j, 10, j, realHeight+10);
+		j += realWidth / 22;
+	}
 
- void VocaleAudiometrieWidget::resizeEvent(QResizeEvent *event)
- {
-     if (width() > image.width() || height() > image.height()) {
-         int newWidth = qMax(width() + 128, image.width());
-         int newHeight = qMax(height() + 128, image.height());
-         resizeImage(&image, QSize(newWidth, newHeight));
-         update();
-     }
-     QWidget::resizeEvent(event);
- }
+	j = 10;
+	for (int i = 0; i < 21; ++i)
+	{
+		if (i % 20 == 0)
+		{
+			if (i == 20)
+				paint.drawText(25, j-6, QString::number((20-i)*5));
+			else if (i == 0)
+				paint.drawText(15, j-6, QString::number((20-i)*5));
+			else
+				paint.drawText(20, j-6, QString::number((20-i)*5));
+		}
 
- void VocaleAudiometrieWidget::drawLineTo(const QPoint &endPoint)
- {
-     QPainter painter(&image);
-     painter.setPen(QPen(myPenColor, myPenWidth, Qt::SolidLine, Qt::RoundCap,
-                         Qt::RoundJoin));
-     painter.drawLine(lastPoint, endPoint);
-     modified = true;
+		paint.setPen((i == 10) ? Qt::black : Qt::lightGray);
+		paint.drawLine(40, j, 40 + realWidth, j);
+		j += realHeight / 20;
+	}
 
-     int rad = (myPenWidth / 2) + 2;
-     update(QRect(lastPoint, endPoint).normalized()
-                                      .adjusted(-rad, -rad, +rad, +rad));
-     lastPoint = endPoint;
- }
-
- void VocaleAudiometrieWidget::resizeImage(QImage *image, const QSize &newSize)
- {
-     if (image->size() == newSize)
-         return;
-
-     QImage newImage(newSize, QImage::Format_RGB32);
-     newImage.fill(qRgb(255, 255, 255));
-     QPainter painter(&newImage);
-     painter.drawImage(QPoint(0, 0), *image);
-     *image = newImage;
- }
+/* MOGELIJK QWT gebruiken voor bezier? of op andere manier functie zien te evalueren!
+   bitmap.Canvas.MoveTo(41, 10+realheight);
+   bitmap.Canvas.Brush.Color := clBlack;
+   bitmap.Canvas.Pen.Color := clBlack;
+   punten[0].Y := 10+realheight;                   punten[0].X := 41;
+   punten[1].Y := 10+(18 * (realheight div 20));   punten[1].X := 41+(1 * (realwidth div 22));
+   punten[2].Y := 10+(16 * (realheight div 20));   punten[2].X := 41+(Round(1.5 * (realwidth div 22)));
+   punten[3].Y := 10+(10 * (realheight div 20));   punten[3].X := 41+(2 * (realwidth div 22));
+   punten[4].Y := 10+(4  * (realheight div 20));   punten[4].X := 41+(Round(2.5 * (realwidth div 22)));
+   punten[5].Y := 10+(2  * (realheight div 20));   punten[5].X := 41+(3 * (realwidth div 22));
+   punten[6].Y := 10+(0  * (realheight div 20));   punten[6].X := 41+(4 * (realwidth div 22));
+   bitmap.Canvas.PolyBezier(punten);
+   EmptyRaster2 := bitmap;
+*/
+}
