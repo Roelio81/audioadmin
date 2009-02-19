@@ -6,7 +6,6 @@
 VocaleAudiometrieWidget::VocaleAudiometrieWidget(QWidget *parent)
 : QWidget(parent)
 {
-	tekenLeegRaster();
 }
 
 VocaleAudiometrieWidget::~VocaleAudiometrieWidget()
@@ -23,17 +22,14 @@ void VocaleAudiometrieWidget::mouseClickEvent(QMouseEvent *event)
 void VocaleAudiometrieWidget::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
+	tekenLeegRaster();
 	painter.drawPicture(QPoint(0, 0), m_rooster);
 }
 
 void VocaleAudiometrieWidget::tekenLeegRaster()
 {
-	int width  = m_rooster.width();
-	int height = m_rooster.height();
-	width = 450;
-	height = 200;
-	int realWidth = static_cast<int>((width-51)/22 + 0.5) * 22;
-	int realHeight = static_cast<int>((height-31)/20 + 0.5) * 20;
+	int realWidth = static_cast<int>((width()-51)/22 + 0.5) * 22;
+	int realHeight = static_cast<int>((height()-31)/20 + 0.5) * 20;
 
 	QPainter paint;
 	paint.begin(&m_rooster);
@@ -41,10 +37,11 @@ void VocaleAudiometrieWidget::tekenLeegRaster()
 	int j = 40;
 	for (int i = 0; i < 23; ++i)
 	{
+		paint.setPen(Qt::black);
 		if ((i % 2 == 0) && (i != 0) && (i < 20))
-			paint.drawText(j-6, realHeight+15, QString::number(i*5));
+			paint.drawText(j-6, realHeight+25, QString::number(i*5));
 		else if (i == 20)
-			paint.drawText(j-9, realHeight+15, QString::number(i*5));
+			paint.drawText(j-9, realHeight+25, QString::number(i*5));
 
 		paint.setPen((i == 8 || i == 11 || i == 14) ? Qt::black : Qt::lightGray); 
 		paint.drawLine(j, 10, j, realHeight+10);
@@ -54,14 +51,10 @@ void VocaleAudiometrieWidget::tekenLeegRaster()
 	j = 10;
 	for (int i = 0; i < 21; ++i)
 	{
-		if (i % 20 == 0)
+		if (i % 2 == 0)
 		{
-			if (i == 20)
-				paint.drawText(25, j-6, QString::number((20-i)*5));
-			else if (i == 0)
-				paint.drawText(15, j-6, QString::number((20-i)*5));
-			else
-				paint.drawText(20, j-6, QString::number((20-i)*5));
+			paint.setPen(Qt::black);
+			paint.drawText(15 + 6*((i/20) + (i == 0 ? 0 : 1)), j+6, QString::number((20-i)*5));
 		}
 
 		paint.setPen((i == 10) ? Qt::black : Qt::lightGray);
