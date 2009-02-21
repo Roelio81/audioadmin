@@ -11,6 +11,11 @@ class TonaleAudiometrieWidget : public QWidget
 		TonaleAudiometrieWidget(QWidget *parent = 0);
 		virtual ~TonaleAudiometrieWidget();
 
+	public slots:
+		void checkLG();
+		void checkBG();
+		void checkUCL();
+
 	protected:
 		virtual void mouseClickEvent(QMouseEvent *event);
 		virtual void paintEvent(QPaintEvent *event);

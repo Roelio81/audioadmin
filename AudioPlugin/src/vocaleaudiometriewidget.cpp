@@ -12,6 +12,18 @@ VocaleAudiometrieWidget::~VocaleAudiometrieWidget()
 {
 }
 
+void VocaleAudiometrieWidget::checkRO()
+{
+}
+
+void VocaleAudiometrieWidget::checkLO()
+{
+}
+
+void VocaleAudiometrieWidget::checkROLO()
+{
+}
+
 void VocaleAudiometrieWidget::mouseClickEvent(QMouseEvent *event)
 {
 	if (event->button() == Qt::LeftButton)

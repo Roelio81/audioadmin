@@ -850,5 +850,198 @@ p, li { white-space: pre-wrap; }
  <resources>
   <include location="../icons.qrc" />
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>m_bgLinks</sender>
+   <signal>clicked()</signal>
+   <receiver>m_tonaleAudiometrieLinks</receiver>
+   <slot>checkBG()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>553</x>
+     <y>400</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>553</x>
+     <y>224</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_lgLinks</sender>
+   <signal>clicked()</signal>
+   <receiver>m_tonaleAudiometrieLinks</receiver>
+   <slot>checkLG()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>445</x>
+     <y>400</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>553</x>
+     <y>224</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_uclLinks</sender>
+   <signal>clicked()</signal>
+   <receiver>m_tonaleAudiometrieLinks</receiver>
+   <slot>checkUCL()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>661</x>
+     <y>400</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>553</x>
+     <y>224</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_bgRechts</sender>
+   <signal>clicked()</signal>
+   <receiver>m_tonaleAudiometrieRechts</receiver>
+   <slot>checkBG()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>195</x>
+     <y>400</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>195</x>
+     <y>224</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_lgRechts</sender>
+   <signal>clicked()</signal>
+   <receiver>m_tonaleAudiometrieRechts</receiver>
+   <slot>checkLG()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>87</x>
+     <y>400</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>195</x>
+     <y>224</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_uclLinks</sender>
+   <signal>clicked()</signal>
+   <receiver>m_tonaleAudiometrieRechts</receiver>
+   <slot>checkUCL()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>661</x>
+     <y>400</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>195</x>
+     <y>224</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_roZA</sender>
+   <signal>clicked()</signal>
+   <receiver>m_vocaleAudiometrieZonder</receiver>
+   <slot>checkRO()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>674</x>
+     <y>141</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>326</x>
+     <y>165</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_loZA</sender>
+   <signal>clicked()</signal>
+   <receiver>m_vocaleAudiometrieZonder</receiver>
+   <slot>checkLO()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>674</x>
+     <y>165</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>326</x>
+     <y>165</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_roloZA</sender>
+   <signal>clicked()</signal>
+   <receiver>m_vocaleAudiometrieZonder</receiver>
+   <slot>checkROLO()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>674</x>
+     <y>189</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>326</x>
+     <y>165</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_roMA</sender>
+   <signal>clicked()</signal>
+   <receiver>m_vocaleAudiometrieMet</receiver>
+   <slot>checkRO()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>674</x>
+     <y>381</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>326</x>
+     <y>405</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_loMA</sender>
+   <signal>clicked()</signal>
+   <receiver>m_vocaleAudiometrieMet</receiver>
+   <slot>checkLO()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>674</x>
+     <y>405</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>326</x>
+     <y>405</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_roloMA</sender>
+   <signal>clicked()</signal>
+   <receiver>m_vocaleAudiometrieMet</receiver>
+   <slot>checkROLO()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>674</x>
+     <y>429</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>326</x>
+     <y>405</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

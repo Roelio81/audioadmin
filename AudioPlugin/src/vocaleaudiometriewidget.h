@@ -9,7 +9,12 @@ class VocaleAudiometrieWidget : public QWidget
 	Q_OBJECT
 	public:
 		VocaleAudiometrieWidget(QWidget *parent = 0);
-		~VocaleAudiometrieWidget();
+		virtual ~VocaleAudiometrieWidget();
+
+	public slots:
+		void checkRO();
+		void checkLO();
+		void checkROLO();
 
 	protected:
 		virtual void mouseClickEvent(QMouseEvent *event);

@@ -12,6 +12,18 @@ TonaleAudiometrieWidget::~TonaleAudiometrieWidget()
 {
 }
 
+void TonaleAudiometrieWidget::checkLG()
+{
+}
+
+void TonaleAudiometrieWidget::checkBG()
+{
+}
+
+void TonaleAudiometrieWidget::checkUCL()
+{
+}
+
 void TonaleAudiometrieWidget::mouseClickEvent(QMouseEvent *event)
 {
 	if (event->button() == Qt::LeftButton)
