@@ -5,23 +5,77 @@
 
 TonaleAudiometrieWidget::TonaleAudiometrieWidget(QWidget *parent)
 : QWidget(parent)
+, m_lgData(11, -30)
+, m_bgData(11, -30)
+, m_uclData(11, -30)
+, m_tekenMode(LG)
 {
+	m_hzValuesToIndex[125] = 0;
+	m_hzValuesToIndex[250] = 1;
+	m_hzValuesToIndex[500] = 2;
+	m_hzValuesToIndex[750] = 3;
+	m_hzValuesToIndex[1000] = 4;
+	m_hzValuesToIndex[1500] = 5;
+	m_hzValuesToIndex[2000] = 6;
+	m_hzValuesToIndex[3000] = 7;
+	m_hzValuesToIndex[4000] = 8;
+	m_hzValuesToIndex[6000] = 9;
+	m_hzValuesToIndex[8000] = 10;
 }
 
 TonaleAudiometrieWidget::~TonaleAudiometrieWidget()
 {
 }
 
+void TonaleAudiometrieWidget::setLGdata(int Hz, int dB)
+{
+	Q_ASSERT(m_hzValuesToIndex.find(Hz) != m_hzValuesToIndex.end());
+	m_lgData[m_hzValuesToIndex[Hz]] = dB;
+}
+
+void TonaleAudiometrieWidget::setBGdata(int Hz, int dB)
+{
+	Q_ASSERT(m_hzValuesToIndex.find(Hz) != m_hzValuesToIndex.end());
+	m_bgData[m_hzValuesToIndex[Hz]] = dB;
+}
+
+void TonaleAudiometrieWidget::setUCLdata(int Hz, int dB)
+{
+	Q_ASSERT(m_hzValuesToIndex.find(Hz) != m_hzValuesToIndex.end());
+	m_uclData[m_hzValuesToIndex[Hz]] = dB;
+}
+
+int TonaleAudiometrieWidget::getLGdata(int Hz)
+{
+	Q_ASSERT(m_hzValuesToIndex.find(Hz) != m_hzValuesToIndex.end());
+	return m_lgData[m_hzValuesToIndex[Hz]];
+}
+
+int TonaleAudiometrieWidget::getBGdata(int Hz)
+{
+	Q_ASSERT(m_hzValuesToIndex.find(Hz) != m_hzValuesToIndex.end());
+	return m_bgData[m_hzValuesToIndex[Hz]];
+}
+
+int TonaleAudiometrieWidget::getUCLdata(int Hz)
+{
+	Q_ASSERT(m_hzValuesToIndex.find(Hz) != m_hzValuesToIndex.end());
+	return m_uclData[m_hzValuesToIndex[Hz]];
+}
+
 void TonaleAudiometrieWidget::checkLG()
 {
+	m_tekenMode = LG;
 }
 
 void TonaleAudiometrieWidget::checkBG()
 {
+	m_tekenMode = BG;
 }
 
 void TonaleAudiometrieWidget::checkUCL()
 {
+	m_tekenMode = UCL;
 }
 
 void TonaleAudiometrieWidget::mouseClickEvent(QMouseEvent *event)
@@ -35,7 +89,9 @@ void TonaleAudiometrieWidget::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
 	tekenLeegRaster();
-	painter.drawPicture(QPoint(0, 0), m_rooster);
+	tekenData();
+	painter.drawPicture(0, 0, m_rooster);
+	painter.drawPicture(0, 0, m_data);
 }
 
 void TonaleAudiometrieWidget::tekenLeegRaster()
@@ -72,4 +128,9 @@ void TonaleAudiometrieWidget::tekenLeegRaster()
 		j += realHeight / 29;
 	}
 	paint.end();
+}
+
+void TonaleAudiometrieWidget::tekenData()
+{
+	
 }

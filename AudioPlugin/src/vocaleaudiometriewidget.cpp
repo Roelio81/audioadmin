@@ -5,6 +5,10 @@
 
 VocaleAudiometrieWidget::VocaleAudiometrieWidget(QWidget *parent)
 : QWidget(parent)
+, m_roData(23, -30)
+, m_loData(23, -30)
+, m_roloData(23, -30)
+, m_tekenMode(RO)
 {
 }
 
@@ -12,16 +16,49 @@ VocaleAudiometrieWidget::~VocaleAudiometrieWidget()
 {
 }
 
+void VocaleAudiometrieWidget::setROdata(int dB, int percentage)
+{
+	m_roData[dB/5] = percentage;
+}
+
+void VocaleAudiometrieWidget::setLOdata(int dB, int percentage)
+{
+	m_loData[dB/5] = percentage;
+}
+
+void VocaleAudiometrieWidget::setROLOdata(int dB, int percentage)
+{
+	m_roloData[dB/5] = percentage;
+}
+
+int VocaleAudiometrieWidget::getROdata(int dB)
+{
+	return m_roData[dB/5];
+}
+
+int VocaleAudiometrieWidget::getLOdata(int dB)
+{
+	return m_loData[dB/5];	
+}
+
+int VocaleAudiometrieWidget::getROLOdata(int dB)
+{
+	return m_roloData[dB/5];
+}
+
 void VocaleAudiometrieWidget::checkRO()
 {
+	m_tekenMode = RO;
 }
 
 void VocaleAudiometrieWidget::checkLO()
 {
+	m_tekenMode = LO;
 }
 
 void VocaleAudiometrieWidget::checkROLO()
 {
+	m_tekenMode = ROLO;
 }
 
 void VocaleAudiometrieWidget::mouseClickEvent(QMouseEvent *event)
@@ -35,7 +72,9 @@ void VocaleAudiometrieWidget::paintEvent(QPaintEvent *event)
 {
 	QPainter painter(this);
 	tekenLeegRaster();
-	painter.drawPicture(QPoint(0, 0), m_rooster);
+	tekenData();
+	painter.drawPicture(0, 0, m_rooster);
+	painter.drawPicture(0, 0, m_data);
 }
 
 void VocaleAudiometrieWidget::tekenLeegRaster()
@@ -88,4 +127,9 @@ void VocaleAudiometrieWidget::tekenLeegRaster()
    bitmap.Canvas.PolyBezier(punten);
    EmptyRaster2 := bitmap;
 */
+}
+
+void VocaleAudiometrieWidget::tekenData()
+{
+	
 }

@@ -23,6 +23,10 @@ void Dossier::fromDomElement(const QDomElement &e)
 		{
 			m_arts = element.attributeNode("id").value().toInt();
 		}
+		else if (element.tagName() == "audiometrie")
+		{
+			m_meetgegevens.fromDomElement(element);
+		}
 	}
 
 	m_klant.fromDomElement(e);

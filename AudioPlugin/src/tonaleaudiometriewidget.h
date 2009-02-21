@@ -1,7 +1,9 @@
 #ifndef __TONALEAUDIOMETRIEWIDGET_H__
 #define __TONALEAUDIOMETRIEWIDGET_H__
 
+#include <QMap>
 #include <QPicture>
+#include <QVector>
 #include <QWidget>
 
 class TonaleAudiometrieWidget : public QWidget
@@ -10,6 +12,14 @@ class TonaleAudiometrieWidget : public QWidget
 	public:
 		TonaleAudiometrieWidget(QWidget *parent = 0);
 		virtual ~TonaleAudiometrieWidget();
+
+		void setLGdata(int Hz, int dB);
+		void setBGdata(int Hz, int dB);
+		void setUCLdata(int Hz, int dB);
+
+		int getLGdata(int Hz);
+		int getBGdata(int Hz);
+		int getUCLdata(int Hz);
 
 	public slots:
 		void checkLG();
@@ -22,9 +32,17 @@ class TonaleAudiometrieWidget : public QWidget
 
 	private:
 		void tekenLeegRaster();
+		void tekenData();
 
+		typedef enum { LG, BG, UCL } TekenMode;
+
+		QVector<int> m_lgData;
+		QVector<int> m_bgData;
+		QVector<int> m_uclData;
+		QMap<int, int> m_hzValuesToIndex;
 		QPicture m_rooster;
+		QPicture m_data;
+		TekenMode m_tekenMode;
 };
-
 
 #endif // __TONALEAUDIOMETRIEWIDGET_H__

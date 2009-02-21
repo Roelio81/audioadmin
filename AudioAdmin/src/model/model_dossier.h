@@ -2,6 +2,7 @@
 #define _MODEL_DOSSIER_H
 
 #include "model_klant.h"
+#include "model_meetgegevens.h"
 
 class QDomElement;
 
@@ -17,6 +18,7 @@ namespace Model
 		QDomElement toDomElement() const;
 
 		Klant &getKlant();
+		Meetgegevens &getMeetgegevens();
 
 		int getId() const;
 
@@ -28,6 +30,7 @@ namespace Model
 		const int m_id;
 		Klant m_klant;
 		int m_arts;
+		Meetgegevens m_meetgegevens;
 	};
 }
 
