@@ -61,7 +61,7 @@ void VocaleAudiometrieWidget::checkROLO()
 	m_tekenMode = ROLO;
 }
 
-void VocaleAudiometrieWidget::mouseClickEvent(QMouseEvent *event)
+void VocaleAudiometrieWidget::mouseReleaseEvent(QMouseEvent *event)
 {
 	if (event->button() == Qt::LeftButton)
 	{

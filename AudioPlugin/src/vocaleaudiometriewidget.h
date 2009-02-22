@@ -27,7 +27,7 @@ class VocaleAudiometrieWidget : public QWidget
 		void checkROLO();
 
 	protected:
-		virtual void mouseClickEvent(QMouseEvent *event);
+                virtual void mouseReleaseEvent(QMouseEvent *event);
 		virtual void paintEvent(QPaintEvent *event);
 
 	private:
