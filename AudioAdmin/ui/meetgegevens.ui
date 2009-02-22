@@ -932,7 +932,7 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>m_uclLinks</sender>
+   <sender>m_uclRechts</sender>
    <signal>clicked()</signal>
    <receiver>m_tonaleAudiometrieRechts</receiver>
    <slot>checkUCL()</slot>

@@ -6,8 +6,8 @@ Meetgegevens::Meetgegevens(::QWidget *parent)
 : ::QDialog(parent)
 {
 	setupUi(this);
-        m_tonaleAudiometrieLinks->setColor(Qt::blue);
-        m_tonaleAudiometrieRechts->setColor(Qt::red);
+        m_tonaleAudiometrieLinks->setKant(TonaleAudiometrieWidget::LINKS);
+        m_tonaleAudiometrieRechts->setKant(TonaleAudiometrieWidget::RECHTS);
 }
 
 Meetgegevens::~Meetgegevens()

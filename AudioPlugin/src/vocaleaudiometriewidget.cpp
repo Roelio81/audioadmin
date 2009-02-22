@@ -68,7 +68,7 @@ void VocaleAudiometrieWidget::mouseReleaseEvent(QMouseEvent *event)
 	}
 }
 
-void VocaleAudiometrieWidget::paintEvent(QPaintEvent *event)
+void VocaleAudiometrieWidget::paintEvent(QPaintEvent *)
 {
 	QPainter painter(this);
 	tekenLeegRaster();

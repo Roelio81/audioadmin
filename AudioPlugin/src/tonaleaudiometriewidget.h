@@ -13,7 +13,8 @@ class TonaleAudiometrieWidget : public QWidget
         TonaleAudiometrieWidget(QWidget *parent = 0);
         virtual ~TonaleAudiometrieWidget();
 
-        void setColor(const QColor &color);
+        typedef enum { LINKS, RECHTS } Kant;
+        void setKant(Kant kant);
         void setLGdata(int Hz, int dB);
         void setBGdata(int Hz, int dB);
         void setUCLdata(int Hz, int dB);
@@ -35,6 +36,9 @@ class TonaleAudiometrieWidget : public QWidget
         void tekenLeegRaster();
         void tekenData();
 
+        int rasterHoogte() const;
+        int rasterBreedte() const;
+
         typedef enum { LG, BG, UCL } TekenMode;
 
         QVector<int> m_lgData;
@@ -43,7 +47,7 @@ class TonaleAudiometrieWidget : public QWidget
         QMap<int, int> m_hzValuesToIndex;
         QPicture m_rooster;
         QPicture m_data;
-        QColor m_color;
+        Kant m_kant;
         TekenMode m_tekenMode;
 };
 
