@@ -8,30 +8,30 @@ class QDomElement;
 
 namespace Model
 {
-	class Dossier
-	{
-	public:
-		Dossier(int id);
-		virtual ~Dossier();
+    class Dossier
+    {
+    public:
+        Dossier(int id);
+        virtual ~Dossier();
 
-		void fromDomElement(const QDomElement &e);
-		QDomElement toDomElement() const;
+        void fromDomElement(const QDomElement &e);
+        QDomElement toDomElement() const;
 
-		Klant &getKlant();
-		Meetgegevens &getMeetgegevens();
+        Klant &getKlant();
+        Meetgegevens &getMeetgegevens();
 
-		int getId() const;
+        int getId() const;
 
-		int getArts() const;
+        int getArts() const;
 
-		void setArts(int value);
+        void setArts(int value);
 
-	private:
-		const int m_id;
-		Klant m_klant;
-		int m_arts;
-		Meetgegevens m_meetgegevens;
-	};
+    private:
+        const int m_id;
+        Klant m_klant;
+        int m_arts;
+        Meetgegevens m_meetgegevens;
+    };
 }
 
 #endif // _MODEL_DOSSIER_H

@@ -36,7 +36,6 @@ namespace View
 
 	private slots:
 		void instellingen();
-		void meetgegevens();
 		void printLabels();
 		void backup();
 		void restore();

@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>Universum</class>
- <widget class="QMainWindow" name="Universum" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="Universum">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,75 +10,75 @@
     <height>775</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>AudioAdmin</string>
   </property>
-  <property name="windowIcon" >
-   <iconset resource="../icons.qrc" >
+  <property name="windowIcon">
+   <iconset resource="../icons.qrc">
     <normaloff>:/icons/agt_softwareD-64.png</normaloff>:/icons/agt_softwareD-64.png</iconset>
   </property>
-  <property name="locale" >
-   <locale country="Belgium" language="Dutch" />
+  <property name="locale">
+   <locale language="Dutch" country="Belgium"/>
   </property>
-  <widget class="QWidget" name="centralwidget" >
-   <layout class="QGridLayout" name="gridLayout_13" >
-    <item row="0" column="0" >
-     <widget class="QTabWidget" name="tabWidget" >
-      <property name="currentIndex" >
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout_13">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tabDossier" >
-       <attribute name="title" >
+      <widget class="QWidget" name="tabDossier">
+       <attribute name="title">
         <string>Dossiers</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_8" >
-        <item row="0" column="0" >
-         <layout class="QHBoxLayout" name="horizontalLayout_9" >
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
           <item>
-           <widget class="QGroupBox" name="g_klantgegevens" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+           <widget class="QGroupBox" name="g_klantgegevens">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="title" >
+            <property name="title">
              <string>Klantgegevens</string>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout" >
+            <layout class="QVBoxLayout" name="verticalLayout">
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_2" >
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
                <item>
-                <widget class="QLabel" name="l_aanspreektitel" >
-                 <property name="text" >
+                <widget class="QLabel" name="l_aanspreektitel">
+                 <property name="text">
                   <string>Aanspreektitel</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="m_aanspreektitel" />
+                <widget class="QComboBox" name="m_aanspreektitel"/>
                </item>
                <item>
-                <widget class="QLabel" name="l_klantNaam" >
-                 <property name="text" >
+                <widget class="QLabel" name="l_klantNaam">
+                 <property name="text">
                   <string>Naam</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_klantNaam" />
+                <widget class="QLineEdit" name="m_klantNaam"/>
                </item>
                <item>
-                <widget class="QLabel" name="l_klantVoornaam" >
-                 <property name="text" >
+                <widget class="QLabel" name="l_klantVoornaam">
+                 <property name="text">
                   <string>Voornaam</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_klantVoornaam" >
-                 <property name="sizePolicy" >
-                  <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+                <widget class="QLineEdit" name="m_klantVoornaam">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -87,90 +88,90 @@
               </layout>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_3" >
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
                <item>
-                <widget class="QLabel" name="l_klantStraat" >
-                 <property name="text" >
+                <widget class="QLabel" name="l_klantStraat">
+                 <property name="text">
                   <string>Straat (+ huisnummer / bus)</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_klantStraat" />
+                <widget class="QLineEdit" name="m_klantStraat"/>
                </item>
               </layout>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_4" >
+              <layout class="QHBoxLayout" name="horizontalLayout_4">
                <item>
-                <widget class="QLabel" name="label_14" >
-                 <property name="text" >
+                <widget class="QLabel" name="label_14">
+                 <property name="text">
                   <string>Postcode</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QSpinBox" name="m_klantPostcode" >
-                 <property name="sizePolicy" >
-                  <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+                <widget class="QSpinBox" name="m_klantPostcode">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
-                 <property name="minimumSize" >
+                 <property name="minimumSize">
                   <size>
                    <width>80</width>
                    <height>0</height>
                   </size>
                  </property>
-                 <property name="minimum" >
+                 <property name="minimum">
                   <number>1000</number>
                  </property>
-                 <property name="maximum" >
+                 <property name="maximum">
                   <number>9999</number>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="label_15" >
-                 <property name="text" >
+                <widget class="QLabel" name="label_15">
+                 <property name="text">
                   <string>Gemeente</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_klantGemeente" />
+                <widget class="QLineEdit" name="m_klantGemeente"/>
                </item>
               </layout>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_5" >
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
                <item>
-                <widget class="QLabel" name="l_klantTelefoon" >
-                 <property name="text" >
+                <widget class="QLabel" name="l_klantTelefoon">
+                 <property name="text">
                   <string>Telefoon</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_klantTelefoon" />
+                <widget class="QLineEdit" name="m_klantTelefoon"/>
                </item>
                <item>
-                <widget class="QLabel" name="l_klantGeboorteDatum" >
-                 <property name="text" >
+                <widget class="QLabel" name="l_klantGeboorteDatum">
+                 <property name="text">
                   <string>Geboortedatum</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QDateEdit" name="m_klantGeboorteDatum" >
-                 <property name="minimumSize" >
+                <widget class="QDateEdit" name="m_klantGeboorteDatum">
+                 <property name="minimumSize">
                   <size>
                    <width>100</width>
                    <height>0</height>
                   </size>
                  </property>
-                 <property name="maximumSize" >
+                 <property name="maximumSize">
                   <size>
                    <width>200</width>
                    <height>16777215</height>
@@ -181,18 +182,18 @@
               </layout>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_6" >
+              <layout class="QHBoxLayout" name="horizontalLayout_6">
                <item>
-                <widget class="QLabel" name="l_klantMutualiteit" >
-                 <property name="text" >
+                <widget class="QLabel" name="l_klantMutualiteit">
+                 <property name="text">
                   <string>Mutualiteit</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="m_klantMutualiteit" >
-                 <property name="sizePolicy" >
-                  <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                <widget class="QComboBox" name="m_klantMutualiteit">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -200,16 +201,16 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="l_aansluitingsnummer" >
-                 <property name="text" >
+                <widget class="QLabel" name="l_aansluitingsnummer">
+                 <property name="text">
                   <string>Aansluitingsnummer</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_aansluitingsnummer" >
-                 <property name="sizePolicy" >
-                  <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+                <widget class="QLineEdit" name="m_aansluitingsnummer">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -219,40 +220,40 @@
               </layout>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_7" >
+              <layout class="QHBoxLayout" name="horizontalLayout_7">
                <item>
-                <widget class="QLabel" name="l_plaatsAanpassing" >
-                 <property name="text" >
+                <widget class="QLabel" name="l_plaatsAanpassing">
+                 <property name="text">
                   <string>Plaats aanpassing</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_plaatsAanpassing" />
+                <widget class="QLineEdit" name="m_plaatsAanpassing"/>
                </item>
               </layout>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_8" >
+              <layout class="QHBoxLayout" name="horizontalLayout_8">
                <item>
-                <widget class="QLabel" name="l_klantOpmerkingen" >
-                 <property name="text" >
+                <widget class="QLabel" name="l_klantOpmerkingen">
+                 <property name="text">
                   <string>Opmerkingen</string>
                  </property>
-                 <property name="alignment" >
+                 <property name="alignment">
                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QTextEdit" name="m_klantOpmerkingen" >
-                 <property name="sizePolicy" >
-                  <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+                <widget class="QTextEdit" name="m_klantOpmerkingen">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
-                 <property name="maximumSize" >
+                 <property name="maximumSize">
                   <size>
                    <width>16777215</width>
                    <height>80</height>
@@ -266,147 +267,147 @@
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="g_datums" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="MinimumExpanding" >
+           <widget class="QGroupBox" name="g_datums">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="maximumSize" >
+            <property name="maximumSize">
              <size>
               <width>350</width>
               <height>16777215</height>
              </size>
             </property>
-            <property name="title" >
+            <property name="title">
              <string>Datums</string>
             </property>
-            <layout class="QGridLayout" name="gridLayout_2" >
-             <item row="0" column="0" >
-              <widget class="QCheckBox" name="c_datumOnderzoek" >
-               <property name="text" >
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="0" column="0">
+              <widget class="QCheckBox" name="c_datumOnderzoek">
+               <property name="text">
                 <string>Onderzoek</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="1" >
-              <widget class="QDateEdit" name="m_datumOnderzoek" />
+             <item row="0" column="1">
+              <widget class="QDateEdit" name="m_datumOnderzoek"/>
              </item>
-             <item row="1" column="0" >
-              <widget class="QCheckBox" name="c_datumProef" >
-               <property name="text" >
+             <item row="1" column="0">
+              <widget class="QCheckBox" name="c_datumProef">
+               <property name="text">
                 <string>Proef</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="1" >
-              <widget class="QDateEdit" name="m_datumProef" />
+             <item row="1" column="1">
+              <widget class="QDateEdit" name="m_datumProef"/>
              </item>
-             <item row="2" column="0" >
-              <widget class="QCheckBox" name="c_datumNKO" >
-               <property name="text" >
+             <item row="2" column="0">
+              <widget class="QCheckBox" name="c_datumNKO">
+               <property name="text">
                 <string>NKO Rapport</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="1" >
-              <widget class="QDateEdit" name="m_datumNKO" />
+             <item row="2" column="1">
+              <widget class="QDateEdit" name="m_datumNKO"/>
              </item>
-             <item row="3" column="0" >
-              <widget class="QCheckBox" name="c_datumAdviseur" >
-               <property name="text" >
+             <item row="3" column="0">
+              <widget class="QCheckBox" name="c_datumAdviseur">
+               <property name="text">
                 <string>Dokter adviseur</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="1" >
-              <widget class="QDateEdit" name="m_datumAdviseur" />
+             <item row="3" column="1">
+              <widget class="QDateEdit" name="m_datumAdviseur"/>
              </item>
-             <item row="4" column="0" >
-              <widget class="QCheckBox" name="c_datumMutualiteit" >
-               <property name="text" >
+             <item row="4" column="0">
+              <widget class="QCheckBox" name="c_datumMutualiteit">
+               <property name="text">
                 <string>Akkoord mut.</string>
                </property>
               </widget>
              </item>
-             <item row="4" column="1" >
-              <widget class="QDateEdit" name="m_datumMutualiteit" />
+             <item row="4" column="1">
+              <widget class="QDateEdit" name="m_datumMutualiteit"/>
              </item>
-             <item row="5" column="0" >
-              <widget class="QCheckBox" name="c_datumBetaling" >
-               <property name="text" >
+             <item row="5" column="0">
+              <widget class="QCheckBox" name="c_datumBetaling">
+               <property name="text">
                 <string>Betaling</string>
                </property>
               </widget>
              </item>
-             <item row="5" column="1" >
-              <widget class="QDateEdit" name="m_datumBetaling" />
+             <item row="5" column="1">
+              <widget class="QDateEdit" name="m_datumBetaling"/>
              </item>
-             <item row="6" column="0" >
-              <widget class="QCheckBox" name="c_datumAflevering" >
-               <property name="text" >
+             <item row="6" column="0">
+              <widget class="QCheckBox" name="c_datumAflevering">
+               <property name="text">
                 <string>Aflevering</string>
                </property>
               </widget>
              </item>
-             <item row="6" column="1" >
-              <widget class="QDateEdit" name="m_datumAflevering" />
+             <item row="6" column="1">
+              <widget class="QDateEdit" name="m_datumAflevering"/>
              </item>
-             <item row="7" column="0" >
-              <widget class="QCheckBox" name="c_datumWissel" >
-               <property name="text" >
+             <item row="7" column="0">
+              <widget class="QCheckBox" name="c_datumWissel">
+               <property name="text">
                 <string>Wissel</string>
                </property>
               </widget>
              </item>
-             <item row="7" column="1" >
-              <widget class="QDateEdit" name="m_datumWissel" />
+             <item row="7" column="1">
+              <widget class="QDateEdit" name="m_datumWissel"/>
              </item>
-             <item row="8" column="0" >
-              <widget class="QCheckBox" name="c_datumOHK" >
-               <property name="text" >
+             <item row="8" column="0">
+              <widget class="QCheckBox" name="c_datumOHK">
+               <property name="text">
                 <string>OHK</string>
                </property>
               </widget>
              </item>
-             <item row="8" column="1" >
-              <widget class="QDateEdit" name="m_datumOHK" />
+             <item row="8" column="1">
+              <widget class="QDateEdit" name="m_datumOHK"/>
              </item>
             </layout>
            </widget>
           </item>
          </layout>
         </item>
-        <item row="1" column="0" >
-         <layout class="QHBoxLayout" name="horizontalLayout_10" >
+        <item row="1" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_2" >
+           <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QGroupBox" name="groupBoxKlantArts" >
-              <property name="minimumSize" >
+             <widget class="QGroupBox" name="groupBoxKlantArts">
+              <property name="minimumSize">
                <size>
                 <width>300</width>
                 <height>0</height>
                </size>
               </property>
-              <property name="title" >
+              <property name="title">
                <string>Arts</string>
               </property>
-              <layout class="QGridLayout" name="gridLayout_6" >
-               <item row="0" column="0" >
-                <widget class="QComboBox" name="m_klantArts" />
+              <layout class="QGridLayout" name="gridLayout_6">
+               <item row="0" column="0">
+                <widget class="QComboBox" name="m_klantArts"/>
                </item>
-               <item row="1" column="0" >
-                <widget class="QLabel" name="l_klantArtsStraat" >
-                 <property name="text" >
+               <item row="1" column="0">
+                <widget class="QLabel" name="l_klantArtsStraat">
+                 <property name="text">
                   <string>Adres</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0" >
-                <widget class="QLabel" name="l_klantArtsGemeente" >
-                 <property name="text" >
+               <item row="2" column="0">
+                <widget class="QLabel" name="l_klantArtsGemeente">
+                 <property name="text">
                   <string>Gemeente</string>
                  </property>
                 </widget>
@@ -415,20 +416,20 @@
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="groupBox" >
-              <property name="title" >
+             <widget class="QGroupBox" name="groupBox">
+              <property name="title">
                <string>Meetgegevens</string>
               </property>
-              <layout class="QGridLayout" name="gridLayout" >
-               <item row="0" column="0" >
-                <widget class="QPushButton" name="meetgegevensButton" >
-                 <property name="sizePolicy" >
-                  <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+              <layout class="QGridLayout" name="gridLayout">
+               <item row="0" column="0">
+                <widget class="QPushButton" name="b_meetgegevens">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
-                 <property name="text" >
+                 <property name="text">
                   <string>Meetgegevens...</string>
                  </property>
                 </widget>
@@ -439,121 +440,121 @@
            </layout>
           </item>
           <item>
-           <widget class="QGroupBox" name="groupBoxKlantApparaat" >
-            <property name="title" >
+           <widget class="QGroupBox" name="groupBoxKlantApparaat">
+            <property name="title">
              <string>Hoorapparaten</string>
             </property>
-            <layout class="QGridLayout" name="gridLayout_5" >
-             <item row="0" column="0" >
-              <widget class="QGroupBox" name="groupBoxKlantRechtsApparaat" >
-               <property name="title" >
+            <layout class="QGridLayout" name="gridLayout_5">
+             <item row="0" column="0">
+              <widget class="QGroupBox" name="groupBoxKlantRechtsApparaat">
+               <property name="title">
                 <string>Rechts</string>
                </property>
-               <layout class="QGridLayout" name="gridLayout_3" >
-                <item row="0" column="0" >
-                 <widget class="QLabel" name="label_21" >
-                  <property name="text" >
+               <layout class="QGridLayout" name="gridLayout_3">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_21">
+                  <property name="text">
                    <string>Merk</string>
                   </property>
                  </widget>
                 </item>
-                <item row="0" column="1" >
-                 <widget class="QComboBox" name="comboBox_3" >
-                  <property name="editable" >
+                <item row="0" column="1">
+                 <widget class="QComboBox" name="comboBox_3">
+                  <property name="editable">
                    <bool>true</bool>
                   </property>
                  </widget>
                 </item>
-                <item row="1" column="0" >
-                 <widget class="QLabel" name="label_22" >
-                  <property name="text" >
+                <item row="1" column="0">
+                 <widget class="QLabel" name="label_22">
+                  <property name="text">
                    <string>Type</string>
                   </property>
                  </widget>
                 </item>
-                <item row="1" column="1" >
-                 <widget class="QComboBox" name="comboBox_4" >
-                  <property name="editable" >
+                <item row="1" column="1">
+                 <widget class="QComboBox" name="comboBox_4">
+                  <property name="editable">
                    <bool>true</bool>
                   </property>
                  </widget>
                 </item>
-                <item row="2" column="0" >
-                 <widget class="QLabel" name="label_23" >
-                  <property name="text" >
+                <item row="2" column="0">
+                 <widget class="QLabel" name="label_23">
+                  <property name="text">
                    <string>Serienummer</string>
                   </property>
                  </widget>
                 </item>
-                <item row="2" column="1" >
-                 <widget class="QLineEdit" name="lineEdit_17" />
+                <item row="2" column="1">
+                 <widget class="QLineEdit" name="lineEdit_17"/>
                 </item>
-                <item row="3" column="0" >
-                 <widget class="QLabel" name="label_24" >
-                  <property name="text" >
+                <item row="3" column="0">
+                 <widget class="QLabel" name="label_24">
+                  <property name="text">
                    <string>Prijs (excl. BTW)</string>
                   </property>
                  </widget>
                 </item>
-                <item row="3" column="1" >
-                 <widget class="QLineEdit" name="lineEdit_18" />
+                <item row="3" column="1">
+                 <widget class="QLineEdit" name="lineEdit_18"/>
                 </item>
                </layout>
               </widget>
              </item>
-             <item row="0" column="1" >
-              <widget class="QGroupBox" name="groupBoxKlantRechtsApparaat_2" >
-               <property name="title" >
+             <item row="0" column="1">
+              <widget class="QGroupBox" name="groupBoxKlantRechtsApparaat_2">
+               <property name="title">
                 <string>Links</string>
                </property>
-               <layout class="QGridLayout" name="gridLayout_4" >
-                <item row="0" column="0" >
-                 <widget class="QLabel" name="label_25" >
-                  <property name="text" >
+               <layout class="QGridLayout" name="gridLayout_4">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_25">
+                  <property name="text">
                    <string>Merk</string>
                   </property>
                  </widget>
                 </item>
-                <item row="0" column="1" >
-                 <widget class="QComboBox" name="comboBox_5" >
-                  <property name="editable" >
+                <item row="0" column="1">
+                 <widget class="QComboBox" name="comboBox_5">
+                  <property name="editable">
                    <bool>true</bool>
                   </property>
                  </widget>
                 </item>
-                <item row="1" column="0" >
-                 <widget class="QLabel" name="label_26" >
-                  <property name="text" >
+                <item row="1" column="0">
+                 <widget class="QLabel" name="label_26">
+                  <property name="text">
                    <string>Type</string>
                   </property>
                  </widget>
                 </item>
-                <item row="1" column="1" >
-                 <widget class="QComboBox" name="comboBox_6" >
-                  <property name="editable" >
+                <item row="1" column="1">
+                 <widget class="QComboBox" name="comboBox_6">
+                  <property name="editable">
                    <bool>true</bool>
                   </property>
                  </widget>
                 </item>
-                <item row="2" column="0" >
-                 <widget class="QLabel" name="label_27" >
-                  <property name="text" >
+                <item row="2" column="0">
+                 <widget class="QLabel" name="label_27">
+                  <property name="text">
                    <string>Serienummer</string>
                   </property>
                  </widget>
                 </item>
-                <item row="2" column="1" >
-                 <widget class="QLineEdit" name="lineEdit_19" />
+                <item row="2" column="1">
+                 <widget class="QLineEdit" name="lineEdit_19"/>
                 </item>
-                <item row="3" column="0" >
-                 <widget class="QLabel" name="label_28" >
-                  <property name="text" >
+                <item row="3" column="0">
+                 <widget class="QLabel" name="label_28">
+                  <property name="text">
                    <string>Prijs (excl. BTW)</string>
                   </property>
                  </widget>
                 </item>
-                <item row="3" column="1" >
-                 <widget class="QLineEdit" name="lineEdit_20" />
+                <item row="3" column="1">
+                 <widget class="QLineEdit" name="lineEdit_20"/>
                 </item>
                </layout>
               </widget>
@@ -562,83 +563,83 @@
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="groupBox_2" >
-            <property name="title" >
+           <widget class="QGroupBox" name="groupBox_2">
+            <property name="title">
              <string>Brieven</string>
             </property>
-            <layout class="QGridLayout" name="gridLayout_7" >
-             <item row="0" column="0" >
-              <widget class="QPushButton" name="b_klantBrief" >
-               <property name="sizePolicy" >
-                <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+            <layout class="QGridLayout" name="gridLayout_7">
+             <item row="0" column="0">
+              <widget class="QPushButton" name="b_klantBrief">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
-               <property name="minimumSize" >
+               <property name="minimumSize">
                 <size>
                  <width>100</width>
                  <height>0</height>
                 </size>
                </property>
-               <property name="text" >
+               <property name="text">
                 <string>Klant</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="0" >
-              <widget class="QPushButton" name="b_artsBrief" >
-               <property name="sizePolicy" >
-                <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+             <item row="1" column="0">
+              <widget class="QPushButton" name="b_artsBrief">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
-               <property name="minimumSize" >
+               <property name="minimumSize">
                 <size>
                  <width>100</width>
                  <height>0</height>
                 </size>
                </property>
-               <property name="text" >
+               <property name="text">
                 <string>Arts</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="0" >
-              <widget class="QPushButton" name="b_mutualiteitBrief" >
-               <property name="sizePolicy" >
-                <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+             <item row="2" column="0">
+              <widget class="QPushButton" name="b_mutualiteitBrief">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
-               <property name="minimumSize" >
+               <property name="minimumSize">
                 <size>
                  <width>100</width>
                  <height>0</height>
                 </size>
                </property>
-               <property name="text" >
+               <property name="text">
                 <string>Mutualiteit</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="0" >
-              <widget class="QPushButton" name="b_factuur" >
-               <property name="sizePolicy" >
-                <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+             <item row="3" column="0">
+              <widget class="QPushButton" name="b_factuur">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
-               <property name="minimumSize" >
+               <property name="minimumSize">
                 <size>
                  <width>100</width>
                  <height>0</height>
                 </size>
                </property>
-               <property name="text" >
+               <property name="text">
                 <string>Factuur</string>
                </property>
               </widget>
@@ -648,15 +649,15 @@
           </item>
          </layout>
         </item>
-        <item row="2" column="0" >
-         <spacer name="verticalSpacer" >
-          <property name="orientation" >
+        <item row="2" column="0">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
-          <property name="sizeType" >
+          <property name="sizeType">
            <enum>QSizePolicy::Fixed</enum>
           </property>
-          <property name="sizeHint" stdset="0" >
+          <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
             <height>20</height>
@@ -664,47 +665,47 @@
           </property>
          </spacer>
         </item>
-        <item row="3" column="0" >
-         <widget class="QTableWidget" name="m_klantenLijst" >
-          <property name="selectionMode" >
+        <item row="3" column="0">
+         <widget class="QTableWidget" name="m_klantenLijst">
+          <property name="selectionMode">
            <enum>QAbstractItemView::SingleSelection</enum>
           </property>
-          <property name="sortingEnabled" >
+          <property name="sortingEnabled">
            <bool>true</bool>
           </property>
-          <property name="columnCount" >
+          <property name="columnCount">
            <number>4</number>
           </property>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Naam</string>
            </property>
           </column>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Straat</string>
            </property>
           </column>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Postcode</string>
            </property>
           </column>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Gemeente</string>
            </property>
           </column>
          </widget>
         </item>
-        <item row="4" column="0" >
-         <layout class="QHBoxLayout" name="horizontalLayout" >
+        <item row="4" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <spacer name="horizontalSpacer" >
-            <property name="orientation" >
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>383</width>
               <height>20</height>
@@ -713,11 +714,11 @@
            </spacer>
           </item>
           <item>
-           <widget class="QToolButton" name="b_dossierBewaren" >
-            <property name="text" >
+           <widget class="QToolButton" name="b_dossierBewaren">
+            <property name="text">
              <string>Bewaren</string>
             </property>
-            <property name="icon" >
+            <property name="icon">
              <iconset>
               <normalon>:/icons/filesave-64.png</normalon>
              </iconset>
@@ -725,11 +726,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_dossierToevoegen" >
-            <property name="text" >
+           <widget class="QToolButton" name="b_dossierToevoegen">
+            <property name="text">
              <string>Toevoegen</string>
             </property>
-            <property name="icon" >
+            <property name="icon">
              <iconset>
               <normalon>:/icons/edit_add-64.png</normalon>
              </iconset>
@@ -737,11 +738,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_dossierVerwijderen" >
-            <property name="text" >
+           <widget class="QToolButton" name="b_dossierVerwijderen">
+            <property name="text">
              <string>Verwijderen</string>
             </property>
-            <property name="icon" >
+            <property name="icon">
              <iconset>
               <normalon>:/icons/edit_remove-64.png</normalon>
              </iconset>
@@ -749,11 +750,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_dossierZoeken" >
-            <property name="text" >
+           <widget class="QToolButton" name="b_dossierZoeken">
+            <property name="text">
              <string>Zoeken</string>
             </property>
-            <property name="icon" >
+            <property name="icon">
              <iconset>
               <normalon>:/icons/mail_find-64.png</normalon>
              </iconset>
@@ -761,11 +762,11 @@
            </widget>
           </item>
           <item>
-           <spacer name="horizontalSpacer_2" >
-            <property name="orientation" >
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>317</width>
               <height>20</height>
@@ -777,46 +778,46 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabNko" >
-       <attribute name="title" >
+      <widget class="QWidget" name="tabNko">
+       <attribute name="title">
         <string>Artsen</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_10" >
-        <item row="0" column="0" >
-         <widget class="QGroupBox" name="g_artsgegevens" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="g_artsgegevens">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="title" >
+          <property name="title">
            <string>Artsgegevens</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_9" >
-           <item row="0" column="0" >
-            <layout class="QHBoxLayout" name="horizontalLayout_11" >
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
              <item>
-              <widget class="QLabel" name="l_artsNaam" >
-               <property name="text" >
+              <widget class="QLabel" name="l_artsNaam">
+               <property name="text">
                 <string>Naam</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_artsNaam" />
+              <widget class="QLineEdit" name="m_artsNaam"/>
              </item>
              <item>
-              <widget class="QLabel" name="l_artsVoornaam" >
-               <property name="text" >
+              <widget class="QLabel" name="l_artsVoornaam">
+               <property name="text">
                 <string>Voornaam</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_artsVoornaam" >
-               <property name="sizePolicy" >
-                <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+              <widget class="QLineEdit" name="m_artsVoornaam">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
@@ -825,108 +826,108 @@
              </item>
             </layout>
            </item>
-           <item row="1" column="0" >
-            <layout class="QHBoxLayout" name="horizontalLayout_12" >
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_12">
              <item>
-              <widget class="QLabel" name="l_artsStraat" >
-               <property name="text" >
+              <widget class="QLabel" name="l_artsStraat">
+               <property name="text">
                 <string>Straat (+ huisnummer / bus)</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_artsStraat" />
+              <widget class="QLineEdit" name="m_artsStraat"/>
              </item>
             </layout>
            </item>
-           <item row="2" column="0" >
-            <layout class="QHBoxLayout" name="horizontalLayout_13" >
+           <item row="2" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_13">
              <item>
-              <widget class="QLabel" name="label_36" >
-               <property name="text" >
+              <widget class="QLabel" name="label_36">
+               <property name="text">
                 <string>Postcode</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="m_artsPostcode" >
-               <property name="sizePolicy" >
-                <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+              <widget class="QSpinBox" name="m_artsPostcode">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
-               <property name="minimumSize" >
+               <property name="minimumSize">
                 <size>
                  <width>80</width>
                  <height>0</height>
                 </size>
                </property>
-               <property name="minimum" >
+               <property name="minimum">
                 <number>1000</number>
                </property>
-               <property name="maximum" >
+               <property name="maximum">
                 <number>9999</number>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="l_artsGemeente" >
-               <property name="text" >
+              <widget class="QLabel" name="l_artsGemeente">
+               <property name="text">
                 <string>Gemeente</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_artsGemeente" />
+              <widget class="QLineEdit" name="m_artsGemeente"/>
              </item>
             </layout>
            </item>
-           <item row="3" column="0" >
-            <layout class="QHBoxLayout" name="horizontalLayout_14" >
+           <item row="3" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_14">
              <item>
-              <widget class="QLabel" name="l_artsTelefoon" >
-               <property name="text" >
+              <widget class="QLabel" name="l_artsTelefoon">
+               <property name="text">
                 <string>Telefoon</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_artsTelefoon" />
+              <widget class="QLineEdit" name="m_artsTelefoon"/>
              </item>
              <item>
-              <widget class="QLabel" name="l_artsEmail" >
-               <property name="text" >
+              <widget class="QLabel" name="l_artsEmail">
+               <property name="text">
                 <string>E-mail</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_artsEmail" />
+              <widget class="QLineEdit" name="m_artsEmail"/>
              </item>
             </layout>
            </item>
-           <item row="4" column="0" >
-            <layout class="QHBoxLayout" name="horizontalLayout_17" >
+           <item row="4" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_17">
              <item>
-              <widget class="QLabel" name="l_artsOpmerkingen" >
-               <property name="text" >
+              <widget class="QLabel" name="l_artsOpmerkingen">
+               <property name="text">
                 <string>Opmerkingen</string>
                </property>
-               <property name="alignment" >
+               <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QTextEdit" name="m_artsOpmerkingen" >
-               <property name="sizePolicy" >
-                <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+              <widget class="QTextEdit" name="m_artsOpmerkingen">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
-               <property name="maximumSize" >
+               <property name="maximumSize">
                 <size>
                  <width>16777215</width>
                  <height>80</height>
@@ -939,15 +940,15 @@
           </layout>
          </widget>
         </item>
-        <item row="1" column="0" >
-         <spacer name="verticalSpacer_2" >
-          <property name="orientation" >
+        <item row="1" column="0">
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
-          <property name="sizeType" >
+          <property name="sizeType">
            <enum>QSizePolicy::Fixed</enum>
           </property>
-          <property name="sizeHint" stdset="0" >
+          <property name="sizeHint" stdset="0">
            <size>
             <width>827</width>
             <height>20</height>
@@ -955,47 +956,47 @@
           </property>
          </spacer>
         </item>
-        <item row="2" column="0" >
-         <widget class="QTableWidget" name="m_artsenLijst" >
-          <property name="selectionMode" >
+        <item row="2" column="0">
+         <widget class="QTableWidget" name="m_artsenLijst">
+          <property name="selectionMode">
            <enum>QAbstractItemView::SingleSelection</enum>
           </property>
-          <property name="sortingEnabled" >
+          <property name="sortingEnabled">
            <bool>true</bool>
           </property>
-          <property name="columnCount" >
+          <property name="columnCount">
            <number>4</number>
           </property>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Naam</string>
            </property>
           </column>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Straat</string>
            </property>
           </column>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Postcode</string>
            </property>
           </column>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Gemeente</string>
            </property>
           </column>
          </widget>
         </item>
-        <item row="3" column="0" >
-         <layout class="QHBoxLayout" name="horizontalLayout_18" >
+        <item row="3" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_18">
           <item>
-           <spacer name="horizontalSpacer3" >
-            <property name="orientation" >
+           <spacer name="horizontalSpacer3">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>383</width>
               <height>20</height>
@@ -1004,11 +1005,11 @@
            </spacer>
           </item>
           <item>
-           <widget class="QToolButton" name="b_artsBewaren" >
-            <property name="text" >
+           <widget class="QToolButton" name="b_artsBewaren">
+            <property name="text">
              <string>Bewaren</string>
             </property>
-            <property name="icon" >
+            <property name="icon">
              <iconset>
               <normalon>:/icons/filesave-64.png</normalon>
              </iconset>
@@ -1016,11 +1017,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_artsToevoegen" >
-            <property name="text" >
+           <widget class="QToolButton" name="b_artsToevoegen">
+            <property name="text">
              <string>Toevoegen</string>
             </property>
-            <property name="icon" >
+            <property name="icon">
              <iconset>
               <normalon>:/icons/edit_add-64.png</normalon>
              </iconset>
@@ -1028,11 +1029,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_artsVerwijderen" >
-            <property name="text" >
+           <widget class="QToolButton" name="b_artsVerwijderen">
+            <property name="text">
              <string>Verwijderen</string>
             </property>
-            <property name="icon" >
+            <property name="icon">
              <iconset>
               <normalon>:/icons/edit_remove-64.png</normalon>
              </iconset>
@@ -1040,11 +1041,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_artsZoeken" >
-            <property name="text" >
+           <widget class="QToolButton" name="b_artsZoeken">
+            <property name="text">
              <string>Zoeken</string>
             </property>
-            <property name="icon" >
+            <property name="icon">
              <iconset>
               <normalon>:/icons/mail_find-64.png</normalon>
              </iconset>
@@ -1052,11 +1053,11 @@
            </widget>
           </item>
           <item>
-           <spacer name="horizontalSpacer_4" >
-            <property name="orientation" >
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>317</width>
               <height>20</height>
@@ -1068,143 +1069,143 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabMutualiteit" >
-       <attribute name="title" >
+      <widget class="QWidget" name="tabMutualiteit">
+       <attribute name="title">
         <string>Mutualiteiten</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_12" >
-        <item row="0" column="0" >
-         <widget class="QGroupBox" name="g_mutualiteitsgegevens" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+       <layout class="QGridLayout" name="gridLayout_12">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="g_mutualiteitsgegevens">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="title" >
+          <property name="title">
            <string>Mutualiteitsgegevens</string>
           </property>
-          <layout class="QGridLayout" name="gridLayout_11" >
-           <item row="0" column="0" >
-            <layout class="QHBoxLayout" name="horizontalLayout_15" >
+          <layout class="QGridLayout" name="gridLayout_11">
+           <item row="0" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_15">
              <item>
-              <widget class="QLabel" name="l_mutualiteitNaam" >
-               <property name="text" >
+              <widget class="QLabel" name="l_mutualiteitNaam">
+               <property name="text">
                 <string>Naam</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_mutualiteitNaam" />
+              <widget class="QLineEdit" name="m_mutualiteitNaam"/>
              </item>
             </layout>
            </item>
-           <item row="1" column="0" >
-            <layout class="QHBoxLayout" name="horizontalLayout_16" >
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_16">
              <item>
-              <widget class="QLabel" name="l_mutualiteitStraat" >
-               <property name="text" >
+              <widget class="QLabel" name="l_mutualiteitStraat">
+               <property name="text">
                 <string>Straat (+ huisnummer / bus)</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_mutualiteitStraat" />
+              <widget class="QLineEdit" name="m_mutualiteitStraat"/>
              </item>
             </layout>
            </item>
-           <item row="2" column="0" >
-            <layout class="QHBoxLayout" name="horizontalLayout_19" >
+           <item row="2" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_19">
              <item>
-              <widget class="QLabel" name="label_44" >
-               <property name="text" >
+              <widget class="QLabel" name="label_44">
+               <property name="text">
                 <string>Postcode</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="m_mutualiteitPostcode" >
-               <property name="sizePolicy" >
-                <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+              <widget class="QSpinBox" name="m_mutualiteitPostcode">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
-               <property name="minimumSize" >
+               <property name="minimumSize">
                 <size>
                  <width>80</width>
                  <height>0</height>
                 </size>
                </property>
-               <property name="minimum" >
+               <property name="minimum">
                 <number>1000</number>
                </property>
-               <property name="maximum" >
+               <property name="maximum">
                 <number>9999</number>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="l_mutualiteitGemeente" >
-               <property name="text" >
+              <widget class="QLabel" name="l_mutualiteitGemeente">
+               <property name="text">
                 <string>Gemeente</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_mutualiteitGemeente" />
+              <widget class="QLineEdit" name="m_mutualiteitGemeente"/>
              </item>
             </layout>
            </item>
-           <item row="3" column="0" >
-            <layout class="QHBoxLayout" name="horizontalLayout_20" >
+           <item row="3" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_20">
              <item>
-              <widget class="QLabel" name="l_mutualiteitTelefoon" >
-               <property name="text" >
+              <widget class="QLabel" name="l_mutualiteitTelefoon">
+               <property name="text">
                 <string>Telefoon</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_mutualiteitTelefoon" >
-               <property name="text" >
+              <widget class="QLineEdit" name="m_mutualiteitTelefoon">
+               <property name="text">
                 <string/>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="l_mutualiteitEmail" >
-               <property name="text" >
+              <widget class="QLabel" name="l_mutualiteitEmail">
+               <property name="text">
                 <string>E-mail</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_mutualiteitEmail" />
+              <widget class="QLineEdit" name="m_mutualiteitEmail"/>
              </item>
             </layout>
            </item>
-           <item row="4" column="0" >
-            <layout class="QHBoxLayout" name="horizontalLayout_21" >
+           <item row="4" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_21">
              <item>
-              <widget class="QLabel" name="l_mutualiteitOpmerkingen" >
-               <property name="text" >
+              <widget class="QLabel" name="l_mutualiteitOpmerkingen">
+               <property name="text">
                 <string>Opmerkingen</string>
                </property>
-               <property name="alignment" >
+               <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QTextEdit" name="m_mutualiteitOpmerkingen" >
-               <property name="sizePolicy" >
-                <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
+              <widget class="QTextEdit" name="m_mutualiteitOpmerkingen">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
-               <property name="maximumSize" >
+               <property name="maximumSize">
                 <size>
                  <width>16777215</width>
                  <height>80</height>
@@ -1217,15 +1218,15 @@
           </layout>
          </widget>
         </item>
-        <item row="1" column="0" >
-         <spacer name="verticalSpacer_3" >
-          <property name="orientation" >
+        <item row="1" column="0">
+         <spacer name="verticalSpacer_3">
+          <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
-          <property name="sizeType" >
+          <property name="sizeType">
            <enum>QSizePolicy::Fixed</enum>
           </property>
-          <property name="sizeHint" stdset="0" >
+          <property name="sizeHint" stdset="0">
            <size>
             <width>827</width>
             <height>20</height>
@@ -1233,47 +1234,47 @@
           </property>
          </spacer>
         </item>
-        <item row="2" column="0" >
-         <widget class="QTableWidget" name="m_mutualiteitenLijst" >
-          <property name="selectionMode" >
+        <item row="2" column="0">
+         <widget class="QTableWidget" name="m_mutualiteitenLijst">
+          <property name="selectionMode">
            <enum>QAbstractItemView::SingleSelection</enum>
           </property>
-          <property name="sortingEnabled" >
+          <property name="sortingEnabled">
            <bool>true</bool>
           </property>
-          <property name="columnCount" >
+          <property name="columnCount">
            <number>4</number>
           </property>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Naam</string>
            </property>
           </column>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Straat</string>
            </property>
           </column>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Postcode</string>
            </property>
           </column>
           <column>
-           <property name="text" >
+           <property name="text">
             <string>Gemeente</string>
            </property>
           </column>
          </widget>
         </item>
-        <item row="3" column="0" >
-         <layout class="QHBoxLayout" name="horizontalLayout_26" >
+        <item row="3" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_26">
           <item>
-           <spacer name="horizontalSpacer_5" >
-            <property name="orientation" >
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>383</width>
               <height>20</height>
@@ -1282,11 +1283,11 @@
            </spacer>
           </item>
           <item>
-           <widget class="QToolButton" name="b_mutualiteitBewaren" >
-            <property name="text" >
+           <widget class="QToolButton" name="b_mutualiteitBewaren">
+            <property name="text">
              <string>Bewaren</string>
             </property>
-            <property name="icon" >
+            <property name="icon">
              <iconset>
               <normalon>:/icons/filesave-64.png</normalon>
              </iconset>
@@ -1294,11 +1295,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_mutualiteitToevoegen" >
-            <property name="text" >
+           <widget class="QToolButton" name="b_mutualiteitToevoegen">
+            <property name="text">
              <string>Toevoegen</string>
             </property>
-            <property name="icon" >
+            <property name="icon">
              <iconset>
               <normalon>:/icons/edit_add-64.png</normalon>
              </iconset>
@@ -1306,11 +1307,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_mutualiteitVerwijderen" >
-            <property name="text" >
+           <widget class="QToolButton" name="b_mutualiteitVerwijderen">
+            <property name="text">
              <string>Verwijderen</string>
             </property>
-            <property name="icon" >
+            <property name="icon">
              <iconset>
               <normalon>:/icons/edit_remove-64.png</normalon>
              </iconset>
@@ -1318,11 +1319,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_mutualiteitZoeken" >
-            <property name="text" >
+           <widget class="QToolButton" name="b_mutualiteitZoeken">
+            <property name="text">
              <string>Zoeken</string>
             </property>
-            <property name="icon" >
+            <property name="icon">
              <iconset>
               <normalon>:/icons/mail_find-64.png</normalon>
              </iconset>
@@ -1330,11 +1331,11 @@
            </widget>
           </item>
           <item>
-           <spacer name="horizontalSpacer_6" >
-            <property name="orientation" >
+           <spacer name="horizontalSpacer_6">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>317</width>
               <height>20</height>
@@ -1350,8 +1351,8 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar" >
-   <property name="geometry" >
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
@@ -1359,71 +1360,71 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuBestand" >
-    <property name="title" >
+   <widget class="QMenu" name="menuBestand">
+    <property name="title">
      <string>Bestand</string>
     </property>
-    <addaction name="actionBackup_maken" />
-    <addaction name="actionBackup_terugzetten" />
-    <addaction name="separator" />
-    <addaction name="actionEtiketten_afdrukken" />
-    <addaction name="separator" />
-    <addaction name="actionAfsluiten" />
+    <addaction name="actionBackup_maken"/>
+    <addaction name="actionBackup_terugzetten"/>
+    <addaction name="separator"/>
+    <addaction name="actionEtiketten_afdrukken"/>
+    <addaction name="separator"/>
+    <addaction name="actionAfsluiten"/>
    </widget>
-   <widget class="QMenu" name="menuHelp" >
-    <property name="title" >
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionOmtrent" />
+    <addaction name="actionOmtrent"/>
    </widget>
-   <widget class="QMenu" name="menuInstellingen" >
-    <property name="title" >
+   <widget class="QMenu" name="menuInstellingen">
+    <property name="title">
      <string>Instellingen</string>
     </property>
-    <addaction name="actionInstellingen_wijzigen" />
+    <addaction name="actionInstellingen_wijzigen"/>
    </widget>
-   <addaction name="menuBestand" />
-   <addaction name="menuInstellingen" />
-   <addaction name="menuHelp" />
+   <addaction name="menuBestand"/>
+   <addaction name="menuInstellingen"/>
+   <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar" />
-  <action name="actionBackup_maken" >
-   <property name="text" >
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionBackup_maken">
+   <property name="text">
     <string>Backup maken...</string>
    </property>
   </action>
-  <action name="actionBackup_terugzetten" >
-   <property name="text" >
+  <action name="actionBackup_terugzetten">
+   <property name="text">
     <string>Backup terugzetten...</string>
    </property>
   </action>
-  <action name="actionEtiketten_afdrukken" >
-   <property name="icon" >
-    <iconset resource="../icons.qrc" >
+  <action name="actionEtiketten_afdrukken">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
      <normaloff>:/icons/agt_print-64.png</normaloff>:/icons/agt_print-64.png</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Etiketten afdrukken...</string>
    </property>
   </action>
-  <action name="actionAfsluiten" >
-   <property name="text" >
+  <action name="actionAfsluiten">
+   <property name="text">
     <string>Afsluiten</string>
    </property>
   </action>
-  <action name="actionOmtrent" >
-   <property name="text" >
+  <action name="actionOmtrent">
+   <property name="text">
     <string>Omtrent AudioAdmin...</string>
    </property>
   </action>
-  <action name="actionInstellingen_wijzigen" >
-   <property name="text" >
+  <action name="actionInstellingen_wijzigen">
+   <property name="text">
     <string>Instellingen wijzigen...</string>
    </property>
   </action>
  </widget>
  <resources>
-  <include location="../icons.qrc" />
+  <include location="../icons.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -1432,11 +1433,11 @@
    <receiver>Universum</receiver>
    <slot>close()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>435</x>
      <y>380</y>
     </hint>

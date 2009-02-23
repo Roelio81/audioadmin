@@ -22,7 +22,6 @@ Universum::Universum(::QWidget *parent, Qt::WFlags f)
 	connect(actionBackup_terugzetten, SIGNAL(activated()), this, SLOT(restore()));
 	connect(actionInstellingen_wijzigen, SIGNAL(activated()), this, SLOT(instellingen()));
 	connect(actionOmtrent, SIGNAL(activated()), this, SLOT(omtrent()));
-	connect(meetgegevensButton, SIGNAL(clicked()), this, SLOT(meetgegevens()));
 	connect(m_artsenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerArts(int, int, int, int)));
 	connect(m_klantenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerKlant(int, int, int, int)));
 	connect(m_mutualiteitenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerMutualiteit(int, int, int, int)));
@@ -43,6 +42,7 @@ Universum::Universum(::QWidget *parent, Qt::WFlags f)
 	connect(b_klantBrief, SIGNAL(clicked()), &m_dossier, SLOT(toonBriefKlant()));
 	connect(b_mutualiteitBrief, SIGNAL(clicked()), &m_dossier, SLOT(toonBriefMutualiteit()));
 	connect(b_factuur, SIGNAL(clicked()), &m_dossier, SLOT(toonFactuur()));
+        connect(b_meetgegevens, SIGNAL(clicked()), &m_dossier, SLOT(toonMeetgegevens()));
 
 	// De kolombreedtes wat aanpassen
 	m_artsenLijst->setColumnWidth(0, 200);
@@ -124,12 +124,6 @@ void Universum::omtrent()
 		"<p>Vrijgegeven onder de GPL licentie, versie 3</p>"
 		"<p>Februari 2009</p>");
 
-}
-
-void Universum::meetgegevens()
-{
-	Meetgegevens *meetgegevens = new Meetgegevens(this);
-	meetgegevens->show();
 }
 
 void Universum::leegArtsenLijst()
