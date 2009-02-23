@@ -60,7 +60,6 @@ namespace View
 		void backupSignal(const QString &bestandsNaam);
 		void restoreSignal(const QString &bestandsNaam);
 		void instellingenSignal();
-		void meetgegevensSignal();
 		void artsSelectieSignal(int id);
 		void klantSelectieSignal(int id);
 		void mutualiteitSelectieSignal(int id);

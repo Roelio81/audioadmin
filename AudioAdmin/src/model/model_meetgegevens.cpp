@@ -11,6 +11,12 @@ Meetgegevens::Meetgegevens()
 , m_lgDataLinks(11, -30)
 , m_bgDataLinks(11, -30)
 , m_uclDataLinks(11, -30)
+, m_roDataZonder(23, -30)
+, m_loDataZonder(23, -30)
+, m_roloDataZonder(23, -30)
+, m_roDataMet(23, -30)
+, m_loDataMet(23, -30)
+, m_roloDataMet(23, -30)
 {
 	m_hzValuesToIndex[125] = 0;
 	m_hzValuesToIndex[250] = 1;

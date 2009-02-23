@@ -10,8 +10,7 @@
 using namespace Presenter;
 
 Dossier::Dossier(View::Dossier &view, Model::Dossier &model)
-: QObject()
-, m_view(view)
+: m_view(view)
 , m_model(model)
 , m_briefArts(0)
 , m_briefKlant(0)
