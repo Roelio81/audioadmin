@@ -38,6 +38,12 @@ namespace View
         void setROMetData(int dB, int percentage);
         void setLOMetData(int dB, int percentage);
         void setROLOMetData(int dB, int percentage);
+
+    signals:
+        void meetgegevensSluiten();
+
+    private slots:
+        void sluitMeetgegevens();
     };
 }
 

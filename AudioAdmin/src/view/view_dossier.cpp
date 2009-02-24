@@ -185,25 +185,25 @@ void Dossier::toonArtsAdres(int value)
 
 void Dossier::toonBriefArts()
 {
-    emit briefArtsSignal();
+    emit briefArtsTonen();
 }
 
 void Dossier::toonBriefKlant()
 {
-    emit briefKlantSignal();
+    emit briefKlantTonen();
 }
 
 void Dossier::toonBriefMutualiteit()
 {
-    emit briefMutualiteitSignal();
+    emit briefMutualiteitTonen();
 }
 
 void Dossier::toonFactuur()
 {
-    emit factuurSignal();
+    emit factuurTonen();
 }
 
 void Dossier::toonMeetgegevens()
 {
-    emit meetgegevensSignal();
+    emit meetgegevensTonen();
 }

@@ -211,7 +211,7 @@ int Universum::mutualiteitIdToIndex(int id) const
 	return m_mutualiteitIdToIndex.value(id, -1);
 }
 
-void Universum::selecteerArts(int currentRow, int currentColumn, int previousRow, int previousColumn)
+void Universum::selecteerArts(int currentRow, int, int previousRow, int)
 {
 	if (currentRow != previousRow)
 	{
@@ -219,7 +219,7 @@ void Universum::selecteerArts(int currentRow, int currentColumn, int previousRow
 	}
 }
 
-void Universum::selecteerKlant(int currentRow, int currentColumn, int previousRow, int previousColumn)
+void Universum::selecteerKlant(int currentRow, int, int previousRow, int)
 {
 	if (currentRow != previousRow)
 	{
@@ -227,7 +227,7 @@ void Universum::selecteerKlant(int currentRow, int currentColumn, int previousRo
 	}
 }
 
-void Universum::selecteerMutualiteit(int currentRow, int currentColumn, int previousRow, int previousColumn)
+void Universum::selecteerMutualiteit(int currentRow, int, int previousRow, int)
 {
 	if (currentRow != previousRow)
 	{

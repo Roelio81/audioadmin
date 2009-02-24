@@ -18,11 +18,11 @@ Dossier::Dossier(View::Dossier &view, Model::Dossier &model)
 , m_factuur(0)
 , m_meetgegevens(0)
 {
-    connect(&m_view, SIGNAL(briefArtsSignal()), this, SLOT(briefArtsTonen()));
-    connect(&m_view, SIGNAL(briefKlantSignal()), this, SLOT(briefKlantTonen()));
-    connect(&m_view, SIGNAL(briefMutualiteitSignal()), this, SLOT(briefMutualiteitTonen()));
-    connect(&m_view, SIGNAL(factuurSignal()), this, SLOT(factuurTonen()));
-    connect(&m_view, SIGNAL(meetgegevensSignal()), this, SLOT(meetgegevensTonen()));
+    connect(&m_view, SIGNAL(briefArtsTonen()), this, SLOT(briefArtsTonen()));
+    connect(&m_view, SIGNAL(briefKlantTonen()), this, SLOT(briefKlantTonen()));
+    connect(&m_view, SIGNAL(briefMutualiteitTonen()), this, SLOT(briefMutualiteitTonen()));
+    connect(&m_view, SIGNAL(factuurTonen()), this, SLOT(factuurTonen()));
+    connect(&m_view, SIGNAL(meetgegevensTonen()), this, SLOT(meetgegevensTonen()));
 }
 
 Dossier::~Dossier()
@@ -52,18 +52,26 @@ void Dossier::setup()
 
 void Dossier::setupBriefArts()
 {
+    Q_ASSERT(m_briefArts);
+    connect(m_briefArts, SIGNAL(briefArtsSluiten()), this, SLOT(briefArtsSluiten()));
 }
 
 void Dossier::setupBriefKlant()
 {
+    Q_ASSERT(m_briefKlant);
+    connect(m_briefKlant, SIGNAL(briefKlantSluiten()), this, SLOT(briefKlantSluiten()));
 }
 
 void Dossier::setupBriefMutualiteit()
 {
+    Q_ASSERT(m_briefMutualiteit);
+    connect(m_briefMutualiteit, SIGNAL(briefMutualiteitSluiten()), this, SLOT(briefMutualiteitSluiten()));
 }
 
 void Dossier::setupFactuur()
 {
+    Q_ASSERT(m_factuur);
+    connect(m_factuur, SIGNAL(factuurSluiten()), this, SLOT(factuurSluiten()));
 }
 
 void Dossier::setupMeetgegevens()
@@ -80,6 +88,7 @@ void Dossier::setupMeetgegevens()
         m_meetgegevens->setBGLinksData(Hz[i], model.getBGLinksData(Hz[i]));
         m_meetgegevens->setUCLLinksData(Hz[i], model.getUCLLinksData(Hz[i]));
     }
+    connect(m_meetgegevens, SIGNAL(meetgegevensSluiten()), this, SLOT(meetgegevensSluiten()));
 }
 
 void Dossier::briefArtsTonen()

@@ -60,11 +60,11 @@ namespace View
         void toonMeetgegevens();
 
     signals:
-        void briefArtsSignal();
-        void briefKlantSignal();
-        void briefMutualiteitSignal();
-        void factuurSignal();
-        void meetgegevensSignal();
+        void briefArtsTonen();
+        void briefKlantTonen();
+        void briefMutualiteitTonen();
+        void factuurTonen();
+        void meetgegevensTonen();
 
     private:
         Universum &m_universum;

@@ -6,13 +6,19 @@
 
 namespace View
 {
-	class Factuur : public QDialog, public Ui::Factuur
-	{
-	Q_OBJECT
-	public:
-		Factuur(QWidget *parent = 0);
-		virtual ~Factuur();
-	};
+    class Factuur : public QDialog, public Ui::Factuur
+    {
+    Q_OBJECT
+    public:
+        Factuur(QWidget *parent = 0);
+        virtual ~Factuur();
+
+    signals:
+        void factuurSluiten();
+
+    private slots:
+        void sluitFactuur();
+    };
 }
 
 #endif // _VIEW_FACTUUR_H

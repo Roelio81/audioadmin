@@ -6,13 +6,19 @@
 
 namespace View
 {
-	class BriefMutualiteit : public QDialog, public Ui::BriefMutualiteit
-	{
-	Q_OBJECT
-	public:
-		BriefMutualiteit(QWidget *parent = 0);
-		virtual ~BriefMutualiteit();
-	};
+    class BriefMutualiteit : public QDialog, public Ui::BriefMutualiteit
+    {
+    Q_OBJECT
+    public:
+        BriefMutualiteit(QWidget *parent = 0);
+        virtual ~BriefMutualiteit();
+
+    signals:
+        void briefMutualiteitSluiten();
+
+    private slots:
+        void sluitBriefMutualiteit();
+    };
 }
 
 #endif // _VIEW_BRIEFMUTUALITEIT_H

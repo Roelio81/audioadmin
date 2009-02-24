@@ -6,13 +6,19 @@
 
 namespace View
 {
-	class BriefArts : public QDialog, public Ui::BriefArts
-	{
-	Q_OBJECT
-	public:
-		BriefArts(QWidget *parent = 0);
-		virtual ~BriefArts();
-	};
+    class BriefArts : public QDialog, public Ui::BriefArts
+    {
+    Q_OBJECT
+    public:
+        BriefArts(QWidget *parent = 0);
+        virtual ~BriefArts();
+
+    signals:
+        void briefArtsSluiten();
+
+    private slots:
+        void sluitBriefArts();
+    };
 }
 
 #endif // _VIEW_BRIEFARTS_H

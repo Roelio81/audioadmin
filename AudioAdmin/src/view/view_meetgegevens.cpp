@@ -3,11 +3,12 @@
 using namespace View;
 
 Meetgegevens::Meetgegevens(::QWidget *parent) 
-: ::QDialog(parent)
+: QDialog(parent)
 {
-	setupUi(this);
-        m_tonaleAudiometrieLinks->setKant(TonaleAudiometrieWidget::LINKS);
-        m_tonaleAudiometrieRechts->setKant(TonaleAudiometrieWidget::RECHTS);
+    setupUi(this);
+    connect(b_sluiten, SIGNAL(clicked()), this, SLOT(sluitMeetgegevens()));
+    m_tonaleAudiometrieLinks->setKant(TonaleAudiometrieWidget::LINKS);
+    m_tonaleAudiometrieRechts->setKant(TonaleAudiometrieWidget::RECHTS);
 }
 
 Meetgegevens::~Meetgegevens()
@@ -156,4 +157,9 @@ void Meetgegevens::setROLOMetData(int dB, int percentage)
 {
     Q_ASSERT(m_vocaleAudiometrieMet);
     m_vocaleAudiometrieMet->setROLOdata(dB, percentage);
+}
+
+void Meetgegevens::sluitMeetgegevens()
+{
+    emit meetgegevensSluiten();
 }
