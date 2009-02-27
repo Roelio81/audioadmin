@@ -52,12 +52,13 @@ namespace View
         void setArts(int value);
 
     public slots:
-        void toonArtsAdres(int value);
+        void toonArts(int value);
         void toonBriefArts();
         void toonBriefKlant();
         void toonBriefMutualiteit();
         void toonFactuur();
         void toonMeetgegevens();
+        void toonMutualiteit(int value);
 
     signals:
         void briefArtsTonen();

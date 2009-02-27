@@ -119,6 +119,7 @@ void Dossier::setAanspreektitel(const QString &value)
 void Dossier::setNaam(const QString &value)
 {
     m_universum.m_klantNaam->setText(value);
+    m_universum.b_meetgegevens->setEnabled(value != "");
 }
 
 void Dossier::setVoornaam(const QString &value)
@@ -154,6 +155,7 @@ void Dossier::setGeboorteDatum(const QDate &value)
 void Dossier::setMutualiteit(int value)
 {
     m_universum.m_klantMutualiteit->setCurrentIndex(m_universum.mutualiteitIdToIndex(value) + 1);
+    m_universum.b_mutualiteitBrief->setEnabled(value >= 0);
 }
 
 void Dossier::setAansluitingsnummer(const QString &value)
@@ -174,13 +176,15 @@ void Dossier::setOpmerkingen(const QString &value)
 void Dossier::setArts(int value)
 {
     m_universum.m_klantArts->setCurrentIndex(m_universum.artsIdToIndex(value) + 1);
+    m_universum.b_artsBrief->setEnabled(value >= 0);
 }
 
-void Dossier::toonArtsAdres(int value)
+void Dossier::toonArts(int value)
 {
     int artsId = m_universum.artsIndexToId(value - 1);
     m_universum.l_klantArtsStraat->setText(m_artsIdToStraat.value(artsId, ""));
     m_universum.l_klantArtsGemeente->setText(m_artsIdToGemeente.value(artsId, ""));
+    m_universum.b_artsBrief->setEnabled(value > 0);
 }
 
 void Dossier::toonBriefArts()
@@ -206,4 +210,10 @@ void Dossier::toonFactuur()
 void Dossier::toonMeetgegevens()
 {
     emit meetgegevensTonen();
+}
+
+void Dossier::toonMutualiteit(int value)
+{
+    int mutualiteitId = m_universum.mutualiteitIndexToId(value - 1);
+    m_universum.b_mutualiteitBrief->setEnabled(value > 0);
 }

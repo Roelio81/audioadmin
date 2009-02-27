@@ -7,20 +7,20 @@ class QDomElement;
 
 namespace Model
 {
-	class Mutualiteit : public Entiteit
-	{
-		public:
-			Mutualiteit(int id);
-			virtual ~Mutualiteit();
+    class Mutualiteit : public Entiteit
+    {
+    public:
+        Mutualiteit(int id);
+        virtual ~Mutualiteit();
 
-			void fromDomElement(const QDomElement &e);
-			QDomElement toDomElement() const;
+        void fromDomElement(const QDomElement &e);
+        QDomElement toDomElement() const;
 
-			int getId() const;
+        int getId() const;
 
-		private:
-			const int m_id;
-	};
+    private:
+        const int m_id;
+    };
 }
 
 #endif // _MODEL_MUTUALITEIT_H

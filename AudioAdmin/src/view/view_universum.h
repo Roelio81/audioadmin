@@ -31,8 +31,14 @@ namespace View
 
 		int artsIndexToId(int index) const;
 		int artsIdToIndex(int id) const;
-		int mutualiteitIndexToId(int index) const;
+                int klantIndexToId(int index) const;
+                int klantIdToIndex(int id) const;
+                int mutualiteitIndexToId(int index) const;
 		int mutualiteitIdToIndex(int id) const;
+
+                void selecteerArts(int id);
+                void selecteerKlant(int id);
+                void selecteerMutualiteit(int id);
 
 	private slots:
 		void instellingen();
