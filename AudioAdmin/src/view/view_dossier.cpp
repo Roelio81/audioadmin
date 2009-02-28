@@ -120,6 +120,7 @@ void Dossier::setNaam(const QString &value)
 {
     m_universum.m_klantNaam->setText(value);
     m_universum.b_meetgegevens->setEnabled(value != "");
+    m_universum.b_klantBrief->setEnabled(value != "");
 }
 
 void Dossier::setVoornaam(const QString &value)
@@ -214,6 +215,5 @@ void Dossier::toonMeetgegevens()
 
 void Dossier::toonMutualiteit(int value)
 {
-    int mutualiteitId = m_universum.mutualiteitIndexToId(value - 1);
     m_universum.b_mutualiteitBrief->setEnabled(value > 0);
 }

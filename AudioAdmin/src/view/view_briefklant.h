@@ -13,6 +13,15 @@ namespace View
         BriefKlant(QWidget *parent = 0);
         virtual ~BriefKlant();
 
+        void setAudioloogNaam(const QString &value);
+        void setAudioloogStraat(const QString &value);
+        void setAudioloogGemeente(const QString &value);
+        void setAudioloogTelefoon(const QString &value);
+        void setAudioloogGSM(const QString &value);
+        void setKlantNaam(const QString &value);
+        void setKlantStraat(const QString &value);
+        void setKlantGemeente(const QString &value);
+
     signals:
         void briefKlantSluiten();
 

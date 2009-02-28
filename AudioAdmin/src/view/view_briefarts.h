@@ -13,6 +13,15 @@ namespace View
         BriefArts(QWidget *parent = 0);
         virtual ~BriefArts();
 
+        void setAudioloogNaam(const QString &value);
+        void setAudioloogStraat(const QString &value);
+        void setAudioloogGemeente(const QString &value);
+        void setAudioloogTelefoon(const QString &value);
+        void setAudioloogGSM(const QString &value);
+        void setArtsNaam(const QString &value);
+        void setArtsStraat(const QString &value);
+        void setArtsGemeente(const QString &value);
+
     signals:
         void briefArtsSluiten();
 

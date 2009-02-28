@@ -13,6 +13,15 @@ namespace View
         BriefMutualiteit(QWidget *parent = 0);
         virtual ~BriefMutualiteit();
 
+        void setAudioloogNaam(const QString &value);
+        void setAudioloogStraat(const QString &value);
+        void setAudioloogGemeente(const QString &value);
+        void setAudioloogTelefoon(const QString &value);
+        void setAudioloogGSM(const QString &value);
+        void setMutualiteitNaam(const QString &value);
+        void setMutualiteitStraat(const QString &value);
+        void setMutualiteitGemeente(const QString &value);
+
     signals:
         void briefMutualiteitSluiten();
 

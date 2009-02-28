@@ -16,6 +16,7 @@ namespace View
 namespace Model
 {
     class Dossier;
+    class Universum;
 }
 
 namespace Presenter
@@ -26,6 +27,9 @@ namespace Presenter
     public:
         Dossier(View::Dossier &view, Model::Dossier &model);
         virtual ~Dossier();
+
+        void attachToUniversum(Model::Universum *universum);
+        void detachFromUniversum();
 
         void setup();
 
@@ -51,6 +55,7 @@ namespace Presenter
         View::Dossier &m_view;
         Model::Dossier &m_model;
 
+        Model::Universum *m_universum;
         View::BriefArts *m_briefArts;
         View::BriefKlant *m_briefKlant;
         View::BriefMutualiteit *m_briefMutualiteit;

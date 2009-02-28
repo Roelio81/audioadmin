@@ -17,3 +17,44 @@ void BriefKlant::sluitBriefKlant()
 {
     emit briefKlantSluiten();
 }
+
+void BriefKlant::setAudioloogNaam(const QString &value)
+{
+    l_audioloogNaam->setText(value);
+    l_audioloogNaam_2->setText(value);
+}
+
+void BriefKlant::setAudioloogStraat(const QString &value)
+{
+    l_audioloogStraat->setText(value);
+}
+
+void BriefKlant::setAudioloogGemeente(const QString &value)
+{
+    l_audioloogGemeente->setText(value);
+}
+
+void BriefKlant::setAudioloogTelefoon(const QString &value)
+{
+    l_audioloogTelefoon->setText(value);
+}
+
+void BriefKlant::setAudioloogGSM(const QString &value)
+{
+    l_audioloogGSM->setText(value);
+}
+
+void BriefKlant::setKlantNaam(const QString &value)
+{
+    l_klantNaam->setText(value);
+}
+
+void BriefKlant::setKlantStraat(const QString &value)
+{
+    l_klantStraat->setText(value);
+}
+
+void BriefKlant::setKlantGemeente(const QString &value)
+{
+    l_klantGemeente->setText(value);
+}

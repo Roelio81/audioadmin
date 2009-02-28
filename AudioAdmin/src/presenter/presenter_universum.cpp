@@ -143,12 +143,14 @@ void Universum::toonDossier(int id)
 {
     if (m_dossierPresenter)
     {
+        m_dossierPresenter->detachFromUniversum();
         delete m_dossierPresenter;
         m_dossierPresenter = 0;
     }
     Model::Dossier *dossierModel = m_model.getDossier(id);
     Q_ASSERT(dossierModel);
     m_dossierPresenter = new Presenter::Dossier(m_view.getDossier(), *dossierModel);
+    m_dossierPresenter->attachToUniversum(&m_model);
     m_dossierPresenter->setup();
 }
 

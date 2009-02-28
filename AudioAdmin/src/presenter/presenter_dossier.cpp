@@ -1,5 +1,9 @@
 #include "presenter_dossier.h"
+#include "../model/model_arts.h"
 #include "../model/model_dossier.h"
+#include "../model/model_instellingen.h"
+#include "../model/model_mutualiteit.h"
+#include "../model/model_universum.h"
 #include "../view/view_dossier.h"
 #include "../view/view_briefarts.h"
 #include "../view/view_briefklant.h"
@@ -12,6 +16,7 @@ using namespace Presenter;
 Dossier::Dossier(View::Dossier &view, Model::Dossier &model)
 : m_view(view)
 , m_model(model)
+, m_universum(0)
 , m_briefArts(0)
 , m_briefKlant(0)
 , m_briefMutualiteit(0)
@@ -27,6 +32,16 @@ Dossier::Dossier(View::Dossier &view, Model::Dossier &model)
 
 Dossier::~Dossier()
 {
+}
+
+void Dossier::attachToUniversum(Model::Universum *universum)
+{
+    m_universum = universum;
+}
+
+void Dossier::detachFromUniversum()
+{
+    m_universum = 0;
 }
 
 void Dossier::setup()
@@ -53,18 +68,63 @@ void Dossier::setup()
 void Dossier::setupBriefArts()
 {
     Q_ASSERT(m_briefArts);
+    Q_ASSERT(m_universum);
+    Q_ASSERT(m_model.getArts() >= 0);
+    Model::Arts *arts = m_universum->getArts(m_model.getArts());
+    Q_ASSERT(arts);
+    m_briefArts->setArtsNaam(arts->getNaam() + " " + arts->getVoornaam());
+    m_briefArts->setArtsStraat(arts->getStraat());
+    m_briefArts->setArtsGemeente(QString::number(arts->getPostcode()) + " " + arts->getGemeente());
+
+    Model::Instellingen *instellingen = m_universum->getInstellingen();
+    Q_ASSERT(instellingen);
+    m_briefArts->setAudioloogNaam(instellingen->getNaam());
+    m_briefArts->setAudioloogStraat(instellingen->getStraat());
+    m_briefArts->setAudioloogGemeente(QString::number(instellingen->getPostcode()) + " " + instellingen->getGemeente());
+    m_briefArts->setAudioloogTelefoon(instellingen->getTelefoon());
+    m_briefArts->setAudioloogGSM(instellingen->getGsm());
+
     connect(m_briefArts, SIGNAL(briefArtsSluiten()), this, SLOT(briefArtsSluiten()));
 }
 
 void Dossier::setupBriefKlant()
 {
     Q_ASSERT(m_briefKlant);
+    m_briefKlant->setKlantNaam(m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam());
+    m_briefKlant->setKlantStraat(m_model.getKlant().getStraat());
+    m_briefKlant->setKlantGemeente(QString::number(m_model.getKlant().getPostcode()) + " " + m_model.getKlant().getGemeente());
+
+    Q_ASSERT(m_universum);
+    Model::Instellingen *instellingen = m_universum->getInstellingen();
+    Q_ASSERT(instellingen);
+    m_briefKlant->setAudioloogNaam(instellingen->getNaam());
+    m_briefKlant->setAudioloogStraat(instellingen->getStraat());
+    m_briefKlant->setAudioloogGemeente(QString::number(instellingen->getPostcode()) + " " + instellingen->getGemeente());
+    m_briefKlant->setAudioloogTelefoon(instellingen->getTelefoon());
+    m_briefKlant->setAudioloogGSM(instellingen->getGsm());
+
     connect(m_briefKlant, SIGNAL(briefKlantSluiten()), this, SLOT(briefKlantSluiten()));
 }
 
 void Dossier::setupBriefMutualiteit()
 {
     Q_ASSERT(m_briefMutualiteit);
+    Q_ASSERT(m_universum);
+    Q_ASSERT(m_model.getKlant().getMutualiteit() >= 0);
+    Model::Mutualiteit *mutualiteit = m_universum->getMutualiteit(m_model.getKlant().getMutualiteit());
+    Q_ASSERT(mutualiteit);
+    m_briefMutualiteit->setMutualiteitNaam(mutualiteit->getNaam());
+    m_briefMutualiteit->setMutualiteitStraat(mutualiteit->getStraat());
+    m_briefMutualiteit->setMutualiteitGemeente(QString::number(mutualiteit->getPostcode()) + " " + mutualiteit->getGemeente());
+
+    Model::Instellingen *instellingen = m_universum->getInstellingen();
+    Q_ASSERT(instellingen);
+    m_briefMutualiteit->setAudioloogNaam(instellingen->getNaam());
+    m_briefMutualiteit->setAudioloogStraat(instellingen->getStraat());
+    m_briefMutualiteit->setAudioloogGemeente(QString::number(instellingen->getPostcode()) + " " + instellingen->getGemeente());
+    m_briefMutualiteit->setAudioloogTelefoon(instellingen->getTelefoon());
+    m_briefMutualiteit->setAudioloogGSM(instellingen->getGsm());
+
     connect(m_briefMutualiteit, SIGNAL(briefMutualiteitSluiten()), this, SLOT(briefMutualiteitSluiten()));
 }
 
