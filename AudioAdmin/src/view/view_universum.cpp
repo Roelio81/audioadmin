@@ -1,7 +1,4 @@
 #include "view_universum.h"
-#include "view_etiketten.h"
-#include "view_instellingen.h"
-#include "view_meetgegevens.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -17,7 +14,7 @@ Universum::Universum(::QWidget *parent, Qt::WFlags f)
 , m_instellingen(this)
 {
     setupUi(this);
-    connect(actionEtiketten_afdrukken, SIGNAL(activated()), this, SLOT(printLabels()));
+    connect(actionEtiketten_afdrukken, SIGNAL(activated()), this, SLOT(etikettenAfdrukken()));
     connect(actionBackup_maken, SIGNAL(activated()), this, SLOT(backup()));
     connect(actionBackup_terugzetten, SIGNAL(activated()), this, SLOT(restore()));
     connect(actionInstellingen_wijzigen, SIGNAL(activated()), this, SLOT(instellingen()));
@@ -64,11 +61,6 @@ Universum::~Universum()
 {
 }
 
-Instellingen &Universum::getInstellingen()
-{
-    return m_instellingen;
-}
-
 Arts &Universum::getArts()
 {
     return m_arts;
@@ -84,10 +76,19 @@ Mutualiteit &Universum::getMutualiteit()
     return m_mutualiteit;
 }
 
-void Universum::printLabels()
+Etiketten &Universum::getEtiketten()
 {
-    Etiketten *etiketten = new Etiketten(this);
-    etiketten->show();
+    return m_etiketten;
+}
+
+Instellingen &Universum::getInstellingen()
+{
+    return m_instellingen;
+}
+
+void Universum::etikettenAfdrukken()
+{
+    emit etikettenSignal();
 }
 
 void Universum::backup()

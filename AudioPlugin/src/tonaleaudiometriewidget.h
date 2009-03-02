@@ -28,6 +28,9 @@ class TonaleAudiometrieWidget : public QWidget
         void checkBG();
         void checkUCL();
 
+    signals:
+        void wijzigingLGwaarde();
+
     protected:
         virtual void mouseReleaseEvent(QMouseEvent *event);
         virtual void paintEvent(QPaintEvent *event);

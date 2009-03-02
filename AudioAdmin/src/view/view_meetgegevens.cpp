@@ -7,6 +7,8 @@ Meetgegevens::Meetgegevens(::QWidget *parent)
 {
     setupUi(this);
     connect(b_sluiten, SIGNAL(clicked()), this, SLOT(sluitMeetgegevens()));
+    connect(m_tonaleAudiometrieLinks, SIGNAL(wijzigingLGwaarde()), this, SLOT(herberekenGemiddeldVerliesLinks()));
+    connect(m_tonaleAudiometrieRechts, SIGNAL(wijzigingLGwaarde()), this, SLOT(herberekenGemiddeldVerliesRechts()));
     m_tonaleAudiometrieLinks->setKant(TonaleAudiometrieWidget::LINKS);
     m_tonaleAudiometrieRechts->setKant(TonaleAudiometrieWidget::RECHTS);
 }
@@ -157,6 +159,30 @@ void Meetgegevens::setROLOMetData(int dB, int percentage)
 {
     Q_ASSERT(m_vocaleAudiometrieMet);
     m_vocaleAudiometrieMet->setROLOdata(dB, percentage);
+}
+
+void Meetgegevens::herberekenGemiddeldVerliesLinks()
+{
+    Q_ASSERT(m_tonaleAudiometrieLinks && m_verliesLinks);
+    int meting1 = m_tonaleAudiometrieLinks->getLGdata(1000);
+    int meting2 = m_tonaleAudiometrieLinks->getLGdata(2000);
+    int meting3 = m_tonaleAudiometrieLinks->getLGdata(4000);
+    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+        m_verliesLinks->setText(QString::number((meting1+meting2+meting3) / 3));
+    else
+        m_verliesLinks->setText("N/A");
+}
+
+void Meetgegevens::herberekenGemiddeldVerliesRechts()
+{
+    Q_ASSERT(m_tonaleAudiometrieRechts && m_verliesRechts);
+    int meting1 = m_tonaleAudiometrieRechts->getLGdata(1000);
+    int meting2 = m_tonaleAudiometrieRechts->getLGdata(2000);
+    int meting3 = m_tonaleAudiometrieRechts->getLGdata(4000);
+    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+        m_verliesRechts->setText(QString::number((meting1+meting2+meting3) / 3));
+    else
+        m_verliesRechts->setText("N/A");
 }
 
 void Meetgegevens::sluitMeetgegevens()

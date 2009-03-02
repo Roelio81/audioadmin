@@ -6,6 +6,7 @@
 #include "view_arts.h"
 #include "view_dossier.h"
 #include "view_mutualiteit.h"
+#include "view_etiketten.h"
 #include "view_instellingen.h"
 
 namespace View
@@ -19,8 +20,9 @@ namespace View
 
 		Arts &getArts();
 		Dossier &getDossier();
-		Mutualiteit &getMutualiteit();
-		Instellingen &getInstellingen();
+                Mutualiteit &getMutualiteit();
+                Etiketten &getEtiketten();
+                Instellingen &getInstellingen();
 
 		void leegArtsenLijst();
 		void toevoegenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
@@ -42,7 +44,7 @@ namespace View
 
 	private slots:
 		void instellingen();
-		void printLabels();
+                void etikettenAfdrukken();
 		void backup();
 		void restore();
 		void omtrent();
@@ -69,6 +71,7 @@ namespace View
 		void artsSelectieSignal(int id);
 		void klantSelectieSignal(int id);
 		void mutualiteitSelectieSignal(int id);
+                void etikettenSignal();
 
 	private:
 		QMap<int, int> m_artsIdToIndex;
@@ -78,9 +81,10 @@ namespace View
 		QMap<int, int> m_mutualiteitIdToIndex;
 		QMap<int, int> m_mutualiteitIndexToId;
 
-		Arts m_arts;
+                Arts m_arts;
 		Dossier m_dossier;
 		Mutualiteit m_mutualiteit;
+                Etiketten m_etiketten;
 		Instellingen m_instellingen;
 	};
 }

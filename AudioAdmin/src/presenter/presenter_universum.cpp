@@ -20,6 +20,7 @@ Universum::Universum(View::Universum &view, Model::Universum &model)
 {
     connect(&m_view, SIGNAL(backupSignal(const ::QString &)), this, SLOT(openen(const ::QString &)));
     connect(&m_view, SIGNAL(restoreSignal(const ::QString &)), this, SLOT(bewaren(const ::QString &)));
+    connect(&m_view, SIGNAL(etikettenSignal()), this, SLOT(etiketten()));
     connect(&m_view, SIGNAL(instellingenSignal()), this, SLOT(instellingen()));
     connect(&m_view, SIGNAL(artsSelectieSignal(int)), this, SLOT(toonArts(int)));
     connect(&m_view, SIGNAL(klantSelectieSignal(int)), this, SLOT(toonDossier(int)));
@@ -44,6 +45,12 @@ Universum::Universum(View::Universum &view, Model::Universum &model)
 
 Universum::~Universum()
 {
+}
+
+void Universum::etiketten()
+{
+    setupEtiketten();
+    m_view.getEtiketten().show();
 }
 
 void Universum::instellingen()
@@ -71,9 +78,27 @@ void Universum::setupInstellingen()
     viewInstellingen.setRekeningNummer(modelInstellingen->getRekeningNummer());
 }
 
+void Universum::setupEtiketten()
+{
+    View::Etiketten &viewEtiketten = m_view.getEtiketten();
+    viewEtiketten.leegPlaatsenAanpassing();
+    QVector<Model::Dossier *> &dossiers = m_model.getDossiers();
+    for (QVector<Model::Dossier *>::const_iterator itDossier = dossiers.begin(); itDossier != dossiers.end(); ++itDossier)
+    {
+        Model::Dossier *dossier = *itDossier;
+        Q_ASSERT(dossier);
+        Model::Klant &klant = dossier->getKlant();
+        viewEtiketten.toevoegenPlaatsAanpassing(klant.getPlaatsAanpassing());
+    }
+    viewEtiketten.setDatumOnderzoek(QDate::currentDate().addYears(-2));
+}
+
+void Universum::teardownEtiketten()
+{
+}
+
 void Universum::teardownInstellingen()
 {
-	
 }
 
 void Universum::refreshArtsenLijst()

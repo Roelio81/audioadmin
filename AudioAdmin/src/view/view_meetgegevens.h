@@ -6,7 +6,7 @@
 
 namespace View
 {
-    class Meetgegevens : public ::QDialog, public Ui::Meetgegevens
+    class Meetgegevens : public QDialog, public Ui::Meetgegevens
     {
     Q_OBJECT
     public:
@@ -43,6 +43,8 @@ namespace View
         void meetgegevensSluiten();
 
     private slots:
+        void herberekenGemiddeldVerliesLinks();
+        void herberekenGemiddeldVerliesRechts();
         void sluitMeetgegevens();
     };
 }

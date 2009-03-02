@@ -29,16 +29,19 @@ namespace Presenter
 	public slots:
 		void openen(const QString &bestandsNaam);
 		void bewaren(const QString &bestandsNaam);
-		void instellingen();
+                void etiketten();
+                void instellingen();
 		void toonArts(int id);
 		void toonDossier(int id);
 		void toonMutualiteit(int id);
 
 	private:
-		void setupInstellingen();
+                void setupEtiketten();
+                void setupInstellingen();
+                void teardownEtiketten();
 		void teardownInstellingen();
 
-		void refreshArtsenLijst();
+                void refreshArtsenLijst();
 		void refreshKlantenLijst();
 		void refreshMutualiteitenLijst();
 

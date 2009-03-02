@@ -37,6 +37,7 @@ void TonaleAudiometrieWidget::setLGdata(int Hz, int dB)
 {
     Q_ASSERT(m_hzValuesToIndex.find(Hz) != m_hzValuesToIndex.end());
     m_lgData[m_hzValuesToIndex[Hz]] = dB;
+    emit wijzigingLGwaarde();
 }
 
 void TonaleAudiometrieWidget::setBGdata(int Hz, int dB)
@@ -97,11 +98,14 @@ void TonaleAudiometrieWidget::mouseReleaseEvent(QMouseEvent *event)
         {
             switch (m_tekenMode)
             {
-            case LG: m_lgData[i] = j; break;
-            case BG: m_bgData[i] = j; break;
-            case UCL: m_uclData[i] = j; break;
-            default: Q_ASSERT(false);
+                case LG: m_lgData[i] = j; break;
+                case BG: m_bgData[i] = j; break;
+                case UCL: m_uclData[i] = j; break;
+                default: Q_ASSERT(false);
             }
+
+            if (m_tekenMode == LG)
+                emit wijzigingLGwaarde();
 
         update();
         }
