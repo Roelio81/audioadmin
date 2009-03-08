@@ -8,40 +8,40 @@
 
 class VocaleAudiometrieWidget : public QWidget
 {
-	Q_OBJECT
-	public:
-		VocaleAudiometrieWidget(QWidget *parent = 0);
-		virtual ~VocaleAudiometrieWidget();
+Q_OBJECT
+public:
+    VocaleAudiometrieWidget(QWidget *parent = 0);
+    virtual ~VocaleAudiometrieWidget();
 
-		void setROdata(int dB, int percentage);
-		void setLOdata(int dB, int percentage);
-		void setROLOdata(int dB, int percentage);
+    void setROdata(int dB, int percentage);
+    void setLOdata(int dB, int percentage);
+    void setROLOdata(int dB, int percentage);
 
-		int getROdata(int dB);
-		int getLOdata(int dB);
-		int getROLOdata(int dB);
+    int getROdata(int dB);
+    int getLOdata(int dB);
+    int getROLOdata(int dB);
 
-	public slots:
-		void checkRO();
-		void checkLO();
-		void checkROLO();
+public slots:
+    void checkRO();
+    void checkLO();
+    void checkROLO();
 
-	protected:
-                virtual void mouseReleaseEvent(QMouseEvent *event);
-		virtual void paintEvent(QPaintEvent *event);
+protected:
+    virtual void mouseReleaseEvent(QMouseEvent *event);
+    virtual void paintEvent(QPaintEvent *event);
 
-	private:
-		void tekenLeegRaster();
-		void tekenData();
+private:
+    void tekenLeegRaster();
+    void tekenData();
 
-		typedef enum { RO, LO, ROLO } TekenMode;
+    typedef enum { RO, LO, ROLO } TekenMode;
 
-		QVector<int> m_roData;
-		QVector<int> m_loData;
-		QVector<int> m_roloData;
-		QPicture m_rooster;
-		QPicture m_data;
-		TekenMode m_tekenMode;
+    QVector<int> m_roData;
+    QVector<int> m_loData;
+    QVector<int> m_roloData;
+    QPicture m_rooster;
+    QPicture m_data;
+    TekenMode m_tekenMode;
 };
 
 #endif // __VOCALEAUDIOMETRIEWIDGET_H__

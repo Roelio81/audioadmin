@@ -16,10 +16,10 @@ Mutualiteit::~Mutualiteit()
 
 void Mutualiteit::setup()
 {
-	m_view.setNaam(m_model.getNaam());
-	m_view.setStraat(m_model.getStraat());
-	m_view.setPostcode(m_model.getPostcode());
-	m_view.setGemeente(m_model.getGemeente());
-	m_view.setTelefoon(m_model.getTelefoon());
-	m_view.setOpmerkingen(m_model.getOpmerkingen());
+    m_view.setNaam(m_model.getNaam());
+    m_view.setStraat(m_model.getStraat());
+    m_view.setPostcode(m_model.getPostcode());
+    m_view.setGemeente(m_model.getGemeente());
+    m_view.setTelefoon(m_model.getTelefoon());
+    m_view.setOpmerkingen(m_model.getOpmerkingen());
 }

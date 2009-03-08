@@ -5,28 +5,28 @@
 
 namespace View
 {
-	class Arts;
+    class Arts;
 }
 
 namespace Model
 {
-	class Arts;
+    class Arts;
 }
 
 namespace Presenter
 {
-	class Arts : public QObject
-	{
-	public:
-		Arts(View::Arts &view, Model::Arts &model);
-		virtual ~Arts();
+    class Arts : public QObject
+    {
+    public:
+        Arts(View::Arts &view, Model::Arts &model);
+        virtual ~Arts();
 
-		void setup();
+    void setup();
 
-	private:
-		View::Arts &m_view;
-		Model::Arts &m_model;
-	};
+    private:
+        View::Arts &m_view;
+        Model::Arts &m_model;
+    };
 }
 
 #endif // _PRESENTER_ARTS_H

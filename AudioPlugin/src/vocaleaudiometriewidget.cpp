@@ -18,100 +18,100 @@ VocaleAudiometrieWidget::~VocaleAudiometrieWidget()
 
 void VocaleAudiometrieWidget::setROdata(int dB, int percentage)
 {
-	m_roData[dB/5] = percentage;
+    m_roData[dB/5] = percentage;
 }
 
 void VocaleAudiometrieWidget::setLOdata(int dB, int percentage)
 {
-	m_loData[dB/5] = percentage;
+    m_loData[dB/5] = percentage;
 }
 
 void VocaleAudiometrieWidget::setROLOdata(int dB, int percentage)
 {
-	m_roloData[dB/5] = percentage;
+    m_roloData[dB/5] = percentage;
 }
 
 int VocaleAudiometrieWidget::getROdata(int dB)
 {
-	return m_roData[dB/5];
+    return m_roData[dB/5];
 }
 
 int VocaleAudiometrieWidget::getLOdata(int dB)
 {
-	return m_loData[dB/5];	
+    return m_loData[dB/5];
 }
 
 int VocaleAudiometrieWidget::getROLOdata(int dB)
 {
-	return m_roloData[dB/5];
+    return m_roloData[dB/5];
 }
 
 void VocaleAudiometrieWidget::checkRO()
 {
-	m_tekenMode = RO;
+    m_tekenMode = RO;
 }
 
 void VocaleAudiometrieWidget::checkLO()
 {
-	m_tekenMode = LO;
+    m_tekenMode = LO;
 }
 
 void VocaleAudiometrieWidget::checkROLO()
 {
-	m_tekenMode = ROLO;
+    m_tekenMode = ROLO;
 }
 
 void VocaleAudiometrieWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-	if (event->button() == Qt::LeftButton)
-	{
-	}
+    if (event->button() == Qt::LeftButton)
+    {
+    }
 }
 
 void VocaleAudiometrieWidget::paintEvent(QPaintEvent *)
 {
-	QPainter painter(this);
-	tekenLeegRaster();
-	tekenData();
-	painter.drawPicture(0, 0, m_rooster);
-	painter.drawPicture(0, 0, m_data);
+    QPainter painter(this);
+    tekenLeegRaster();
+    tekenData();
+    painter.drawPicture(0, 0, m_rooster);
+    painter.drawPicture(0, 0, m_data);
 }
 
 void VocaleAudiometrieWidget::tekenLeegRaster()
 {
-	int realWidth = static_cast<int>((width()-51)/22 + 0.5) * 22;
-	int realHeight = static_cast<int>((height()-31)/20 + 0.5) * 20;
+    int realWidth = static_cast<int>((width()-51)/22 + 0.5) * 22;
+    int realHeight = static_cast<int>((height()-31)/20 + 0.5) * 20;
 
-	QPainter paint;
-	paint.begin(&m_rooster);
+    QPainter paint;
+    paint.begin(&m_rooster);
 
-	int j = 40;
-	for (int i = 0; i < 23; ++i)
-	{
-		paint.setPen(Qt::black);
-		if ((i % 2 == 0) && (i != 0) && (i < 20))
-			paint.drawText(j-6, realHeight+25, QString::number(i*5));
-		else if (i == 20)
-			paint.drawText(j-9, realHeight+25, QString::number(i*5));
+    int j = 40;
+    for (int i = 0; i < 23; ++i)
+    {
+        paint.setPen(Qt::black);
+        if ((i % 2 == 0) && (i != 0) && (i < 20))
+            paint.drawText(j-6, realHeight+25, QString::number(i*5));
+        else if (i == 20)
+            paint.drawText(j-9, realHeight+25, QString::number(i*5));
 
-		paint.setPen((i == 8 || i == 11 || i == 14) ? Qt::black : Qt::lightGray); 
-		paint.drawLine(j, 10, j, realHeight+10);
-		j += realWidth / 22;
-	}
+        paint.setPen((i == 8 || i == 11 || i == 14) ? Qt::black : Qt::lightGray);
+        paint.drawLine(j, 10, j, realHeight+10);
+        j += realWidth / 22;
+    }
 
-	j = 10;
-	for (int i = 0; i < 21; ++i)
-	{
-		if (i % 2 == 0)
-		{
-			paint.setPen(Qt::black);
-			paint.drawText(15 + 6*((i/20) + (i == 0 ? 0 : 1)), j+6, QString::number((20-i)*5));
-		}
+    j = 10;
+    for (int i = 0; i < 21; ++i)
+    {
+        if (i % 2 == 0)
+        {
+            paint.setPen(Qt::black);
+            paint.drawText(15 + 6*((i/20) + (i == 0 ? 0 : 1)), j+6, QString::number((20-i)*5));
+        }
 
-		paint.setPen((i == 10) ? Qt::black : Qt::lightGray);
-		paint.drawLine(40, j, 40 + realWidth, j);
-		j += realHeight / 20;
-	}
+        paint.setPen((i == 10) ? Qt::black : Qt::lightGray);
+        paint.drawLine(40, j, 40 + realWidth, j);
+        j += realHeight / 20;
+    }
 
 /* MOGELIJK QWT gebruiken voor bezier? of op andere manier functie zien te evalueren!
    bitmap.Canvas.MoveTo(41, 10+realheight);
@@ -131,5 +131,4 @@ void VocaleAudiometrieWidget::tekenLeegRaster()
 
 void VocaleAudiometrieWidget::tekenData()
 {
-	
 }
