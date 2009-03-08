@@ -25,6 +25,10 @@ namespace View
         int getROMetData(int dB);
         int getLOMetData(int dB);
         int getROLOMetData(int dB);
+        int getLocalisatieZonder();
+        int getLocalisatieRechts();
+        int getLocalisatieLinks();
+        int getLocalisatieBeide();
 
         void setLGRechtsData(int Hz, int dB);
         void setBGRechtsData(int Hz, int dB);
@@ -38,6 +42,10 @@ namespace View
         void setROMetData(int dB, int percentage);
         void setLOMetData(int dB, int percentage);
         void setROLOMetData(int dB, int percentage);
+        void setLocalisatieZonder(int dB);
+        void setLocalisatieRechts(int dB);
+        void setLocalisatieLinks(int dB);
+        void setLocalisatieBeide(int dB);
 
     signals:
         void meetgegevensSluiten();

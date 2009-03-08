@@ -148,6 +148,19 @@ void Dossier::setupMeetgegevens()
         m_meetgegevens->setBGLinksData(Hz[i], model.getBGLinksData(Hz[i]));
         m_meetgegevens->setUCLLinksData(Hz[i], model.getUCLLinksData(Hz[i]));
     }
+    for (int i = 0; i < 23; ++i)
+    {
+        m_meetgegevens->setROZonderData(5*i, model.getROZonderData(5*i));
+        m_meetgegevens->setLOZonderData(5*i, model.getLOZonderData(5*i));
+        m_meetgegevens->setROLOZonderData(5*i, model.getROLOZonderData(5*i));
+        m_meetgegevens->setROMetData(5*i, model.getROMetData(5*i));
+        m_meetgegevens->setLOMetData(5*i, model.getLOMetData(5*i));
+        m_meetgegevens->setROLOMetData(5*i, model.getROLOMetData(5*i));
+    }
+    m_meetgegevens->setLocalisatieZonder(model.getLocalisatieZonder());
+    m_meetgegevens->setLocalisatieRechts(model.getLocalisatieRechts());
+    m_meetgegevens->setLocalisatieLinks(model.getLocalisatieLinks());
+    m_meetgegevens->setLocalisatieBeide(model.getLocalisatieBeide());
     connect(m_meetgegevens, SIGNAL(meetgegevensSluiten()), this, SLOT(meetgegevensSluiten()));
 }
 
