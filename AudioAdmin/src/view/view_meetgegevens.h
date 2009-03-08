@@ -53,7 +53,18 @@ namespace View
     private slots:
         void herberekenGemiddeldVerliesLinks();
         void herberekenGemiddeldVerliesRechts();
+        void herberekenROZonder();
+        void herberekenLOZonder();
+        void herberekenROLOZonder();
+        void herberekenROMet();
+        void herberekenLOMet();
+        void herberekenROLOMet();
         void sluitMeetgegevens();
+
+    private:
+        void herberekenROWinst();
+        void herberekenLOWinst();
+        void herberekenROLOWinst();
     };
 }
 

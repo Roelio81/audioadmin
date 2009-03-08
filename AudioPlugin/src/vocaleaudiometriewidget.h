@@ -28,6 +28,11 @@ public slots:
     void checkLO();
     void checkROLO();
 
+signals:
+    void wijzigingROwaarde();
+    void wijzigingLOwaarde();
+    void wijzigingROLOwaarde();
+
 protected:
     virtual void mouseReleaseEvent(QMouseEvent *event);
     virtual void paintEvent(QPaintEvent *event);

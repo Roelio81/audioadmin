@@ -9,6 +9,12 @@ Meetgegevens::Meetgegevens(::QWidget *parent)
     connect(b_sluiten, SIGNAL(clicked()), this, SLOT(sluitMeetgegevens()));
     connect(m_tonaleAudiometrieLinks, SIGNAL(wijzigingLGwaarde()), this, SLOT(herberekenGemiddeldVerliesLinks()));
     connect(m_tonaleAudiometrieRechts, SIGNAL(wijzigingLGwaarde()), this, SLOT(herberekenGemiddeldVerliesRechts()));
+    connect(m_vocaleAudiometrieZonder, SIGNAL(wijzigingROwaarde()), this, SLOT(herberekenROZonder()));
+    connect(m_vocaleAudiometrieZonder, SIGNAL(wijzigingLOwaarde()), this, SLOT(herberekenLOZonder()));
+    connect(m_vocaleAudiometrieZonder, SIGNAL(wijzigingROLOwaarde()), this, SLOT(herberekenROLOZonder()));
+    connect(m_vocaleAudiometrieMet, SIGNAL(wijzigingROwaarde()), this, SLOT(herberekenROMet()));
+    connect(m_vocaleAudiometrieMet, SIGNAL(wijzigingLOwaarde()), this, SLOT(herberekenLOMet()));
+    connect(m_vocaleAudiometrieMet, SIGNAL(wijzigingROLOwaarde()), this, SLOT(herberekenROLOMet()));
     m_tonaleAudiometrieLinks->setKant(TonaleAudiometrieWidget::LINKS);
     m_tonaleAudiometrieRechts->setKant(TonaleAudiometrieWidget::RECHTS);
     m_vocaleAudiometrieZonder->setSoort(VocaleAudiometrieWidget::ZONDER);
@@ -234,6 +240,111 @@ void Meetgegevens::herberekenGemiddeldVerliesRechts()
         m_verliesRechts->setText(QString::number((meting1+meting2+meting3) / 3));
     else
         m_verliesRechts->setText("N/A");
+}
+
+void Meetgegevens::herberekenROZonder()
+{
+    Q_ASSERT(m_vocaleAudiometrieZonder);
+    int meting1 = m_vocaleAudiometrieZonder->getROdata(40);
+    int meting2 = m_vocaleAudiometrieZonder->getROdata(55);
+    int meting3 = m_vocaleAudiometrieZonder->getROdata(70);
+    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+        m_zonderApparaatRO->setText(QString::number((meting1+meting2+meting3) / 3));
+    else
+        m_zonderApparaatRO->setText("N/A");
+    herberekenROWinst();
+}
+
+void Meetgegevens::herberekenLOZonder()
+{
+    Q_ASSERT(m_vocaleAudiometrieMet);
+    int meting1 = m_vocaleAudiometrieZonder->getLOdata(40);
+    int meting2 = m_vocaleAudiometrieZonder->getLOdata(55);
+    int meting3 = m_vocaleAudiometrieZonder->getLOdata(70);
+    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+        m_zonderApparaatLO->setText(QString::number((meting1+meting2+meting3) / 3));
+    else
+        m_zonderApparaatLO->setText("N/A");
+    herberekenLOWinst();
+}
+
+void Meetgegevens::herberekenROLOZonder()
+{
+    Q_ASSERT(m_vocaleAudiometrieZonder);
+    int meting1 = m_vocaleAudiometrieZonder->getROLOdata(40);
+    int meting2 = m_vocaleAudiometrieZonder->getROLOdata(55);
+    int meting3 = m_vocaleAudiometrieZonder->getROLOdata(70);
+    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+        m_zonderApparaatROLO->setText(QString::number((meting1+meting2+meting3) / 3));
+    else
+        m_zonderApparaatROLO->setText("N/A");
+    herberekenROLOWinst();
+}
+
+void Meetgegevens::herberekenROMet()
+{
+    Q_ASSERT(m_vocaleAudiometrieMet);
+    int meting1 = m_vocaleAudiometrieMet->getROdata(40);
+    int meting2 = m_vocaleAudiometrieMet->getROdata(55);
+    int meting3 = m_vocaleAudiometrieMet->getROdata(70);
+    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+        m_metApparaatRO->setText(QString::number((meting1+meting2+meting3) / 3));
+    else
+        m_metApparaatRO->setText("N/A");
+    herberekenROWinst();
+}
+
+void Meetgegevens::herberekenLOMet()
+{
+    Q_ASSERT(m_vocaleAudiometrieMet);
+    int meting1 = m_vocaleAudiometrieMet->getLOdata(40);
+    int meting2 = m_vocaleAudiometrieMet->getLOdata(55);
+    int meting3 = m_vocaleAudiometrieMet->getLOdata(70);
+    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+        m_metApparaatLO->setText(QString::number((meting1+meting2+meting3) / 3));
+    else
+        m_metApparaatLO->setText("N/A");
+    herberekenLOWinst();
+}
+
+void Meetgegevens::herberekenROLOMet()
+{
+    Q_ASSERT(m_vocaleAudiometrieMet);
+    int meting1 = m_vocaleAudiometrieMet->getROLOdata(40);
+    int meting2 = m_vocaleAudiometrieMet->getROLOdata(55);
+    int meting3 = m_vocaleAudiometrieMet->getROLOdata(70);
+    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+        m_metApparaatROLO->setText(QString::number((meting1+meting2+meting3) / 3));
+    else
+        m_metApparaatROLO->setText("N/A");
+    herberekenROLOWinst();
+}
+
+void Meetgegevens::herberekenROWinst()
+{
+    Q_ASSERT(m_zonderApparaatRO && m_metApparaatRO);
+    if ((m_zonderApparaatRO->text() != "N/A") && (m_metApparaatRO->text() != "N/A"))
+        m_winstRO->setText(QString::number(m_metApparaatRO->text().toInt() - m_zonderApparaatRO->text().toInt()));
+    else
+        m_winstRO->setText("N/A");
+}
+
+void Meetgegevens::herberekenLOWinst()
+{
+    Q_ASSERT(m_zonderApparaatLO && m_metApparaatLO);
+    if ((m_zonderApparaatLO->text() != "N/A") && (m_metApparaatLO->text() != "N/A"))
+        m_winstLO->setText(QString::number(m_metApparaatLO->text().toInt() - m_zonderApparaatLO->text().toInt()));
+    else
+        m_winstLO->setText("N/A");
+}
+
+void Meetgegevens::herberekenROLOWinst()
+{
+    Q_ASSERT(m_zonderApparaatROLO && m_metApparaatROLO);
+    if ((m_zonderApparaatROLO->text() != "N/A") && (m_metApparaatROLO->text() != "N/A"))
+        m_winstROLO->setText(QString::number(m_metApparaatROLO->text().toInt() - m_zonderApparaatROLO->text().toInt()));
+    else
+        m_winstROLO->setText("N/A");
 }
 
 void Meetgegevens::sluitMeetgegevens()

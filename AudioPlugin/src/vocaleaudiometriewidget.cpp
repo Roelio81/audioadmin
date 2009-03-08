@@ -25,16 +25,19 @@ void VocaleAudiometrieWidget::setSoort(Soort soort)
 void VocaleAudiometrieWidget::setROdata(int dB, int percentage)
 {
     m_roData[dB/5] = percentage;
+    emit wijzigingROwaarde();
 }
 
 void VocaleAudiometrieWidget::setLOdata(int dB, int percentage)
 {
     m_loData[dB/5] = percentage;
+    emit wijzigingLOwaarde();
 }
 
 void VocaleAudiometrieWidget::setROLOdata(int dB, int percentage)
 {
     m_roloData[dB/5] = percentage;
+    emit wijzigingROLOwaarde();
 }
 
 int VocaleAudiometrieWidget::getROdata(int dB)
@@ -78,10 +81,20 @@ void VocaleAudiometrieWidget::mouseReleaseEvent(QMouseEvent *event)
         {
             switch (m_tekenMode)
             {
-                case RO: m_roData[i] = j; break;
-                case LO: m_loData[i] = j; break;
-                case ROLO: m_roloData[i] = j; break;
-                default: Q_ASSERT(false);
+                case RO:
+                    m_roData[i] = j;
+                    emit wijzigingROwaarde();
+                    break;
+                case LO:
+                    m_loData[i] = j;
+                    emit wijzigingLOwaarde();
+                    break;
+                case ROLO:
+                    m_roloData[i] = j;
+                    emit wijzigingROLOwaarde();
+                    break;
+                default:
+                    Q_ASSERT(false);
             }
 
         update();
@@ -182,7 +195,6 @@ void VocaleAudiometrieWidget::tekenData()
         }
     }
 
-
     // Teken LO data
     paint.setPen(Qt::blue);
     xx = -1;
@@ -210,7 +222,6 @@ void VocaleAudiometrieWidget::tekenData()
             yy = y;
         }
     }
-
 
     // Teken ROLO data
     paint.setPen(Qt::darkGreen);
