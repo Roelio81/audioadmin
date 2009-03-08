@@ -18,5 +18,7 @@ void Factuur::fromDomElement(const QDomElement &e)
 
 QDomElement Factuur::toDomElement() const
 {
-	return QDomElement();
+    QDomElement result;
+    result.setTagName("factuur");
+    return result;
 }

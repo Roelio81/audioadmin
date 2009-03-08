@@ -5,15 +5,15 @@ class QDomElement;
 
 namespace Model
 {
-	class Factuur
-	{
-		public:
-			Factuur();
-			virtual ~Factuur();
+    class Factuur
+    {
+    public:
+        Factuur();
+        virtual ~Factuur();
 
-			void fromDomElement(const QDomElement &e);
-			QDomElement toDomElement() const;
-	};
+        void fromDomElement(const QDomElement &e);
+        QDomElement toDomElement() const;
+    };
 }
 
 #endif // _MODEL_KLANT_H

@@ -29,7 +29,13 @@ void Arts::fromDomElement(const QDomElement &e)
 
 QDomElement Arts::toDomElement() const
 {
-    return Entiteit::toDomElement();
+    QDomElement result = Entiteit::toDomElement();
+    QDomElement voornaam;
+    voornaam.setTagName("voornaam");
+    voornaam.setNodeValue(m_voornaam);
+    result.appendChild(voornaam);
+    result.setTagName("dokter");
+    return result;
 }
 
 int Arts::getId() const

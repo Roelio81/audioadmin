@@ -34,7 +34,15 @@ void Dossier::fromDomElement(const QDomElement &e)
 
 QDomElement Dossier::toDomElement() const
 {
-    return m_klant.toDomElement();
+    QDomElement result = m_klant.toDomElement();
+    QDomElement nkoArts;
+    nkoArts.setTagName("nkoArts");
+    nkoArts.setAttribute("id", QString::number(m_arts));
+    result.appendChild(nkoArts);
+    QDomElement audiometrie = m_meetgegevens.toDomElement();
+    audiometrie.appendChild(audiometrie);
+    result.setTagName("dossier");
+    return result;
 }
 
 Klant &Dossier::getKlant()
