@@ -142,20 +142,30 @@ void VocaleAudiometrieWidget::tekenLeegRaster()
         paint.drawLine(40, y, 40 + rasterBreedte(), y);
     }
 
-/* MOGELIJK QWT gebruiken voor bezier? of op andere manier functie zien te evalueren!
-   bitmap.Canvas.MoveTo(41, 10+realheight);
-   bitmap.Canvas.Brush.Color := clBlack;
-   bitmap.Canvas.Pen.Color := clBlack;
-   punten[0].Y := 10+realheight;                   punten[0].X := 41;
-   punten[1].Y := 10+(18 * (realheight div 20));   punten[1].X := 41+(1 * (realwidth div 22));
-   punten[2].Y := 10+(16 * (realheight div 20));   punten[2].X := 41+(Round(1.5 * (realwidth div 22)));
-   punten[3].Y := 10+(10 * (realheight div 20));   punten[3].X := 41+(2 * (realwidth div 22));
-   punten[4].Y := 10+(4  * (realheight div 20));   punten[4].X := 41+(Round(2.5 * (realwidth div 22)));
-   punten[5].Y := 10+(2  * (realheight div 20));   punten[5].X := 41+(3 * (realwidth div 22));
-   punten[6].Y := 10+(0  * (realheight div 20));   punten[6].X := 41+(4 * (realwidth div 22));
-   bitmap.Canvas.PolyBezier(punten);
-   EmptyRaster2 := bitmap;
-*/
+    // Tekenen van de curve
+    int minY = 10;
+    int maxY = 10 + rasterHoogte();
+    paint.setPen(Qt::black);
+    for (int x = 40; x < 40 + 2*(rasterBreedte()/22); ++x)
+    {
+        double xx1 = (x - 40.0) / (4.0*(rasterBreedte()/22.0) / 20.0);
+        double yy1 = (3.0/5.0)*xx1*xx1 - xx1;
+        double xx2 = (x - 40.0 + 1.0) / (4.0*(rasterBreedte()/22.0) / 20.0);
+        double yy2 = (3.0/5.0)*xx2*xx2 - xx2;
+        int y1 = std::min(static_cast<int> (10 + ((100.0 - yy1) * rasterHoogte())/100.0), maxY);
+        int y2 = std::min(static_cast<int> (10 + ((100.0 - yy2) * rasterHoogte())/100.0), maxY);
+        paint.drawLine(x, y1, x+1, y2);
+    }
+    for (int x = 40 + 2*(rasterBreedte()/22); x < 40 + 4*(rasterBreedte()/22); ++x)
+    {
+        double xx1 = (x - 40.0) / (4.0*(rasterBreedte()/22.0) / 20.0);
+        double yy1 = (-3.0/5.0)*xx1*xx1 + 23.0*xx1 - 120.0;
+        double xx2 = (x - 40.0 + 1.0) / (4.0*(rasterBreedte()/22.0) / 20.0);
+        double yy2 = (-3.0/5.0)*xx2*xx2 + 23.0*xx2 - 120.0;
+        int y1 = std::max(static_cast<int> (10 + ((100.0 - yy1) * rasterHoogte())/100.0), minY);
+        int y2 = std::max(static_cast<int> (10 + ((100.0 - yy2) * rasterHoogte())/100.0), minY);
+        paint.drawLine(x, y1, x+1, y2);
+    }
 }
 
 void VocaleAudiometrieWidget::tekenData()

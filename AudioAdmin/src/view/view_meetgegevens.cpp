@@ -224,7 +224,7 @@ void Meetgegevens::herberekenGemiddeldVerliesLinks()
     int meting1 = m_tonaleAudiometrieLinks->getLGdata(1000);
     int meting2 = m_tonaleAudiometrieLinks->getLGdata(2000);
     int meting3 = m_tonaleAudiometrieLinks->getLGdata(4000);
-    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+    if (meting1 >= 0 && meting2 >= 0 && meting3 >= 0)
         m_verliesLinks->setText(QString::number((meting1+meting2+meting3) / 3));
     else
         m_verliesLinks->setText("N/A");
@@ -236,7 +236,7 @@ void Meetgegevens::herberekenGemiddeldVerliesRechts()
     int meting1 = m_tonaleAudiometrieRechts->getLGdata(1000);
     int meting2 = m_tonaleAudiometrieRechts->getLGdata(2000);
     int meting3 = m_tonaleAudiometrieRechts->getLGdata(4000);
-    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+    if (meting1 >= 0 && meting2 >= 0 && meting3 >= 0)
         m_verliesRechts->setText(QString::number((meting1+meting2+meting3) / 3));
     else
         m_verliesRechts->setText("N/A");
@@ -248,7 +248,7 @@ void Meetgegevens::herberekenROZonder()
     int meting1 = m_vocaleAudiometrieZonder->getROdata(40);
     int meting2 = m_vocaleAudiometrieZonder->getROdata(55);
     int meting3 = m_vocaleAudiometrieZonder->getROdata(70);
-    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+    if (meting1 >= 0 && meting2 >= 0 && meting3 >= 0)
         m_zonderApparaatRO->setText(QString::number((meting1+meting2+meting3) / 3));
     else
         m_zonderApparaatRO->setText("N/A");
@@ -261,7 +261,7 @@ void Meetgegevens::herberekenLOZonder()
     int meting1 = m_vocaleAudiometrieZonder->getLOdata(40);
     int meting2 = m_vocaleAudiometrieZonder->getLOdata(55);
     int meting3 = m_vocaleAudiometrieZonder->getLOdata(70);
-    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+    if (meting1 >= 0 && meting2 >= 0 && meting3 >= 0)
         m_zonderApparaatLO->setText(QString::number((meting1+meting2+meting3) / 3));
     else
         m_zonderApparaatLO->setText("N/A");
@@ -274,7 +274,7 @@ void Meetgegevens::herberekenROLOZonder()
     int meting1 = m_vocaleAudiometrieZonder->getROLOdata(40);
     int meting2 = m_vocaleAudiometrieZonder->getROLOdata(55);
     int meting3 = m_vocaleAudiometrieZonder->getROLOdata(70);
-    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+    if (meting1 >= 0 && meting2 >= 0 && meting3 >= 0)
         m_zonderApparaatROLO->setText(QString::number((meting1+meting2+meting3) / 3));
     else
         m_zonderApparaatROLO->setText("N/A");
@@ -287,7 +287,7 @@ void Meetgegevens::herberekenROMet()
     int meting1 = m_vocaleAudiometrieMet->getROdata(40);
     int meting2 = m_vocaleAudiometrieMet->getROdata(55);
     int meting3 = m_vocaleAudiometrieMet->getROdata(70);
-    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+    if (meting1 >= 0 && meting2 >= 0 && meting3 >= 0)
         m_metApparaatRO->setText(QString::number((meting1+meting2+meting3) / 3));
     else
         m_metApparaatRO->setText("N/A");
@@ -300,7 +300,7 @@ void Meetgegevens::herberekenLOMet()
     int meting1 = m_vocaleAudiometrieMet->getLOdata(40);
     int meting2 = m_vocaleAudiometrieMet->getLOdata(55);
     int meting3 = m_vocaleAudiometrieMet->getLOdata(70);
-    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+    if (meting1 >= 0 && meting2 >= 0 && meting3 >= 0)
         m_metApparaatLO->setText(QString::number((meting1+meting2+meting3) / 3));
     else
         m_metApparaatLO->setText("N/A");
@@ -313,7 +313,7 @@ void Meetgegevens::herberekenROLOMet()
     int meting1 = m_vocaleAudiometrieMet->getROLOdata(40);
     int meting2 = m_vocaleAudiometrieMet->getROLOdata(55);
     int meting3 = m_vocaleAudiometrieMet->getROLOdata(70);
-    if (meting1 > 0 && meting2 > 0 && meting3 > 0)
+    if (meting1 >= 0 && meting2 >= 0 && meting3 >= 0)
         m_metApparaatROLO->setText(QString::number((meting1+meting2+meting3) / 3));
     else
         m_metApparaatROLO->setText("N/A");
