@@ -65,7 +65,87 @@ int Dossier::getArts() const
     return m_arts;
 }
 
+QString Dossier::getBriefArtsPostdatum() const
+{
+    return m_briefArtsPostdatum;
+}
+
+QString Dossier::getBriefArtsTekstblok() const
+{
+    return m_briefArtsTekstblok;
+}
+
+QString Dossier::getBriefArtsConclusie() const
+{
+    return m_briefArtsConclusie;
+}
+
+QString Dossier::getBriefKlantPostdatum() const
+{
+    return m_briefKlantPostdatum;
+}
+
+QString Dossier::getBriefKlantTekstblok() const
+{
+    return m_briefKlantTekstblok;
+}
+
+QString Dossier::getBriefMutualiteitPostdatum() const
+{
+    return m_briefMutualiteitPostdatum;
+}
+
+QString Dossier::getBriefMutualiteitTekstblok() const
+{
+    return m_briefMutualiteitTekstblok;
+}
+
+QString Dossier::getBriefMutualiteitConclusie() const
+{
+    return m_briefMutualiteitConclusie;
+}
+
 void Dossier::setArts(int value)
 {
     m_arts = value;
+}
+
+void Dossier::setBriefArtsPostdatum(const QString &value)
+{
+    m_briefArtsPostdatum = value;
+}
+
+void Dossier::setBriefArtsTekstblok(const QString &value)
+{
+    m_briefArtsTekstblok = value;
+}
+
+void Dossier::setBriefArtsConclusie(const QString &value)
+{
+    m_briefArtsConclusie = value;
+}
+
+void Dossier::setBriefKlantPostdatum(const QString &value)
+{
+    m_briefKlantPostdatum = value;
+}
+
+void Dossier::setBriefKlantTekstblok(const QString &value)
+{
+    m_briefKlantTekstblok = value;
+}
+
+void Dossier::setBriefMutualiteitPostdatum(const QString &value)
+{
+    m_briefMutualiteitPostdatum = value;
+}
+
+void Dossier::setBriefMutualiteitTekstblok(const QString &value)
+{
+    m_briefMutualiteitTekstblok = value;
+}
+
+void Dossier::setBriefMutualiteitConclusie(const QString &value)
+{
+    m_briefMutualiteitConclusie = value;
 }
