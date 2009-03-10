@@ -18,8 +18,8 @@ Universum::Universum(View::Universum &view, Model::Universum &model)
 , m_dossierPresenter(0)
 , m_mutualiteitPresenter(0)
 {
-    connect(&m_view, SIGNAL(backupSignal(const ::QString &)), this, SLOT(openen(const ::QString &)));
-    connect(&m_view, SIGNAL(restoreSignal(const ::QString &)), this, SLOT(bewaren(const ::QString &)));
+    connect(&m_view, SIGNAL(backupSignal(QString)), this, SLOT(openen(QString)));
+    connect(&m_view, SIGNAL(restoreSignal(QString)), this, SLOT(bewaren(QString)));
     connect(&m_view, SIGNAL(etikettenSignal()), this, SLOT(etiketten()));
     connect(&m_view, SIGNAL(instellingenSignal()), this, SLOT(instellingen()));
     connect(&m_view, SIGNAL(artsSelectieSignal(int)), this, SLOT(toonArts(int)));
@@ -138,7 +138,7 @@ void Universum::refreshMutualiteitenLijst()
     }
 }
 
-void Universum::openen(const QString &bestandsNaam)
+void Universum::openen(QString bestandsNaam)
 {
     m_model.openen(bestandsNaam);
     refreshArtsenLijst();
@@ -146,7 +146,7 @@ void Universum::openen(const QString &bestandsNaam)
     refreshMutualiteitenLijst();
 }
 
-void Universum::bewaren(const QString &bestandsNaam)
+void Universum::bewaren(QString bestandsNaam)
 {
     m_model.bewaren(bestandsNaam);
 }

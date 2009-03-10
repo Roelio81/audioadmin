@@ -65,8 +65,8 @@ namespace View
         void zoekenMutualiteit();
 
     signals:
-        void backupSignal(const QString &bestandsNaam);
-        void restoreSignal(const QString &bestandsNaam);
+        void backupSignal(QString bestandsNaam);
+        void restoreSignal(QString bestandsNaam);
         void instellingenSignal();
         void artsSelectieSignal(int id);
         void klantSelectieSignal(int id);

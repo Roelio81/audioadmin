@@ -26,9 +26,9 @@ namespace Presenter
         Universum(View::Universum &view, Model::Universum &model);
         virtual ~Universum();
 
-    public slots:
-        void openen(const QString &bestandsNaam);
-        void bewaren(const QString &bestandsNaam);
+    private slots:
+        void openen(QString bestandsNaam);
+        void bewaren(QString bestandsNaam);
         void etiketten();
         void instellingen();
         void toonArts(int id);
