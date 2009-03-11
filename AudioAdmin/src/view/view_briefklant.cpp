@@ -58,3 +58,18 @@ void BriefKlant::setKlantGemeente(const QString &value)
 {
     l_klantGemeente->setText(value);
 }
+
+void BriefKlant::setAanspreking(const QString &value)
+{
+    l_aanspreking->setText(value);
+}
+
+void BriefKlant::setPostdatum(const QString &value)
+{
+    m_postdatum->setText(value);
+}
+
+void BriefKlant::setTekst(const QString &value)
+{
+    m_tekst->setPlainText(value);
+}

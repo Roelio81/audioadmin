@@ -21,6 +21,9 @@ namespace View
         void setKlantNaam(const QString &value);
         void setKlantStraat(const QString &value);
         void setKlantGemeente(const QString &value);
+        void setAanspreking(const QString &value);
+        void setPostdatum(const QString &value);
+        void setTekst(const QString &value);
 
     signals:
         void briefKlantSluiten();

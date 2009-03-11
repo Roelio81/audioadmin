@@ -87,8 +87,7 @@ void Universum::setupEtiketten()
     {
         Model::Dossier *dossier = *itDossier;
         Q_ASSERT(dossier);
-        Model::Klant &klant = dossier->getKlant();
-        viewEtiketten.toevoegenPlaatsAanpassing(klant.getPlaatsAanpassing());
+        viewEtiketten.toevoegenPlaatsAanpassing(dossier->getPlaatsAanpassing());
     }
     viewEtiketten.setDatumOnderzoek(QDate::currentDate().addYears(-2));
 }
@@ -109,7 +108,7 @@ void Universum::refreshArtsenLijst()
     {
         Q_ASSERT(*itArts);
         Model::Arts &arts = *(*itArts);
-        m_view.toevoegenArts(arts.getId(), arts.getNaam(), arts.getStraat(), arts.getPostcode(), arts.getGemeente());
+        m_view.toevoegenArts(arts.getId(), arts.getNaam() + " " + arts.getVoornaam(), arts.getStraat(), arts.getPostcode(), arts.getGemeente());
     }
 } 
 
@@ -122,7 +121,7 @@ void Universum::refreshKlantenLijst()
         Model::Dossier *dossier = *itDossier;
         Q_ASSERT(dossier);
         Model::Klant &klant = dossier->getKlant();
-        m_view.toevoegenKlant(dossier->getId(), klant.getNaam(), klant.getStraat(), klant.getPostcode(), klant.getGemeente());
+        m_view.toevoegenKlant(dossier->getId(), klant.getNaam() + " " + klant.getVoornaam(), klant.getStraat(), klant.getPostcode(), klant.getGemeente());
     }
 } 
 

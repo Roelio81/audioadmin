@@ -58,3 +58,18 @@ void BriefMutualiteit::setMutualiteitGemeente(const QString &value)
 {
     l_mutualiteitGemeente->setText(value);
 }
+
+void BriefMutualiteit::setPostdatum(const QString &value)
+{
+    m_postdatum->setText(value);
+}
+
+void BriefMutualiteit::setTekst(const QString &value)
+{
+    m_tekst->setPlainText(value);
+}
+
+void BriefMutualiteit::setBesluit(const QString &value)
+{
+    m_besluit->setPlainText(value);
+}

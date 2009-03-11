@@ -21,6 +21,9 @@ namespace View
         void setMutualiteitNaam(const QString &value);
         void setMutualiteitStraat(const QString &value);
         void setMutualiteitGemeente(const QString &value);
+        void setPostdatum(const QString &value);
+        void setTekst(const QString &value);
+        void setBesluit(const QString &value);
 
     signals:
         void briefMutualiteitSluiten();

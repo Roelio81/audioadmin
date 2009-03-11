@@ -50,12 +50,12 @@ void Meetgegevens::fromDomElement(const QDomElement &e)
             for (QDomElement ee = element.firstChildElement(); !ee.isNull(); ee = ee.nextSiblingElement())
             {
                 QString type = ee.nodeName();
-                QString plaats = ee.attributeNode("plaats").value();
+                QString plaats = ee.attribute("plaats");
                 for (QDomElement eee = ee.firstChildElement(); !eee.isNull(); eee = eee.nextSiblingElement())
                 {
                     Q_ASSERT(eee.nodeName() == "meting");
-                    int db = eee.attributeNode("db").value().toInt();
-                    int hz = eee.attributeNode("freq").value().toInt();
+                    int db = eee.attribute("db").toInt();
+                    int hz = eee.attribute("freq").toInt();
                     int index = m_hzValuesToIndex[hz];
                     if (type == "lg" && plaats == "rechts") m_lgDataRechts[index] = db;
                     else if (type == "bg" && plaats == "rechts") m_bgDataRechts[index] = db;
@@ -71,12 +71,12 @@ void Meetgegevens::fromDomElement(const QDomElement &e)
             for (QDomElement ee = element.firstChildElement(); !ee.isNull(); ee = ee.nextSiblingElement())
             {
                 QString type = ee.nodeName();
-                QString plaats = ee.attributeNode("plaats").value();
+                QString plaats = ee.attribute("plaats");
                 for (QDomElement eee = ee.firstChildElement(); !eee.isNull(); eee = eee.nextSiblingElement())
                 {
                     Q_ASSERT(eee.nodeName() == "meting");
-                    int db = eee.attributeNode("db").value().toInt();
-                    int percentage = eee.attributeNode("percentage").value().toInt();
+                    int db = eee.attribute("db").toInt();
+                    int percentage = eee.attribute("percentage").toInt();
                     int index = m_dbValuesToIndex[db];
                     if (type == "zonder" && plaats == "rechts") m_roDataZonder[index] = percentage;
                     else if (type == "zonder" && plaats == "links") m_loDataZonder[index] = percentage;
@@ -92,14 +92,14 @@ void Meetgegevens::fromDomElement(const QDomElement &e)
             for (QDomElement ee = element.firstChildElement(); !ee.isNull(); ee = ee.nextSiblingElement())
             {
                 QString type = ee.nodeName();
-                int db = ee.attributeNode("db").value().toInt();
+                int db = ee.attribute("db").toInt();
                 if (type == "zonderHA")
                 {
                     m_localisatieZonder = db;
                 }
                 else if (type == "metHA")
                 {
-                    QString plaats = ee.attributeNode("plaats").value();
+                    QString plaats = ee.attribute("plaats");
                     if (plaats == "rechts") m_localisatieRechts = db;
                     else if (plaats == "links") m_localisatieLinks = db;
                     else if (plaats == "beide") m_localisatieBeide = db;

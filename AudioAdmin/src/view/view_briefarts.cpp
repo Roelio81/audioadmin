@@ -58,3 +58,18 @@ void BriefArts::setArtsGemeente(const QString &value)
 {
     l_artsGemeente->setText(value);
 }
+
+void BriefArts::setPostdatum(const QString &value)
+{
+    m_postdatum->setText(value);
+}
+
+void BriefArts::setTekst(const QString &value)
+{
+    m_tekst->setPlainText(value);
+}
+
+void BriefArts::setBesluit(const QString &value)
+{
+    m_besluit->setPlainText(value);
+}

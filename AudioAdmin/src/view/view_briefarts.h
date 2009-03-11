@@ -21,6 +21,9 @@ namespace View
         void setArtsNaam(const QString &value);
         void setArtsStraat(const QString &value);
         void setArtsGemeente(const QString &value);
+        void setPostdatum(const QString &value);
+        void setTekst(const QString &value);
+        void setBesluit(const QString &value);
 
     signals:
         void briefArtsSluiten();

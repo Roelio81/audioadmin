@@ -58,15 +58,17 @@ void Dossier::setup()
     m_view.setGemeente(klantModel.getGemeente());
     m_view.setTelefoon(klantModel.getTelefoon());
     m_view.setGeboorteDatum(klantModel.getGeboorteDatum());
-    m_view.setMutualiteit(klantModel.getMutualiteit());
-    m_view.setAansluitingsnummer(klantModel.getAansluitingsnummer());
-    m_view.setPlaatsAanpassing(klantModel.getPlaatsAanpassing());
     m_view.setOpmerkingen(klantModel.getOpmerkingen());
+    m_view.setMutualiteit(m_model.getMutualiteit());
+    m_view.setAansluitingsnummer(m_model.getAansluitingsnummer());
+    m_view.setPlaatsAanpassing(m_model.getPlaatsAanpassing());
     m_view.setArts(m_model.getArts());
 }
 
 void Dossier::setupBriefArts()
 {
+    bool klantIsMan = (m_model.getKlant().getAanspreektitel() == "Dhr.");
+
     Q_ASSERT(m_briefArts);
     Q_ASSERT(m_universum);
     Q_ASSERT(m_model.getArts() >= 0);
@@ -84,12 +86,67 @@ void Dossier::setupBriefArts()
     m_briefArts->setAudioloogTelefoon(instellingen->getTelefoon());
     m_briefArts->setAudioloogGSM(instellingen->getGsm());
 
+    QString postDatum = m_model.getBriefArtsPostdatum();
+    if (postDatum.isEmpty())
+        postDatum = instellingen->getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
+    m_briefArts->setPostdatum(postDatum);
+    QString tekst = m_model.getBriefArtsTekstblok();
+    if (tekst.isEmpty())
+    {
+        tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
+        tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam();
+        tekst += " (geboortedatum: " + m_model.getKlant().getGeboorteDatum().toString("dd-MM-yyyy") + "). ";
+        if (m_model.getAantalHoorapparaten() > 0)
+        {
+            tekst += (klantIsMan ? QString("Mijnheer ") : QString("Mevrouw ")) + "heeft geopteerd voor een ";
+            if (m_model.getAantalHoorapparaten() == 1)
+            {
+                tekst += "mono aanpassing met ";
+                if (!m_model.getLinkerHoorapparaatMerk().isEmpty() || !m_model.getLinkerHoorapparaatType().isEmpty())
+                {
+                    tekst += "het apparaat ";
+                    tekst += m_model.getLinkerHoorapparaatMerk() + " " + m_model.getLinkerHoorapparaatType() + " (links). ";
+                }
+                else
+                {
+                    tekst += "het apparaat ";
+                    tekst += m_model.getRechterHoorapparaatMerk() + " " + m_model.getRechterHoorapparaatType() + " (rechts). ";
+                }
+            }
+            else
+            {
+                Q_ASSERT(m_model.getAantalHoorapparaten() == 2);
+                tekst += "stereo aanpassing met ";
+                if (m_model.getLinkerHoorapparaatMerk() == m_model.getRechterHoorapparaatMerk() &&
+                    m_model.getLinkerHoorapparaatType() == m_model.getRechterHoorapparaatType())
+                {
+                    tekst += "het apparaat ";
+                    tekst += m_model.getLinkerHoorapparaatMerk() + " " + m_model.getLinkerHoorapparaatType() + ". ";
+                }
+                else
+                {
+                    tekst += "de apparaten ";
+                    tekst += m_model.getRechterHoorapparaatMerk() + " " + m_model.getRechterHoorapparaatType() + " (rechts) en ";
+                    tekst += m_model.getLinkerHoorapparaatMerk() + " " + m_model.getLinkerHoorapparaatType() + " (links). ";
+                }
+            }
+        }
+    }
+    m_briefArts->setTekst(tekst);
+    QString besluit = m_model.getBriefArtsConclusie();
+    if (besluit.isEmpty())
+        besluit = "Indien u nog vragen hebt, kan u mij bereiken op bovenstaand nummer.";
+    m_briefArts->setBesluit(besluit);
+
     connect(m_briefArts, SIGNAL(briefArtsSluiten()), this, SLOT(briefArtsSluiten()));
 }
 
 void Dossier::setupBriefKlant()
 {
+    bool klantIsMan = (m_model.getKlant().getAanspreektitel() == "Dhr.");
+
     Q_ASSERT(m_briefKlant);
+    m_briefKlant->setAanspreking(klantIsMan ? "Geachte meneer," : "Geachte mevrouw,");
     m_briefKlant->setKlantNaam(m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam());
     m_briefKlant->setKlantStraat(m_model.getKlant().getStraat());
     m_briefKlant->setKlantGemeente(QString::number(m_model.getKlant().getPostcode()) + " " + m_model.getKlant().getGemeente());
@@ -103,15 +160,35 @@ void Dossier::setupBriefKlant()
     m_briefKlant->setAudioloogTelefoon(instellingen->getTelefoon());
     m_briefKlant->setAudioloogGSM(instellingen->getGsm());
 
+    QString postDatum = m_model.getBriefKlantPostdatum();
+    if (postDatum.isEmpty())
+        postDatum = instellingen->getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
+    m_briefKlant->setPostdatum(postDatum);
+    QString tekst = m_model.getBriefKlantTekstblok();
+    if (tekst.isEmpty())
+    {
+        tekst = "Ingesloten vindt u de nodige documenten voor het ziekenfonds. Tevens vindt u 2 ";
+        tekst += "overschrijvingsformulieren, waarvan 1 voor ";
+        if (m_model.getAantalHoorapparaten() == 1)
+            tekst += "het hoorapparaat";
+        else
+            tekst += "de hoorapparaten";
+        tekst += ", incl. ... jaar garantie. Indien u 5 jaar garantie wenst, kan u het tweede ";
+        tekst += "overschrijvingsformulier gebruiken.";
+    }
+    m_briefKlant->setTekst(tekst);
+
     connect(m_briefKlant, SIGNAL(briefKlantSluiten()), this, SLOT(briefKlantSluiten()));
 }
 
 void Dossier::setupBriefMutualiteit()
 {
+    bool klantIsMan = (m_model.getKlant().getAanspreektitel() == "Dhr.");
+
     Q_ASSERT(m_briefMutualiteit);
     Q_ASSERT(m_universum);
-    Q_ASSERT(m_model.getKlant().getMutualiteit() >= 0);
-    Model::Mutualiteit *mutualiteit = m_universum->getMutualiteit(m_model.getKlant().getMutualiteit());
+    Q_ASSERT(m_model.getMutualiteit() >= 0);
+    Model::Mutualiteit *mutualiteit = m_universum->getMutualiteit(m_model.getMutualiteit());
     Q_ASSERT(mutualiteit);
     m_briefMutualiteit->setMutualiteitNaam(mutualiteit->getNaam());
     m_briefMutualiteit->setMutualiteitStraat(mutualiteit->getStraat());
@@ -124,6 +201,59 @@ void Dossier::setupBriefMutualiteit()
     m_briefMutualiteit->setAudioloogGemeente(QString::number(instellingen->getPostcode()) + " " + instellingen->getGemeente());
     m_briefMutualiteit->setAudioloogTelefoon(instellingen->getTelefoon());
     m_briefMutualiteit->setAudioloogGSM(instellingen->getGsm());
+
+    QString postDatum = m_model.getBriefMutualiteitPostdatum();
+    if (postDatum.isEmpty())
+        postDatum = instellingen->getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
+    m_briefMutualiteit->setPostdatum(postDatum);
+    QString tekst = m_model.getBriefMutualiteitTekstblok();
+    if (tekst.isEmpty())
+    {
+        tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
+        tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam();
+        tekst += " (geboortedatum: " + m_model.getKlant().getGeboorteDatum().toString("dd-MM-yyyy") + "). ";
+        if (m_model.getAantalHoorapparaten() > 0)
+        {
+            tekst += (klantIsMan ? QString("Mijnheer ") : QString("Mevrouw ")) + "heeft geopteerd voor een ";
+            if (m_model.getAantalHoorapparaten() == 1)
+            {
+                tekst += "mono aanpassing met ";
+                if (!m_model.getLinkerHoorapparaatMerk().isEmpty() || !m_model.getLinkerHoorapparaatType().isEmpty())
+                {
+                    tekst += "het apparaat ";
+                    tekst += m_model.getLinkerHoorapparaatMerk() + " " + m_model.getLinkerHoorapparaatType() + " (links). ";
+                }
+                else
+                {
+                    tekst += "het apparaat ";
+                    tekst += m_model.getRechterHoorapparaatMerk() + " " + m_model.getRechterHoorapparaatType() + " (rechts). ";
+                }
+            }
+            else
+            {
+                Q_ASSERT(m_model.getAantalHoorapparaten() == 2);
+                tekst += "stereo aanpassing met ";
+                if (m_model.getLinkerHoorapparaatMerk() == m_model.getRechterHoorapparaatMerk() &&
+                    m_model.getLinkerHoorapparaatType() == m_model.getRechterHoorapparaatType())
+                {
+                    tekst += "het apparaat ";
+                    tekst += m_model.getLinkerHoorapparaatMerk() + " " + m_model.getLinkerHoorapparaatType() + ". ";
+                }
+                else
+                {
+                    tekst += "de apparaten ";
+                    tekst += m_model.getRechterHoorapparaatMerk() + " " + m_model.getRechterHoorapparaatType() + " (rechts) en ";
+                    tekst += m_model.getLinkerHoorapparaatMerk() + " " + m_model.getLinkerHoorapparaatType() + " (links). ";
+                }
+            }
+        }
+        tekst += "Gelieve ten spoedigste een goedkeuring te laten geworden op bovenstaan adres.";
+    }
+    m_briefMutualiteit->setTekst(tekst);
+    QString besluit = m_model.getBriefMutualiteitConclusie();
+    if (besluit.isEmpty())
+        besluit = "Indien u nog vragen hebt, kan u mij bereiken op bovenstaand nummer.";
+    m_briefMutualiteit->setBesluit(besluit);
 
     connect(m_briefMutualiteit, SIGNAL(briefMutualiteitSluiten()), this, SLOT(briefMutualiteitSluiten()));
 }

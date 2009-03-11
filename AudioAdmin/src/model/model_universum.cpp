@@ -58,7 +58,7 @@ bool Universum::openen()
             {
                 Q_ASSERT(artsElement.tagName() == "dokter");
                 Q_ASSERT(artsElement.hasAttribute("id"));
-                int artsId = artsElement.attributeNode("id").value().toInt();
+                int artsId = artsElement.attribute("id").toInt();
                 Arts *arts = new Arts(artsId);
                 arts->fromDomElement(artsElement);
                 m_artsenLijst.push_back(arts);
@@ -66,11 +66,11 @@ bool Universum::openen()
         }
         else if (e.tagName() == "mutualiteiten")
         {
-            for (::QDomElement mutElement = e.firstChildElement(); !mutElement.isNull(); mutElement = mutElement.nextSiblingElement())
+            for (QDomElement mutElement = e.firstChildElement(); !mutElement.isNull(); mutElement = mutElement.nextSiblingElement())
             {
                 Q_ASSERT(mutElement.tagName() == "mutualiteit");
                 Q_ASSERT(mutElement.hasAttribute("id"));
-                int mutId = mutElement.attributeNode("id").value().toInt();
+                int mutId = mutElement.attribute("id").toInt();
                 Mutualiteit *mutualiteit = new Mutualiteit(mutId);
                 mutualiteit->fromDomElement(mutElement);
                 m_mutualiteitenLijst.push_back(mutualiteit);
@@ -78,11 +78,11 @@ bool Universum::openen()
         }
         else if (e.tagName() == "dossiers")
         {
-            for (::QDomElement dossierElement = e.firstChildElement(); !dossierElement.isNull(); dossierElement = dossierElement.nextSiblingElement())
+            for (QDomElement dossierElement = e.firstChildElement(); !dossierElement.isNull(); dossierElement = dossierElement.nextSiblingElement())
             {
                 Q_ASSERT(dossierElement.tagName() == "dossier");
                 Q_ASSERT(dossierElement.hasAttribute("id"));
-                int dossierId = dossierElement.attributeNode("id").value().toInt();
+                int dossierId = dossierElement.attribute("id").toInt();
                 Dossier *dossier = new Dossier(dossierId);
                 dossier->fromDomElement(dossierElement);
                 m_dossierLijst.push_back(dossier);

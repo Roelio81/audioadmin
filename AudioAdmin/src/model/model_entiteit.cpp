@@ -31,7 +31,7 @@ void Entiteit::fromDomElement(const QDomElement &e)
                 else if (subelement.tagName() == "gemeente")
                 {
                     m_gemeente = subelement.text();
-                    m_postcode = subelement.attributeNode("postcode").value().toInt();
+                    m_postcode = subelement.attribute("postcode").toInt();
                 }
             }
         }
