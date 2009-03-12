@@ -65,6 +65,36 @@ void Dossier::fromDomElement(const QDomElement &e)
                 }
             }
         }
+        else if (element.tagName() == "apparaten")
+        {
+            m_rechterHoorapparaatMerk = "";
+            m_rechterHoorapparaatType = "";
+            m_linkerHoorapparaatMerk = "";
+            m_linkerHoorapparaatType = "";
+            for (QDomElement ee = element.firstChildElement(); !ee.isNull(); ee = ee.nextSiblingElement())
+            {
+                Q_ASSERT(ee.tagName() == "apparaat");
+                QString plaats = ee.attribute("plaats");
+                QString merk = ee.attribute("merk");
+                QString type = ee.attribute("type");
+                QString serienummer = ee.attribute("serienummer");
+                double prijs = ee.attribute("prijs").toDouble();
+                if (plaats == "rechts")
+                {
+                    m_rechterHoorapparaatMerk = merk;
+                    m_rechterHoorapparaatType = type;
+                    m_rechterHoorapparaatSerienummer = serienummer;
+                    m_rechterHoorapparaatPrijs = prijs;
+                }
+                else if (plaats == "links")
+                {
+                    m_linkerHoorapparaatMerk = merk;
+                    m_linkerHoorapparaatType = type;
+                    m_linkerHoorapparaatSerienummer = serienummer;
+                    m_linkerHoorapparaatPrijs = prijs;
+                }
+            }
+        }
         else if (element.tagName() == "audiometrie")
         {
             m_meetgegevens.fromDomElement(element);
@@ -171,16 +201,6 @@ QString Dossier::getBriefMutualiteitConclusie() const
     return m_briefMutualiteitConclusie;
 }
 
-QString Dossier::getLinkerHoorapparaatMerk() const
-{
-    return m_linkerHoorapparaatMerk;
-}
-
-QString Dossier::getLinkerHoorapparaatType() const
-{
-    return m_linkerHoorapparaatType;
-}
-
 QString Dossier::getRechterHoorapparaatMerk() const
 {
     return m_rechterHoorapparaatMerk;
@@ -191,11 +211,41 @@ QString Dossier::getRechterHoorapparaatType() const
     return m_rechterHoorapparaatType;
 }
 
+QString Dossier::geRechterHoorapparaatSerienummer() const
+{
+    return m_rechterHoorapparaatSerienummer;
+}
+
+double Dossier::getRechterHoorapparaatPrijs() const
+{
+    return m_rechterHoorapparaatPrijs;
+}
+
+QString Dossier::getLinkerHoorapparaatMerk() const
+{
+    return m_linkerHoorapparaatMerk;
+}
+
+QString Dossier::getLinkerHoorapparaatType() const
+{
+    return m_linkerHoorapparaatType;
+}
+
+QString Dossier::getLinkerHoorapparaatSerienummer() const
+{
+    return m_linkerHoorapparaatSerienummer;
+}
+
+double Dossier::getLinkerHoorapparaatPrijs() const
+{
+    return m_linkerHoorapparaatPrijs;
+}
+
 int Dossier::getAantalHoorapparaten() const
 {
     int aantal = 0;
-    if (!m_linkerHoorapparaatMerk.isEmpty() || !m_linkerHoorapparaatType.isEmpty()) aantal++;
     if (!m_rechterHoorapparaatMerk.isEmpty() || !m_rechterHoorapparaatType.isEmpty()) aantal++;
+    if (!m_linkerHoorapparaatMerk.isEmpty() || !m_linkerHoorapparaatType.isEmpty()) aantal++;
     return aantal;
 }
 
@@ -259,6 +309,26 @@ void Dossier::setBriefMutualiteitConclusie(const QString &value)
     m_briefMutualiteitConclusie = value;
 }
 
+void Dossier::setRechterHoorapparaatMerk(const QString &value)
+{
+    m_rechterHoorapparaatMerk = value;
+}
+
+void Dossier::setRechterHoorapparaatType(const QString &value)
+{
+    m_rechterHoorapparaatType = value;
+}
+
+void Dossier::setRechterHoorapparaatSerienummer(const QString &value)
+{
+    m_rechterHoorapparaatSerienummer = value;
+}
+
+void Dossier::setRechterHoorapparaatPrijs(double value)
+{
+    m_rechterHoorapparaatPrijs = value;
+}
+
 void Dossier::setLinkerHoorapparaatMerk(const QString &value)
 {
     m_linkerHoorapparaatMerk = value;
@@ -269,12 +339,12 @@ void Dossier::setLinkerHoorapparaatType(const QString &value)
     m_linkerHoorapparaatType = value;
 }
 
-void Dossier::setRechterHoorapparaatMerk(const QString &value)
+void Dossier::setLinkerHoorapparaatSerienummer(const QString &value)
 {
-    m_rechterHoorapparaatMerk = value;
+    m_linkerHoorapparaatSerienummer = value;
 }
 
-void Dossier::setRechterHoorapparaatType(const QString &value)
+void Dossier::setLinkerHoorapparaatPrijs(double value)
 {
-    m_rechterHoorapparaatType = value;
+    m_linkerHoorapparaatPrijs = value;
 }

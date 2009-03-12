@@ -34,10 +34,14 @@ namespace Model
         QString getBriefMutualiteitPostdatum() const;
         QString getBriefMutualiteitTekstblok() const;
         QString getBriefMutualiteitConclusie() const;
-        QString getLinkerHoorapparaatMerk() const;
-        QString getLinkerHoorapparaatType() const;
         QString getRechterHoorapparaatMerk() const;
         QString getRechterHoorapparaatType() const;
+        QString geRechterHoorapparaatSerienummer() const;
+        double getRechterHoorapparaatPrijs() const;
+        QString getLinkerHoorapparaatMerk() const;
+        QString getLinkerHoorapparaatType() const;
+        QString getLinkerHoorapparaatSerienummer() const;
+        double getLinkerHoorapparaatPrijs() const;
         int getAantalHoorapparaten() const;
 
         void setArts(int value);
@@ -52,10 +56,14 @@ namespace Model
         void setBriefMutualiteitPostdatum(const QString &value);
         void setBriefMutualiteitTekstblok(const QString &value);
         void setBriefMutualiteitConclusie(const QString &value);
-        void setLinkerHoorapparaatMerk(const QString &value);
-        void setLinkerHoorapparaatType(const QString &value);
         void setRechterHoorapparaatMerk(const QString &value);
         void setRechterHoorapparaatType(const QString &value);
+        void setRechterHoorapparaatSerienummer(const QString &value);
+        void setRechterHoorapparaatPrijs(double value);
+        void setLinkerHoorapparaatMerk(const QString &value);
+        void setLinkerHoorapparaatType(const QString &value);
+        void setLinkerHoorapparaatSerienummer(const QString &value);
+        void setLinkerHoorapparaatPrijs(double value);
 
     private:
         const int m_id;
@@ -72,10 +80,14 @@ namespace Model
         QString m_briefMutualiteitPostdatum;
         QString m_briefMutualiteitTekstblok;
         QString m_briefMutualiteitConclusie;
-        QString m_linkerHoorapparaatMerk;
-        QString m_linkerHoorapparaatType;
         QString m_rechterHoorapparaatMerk;
         QString m_rechterHoorapparaatType;
+        QString m_rechterHoorapparaatSerienummer;
+        double m_rechterHoorapparaatPrijs;
+        QString m_linkerHoorapparaatMerk;
+        QString m_linkerHoorapparaatType;
+        QString m_linkerHoorapparaatSerienummer;
+        double m_linkerHoorapparaatPrijs;
         Meetgegevens m_meetgegevens;
     };
 }

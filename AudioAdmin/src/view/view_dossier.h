@@ -36,6 +36,14 @@ namespace View
         QString getPlaatsAanpassing() const;
         QString getOpmerkingen() const;
         int getArts() const;
+        QString getRechterHoorapparaatMerk() const;
+        QString getRechterHoorapparaatType() const;
+        QString geRechterHoorapparaatSerienummer() const;
+        double getRechterHoorapparaatPrijs() const;
+        QString getLinkerHoorapparaatMerk() const;
+        QString getLinkerHoorapparaatType() const;
+        QString getLinkerHoorapparaatSerienummer() const;
+        double getLinkerHoorapparaatPrijs() const;
 
         void setAanspreektitel(const QString &value);
         void setNaam(const QString &value);
@@ -50,6 +58,14 @@ namespace View
         void setPlaatsAanpassing(const QString &value);
         void setOpmerkingen(const QString &value);
         void setArts(int value);
+        void setRechterHoorapparaatMerk(const QString &value);
+        void setRechterHoorapparaatType(const QString &value);
+        void setRechterHoorapparaatSerienummer(const QString &value);
+        void setRechterHoorapparaatPrijs(double value);
+        void setLinkerHoorapparaatMerk(const QString &value);
+        void setLinkerHoorapparaatType(const QString &value);
+        void setLinkerHoorapparaatSerienummer(const QString &value);
+        void setLinkerHoorapparaatPrijs(double value);
 
     public slots:
         void toonArts(int value);

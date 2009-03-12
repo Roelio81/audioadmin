@@ -63,6 +63,10 @@ void Dossier::setup()
     m_view.setAansluitingsnummer(m_model.getAansluitingsnummer());
     m_view.setPlaatsAanpassing(m_model.getPlaatsAanpassing());
     m_view.setArts(m_model.getArts());
+    m_view.setRechterHoorapparaatMerk(m_model.getRechterHoorapparaatMerk());
+    m_view.setRechterHoorapparaatType(m_model.getRechterHoorapparaatType());
+    m_view.setLinkerHoorapparaatMerk(m_model.getLinkerHoorapparaatMerk());
+    m_view.setLinkerHoorapparaatType(m_model.getLinkerHoorapparaatType());
 }
 
 void Dossier::setupBriefArts()

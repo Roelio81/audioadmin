@@ -109,6 +109,46 @@ int Dossier::getArts() const
     return m_universum.artsIndexToId(m_universum.m_klantArts->currentIndex() - 1);
 }
 
+QString Dossier::getRechterHoorapparaatMerk() const
+{
+    return m_universum.m_rechterHoorapparaatMerk->lineEdit()->text();
+}
+
+QString Dossier::getRechterHoorapparaatType() const
+{
+    return m_universum.m_rechterHoorapparaatType->lineEdit()->text();
+}
+
+QString Dossier::geRechterHoorapparaatSerienummer() const
+{
+    return m_universum.m_rechterHoorapparaatSerienummer->text();
+}
+
+double Dossier::getRechterHoorapparaatPrijs() const
+{
+    return m_universum.m_rechterHoorapparaatPrijs->text().toDouble();
+}
+
+QString Dossier::getLinkerHoorapparaatMerk() const
+{
+    return m_universum.m_linkerHoorapparaatMerk->lineEdit()->text();
+}
+
+QString Dossier::getLinkerHoorapparaatType() const
+{
+    return m_universum.m_linkerHoorapparaatType->lineEdit()->text();
+}
+
+QString Dossier::getLinkerHoorapparaatSerienummer() const
+{
+    return m_universum.m_linkerHoorapparaatSerienummer->text();
+}
+
+double Dossier::getLinkerHoorapparaatPrijs() const
+{
+    return m_universum.m_linkerHoorapparaatPrijs->text().toDouble();
+}
+
 void Dossier::setAanspreektitel(const QString &value)
 {
     int index = m_universum.m_aanspreektitel->findText(value);
@@ -178,6 +218,46 @@ void Dossier::setArts(int value)
 {
     m_universum.m_klantArts->setCurrentIndex(m_universum.artsIdToIndex(value) + 1);
     m_universum.b_artsBrief->setEnabled(value >= 0);
+}
+
+void Dossier::setRechterHoorapparaatMerk(const QString &value)
+{
+    m_universum.m_rechterHoorapparaatMerk->lineEdit()->setText(value);
+}
+
+void Dossier::setRechterHoorapparaatType(const QString &value)
+{
+    m_universum.m_rechterHoorapparaatType->lineEdit()->setText(value);
+}
+
+void Dossier::setRechterHoorapparaatSerienummer(const QString &value)
+{
+    m_universum.m_rechterHoorapparaatSerienummer->setText(value);
+}
+
+void Dossier::setRechterHoorapparaatPrijs(double value)
+{
+    m_universum.m_rechterHoorapparaatPrijs->setText(value > 0.0 ? QString::number(value) : "");
+}
+
+void Dossier::setLinkerHoorapparaatMerk(const QString &value)
+{
+    m_universum.m_linkerHoorapparaatMerk->lineEdit()->setText(value);
+}
+
+void Dossier::setLinkerHoorapparaatType(const QString &value)
+{
+    m_universum.m_linkerHoorapparaatType->lineEdit()->setText(value);
+}
+
+void Dossier::setLinkerHoorapparaatSerienummer(const QString &value)
+{
+    m_universum.m_linkerHoorapparaatSerienummer->setText(value);
+}
+
+void Dossier::setLinkerHoorapparaatPrijs(double value)
+{
+    m_universum.m_linkerHoorapparaatPrijs->setText(value > 0.0 ? QString::number(value) : "");
 }
 
 void Dossier::toonArts(int value)
