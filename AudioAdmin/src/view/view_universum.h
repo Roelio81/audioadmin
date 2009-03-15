@@ -1,13 +1,15 @@
 #ifndef _VIEW_UNIVERSUM_H
 #define _VIEW_UNIVERSUM_H
 
-#include <QMainWindow>
 #include "ui_universum.h"
 #include "view_arts.h"
 #include "view_dossier.h"
 #include "view_mutualiteit.h"
 #include "view_etiketten.h"
 #include "view_instellingen.h"
+#include <QMainWindow>
+#include <QMap>
+#include <QSet>
 
 namespace View
 {
@@ -26,6 +28,8 @@ namespace View
 
         void leegArtsenLijst();
         void toevoegenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
+        void leegHoorapparatenLijst();
+        void toevoegenHoorapparaat(const QString &merk, const QString &type);
         void leegKlantenLijst();
         void toevoegenKlant(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
         void leegMutualiteitenLijst();
@@ -37,6 +41,9 @@ namespace View
         int klantIdToIndex(int id) const;
         int mutualiteitIndexToId(int index) const;
         int mutualiteitIdToIndex(int id) const;
+
+        QSet<QString> getMerkHoorapparaten() const;
+        QSet<QString> getTypeHoorapparaten(const QString &merk) const;
 
         void selecteerArts(int id);
         void selecteerKlant(int id);
@@ -76,6 +83,7 @@ namespace View
     private:
         QMap<int, int> m_artsIdToIndex;
         QMap<int, int> m_artsIndexToId;
+        QMap<QString, QSet<QString> > m_hoorapparaatMerkToTypes;
         QMap<int, int> m_klantIdToIndex;
         QMap<int, int> m_klantIndexToId;
         QMap<int, int> m_mutualiteitIdToIndex;

@@ -42,6 +42,7 @@ namespace Presenter
         void teardownInstellingen();
 
         void refreshArtsenLijst();
+        void refreshHoorapparatenLijst();
         void refreshKlantenLijst();
         void refreshMutualiteitenLijst();
 

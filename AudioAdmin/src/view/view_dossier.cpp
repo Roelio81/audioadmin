@@ -111,12 +111,12 @@ int Dossier::getArts() const
 
 QString Dossier::getRechterHoorapparaatMerk() const
 {
-    return m_universum.m_rechterHoorapparaatMerk->lineEdit()->text();
+    return m_universum.m_rechterHoorapparaatMerk->currentText();
 }
 
 QString Dossier::getRechterHoorapparaatType() const
 {
-    return m_universum.m_rechterHoorapparaatType->lineEdit()->text();
+    return m_universum.m_rechterHoorapparaatType->currentText();
 }
 
 QString Dossier::geRechterHoorapparaatSerienummer() const
@@ -131,12 +131,12 @@ double Dossier::getRechterHoorapparaatPrijs() const
 
 QString Dossier::getLinkerHoorapparaatMerk() const
 {
-    return m_universum.m_linkerHoorapparaatMerk->lineEdit()->text();
+    return m_universum.m_linkerHoorapparaatMerk->currentText();
 }
 
 QString Dossier::getLinkerHoorapparaatType() const
 {
-    return m_universum.m_linkerHoorapparaatType->lineEdit()->text();
+    return m_universum.m_linkerHoorapparaatType->currentText();
 }
 
 QString Dossier::getLinkerHoorapparaatSerienummer() const
@@ -222,12 +222,47 @@ void Dossier::setArts(int value)
 
 void Dossier::setRechterHoorapparaatMerk(const QString &value)
 {
-    m_universum.m_rechterHoorapparaatMerk->lineEdit()->setText(value);
+    QSet<QString> merken = m_universum.getMerkHoorapparaten();
+    m_universum.m_rechterHoorapparaatMerk->clear();
+    int index = 0;
+    bool itemGevonden = false;
+    for (QSet<QString>::iterator itMerk = merken.begin(); itMerk != merken.end(); ++itMerk, ++index)
+    {
+        m_universum.m_rechterHoorapparaatMerk->addItem(*itMerk);
+        if (*itMerk == value)
+        {
+            m_universum.m_rechterHoorapparaatMerk->setCurrentIndex(index);
+            itemGevonden = true;
+        }
+    }
+    if (! itemGevonden)
+    {
+        m_universum.m_rechterHoorapparaatMerk->addItem(value);
+        m_universum.m_rechterHoorapparaatMerk->setCurrentIndex(index);
+    }
 }
 
 void Dossier::setRechterHoorapparaatType(const QString &value)
 {
-    m_universum.m_rechterHoorapparaatType->lineEdit()->setText(value);
+    QString merk = getRechterHoorapparaatMerk();
+    QSet<QString> types = m_universum.getTypeHoorapparaten(merk);
+    m_universum.m_rechterHoorapparaatType->setEditText(value);
+    int index = 0;
+    bool itemGevonden = false;
+    for (QSet<QString>::iterator itType = types.begin(); itType != types.end(); ++itType, ++index)
+    {
+        m_universum.m_rechterHoorapparaatType->addItem(*itType);
+        if (*itType == value)
+        {
+            m_universum.m_rechterHoorapparaatType->setCurrentIndex(index);
+            itemGevonden = true;
+        }
+    }
+    if (! itemGevonden)
+    {
+        m_universum.m_rechterHoorapparaatType->addItem(value);
+        m_universum.m_rechterHoorapparaatType->setCurrentIndex(index);
+    }
 }
 
 void Dossier::setRechterHoorapparaatSerienummer(const QString &value)
@@ -242,12 +277,47 @@ void Dossier::setRechterHoorapparaatPrijs(double value)
 
 void Dossier::setLinkerHoorapparaatMerk(const QString &value)
 {
-    m_universum.m_linkerHoorapparaatMerk->lineEdit()->setText(value);
+    QSet<QString> merken = m_universum.getMerkHoorapparaten();
+    m_universum.m_linkerHoorapparaatMerk->clear();
+    int index = 0;
+    bool itemGevonden = false;
+    for (QSet<QString>::iterator itMerk = merken.begin(); itMerk != merken.end(); ++itMerk, ++index)
+    {
+        m_universum.m_linkerHoorapparaatMerk->addItem(*itMerk);
+        if (*itMerk == value)
+        {
+            m_universum.m_linkerHoorapparaatMerk->setCurrentIndex(index);
+            itemGevonden = true;
+        }
+    }
+    if (! itemGevonden)
+    {
+        m_universum.m_linkerHoorapparaatMerk->addItem(value);
+        m_universum.m_linkerHoorapparaatMerk->setCurrentIndex(index);
+    }
 }
 
 void Dossier::setLinkerHoorapparaatType(const QString &value)
 {
-    m_universum.m_linkerHoorapparaatType->lineEdit()->setText(value);
+    QString merk = getLinkerHoorapparaatMerk();
+    QSet<QString> types = m_universum.getTypeHoorapparaten(merk);
+    m_universum.m_linkerHoorapparaatType->setEditText(value);
+    int index = 0;
+    bool itemGevonden = false;
+    for (QSet<QString>::iterator itType = types.begin(); itType != types.end(); ++itType, ++index)
+    {
+        m_universum.m_linkerHoorapparaatType->addItem(*itType);
+        if (*itType == value)
+        {
+            m_universum.m_linkerHoorapparaatType->setCurrentIndex(index);
+            itemGevonden = true;
+        }
+    }
+    if (! itemGevonden)
+    {
+        m_universum.m_linkerHoorapparaatType->addItem(value);
+        m_universum.m_linkerHoorapparaatType->setCurrentIndex(index);
+    }
 }
 
 void Dossier::setLinkerHoorapparaatSerienummer(const QString &value)
@@ -296,4 +366,22 @@ void Dossier::toonMeetgegevens()
 void Dossier::toonMutualiteit(int value)
 {
     m_universum.b_mutualiteitBrief->setEnabled(value > 0);
+}
+
+void Dossier::refreshRechterHoorapparaatLijst(int indexMerk)
+{
+    QString merk = m_universum.m_rechterHoorapparaatMerk->itemText(indexMerk);
+    QSet<QString> types = m_universum.getTypeHoorapparaten(merk);
+    m_universum.m_rechterHoorapparaatType->clear();
+    for (QSet<QString>::iterator itType = types.begin(); itType != types.end(); ++itType)
+        m_universum.m_rechterHoorapparaatType->addItem(*itType);
+}
+
+void Dossier::refreshLinkerHoorapparaatLijst(int indexMerk)
+{
+    QString merk = m_universum.m_linkerHoorapparaatMerk->itemText(indexMerk);
+    QSet<QString> types = m_universum.getTypeHoorapparaten(merk);
+    m_universum.m_linkerHoorapparaatType->clear();
+    for (QSet<QString>::iterator itType = types.begin(); itType != types.end(); ++itType)
+        m_universum.m_linkerHoorapparaatType->addItem(*itType);
 }

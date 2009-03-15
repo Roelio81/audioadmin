@@ -26,6 +26,7 @@ Universum::Universum(View::Universum &view, Model::Universum &model)
     connect(&m_view, SIGNAL(klantSelectieSignal(int)), this, SLOT(toonDossier(int)));
     connect(&m_view, SIGNAL(mutualiteitSelectieSignal(int)), this, SLOT(toonMutualiteit(int)));
     refreshArtsenLijst();
+    refreshHoorapparatenLijst();
     refreshKlantenLijst();
     refreshMutualiteitenLijst();
     if (m_model.getArtsen().size() > 0) 
@@ -112,6 +113,19 @@ void Universum::refreshArtsenLijst()
     }
 } 
 
+void Universum::refreshHoorapparatenLijst()
+{
+    m_view.leegHoorapparatenLijst();
+    QVector<Model::Dossier *> &dossiers = m_model.getDossiers();
+    for (QVector<Model::Dossier *>::const_iterator itDossier = dossiers.begin(); itDossier != dossiers.end(); ++itDossier)
+    {
+        Model::Dossier *dossier = *itDossier;
+        Q_ASSERT(dossier);
+        m_view.toevoegenHoorapparaat(dossier->getRechterHoorapparaatMerk(), dossier->getRechterHoorapparaatType());
+        m_view.toevoegenHoorapparaat(dossier->getLinkerHoorapparaatMerk(), dossier->getLinkerHoorapparaatType());
+    }
+}
+
 void Universum::refreshKlantenLijst()
 {
     m_view.leegKlantenLijst();
@@ -141,6 +155,7 @@ void Universum::openen(QString bestandsNaam)
 {
     m_model.openen(bestandsNaam);
     refreshArtsenLijst();
+    refreshHoorapparatenLijst();
     refreshKlantenLijst();
     refreshMutualiteitenLijst();
 }

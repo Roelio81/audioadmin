@@ -75,6 +75,8 @@ namespace View
         void toonFactuur();
         void toonMeetgegevens();
         void toonMutualiteit(int value);
+        void refreshRechterHoorapparaatLijst(int indexMerk);
+        void refreshLinkerHoorapparaatLijst(int indexMerk);
 
     signals:
         void briefArtsTonen();

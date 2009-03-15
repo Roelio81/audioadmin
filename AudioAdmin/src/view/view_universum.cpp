@@ -34,6 +34,8 @@ Universum::Universum(::QWidget *parent, Qt::WFlags f)
     connect(b_mutualiteitToevoegen, SIGNAL(clicked()), this, SLOT(toevoegenMutualiteit()));
     connect(b_mutualiteitVerwijderen, SIGNAL(clicked()), this, SLOT(verwijderenMutualiteit()));
     connect(b_mutualiteitZoeken, SIGNAL(clicked()), this, SLOT(zoekenMutualiteit()));
+    connect(m_rechterHoorapparaatMerk, SIGNAL(currentIndexChanged(int)), &m_dossier, SLOT(refreshRechterHoorapparaatLijst(int)));
+    connect(m_linkerHoorapparaatMerk, SIGNAL(currentIndexChanged(int)), &m_dossier, SLOT(refreshLinkerHoorapparaatLijst(int)));
     connect(m_klantArts, SIGNAL(currentIndexChanged(int)), &m_dossier, SLOT(toonArts(int)));
     connect(m_klantMutualiteit, SIGNAL(currentIndexChanged(int)), &m_dossier, SLOT(toonMutualiteit(int)));
     connect(b_artsBrief, SIGNAL(clicked()), &m_dossier, SLOT(toonBriefArts()));
@@ -149,6 +151,16 @@ void Universum::toevoegenArts(int id, const QString &naam, const QString &straat
     m_dossier.toevoegenArts(id, naam, straat, QString::number(postcode) + " " + gemeente);
 }
 
+void Universum::leegHoorapparatenLijst()
+{
+    m_hoorapparaatMerkToTypes.clear();
+}
+
+void Universum::toevoegenHoorapparaat(const QString &merk, const QString &type)
+{
+    m_hoorapparaatMerkToTypes[merk].insert(type);
+}
+
 void Universum::leegKlantenLijst()
 {
     m_klantenLijst->clearContents();
@@ -220,6 +232,16 @@ int Universum::mutualiteitIndexToId(int index) const
 int Universum::mutualiteitIdToIndex(int id) const
 {
     return m_mutualiteitIdToIndex.value(id, -1);
+}
+
+QSet<QString> Universum::getMerkHoorapparaten() const
+{
+    return m_hoorapparaatMerkToTypes.keys().toSet();
+}
+
+QSet<QString> Universum::getTypeHoorapparaten(const QString &merk) const
+{
+    return m_hoorapparaatMerkToTypes[merk];
 }
 
 void Universum::selecteerArts(int id)
