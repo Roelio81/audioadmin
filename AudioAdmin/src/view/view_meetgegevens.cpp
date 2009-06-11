@@ -7,6 +7,7 @@ Meetgegevens::Meetgegevens(::QWidget *parent)
 {
     setupUi(this);
     connect(b_sluiten, SIGNAL(clicked()), this, SLOT(sluitMeetgegevens()));
+    connect(b_bewaren, SIGNAL(clicked()), this, SLOT(bewaarMeetgegevens()));
     connect(m_tonaleAudiometrieLinks, SIGNAL(wijzigingLGwaarde()), this, SLOT(herberekenGemiddeldVerliesLinks()));
     connect(m_tonaleAudiometrieRechts, SIGNAL(wijzigingLGwaarde()), this, SLOT(herberekenGemiddeldVerliesRechts()));
     connect(m_vocaleAudiometrieZonder, SIGNAL(wijzigingROwaarde()), this, SLOT(herberekenROZonder()));
@@ -350,4 +351,9 @@ void Meetgegevens::herberekenROLOWinst()
 void Meetgegevens::sluitMeetgegevens()
 {
     emit meetgegevensSluiten();
+}
+
+void Meetgegevens::bewaarMeetgegevens()
+{
+    emit meetgegevensBewaren();
 }

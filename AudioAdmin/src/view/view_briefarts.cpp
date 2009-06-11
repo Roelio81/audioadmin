@@ -7,15 +7,11 @@ BriefArts::BriefArts(QWidget *parent)
 {
     setupUi(this);
     connect(b_sluiten, SIGNAL(clicked()), this, SLOT(sluitBriefArts()));
+    connect(b_bewaren, SIGNAL(clicked()), this, SLOT(bewaarBriefArts()));
 }
 
 BriefArts::~BriefArts()
 {
-}
-
-void BriefArts::sluitBriefArts()
-{
-    emit briefArtsSluiten();
 }
 
 void BriefArts::setAudioloogNaam(const QString &value)
@@ -72,4 +68,29 @@ void BriefArts::setTekst(const QString &value)
 void BriefArts::setBesluit(const QString &value)
 {
     m_besluit->setPlainText(value);
+}
+
+QString BriefArts::getPostdatum() const
+{
+    return m_postdatum->text();
+}
+
+QString BriefArts::getTekst() const
+{
+    return m_tekst->toPlainText();
+}
+
+QString BriefArts::getBesluit() const
+{
+    return m_besluit->toPlainText();
+}
+
+void BriefArts::sluitBriefArts()
+{
+    emit briefArtsSluiten();
+}
+
+void BriefArts::bewaarBriefArts()
+{
+    emit briefArtsBewaren();
 }

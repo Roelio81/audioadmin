@@ -49,6 +49,7 @@ namespace View
 
     signals:
         void meetgegevensSluiten();
+        void meetgegevensBewaren();
 
     private slots:
         void herberekenGemiddeldVerliesLinks();
@@ -60,6 +61,7 @@ namespace View
         void herberekenLOMet();
         void herberekenROLOMet();
         void sluitMeetgegevens();
+        void bewaarMeetgegevens();
 
     private:
         void herberekenROWinst();

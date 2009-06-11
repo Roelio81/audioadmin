@@ -143,6 +143,7 @@ void Dossier::setupBriefArts()
     m_briefArts->setBesluit(besluit);
 
     connect(m_briefArts, SIGNAL(briefArtsSluiten()), this, SLOT(briefArtsSluiten()));
+    connect(m_briefArts, SIGNAL(briefArtsBewaren()), this, SLOT(briefArtsBewaren()));
 }
 
 void Dossier::setupBriefKlant()
@@ -296,6 +297,7 @@ void Dossier::setupMeetgegevens()
     m_meetgegevens->setLocalisatieLinks(model.getLocalisatieLinks());
     m_meetgegevens->setLocalisatieBeide(model.getLocalisatieBeide());
     connect(m_meetgegevens, SIGNAL(meetgegevensSluiten()), this, SLOT(meetgegevensSluiten()));
+    connect(m_meetgegevens, SIGNAL(meetgegevensBewaren()), this, SLOT(meetgegevensBewaren()));
 }
 
 void Dossier::briefArtsTonen()
@@ -314,6 +316,14 @@ void Dossier::briefArtsSluiten()
     Q_ASSERT(m_briefArts);
     m_briefArts->close();
     m_briefArts = 0;
+}
+
+void Dossier::briefArtsBewaren()
+{
+    Q_ASSERT(m_briefArts);
+    m_model.setBriefArtsPostdatum(m_briefArts->getPostdatum());
+    m_model.setBriefArtsTekstblok(m_briefArts->getTekst());
+    m_model.setBriefArtsConclusie(m_briefArts->getBesluit());
 }
 
 void Dossier::briefKlantTonen()
@@ -386,4 +396,33 @@ void Dossier::meetgegevensSluiten()
     Q_ASSERT(m_meetgegevens);
     m_meetgegevens->close();
     m_meetgegevens = 0;
+}
+
+void Dossier::meetgegevensBewaren()
+{
+    Q_ASSERT(m_meetgegevens);
+    Model::Meetgegevens &model = m_model.getMeetgegevens();
+    int Hz[] = { 125, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 6000, 8000 };
+    for (int i = 0; i < 11; ++i)
+    {
+        model.setLGRechtsData(Hz[i], m_meetgegevens->getLGRechtsData(Hz[i]));
+        model.setBGRechtsData(Hz[i], m_meetgegevens->getBGRechtsData(Hz[i]));
+        model.setUCLRechtsData(Hz[i], m_meetgegevens->getUCLRechtsData(Hz[i]));
+        model.setLGLinksData(Hz[i], m_meetgegevens->getLGLinksData(Hz[i]));
+        model.setBGLinksData(Hz[i], m_meetgegevens->getBGLinksData(Hz[i]));
+        model.setUCLLinksData(Hz[i], m_meetgegevens->getUCLLinksData(Hz[i]));
+    }
+    for (int i = 0; i < 23; ++i)
+    {
+        model.setROZonderData(5*i, m_meetgegevens->getROZonderData(5*i));
+        model.setLOZonderData(5*i, m_meetgegevens->getLOZonderData(5*i));
+        model.setROLOZonderData(5*i, m_meetgegevens->getROLOZonderData(5*i));
+        model.setROMetData(5*i, m_meetgegevens->getROMetData(5*i));
+        model.setLOMetData(5*i, m_meetgegevens->getLOMetData(5*i));
+        model.setROLOMetData(5*i, m_meetgegevens->getROLOMetData(5*i));
+    }
+    model.setLocalisatieZonder(m_meetgegevens->getLocalisatieZonder());
+    model.setLocalisatieRechts(m_meetgegevens->getLocalisatieRechts());
+    model.setLocalisatieLinks(m_meetgegevens->getLocalisatieLinks());
+    model.setLocalisatieBeide(m_meetgegevens->getLocalisatieBeide());
 }
