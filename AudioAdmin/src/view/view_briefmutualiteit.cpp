@@ -7,15 +7,11 @@ BriefMutualiteit::BriefMutualiteit(QWidget *parent)
 {
     setupUi(this);
     connect(b_sluiten, SIGNAL(clicked()), this, SLOT(sluitBriefMutualiteit()));
+    connect(b_bewaren, SIGNAL(clicked()), this, SLOT(bewaarBriefMutualiteit()));
 }
 
 BriefMutualiteit::~BriefMutualiteit()
 {
-}
-
-void BriefMutualiteit::sluitBriefMutualiteit()
-{
-    emit briefMutualiteitSluiten();
 }
 
 void BriefMutualiteit::setAudioloogNaam(const QString &value)
@@ -72,4 +68,29 @@ void BriefMutualiteit::setTekst(const QString &value)
 void BriefMutualiteit::setBesluit(const QString &value)
 {
     m_besluit->setPlainText(value);
+}
+
+QString BriefMutualiteit::getPostdatum() const
+{
+    return m_postdatum->text();
+}
+
+QString BriefMutualiteit::getTekst() const
+{
+    return m_tekst->toPlainText();
+}
+
+QString BriefMutualiteit::getBesluit() const
+{
+    return m_besluit->toPlainText();
+}
+
+void BriefMutualiteit::sluitBriefMutualiteit()
+{
+    emit briefMutualiteitSluiten();
+}
+
+void BriefMutualiteit::bewaarBriefMutualiteit()
+{
+    emit briefMutualiteitBewaren();
 }

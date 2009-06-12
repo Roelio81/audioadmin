@@ -184,6 +184,7 @@ void Dossier::setupBriefKlant()
     m_briefKlant->setTekst(tekst);
 
     connect(m_briefKlant, SIGNAL(briefKlantSluiten()), this, SLOT(briefKlantSluiten()));
+    connect(m_briefKlant, SIGNAL(briefKlantBewaren()), this, SLOT(briefKlantBewaren()));
 }
 
 void Dossier::setupBriefMutualiteit()
@@ -261,6 +262,7 @@ void Dossier::setupBriefMutualiteit()
     m_briefMutualiteit->setBesluit(besluit);
 
     connect(m_briefMutualiteit, SIGNAL(briefMutualiteitSluiten()), this, SLOT(briefMutualiteitSluiten()));
+    connect(m_briefMutualiteit, SIGNAL(briefMutualiteitBewaren()), this, SLOT(briefMutualiteitBewaren()));
 }
 
 void Dossier::setupFactuur()
@@ -344,6 +346,13 @@ void Dossier::briefKlantSluiten()
     m_briefKlant = 0;
 }
 
+void Dossier::briefKlantBewaren()
+{
+    Q_ASSERT(m_briefKlant);
+    m_model.setBriefKlantPostdatum(m_briefKlant->getPostdatum());
+    m_model.setBriefKlantTekstblok(m_briefKlant->getTekst());
+}
+
 void Dossier::briefMutualiteitTonen()
 {
     if (!m_briefMutualiteit)
@@ -360,6 +369,14 @@ void Dossier::briefMutualiteitSluiten()
     Q_ASSERT(m_briefMutualiteit);
     m_briefMutualiteit->close();
     m_briefMutualiteit = 0;
+}
+
+void Dossier::briefMutualiteitBewaren()
+{
+    Q_ASSERT(m_briefMutualiteit);
+    m_model.setBriefMutualiteitPostdatum(m_briefMutualiteit->getPostdatum());
+    m_model.setBriefMutualiteitTekstblok(m_briefMutualiteit->getTekst());
+    m_model.setBriefMutualiteitConclusie(m_briefMutualiteit->getBesluit());
 }
 
 void Dossier::factuurTonen()

@@ -7,15 +7,11 @@ BriefKlant::BriefKlant(QWidget *parent)
 {
     setupUi(this);
     connect(b_sluiten, SIGNAL(clicked()), this, SLOT(sluitBriefKlant()));
+    connect(b_bewaren, SIGNAL(clicked()), this, SLOT(bewaarBriefKlant()));
 }
 
 BriefKlant::~BriefKlant()
 {
-}
-
-void BriefKlant::sluitBriefKlant()
-{
-    emit briefKlantSluiten();
 }
 
 void BriefKlant::setAudioloogNaam(const QString &value)
@@ -72,4 +68,24 @@ void BriefKlant::setPostdatum(const QString &value)
 void BriefKlant::setTekst(const QString &value)
 {
     m_tekst->setPlainText(value);
+}
+
+QString BriefKlant::getPostdatum() const
+{
+    return m_postdatum->text();
+}
+
+QString BriefKlant::getTekst() const
+{
+    return m_tekst->toPlainText();
+}
+
+void BriefKlant::sluitBriefKlant()
+{
+    emit briefKlantSluiten();
+}
+
+void BriefKlant::bewaarBriefKlant()
+{
+    emit briefKlantBewaren();
 }

@@ -25,11 +25,17 @@ namespace View
         void setTekst(const QString &value);
         void setBesluit(const QString &value);
 
+        QString getPostdatum() const;
+        QString getTekst() const;
+        QString getBesluit() const;
+
     signals:
         void briefMutualiteitSluiten();
+        void briefMutualiteitBewaren();
 
     private slots:
         void sluitBriefMutualiteit();
+        void bewaarBriefMutualiteit();
     };
 }
 

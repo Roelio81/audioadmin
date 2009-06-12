@@ -39,8 +39,10 @@ namespace Presenter
         void briefArtsBewaren();
         void briefKlantTonen();
         void briefKlantSluiten();
+        void briefKlantBewaren();
         void briefMutualiteitTonen();
         void briefMutualiteitSluiten();
+        void briefMutualiteitBewaren();
         void factuurTonen();
         void factuurSluiten();
         void meetgegevensTonen();

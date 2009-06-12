@@ -25,11 +25,16 @@ namespace View
         void setPostdatum(const QString &value);
         void setTekst(const QString &value);
 
+        QString getPostdatum() const;
+        QString getTekst() const;
+
     signals:
         void briefKlantSluiten();
+        void briefKlantBewaren();
 
     private slots:
         void sluitBriefKlant();
+        void bewaarBriefKlant();
     };
 }
 
