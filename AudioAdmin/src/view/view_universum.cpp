@@ -131,9 +131,9 @@ void Universum::omtrent()
 
 void Universum::leegArtsenLijst()
 {
-    m_artsenLijst->clearContents();
     m_artsIdToIndex.clear();
     m_artsIndexToId.clear();
+    m_artsenLijst->clearContents();
     m_dossier.leegArtsenLijst();
 }
 
@@ -163,9 +163,10 @@ void Universum::toevoegenHoorapparaat(const QString &merk, const QString &type)
 
 void Universum::leegKlantenLijst()
 {
-    m_klantenLijst->clearContents();
     m_klantIdToIndex.clear();
     m_klantIndexToId.clear();
+    m_klantenLijst->clearContents();
+    m_klantenLijst->setRowCount(0);
 }
 
 void Universum::toevoegenKlant(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
@@ -183,9 +184,9 @@ void Universum::toevoegenKlant(int id, const QString &naam, const QString &straa
 
 void Universum::leegMutualiteitenLijst()
 {
-    m_mutualiteitenLijst->clearContents();
     m_mutualiteitIdToIndex.clear();
     m_mutualiteitIndexToId.clear();
+    m_mutualiteitenLijst->clearContents();
     m_klantMutualiteit->clear();
     m_klantMutualiteit->addItem("");
 }
@@ -315,6 +316,22 @@ void Universum::toevoegenDossier()
 
 void Universum::verwijderenDossier()
 {
+    int row = m_klantenLijst->currentRow();
+    int column = m_klantenLijst->currentColumn();
+    int id = klantIndexToId(m_klantenLijst->currentRow());
+    emit klantVerwijderenSignal(id);
+    m_klantIdToIndex.remove(id);
+    m_klantIndexToId.clear();
+
+    for (QMap<int, int>::iterator itKlant = m_klantIdToIndex.begin(); itKlant != m_klantIdToIndex.end(); ++itKlant)
+    {
+        if (itKlant.value() > row)
+            itKlant.value() -= 1;
+        m_klantIndexToId[itKlant.value()] = itKlant.key();
+    }
+    m_klantenLijst->removeRow(row);
+    m_klantenLijst->setCurrentCell(row, column);
+    emit klantSelectieSignal(klantIndexToId(row));
 }
 
 void Universum::zoekenDossier()

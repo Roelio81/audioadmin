@@ -77,6 +77,7 @@ namespace View
         void instellingenSignal();
         void artsSelectieSignal(int id);
         void klantSelectieSignal(int id);
+        void klantVerwijderenSignal(int id);
         void mutualiteitSelectieSignal(int id);
         void etikettenSignal();
 

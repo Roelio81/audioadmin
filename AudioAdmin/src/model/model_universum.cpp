@@ -137,6 +137,17 @@ Arts *Universum::getArts(int id)
     return 0;
 }
 
+void Universum::verwijderenDossier(int id)
+{
+    Dossier *dossier = getDossier(id);
+    if (dossier)
+    {
+        int posInVector = m_dossierLijst.indexOf(dossier, 0);
+        Q_ASSERT(posInVector >= 0 && posInVector < m_dossierLijst.size());
+        m_dossierLijst.erase(m_dossierLijst.begin() + posInVector);
+    }
+}
+
 QVector<Dossier *> &Universum::getDossiers()
 {
     return m_dossierLijst;
