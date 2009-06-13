@@ -330,6 +330,78 @@ void Dossier::setLinkerHoorapparaatPrijs(double value)
     m_universum.m_linkerHoorapparaatPrijs->setText(value > 0.0 ? QString::number(value) : "");
 }
 
+void Dossier::setOnderzoekDatum(QDate *value)
+{
+    Q_ASSERT(m_universum.m_datumOnderzoek);
+    m_universum.m_datumOnderzoek->setDate(value ? *value : QDate());
+    Q_ASSERT(m_universum.c_datumOnderzoek);
+    m_universum.c_datumOnderzoek->setChecked(value != 0);
+}
+
+void Dossier::setProefDatum(QDate *value)
+{
+    Q_ASSERT(m_universum.m_datumProef);
+    m_universum.m_datumProef->setDate(value ? *value : QDate());
+    Q_ASSERT(m_universum.c_datumProef);
+    m_universum.c_datumProef->setChecked(value != 0);
+}
+
+void Dossier::setNKORapportDatum(QDate *value)
+{
+    Q_ASSERT(m_universum.m_datumNKO);
+    m_universum.m_datumNKO->setDate(value ? *value : QDate());
+    Q_ASSERT(m_universum.c_datumNKO);
+    m_universum.c_datumNKO->setChecked(value != 0);
+}
+
+void Dossier::setDokterAdviesDatum(QDate *value)
+{
+    Q_ASSERT(m_universum.m_datumAdviseur);
+    m_universum.m_datumAdviseur->setDate(value ? *value : QDate());
+    Q_ASSERT(m_universum.c_datumAdviseur);
+    m_universum.c_datumAdviseur->setChecked(value != 0);
+}
+
+void Dossier::setAkkoordMutualiteitDatum(QDate *value)
+{
+    Q_ASSERT(m_universum.m_datumMutualiteit);
+    m_universum.m_datumMutualiteit->setDate(value ? *value : QDate());
+    Q_ASSERT(m_universum.c_datumMutualiteit);
+    m_universum.c_datumMutualiteit->setChecked(value != 0);
+}
+
+void Dossier::setBetalingDatum(QDate *value)
+{
+    Q_ASSERT(m_universum.m_datumBetaling);
+    m_universum.m_datumBetaling->setDate(value ? *value : QDate());
+    Q_ASSERT(m_universum.c_datumBetaling);
+    m_universum.c_datumBetaling->setChecked(value != 0);
+}
+
+void Dossier::setAfleveringDatum(QDate *value)
+{
+    Q_ASSERT(m_universum.m_datumAflevering);
+    m_universum.m_datumAflevering->setDate(value ? *value : QDate());
+    Q_ASSERT(m_universum.c_datumAflevering);
+    m_universum.c_datumAflevering->setChecked(value != 0);
+}
+
+void Dossier::setWisselDatum(QDate *value)
+{
+    Q_ASSERT(m_universum.m_datumWissel);
+    m_universum.m_datumWissel->setDate(value ? *value : QDate());
+    Q_ASSERT(m_universum.c_datumWissel);
+    m_universum.c_datumWissel->setChecked(value != 0);
+}
+
+void Dossier::setOHKDatum(QDate *value)
+{
+    Q_ASSERT(m_universum.m_datumOHK);
+    m_universum.m_datumOHK->setDate(value ? *value : QDate());
+    Q_ASSERT(m_universum.c_datumOHK);
+    m_universum.c_datumOHK->setChecked(value != 0);
+}
+
 void Dossier::toonArts(int value)
 {
     int artsId = m_universum.artsIndexToId(value - 1);

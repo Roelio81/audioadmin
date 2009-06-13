@@ -44,6 +44,15 @@ namespace View
         QString getLinkerHoorapparaatType() const;
         QString getLinkerHoorapparaatSerienummer() const;
         double getLinkerHoorapparaatPrijs() const;
+        QDate *getOnderzoekDatum() const;
+        QDate *getProefDatum() const;
+        QDate *getNKORapportDatum() const;
+        QDate *getDokterAdviesDatum() const;
+        QDate *getAkkoordMutualiteitDatum() const;
+        QDate *getBetalingDatum() const;
+        QDate *getAfleveringDatum() const;
+        QDate *getWisselDatum() const;
+        QDate *getOHKDatum() const;
 
         void setAanspreektitel(const QString &value);
         void setNaam(const QString &value);
@@ -66,6 +75,15 @@ namespace View
         void setLinkerHoorapparaatType(const QString &value);
         void setLinkerHoorapparaatSerienummer(const QString &value);
         void setLinkerHoorapparaatPrijs(double value);
+        void setOnderzoekDatum(QDate *value);
+        void setProefDatum(QDate *value);
+        void setNKORapportDatum(QDate *value);
+        void setDokterAdviesDatum(QDate *value);
+        void setAkkoordMutualiteitDatum(QDate *value);
+        void setBetalingDatum(QDate *value);
+        void setAfleveringDatum(QDate *value);
+        void setWisselDatum(QDate *value);
+        void setOHKDatum(QDate *value);
 
     public slots:
         void toonArts(int value);

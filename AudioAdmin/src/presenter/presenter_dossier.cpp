@@ -67,6 +67,15 @@ void Dossier::setup()
     m_view.setRechterHoorapparaatType(m_model.getRechterHoorapparaatType());
     m_view.setLinkerHoorapparaatMerk(m_model.getLinkerHoorapparaatMerk());
     m_view.setLinkerHoorapparaatType(m_model.getLinkerHoorapparaatType());
+    m_view.setOnderzoekDatum(m_model.getOnderzoekDatum());
+    m_view.setProefDatum(m_model.getProefDatum());
+    m_view.setNKORapportDatum(m_model.getNKORapportDatum());
+    m_view.setDokterAdviesDatum(m_model.getDokterAdviesDatum());
+    m_view.setAkkoordMutualiteitDatum(m_model.getAkkoordMutualiteitDatum());
+    m_view.setBetalingDatum(m_model.getBetalingDatum());
+    m_view.setAfleveringDatum(m_model.getAfleveringDatum());
+    m_view.setWisselDatum(m_model.getWisselDatum());
+    m_view.setOHKDatum(m_model.getOHKDatum());
 }
 
 void Dossier::setupBriefArts()

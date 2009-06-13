@@ -9,6 +9,14 @@ Dossier::Dossier(int id)
 , m_klant()
 , m_arts(-1)
 , m_mutualiteit(-1)
+, m_proefDatum(0)
+, m_nkoRapportDatum(0)
+, m_dokterAdviesDatum(0)
+, m_akkoordMutualiteitDatum(0)
+, m_betalingDatum(0)
+, m_afleveringDatum(0)
+, m_wisselDatum(0)
+, m_ohkDatum(0)
 {
 }
 
@@ -247,6 +255,51 @@ int Dossier::getAantalHoorapparaten() const
     if (!m_rechterHoorapparaatMerk.isEmpty() || !m_rechterHoorapparaatType.isEmpty()) aantal++;
     if (!m_linkerHoorapparaatMerk.isEmpty() || !m_linkerHoorapparaatType.isEmpty()) aantal++;
     return aantal;
+}
+
+QDate *Dossier::getOnderzoekDatum() const
+{
+    return m_onderzoekDatum;
+}
+
+QDate *Dossier::getProefDatum() const
+{
+    return m_proefDatum;
+}
+
+QDate *Dossier::getNKORapportDatum() const
+{
+    return m_nkoRapportDatum;
+}
+
+QDate *Dossier::getDokterAdviesDatum() const
+{
+    return m_dokterAdviesDatum;
+}
+
+QDate *Dossier::getAkkoordMutualiteitDatum() const
+{
+    return m_akkoordMutualiteitDatum;
+}
+
+QDate *Dossier::getBetalingDatum() const
+{
+    return m_betalingDatum;
+}
+
+QDate *Dossier::getAfleveringDatum() const
+{
+    return m_afleveringDatum;
+}
+
+QDate *Dossier::getWisselDatum() const
+{
+    return m_wisselDatum;
+}
+
+QDate *Dossier::getOHKDatum() const
+{
+    return m_ohkDatum;
 }
 
 void Dossier::setArts(int value)
