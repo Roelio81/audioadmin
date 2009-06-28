@@ -34,7 +34,9 @@ namespace Presenter
         void toonArts(int id);
         void toonDossier(int id);
         void toonMutualiteit(int id);
+        void verwijderArts(int it);
         void verwijderDossier(int it);
+        void verwijderMutualiteit(int it);
 
     private:
         void setupEtiketten();

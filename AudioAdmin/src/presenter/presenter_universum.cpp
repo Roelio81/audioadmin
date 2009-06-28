@@ -23,9 +23,11 @@ Universum::Universum(View::Universum &view, Model::Universum &model)
     connect(&m_view, SIGNAL(etikettenSignal()), this, SLOT(etiketten()));
     connect(&m_view, SIGNAL(instellingenSignal()), this, SLOT(instellingen()));
     connect(&m_view, SIGNAL(artsSelectieSignal(int)), this, SLOT(toonArts(int)));
+    connect(&m_view, SIGNAL(artsVerwijderenSignal(int)), this, SLOT(toonDossier(int)));
     connect(&m_view, SIGNAL(klantSelectieSignal(int)), this, SLOT(toonDossier(int)));
     connect(&m_view, SIGNAL(klantVerwijderenSignal(int)), this, SLOT(verwijderDossier(int)));
     connect(&m_view, SIGNAL(mutualiteitSelectieSignal(int)), this, SLOT(toonMutualiteit(int)));
+    connect(&m_view, SIGNAL(mutualiteitVerwijderenSignal(int)), this, SLOT(verwijderMutualiteit(int)));
     refreshArtsenLijst();
     refreshHoorapparatenLijst();
     refreshKlantenLijst();
@@ -209,6 +211,16 @@ void Universum::toonMutualiteit(int id)
     m_mutualiteitPresenter->setup();
 }
 
+void Universum::verwijderArts(int id)
+{
+    if (m_artsPresenter)
+    {
+        delete m_artsPresenter;
+        m_artsPresenter = 0;
+    }
+    m_model.verwijderenArts(id);
+}
+
 void Universum::verwijderDossier(int id)
 {
     if (m_dossierPresenter)
@@ -217,4 +229,14 @@ void Universum::verwijderDossier(int id)
         m_dossierPresenter = 0;
     }
     m_model.verwijderenDossier(id);
+}
+
+void Universum::verwijderMutualiteit(int id)
+{
+    if (m_mutualiteitPresenter)
+    {
+        delete m_mutualiteitPresenter;
+        m_mutualiteitPresenter = 0;
+    }
+    m_model.verwijderenMutualiteit(id);
 }

@@ -122,6 +122,17 @@ Instellingen *Universum::getInstellingen()
     return m_instellingen;
 }
 
+void Universum::verwijderenArts(int id)
+{
+    Arts *arts = getArts(id);
+    if (arts)
+    {
+        int posInVector = m_artsenLijst.indexOf(arts, 0);
+        Q_ASSERT(posInVector >= 0 && posInVector < m_artsenLijst.size());
+        m_artsenLijst.erase(m_artsenLijst.begin() + posInVector);
+    }
+}
+
 QVector<Arts *> &Universum::getArtsen()
 {
     return m_artsenLijst;
@@ -161,6 +172,17 @@ Dossier *Universum::getDossier(int id)
         if (dossier->getId() == id) return dossier;
     }
     return 0;
+}
+
+void Universum::verwijderenMutualiteit(int id)
+{
+    Mutualiteit *mutualiteit = getMutualiteit(id);
+    if (mutualiteit)
+    {
+        int posInVector = m_mutualiteitenLijst.indexOf(mutualiteit, 0);
+        Q_ASSERT(posInVector >= 0 && posInVector < m_mutualiteitenLijst.size());
+        m_mutualiteitenLijst.erase(m_mutualiteitenLijst.begin() + posInVector);
+    }
 }
 
 QVector<Mutualiteit *> &Universum::getMutualiteiten()

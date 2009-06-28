@@ -76,9 +76,11 @@ namespace View
         void restoreSignal(QString bestandsNaam);
         void instellingenSignal();
         void artsSelectieSignal(int id);
+        void artsVerwijderenSignal(int id);
         void klantSelectieSignal(int id);
         void klantVerwijderenSignal(int id);
         void mutualiteitSelectieSignal(int id);
+        void mutualiteitVerwijderenSignal(int id);
         void etikettenSignal();
 
     private:

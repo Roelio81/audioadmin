@@ -300,6 +300,22 @@ void Universum::toevoegenArts()
 
 void Universum::verwijderenArts()
 {
+    int row = m_artsenLijst->currentRow();
+    int column = m_artsenLijst->currentColumn();
+    int id = artsIndexToId(m_artsenLijst->currentRow());
+    emit artsVerwijderenSignal(id);
+    m_artsIdToIndex.remove(id);
+    m_artsIndexToId.clear();
+
+    for (QMap<int, int>::iterator itArts = m_artsIdToIndex.begin(); itArts != m_artsIdToIndex.end(); ++itArts)
+    {
+        if (itArts.value() > row)
+            itArts.value() -= 1;
+        m_artsIndexToId[itArts.value()] = itArts.key();
+    }
+    m_artsenLijst->removeRow(row);
+    m_artsenLijst->setCurrentCell(row, column);
+    emit artsSelectieSignal(artsIndexToId(row));
 }
 
 void Universum::zoekenArts()
@@ -348,6 +364,22 @@ void Universum::toevoegenMutualiteit()
 
 void Universum::verwijderenMutualiteit()
 {
+    int row = m_mutualiteitenLijst->currentRow();
+    int column = m_mutualiteitenLijst->currentColumn();
+    int id = mutualiteitIndexToId(m_mutualiteitenLijst->currentRow());
+    emit mutualiteitVerwijderenSignal(id);
+    m_mutualiteitIdToIndex.remove(id);
+    m_mutualiteitIndexToId.clear();
+
+    for (QMap<int, int>::iterator itMutualiteit = m_mutualiteitIdToIndex.begin(); itMutualiteit != m_mutualiteitIdToIndex.end(); ++itMutualiteit)
+    {
+        if (itMutualiteit.value() > row)
+            itMutualiteit.value() -= 1;
+        m_mutualiteitIndexToId[itMutualiteit.value()] = itMutualiteit.key();
+    }
+    m_mutualiteitenLijst->removeRow(row);
+    m_mutualiteitenLijst->setCurrentCell(row, column);
+    emit mutualiteitSelectieSignal(mutualiteitIndexToId(row));
 }
 
 void Universum::zoekenMutualiteit()
