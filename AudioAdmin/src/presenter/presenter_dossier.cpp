@@ -78,6 +78,37 @@ void Dossier::setup()
     m_view.setOHKDatum(m_model.getOHKDatum());
 }
 
+void Dossier::bewaren()
+{
+    Model::Klant &klantModel = m_model.getKlant();
+    klantModel.setAanspreektitel(m_view.getAanspreektitel());
+    klantModel.setNaam(m_view.getNaam());
+    klantModel.setVoornaam(m_view.getVoornaam());
+    klantModel.setStraat(m_view.getStraat());
+    klantModel.setPostcode(m_view.getPostcode());
+    klantModel.setGemeente(m_view.getGemeente());
+    klantModel.setTelefoon(m_view.getTelefoon());
+    klantModel.setGeboorteDatum(m_view.getGeboorteDatum());
+    klantModel.setOpmerkingen(m_view.getOpmerkingen());
+    m_model.setMutualiteit(m_view.getMutualiteit());
+    m_model.setAansluitingsnummer(m_view.getAansluitingsnummer());
+    m_model.setPlaatsAanpassing(m_view.getPlaatsAanpassing());
+    m_model.setArts(m_view.getArts());
+    m_model.setRechterHoorapparaatMerk(m_view.getRechterHoorapparaatMerk());
+    m_model.setRechterHoorapparaatType(m_view.getRechterHoorapparaatType());
+    m_model.setLinkerHoorapparaatMerk(m_view.getLinkerHoorapparaatMerk());
+    m_model.setLinkerHoorapparaatType(m_view.getLinkerHoorapparaatType());
+    m_model.setOnderzoekDatum(m_view.getOnderzoekDatum());
+    m_model.setProefDatum(m_view.getProefDatum());
+    m_model.setNKORapportDatum(m_view.getNKORapportDatum());
+    m_model.setDokterAdviesDatum(m_view.getDokterAdviesDatum());
+    m_model.setAkkoordMutualiteitDatum(m_view.getAkkoordMutualiteitDatum());
+    m_model.setBetalingDatum(m_view.getBetalingDatum());
+    m_model.setAfleveringDatum(m_view.getAfleveringDatum());
+    m_model.setWisselDatum(m_view.getWisselDatum());
+    m_model.setOHKDatum(m_view.getOHKDatum());
+}
+
 void Dossier::setupBriefArts()
 {
     bool klantIsMan = (m_model.getKlant().getAanspreektitel() == "Dhr.");

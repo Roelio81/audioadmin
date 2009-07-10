@@ -149,6 +149,70 @@ double Dossier::getLinkerHoorapparaatPrijs() const
     return m_universum.m_linkerHoorapparaatPrijs->text().toDouble();
 }
 
+
+QDate *Dossier::getOnderzoekDatum() const
+{
+    Q_ASSERT(m_universum.m_datumOnderzoek);
+    Q_ASSERT(m_universum.c_datumOnderzoek);
+    return (m_universum.c_datumOnderzoek->isChecked()) ? new QDate(m_universum.m_datumOnderzoek->date()) : 0;
+}
+
+QDate *Dossier::getProefDatum() const
+{
+    Q_ASSERT(m_universum.m_datumProef);
+    Q_ASSERT(m_universum.c_datumProef);
+    return (m_universum.c_datumProef->isChecked()) ? new QDate(m_universum.m_datumProef->date()) : 0;
+}
+
+QDate *Dossier::getNKORapportDatum() const
+{
+    Q_ASSERT(m_universum.m_datumNKO);
+    Q_ASSERT(m_universum.c_datumNKO);
+    return (m_universum.c_datumNKO->isChecked()) ? new QDate(m_universum.m_datumNKO->date()) : 0;
+}
+
+QDate *Dossier::getDokterAdviesDatum() const
+{
+    Q_ASSERT(m_universum.m_datumAdviseur);
+    Q_ASSERT(m_universum.c_datumAdviseur);
+    return (m_universum.c_datumAdviseur->isChecked()) ? new QDate(m_universum.m_datumAdviseur->date()) : 0;
+}
+
+QDate *Dossier::getAkkoordMutualiteitDatum() const
+{
+    Q_ASSERT(m_universum.m_datumMutualiteit);
+    Q_ASSERT(m_universum.c_datumMutualiteit);
+    return (m_universum.c_datumMutualiteit->isChecked()) ? new QDate(m_universum.m_datumMutualiteit->date()) : 0;
+}
+
+QDate *Dossier::getBetalingDatum() const
+{
+    Q_ASSERT(m_universum.m_datumBetaling);
+    Q_ASSERT(m_universum.c_datumBetaling);
+    return (m_universum.c_datumBetaling->isChecked()) ? new QDate(m_universum.m_datumBetaling->date()) : 0;
+}
+
+QDate *Dossier::getAfleveringDatum() const
+{
+    Q_ASSERT(m_universum.m_datumAflevering);
+    Q_ASSERT(m_universum.c_datumAflevering);
+    return (m_universum.c_datumAflevering->isChecked()) ? new QDate(m_universum.m_datumAflevering->date()) : 0;
+}
+
+QDate *Dossier::getWisselDatum() const
+{
+    Q_ASSERT(m_universum.m_datumWissel);
+    Q_ASSERT(m_universum.c_datumWissel);
+    return (m_universum.c_datumWissel->isChecked()) ? new QDate(m_universum.m_datumWissel->date()) : 0;
+}
+
+QDate *Dossier::getOHKDatum() const
+{
+    Q_ASSERT(m_universum.m_datumOHK);
+    Q_ASSERT(m_universum.c_datumOHK);
+    return (m_universum.c_datumOHK->isChecked()) ? new QDate(m_universum.m_datumOHK->date()) : 0;
+}
+
 void Dossier::setAanspreektitel(const QString &value)
 {
     int index = m_universum.m_aanspreektitel->findText(value);

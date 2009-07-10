@@ -401,3 +401,48 @@ void Dossier::setLinkerHoorapparaatPrijs(double value)
 {
     m_linkerHoorapparaatPrijs = value;
 }
+
+void Dossier::setOnderzoekDatum(QDate *value)
+{
+    m_onderzoekDatum = value;
+}
+
+void Dossier::setProefDatum(QDate *value)
+{
+    m_proefDatum = value;
+}
+
+void Dossier::setNKORapportDatum(QDate *value)
+{
+    m_nkoRapportDatum = value;
+}
+
+void Dossier::setDokterAdviesDatum(QDate *value)
+{
+    m_dokterAdviesDatum = value;
+}
+
+void Dossier::setAkkoordMutualiteitDatum(QDate *value)
+{
+    m_akkoordMutualiteitDatum = value;
+}
+
+void Dossier::setBetalingDatum(QDate *value)
+{
+    m_betalingDatum = value;
+}
+
+void Dossier::setAfleveringDatum(QDate *value)
+{
+    m_afleveringDatum = value;
+}
+
+void Dossier::setWisselDatum(QDate *value)
+{
+    m_wisselDatum = value;
+}
+
+void Dossier::setOHKDatum(QDate *value)
+{
+    m_ohkDatum = value;
+}

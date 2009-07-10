@@ -34,6 +34,7 @@ namespace Presenter
         void setup();
 
     private slots:
+        void bewaren();
         void briefArtsTonen();
         void briefArtsSluiten();
         void briefArtsBewaren();
