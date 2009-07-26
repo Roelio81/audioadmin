@@ -20,6 +20,9 @@ namespace Model
         Universum(const QString &bestandsNaam);
         virtual ~Universum();
 
+        void fromDomElement(const QDomElement &root);
+        QDomElement toDomElement() const;
+
         bool openen();
         bool openen(const QString &bestandsNaam);
         bool bewaren();

@@ -10,6 +10,7 @@
 #include <QDomNode>
 #include <QFile>
 #include <QIODevice>
+#include <QTextStream>
 
 using namespace Model;
 
@@ -24,27 +25,8 @@ Universum::~Universum()
 {
 }
 
-bool Universum::openen()
+void Universum::fromDomElement(const QDomElement &root)
 {
-    // Eerst het bestand proberen te openen alvorens het model leeg te maken
-    QFile file(m_bestandsNaam);
-    if (!file.open(QIODevice::ReadOnly))
-    {
-        return false;
-    }
-
-    m_artsenLijst.clear();
-    m_mutualiteitenLijst.clear();
-    m_dossierLijst.clear();
-
-    QDomDocument doc;
-    if (!doc.setContent(&file))
-    {
-        return false;
-    }
-    QDomElement root = doc.documentElement();
-    Q_ASSERT( root.tagName() == "administratie");
-	
     for (QDomElement e = root.firstChildElement(); !e.isNull(); e = e.nextSiblingElement())
     {
         if (e.tagName() == "instellingen")
@@ -89,12 +71,42 @@ bool Universum::openen()
             }
         }
     }
+}
+
+QDomElement Universum::toDomElement() const
+{
+    QDomElement result;
+    return result;
+}
+
+bool Universum::openen()
+{
+    // Eerst het bestand proberen te openen alvorens het model leeg te maken
+    QFile file(m_bestandsNaam);
+    if (!file.open(QIODevice::ReadOnly))
+    {
+        return false;
+    }
+
+    m_artsenLijst.clear();
+    m_mutualiteitenLijst.clear();
+    m_dossierLijst.clear();
+
+    QDomDocument doc;
+    if (!doc.setContent(&file))
+    {
+        return false;
+    }
+    QDomElement root = doc.documentElement();
+    Q_ASSERT( root.tagName() == "administratie");
+
+    fromDomElement(root);
     return true;
 }
 
 bool Universum::openen(const QString &bestandsNaam)
 {
-    const ::QString &origNaam = m_bestandsNaam;
+    const QString &origNaam = m_bestandsNaam;
     m_bestandsNaam = bestandsNaam;
     bool succes = openen();
     m_bestandsNaam = origNaam;
@@ -103,6 +115,22 @@ bool Universum::openen(const QString &bestandsNaam)
 
 bool Universum::bewaren()
 {
+    QFile file(m_bestandsNaam);
+    if (!file.open(QIODevice::ReadWrite|QIODevice::Truncate))
+    {
+        return false;
+    }
+
+    QDomElement element = toDomElement();
+    element.text();
+    QDomDocument doc;
+    if (!doc.setContent(element.text()))
+    {
+        return false;
+    }
+
+    QTextStream ts(&file);
+    doc.save(ts, 0);
     return true;
 }
 
