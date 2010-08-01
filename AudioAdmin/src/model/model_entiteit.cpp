@@ -5,6 +5,7 @@
 using namespace Model;
 
 Entiteit::Entiteit()
+: m_postcode(1000)
 {
 }
 

@@ -34,9 +34,12 @@ namespace Presenter
         void toonArts(int id);
         void toonDossier(int id);
         void toonMutualiteit(int id);
-        void verwijderArts(int it);
-        void verwijderDossier(int it);
-        void verwijderMutualiteit(int it);
+        void verwijderArts(int id);
+        void verwijderDossier(int id);
+        void verwijderMutualiteit(int id);
+        void toevoegenArts(QString voornaam, QString naam);
+        void toevoegenDossier(QString voornaam, QString naam);
+        void toevoegenMutualiteit(QString naam);
 
     private:
         void setupEtiketten();

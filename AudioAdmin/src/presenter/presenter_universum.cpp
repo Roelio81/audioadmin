@@ -24,10 +24,13 @@ Universum::Universum(View::Universum &view, Model::Universum &model)
     connect(&m_view, SIGNAL(instellingenSignal()), this, SLOT(instellingen()));
     connect(&m_view, SIGNAL(artsSelectieSignal(int)), this, SLOT(toonArts(int)));
     connect(&m_view, SIGNAL(artsVerwijderenSignal(int)), this, SLOT(toonDossier(int)));
+    connect(&m_view, SIGNAL(artsToevoegenSignal(QString, QString)), this, SLOT(toevoegenArts(QString, QString)));
     connect(&m_view, SIGNAL(klantSelectieSignal(int)), this, SLOT(toonDossier(int)));
     connect(&m_view, SIGNAL(klantVerwijderenSignal(int)), this, SLOT(verwijderDossier(int)));
+    connect(&m_view, SIGNAL(klantToevoegenSignal(QString, QString)), this, SLOT(toevoegenDossier(QString, QString)));
     connect(&m_view, SIGNAL(mutualiteitSelectieSignal(int)), this, SLOT(toonMutualiteit(int)));
     connect(&m_view, SIGNAL(mutualiteitVerwijderenSignal(int)), this, SLOT(verwijderMutualiteit(int)));
+    connect(&m_view, SIGNAL(mutualiteitToevoegenSignal(QString)), this, SLOT(toevoegenMutualiteit(QString)));
     refreshArtsenLijst();
     refreshHoorapparatenLijst();
     refreshKlantenLijst();
@@ -239,4 +242,29 @@ void Universum::verwijderMutualiteit(int id)
         m_mutualiteitPresenter = 0;
     }
     m_model.verwijderenMutualiteit(id);
+}
+
+void Universum::toevoegenArts(QString voornaam, QString naam)
+{
+    Model::Arts *arts = m_model.toevoegenArts(voornaam, naam);
+    Q_ASSERT(arts);
+    m_view.toevoegenArts(arts->getId(), arts->getNaam() + " " + arts->getVoornaam(), arts->getStraat(), arts->getPostcode(), arts->getGemeente());
+    m_view.selecteerArts(arts->getId());
+}
+
+void Universum::toevoegenDossier(QString voornaam, QString naam)
+{
+    Model::Dossier *dossier = m_model.toevoegenDossier(voornaam, naam);
+    Q_ASSERT(dossier);
+    const Model::Klant &klant = dossier->getKlant();
+    m_view.toevoegenKlant(dossier->getId(), klant.getNaam() + " " + klant.getVoornaam(), klant.getStraat(), klant.getPostcode(), klant.getGemeente());
+    m_view.selecteerKlant(dossier->getId());
+}
+
+void Universum::toevoegenMutualiteit(QString naam)
+{
+    Model::Mutualiteit *mutualiteit = m_model.toevoegenMutualiteit(naam);
+    Q_ASSERT(mutualiteit);
+    m_view.toevoegenMutualiteit(mutualiteit->getId(), mutualiteit->getNaam(), mutualiteit->getStraat(), mutualiteit->getPostcode(), mutualiteit->getGemeente());
+    m_view.selecteerMutualiteit(mutualiteit->getId());
 }

@@ -7,7 +7,10 @@ FORMS = ui/briefarts.ui \
  ui/factuur.ui \
  ui/instellingen.ui \
  ui/meetgegevens.ui \
- ui/universum.ui
+ ui/universum.ui \
+    ui/toevoegenklant.ui \
+    ui/toevoegenarts.ui \
+    ui/toevoegenmutualiteit.ui
 HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
  ../AudioPlugin/src/vocaleaudiometriewidget.h \
  src/model/model_arts.h \
@@ -33,7 +36,10 @@ HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
  src/view/view_instellingen.h \
  src/view/view_meetgegevens.h \
  src/view/view_mutualiteit.h \
- src/view/view_universum.h
+ src/view/view_universum.h \
+    src/view/view_toevoegenklant.h \
+    src/view/view_toevoegenarts.h \
+    src/view/view_toevoegenmutualiteit.h
 MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml
@@ -64,6 +70,9 @@ SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
  src/view/view_instellingen.cpp \
  src/view/view_meetgegevens.cpp \
  src/view/view_mutualiteit.cpp \
- src/view/view_universum.cpp
+ src/view/view_universum.cpp \
+    src/view/view_toevoegenklant.cpp \
+    src/view/view_toevoegenarts.cpp \
+    src/view/view_toevoegenmutualiteit.cpp
 TEMPLATE = app
 UI_DIR = build

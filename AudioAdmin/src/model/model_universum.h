@@ -28,17 +28,17 @@ namespace Model
         bool bewaren();
         bool bewaren(const QString &bestandsNaam);
 
-        void toevoegenArts(Arts *arts);
+        Arts *toevoegenArts(const QString &voornaam, const QString &naam);
         void verwijderenArts(int id);
         QVector<Arts *> &getArtsen();
         Arts *getArts(int id);
 
-        void toevoegenDossier(Dossier *dossier);
+        Dossier *toevoegenDossier(const QString &voornaam, const QString &naam);
         void verwijderenDossier(int id);
         QVector<Dossier *> &getDossiers();
         Dossier *getDossier(int klantId);
 
-        void toevoegenMutualiteit(Mutualiteit *mutualiteit);
+        Mutualiteit *toevoegenMutualiteit(const QString &naam);
         void verwijderenMutualiteit(int id);
         QVector<Mutualiteit *> &getMutualiteiten();
         Mutualiteit *getMutualiteit(int id);

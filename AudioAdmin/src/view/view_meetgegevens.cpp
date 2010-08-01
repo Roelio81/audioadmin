@@ -5,6 +5,7 @@ using namespace View;
 Meetgegevens::Meetgegevens(::QWidget *parent) 
 : QDialog(parent)
 {
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setupUi(this);
     connect(b_sluiten, SIGNAL(clicked()), this, SLOT(sluitMeetgegevens()));
     connect(b_bewaren, SIGNAL(clicked()), this, SLOT(bewaarMeetgegevens()));

@@ -77,10 +77,13 @@ namespace View
         void instellingenSignal();
         void artsSelectieSignal(int id);
         void artsVerwijderenSignal(int id);
+        void artsToevoegenSignal(QString voornaam, QString naam);
         void klantSelectieSignal(int id);
         void klantVerwijderenSignal(int id);
+        void klantToevoegenSignal(QString voornaam, QString naam);
         void mutualiteitSelectieSignal(int id);
         void mutualiteitVerwijderenSignal(int id);
+        void mutualiteitToevoegenSignal(QString naam);
         void etikettenSignal();
 
     private:

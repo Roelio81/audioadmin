@@ -5,6 +5,7 @@ using namespace View;
 BriefMutualiteit::BriefMutualiteit(QWidget *parent) 
 : QDialog(parent)
 {
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setupUi(this);
     connect(b_sluiten, SIGNAL(clicked()), this, SLOT(sluitBriefMutualiteit()));
     connect(b_bewaren, SIGNAL(clicked()), this, SLOT(bewaarBriefMutualiteit()));

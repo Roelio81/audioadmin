@@ -5,6 +5,7 @@ using namespace View;
 Etiketten::Etiketten(::QWidget *parent) 
 : QDialog(parent)
 {
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setupUi(this);
     Q_ASSERT(m_plaats);
     m_plaats->setInsertPolicy(QComboBox::InsertAlphabetically);

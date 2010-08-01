@@ -1,4 +1,7 @@
 #include "view_universum.h"
+#include "view_toevoegenarts.h"
+#include "view_toevoegenklant.h"
+#include "view_toevoegenmutualiteit.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -126,7 +129,7 @@ void Universum::omtrent()
 {
     QMessageBox::about(this, "Omtrent AudioAdmin", "<p>AudioAdmin 2.0</p>"
         "<p>Vrijgegeven onder de GPL licentie, versie 3</p>"
-        "<p>Februari 2009</p>");
+        "<p>Juni 2010</p>");
 }
 
 void Universum::leegArtsenLijst()
@@ -296,6 +299,9 @@ void Universum::bewarenArts()
 
 void Universum::toevoegenArts()
 {
+    ToevoegenArts dialog(this);
+    if (dialog.exec() == QDialog::Accepted)
+        emit artsToevoegenSignal(dialog.getVoornaam(), dialog.getNaam());
 }
 
 void Universum::verwijderenArts()
@@ -328,6 +334,9 @@ void Universum::bewarenDossier()
 
 void Universum::toevoegenDossier()
 {
+    ToevoegenKlant dialog(this);
+    if (dialog.exec() == QDialog::Accepted)
+        emit klantToevoegenSignal(dialog.getVoornaam(), dialog.getNaam());
 }
 
 void Universum::verwijderenDossier()
@@ -360,6 +369,9 @@ void Universum::bewarenMutualiteit()
 
 void Universum::toevoegenMutualiteit()
 {
+    ToevoegenMutualiteit dialog(this);
+    if (dialog.exec() == QDialog::Accepted)
+        emit mutualiteitToevoegenSignal(dialog.getNaam());
 }
 
 void Universum::verwijderenMutualiteit()

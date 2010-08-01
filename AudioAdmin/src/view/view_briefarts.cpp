@@ -5,6 +5,7 @@ using namespace View;
 BriefArts::BriefArts(QWidget *parent) 
 : QDialog(parent)
 {
+    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setupUi(this);
     connect(b_sluiten, SIGNAL(clicked()), this, SLOT(sluitBriefArts()));
     connect(b_bewaren, SIGNAL(clicked()), this, SLOT(bewaarBriefArts()));

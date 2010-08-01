@@ -150,6 +150,21 @@ Instellingen *Universum::getInstellingen()
     return m_instellingen;
 }
 
+Arts *Universum::toevoegenArts(const QString &voornaam, const QString &naam)
+{
+    int maxId = 0;
+    for (QVector<Arts *>::iterator itArts = m_artsenLijst.begin(); itArts != m_artsenLijst.end(); ++itArts)
+    {
+        Arts *arts = *itArts;
+        maxId = std::max(maxId, arts->getId());
+    }
+    Arts *arts = new Arts(maxId+1);
+    arts->setVoornaam(voornaam);
+    arts->setNaam(naam);
+    m_artsenLijst.push_back(arts);
+    return arts;
+}
+
 void Universum::verwijderenArts(int id)
 {
     Arts *arts = getArts(id);
@@ -176,6 +191,22 @@ Arts *Universum::getArts(int id)
     return 0;
 }
 
+
+Dossier *Universum::toevoegenDossier(const QString &voornaam, const QString &naam)
+{
+    int maxId = 0;
+    for (QVector<Dossier *>::iterator itDossier = m_dossierLijst.begin(); itDossier != m_dossierLijst.end(); ++itDossier)
+    {
+        Dossier *dossier = *itDossier;
+        maxId = std::max(maxId, dossier->getId());
+    }
+    Dossier *dossier = new Dossier(maxId+1);
+    dossier->getKlant().setVoornaam(voornaam);
+    dossier->getKlant().setNaam(naam);
+    m_dossierLijst.push_back(dossier);
+    return dossier;
+}
+
 void Universum::verwijderenDossier(int id)
 {
     Dossier *dossier = getDossier(id);
@@ -200,6 +231,20 @@ Dossier *Universum::getDossier(int id)
         if (dossier->getId() == id) return dossier;
     }
     return 0;
+}
+
+Mutualiteit *Universum::toevoegenMutualiteit(const QString &naam)
+{
+    int maxId = 0;
+    for (QVector<Mutualiteit *>::iterator itMutualiteit = m_mutualiteitenLijst.begin(); itMutualiteit != m_mutualiteitenLijst.end(); ++itMutualiteit)
+    {
+        Mutualiteit *mutualiteit = *itMutualiteit;
+        maxId = std::max(maxId, mutualiteit->getId());
+    }
+    Mutualiteit *mutualiteit = new Mutualiteit(maxId+1);
+    mutualiteit->setNaam(naam);
+    m_mutualiteitenLijst.push_back(mutualiteit);
+    return mutualiteit;
 }
 
 void Universum::verwijderenMutualiteit(int id)
