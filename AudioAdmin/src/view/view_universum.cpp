@@ -17,11 +17,11 @@ Universum::Universum(::QWidget *parent, Qt::WFlags f)
 , m_instellingen(this)
 {
     setupUi(this);
-    connect(actionEtiketten_afdrukken, SIGNAL(activated()), this, SLOT(etikettenAfdrukken()));
-    connect(actionBackup_maken, SIGNAL(activated()), this, SLOT(backup()));
-    connect(actionBackup_terugzetten, SIGNAL(activated()), this, SLOT(restore()));
-    connect(actionInstellingen_wijzigen, SIGNAL(activated()), this, SLOT(instellingen()));
-    connect(actionOmtrent, SIGNAL(activated()), this, SLOT(omtrent()));
+    connect(actionEtiketten_afdrukken, SIGNAL(triggered()), this, SLOT(etikettenAfdrukken()));
+    connect(actionBackup_maken, SIGNAL(triggered()), this, SLOT(backup()));
+    connect(actionBackup_terugzetten, SIGNAL(triggered()), this, SLOT(restore()));
+    connect(actionInstellingen_wijzigen, SIGNAL(triggered()), this, SLOT(instellingen()));
+    connect(actionOmtrent, SIGNAL(triggered()), this, SLOT(omtrent()));
     connect(m_artsenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerArts(int, int, int, int)));
     connect(m_klantenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerKlant(int, int, int, int)));
     connect(m_mutualiteitenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerMutualiteit(int, int, int, int)));

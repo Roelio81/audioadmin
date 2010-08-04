@@ -1546,7 +1546,7 @@
  <connections>
   <connection>
    <sender>actionAfsluiten</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>Universum</receiver>
    <slot>close()</slot>
    <hints>
