@@ -758,8 +758,13 @@
            <bool>true</bool>
           </property>
           <property name="columnCount">
-           <number>4</number>
+           <number>5</number>
           </property>
+          <column>
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
           <column>
            <property name="text">
             <string>Naam</string>
@@ -1055,8 +1060,13 @@
            <bool>true</bool>
           </property>
           <property name="columnCount">
-           <number>4</number>
+           <number>5</number>
           </property>
+          <column>
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
           <column>
            <property name="text">
             <string>Naam</string>
@@ -1339,8 +1349,13 @@
            <bool>true</bool>
           </property>
           <property name="columnCount">
-           <number>4</number>
+           <number>5</number>
           </property>
+          <column>
+           <property name="text">
+            <string>ID</string>
+           </property>
+          </column>
           <column>
            <property name="text">
             <string>Naam</string>
@@ -1459,7 +1474,7 @@
      <x>0</x>
      <y>0</y>
      <width>1054</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuBestand">

@@ -30,7 +30,7 @@ void Dossier::toevoegenAanspreektitel(const QString &value)
 void Dossier::leegArtsenLijst()
 {
     m_universum.m_klantArts->clear();
-    m_universum.m_klantArts->addItem("");
+    m_universum.m_klantArts->addItem("", QVariant(-1));
     m_universum.l_klantArtsStraat->setText("");
     m_universum.l_klantArtsGemeente->setText("");
     m_artsIdToStraat.clear();
@@ -39,7 +39,7 @@ void Dossier::leegArtsenLijst()
 
 void Dossier::toevoegenArts(int id, const QString &naam, const QString &straat, const QString &gemeente)
 {
-    m_universum.m_klantArts->addItem(naam);
+    m_universum.m_klantArts->addItem(naam, QVariant(id));
     m_artsIdToStraat[id] = straat;
     m_artsIdToGemeente[id] = gemeente;
 }
@@ -86,7 +86,7 @@ QDate Dossier::getGeboorteDatum() const
 
 int Dossier::getMutualiteit() const
 {
-    return m_universum.mutualiteitIndexToId(m_universum.m_klantMutualiteit->currentIndex() - 1);
+    return m_universum.m_klantMutualiteit->itemData(m_universum.m_klantMutualiteit->currentIndex()).toInt();
 }
 
 QString Dossier::getAansluitingsnummer() const
@@ -106,7 +106,7 @@ QString Dossier::getOpmerkingen() const
 
 int Dossier::getArts() const
 {
-    return m_universum.artsIndexToId(m_universum.m_klantArts->currentIndex() - 1);
+    return m_universum.m_klantArts->itemData(m_universum.m_klantArts->currentIndex()).toInt();
 }
 
 QString Dossier::getRechterHoorapparaatMerk() const
@@ -259,8 +259,19 @@ void Dossier::setGeboorteDatum(const QDate &value)
 
 void Dossier::setMutualiteit(int value)
 {
-    m_universum.m_klantMutualiteit->setCurrentIndex(m_universum.mutualiteitIdToIndex(value) + 1);
-    m_universum.b_mutualiteitBrief->setEnabled(value >= 0);
+    for (int index = 0; index < m_universum.m_klantMutualiteit->count(); ++index)
+    {
+        int id = m_universum.m_klantMutualiteit->itemData(index).toInt();
+        if (id == value)
+        {
+            m_universum.m_klantMutualiteit->setCurrentIndex(index);
+            m_universum.b_mutualiteitBrief->setEnabled(true);
+            return;
+        }
+    }
+
+    m_universum.m_klantMutualiteit->setCurrentIndex(0);
+    m_universum.b_mutualiteitBrief->setEnabled(false);
 }
 
 void Dossier::setAansluitingsnummer(const QString &value)
@@ -280,8 +291,19 @@ void Dossier::setOpmerkingen(const QString &value)
 
 void Dossier::setArts(int value)
 {
-    m_universum.m_klantArts->setCurrentIndex(m_universum.artsIdToIndex(value) + 1);
-    m_universum.b_artsBrief->setEnabled(value >= 0);
+    for (int index = 0; index < m_universum.m_klantArts->count(); ++index)
+    {
+        int id = m_universum.m_klantArts->itemData(index).toInt();
+        if (id == value)
+        {
+            m_universum.m_klantArts->setCurrentIndex(index);
+            m_universum.b_artsBrief->setEnabled(true);
+            return;
+        }
+    }
+
+    m_universum.m_klantArts->setCurrentIndex(0);
+    m_universum.b_artsBrief->setEnabled(false);
 }
 
 void Dossier::setRechterHoorapparaatMerk(const QString &value)
@@ -468,7 +490,7 @@ void Dossier::setOHKDatum(QDate *value)
 
 void Dossier::toonArts(int value)
 {
-    int artsId = m_universum.artsIndexToId(value - 1);
+    int artsId = m_universum.m_klantArts->itemData(value).toInt();
     m_universum.l_klantArtsStraat->setText(m_artsIdToStraat.value(artsId, ""));
     m_universum.l_klantArtsGemeente->setText(m_artsIdToGemeente.value(artsId, ""));
     m_universum.b_artsBrief->setEnabled(value > 0);

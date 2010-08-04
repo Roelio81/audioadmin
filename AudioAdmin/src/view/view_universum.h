@@ -87,13 +87,7 @@ namespace View
         void etikettenSignal();
 
     private:
-        QMap<int, int> m_artsIdToIndex;
-        QMap<int, int> m_artsIndexToId;
         QMap<QString, QSet<QString> > m_hoorapparaatMerkToTypes;
-        QMap<int, int> m_klantIdToIndex;
-        QMap<int, int> m_klantIndexToId;
-        QMap<int, int> m_mutualiteitIdToIndex;
-        QMap<int, int> m_mutualiteitIndexToId;
 
         Arts m_arts;
         Dossier m_dossier;
