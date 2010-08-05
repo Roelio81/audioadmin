@@ -43,6 +43,12 @@ namespace Presenter
         void artsGewijzigd(int id);
         void dossierGewijzigd(int id);
         void mutualiteitGewijzigd(int id);
+        void teardownArts();
+        void teardownDossier();
+        void teardownMutualiteit();
+        void setupArts();
+        void setupDossier();
+        void setupMutualiteit();
 
     private:
         void setupEtiketten();
@@ -61,6 +67,10 @@ namespace Presenter
         Presenter::Arts *m_artsPresenter;
         Presenter::Dossier *m_dossierPresenter;
         Presenter::Mutualiteit *m_mutualiteitPresenter;
+
+        int m_arts;
+        int m_dossier;
+        int m_mutualiteit;
     };
 }
 

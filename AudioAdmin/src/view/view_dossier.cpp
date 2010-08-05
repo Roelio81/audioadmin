@@ -61,6 +61,26 @@ void Dossier::wijzigenArts(int id, const QString &naam, const QString &straat, c
     Q_ASSERT(false);
 }
 
+void Dossier::toevoegenMutualiteit(int id, const QString &naam)
+{
+    m_universum.m_klantMutualiteit->addItem(naam, QVariant(id));
+}
+
+void Dossier::wijzigenMutualiteit(int id, const QString &naam)
+{
+    int nofMutualiteiten = m_universum.m_klantMutualiteit->count();
+    for (int index = 0; index < nofMutualiteiten; ++index)
+    {
+        if (m_universum.m_klantMutualiteit->itemData(index).toInt() == id)
+        {
+            m_universum.m_klantMutualiteit->setItemText(index, naam);
+            return;
+        }
+    }
+
+    Q_ASSERT(false);
+}
+
 QString Dossier::getAanspreektitel() const
 {
     return m_universum.m_aanspreektitel->currentText();

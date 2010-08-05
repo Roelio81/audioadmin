@@ -23,6 +23,8 @@ namespace View
         void leegArtsenLijst();
         void toevoegenArts(int id, const QString &naam, const QString &straat, const QString &gemeente);
         void wijzigenArts(int id, const QString &naam, const QString &straat, const QString &gemeente);
+        void toevoegenMutualiteit(int id, const QString &naam);
+        void wijzigenMutualiteit(int id, const QString &naam);
 
         QString getAanspreektitel() const;
         QString getNaam() const;

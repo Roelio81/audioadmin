@@ -16,6 +16,7 @@ Universum::Universum(::QWidget *parent, Qt::WFlags f)
 , m_dossier(*this)
 , m_mutualiteit(*this)
 , m_instellingen(this)
+, m_huidigeTab(0)
 {
     setupUi(this);
     connect(actionEtiketten_afdrukken, SIGNAL(triggered()), this, SLOT(etikettenAfdrukken()));
@@ -47,6 +48,7 @@ Universum::Universum(::QWidget *parent, Qt::WFlags f)
     connect(b_mutualiteitBrief, SIGNAL(clicked()), &m_dossier, SLOT(toonBriefMutualiteit()));
     connect(b_factuur, SIGNAL(clicked()), &m_dossier, SLOT(toonFactuur()));
     connect(b_meetgegevens, SIGNAL(clicked()), &m_dossier, SLOT(toonMeetgegevens()));
+    connect(m_tabs, SIGNAL(currentChanged(int)), this, SLOT(tabVeranderd(int)));
 
     // De kolombreedtes wat aanpassen
     m_artsenLijst->setColumnWidth(0, 50);
@@ -127,6 +129,25 @@ void Universum::restore()
     emit restoreSignal(bestandsNaam);
 }
 
+void Universum::tabVeranderd(int nieuweTab)
+{
+    switch (m_huidigeTab)
+    {
+    case 0: emit sluitDossierTab(); break;
+    case 1: emit sluitArtsTab(); break;
+    case 2: emit sluitMutualiteitTab(); break;
+    }
+
+    m_huidigeTab = nieuweTab;
+
+    switch (m_huidigeTab)
+    {
+    case 0: emit openDossierTab(); break;
+    case 1: emit openArtsTab(); break;
+    case 2: emit openMutualiteitTab(); break;
+    }
+}
+
 void Universum::instellingen()
 {
     emit instellingenSignal();
@@ -136,7 +157,7 @@ void Universum::omtrent()
 {
     QMessageBox::about(this, "Omtrent AudioAdmin", "<p>AudioAdmin 2.0</p>"
         "<p>Vrijgegeven onder de GPL licentie, versie 3</p>"
-        "<p>Juni 2010</p>");
+        "<p>Augustus 2010</p>");
 }
 
 void Universum::markeerArtsenLijstStatus(bool wijzigingen)
@@ -234,7 +255,7 @@ void Universum::leegMutualiteitenLijst()
 
 void Universum::toevoegenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
-    m_klantMutualiteit->addItem(naam, QVariant(id));
+    m_dossier.toevoegenMutualiteit(id, naam);
 
     int index = m_mutualiteitenLijst->rowCount();
     m_mutualiteitenLijst->insertRow(index);
@@ -244,6 +265,8 @@ void Universum::toevoegenMutualiteit(int id, const QString &naam, const QString 
 
 void Universum::wijzigenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
+    m_dossier.wijzigenMutualiteit(id, naam);
+
     int index = mutualiteitIdToIndex(id);
     m_mutualiteitenLijst->setItem(index, 1, new QTableWidgetItem(naam));
     m_mutualiteitenLijst->setItem(index, 2, new QTableWidgetItem(straat));

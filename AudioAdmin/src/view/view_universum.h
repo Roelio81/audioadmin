@@ -56,6 +56,7 @@ namespace View
         void selecteerMutualiteit(int id);
 
     private slots:
+        void tabVeranderd(int nieuweTab);
         void instellingen();
         void etikettenAfdrukken();
         void backup();
@@ -91,6 +92,12 @@ namespace View
         void mutualiteitVerwijderenSignal(int id);
         void mutualiteitToevoegenSignal(QString naam);
         void etikettenSignal();
+        void sluitDossierTab();
+        void sluitArtsTab();
+        void sluitMutualiteitTab();
+        void openDossierTab();
+        void openArtsTab();
+        void openMutualiteitTab();
 
     private:
         QMap<QString, QSet<QString> > m_hoorapparaatMerkToTypes;
@@ -100,6 +107,7 @@ namespace View
         Mutualiteit m_mutualiteit;
         Etiketten m_etiketten;
         Instellingen m_instellingen;
+        int m_huidigeTab;
     };
 }
 
