@@ -32,9 +32,12 @@ namespace Presenter
         void detachFromUniversum();
 
         void setup();
+        void teardown();
+
+    signals:
+        void dossierGewijzigd(int id);
 
     private slots:
-        void bewaren();
         void briefArtsTonen();
         void briefArtsSluiten();
         void briefArtsBewaren();

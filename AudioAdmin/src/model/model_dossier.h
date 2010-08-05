@@ -36,7 +36,7 @@ namespace Model
         QString getBriefMutualiteitConclusie() const;
         QString getRechterHoorapparaatMerk() const;
         QString getRechterHoorapparaatType() const;
-        QString geRechterHoorapparaatSerienummer() const;
+        QString getRechterHoorapparaatSerienummer() const;
         double getRechterHoorapparaatPrijs() const;
         QString getLinkerHoorapparaatMerk() const;
         QString getLinkerHoorapparaatType() const;

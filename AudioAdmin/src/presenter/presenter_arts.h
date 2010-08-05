@@ -17,11 +17,16 @@ namespace Presenter
 {
     class Arts : public QObject
     {
+    Q_OBJECT
     public:
         Arts(View::Arts &view, Model::Arts &model);
         virtual ~Arts();
 
-    void setup();
+        void setup();
+        void teardown();
+
+    signals:
+        void artsGewijzigd(int id);
 
     private:
         View::Arts &m_view;

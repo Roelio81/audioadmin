@@ -175,6 +175,8 @@ void Universum::toonArts(int id)
 {
     if (m_artsPresenter)
     {
+        m_artsPresenter->teardown();
+        disconnect(this, SLOT(artsGewijzigd(int)));
         delete m_artsPresenter;
         m_artsPresenter = 0;
     }
@@ -182,6 +184,7 @@ void Universum::toonArts(int id)
     Q_ASSERT(artsModel);
     m_artsPresenter = new Presenter::Arts(m_view.getArts(), *artsModel);
     m_artsPresenter->setup();
+    connect(m_artsPresenter, SIGNAL(artsGewijzigd(int)), this, SLOT(artsGewijzigd(int)));
 }
 
 void Universum::toonDossier(int id)
@@ -189,22 +192,25 @@ void Universum::toonDossier(int id)
     if (m_dossierPresenter)
     {
         m_dossierPresenter->detachFromUniversum();
+        m_dossierPresenter->teardown();
+        disconnect(this, SLOT(dossierGewijzigd(int)));
         delete m_dossierPresenter;
         m_dossierPresenter = 0;
     }
     Model::Dossier *dossierModel = m_model.getDossier(id);
-    if (dossierModel)
-    {
-        m_dossierPresenter = new Presenter::Dossier(m_view.getDossier(), *dossierModel);
-        m_dossierPresenter->attachToUniversum(&m_model);
-        m_dossierPresenter->setup();
+    Q_ASSERT(dossierModel);
+    m_dossierPresenter = new Presenter::Dossier(m_view.getDossier(), *dossierModel);
+    m_dossierPresenter->attachToUniversum(&m_model);
+    m_dossierPresenter->setup();
+    connect(m_dossierPresenter, SIGNAL(dossierGewijzigd(int)), this, SLOT(dossierGewijzigd(int)));
     }
-}
 
 void Universum::toonMutualiteit(int id)
 {
     if (m_mutualiteitPresenter)
     {
+        m_mutualiteitPresenter->teardown();
+        disconnect(this, SLOT(mutualiteitGewijzigd(int)));
         delete m_mutualiteitPresenter;
         m_mutualiteitPresenter = 0;
     }
@@ -212,6 +218,7 @@ void Universum::toonMutualiteit(int id)
     Q_ASSERT(mutualiteitModel);
     m_mutualiteitPresenter = new Presenter::Mutualiteit(m_view.getMutualiteit(), *mutualiteitModel);
     m_mutualiteitPresenter->setup();
+    connect(m_mutualiteitPresenter, SIGNAL(mutualiteitGewijzigd(int)), this, SLOT(mutualiteitGewijzigd(int)));
 }
 
 void Universum::verwijderArts(int id)
@@ -267,4 +274,29 @@ void Universum::toevoegenMutualiteit(QString naam)
     Q_ASSERT(mutualiteit);
     m_view.toevoegenMutualiteit(mutualiteit->getId(), mutualiteit->getNaam(), mutualiteit->getStraat(), mutualiteit->getPostcode(), mutualiteit->getGemeente());
     m_view.selecteerMutualiteit(mutualiteit->getId());
+}
+
+void Universum::artsGewijzigd(int id)
+{
+    Model::Arts *arts = m_model.getArts(id);
+    Q_ASSERT(arts);
+    m_view.markeerArtsenLijstStatus(true);
+    m_view.wijzigenArts(arts->getId(), arts->getNaam() + " " + arts->getVoornaam(), arts->getStraat(), arts->getPostcode(), arts->getGemeente());
+}
+
+void Universum::dossierGewijzigd(int id)
+{
+    Model::Dossier *dossier = m_model.getDossier(id);
+    Q_ASSERT(dossier);
+    const Model::Klant &klant = dossier->getKlant();
+    m_view.markeerKlantenLijstStatus(true);
+    m_view.wijzigenKlant(dossier->getId(), klant.getNaam() + " " + klant.getVoornaam(), klant.getStraat(), klant.getPostcode(), klant.getGemeente());
+}
+
+void Universum::mutualiteitGewijzigd(int id)
+{
+    Model::Mutualiteit *mutualiteit = m_model.getMutualiteit(id);
+    Q_ASSERT(mutualiteit);
+    m_view.markeerArtsenLijstStatus(true);
+    m_view.wijzigenMutualiteit(mutualiteit->getId(), mutualiteit->getNaam(), mutualiteit->getStraat(), mutualiteit->getPostcode(), mutualiteit->getGemeente());
 }

@@ -9,12 +9,12 @@ Dossier::Dossier(int id)
 , m_klant()
 , m_arts(-1)
 , m_mutualiteit(-1)
+, m_onderzoekDatum(0)
 , m_proefDatum(0)
 , m_nkoRapportDatum(0)
 , m_dokterAdviesDatum(0)
 , m_akkoordMutualiteitDatum(0)
 , m_betalingDatum(0)
-, m_onderzoekDatum(0)
 , m_afleveringDatum(0)
 , m_wisselDatum(0)
 , m_ohkDatum(0)
@@ -220,7 +220,7 @@ QString Dossier::getRechterHoorapparaatType() const
     return m_rechterHoorapparaatType;
 }
 
-QString Dossier::geRechterHoorapparaatSerienummer() const
+QString Dossier::getRechterHoorapparaatSerienummer() const
 {
     return m_rechterHoorapparaatSerienummer;
 }

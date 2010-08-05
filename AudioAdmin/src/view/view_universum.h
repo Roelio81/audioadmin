@@ -26,14 +26,20 @@ namespace View
         Etiketten &getEtiketten();
         Instellingen &getInstellingen();
 
+        void markeerArtsenLijstStatus(bool wijzigingen);
         void leegArtsenLijst();
         void toevoegenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
+        void wijzigenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
         void leegHoorapparatenLijst();
         void toevoegenHoorapparaat(const QString &merk, const QString &type);
+        void markeerKlantenLijstStatus(bool wijzigingen);
         void leegKlantenLijst();
         void toevoegenKlant(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
+        void wijzigenKlant(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
+        void markeerMutualiteitenLijstStatus(bool wijzigingen);
         void leegMutualiteitenLijst();
         void toevoegenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
+        void wijzigenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
 
         int artsIndexToId(int index) const;
         int artsIdToIndex(int id) const;

@@ -44,6 +44,23 @@ void Dossier::toevoegenArts(int id, const QString &naam, const QString &straat, 
     m_artsIdToGemeente[id] = gemeente;
 }
 
+void Dossier::wijzigenArts(int id, const QString &naam, const QString &straat, const QString &gemeente)
+{
+    int nofArtsen = m_universum.m_klantArts->count();
+    for (int index = 0; index < nofArtsen; ++index)
+    {
+        if (m_universum.m_klantArts->itemData(index).toInt() == id)
+        {
+            m_universum.m_klantArts->setItemText(index, naam);
+            m_artsIdToStraat[id] = straat;
+            m_artsIdToGemeente[id] = gemeente;
+            return;
+        }
+    }
+
+    Q_ASSERT(false);
+}
+
 QString Dossier::getAanspreektitel() const
 {
     return m_universum.m_aanspreektitel->currentText();
@@ -119,7 +136,7 @@ QString Dossier::getRechterHoorapparaatType() const
     return m_universum.m_rechterHoorapparaatType->currentText();
 }
 
-QString Dossier::geRechterHoorapparaatSerienummer() const
+QString Dossier::getRechterHoorapparaatSerienummer() const
 {
     return m_universum.m_rechterHoorapparaatSerienummer->text();
 }

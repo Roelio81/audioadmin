@@ -40,6 +40,9 @@ namespace Presenter
         void toevoegenArts(QString voornaam, QString naam);
         void toevoegenDossier(QString voornaam, QString naam);
         void toevoegenMutualiteit(QString naam);
+        void artsGewijzigd(int id);
+        void dossierGewijzigd(int id);
+        void mutualiteitGewijzigd(int id);
 
     private:
         void setupEtiketten();

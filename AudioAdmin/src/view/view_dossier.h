@@ -22,6 +22,7 @@ namespace View
         void toevoegenAanspreektitel(const QString &value);
         void leegArtsenLijst();
         void toevoegenArts(int id, const QString &naam, const QString &straat, const QString &gemeente);
+        void wijzigenArts(int id, const QString &naam, const QString &straat, const QString &gemeente);
 
         QString getAanspreektitel() const;
         QString getNaam() const;
@@ -38,7 +39,7 @@ namespace View
         int getArts() const;
         QString getRechterHoorapparaatMerk() const;
         QString getRechterHoorapparaatType() const;
-        QString geRechterHoorapparaatSerienummer() const;
+        QString getRechterHoorapparaatSerienummer() const;
         double getRechterHoorapparaatPrijs() const;
         QString getLinkerHoorapparaatMerk() const;
         QString getLinkerHoorapparaatType() const;

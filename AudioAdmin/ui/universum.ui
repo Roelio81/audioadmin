@@ -23,7 +23,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_13">
     <item row="0" column="0">
-     <widget class="QTabWidget" name="tabWidget">
+     <widget class="QTabWidget" name="m_tabs">
       <property name="currentIndex">
        <number>0</number>
       </property>

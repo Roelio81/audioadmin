@@ -139,6 +139,14 @@ void Universum::omtrent()
         "<p>Juni 2010</p>");
 }
 
+void Universum::markeerArtsenLijstStatus(bool wijzigingen)
+{
+    if (wijzigingen)
+        m_tabs->setTabText(1, "Artsen*");
+    else
+        m_tabs->setTabText(1, "Artsen");
+}
+
 void Universum::leegArtsenLijst()
 {
     m_artsenLijst->clearContents();
@@ -147,15 +155,24 @@ void Universum::leegArtsenLijst()
 
 void Universum::toevoegenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
+    m_dossier.toevoegenArts(id, naam, straat, QString::number(postcode) + " " + gemeente);
+
     int index = m_artsenLijst->rowCount();
     m_artsenLijst->insertRow(index);
     m_artsenLijst->setItem(index, 0, new QTableWidgetItem(QString::number(id)));
+    wijzigenArts(id, naam, straat, postcode, gemeente);
+}
+
+void Universum::wijzigenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
+{
+    m_dossier.wijzigenArts(id, naam, straat, QString::number(postcode) + " " + gemeente);
+
+    int index = artsIdToIndex(id);
     m_artsenLijst->setItem(index, 1, new QTableWidgetItem(naam));
     m_artsenLijst->setItem(index, 2, new QTableWidgetItem(straat));
     m_artsenLijst->setItem(index, 3, new QTableWidgetItem(QString::number(postcode)));
     m_artsenLijst->setItem(index, 4, new QTableWidgetItem(gemeente));
     m_artsenLijst->resizeRowToContents(index);
-    m_dossier.toevoegenArts(id, naam, straat, QString::number(postcode) + " " + gemeente);
 }
 
 void Universum::leegHoorapparatenLijst()
@@ -166,6 +183,14 @@ void Universum::leegHoorapparatenLijst()
 void Universum::toevoegenHoorapparaat(const QString &merk, const QString &type)
 {
     m_hoorapparaatMerkToTypes[merk].insert(type);
+}
+
+void Universum::markeerKlantenLijstStatus(bool wijzigingen)
+{
+    if (wijzigingen)
+        m_tabs->setTabText(0, "Dossiers*");
+    else
+        m_tabs->setTabText(0, "Dossiers");
 }
 
 void Universum::leegKlantenLijst()
@@ -179,11 +204,25 @@ void Universum::toevoegenKlant(int id, const QString &naam, const QString &straa
     int index = m_klantenLijst->rowCount();
     m_klantenLijst->insertRow(index);
     m_klantenLijst->setItem(index, 0, new QTableWidgetItem(QString::number(id)));
+    wijzigenKlant(id, naam, straat, postcode, gemeente);
+}
+
+void Universum::wijzigenKlant(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
+{
+    int index = klantIdToIndex(id);
     m_klantenLijst->setItem(index, 1, new QTableWidgetItem(naam));
     m_klantenLijst->setItem(index, 2, new QTableWidgetItem(straat));
     m_klantenLijst->setItem(index, 3, new QTableWidgetItem(QString::number(postcode)));
     m_klantenLijst->setItem(index, 4, new QTableWidgetItem(gemeente));
     m_klantenLijst->resizeRowToContents(index);
+}
+
+void Universum::markeerMutualiteitenLijstStatus(bool wijzigingen)
+{
+    if (wijzigingen)
+        m_tabs->setTabText(2, "Mutualiteiten*");
+    else
+        m_tabs->setTabText(2, "Mutualiteiten");
 }
 
 void Universum::leegMutualiteitenLijst()
@@ -195,15 +234,22 @@ void Universum::leegMutualiteitenLijst()
 
 void Universum::toevoegenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
+    m_klantMutualiteit->addItem(naam, QVariant(id));
+
     int index = m_mutualiteitenLijst->rowCount();
     m_mutualiteitenLijst->insertRow(index);
     m_mutualiteitenLijst->setItem(index, 0, new QTableWidgetItem(QString::number(id)));
+    wijzigenMutualiteit(id, naam, straat, postcode, gemeente);
+}
+
+void Universum::wijzigenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
+{
+    int index = mutualiteitIdToIndex(id);
     m_mutualiteitenLijst->setItem(index, 1, new QTableWidgetItem(naam));
     m_mutualiteitenLijst->setItem(index, 2, new QTableWidgetItem(straat));
     m_mutualiteitenLijst->setItem(index, 3, new QTableWidgetItem(QString::number(postcode)));
     m_mutualiteitenLijst->setItem(index, 4, new QTableWidgetItem(gemeente));
     m_mutualiteitenLijst->resizeRowToContents(index);
-    m_klantMutualiteit->addItem(naam, QVariant(id));
 }
 
 int Universum::artsIndexToId(int index) const

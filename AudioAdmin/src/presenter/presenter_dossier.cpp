@@ -78,35 +78,192 @@ void Dossier::setup()
     m_view.setOHKDatum(m_model.getOHKDatum());
 }
 
-void Dossier::bewaren()
+void Dossier::teardown()
 {
+    bool gewijzigd = false;
     Model::Klant &klantModel = m_model.getKlant();
-    klantModel.setAanspreektitel(m_view.getAanspreektitel());
-    klantModel.setNaam(m_view.getNaam());
-    klantModel.setVoornaam(m_view.getVoornaam());
-    klantModel.setStraat(m_view.getStraat());
-    klantModel.setPostcode(m_view.getPostcode());
-    klantModel.setGemeente(m_view.getGemeente());
-    klantModel.setTelefoon(m_view.getTelefoon());
-    klantModel.setGeboorteDatum(m_view.getGeboorteDatum());
-    klantModel.setOpmerkingen(m_view.getOpmerkingen());
-    m_model.setMutualiteit(m_view.getMutualiteit());
-    m_model.setAansluitingsnummer(m_view.getAansluitingsnummer());
-    m_model.setPlaatsAanpassing(m_view.getPlaatsAanpassing());
-    m_model.setArts(m_view.getArts());
-    m_model.setRechterHoorapparaatMerk(m_view.getRechterHoorapparaatMerk());
-    m_model.setRechterHoorapparaatType(m_view.getRechterHoorapparaatType());
-    m_model.setLinkerHoorapparaatMerk(m_view.getLinkerHoorapparaatMerk());
-    m_model.setLinkerHoorapparaatType(m_view.getLinkerHoorapparaatType());
-    m_model.setOnderzoekDatum(m_view.getOnderzoekDatum());
-    m_model.setProefDatum(m_view.getProefDatum());
-    m_model.setNKORapportDatum(m_view.getNKORapportDatum());
-    m_model.setDokterAdviesDatum(m_view.getDokterAdviesDatum());
-    m_model.setAkkoordMutualiteitDatum(m_view.getAkkoordMutualiteitDatum());
-    m_model.setBetalingDatum(m_view.getBetalingDatum());
-    m_model.setAfleveringDatum(m_view.getAfleveringDatum());
-    m_model.setWisselDatum(m_view.getWisselDatum());
-    m_model.setOHKDatum(m_view.getOHKDatum());
+    if (klantModel.getAanspreektitel() != m_view.getAanspreektitel())
+    {
+        klantModel.setAanspreektitel(m_view.getAanspreektitel());
+        gewijzigd = true;
+    }
+    if (klantModel.getNaam() != m_view.getNaam())
+    {
+        klantModel.setNaam(m_view.getNaam());
+        gewijzigd = true;
+    }
+    if (klantModel.getVoornaam() != m_view.getVoornaam())
+    {
+        klantModel.setVoornaam(m_view.getVoornaam());
+        gewijzigd = true;
+    }
+    if (klantModel.getStraat() != m_view.getStraat())
+    {
+        klantModel.setStraat(m_view.getStraat());
+        gewijzigd = true;
+    }
+    if (klantModel.getPostcode() != m_view.getPostcode())
+    {
+        klantModel.setPostcode(m_view.getPostcode());
+        gewijzigd = true;
+    }
+    if (klantModel.getGemeente() != m_view.getGemeente())
+    {
+        klantModel.setGemeente(m_view.getGemeente());
+        gewijzigd = true;
+    }
+    if (klantModel.getTelefoon() != m_view.getTelefoon())
+    {
+        klantModel.setTelefoon(m_view.getTelefoon());
+        gewijzigd = true;
+    }
+    if (klantModel.getGeboorteDatum() != m_view.getGeboorteDatum())
+    {
+        klantModel.setGeboorteDatum(m_view.getGeboorteDatum());
+        gewijzigd = true;
+    }
+    if (klantModel.getOpmerkingen() != m_view.getOpmerkingen())
+    {
+        klantModel.setOpmerkingen(m_view.getOpmerkingen());
+        gewijzigd = true;
+    }
+    if (m_model.getMutualiteit() != m_view.getMutualiteit())
+    {
+        m_model.setMutualiteit(m_view.getMutualiteit());
+        gewijzigd = true;
+    }
+    if (m_model.getAansluitingsnummer() != m_view.getAansluitingsnummer())
+    {
+        m_model.setAansluitingsnummer(m_view.getAansluitingsnummer());
+        gewijzigd = true;
+    }
+    if (m_model.getPlaatsAanpassing() != m_view.getPlaatsAanpassing())
+    {
+        m_model.setPlaatsAanpassing(m_view.getPlaatsAanpassing());
+        gewijzigd = true;
+    }
+    if (m_model.getArts() != m_view.getArts())
+    {
+        m_model.setArts(m_view.getArts());
+        gewijzigd = true;
+    }
+    if (m_model.getRechterHoorapparaatMerk() != m_view.getRechterHoorapparaatMerk())
+    {
+        m_model.setRechterHoorapparaatMerk(m_view.getRechterHoorapparaatMerk());
+        gewijzigd = true;
+    }
+    if (m_model.getRechterHoorapparaatType() != m_view.getRechterHoorapparaatType())
+    {
+        m_model.setRechterHoorapparaatType(m_view.getRechterHoorapparaatType());
+        gewijzigd = true;
+    }
+    if (m_model.getRechterHoorapparaatPrijs() != m_view.getRechterHoorapparaatPrijs())
+    {
+        m_model.setRechterHoorapparaatPrijs(m_view.getRechterHoorapparaatPrijs());
+        gewijzigd = true;
+    }
+    if (m_model.getRechterHoorapparaatSerienummer() != m_view.getRechterHoorapparaatSerienummer())
+    {
+        m_model.setRechterHoorapparaatSerienummer(m_view.getRechterHoorapparaatSerienummer());
+        gewijzigd = true;
+    }
+    if (m_model.getLinkerHoorapparaatMerk() != m_view.getLinkerHoorapparaatMerk())
+    {
+        m_model.setLinkerHoorapparaatMerk(m_view.getLinkerHoorapparaatMerk());
+        gewijzigd = true;
+    }
+    if (m_model.getLinkerHoorapparaatType() != m_view.getLinkerHoorapparaatType())
+    {
+        m_model.setLinkerHoorapparaatType(m_view.getLinkerHoorapparaatType());
+        gewijzigd = true;
+    }
+    if (m_model.getLinkerHoorapparaatPrijs() != m_view.getLinkerHoorapparaatPrijs())
+    {
+        m_model.setLinkerHoorapparaatPrijs(m_view.getLinkerHoorapparaatPrijs());
+        gewijzigd = true;
+    }
+    if (m_model.getLinkerHoorapparaatSerienummer() != m_view.getLinkerHoorapparaatSerienummer())
+    {
+        m_model.setLinkerHoorapparaatSerienummer(m_view.getLinkerHoorapparaatSerienummer());
+        gewijzigd = true;
+    }
+    if ((!m_model.getOnderzoekDatum() && m_view.getOnderzoekDatum()) ||
+        (m_model.getOnderzoekDatum() && !m_view.getOnderzoekDatum()) ||
+        (m_model.getOnderzoekDatum() && m_view.getOnderzoekDatum() && (*m_model.getOnderzoekDatum() != *m_view.getOnderzoekDatum()))
+        )
+    {
+        m_model.setOnderzoekDatum(m_view.getOnderzoekDatum());
+        gewijzigd = true;
+    }
+    if ((!m_model.getProefDatum() && m_view.getProefDatum()) ||
+        (m_model.getProefDatum() && !m_view.getProefDatum()) ||
+        (m_model.getProefDatum() && m_view.getProefDatum() && (*m_model.getProefDatum() != *m_view.getProefDatum()))
+        )
+    {
+        m_model.setProefDatum(m_view.getProefDatum());
+        gewijzigd = true;
+    }
+    if ((!m_model.getNKORapportDatum() && m_view.getNKORapportDatum()) ||
+        (m_model.getNKORapportDatum() && !m_view.getNKORapportDatum()) ||
+        (m_model.getNKORapportDatum() && m_view.getNKORapportDatum() && (*m_model.getNKORapportDatum() != *m_view.getNKORapportDatum()))
+        )
+    {
+        m_model.setNKORapportDatum(m_view.getNKORapportDatum());
+        gewijzigd = true;
+    }
+    if ((!m_model.getDokterAdviesDatum() && m_view.getDokterAdviesDatum()) ||
+        (m_model.getDokterAdviesDatum() && !m_view.getDokterAdviesDatum()) ||
+        (m_model.getDokterAdviesDatum() && m_view.getDokterAdviesDatum() && (*m_model.getDokterAdviesDatum() != *m_view.getDokterAdviesDatum()))
+        )
+    {
+        m_model.setDokterAdviesDatum(m_view.getDokterAdviesDatum());
+        gewijzigd = true;
+    }
+    if ((!m_model.getAkkoordMutualiteitDatum() && m_view.getAkkoordMutualiteitDatum()) ||
+        (m_model.getAkkoordMutualiteitDatum() && !m_view.getAkkoordMutualiteitDatum()) ||
+        (m_model.getAkkoordMutualiteitDatum() && m_view.getAkkoordMutualiteitDatum() && (*m_model.getAkkoordMutualiteitDatum() != *m_view.getAkkoordMutualiteitDatum()))
+        )
+    {
+        m_model.setAkkoordMutualiteitDatum(m_view.getAkkoordMutualiteitDatum());
+        gewijzigd = true;
+    }
+    if ((!m_model.getBetalingDatum() && m_view.getBetalingDatum()) ||
+        (m_model.getBetalingDatum() && !m_view.getBetalingDatum()) ||
+        (m_model.getBetalingDatum() && m_view.getBetalingDatum() && (*m_model.getBetalingDatum() != *m_view.getBetalingDatum()))
+        )
+    {
+        m_model.setBetalingDatum(m_view.getBetalingDatum());
+        gewijzigd = true;
+    }
+    if ((!m_model.getAfleveringDatum() && m_view.getAfleveringDatum()) ||
+        (m_model.getAfleveringDatum() && !m_view.getAfleveringDatum()) ||
+        (m_model.getAfleveringDatum() && m_view.getAfleveringDatum() && (*m_model.getAfleveringDatum() != *m_view.getAfleveringDatum()))
+        )
+    {
+        m_model.setAfleveringDatum(m_view.getAfleveringDatum());
+        gewijzigd = true;
+    }
+    if ((!m_model.getWisselDatum() && m_view.getWisselDatum()) ||
+        (m_model.getWisselDatum() && !m_view.getWisselDatum()) ||
+        (m_model.getWisselDatum() && m_view.getWisselDatum() && (*m_model.getWisselDatum() != *m_view.getWisselDatum()))
+        )
+    {
+        m_model.setWisselDatum(m_view.getWisselDatum());
+        gewijzigd = true;
+    }
+    if ((!m_model.getOHKDatum() && m_view.getOHKDatum()) ||
+        (m_model.getOHKDatum() && !m_view.getOHKDatum()) ||
+        (m_model.getOHKDatum() && m_view.getOHKDatum() && (*m_model.getOHKDatum() != *m_view.getOHKDatum()))
+        )
+    {
+        m_model.setOHKDatum(m_view.getOHKDatum());
+        gewijzigd = true;
+    }
+
+    if (gewijzigd)
+    {
+        emit dossierGewijzigd(m_model.getId());
+    }
 }
 
 void Dossier::setupBriefArts()
@@ -366,6 +523,7 @@ void Dossier::briefArtsBewaren()
     m_model.setBriefArtsPostdatum(m_briefArts->getPostdatum());
     m_model.setBriefArtsTekstblok(m_briefArts->getTekst());
     m_model.setBriefArtsConclusie(m_briefArts->getBesluit());
+    emit dossierGewijzigd(m_model.getId());
 }
 
 void Dossier::briefKlantTonen()
@@ -391,6 +549,7 @@ void Dossier::briefKlantBewaren()
     Q_ASSERT(m_briefKlant);
     m_model.setBriefKlantPostdatum(m_briefKlant->getPostdatum());
     m_model.setBriefKlantTekstblok(m_briefKlant->getTekst());
+    emit dossierGewijzigd(m_model.getId());
 }
 
 void Dossier::briefMutualiteitTonen()
@@ -417,6 +576,7 @@ void Dossier::briefMutualiteitBewaren()
     m_model.setBriefMutualiteitPostdatum(m_briefMutualiteit->getPostdatum());
     m_model.setBriefMutualiteitTekstblok(m_briefMutualiteit->getTekst());
     m_model.setBriefMutualiteitConclusie(m_briefMutualiteit->getBesluit());
+    emit dossierGewijzigd(m_model.getId());
 }
 
 void Dossier::factuurTonen()
@@ -482,4 +642,5 @@ void Dossier::meetgegevensBewaren()
     model.setLocalisatieRechts(m_meetgegevens->getLocalisatieRechts());
     model.setLocalisatieLinks(m_meetgegevens->getLocalisatieLinks());
     model.setLocalisatieBeide(m_meetgegevens->getLocalisatieBeide());
+    emit dossierGewijzigd(m_model.getId());
 }
