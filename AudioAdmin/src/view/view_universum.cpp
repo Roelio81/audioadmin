@@ -4,6 +4,7 @@
 #include "view_toevoegenmutualiteit.h"
 
 #include <QFileDialog>
+#include <QInputDialog>
 #include <QMessageBox>
 #include <iostream>
 
@@ -262,17 +263,17 @@ QSet<QString> Universum::getTypeHoorapparaten(const QString &merk) const
 
 void Universum::selecteerArts(int id)
 {
-    m_artsenLijst->setCurrentCell(artsIdToIndex(id), 0);
+    m_artsenLijst->setCurrentCell(artsIdToIndex(id), 1);
 }
 
 void Universum::selecteerKlant(int id)
 {
-    m_klantenLijst->setCurrentCell(klantIdToIndex(id), 0);
+    m_klantenLijst->setCurrentCell(klantIdToIndex(id), 1);
 }
 
 void Universum::selecteerMutualiteit(int id)
 {
-    m_mutualiteitenLijst->setCurrentCell(mutualiteitIdToIndex(id), 0);
+    m_mutualiteitenLijst->setCurrentCell(mutualiteitIdToIndex(id), 1);
 }
 
 void Universum::selecteerArts(int currentRow, int, int previousRow, int)
@@ -329,6 +330,26 @@ void Universum::verwijderenArts()
 
 void Universum::zoekenArts()
 {
+    static QString vorigeWaarde = "";
+    bool ok = false;
+    QString naam = QInputDialog::getText(this, "Zoek arts", "Naam:", QLineEdit::Normal, vorigeWaarde, &ok);
+    if (ok && !naam.isEmpty())
+    {
+        vorigeWaarde = naam;
+        int nofRows = m_artsenLijst->rowCount();
+        int currentRow = m_artsenLijst->currentRow();
+        for (int i = 0; i < nofRows; ++i)
+        {
+            int row =(i + currentRow + 1) % nofRows;
+            QTableWidgetItem *naamCell = m_artsenLijst->item(row, 1);
+            Q_ASSERT(naamCell);
+            if (naamCell->text().contains(naam, Qt::CaseInsensitive))
+            {
+                m_artsenLijst->setCurrentCell(row, 1, QItemSelectionModel::ClearAndSelect);
+                return;
+            }
+        }
+    }
 }
 
 void Universum::bewarenDossier()
@@ -355,6 +376,26 @@ void Universum::verwijderenDossier()
 
 void Universum::zoekenDossier()
 {
+    static QString vorigeWaarde = "";
+    bool ok = false;
+    QString naam = QInputDialog::getText(this, "Zoek klant", "Naam:", QLineEdit::Normal, vorigeWaarde, &ok);
+    if (ok && !naam.isEmpty())
+    {
+        vorigeWaarde = naam;
+        int nofRows = m_klantenLijst->rowCount();
+        int currentRow = m_klantenLijst->currentRow();
+        for (int i = 0; i < nofRows; ++i)
+        {
+            int row =(i + currentRow + 1) % nofRows;
+            QTableWidgetItem *naamCell = m_klantenLijst->item(row, 1);
+            Q_ASSERT(naamCell);
+            if (naamCell->text().contains(naam, Qt::CaseInsensitive))
+            {
+                m_klantenLijst->setCurrentCell(row, 1, QItemSelectionModel::ClearAndSelect);
+                return;
+            }
+        }
+    }
 }
 
 void Universum::bewarenMutualiteit()
@@ -381,4 +422,24 @@ void Universum::verwijderenMutualiteit()
 
 void Universum::zoekenMutualiteit()
 {
+    static QString vorigeWaarde = "";
+    bool ok = false;
+    QString naam = QInputDialog::getText(this, "Zoek mutualiteit", "Naam:", QLineEdit::Normal, vorigeWaarde, &ok);
+    if (ok && !naam.isEmpty())
+    {
+        vorigeWaarde = naam;
+        int nofRows = m_mutualiteitenLijst->rowCount();
+        int currentRow = m_mutualiteitenLijst->currentRow();
+        for (int i = 0; i < nofRows; ++i)
+        {
+            int row =(i + currentRow + 1) % nofRows;
+            QTableWidgetItem *naamCell = m_mutualiteitenLijst->item(row, 1);
+            Q_ASSERT(naamCell);
+            if (naamCell->text().contains(naam, Qt::CaseInsensitive))
+            {
+                m_mutualiteitenLijst->setCurrentCell(row, 1, QItemSelectionModel::ClearAndSelect);
+                return;
+            }
+        }
+    }
 }

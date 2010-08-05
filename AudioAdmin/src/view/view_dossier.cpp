@@ -215,7 +215,7 @@ QDate *Dossier::getOHKDatum() const
 
 void Dossier::setAanspreektitel(const QString &value)
 {
-    int index = m_universum.m_aanspreektitel->findText(value);
+    int index = value.isEmpty() ? 0 : m_universum.m_aanspreektitel->findText(value);
     Q_ASSERT(index >= 0);
     m_universum.m_aanspreektitel->setCurrentIndex(index);
 }
