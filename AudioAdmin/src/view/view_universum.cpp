@@ -181,6 +181,7 @@ void Universum::toevoegenArts(int id, const QString &naam, const QString &straat
     int index = m_artsenLijst->rowCount();
     m_artsenLijst->insertRow(index);
     m_artsenLijst->setItem(index, 0, new QTableWidgetItem(QString::number(id)));
+    m_artsenLijst->item(index, 0)->setFlags(Qt::ItemIsSelectable);
     wijzigenArts(id, naam, straat, postcode, gemeente);
 }
 
@@ -193,6 +194,10 @@ void Universum::wijzigenArts(int id, const QString &naam, const QString &straat,
     m_artsenLijst->setItem(index, 2, new QTableWidgetItem(straat));
     m_artsenLijst->setItem(index, 3, new QTableWidgetItem(QString::number(postcode)));
     m_artsenLijst->setItem(index, 4, new QTableWidgetItem(gemeente));
+    m_artsenLijst->item(index, 1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    m_artsenLijst->item(index, 2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    m_artsenLijst->item(index, 3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    m_artsenLijst->item(index, 4)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
     m_artsenLijst->resizeRowToContents(index);
 }
 
@@ -225,6 +230,7 @@ void Universum::toevoegenKlant(int id, const QString &naam, const QString &straa
     int index = m_klantenLijst->rowCount();
     m_klantenLijst->insertRow(index);
     m_klantenLijst->setItem(index, 0, new QTableWidgetItem(QString::number(id)));
+    m_klantenLijst->item(index, 0)->setFlags(Qt::ItemIsSelectable);
     wijzigenKlant(id, naam, straat, postcode, gemeente);
 }
 
@@ -235,6 +241,10 @@ void Universum::wijzigenKlant(int id, const QString &naam, const QString &straat
     m_klantenLijst->setItem(index, 2, new QTableWidgetItem(straat));
     m_klantenLijst->setItem(index, 3, new QTableWidgetItem(QString::number(postcode)));
     m_klantenLijst->setItem(index, 4, new QTableWidgetItem(gemeente));
+    m_klantenLijst->item(index, 1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    m_klantenLijst->item(index, 2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    m_klantenLijst->item(index, 3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    m_klantenLijst->item(index, 4)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
     m_klantenLijst->resizeRowToContents(index);
 }
 
@@ -260,6 +270,7 @@ void Universum::toevoegenMutualiteit(int id, const QString &naam, const QString 
     int index = m_mutualiteitenLijst->rowCount();
     m_mutualiteitenLijst->insertRow(index);
     m_mutualiteitenLijst->setItem(index, 0, new QTableWidgetItem(QString::number(id)));
+    m_mutualiteitenLijst->item(index, 0)->setFlags(Qt::ItemIsSelectable);
     wijzigenMutualiteit(id, naam, straat, postcode, gemeente);
 }
 
@@ -272,6 +283,10 @@ void Universum::wijzigenMutualiteit(int id, const QString &naam, const QString &
     m_mutualiteitenLijst->setItem(index, 2, new QTableWidgetItem(straat));
     m_mutualiteitenLijst->setItem(index, 3, new QTableWidgetItem(QString::number(postcode)));
     m_mutualiteitenLijst->setItem(index, 4, new QTableWidgetItem(gemeente));
+    m_mutualiteitenLijst->item(index, 1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    m_mutualiteitenLijst->item(index, 2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    m_mutualiteitenLijst->item(index, 3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+    m_mutualiteitenLijst->item(index, 4)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
     m_mutualiteitenLijst->resizeRowToContents(index);
 }
 
