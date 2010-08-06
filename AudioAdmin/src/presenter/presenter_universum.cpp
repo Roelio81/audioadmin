@@ -37,6 +37,9 @@ Universum::Universum(View::Universum &view, Model::Universum &model)
     connect(&m_view, SIGNAL(sluitArtsTab()), this, SLOT(teardownArts()));
     connect(&m_view, SIGNAL(sluitDossierTab()), this, SLOT(teardownDossier()));
     connect(&m_view, SIGNAL(sluitMutualiteitTab()), this, SLOT(teardownMutualiteit()));
+    connect(&m_view, SIGNAL(openArtsTab()), this, SLOT(setupArts()));
+    connect(&m_view, SIGNAL(openDossierTab()), this, SLOT(setupDossier()));
+    connect(&m_view, SIGNAL(openMutualiteitTab()), this, SLOT(setupMutualiteit()));
     refreshArtsenLijst();
     refreshHoorapparatenLijst();
     refreshKlantenLijst();
