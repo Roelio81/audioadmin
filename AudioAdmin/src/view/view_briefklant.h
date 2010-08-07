@@ -33,8 +33,8 @@ namespace View
         void briefKlantBewaren();
 
     private slots:
-        void sluitBriefKlant();
-        void bewaarBriefKlant();
+        void okBriefKlant();
+        void annuleerBriefKlant();
     };
 }
 

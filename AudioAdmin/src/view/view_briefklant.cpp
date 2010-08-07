@@ -7,8 +7,8 @@ BriefKlant::BriefKlant(QWidget *parent)
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setupUi(this);
-    connect(b_sluiten, SIGNAL(clicked()), this, SLOT(sluitBriefKlant()));
-    connect(b_bewaren, SIGNAL(clicked()), this, SLOT(bewaarBriefKlant()));
+    connect(b_ok, SIGNAL(clicked()), this, SLOT(okBriefKlant()));
+    connect(b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerBriefKlant()));
 }
 
 BriefKlant::~BriefKlant()
@@ -81,12 +81,13 @@ QString BriefKlant::getTekst() const
     return m_tekst->toPlainText();
 }
 
-void BriefKlant::sluitBriefKlant()
+void BriefKlant::okBriefKlant()
 {
+    emit briefKlantBewaren();
     emit briefKlantSluiten();
 }
 
-void BriefKlant::bewaarBriefKlant()
+void BriefKlant::annuleerBriefKlant()
 {
-    emit briefKlantBewaren();
+    emit briefKlantSluiten();
 }

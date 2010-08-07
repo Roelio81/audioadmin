@@ -253,16 +253,16 @@
     </widget>
    </item>
    <item row="16" column="3">
-    <widget class="QPushButton" name="b_bewaren">
+    <widget class="QPushButton" name="b_ok">
      <property name="text">
-      <string>Bewaren</string>
+      <string>Ok</string>
      </property>
     </widget>
    </item>
    <item row="16" column="4">
-    <widget class="QPushButton" name="b_sluiten">
+    <widget class="QPushButton" name="b_annuleren">
      <property name="text">
-      <string>Sluiten</string>
+      <string>Annuleren</string>
      </property>
     </widget>
    </item>

@@ -34,8 +34,8 @@ namespace View
         void briefArtsBewaren();
 
     private slots:
-        void sluitBriefArts();
-        void bewaarBriefArts();
+        void okBriefArts();
+        void annuleerBriefArts();
     };
 }
 

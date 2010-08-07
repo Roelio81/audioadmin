@@ -7,8 +7,8 @@ BriefMutualiteit::BriefMutualiteit(QWidget *parent)
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setupUi(this);
-    connect(b_sluiten, SIGNAL(clicked()), this, SLOT(sluitBriefMutualiteit()));
-    connect(b_bewaren, SIGNAL(clicked()), this, SLOT(bewaarBriefMutualiteit()));
+    connect(b_ok, SIGNAL(clicked()), this, SLOT(okBriefMutualiteit()));
+    connect(b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerBriefMutualiteit()));
 }
 
 BriefMutualiteit::~BriefMutualiteit()
@@ -86,12 +86,13 @@ QString BriefMutualiteit::getBesluit() const
     return m_besluit->toPlainText();
 }
 
-void BriefMutualiteit::sluitBriefMutualiteit()
+void BriefMutualiteit::okBriefMutualiteit()
 {
+    emit briefMutualiteitBewaren();
     emit briefMutualiteitSluiten();
 }
 
-void BriefMutualiteit::bewaarBriefMutualiteit()
+void BriefMutualiteit::annuleerBriefMutualiteit()
 {
-    emit briefMutualiteitBewaren();
+    emit briefMutualiteitSluiten();
 }

@@ -34,8 +34,8 @@ namespace View
         void briefMutualiteitBewaren();
 
     private slots:
-        void sluitBriefMutualiteit();
-        void bewaarBriefMutualiteit();
+        void okBriefMutualiteit();
+        void annuleerBriefMutualiteit();
     };
 }
 

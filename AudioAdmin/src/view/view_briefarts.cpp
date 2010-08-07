@@ -7,8 +7,8 @@ BriefArts::BriefArts(QWidget *parent)
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setupUi(this);
-    connect(b_sluiten, SIGNAL(clicked()), this, SLOT(sluitBriefArts()));
-    connect(b_bewaren, SIGNAL(clicked()), this, SLOT(bewaarBriefArts()));
+    connect(b_ok, SIGNAL(clicked()), this, SLOT(okBriefArts()));
+    connect(b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerBriefArts()));
 }
 
 BriefArts::~BriefArts()
@@ -86,12 +86,13 @@ QString BriefArts::getBesluit() const
     return m_besluit->toPlainText();
 }
 
-void BriefArts::sluitBriefArts()
+void BriefArts::okBriefArts()
 {
+    emit briefArtsBewaren();
     emit briefArtsSluiten();
 }
 
-void BriefArts::bewaarBriefArts()
+void BriefArts::annuleerBriefArts()
 {
-    emit briefArtsBewaren();
+    emit briefArtsSluiten();
 }
