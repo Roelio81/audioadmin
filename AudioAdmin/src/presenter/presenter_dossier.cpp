@@ -268,6 +268,9 @@ void Dossier::teardown()
 
 void Dossier::setupBriefArts()
 {
+    teardown();
+    setup();
+
     bool klantIsMan = (m_model.getKlant().getAanspreektitel() == "Dhr.");
 
     Q_ASSERT(m_briefArts);
@@ -296,13 +299,13 @@ void Dossier::setupBriefArts()
     {
         tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
         tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam();
-        tekst += " (geboortedatum: " + m_model.getKlant().getGeboorteDatum().toString("dd-MM-yyyy") + "). ";
+        tekst += " (" + QString(char(0xb0)) + " " + m_model.getKlant().getGeboorteDatum().toString("dd-MM-yyyy") + "). ";
         if (m_model.getAantalHoorapparaten() > 0)
         {
             tekst += (klantIsMan ? QString("Mijnheer ") : QString("Mevrouw ")) + "heeft geopteerd voor een ";
             if (m_model.getAantalHoorapparaten() == 1)
             {
-                tekst += "mono aanpassing met ";
+                tekst += "monofonische aanpassing met ";
                 if (!m_model.getLinkerHoorapparaatMerk().isEmpty() || !m_model.getLinkerHoorapparaatType().isEmpty())
                 {
                     tekst += "het apparaat ";
@@ -317,7 +320,7 @@ void Dossier::setupBriefArts()
             else
             {
                 Q_ASSERT(m_model.getAantalHoorapparaten() == 2);
-                tekst += "stereo aanpassing met ";
+                tekst += "stereofonische aanpassing met ";
                 if (m_model.getLinkerHoorapparaatMerk() == m_model.getRechterHoorapparaatMerk() &&
                     m_model.getLinkerHoorapparaatType() == m_model.getRechterHoorapparaatType())
                 {
@@ -345,6 +348,9 @@ void Dossier::setupBriefArts()
 
 void Dossier::setupBriefKlant()
 {
+    teardown();
+    setup();
+
     bool klantIsMan = (m_model.getKlant().getAanspreektitel() == "Dhr.");
 
     Q_ASSERT(m_briefKlant);
@@ -386,6 +392,9 @@ void Dossier::setupBriefKlant()
 
 void Dossier::setupBriefMutualiteit()
 {
+    teardown();
+    setup();
+
     bool klantIsMan = (m_model.getKlant().getAanspreektitel() == "Dhr.");
 
     Q_ASSERT(m_briefMutualiteit);
@@ -414,13 +423,13 @@ void Dossier::setupBriefMutualiteit()
     {
         tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
         tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam();
-        tekst += " (geboortedatum: " + m_model.getKlant().getGeboorteDatum().toString("dd-MM-yyyy") + "). ";
+        tekst += " (" + QString(char(0xb0)) + " " + m_model.getKlant().getGeboorteDatum().toString("dd-MM-yyyy") + "). ";
         if (m_model.getAantalHoorapparaten() > 0)
         {
             tekst += (klantIsMan ? QString("Mijnheer ") : QString("Mevrouw ")) + "heeft geopteerd voor een ";
             if (m_model.getAantalHoorapparaten() == 1)
             {
-                tekst += "mono aanpassing met ";
+                tekst += "monofonische aanpassing met ";
                 if (!m_model.getLinkerHoorapparaatMerk().isEmpty() || !m_model.getLinkerHoorapparaatType().isEmpty())
                 {
                     tekst += "het apparaat ";
@@ -435,7 +444,7 @@ void Dossier::setupBriefMutualiteit()
             else
             {
                 Q_ASSERT(m_model.getAantalHoorapparaten() == 2);
-                tekst += "stereo aanpassing met ";
+                tekst += "stereofonsiche aanpassing met ";
                 if (m_model.getLinkerHoorapparaatMerk() == m_model.getRechterHoorapparaatMerk() &&
                     m_model.getLinkerHoorapparaatType() == m_model.getRechterHoorapparaatType())
                 {
