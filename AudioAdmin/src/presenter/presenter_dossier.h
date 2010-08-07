@@ -36,6 +36,7 @@ namespace Presenter
 
     signals:
         void dossierGewijzigd(int id);
+        void hoorapparaatGewijzigd();
 
     private slots:
         void briefArtsTonen();

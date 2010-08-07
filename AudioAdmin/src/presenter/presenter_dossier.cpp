@@ -81,6 +81,7 @@ void Dossier::setup()
 void Dossier::teardown()
 {
     bool gewijzigd = false;
+    bool apparaatGewijzigd = false;
     Model::Klant &klantModel = m_model.getKlant();
     if (klantModel.getAanspreektitel() != m_view.getAanspreektitel())
     {
@@ -151,11 +152,13 @@ void Dossier::teardown()
     {
         m_model.setRechterHoorapparaatMerk(m_view.getRechterHoorapparaatMerk());
         gewijzigd = true;
+        apparaatGewijzigd = true;
     }
     if (m_model.getRechterHoorapparaatType() != m_view.getRechterHoorapparaatType())
     {
         m_model.setRechterHoorapparaatType(m_view.getRechterHoorapparaatType());
         gewijzigd = true;
+        apparaatGewijzigd = true;
     }
     if (m_model.getRechterHoorapparaatPrijs() != m_view.getRechterHoorapparaatPrijs())
     {
@@ -171,11 +174,13 @@ void Dossier::teardown()
     {
         m_model.setLinkerHoorapparaatMerk(m_view.getLinkerHoorapparaatMerk());
         gewijzigd = true;
+        apparaatGewijzigd = true;
     }
     if (m_model.getLinkerHoorapparaatType() != m_view.getLinkerHoorapparaatType())
     {
         m_model.setLinkerHoorapparaatType(m_view.getLinkerHoorapparaatType());
         gewijzigd = true;
+        apparaatGewijzigd = true;
     }
     if (m_model.getLinkerHoorapparaatPrijs() != m_view.getLinkerHoorapparaatPrijs())
     {
@@ -263,6 +268,10 @@ void Dossier::teardown()
     if (gewijzigd)
     {
         emit dossierGewijzigd(m_model.getId());
+    }
+    if (apparaatGewijzigd)
+    {
+        emit hoorapparaatGewijzigd();
     }
 }
 

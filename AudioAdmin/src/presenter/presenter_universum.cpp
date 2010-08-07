@@ -281,6 +281,11 @@ void Universum::mutualiteitGewijzigd(int id)
     m_view.wijzigenMutualiteit(mutualiteit->getId(), mutualiteit->getNaam(), mutualiteit->getStraat(), mutualiteit->getPostcode(), mutualiteit->getGemeente());
 }
 
+void Universum::hoorapparaatGewijzigd()
+{
+    refreshHoorapparatenLijst();
+}
+
 void Universum::teardownArts()
 {
     if (!m_artsPresenter)
@@ -329,6 +334,7 @@ void Universum::setupDossier()
     m_dossierPresenter->attachToUniversum(&m_model);
     m_dossierPresenter->setup();
     connect(m_dossierPresenter, SIGNAL(dossierGewijzigd(int)), this, SLOT(dossierGewijzigd(int)));
+    connect(m_dossierPresenter, SIGNAL(destroyed()), this, SLOT(hoorapparaatGewijzigd()));
 }
 
 void Universum::setupMutualiteit()

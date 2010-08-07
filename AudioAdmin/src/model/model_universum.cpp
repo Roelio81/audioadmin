@@ -168,12 +168,11 @@ Arts *Universum::toevoegenArts(const QString &voornaam, const QString &naam)
 void Universum::verwijderenArts(int id)
 {
     Arts *arts = getArts(id);
-    if (arts)
-    {
-        int posInVector = m_artsenLijst.indexOf(arts, 0);
-        Q_ASSERT(posInVector >= 0 && posInVector < m_artsenLijst.size());
-        m_artsenLijst.erase(m_artsenLijst.begin() + posInVector);
-    }
+    if (!arts)
+        return;
+    int posInVector = m_artsenLijst.indexOf(arts, 0);
+    Q_ASSERT(posInVector >= 0 && posInVector < m_artsenLijst.size());
+    m_artsenLijst.erase(m_artsenLijst.begin() + posInVector);
 }
 
 QVector<Arts *> &Universum::getArtsen()

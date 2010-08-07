@@ -43,6 +43,7 @@ namespace Presenter
         void artsGewijzigd(int id);
         void dossierGewijzigd(int id);
         void mutualiteitGewijzigd(int id);
+        void hoorapparaatGewijzigd();
         void teardownArts();
         void teardownDossier();
         void teardownMutualiteit();

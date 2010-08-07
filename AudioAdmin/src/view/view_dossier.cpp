@@ -296,7 +296,7 @@ void Dossier::setGeboorteDatum(const QDate &value)
 
 void Dossier::setMutualiteit(int value)
 {
-    for (int index = 0; index < m_universum.m_klantMutualiteit->count(); ++index)
+    for (int index = 1; index < m_universum.m_klantMutualiteit->count(); ++index)
     {
         int id = m_universum.m_klantMutualiteit->itemData(index).toInt();
         if (id == value)
@@ -328,7 +328,7 @@ void Dossier::setOpmerkingen(const QString &value)
 
 void Dossier::setArts(int value)
 {
-    for (int index = 0; index < m_universum.m_klantArts->count(); ++index)
+    for (int index = 1; index < m_universum.m_klantArts->count(); ++index)
     {
         int id = m_universum.m_klantArts->itemData(index).toInt();
         if (id == value)

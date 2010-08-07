@@ -408,6 +408,8 @@ void Universum::verwijderenArts()
     int id = artsIndexToId(m_artsenLijst->currentRow());
     emit artsVerwijderenSignal(id);
     m_artsenLijst->removeRow(row);
+    if (row >= m_artsenLijst->rowCount())
+        --row;
     m_artsenLijst->setCurrentCell(row, column);
     emit artsSelectieSignal(artsIndexToId(row));
 }
@@ -454,6 +456,8 @@ void Universum::verwijderenDossier()
     int id = klantIndexToId(m_klantenLijst->currentRow());
     emit klantVerwijderenSignal(id);
     m_klantenLijst->removeRow(row);
+    if (row >= m_klantenLijst->rowCount())
+        --row;
     m_klantenLijst->setCurrentCell(row, column);
     emit klantSelectieSignal(klantIndexToId(row));
 }
@@ -500,6 +504,8 @@ void Universum::verwijderenMutualiteit()
     int id = mutualiteitIndexToId(m_mutualiteitenLijst->currentRow());
     emit mutualiteitVerwijderenSignal(id);
     m_mutualiteitenLijst->removeRow(row);
+    if (row >= m_mutualiteitenLijst->rowCount())
+        --row;
     m_mutualiteitenLijst->setCurrentCell(row, column);
     emit mutualiteitSelectieSignal(mutualiteitIndexToId(row));
 }
