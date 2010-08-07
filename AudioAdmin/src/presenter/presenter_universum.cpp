@@ -21,8 +21,8 @@ Universum::Universum(View::Universum &view, Model::Universum &model)
 , m_dossier(0)
 , m_mutualiteit(0)
 {
-    connect(&m_view, SIGNAL(backupSignal(QString)), this, SLOT(openen(QString)));
-    connect(&m_view, SIGNAL(restoreSignal(QString)), this, SLOT(bewaren(QString)));
+    connect(&m_view, SIGNAL(backupSignal(QString)), this, SLOT(bewaren(QString)));
+    connect(&m_view, SIGNAL(restoreSignal(QString)), this, SLOT(openen(QString)));
     connect(&m_view, SIGNAL(etikettenSignal()), this, SLOT(etiketten()));
     connect(&m_view, SIGNAL(instellingenSignal()), this, SLOT(instellingen()));
     connect(&m_view, SIGNAL(artsSelectieSignal(int)), this, SLOT(toonArts(int)));
