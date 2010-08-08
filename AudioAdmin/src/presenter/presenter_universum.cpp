@@ -66,13 +66,57 @@ Universum::~Universum()
 void Universum::etiketten()
 {
     setupEtiketten();
+    connect(m_view.getEtiketten().b_ok, SIGNAL(clicked()), this, SLOT(okEtiketten()));
+    connect(m_view.getEtiketten().b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerEtiketten()));
     m_view.getEtiketten().show();
+    disconnect(this, SLOT(okEtiketten()));
+    disconnect(this, SLOT(annuleerEtiketten()));
+}
+
+void Universum::okEtiketten()
+{
+    teardownEtiketten();
+    m_view.getEtiketten().hide();
+}
+
+void Universum::annuleerEtiketten()
+{
+    m_view.getEtiketten().hide();
 }
 
 void Universum::instellingen()
 {
     setupInstellingen();
+    connect(m_view.getInstellingen().b_ok, SIGNAL(clicked()), this, SLOT(okInstellingen()));
+    connect(m_view.getInstellingen().b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerInstellingen()));
     m_view.getInstellingen().show();
+    disconnect(this, SLOT(okInstellingen()));
+    disconnect(this, SLOT(annuleerInstellingen()));
+}
+
+void Universum::okInstellingen()
+{
+    teardownInstellingen();
+    m_view.getInstellingen().hide();
+}
+
+void Universum::annuleerInstellingen()
+{
+    m_view.getInstellingen().hide();
+}
+
+void Universum::setupEtiketten()
+{
+    View::Etiketten &viewEtiketten = m_view.getEtiketten();
+    viewEtiketten.leegPlaatsenAanpassing();
+    QVector<Model::Dossier *> &dossiers = m_model.getDossiers();
+    for (QVector<Model::Dossier *>::const_iterator itDossier = dossiers.begin(); itDossier != dossiers.end(); ++itDossier)
+    {
+        Model::Dossier *dossier = *itDossier;
+        Q_ASSERT(dossier);
+        viewEtiketten.toevoegenPlaatsAanpassing(dossier->getPlaatsAanpassing());
+    }
+    viewEtiketten.setDatumOnderzoek(QDate::currentDate().addYears(-2));
 }
 
 void Universum::setupInstellingen()
@@ -94,26 +138,27 @@ void Universum::setupInstellingen()
     viewInstellingen.setRekeningNummer(modelInstellingen->getRekeningNummer());
 }
 
-void Universum::setupEtiketten()
-{
-    View::Etiketten &viewEtiketten = m_view.getEtiketten();
-    viewEtiketten.leegPlaatsenAanpassing();
-    QVector<Model::Dossier *> &dossiers = m_model.getDossiers();
-    for (QVector<Model::Dossier *>::const_iterator itDossier = dossiers.begin(); itDossier != dossiers.end(); ++itDossier)
-    {
-        Model::Dossier *dossier = *itDossier;
-        Q_ASSERT(dossier);
-        viewEtiketten.toevoegenPlaatsAanpassing(dossier->getPlaatsAanpassing());
-    }
-    viewEtiketten.setDatumOnderzoek(QDate::currentDate().addYears(-2));
-}
-
 void Universum::teardownEtiketten()
 {
 }
 
 void Universum::teardownInstellingen()
 {
+    Model::Instellingen *modelInstellingen = m_model.getInstellingen();
+    View::Instellingen &viewInstellingen = m_view.getInstellingen();
+    Q_ASSERT(modelInstellingen);
+    modelInstellingen->setNaam(viewInstellingen.getNaam());
+    modelInstellingen->setStraat(viewInstellingen.getStraat());
+    modelInstellingen->setPostcode(viewInstellingen.getPostcode());
+    modelInstellingen->setGemeente(viewInstellingen.getGemeente());
+    modelInstellingen->setTelefoon(viewInstellingen.getTelefoon());
+    modelInstellingen->setGsm(viewInstellingen.getGsm());
+    modelInstellingen->setEmail(viewInstellingen.getEmail());
+    modelInstellingen->setOnderschrift(viewInstellingen.getOnderschrift());
+    modelInstellingen->setRiziv(viewInstellingen.getRiziv());
+    modelInstellingen->setBtwPercentage(viewInstellingen.getBtwPercentage());
+    modelInstellingen->setBtwNummer(viewInstellingen.getBtwNummer());
+    modelInstellingen->setRekeningNummer(viewInstellingen.getRekeningNummer());
 }
 
 void Universum::refreshArtsenLijst()

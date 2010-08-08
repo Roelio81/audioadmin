@@ -1,10 +1,11 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>Etiketten</class>
- <widget class="QDialog" name="Etiketten" >
-  <property name="windowModality" >
+ <widget class="QDialog" name="Etiketten">
+  <property name="windowModality">
    <enum>Qt::WindowModal</enum>
   </property>
-  <property name="geometry" >
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -12,70 +13,53 @@
     <height>137</height>
    </rect>
   </property>
-  <property name="contextMenuPolicy" >
+  <property name="contextMenuPolicy">
    <enum>Qt::DefaultContextMenu</enum>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Etiketten</string>
   </property>
-  <property name="windowIcon" >
-   <iconset resource="../icons.qrc" >
+  <property name="windowIcon">
+   <iconset resource="../icons.qrc">
     <normaloff>:/icons/agt_print-64.png</normaloff>:/icons/agt_print-64.png</iconset>
   </property>
-  <property name="locale" >
-   <locale country="Belgium" language="Dutch" />
+  <property name="locale">
+   <locale language="Dutch" country="Belgium"/>
   </property>
-  <property name="modal" >
+  <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QGridLayout" name="gridLayout" >
-   <item row="0" column="0" >
-    <widget class="QCheckBox" name="c_onderzoekNa" >
-     <property name="text" >
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QCheckBox" name="c_onderzoekNa">
+     <property name="text">
       <string>Het onderzoek moet gebeurd zijn na</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="1" >
-    <widget class="QDateEdit" name="m_onderzoekNa" />
+   <item row="0" column="1">
+    <widget class="QDateEdit" name="m_onderzoekNa"/>
    </item>
-   <item row="1" column="0" >
-    <widget class="QCheckBox" name="c_plaats" >
-     <property name="text" >
+   <item row="1" column="0">
+    <widget class="QCheckBox" name="c_plaats">
+     <property name="text">
       <string>Plaats aanpassing moet de volgende zijn</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="1" >
-    <widget class="QComboBox" name="m_plaats" >
-     <property name="editable" >
+   <item row="1" column="1">
+    <widget class="QComboBox" name="m_plaats">
+     <property name="editable">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="3" column="0" colspan="2" >
-    <widget class="QLabel" name="l_opgelet" >
-     <property name="text" >
-      <string>Opgelet: gelieve etiketten van het type 63,5 x 38,1 mm (21 stuks per vel) te gebruiken</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0" colspan="2" >
-    <widget class="QDialogButtonBox" name="buttonBox" >
-     <property name="orientation" >
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons" >
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0" >
-    <spacer name="verticalSpacer" >
-     <property name="orientation" >
+   <item row="2" column="0">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeHint" stdset="0" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
        <height>40</height>
@@ -83,43 +67,48 @@
      </property>
     </spacer>
    </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QLabel" name="l_opgelet">
+     <property name="text">
+      <string>Opgelet: gelieve etiketten van het type 63,5 x 38,1 mm (21 stuks per vel) te gebruiken</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="b_ok">
+       <property name="text">
+        <string>Ok</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="b_annuleren">
+       <property name="text">
+        <string>Annuleren</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
   </layout>
  </widget>
  <resources>
-  <include location="../icons.qrc" />
+  <include location="../icons.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>Etiketten</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>227</x>
-     <y>117</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>157</x>
-     <y>136</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>Etiketten</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>295</x>
-     <y>123</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>286</x>
-     <y>136</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

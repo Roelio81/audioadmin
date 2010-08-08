@@ -30,7 +30,11 @@ namespace Presenter
         void openen(QString bestandsNaam);
         void bewaren(QString bestandsNaam);
         void etiketten();
+        void okEtiketten();
+        void annuleerEtiketten();
         void instellingen();
+        void okInstellingen();
+        void annuleerInstellingen();
         void toonArts(int id);
         void toonDossier(int id);
         void toonMutualiteit(int id);
