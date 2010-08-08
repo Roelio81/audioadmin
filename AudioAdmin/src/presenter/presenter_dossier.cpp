@@ -13,6 +13,11 @@
 
 using namespace Presenter;
 
+namespace
+{
+    QDate ongeldigeDatum(1900, 1, 1);
+}
+
 Dossier::Dossier(View::Dossier &view, Model::Dossier &model)
 : m_view(view)
 , m_model(model)
@@ -122,10 +127,7 @@ void Dossier::teardown()
         klantModel.setTelefoon(m_view.getTelefoon());
         gewijzigd = true;
     }
-    if ((!klantModel.getGeboorteDatum() && m_view.getGeboorteDatum()) ||
-        (klantModel.getGeboorteDatum() && !m_view.getGeboorteDatum()) ||
-        (klantModel.getGeboorteDatum() && m_view.getGeboorteDatum() && (*klantModel.getGeboorteDatum() != *m_view.getGeboorteDatum()))
-        )
+    if (klantModel.getGeboorteDatum() != m_view.getGeboorteDatum())
     {
         klantModel.setGeboorteDatum(m_view.getGeboorteDatum());
         gewijzigd = true;
@@ -199,74 +201,47 @@ void Dossier::teardown()
         m_model.setLinkerHoorapparaatSerienummer(m_view.getLinkerHoorapparaatSerienummer());
         gewijzigd = true;
     }
-    if ((!m_model.getOnderzoekDatum() && m_view.getOnderzoekDatum()) ||
-        (m_model.getOnderzoekDatum() && !m_view.getOnderzoekDatum()) ||
-        (m_model.getOnderzoekDatum() && m_view.getOnderzoekDatum() && (*m_model.getOnderzoekDatum() != *m_view.getOnderzoekDatum()))
-        )
+    if (m_model.getOnderzoekDatum() != m_view.getOnderzoekDatum())
     {
         m_model.setOnderzoekDatum(m_view.getOnderzoekDatum());
         gewijzigd = true;
     }
-    if ((!m_model.getProefDatum() && m_view.getProefDatum()) ||
-        (m_model.getProefDatum() && !m_view.getProefDatum()) ||
-        (m_model.getProefDatum() && m_view.getProefDatum() && (*m_model.getProefDatum() != *m_view.getProefDatum()))
-        )
+    if (m_model.getProefDatum() != m_view.getProefDatum())
     {
         m_model.setProefDatum(m_view.getProefDatum());
         gewijzigd = true;
     }
-    if ((!m_model.getNKORapportDatum() && m_view.getNKORapportDatum()) ||
-        (m_model.getNKORapportDatum() && !m_view.getNKORapportDatum()) ||
-        (m_model.getNKORapportDatum() && m_view.getNKORapportDatum() && (*m_model.getNKORapportDatum() != *m_view.getNKORapportDatum()))
-        )
+    if (m_model.getNKORapportDatum() != m_view.getNKORapportDatum())
     {
         m_model.setNKORapportDatum(m_view.getNKORapportDatum());
         gewijzigd = true;
     }
-    if ((!m_model.getDokterAdviesDatum() && m_view.getDokterAdviesDatum()) ||
-        (m_model.getDokterAdviesDatum() && !m_view.getDokterAdviesDatum()) ||
-        (m_model.getDokterAdviesDatum() && m_view.getDokterAdviesDatum() && (*m_model.getDokterAdviesDatum() != *m_view.getDokterAdviesDatum()))
-        )
+    if (m_model.getDokterAdviesDatum() != m_view.getDokterAdviesDatum())
     {
         m_model.setDokterAdviesDatum(m_view.getDokterAdviesDatum());
         gewijzigd = true;
     }
-    if ((!m_model.getAkkoordMutualiteitDatum() && m_view.getAkkoordMutualiteitDatum()) ||
-        (m_model.getAkkoordMutualiteitDatum() && !m_view.getAkkoordMutualiteitDatum()) ||
-        (m_model.getAkkoordMutualiteitDatum() && m_view.getAkkoordMutualiteitDatum() && (*m_model.getAkkoordMutualiteitDatum() != *m_view.getAkkoordMutualiteitDatum()))
-        )
+    if (m_model.getAkkoordMutualiteitDatum() != m_view.getAkkoordMutualiteitDatum())
     {
         m_model.setAkkoordMutualiteitDatum(m_view.getAkkoordMutualiteitDatum());
         gewijzigd = true;
     }
-    if ((!m_model.getBetalingDatum() && m_view.getBetalingDatum()) ||
-        (m_model.getBetalingDatum() && !m_view.getBetalingDatum()) ||
-        (m_model.getBetalingDatum() && m_view.getBetalingDatum() && (*m_model.getBetalingDatum() != *m_view.getBetalingDatum()))
-        )
+    if (m_model.getBetalingDatum() != m_view.getBetalingDatum())
     {
         m_model.setBetalingDatum(m_view.getBetalingDatum());
         gewijzigd = true;
     }
-    if ((!m_model.getAfleveringDatum() && m_view.getAfleveringDatum()) ||
-        (m_model.getAfleveringDatum() && !m_view.getAfleveringDatum()) ||
-        (m_model.getAfleveringDatum() && m_view.getAfleveringDatum() && (*m_model.getAfleveringDatum() != *m_view.getAfleveringDatum()))
-        )
+    if (m_model.getAfleveringDatum() != m_view.getAfleveringDatum())
     {
         m_model.setAfleveringDatum(m_view.getAfleveringDatum());
         gewijzigd = true;
     }
-    if ((!m_model.getWisselDatum() && m_view.getWisselDatum()) ||
-        (m_model.getWisselDatum() && !m_view.getWisselDatum()) ||
-        (m_model.getWisselDatum() && m_view.getWisselDatum() && (*m_model.getWisselDatum() != *m_view.getWisselDatum()))
-        )
+    if (m_model.getWisselDatum() != m_view.getWisselDatum())
     {
         m_model.setWisselDatum(m_view.getWisselDatum());
         gewijzigd = true;
     }
-    if ((!m_model.getOHKDatum() && m_view.getOHKDatum()) ||
-        (m_model.getOHKDatum() && !m_view.getOHKDatum()) ||
-        (m_model.getOHKDatum() && m_view.getOHKDatum() && (*m_model.getOHKDatum() != *m_view.getOHKDatum()))
-        )
+    if (m_model.getOHKDatum() != m_view.getOHKDatum())
     {
         m_model.setOHKDatum(m_view.getOHKDatum());
         gewijzigd = true;
@@ -315,9 +290,10 @@ void Dossier::setupBriefArts()
     {
         tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
         tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam();
-        if (QDate *geboorteDatum = m_model.getKlant().getGeboorteDatum())
+        QDate geboorteDatum = m_model.getKlant().getGeboorteDatum();
+        if (geboorteDatum != ongeldigeDatum)
         {
-            tekst += " (" + QString(char(0xb0)) + " " + geboorteDatum->toString("dd-MM-yyyy") + "). ";
+            tekst += " (" + QString(char(0xb0)) + " " + geboorteDatum.toString("dd-MM-yyyy") + "). ";
         }
         if (m_model.getAantalHoorapparaten() > 0)
         {
@@ -442,9 +418,10 @@ void Dossier::setupBriefMutualiteit()
     {
         tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
         tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam();
-        if (QDate *geboorteDatum = m_model.getKlant().getGeboorteDatum())
+        QDate geboorteDatum = m_model.getKlant().getGeboorteDatum();
+        if (geboorteDatum != ongeldigeDatum)
         {
-            tekst += " (" + QString(char(0xb0)) + " " + geboorteDatum->toString("dd-MM-yyyy") + "). ";
+            tekst += " (" + QString(char(0xb0)) + " " + geboorteDatum.toString("dd-MM-yyyy") + "). ";
         }
         if (m_model.getAantalHoorapparaten() > 0)
         {

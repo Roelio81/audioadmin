@@ -10,6 +10,11 @@
 
 using namespace View;
 
+namespace
+{
+    QDate ongeldigeDatum(1900, 1, 1);
+}
+
 Universum::Universum(::QWidget *parent, Qt::WFlags f)
 : QMainWindow(parent, f)
 , m_arts(*this)
@@ -206,9 +211,15 @@ void Universum::leegHoorapparatenLijst()
     m_hoorapparaatMerkToTypes.clear();
 }
 
-void Universum::toevoegenHoorapparaat(const QString &merk, const QString &type)
+void Universum::toevoegenHoorapparaat(const QString &merk, const QString &type, double prijs, const QDate &datumPrijs)
 {
-    m_hoorapparaatMerkToTypes[merk].insert(type);
+    PrijsDatumInfo info(prijs, datumPrijs);
+    if (m_hoorapparaatMerkToTypes[merk].find(type) != m_hoorapparaatMerkToTypes[merk].end())
+    {
+        if (m_hoorapparaatMerkToTypes[merk][type].second >= info.second)
+            info = m_hoorapparaatMerkToTypes[merk][type];
+    }
+    m_hoorapparaatMerkToTypes[merk][type] = info;
 }
 
 void Universum::markeerKlantenLijstStatus(bool wijzigingen)
@@ -342,7 +353,7 @@ QSet<QString> Universum::getMerkHoorapparaten() const
 
 QSet<QString> Universum::getTypeHoorapparaten(const QString &merk) const
 {
-    return m_hoorapparaatMerkToTypes[merk];
+    return m_hoorapparaatMerkToTypes[merk].keys().toSet();
 }
 
 void Universum::selecteerArts(int id)

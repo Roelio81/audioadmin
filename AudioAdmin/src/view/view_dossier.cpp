@@ -3,11 +3,6 @@
 
 using namespace View;
 
-namespace
-{
-    QDate ongeldigeDatum(1900, 1, 1);
-}
-
 Dossier::Dossier(Universum &universum)
 : m_universum(universum)
 {
@@ -121,10 +116,9 @@ QString Dossier::getTelefoon() const
     return m_universum.m_klantTelefoon->text();
 }
 
-QDate *Dossier::getGeboorteDatum() const
+QDate Dossier::getGeboorteDatum() const
 {
-    QDate geboorteDatum = m_universum.m_klantGeboorteDatum->date();
-    return (geboorteDatum != ongeldigeDatum ? new QDate(geboorteDatum) : 0);
+    return m_universum.m_klantGeboorteDatum->date();
 }
 
 int Dossier::getMutualiteit() const
@@ -196,67 +190,49 @@ double Dossier::getLinkerHoorapparaatPrijs() const
 }
 
 
-QDate *Dossier::getOnderzoekDatum() const
+QDate Dossier::getOnderzoekDatum() const
 {
-    Q_ASSERT(m_universum.m_datumOnderzoek);
-    Q_ASSERT(m_universum.c_datumOnderzoek);
-    return (m_universum.c_datumOnderzoek->isChecked()) ? new QDate(m_universum.m_datumOnderzoek->date()) : 0;
+    return m_universum.m_datumOnderzoek->date();
 }
 
-QDate *Dossier::getProefDatum() const
+QDate Dossier::getProefDatum() const
 {
-    Q_ASSERT(m_universum.m_datumProef);
-    Q_ASSERT(m_universum.c_datumProef);
-    return (m_universum.c_datumProef->isChecked()) ? new QDate(m_universum.m_datumProef->date()) : 0;
+    return m_universum.m_datumProef->date();
 }
 
-QDate *Dossier::getNKORapportDatum() const
+QDate Dossier::getNKORapportDatum() const
 {
-    Q_ASSERT(m_universum.m_datumNKO);
-    Q_ASSERT(m_universum.c_datumNKO);
-    return (m_universum.c_datumNKO->isChecked()) ? new QDate(m_universum.m_datumNKO->date()) : 0;
+    return m_universum.m_datumNKO->date();
 }
 
-QDate *Dossier::getDokterAdviesDatum() const
+QDate Dossier::getDokterAdviesDatum() const
 {
-    Q_ASSERT(m_universum.m_datumAdviseur);
-    Q_ASSERT(m_universum.c_datumAdviseur);
-    return (m_universum.c_datumAdviseur->isChecked()) ? new QDate(m_universum.m_datumAdviseur->date()) : 0;
+    return m_universum.m_datumAdviseur->date();
 }
 
-QDate *Dossier::getAkkoordMutualiteitDatum() const
+QDate Dossier::getAkkoordMutualiteitDatum() const
 {
-    Q_ASSERT(m_universum.m_datumMutualiteit);
-    Q_ASSERT(m_universum.c_datumMutualiteit);
-    return (m_universum.c_datumMutualiteit->isChecked()) ? new QDate(m_universum.m_datumMutualiteit->date()) : 0;
+    return m_universum.m_datumMutualiteit->date();
 }
 
-QDate *Dossier::getBetalingDatum() const
+QDate Dossier::getBetalingDatum() const
 {
-    Q_ASSERT(m_universum.m_datumBetaling);
-    Q_ASSERT(m_universum.c_datumBetaling);
-    return (m_universum.c_datumBetaling->isChecked()) ? new QDate(m_universum.m_datumBetaling->date()) : 0;
+    return m_universum.m_datumBetaling->date();
 }
 
-QDate *Dossier::getAfleveringDatum() const
+QDate Dossier::getAfleveringDatum() const
 {
-    Q_ASSERT(m_universum.m_datumAflevering);
-    Q_ASSERT(m_universum.c_datumAflevering);
-    return (m_universum.c_datumAflevering->isChecked()) ? new QDate(m_universum.m_datumAflevering->date()) : 0;
+    return m_universum.m_datumAflevering->date();
 }
 
-QDate *Dossier::getWisselDatum() const
+QDate Dossier::getWisselDatum() const
 {
-    Q_ASSERT(m_universum.m_datumWissel);
-    Q_ASSERT(m_universum.c_datumWissel);
-    return (m_universum.c_datumWissel->isChecked()) ? new QDate(m_universum.m_datumWissel->date()) : 0;
+    return m_universum.m_datumWissel->date();
 }
 
-QDate *Dossier::getOHKDatum() const
+QDate Dossier::getOHKDatum() const
 {
-    Q_ASSERT(m_universum.m_datumOHK);
-    Q_ASSERT(m_universum.c_datumOHK);
-    return (m_universum.c_datumOHK->isChecked()) ? new QDate(m_universum.m_datumOHK->date()) : 0;
+    return m_universum.m_datumOHK->date();
 }
 
 void Dossier::setAanspreektitel(const QString &value)
@@ -298,12 +274,9 @@ void Dossier::setTelefoon(const QString &value)
     m_universum.m_klantTelefoon->setText(value);
 }
 
-void Dossier::setGeboorteDatum(QDate *value)
+void Dossier::setGeboorteDatum(const QDate &value)
 {
-    if (value)
-        m_universum.m_klantGeboorteDatum->setDate(*value);
-    else
-        m_universum.m_klantGeboorteDatum->setDate(ongeldigeDatum);
+    m_universum.m_klantGeboorteDatum->setDate(value);
 }
 
 void Dossier::setMutualiteit(int value)
@@ -465,76 +438,49 @@ void Dossier::setLinkerHoorapparaatPrijs(double value)
     m_universum.m_linkerHoorapparaatPrijs->setText(value > 0.0 ? QString::number(value) : "");
 }
 
-void Dossier::setOnderzoekDatum(QDate *value)
+void Dossier::setOnderzoekDatum(const QDate &value)
 {
-    Q_ASSERT(m_universum.m_datumOnderzoek);
-    m_universum.m_datumOnderzoek->setDate(value ? *value : QDate());
-    Q_ASSERT(m_universum.c_datumOnderzoek);
-    m_universum.c_datumOnderzoek->setChecked(value != 0);
+    m_universum.m_datumOnderzoek->setDate(value);
 }
 
-void Dossier::setProefDatum(QDate *value)
+void Dossier::setProefDatum(const QDate &value)
 {
-    Q_ASSERT(m_universum.m_datumProef);
-    m_universum.m_datumProef->setDate(value ? *value : QDate());
-    Q_ASSERT(m_universum.c_datumProef);
-    m_universum.c_datumProef->setChecked(value != 0);
+    m_universum.m_datumProef->setDate(value);
 }
 
-void Dossier::setNKORapportDatum(QDate *value)
+void Dossier::setNKORapportDatum(const QDate &value)
 {
-    Q_ASSERT(m_universum.m_datumNKO);
-    m_universum.m_datumNKO->setDate(value ? *value : QDate());
-    Q_ASSERT(m_universum.c_datumNKO);
-    m_universum.c_datumNKO->setChecked(value != 0);
+    m_universum.m_datumNKO->setDate(value);
 }
 
-void Dossier::setDokterAdviesDatum(QDate *value)
+void Dossier::setDokterAdviesDatum(const QDate &value)
 {
-    Q_ASSERT(m_universum.m_datumAdviseur);
-    m_universum.m_datumAdviseur->setDate(value ? *value : QDate());
-    Q_ASSERT(m_universum.c_datumAdviseur);
-    m_universum.c_datumAdviseur->setChecked(value != 0);
+    m_universum.m_datumAdviseur->setDate(value);
 }
 
-void Dossier::setAkkoordMutualiteitDatum(QDate *value)
+void Dossier::setAkkoordMutualiteitDatum(const QDate &value)
 {
-    Q_ASSERT(m_universum.m_datumMutualiteit);
-    m_universum.m_datumMutualiteit->setDate(value ? *value : QDate());
-    Q_ASSERT(m_universum.c_datumMutualiteit);
-    m_universum.c_datumMutualiteit->setChecked(value != 0);
+    m_universum.m_datumMutualiteit->setDate(value);
 }
 
-void Dossier::setBetalingDatum(QDate *value)
+void Dossier::setBetalingDatum(const QDate &value)
 {
-    Q_ASSERT(m_universum.m_datumBetaling);
-    m_universum.m_datumBetaling->setDate(value ? *value : QDate());
-    Q_ASSERT(m_universum.c_datumBetaling);
-    m_universum.c_datumBetaling->setChecked(value != 0);
+    m_universum.m_datumBetaling->setDate(value);
 }
 
-void Dossier::setAfleveringDatum(QDate *value)
+void Dossier::setAfleveringDatum(const QDate &value)
 {
-    Q_ASSERT(m_universum.m_datumAflevering);
-    m_universum.m_datumAflevering->setDate(value ? *value : QDate());
-    Q_ASSERT(m_universum.c_datumAflevering);
-    m_universum.c_datumAflevering->setChecked(value != 0);
+    m_universum.m_datumAflevering->setDate(value);
 }
 
-void Dossier::setWisselDatum(QDate *value)
+void Dossier::setWisselDatum(const QDate &value)
 {
-    Q_ASSERT(m_universum.m_datumWissel);
-    m_universum.m_datumWissel->setDate(value ? *value : QDate());
-    Q_ASSERT(m_universum.c_datumWissel);
-    m_universum.c_datumWissel->setChecked(value != 0);
+    m_universum.m_datumWissel->setDate(value);
 }
 
-void Dossier::setOHKDatum(QDate *value)
+void Dossier::setOHKDatum(const QDate &value)
 {
-    Q_ASSERT(m_universum.m_datumOHK);
-    m_universum.m_datumOHK->setDate(value ? *value : QDate());
-    Q_ASSERT(m_universum.c_datumOHK);
-    m_universum.c_datumOHK->setChecked(value != 0);
+    m_universum.m_datumOHK->setDate(value);
 }
 
 void Dossier::toonArts(int value)

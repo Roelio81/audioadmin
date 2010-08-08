@@ -181,8 +181,8 @@ void Universum::refreshHoorapparatenLijst()
     {
         Model::Dossier *dossier = *itDossier;
         Q_ASSERT(dossier);
-        m_view.toevoegenHoorapparaat(dossier->getRechterHoorapparaatMerk(), dossier->getRechterHoorapparaatType());
-        m_view.toevoegenHoorapparaat(dossier->getLinkerHoorapparaatMerk(), dossier->getLinkerHoorapparaatType());
+        m_view.toevoegenHoorapparaat(dossier->getRechterHoorapparaatMerk(), dossier->getRechterHoorapparaatType(), dossier->getRechterHoorapparaatPrijs(), dossier->getProefDatum());
+        m_view.toevoegenHoorapparaat(dossier->getLinkerHoorapparaatMerk(), dossier->getLinkerHoorapparaatType(), dossier->getLinkerHoorapparaatPrijs(), dossier->getProefDatum());
     }
 }
 

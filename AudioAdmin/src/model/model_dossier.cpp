@@ -4,6 +4,11 @@
 
 using namespace Model;
 
+namespace
+{
+    QDate ongeldigeDatum(1900, 1, 1);
+}
+
 Dossier::Dossier(int id)
 : m_id(id)
 , m_klant()
@@ -11,15 +16,15 @@ Dossier::Dossier(int id)
 , m_mutualiteit(-1)
 , m_rechterHoorapparaatPrijs(0.0)
 , m_linkerHoorapparaatPrijs(0.0)
-, m_onderzoekDatum(0)
-, m_proefDatum(0)
-, m_nkoRapportDatum(0)
-, m_dokterAdviesDatum(0)
-, m_akkoordMutualiteitDatum(0)
-, m_betalingDatum(0)
-, m_afleveringDatum(0)
-, m_wisselDatum(0)
-, m_ohkDatum(0)
+, m_onderzoekDatum(ongeldigeDatum)
+, m_proefDatum(ongeldigeDatum)
+, m_nkoRapportDatum(ongeldigeDatum)
+, m_dokterAdviesDatum(ongeldigeDatum)
+, m_akkoordMutualiteitDatum(ongeldigeDatum)
+, m_betalingDatum(ongeldigeDatum)
+, m_afleveringDatum(ongeldigeDatum)
+, m_wisselDatum(ongeldigeDatum)
+, m_ohkDatum(ongeldigeDatum)
 {
 }
 
@@ -260,47 +265,47 @@ int Dossier::getAantalHoorapparaten() const
     return aantal;
 }
 
-QDate *Dossier::getOnderzoekDatum() const
+QDate Dossier::getOnderzoekDatum() const
 {
     return m_onderzoekDatum;
 }
 
-QDate *Dossier::getProefDatum() const
+QDate Dossier::getProefDatum() const
 {
     return m_proefDatum;
 }
 
-QDate *Dossier::getNKORapportDatum() const
+QDate Dossier::getNKORapportDatum() const
 {
     return m_nkoRapportDatum;
 }
 
-QDate *Dossier::getDokterAdviesDatum() const
+QDate Dossier::getDokterAdviesDatum() const
 {
     return m_dokterAdviesDatum;
 }
 
-QDate *Dossier::getAkkoordMutualiteitDatum() const
+QDate Dossier::getAkkoordMutualiteitDatum() const
 {
     return m_akkoordMutualiteitDatum;
 }
 
-QDate *Dossier::getBetalingDatum() const
+QDate Dossier::getBetalingDatum() const
 {
     return m_betalingDatum;
 }
 
-QDate *Dossier::getAfleveringDatum() const
+QDate Dossier::getAfleveringDatum() const
 {
     return m_afleveringDatum;
 }
 
-QDate *Dossier::getWisselDatum() const
+QDate Dossier::getWisselDatum() const
 {
     return m_wisselDatum;
 }
 
-QDate *Dossier::getOHKDatum() const
+QDate Dossier::getOHKDatum() const
 {
     return m_ohkDatum;
 }
@@ -405,47 +410,47 @@ void Dossier::setLinkerHoorapparaatPrijs(double value)
     m_linkerHoorapparaatPrijs = value;
 }
 
-void Dossier::setOnderzoekDatum(QDate *value)
+void Dossier::setOnderzoekDatum(const QDate &value)
 {
     m_onderzoekDatum = value;
 }
 
-void Dossier::setProefDatum(QDate *value)
+void Dossier::setProefDatum(const QDate &value)
 {
     m_proefDatum = value;
 }
 
-void Dossier::setNKORapportDatum(QDate *value)
+void Dossier::setNKORapportDatum(const QDate &value)
 {
     m_nkoRapportDatum = value;
 }
 
-void Dossier::setDokterAdviesDatum(QDate *value)
+void Dossier::setDokterAdviesDatum(const QDate &value)
 {
     m_dokterAdviesDatum = value;
 }
 
-void Dossier::setAkkoordMutualiteitDatum(QDate *value)
+void Dossier::setAkkoordMutualiteitDatum(const QDate &value)
 {
     m_akkoordMutualiteitDatum = value;
 }
 
-void Dossier::setBetalingDatum(QDate *value)
+void Dossier::setBetalingDatum(const QDate &value)
 {
     m_betalingDatum = value;
 }
 
-void Dossier::setAfleveringDatum(QDate *value)
+void Dossier::setAfleveringDatum(const QDate &value)
 {
     m_afleveringDatum = value;
 }
 
-void Dossier::setWisselDatum(QDate *value)
+void Dossier::setWisselDatum(const QDate &value)
 {
     m_wisselDatum = value;
 }
 
-void Dossier::setOHKDatum(QDate *value)
+void Dossier::setOHKDatum(const QDate &value)
 {
     m_ohkDatum = value;
 }

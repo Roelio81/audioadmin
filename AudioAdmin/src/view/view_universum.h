@@ -31,7 +31,7 @@ namespace View
         void toevoegenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
         void wijzigenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
         void leegHoorapparatenLijst();
-        void toevoegenHoorapparaat(const QString &merk, const QString &type);
+        void toevoegenHoorapparaat(const QString &merk, const QString &type, double prijs, const QDate &datumPrijs);
         void markeerKlantenLijstStatus(bool wijzigingen);
         void leegKlantenLijst();
         void toevoegenKlant(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
@@ -100,7 +100,10 @@ namespace View
         void openMutualiteitTab();
 
     private:
-        QMap<QString, QSet<QString> > m_hoorapparaatMerkToTypes;
+        typedef QPair<double, QDate> PrijsDatumInfo;
+        typedef QMap<QString, PrijsDatumInfo> HaarApparaatTypeMap;
+        typedef QMap<QString, HaarApparaatTypeMap> HoorApparaatMap;
+        HoorApparaatMap m_hoorapparaatMerkToTypes;
 
         Arts m_arts;
         Dossier m_dossier;

@@ -290,13 +290,6 @@
              <string>Datums</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_2">
-             <item row="0" column="0">
-              <widget class="QCheckBox" name="c_datumOnderzoek">
-               <property name="text">
-                <string>Onderzoek</string>
-               </property>
-              </widget>
-             </item>
              <item row="0" column="1">
               <widget class="QDateEdit" name="m_datumOnderzoek">
                <property name="displayFormat">
@@ -304,13 +297,6 @@
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QCheckBox" name="c_datumProef">
-               <property name="text">
-                <string>Proef</string>
                </property>
               </widget>
              </item>
@@ -324,13 +310,6 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
-              <widget class="QCheckBox" name="c_datumNKO">
-               <property name="text">
-                <string>NKO Rapport</string>
-               </property>
-              </widget>
-             </item>
              <item row="2" column="1">
               <widget class="QDateEdit" name="m_datumNKO">
                <property name="displayFormat">
@@ -338,13 +317,6 @@
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QCheckBox" name="c_datumAdviseur">
-               <property name="text">
-                <string>Dokter adviseur</string>
                </property>
               </widget>
              </item>
@@ -358,13 +330,6 @@
                </property>
               </widget>
              </item>
-             <item row="4" column="0">
-              <widget class="QCheckBox" name="c_datumMutualiteit">
-               <property name="text">
-                <string>Akkoord mut.</string>
-               </property>
-              </widget>
-             </item>
              <item row="4" column="1">
               <widget class="QDateEdit" name="m_datumMutualiteit">
                <property name="displayFormat">
@@ -372,13 +337,6 @@
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QCheckBox" name="c_datumBetaling">
-               <property name="text">
-                <string>Betaling</string>
                </property>
               </widget>
              </item>
@@ -392,13 +350,6 @@
                </property>
               </widget>
              </item>
-             <item row="6" column="0">
-              <widget class="QCheckBox" name="c_datumAflevering">
-               <property name="text">
-                <string>Aflevering</string>
-               </property>
-              </widget>
-             </item>
              <item row="6" column="1">
               <widget class="QDateEdit" name="m_datumAflevering">
                <property name="displayFormat">
@@ -406,13 +357,6 @@
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="0">
-              <widget class="QCheckBox" name="c_datumWissel">
-               <property name="text">
-                <string>Wissel</string>
                </property>
               </widget>
              </item>
@@ -426,13 +370,6 @@
                </property>
               </widget>
              </item>
-             <item row="8" column="0">
-              <widget class="QCheckBox" name="c_datumOHK">
-               <property name="text">
-                <string>OHK</string>
-               </property>
-              </widget>
-             </item>
              <item row="8" column="1">
               <widget class="QDateEdit" name="m_datumOHK">
                <property name="displayFormat">
@@ -440,6 +377,69 @@
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="l_datumOnderzoek">
+               <property name="text">
+                <string>Onderzoek</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="l_datumProef">
+               <property name="text">
+                <string>Proef</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="l_datumNKO">
+               <property name="text">
+                <string>NKO Rapport</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="l_datumAdviseur">
+               <property name="text">
+                <string>Dokter adviseur</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="l_datumMutualiteit">
+               <property name="text">
+                <string>Akkoord mut.</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="l_datumBetaling">
+               <property name="text">
+                <string>Betaling</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="l_datumAflevering">
+               <property name="text">
+                <string>Aflevering</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="l_datumWissel">
+               <property name="text">
+                <string>Wissel</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLabel" name="l_datumOHK">
+               <property name="text">
+                <string>OHK</string>
                </property>
               </widget>
              </item>

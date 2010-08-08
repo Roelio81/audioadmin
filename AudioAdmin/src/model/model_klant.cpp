@@ -4,8 +4,13 @@
 
 using namespace Model;
 
+namespace
+{
+    QDate ongeldigeDatum(1900, 1, 1);
+}
+
 Klant::Klant()
-: m_geboorteDatum(0)
+: m_geboorteDatum(ongeldigeDatum)
 {
 }
 
@@ -27,7 +32,7 @@ void Klant::fromDomElement(const QDomElement &e)
         }
         else if (element.tagName() == "geboortedatum")
         {
-            m_geboorteDatum = new QDate(QDate::fromString(element.text(), "yyyy-MM-dd"));
+            m_geboorteDatum = QDate::fromString(element.text(), "yyyy-MM-dd");
         }
     }
 
@@ -45,11 +50,11 @@ QDomElement Klant::toDomElement() const
     voornaam.setTagName("voornaam");
     voornaam.setNodeValue(m_voornaam);
     result.appendChild(voornaam);
-    if (m_geboorteDatum)
+    if (m_geboorteDatum != ongeldigeDatum)
     {
         QDomElement geboorteDatum;
         geboorteDatum.setTagName("geboortedatum");
-        geboorteDatum.setNodeValue(m_geboorteDatum->toString("yyyy-MM-dd"));
+        geboorteDatum.setNodeValue(m_geboorteDatum.toString("yyyy-MM-dd"));
         result.appendChild(geboorteDatum);
     }
 
@@ -67,7 +72,7 @@ QString Klant::getVoornaam() const
     return m_voornaam;
 }
 
-QDate *Klant::getGeboorteDatum() const
+QDate Klant::getGeboorteDatum() const
 {
     return m_geboorteDatum;
 }
@@ -82,7 +87,7 @@ void Klant::setVoornaam(const QString &value)
     m_voornaam = value;
 }
 
-void Klant::setGeboorteDatum(QDate *value)
+void Klant::setGeboorteDatum(const QDate &value)
 {
     m_geboorteDatum = value;
 }

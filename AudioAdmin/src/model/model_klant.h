@@ -20,16 +20,16 @@ namespace Model
 
         QString getAanspreektitel() const;
         QString getVoornaam() const;
-        QDate *getGeboorteDatum() const;
+        QDate getGeboorteDatum() const;
 
         void setAanspreektitel(const QString &value);
         void setVoornaam(const QString &value);
-        void setGeboorteDatum(QDate *value);
+        void setGeboorteDatum(const QDate &value);
 
     private:
         QString m_aanspreektitel;
         QString m_voornaam;
-        QDate *m_geboorteDatum;
+        QDate m_geboorteDatum;
     };
 }
 

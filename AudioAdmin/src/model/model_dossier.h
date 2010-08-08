@@ -43,15 +43,15 @@ namespace Model
         QString getLinkerHoorapparaatSerienummer() const;
         double getLinkerHoorapparaatPrijs() const;
         int getAantalHoorapparaten() const;
-        QDate *getOnderzoekDatum() const;
-        QDate *getProefDatum() const;
-        QDate *getNKORapportDatum() const;
-        QDate *getDokterAdviesDatum() const;
-        QDate *getAkkoordMutualiteitDatum() const;
-        QDate *getBetalingDatum() const;
-        QDate *getAfleveringDatum() const;
-        QDate *getWisselDatum() const;
-        QDate *getOHKDatum() const;
+        QDate getOnderzoekDatum() const;
+        QDate getProefDatum() const;
+        QDate getNKORapportDatum() const;
+        QDate getDokterAdviesDatum() const;
+        QDate getAkkoordMutualiteitDatum() const;
+        QDate getBetalingDatum() const;
+        QDate getAfleveringDatum() const;
+        QDate getWisselDatum() const;
+        QDate getOHKDatum() const;
 
         void setArts(int value);
         void setMutualiteit(int value);
@@ -73,15 +73,15 @@ namespace Model
         void setLinkerHoorapparaatType(const QString &value);
         void setLinkerHoorapparaatSerienummer(const QString &value);
         void setLinkerHoorapparaatPrijs(double value);
-        void setOnderzoekDatum(QDate *value);
-        void setProefDatum(QDate *value);
-        void setNKORapportDatum(QDate *value);
-        void setDokterAdviesDatum(QDate *value);
-        void setAkkoordMutualiteitDatum(QDate *value);
-        void setBetalingDatum(QDate *value);
-        void setAfleveringDatum(QDate *value);
-        void setWisselDatum(QDate *value);
-        void setOHKDatum(QDate *value);
+        void setOnderzoekDatum(const QDate &value);
+        void setProefDatum(const QDate &value);
+        void setNKORapportDatum(const QDate &value);
+        void setDokterAdviesDatum(const QDate &value);
+        void setAkkoordMutualiteitDatum(const QDate &value);
+        void setBetalingDatum(const QDate &value);
+        void setAfleveringDatum(const QDate &value);
+        void setWisselDatum(const QDate &value);
+        void setOHKDatum(const QDate &value);
 
     private:
         const int m_id;
@@ -106,15 +106,15 @@ namespace Model
         QString m_linkerHoorapparaatType;
         QString m_linkerHoorapparaatSerienummer;
         double m_linkerHoorapparaatPrijs;
-        QDate *m_onderzoekDatum;
-        QDate *m_proefDatum;
-        QDate *m_nkoRapportDatum;
-        QDate *m_dokterAdviesDatum;
-        QDate *m_akkoordMutualiteitDatum;
-        QDate *m_betalingDatum;
-        QDate *m_afleveringDatum;
-        QDate *m_wisselDatum;
-        QDate *m_ohkDatum;
+        QDate m_onderzoekDatum;
+        QDate m_proefDatum;
+        QDate m_nkoRapportDatum;
+        QDate m_dokterAdviesDatum;
+        QDate m_akkoordMutualiteitDatum;
+        QDate m_betalingDatum;
+        QDate m_afleveringDatum;
+        QDate m_wisselDatum;
+        QDate m_ohkDatum;
         Meetgegevens m_meetgegevens;
     };
 }

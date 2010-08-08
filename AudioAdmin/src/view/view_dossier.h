@@ -33,7 +33,7 @@ namespace View
         int getPostcode() const;
         QString getGemeente() const;
         QString getTelefoon() const;
-        QDate *getGeboorteDatum() const;
+        QDate getGeboorteDatum() const;
         int getMutualiteit() const;
         QString getAansluitingsnummer() const;
         QString getPlaatsAanpassing() const;
@@ -47,15 +47,15 @@ namespace View
         QString getLinkerHoorapparaatType() const;
         QString getLinkerHoorapparaatSerienummer() const;
         double getLinkerHoorapparaatPrijs() const;
-        QDate *getOnderzoekDatum() const;
-        QDate *getProefDatum() const;
-        QDate *getNKORapportDatum() const;
-        QDate *getDokterAdviesDatum() const;
-        QDate *getAkkoordMutualiteitDatum() const;
-        QDate *getBetalingDatum() const;
-        QDate *getAfleveringDatum() const;
-        QDate *getWisselDatum() const;
-        QDate *getOHKDatum() const;
+        QDate getOnderzoekDatum() const;
+        QDate getProefDatum() const;
+        QDate getNKORapportDatum() const;
+        QDate getDokterAdviesDatum() const;
+        QDate getAkkoordMutualiteitDatum() const;
+        QDate getBetalingDatum() const;
+        QDate getAfleveringDatum() const;
+        QDate getWisselDatum() const;
+        QDate getOHKDatum() const;
 
         void setAanspreektitel(const QString &value);
         void setNaam(const QString &value);
@@ -64,7 +64,7 @@ namespace View
         void setPostcode(int value);
         void setGemeente(const QString &value);
         void setTelefoon(const QString &value);
-        void setGeboorteDatum(QDate *value);
+        void setGeboorteDatum(const QDate &value);
         void setMutualiteit(int value);
         void setAansluitingsnummer(const QString &value);
         void setPlaatsAanpassing(const QString &value);
@@ -78,15 +78,15 @@ namespace View
         void setLinkerHoorapparaatType(const QString &value);
         void setLinkerHoorapparaatSerienummer(const QString &value);
         void setLinkerHoorapparaatPrijs(double value);
-        void setOnderzoekDatum(QDate *value);
-        void setProefDatum(QDate *value);
-        void setNKORapportDatum(QDate *value);
-        void setDokterAdviesDatum(QDate *value);
-        void setAkkoordMutualiteitDatum(QDate *value);
-        void setBetalingDatum(QDate *value);
-        void setAfleveringDatum(QDate *value);
-        void setWisselDatum(QDate *value);
-        void setOHKDatum(QDate *value);
+        void setOnderzoekDatum(const QDate &value);
+        void setProefDatum(const QDate &value);
+        void setNKORapportDatum(const QDate &value);
+        void setDokterAdviesDatum(const QDate &value);
+        void setAkkoordMutualiteitDatum(const QDate &value);
+        void setBetalingDatum(const QDate &value);
+        void setAfleveringDatum(const QDate &value);
+        void setWisselDatum(const QDate &value);
+        void setOHKDatum(const QDate &value);
 
     public slots:
         void toonArts(int value);
