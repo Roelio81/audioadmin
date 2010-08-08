@@ -3,6 +3,11 @@
 
 using namespace View;
 
+namespace
+{
+    QDate ongeldigeDatum(1900, 1, 1);
+}
+
 Dossier::Dossier(Universum &universum)
 : m_universum(universum)
 {
@@ -116,14 +121,17 @@ QString Dossier::getTelefoon() const
     return m_universum.m_klantTelefoon->text();
 }
 
-QDate Dossier::getGeboorteDatum() const
+QDate *Dossier::getGeboorteDatum() const
 {
-    return m_universum.m_klantGeboorteDatum->date();
+    QDate geboorteDatum = m_universum.m_klantGeboorteDatum->date();
+    return (geboorteDatum != ongeldigeDatum ? new QDate(geboorteDatum) : 0);
 }
 
 int Dossier::getMutualiteit() const
 {
-    return m_universum.m_klantMutualiteit->itemData(m_universum.m_klantMutualiteit->currentIndex()).toInt();
+    int index = m_universum.m_klantMutualiteit->currentIndex();
+    int id = m_universum.m_klantMutualiteit->itemData(index).toInt();
+    return id;
 }
 
 QString Dossier::getAansluitingsnummer() const
@@ -143,7 +151,8 @@ QString Dossier::getOpmerkingen() const
 
 int Dossier::getArts() const
 {
-    return m_universum.m_klantArts->itemData(m_universum.m_klantArts->currentIndex()).toInt();
+    int index = m_universum.m_klantArts->currentIndex();
+    return m_universum.m_klantArts->itemData(index).toInt();
 }
 
 QString Dossier::getRechterHoorapparaatMerk() const
@@ -289,9 +298,12 @@ void Dossier::setTelefoon(const QString &value)
     m_universum.m_klantTelefoon->setText(value);
 }
 
-void Dossier::setGeboorteDatum(const QDate &value)
+void Dossier::setGeboorteDatum(QDate *value)
 {
-    m_universum.m_klantGeboorteDatum->setDate(value);
+    if (value)
+        m_universum.m_klantGeboorteDatum->setDate(*value);
+    else
+        m_universum.m_klantGeboorteDatum->setDate(ongeldigeDatum);
 }
 
 void Dossier::setMutualiteit(int value)

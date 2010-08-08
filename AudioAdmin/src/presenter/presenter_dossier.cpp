@@ -65,8 +65,12 @@ void Dossier::setup()
     m_view.setArts(m_model.getArts());
     m_view.setRechterHoorapparaatMerk(m_model.getRechterHoorapparaatMerk());
     m_view.setRechterHoorapparaatType(m_model.getRechterHoorapparaatType());
+    m_view.setRechterHoorapparaatPrijs(m_model.getRechterHoorapparaatPrijs());
+    m_view.setRechterHoorapparaatSerienummer(m_model.getRechterHoorapparaatSerienummer());
     m_view.setLinkerHoorapparaatMerk(m_model.getLinkerHoorapparaatMerk());
     m_view.setLinkerHoorapparaatType(m_model.getLinkerHoorapparaatType());
+    m_view.setLinkerHoorapparaatPrijs(m_model.getLinkerHoorapparaatPrijs());
+    m_view.setLinkerHoorapparaatSerienummer(m_model.getLinkerHoorapparaatSerienummer());
     m_view.setOnderzoekDatum(m_model.getOnderzoekDatum());
     m_view.setProefDatum(m_model.getProefDatum());
     m_view.setNKORapportDatum(m_model.getNKORapportDatum());
@@ -118,7 +122,10 @@ void Dossier::teardown()
         klantModel.setTelefoon(m_view.getTelefoon());
         gewijzigd = true;
     }
-    if (klantModel.getGeboorteDatum() != m_view.getGeboorteDatum())
+    if ((!klantModel.getGeboorteDatum() && m_view.getGeboorteDatum()) ||
+        (klantModel.getGeboorteDatum() && !m_view.getGeboorteDatum()) ||
+        (klantModel.getGeboorteDatum() && m_view.getGeboorteDatum() && (*klantModel.getGeboorteDatum() != *m_view.getGeboorteDatum()))
+        )
     {
         klantModel.setGeboorteDatum(m_view.getGeboorteDatum());
         gewijzigd = true;
@@ -308,7 +315,10 @@ void Dossier::setupBriefArts()
     {
         tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
         tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam();
-        tekst += " (" + QString(char(0xb0)) + " " + m_model.getKlant().getGeboorteDatum().toString("dd-MM-yyyy") + "). ";
+        if (QDate *geboorteDatum = m_model.getKlant().getGeboorteDatum())
+        {
+            tekst += " (" + QString(char(0xb0)) + " " + geboorteDatum->toString("dd-MM-yyyy") + "). ";
+        }
         if (m_model.getAantalHoorapparaten() > 0)
         {
             tekst += (klantIsMan ? QString("Mijnheer ") : QString("Mevrouw ")) + "heeft geopteerd voor een ";
@@ -432,7 +442,10 @@ void Dossier::setupBriefMutualiteit()
     {
         tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
         tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam();
-        tekst += " (" + QString(char(0xb0)) + " " + m_model.getKlant().getGeboorteDatum().toString("dd-MM-yyyy") + "). ";
+        if (QDate *geboorteDatum = m_model.getKlant().getGeboorteDatum())
+        {
+            tekst += " (" + QString(char(0xb0)) + " " + geboorteDatum->toString("dd-MM-yyyy") + "). ";
+        }
         if (m_model.getAantalHoorapparaten() > 0)
         {
             tekst += (klantIsMan ? QString("Mijnheer ") : QString("Mevrouw ")) + "heeft geopteerd voor een ";

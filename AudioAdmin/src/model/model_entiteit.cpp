@@ -42,7 +42,7 @@ void Entiteit::fromDomElement(const QDomElement &e)
         }
         else if (element.tagName() == "opmerkingen")
         {
-            m_opmerkingen = element.text();
+            m_opmerkingen = element.text().replace("\r\n", "\n");
         }
     }
 }
@@ -72,7 +72,7 @@ QDomElement Entiteit::toDomElement() const
     result.appendChild(telefoon);
     QDomElement opmerkingen;
     opmerkingen.setTagName("opmerkingen");
-    opmerkingen.setNodeValue(m_opmerkingen);
+    opmerkingen.setNodeValue(QString(m_opmerkingen).replace("\n", "\r\n"));
     result.appendChild(opmerkingen);
     result.setTagName("entiteit");
     return result;

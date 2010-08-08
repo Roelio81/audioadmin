@@ -5,6 +5,7 @@
 using namespace Model;
 
 Klant::Klant()
+: m_geboorteDatum(0)
 {
 }
 
@@ -24,6 +25,10 @@ void Klant::fromDomElement(const QDomElement &e)
         {
             m_voornaam = element.text();
         }
+        else if (element.tagName() == "geboortedatum")
+        {
+            m_geboorteDatum = new QDate(QDate::fromString(element.text(), "yyyy-MM-dd"));
+        }
     }
 
     Entiteit::fromDomElement(e);
@@ -40,6 +45,14 @@ QDomElement Klant::toDomElement() const
     voornaam.setTagName("voornaam");
     voornaam.setNodeValue(m_voornaam);
     result.appendChild(voornaam);
+    if (m_geboorteDatum)
+    {
+        QDomElement geboorteDatum;
+        geboorteDatum.setTagName("geboortedatum");
+        geboorteDatum.setNodeValue(m_geboorteDatum->toString("yyyy-MM-dd"));
+        result.appendChild(geboorteDatum);
+    }
+
     result.setTagName("klant");
     return result;
 }
@@ -54,7 +67,7 @@ QString Klant::getVoornaam() const
     return m_voornaam;
 }
 
-QDate Klant::getGeboorteDatum() const
+QDate *Klant::getGeboorteDatum() const
 {
     return m_geboorteDatum;
 }
@@ -69,7 +82,7 @@ void Klant::setVoornaam(const QString &value)
     m_voornaam = value;
 }
 
-void Klant::setGeboorteDatum(const QDate &value)
+void Klant::setGeboorteDatum(QDate *value)
 {
     m_geboorteDatum = value;
 }

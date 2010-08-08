@@ -33,7 +33,7 @@ namespace View
         int getPostcode() const;
         QString getGemeente() const;
         QString getTelefoon() const;
-        QDate getGeboorteDatum() const;
+        QDate *getGeboorteDatum() const;
         int getMutualiteit() const;
         QString getAansluitingsnummer() const;
         QString getPlaatsAanpassing() const;
@@ -64,7 +64,7 @@ namespace View
         void setPostcode(int value);
         void setGemeente(const QString &value);
         void setTelefoon(const QString &value);
-        void setGeboorteDatum(const QDate &value);
+        void setGeboorteDatum(QDate *value);
         void setMutualiteit(int value);
         void setAansluitingsnummer(const QString &value);
         void setPlaatsAanpassing(const QString &value);
