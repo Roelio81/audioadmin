@@ -27,8 +27,7 @@ namespace Presenter
         virtual ~Universum();
 
     private slots:
-        void openen(QString bestandsNaam);
-        void bewaren(QString bestandsNaam);
+        void bewaren();
         void etiketten();
         void okEtiketten();
         void annuleerEtiketten();

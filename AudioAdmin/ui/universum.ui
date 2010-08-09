@@ -803,21 +803,6 @@
            </spacer>
           </item>
           <item>
-           <widget class="QToolButton" name="b_dossierBewaren">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Bewaren</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normalon>:/icons/filesave-64.png</normalon>
-             </iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QToolButton" name="b_dossierToevoegen">
             <property name="text">
              <string>Toevoegen</string>
@@ -1105,21 +1090,6 @@
            </spacer>
           </item>
           <item>
-           <widget class="QToolButton" name="b_artsBewaren">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Bewaren</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normalon>:/icons/filesave-64.png</normalon>
-             </iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QToolButton" name="b_artsToevoegen">
             <property name="text">
              <string>Toevoegen</string>
@@ -1394,21 +1364,6 @@
            </spacer>
           </item>
           <item>
-           <widget class="QToolButton" name="b_mutualiteitBewaren">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Bewaren</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normalon>:/icons/filesave-64.png</normalon>
-             </iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QToolButton" name="b_mutualiteitToevoegen">
             <property name="text">
              <string>Toevoegen</string>
@@ -1481,10 +1436,8 @@
     <property name="title">
      <string>Bestand</string>
     </property>
-    <addaction name="actionBackup_maken"/>
-    <addaction name="actionBackup_terugzetten"/>
-    <addaction name="separator"/>
-    <addaction name="actionEtiketten_afdrukken"/>
+    <addaction name="actionBewaren"/>
+    <addaction name="actionEtikettenAfdrukken"/>
     <addaction name="separator"/>
     <addaction name="actionAfsluiten"/>
    </widget>
@@ -1510,12 +1463,16 @@
     <string>Backup maken...</string>
    </property>
   </action>
-  <action name="actionBackup_terugzetten">
+  <action name="actionBewaren">
+   <property name="icon">
+    <iconset resource="../icons.qrc">
+     <normaloff>:/icons/filesave-64.png</normaloff>:/icons/filesave-64.png</iconset>
+   </property>
    <property name="text">
-    <string>Backup terugzetten...</string>
+    <string>Opslaan</string>
    </property>
   </action>
-  <action name="actionEtiketten_afdrukken">
+  <action name="actionEtikettenAfdrukken">
    <property name="icon">
     <iconset resource="../icons.qrc">
      <normaloff>:/icons/agt_print-64.png</normaloff>:/icons/agt_print-64.png</iconset>

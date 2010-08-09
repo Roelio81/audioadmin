@@ -24,23 +24,19 @@ Universum::Universum(::QWidget *parent, Qt::WFlags f)
 , m_huidigeTab(0)
 {
     setupUi(this);
-    connect(actionEtiketten_afdrukken, SIGNAL(triggered()), this, SLOT(etikettenAfdrukken()));
-    connect(actionBackup_maken, SIGNAL(triggered()), this, SLOT(backup()));
-    connect(actionBackup_terugzetten, SIGNAL(triggered()), this, SLOT(restore()));
+    connect(actionBewaren, SIGNAL(triggered()), this, SLOT(bewaren()));
+    connect(actionEtikettenAfdrukken, SIGNAL(triggered()), this, SLOT(etikettenAfdrukken()));
     connect(actionInstellingen_wijzigen, SIGNAL(triggered()), this, SLOT(instellingen()));
     connect(actionOmtrent, SIGNAL(triggered()), this, SLOT(omtrent()));
     connect(m_artsenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerArts(int, int, int, int)));
     connect(m_klantenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerKlant(int, int, int, int)));
     connect(m_mutualiteitenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerMutualiteit(int, int, int, int)));
-    connect(b_artsBewaren, SIGNAL(clicked()), this, SLOT(bewarenArts()));
     connect(b_artsToevoegen, SIGNAL(clicked()), this, SLOT(toevoegenArts()));
     connect(b_artsVerwijderen, SIGNAL(clicked()), this, SLOT(verwijderenArts()));
     connect(b_artsZoeken, SIGNAL(clicked()), this, SLOT(zoekenArts()));
-    connect(b_dossierBewaren, SIGNAL(clicked()), this, SLOT(bewarenDossier()));
     connect(b_dossierToevoegen, SIGNAL(clicked()), this, SLOT(toevoegenDossier()));
     connect(b_dossierVerwijderen, SIGNAL(clicked()), this, SLOT(verwijderenDossier()));
     connect(b_dossierZoeken, SIGNAL(clicked()), this, SLOT(zoekenDossier()));
-    connect(b_mutualiteitBewaren, SIGNAL(clicked()), this, SLOT(bewarenMutualiteit()));
     connect(b_mutualiteitToevoegen, SIGNAL(clicked()), this, SLOT(toevoegenMutualiteit()));
     connect(b_mutualiteitVerwijderen, SIGNAL(clicked()), this, SLOT(verwijderenMutualiteit()));
     connect(b_mutualiteitZoeken, SIGNAL(clicked()), this, SLOT(zoekenMutualiteit()));
@@ -105,33 +101,14 @@ Instellingen &Universum::getInstellingen()
     return m_instellingen;
 }
 
+void Universum::bewaren()
+{
+    emit bewarenSignal();
+}
+
 void Universum::etikettenAfdrukken()
 {
     emit etikettenSignal();
-}
-
-void Universum::backup()
-{
-    QStringList filters;
-    filters << "XML files (*.xml)";
-    QFileDialog dialog(this, "Backup maken");
-    dialog.setNameFilters(filters);
-    dialog.setAcceptMode(QFileDialog::AcceptSave);
-    dialog.setDefaultSuffix("xml");
-    QString bestandsNaam = dialog.getSaveFileName();
-    emit backupSignal(bestandsNaam);
-}
-
-void Universum::restore()
-{
-    QStringList filters;
-    filters << "XML files (*.xml)";
-    QFileDialog dialog(this, "Backup terugzetten");
-    dialog.setNameFilters(filters);
-    dialog.setAcceptMode(QFileDialog::AcceptOpen);
-    dialog.setDefaultSuffix("xml");
-    QString bestandsNaam = dialog.getOpenFileName();
-    emit restoreSignal(bestandsNaam);
 }
 
 void Universum::tabVeranderd(int nieuweTab)
@@ -373,7 +350,6 @@ void Universum::selecteerMutualiteit(int id)
 
 void Universum::selecteerArts(int currentRow, int, int previousRow, int)
 {
-    b_artsBewaren->setEnabled(true);
     b_artsVerwijderen->setEnabled(true);
     if (currentRow != previousRow)
     {
@@ -383,7 +359,6 @@ void Universum::selecteerArts(int currentRow, int, int previousRow, int)
 
 void Universum::selecteerKlant(int currentRow, int, int previousRow, int)
 {
-    b_dossierBewaren->setEnabled(true);
     b_dossierVerwijderen->setEnabled(true);
     if (currentRow != previousRow)
     {
@@ -393,16 +368,11 @@ void Universum::selecteerKlant(int currentRow, int, int previousRow, int)
 
 void Universum::selecteerMutualiteit(int currentRow, int, int previousRow, int)
 {
-    b_mutualiteitBewaren->setEnabled(true);
     b_mutualiteitVerwijderen->setEnabled(true);
     if (currentRow != previousRow)
     {
         emit mutualiteitSelectieSignal(mutualiteitIndexToId(currentRow));
     }
-}
-
-void Universum::bewarenArts()
-{
 }
 
 void Universum::toevoegenArts()
@@ -449,10 +419,6 @@ void Universum::zoekenArts()
     }
 }
 
-void Universum::bewarenDossier()
-{
-}
-
 void Universum::toevoegenDossier()
 {
     ToevoegenKlant dialog(this);
@@ -495,10 +461,6 @@ void Universum::zoekenDossier()
             }
         }
     }
-}
-
-void Universum::bewarenMutualiteit()
-{
 }
 
 void Universum::toevoegenMutualiteit()

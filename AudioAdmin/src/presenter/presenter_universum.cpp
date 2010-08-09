@@ -21,8 +21,7 @@ Universum::Universum(View::Universum &view, Model::Universum &model)
 , m_dossier(0)
 , m_mutualiteit(0)
 {
-    connect(&m_view, SIGNAL(backupSignal(QString)), this, SLOT(bewaren(QString)));
-    connect(&m_view, SIGNAL(restoreSignal(QString)), this, SLOT(openen(QString)));
+    connect(&m_view, SIGNAL(bewarenSignal()), this, SLOT(bewaren()));
     connect(&m_view, SIGNAL(etikettenSignal()), this, SLOT(etiketten()));
     connect(&m_view, SIGNAL(instellingenSignal()), this, SLOT(instellingen()));
     connect(&m_view, SIGNAL(artsSelectieSignal(int)), this, SLOT(toonArts(int)));
@@ -61,6 +60,11 @@ Universum::Universum(View::Universum &view, Model::Universum &model)
 
 Universum::~Universum()
 {
+}
+
+void Universum::bewaren()
+{
+    m_model.bewaren();
 }
 
 void Universum::etiketten()
@@ -209,20 +213,6 @@ void Universum::refreshMutualiteitenLijst()
         Model::Mutualiteit &mutualiteit = *(*itMutualiteit);
         m_view.toevoegenMutualiteit(mutualiteit.getId(), mutualiteit.getNaam(), mutualiteit.getStraat(), mutualiteit.getPostcode(), mutualiteit.getGemeente());
     }
-}
-
-void Universum::openen(QString bestandsNaam)
-{
-    m_model.openen(bestandsNaam);
-    refreshArtsenLijst();
-    refreshHoorapparatenLijst();
-    refreshKlantenLijst();
-    refreshMutualiteitenLijst();
-}
-
-void Universum::bewaren(QString bestandsNaam)
-{
-    m_model.bewaren(bestandsNaam);
 }
 
 void Universum::toonArts(int id)
