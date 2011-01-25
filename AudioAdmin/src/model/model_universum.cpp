@@ -73,9 +73,40 @@ void Universum::fromDomElement(const QDomElement &root)
     }
 }
 
-QDomElement Universum::toDomElement() const
+QDomElement Universum::toDomElement(QDomDocument &domDoc) const
 {
-    QDomElement result;
+    QDomElement result = domDoc.createElement("administratie");
+
+    QDomElement instellingen = m_instellingen->toDomElement(domDoc);
+    result.appendChild(instellingen);
+
+    QDomElement nkoArtsen = domDoc.createElement("nkoArtsen");
+    for (QVector<Arts *>::const_iterator itArts = m_artsenLijst.begin(); itArts != m_artsenLijst.end(); ++itArts)
+    {
+        Arts *arts = *itArts;
+        Q_ASSERT(arts);
+        nkoArtsen.appendChild(arts->toDomElement(domDoc));
+    }
+    result.appendChild(nkoArtsen);
+
+    QDomElement mutualiteiten = domDoc.createElement("mutualiteiten");
+    for (QVector<Mutualiteit *>::const_iterator itMutualiteit = m_mutualiteitenLijst.begin(); itMutualiteit != m_mutualiteitenLijst.end(); ++itMutualiteit)
+    {
+        Mutualiteit *mutualiteit = *itMutualiteit;
+        Q_ASSERT(mutualiteit);
+        mutualiteiten.appendChild(mutualiteit->toDomElement(domDoc));
+    }
+    result.appendChild(mutualiteiten);
+
+    QDomElement dossiers = domDoc.createElement("dossiers");
+    for (QVector<Dossier *>::const_iterator itDossier = m_dossierLijst.begin(); itDossier != m_dossierLijst.end(); ++itDossier)
+    {
+        Dossier *dossier = *itDossier;
+        Q_ASSERT(dossier);
+        dossiers.appendChild(dossier->toDomElement(domDoc));
+    }
+    result.appendChild(dossiers);
+
     return result;
 }
 
@@ -104,43 +135,21 @@ bool Universum::openen()
     return true;
 }
 
-bool Universum::openen(const QString &bestandsNaam)
-{
-    const QString &origNaam = m_bestandsNaam;
-    m_bestandsNaam = bestandsNaam;
-    bool succes = openen();
-    m_bestandsNaam = origNaam;
-    return succes;
-}
-
 bool Universum::bewaren()
 {
-    QFile file(m_bestandsNaam);
+    QFile file("TEST" + m_bestandsNaam);    // AVOID OVERWRITING OUR PRECIOUS DATA FOR THE MOMENT!!
     if (!file.open(QIODevice::ReadWrite|QIODevice::Truncate))
     {
         return false;
     }
 
-    QDomElement element = toDomElement();
-    element.text();
     QDomDocument doc;
-    if (!doc.setContent(element.text()))
-    {
-        return false;
-    }
-
+    QDomElement element = toDomElement(doc);
     QTextStream ts(&file);
+    doc.appendChild(element);
     doc.save(ts, 0);
+    file.close();
     return true;
-}
-
-bool Universum::bewaren(const QString &bestandsNaam)
-{
-    const ::QString &origNaam = m_bestandsNaam;
-    m_bestandsNaam = bestandsNaam;
-    bool succes = bewaren();
-    m_bestandsNaam = origNaam;
-    return succes;
 }
 
 Instellingen *Universum::getInstellingen()

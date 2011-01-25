@@ -18,9 +18,12 @@ void Mutualiteit::fromDomElement(const QDomElement &e)
     Entiteit::fromDomElement(e);
 }
 
-QDomElement Mutualiteit::toDomElement() const
+QDomElement Mutualiteit::toDomElement(QDomDocument &d) const
 {
-    return Mutualiteit::toDomElement();
+    QDomElement result = Entiteit::toDomElement(d);
+    result.setTagName("mutualiteit");
+    result.setAttribute("id", m_id);
+    return result;
 }
 
 int Mutualiteit::getId() const

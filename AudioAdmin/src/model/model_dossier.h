@@ -4,6 +4,7 @@
 #include "model_klant.h"
 #include "model_meetgegevens.h"
 
+class QDomDocument;
 class QDomElement;
 
 namespace Model
@@ -15,7 +16,7 @@ namespace Model
         virtual ~Dossier();
 
         void fromDomElement(const QDomElement &e);
-        QDomElement toDomElement() const;
+        QDomElement toDomElement(QDomDocument &d) const;
 
         Klant &getKlant();
         Meetgegevens &getMeetgegevens();

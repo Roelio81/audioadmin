@@ -4,6 +4,7 @@
 #include <QMap>
 #include <QVector>
 
+class QDomDocument;
 class QDomElement;
 
 namespace Model
@@ -15,7 +16,7 @@ namespace Model
         virtual ~Meetgegevens();
 
         void fromDomElement(const QDomElement &e);
-        QDomElement toDomElement() const;
+        QDomElement toDomElement(QDomDocument &d) const;
 
         int getLGRechtsData(int Hz);
         int getBGRechtsData(int Hz);

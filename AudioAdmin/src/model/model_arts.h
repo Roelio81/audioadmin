@@ -3,6 +3,7 @@
 
 #include "model_entiteit.h"
 
+class QDomDocument;
 class QDomElement;
 
 namespace Model
@@ -14,7 +15,7 @@ namespace Model
         virtual ~Arts();
 
         void fromDomElement(const QDomElement &e);
-        QDomElement toDomElement() const;
+        QDomElement toDomElement(QDomDocument &d) const;
 
         int getId() const;
 

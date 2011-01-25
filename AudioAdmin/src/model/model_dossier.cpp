@@ -120,25 +120,24 @@ void Dossier::fromDomElement(const QDomElement &e)
     m_klant.fromDomElement(e);
 }
 
-QDomElement Dossier::toDomElement() const
+QDomElement Dossier::toDomElement(QDomDocument &d) const
 {
-    QDomElement result = m_klant.toDomElement();
-    QDomElement aanpassing;
-    aanpassing.setTagName("aanpassing");
-    aanpassing.setNodeValue(m_plaatsAanpassing);
+    QDomElement result = m_klant.toDomElement(d);
+    QDomElement aanpassing = d.createElement("aanpassing");
+    aanpassing.appendChild(d.createTextNode(m_plaatsAanpassing));
     result.appendChild(aanpassing);
-    QDomElement nkoArts;
-    nkoArts.setTagName("nkoArts");
+    QDomElement nkoArts = d.createElement("nkoArts");
     nkoArts.setAttribute("id", (m_arts >= 0) ? QString::number(m_arts) : "");
     result.appendChild(nkoArts);
-    QDomElement mutualiteit;
-    mutualiteit.setTagName("mutualiteit");
+    QDomElement mutualiteit = d.createElement("mutualiteit");
     mutualiteit.setAttribute("id", (m_mutualiteit >= 0) ? QString::number(m_mutualiteit) : "");
     mutualiteit.setAttribute("aansluitingsnummer", m_aansluitingsnummer);
     result.appendChild(mutualiteit);
-    QDomElement audiometrie = m_meetgegevens.toDomElement();
+    QDomElement audiometrie = m_meetgegevens.toDomElement(d);
     audiometrie.appendChild(audiometrie);
+    result.appendChild(audiometrie);
     result.setTagName("dossier");
+    result.setAttribute("id", m_id);
     return result;
 }
 

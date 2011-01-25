@@ -70,58 +70,45 @@ void Instellingen::fromDomElement(const QDomElement &e)
     }
 }
 
-QDomElement Instellingen::toDomElement() const
+QDomElement Instellingen::toDomElement(QDomDocument &d) const
 {
-    QDomElement result;
-    QDomElement naam;
-    naam.setTagName("naam");
-    naam.setNodeValue(m_naam);
+    QDomElement result = d.createElement("instellingen");
+    QDomElement naam = d.createElement("naam");
+    naam.appendChild(d.createTextNode(m_naam));
     result.appendChild(naam);
-    QDomElement adres;
-    adres.setTagName("adres");
-    QDomElement straat;
-    straat.setTagName("straat");
-    straat.setNodeValue(m_straat);
+    QDomElement adres = d.createElement("adres");
+    QDomElement straat = d.createElement("straat");
+    straat.appendChild(d.createTextNode(m_straat));
     adres.appendChild(straat);
-    QDomElement gemeente;
-    gemeente.setTagName("gemeente");
-    gemeente.setNodeValue(m_gemeente);
+    QDomElement gemeente = d.createElement("gemeente");
+    gemeente.appendChild(d.createTextNode(m_gemeente));
     gemeente.setAttribute("postcode", QString::number(m_postcode));
     adres.appendChild(gemeente);
     result.appendChild(adres);
-    QDomElement telefoon;
-    telefoon.setTagName("telefoon");
-    telefoon.setNodeValue(m_telefoon);
+    QDomElement telefoon = d.createElement("telefoon");
+    telefoon.appendChild(d.createTextNode(m_telefoon));
     result.appendChild(telefoon);
-    QDomElement gsm;
-    gsm.setTagName("gsm");
-    gsm.setNodeValue(m_gsm);
+    QDomElement gsm = d.createElement("gsm");
+    gsm.appendChild(d.createTextNode(m_gsm));
     result.appendChild(gsm);
-    QDomElement email;
-    email.setTagName("email");
-    email.setNodeValue(m_email);
-    result.appendChild(email);
-    QDomElement onderschrift;
-    onderschrift.setTagName("onderschrift");
-    onderschrift.setNodeValue(m_gsm);
+    QDomElement onderschrift = d.createElement("onderschrift");
+    onderschrift.appendChild(d.createTextNode(m_onderschrift));
     result.appendChild(onderschrift);
-    QDomElement riziv;
-    riziv.setTagName("riziv");
-    riziv.setNodeValue(m_riziv);
-    result.appendChild(riziv);
-    QDomElement btwnr;
-    btwnr.setTagName("btwnr");
-    btwnr.setNodeValue(m_btwNummer);
+    QDomElement email = d.createElement("email");
+    email.appendChild(d.createTextNode(m_email));
+    result.appendChild(email);
+    QDomElement btwnr = d.createElement("btwnr");
+    btwnr.appendChild(d.createTextNode(m_btwNummer));
     result.appendChild(btwnr);
-    QDomElement btwpct;
-    btwpct.setTagName("btwpct");
-    btwpct.setNodeValue(QString::number(m_btwPercentage));
-    result.appendChild(btwpct);
-    QDomElement rekeningnr;
-    rekeningnr.setTagName("rekeningnr");
-    rekeningnr.setNodeValue(m_rekeningNummer);
+    QDomElement rekeningnr = d.createElement("rekeningnr");
+    rekeningnr.appendChild(d.createTextNode(m_rekeningNummer));
     result.appendChild(rekeningnr);
-    result.setTagName("instellingen");
+    QDomElement riziv = d.createElement("riziv");
+    riziv.appendChild(d.createTextNode(m_riziv));
+    result.appendChild(riziv);
+    QDomElement btwpct = d.createElement("btwpct");
+    btwpct.appendChild(d.createTextNode(QString::number(m_btwPercentage)));
+    result.appendChild(btwpct);
     return result;
 }
 

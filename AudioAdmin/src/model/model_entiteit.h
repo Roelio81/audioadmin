@@ -3,6 +3,7 @@
 
 #include <QString>
 
+class QDomDocument;
 class QDomElement;
 
 namespace Model
@@ -14,7 +15,7 @@ namespace Model
         virtual ~Entiteit();
 
         void fromDomElement(const QDomElement &e);
-        QDomElement toDomElement() const;
+        QDomElement toDomElement(QDomDocument &d) const;
 
         QString getNaam() const;
         QString getStraat() const;

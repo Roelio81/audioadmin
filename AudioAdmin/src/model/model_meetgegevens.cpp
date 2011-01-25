@@ -109,12 +109,11 @@ void Meetgegevens::fromDomElement(const QDomElement &e)
     }
 }
 
-QDomElement Meetgegevens::toDomElement() const
+QDomElement Meetgegevens::toDomElement(QDomDocument &d) const
 {
-    QDomElement result;
+    QDomElement result = d.createElement("audiometrie");
 
-    QDomElement tonale;
-    tonale.setTagName("tonale");
+    QDomElement tonale = d.createElement("tonale");
     int HzValues[] = {125, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 6000, 8000};
     QString tonaleNamen[] = { "lg", "bg", "ucl", "lg", "bg", "ucl"};
     QString tonalePlaatsen[] = { "rechts", "rechts", "rechts", "links", "links", "links" };
@@ -122,13 +121,11 @@ QDomElement Meetgegevens::toDomElement() const
                                              &m_lgDataLinks, &m_bgDataLinks, &m_uclDataLinks };
     for (int i = 0; i < 6; ++i)
     {
-        QDomElement element;
-        element.setTagName(tonaleNamen[i]);
+        QDomElement element = d.createElement(tonaleNamen[i]);
         element.setAttribute("plaats", tonalePlaatsen[i]);
         for (int j = 0; j < 11; ++j)
         {
-            QDomElement meting;
-            meting.setTagName("meting");
+            QDomElement meting = d.createElement("meting");
             meting.setAttribute("freq", QString::number(HzValues[j]));
             meting.setAttribute("db", QString::number((*(tonaleMetingen[i]))[j]));
             element.appendChild(meting);
@@ -137,21 +134,18 @@ QDomElement Meetgegevens::toDomElement() const
     }
     result.appendChild(tonale);
 
-    QDomElement vocale;
-    vocale.setTagName("vocale");
+    QDomElement vocale = d.createElement("vocale");
     QString vocaleNamen[] = { "zonder", "zonder", "zonder", "met", "met", "met"};
     QString vocalePlaatsen[] = { "rechts", "links", "beide", "rechts", "links", "beide" };
     const QVector<int> *vocaleMetingen[] = { &m_roDataZonder, &m_loDataZonder, &m_roloDataZonder,
                                              &m_roDataMet, &m_loDataMet, &m_roloDataMet };
     for (int i = 0; i < 6; ++i)
     {
-        QDomElement element;
-        element.setTagName(vocaleNamen[i]);
+        QDomElement element = d.createElement(vocaleNamen[i]);
         element.setAttribute("plaats", vocalePlaatsen[i]);
         for (int j = 0; j < 11; ++j)
         {
-            QDomElement meting;
-            meting.setTagName("meting");
+            QDomElement meting = d.createElement("meting");
             meting.setAttribute("db", QString::number(5*j));
             meting.setAttribute("percentage", QString::number((*(vocaleMetingen[i]))[j]));
             element.appendChild(meting);
@@ -160,30 +154,24 @@ QDomElement Meetgegevens::toDomElement() const
     }
     result.appendChild(vocale);
 
-    QDomElement localisatie;
-    localisatie.setTagName("localisatie");
-    QDomElement localisatieZonder;
-    localisatieZonder.setTagName("zonderHA");
+    QDomElement localisatie = d.createElement("localisatie");
+    QDomElement localisatieZonder = d.createElement("zonderHA");
     localisatieZonder.setAttribute("db", QString::number(m_localisatieZonder));
     localisatie.appendChild(localisatieZonder);
-    QDomElement localisatieRechts;
-    localisatieRechts.setTagName("metHA");
+    QDomElement localisatieRechts = d.createElement("metHA");
     localisatieRechts.setAttribute("db", QString::number(m_localisatieRechts));
     localisatieRechts.setAttribute("plaats", "rechts");
     localisatie.appendChild(localisatieRechts);
-    QDomElement localisatieLinks;
-    localisatieLinks.setTagName("metHA");
+    QDomElement localisatieLinks = d.createElement("metHA");
     localisatieLinks.setAttribute("db", QString::number(m_localisatieLinks));
     localisatieLinks.setAttribute("plaats", "links");
     localisatie.appendChild(localisatieLinks);
-    QDomElement localisatieBeide;
-    localisatieBeide.setTagName("metHA");
+    QDomElement localisatieBeide = d.createElement("metHA");
     localisatieBeide.setAttribute("db", QString::number(m_localisatieBeide));
     localisatieBeide.setAttribute("plaats", "beide");
     localisatie.appendChild(localisatieBeide);
     result.appendChild(localisatie);
 
-    result.setTagName("audiometrie");
     return result;
 }
 

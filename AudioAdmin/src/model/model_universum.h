@@ -5,6 +5,7 @@
 #include <QString>
 #include <QVector>
 
+class QDomDocument;
 class QDomElement;
 
 namespace Model
@@ -21,12 +22,10 @@ namespace Model
         virtual ~Universum();
 
         void fromDomElement(const QDomElement &root);
-        QDomElement toDomElement() const;
+        QDomElement toDomElement(QDomDocument &d) const;
 
         bool openen();
-        bool openen(const QString &bestandsNaam);
         bool bewaren();
-        bool bewaren(const QString &bestandsNaam);
 
         Arts *toevoegenArts(const QString &voornaam, const QString &naam);
         void verwijderenArts(int id);

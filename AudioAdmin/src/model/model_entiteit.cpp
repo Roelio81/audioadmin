@@ -47,34 +47,27 @@ void Entiteit::fromDomElement(const QDomElement &e)
     }
 }
 
-QDomElement Entiteit::toDomElement() const
+QDomElement Entiteit::toDomElement(QDomDocument &d) const
 {
-    QDomElement result;
-    QDomElement naam;
-    naam.setTagName("naam");
-    naam.setNodeValue(m_naam);
+    QDomElement result = d.createElement("entiteit");
+    QDomElement naam = d.createElement("naam");
+    naam.appendChild(d.createTextNode(m_naam));
     result.appendChild(naam);
-    QDomElement adres;
-    adres.setTagName("adres");
-    QDomElement straat;
-    straat.setTagName("straat");
-    straat.setNodeValue(m_straat);
+    QDomElement adres = d.createElement("adres");
+    QDomElement straat = d.createElement("straat");
+    straat.appendChild(d.createTextNode(m_straat));
     adres.appendChild(straat);
-    QDomElement gemeente;
-    gemeente.setTagName("gemeente");
-    gemeente.setNodeValue(m_gemeente);
+    QDomElement gemeente = d.createElement("gemeente");
+    gemeente.appendChild(d.createTextNode(m_gemeente));
     gemeente.setAttribute("postcode", QString::number(m_postcode));
     adres.appendChild(gemeente);
     result.appendChild(adres);
-    QDomElement telefoon;
-    telefoon.setTagName("telefoon");
-    telefoon.setNodeValue(m_telefoon);
+    QDomElement telefoon = d.createElement("telefoon");
+    telefoon.appendChild(d.createTextNode(m_telefoon));
     result.appendChild(telefoon);
-    QDomElement opmerkingen;
-    opmerkingen.setTagName("opmerkingen");
-    opmerkingen.setNodeValue(QString(m_opmerkingen).replace("\n", "\r\n"));
+    QDomElement opmerkingen = d.createElement("opmerkingen");
+    opmerkingen.appendChild(d.createTextNode(QString(m_opmerkingen).replace("\n", "\r\n")));
     result.appendChild(opmerkingen);
-    result.setTagName("entiteit");
     return result;
 }
 

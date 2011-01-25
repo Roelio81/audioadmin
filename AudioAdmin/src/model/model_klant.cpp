@@ -39,22 +39,19 @@ void Klant::fromDomElement(const QDomElement &e)
     Entiteit::fromDomElement(e);
 }
 
-QDomElement Klant::toDomElement() const
+QDomElement Klant::toDomElement(QDomDocument &d) const
 {
-    QDomElement result = Entiteit::toDomElement();
-    QDomElement aanspreektitel;
-    aanspreektitel.setTagName("aanspreektitel");
-    aanspreektitel.setNodeValue(m_voornaam);
+    QDomElement result = Entiteit::toDomElement(d);
+    QDomElement aanspreektitel = d.createElement("aanspreektitel");
+    aanspreektitel.appendChild(d.createTextNode(m_voornaam));
     result.appendChild(aanspreektitel);
-    QDomElement voornaam;
-    voornaam.setTagName("voornaam");
-    voornaam.setNodeValue(m_voornaam);
+    QDomElement voornaam = d.createElement("voornaam");
+    voornaam.appendChild(d.createTextNode(m_voornaam));
     result.appendChild(voornaam);
     if (m_geboorteDatum != ongeldigeDatum)
     {
-        QDomElement geboorteDatum;
-        geboorteDatum.setTagName("geboortedatum");
-        geboorteDatum.setNodeValue(m_geboorteDatum.toString("yyyy-MM-dd"));
+        QDomElement geboorteDatum = d.createElement("geboortedatum");
+        geboorteDatum.appendChild(d.createTextNode(m_geboorteDatum.toString("yyyy-MM-dd")));
         result.appendChild(geboorteDatum);
     }
 

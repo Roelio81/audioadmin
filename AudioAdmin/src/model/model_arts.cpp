@@ -27,14 +27,14 @@ void Arts::fromDomElement(const QDomElement &e)
     Entiteit::fromDomElement(e);
 }
 
-QDomElement Arts::toDomElement() const
+QDomElement Arts::toDomElement(QDomDocument &d) const
 {
-    QDomElement result = Entiteit::toDomElement();
-    QDomElement voornaam;
-    voornaam.setTagName("voornaam");
+    QDomElement result = Entiteit::toDomElement(d);
+    QDomElement voornaam = d.createElement("voornaam");
     voornaam.setNodeValue(m_voornaam);
     result.appendChild(voornaam);
     result.setTagName("dokter");
+    result.setAttribute("id", m_id);
     return result;
 }
 
