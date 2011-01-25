@@ -134,7 +134,6 @@ QDomElement Dossier::toDomElement(QDomDocument &d) const
     mutualiteit.setAttribute("aansluitingsnummer", m_aansluitingsnummer);
     result.appendChild(mutualiteit);
     QDomElement audiometrie = m_meetgegevens.toDomElement(d);
-    audiometrie.appendChild(audiometrie);
     result.appendChild(audiometrie);
     result.setTagName("dossier");
     result.setAttribute("id", m_id);
