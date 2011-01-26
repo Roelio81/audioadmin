@@ -20,7 +20,9 @@ Universum::Universum(View::Universum &view, Model::Universum &model)
 , m_arts(0)
 , m_dossier(0)
 , m_mutualiteit(0)
+, m_gewijzigd(false)
 {
+    connect(&m_view, SIGNAL(afsluitenSignal()), this, SLOT(afsluiten()));
     connect(&m_view, SIGNAL(bewarenSignal()), this, SLOT(bewaren()));
     connect(&m_view, SIGNAL(etikettenSignal()), this, SLOT(etiketten()));
     connect(&m_view, SIGNAL(instellingenSignal()), this, SLOT(instellingen()));
@@ -62,9 +64,23 @@ Universum::~Universum()
 {
 }
 
+void Universum::afsluiten()
+{
+    teardownArts();
+    teardownDossier();
+    teardownMutualiteit();
+    teardownInstellingen();
+    if (m_gewijzigd)
+        m_view.bewarenBijAfsluiten();
+}
+
 void Universum::bewaren()
 {
     m_model.bewaren();
+    m_view.markeerArtsenLijstStatus(false);
+    m_view.markeerKlantenLijstStatus(false);
+    m_view.markeerMutualiteitenLijstStatus(false);
+    m_gewijzigd = false;
 }
 
 void Universum::etiketten()
@@ -244,6 +260,8 @@ void Universum::verwijderArts(int id)
         m_artsPresenter = 0;
     }
     m_model.verwijderenArts(id);
+    m_view.markeerArtsenLijstStatus(true);
+    m_gewijzigd = true;
 }
 
 void Universum::verwijderDossier(int id)
@@ -254,6 +272,8 @@ void Universum::verwijderDossier(int id)
         m_dossierPresenter = 0;
     }
     m_model.verwijderenDossier(id);
+    m_view.markeerKlantenLijstStatus(true);
+    m_gewijzigd = true;
 }
 
 void Universum::verwijderMutualiteit(int id)
@@ -264,14 +284,18 @@ void Universum::verwijderMutualiteit(int id)
         m_mutualiteitPresenter = 0;
     }
     m_model.verwijderenMutualiteit(id);
+    m_view.markeerMutualiteitenLijstStatus(true);
+    m_gewijzigd = true;
 }
 
 void Universum::toevoegenArts(QString voornaam, QString naam)
 {
     Model::Arts *arts = m_model.toevoegenArts(voornaam, naam);
     Q_ASSERT(arts);
+    m_view.markeerArtsenLijstStatus(true);
     m_view.toevoegenArts(arts->getId(), arts->getNaam() + " " + arts->getVoornaam(), arts->getStraat(), arts->getPostcode(), arts->getGemeente());
     m_view.selecteerArts(arts->getId());
+    m_gewijzigd = true;
 }
 
 void Universum::toevoegenDossier(QString voornaam, QString naam)
@@ -279,16 +303,20 @@ void Universum::toevoegenDossier(QString voornaam, QString naam)
     Model::Dossier *dossier = m_model.toevoegenDossier(voornaam, naam);
     Q_ASSERT(dossier);
     const Model::Klant &klant = dossier->getKlant();
+    m_view.markeerKlantenLijstStatus(true);
     m_view.toevoegenKlant(dossier->getId(), klant.getNaam() + " " + klant.getVoornaam(), klant.getStraat(), klant.getPostcode(), klant.getGemeente());
     m_view.selecteerKlant(dossier->getId());
+    m_gewijzigd = true;
 }
 
 void Universum::toevoegenMutualiteit(QString naam)
 {
     Model::Mutualiteit *mutualiteit = m_model.toevoegenMutualiteit(naam);
     Q_ASSERT(mutualiteit);
+    m_view.markeerMutualiteitenLijstStatus(true);
     m_view.toevoegenMutualiteit(mutualiteit->getId(), mutualiteit->getNaam(), mutualiteit->getStraat(), mutualiteit->getPostcode(), mutualiteit->getGemeente());
     m_view.selecteerMutualiteit(mutualiteit->getId());
+    m_gewijzigd = true;
 }
 
 void Universum::artsGewijzigd(int id)
@@ -297,6 +325,7 @@ void Universum::artsGewijzigd(int id)
     Q_ASSERT(arts);
     m_view.markeerArtsenLijstStatus(true);
     m_view.wijzigenArts(arts->getId(), arts->getNaam() + " " + arts->getVoornaam(), arts->getStraat(), arts->getPostcode(), arts->getGemeente());
+    m_gewijzigd = true;
 }
 
 void Universum::dossierGewijzigd(int id)
@@ -306,14 +335,16 @@ void Universum::dossierGewijzigd(int id)
     const Model::Klant &klant = dossier->getKlant();
     m_view.markeerKlantenLijstStatus(true);
     m_view.wijzigenKlant(dossier->getId(), klant.getNaam() + " " + klant.getVoornaam(), klant.getStraat(), klant.getPostcode(), klant.getGemeente());
+    m_gewijzigd = true;
 }
 
 void Universum::mutualiteitGewijzigd(int id)
 {
     Model::Mutualiteit *mutualiteit = m_model.getMutualiteit(id);
     Q_ASSERT(mutualiteit);
-    m_view.markeerArtsenLijstStatus(true);
+    m_view.markeerMutualiteitenLijstStatus(true);
     m_view.wijzigenMutualiteit(mutualiteit->getId(), mutualiteit->getNaam(), mutualiteit->getStraat(), mutualiteit->getPostcode(), mutualiteit->getGemeente());
+    m_gewijzigd = true;
 }
 
 void Universum::hoorapparaatGewijzigd()

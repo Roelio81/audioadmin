@@ -27,6 +27,7 @@ namespace Presenter
         virtual ~Universum();
 
     private slots:
+        void afsluiten();
         void bewaren();
         void etiketten();
         void okEtiketten();
@@ -75,6 +76,7 @@ namespace Presenter
         int m_arts;
         int m_dossier;
         int m_mutualiteit;
+        bool m_gewijzigd;
     };
 }
 

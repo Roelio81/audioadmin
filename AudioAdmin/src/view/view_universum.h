@@ -26,6 +26,7 @@ namespace View
         Etiketten &getEtiketten();
         Instellingen &getInstellingen();
 
+        void bewarenBijAfsluiten();
         void markeerArtsenLijstStatus(bool wijzigingen);
         void leegArtsenLijst();
         void toevoegenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
@@ -75,6 +76,7 @@ namespace View
         void zoekenMutualiteit();
 
     signals:
+        void afsluitenSignal();
         void bewarenSignal();
         void instellingenSignal();
         void artsSelectieSignal(int id);
@@ -95,6 +97,8 @@ namespace View
         void openMutualiteitTab();
 
     private:
+        void closeEvent(QCloseEvent *event);
+
         typedef QPair<double, QDate> PrijsDatumInfo;
         typedef QMap<QString, PrijsDatumInfo> HaarApparaatTypeMap;
         typedef QMap<QString, HaarApparaatTypeMap> HoorApparaatMap;

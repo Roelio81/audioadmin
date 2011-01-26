@@ -3,10 +3,10 @@
 #include "view_toevoegenklant.h"
 #include "view_toevoegenmutualiteit.h"
 
+#include <QCloseEvent>
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QMessageBox>
-#include <iostream>
 
 using namespace View;
 
@@ -139,7 +139,21 @@ void Universum::omtrent()
 {
     QMessageBox::about(this, "Omtrent AudioAdmin", "<p>AudioAdmin 2.0</p>"
         "<p>Vrijgegeven onder de GPL licentie, versie 3</p>"
-        "<p>Augustus 2010</p>");
+        "<p>Januari 2011</p>");
+}
+
+void Universum::bewarenBijAfsluiten()
+{
+    QMessageBox msgBox;
+    msgBox.setLocale(QLocale(QLocale::Dutch, QLocale::Belgium));
+    msgBox.setText("Niet alle wijzigingen zijn reeds bewaard");
+    msgBox.setInformativeText("Wenst u uw wijzigingen te bewaren?");
+    msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard);
+    msgBox.button(QMessageBox::Save)->setText("Bewaren");
+    msgBox.button(QMessageBox::Discard)->setText("Afsluiten zonder bewaren");
+    msgBox.setDefaultButton(QMessageBox::Save);
+    if (msgBox.exec() == QMessageBox::Save)
+        bewaren();
 }
 
 void Universum::markeerArtsenLijstStatus(bool wijzigingen)
@@ -505,4 +519,10 @@ void Universum::zoekenMutualiteit()
             }
         }
     }
+}
+
+void Universum::closeEvent(QCloseEvent *event)
+{
+    emit afsluitenSignal();
+    event->accept();
 }
