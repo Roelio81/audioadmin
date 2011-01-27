@@ -17,9 +17,7 @@ namespace View
 
         void leegPlaatsenAanpassing();
         void toevoegenPlaatsAanpassing(const QString &value);
-
         void setDatumOnderzoek(const QDate &value);
-
         void afdrukken();
 
     private:

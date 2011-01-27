@@ -1,4 +1,6 @@
 #include "view_etiketten.h"
+#include <QList>
+#include <QPrinterInfo>
 
 using namespace View;
 
@@ -10,6 +12,15 @@ Etiketten::Etiketten(::QWidget *parent)
     Q_ASSERT(m_plaats);
     m_plaats->setInsertPolicy(QComboBox::InsertAlphabetically);
     m_plaats->setDuplicatesEnabled(false);
+
+    QList<QPrinterInfo> printers = QPrinterInfo::availablePrinters();
+    for (QList<QPrinterInfo>::const_iterator itPrinter = printers.begin(); itPrinter != printers.end(); ++itPrinter)
+    {
+        QPrinterInfo printer = *itPrinter;
+        m_printer->addItem(printer.printerName());
+        if (printer.isDefault())
+            m_printer->setCurrentIndex(m_printer->findText(printer.printerName()));
+    }
 }
 
 Etiketten::~Etiketten()
@@ -37,4 +48,9 @@ void Etiketten::toevoegenPlaatsAanpassing(const QString &value)
 void Etiketten::setDatumOnderzoek(const QDate &value)
 {
     m_onderzoekNa->setDate(value);
+}
+
+void Etiketten::afdrukken()
+{
+    // Start printing
 }
