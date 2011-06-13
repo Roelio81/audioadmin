@@ -11,6 +11,11 @@
 
 using namespace Presenter;
 
+namespace
+{
+    QDate ongeldigeDatum(1900, 1, 1);
+}
+
 Universum::Universum(View::Universum &view, Model::Universum &model)
 : m_view(view)
 , m_model(model)
@@ -254,20 +259,20 @@ void Universum::cleanupDossierTab()
     m_view.m_klantPostcode->setValue(1000);
     m_view.m_klantGemeente->setText("");
     m_view.m_klantTelefoon->setText("");
-    m_view.m_klantGeboorteDatum->setDate(QDate());
+    m_view.m_klantGeboorteDatum->setDate(ongeldigeDatum);
     m_view.m_klantMutualiteit->setCurrentIndex(-1);
     m_view.m_aansluitingsnummer->setText("");
     m_view.m_plaatsAanpassing->setText("");
     m_view.m_klantOpmerkingen->setText("");
-    m_view.m_datumProef->setDate(QDate());
-    m_view.m_datumNKO->setDate(QDate());
-    m_view.m_datumAdviseur->setDate(QDate());
-    m_view.m_datumMutualiteit->setDate(QDate());
-    m_view.m_datumBetaling->setDate(QDate());
-    m_view.m_datumAflevering->setDate(QDate());
-    m_view.m_datumWissel->setDate(QDate());
-    m_view.m_datumOnderhoudsContract->setDate(QDate());
-    m_view.m_datumOnderzoek->setDate(QDate());
+    m_view.m_datumProef->setDate(ongeldigeDatum);
+    m_view.m_datumNKO->setDate(ongeldigeDatum);
+    m_view.m_datumAdviseur->setDate(ongeldigeDatum);
+    m_view.m_datumMutualiteit->setDate(ongeldigeDatum);
+    m_view.m_datumBetaling->setDate(ongeldigeDatum);
+    m_view.m_datumAflevering->setDate(ongeldigeDatum);
+    m_view.m_datumWissel->setDate(ongeldigeDatum);
+    m_view.m_datumOnderhoudsContract->setDate(ongeldigeDatum);
+    m_view.m_datumOnderzoek->setDate(ongeldigeDatum);
     m_view.m_klantArts->setCurrentIndex(-1);
     m_view.m_linkerHoorapparaatMerk->setCurrentIndex(-1);
     m_view.m_linkerHoorapparaatType->setCurrentIndex(-1);
