@@ -107,7 +107,7 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_4">
                <item>
-                <widget class="QLabel" name="label_14">
+                <widget class="QLabel" name="l_klantPostcode">
                  <property name="text">
                   <string>Postcode</string>
                  </property>
@@ -136,7 +136,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="label_15">
+                <widget class="QLabel" name="l_klantGemeente">
                  <property name="text">
                   <string>Gemeente</string>
                  </property>
@@ -456,7 +456,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QGroupBox" name="groupBoxKlantArts">
+             <widget class="QGroupBox" name="g_klantArts">
               <property name="minimumSize">
                <size>
                 <width>300</width>
@@ -488,7 +488,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="groupBox">
+             <widget class="QGroupBox" name="g_meetgegevens">
               <property name="title">
                <string>Meetgegevens</string>
               </property>
@@ -515,19 +515,19 @@
            </layout>
           </item>
           <item>
-           <widget class="QGroupBox" name="groupBoxKlantApparaat">
+           <widget class="QGroupBox" name="g_hoorapparaten">
             <property name="title">
              <string>Hoorapparaten</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_5">
              <item row="0" column="0">
-              <widget class="QGroupBox" name="groupBoxKlantRechtsApparaat">
+              <widget class="QGroupBox" name="g_rechterHoorapparaat">
                <property name="title">
                 <string>Rechts</string>
                </property>
                <layout class="QGridLayout" name="gridLayout_3">
                 <item row="0" column="0">
-                 <widget class="QLabel" name="label_21">
+                 <widget class="QLabel" name="l_rechterHoorapparaatMerk">
                   <property name="text">
                    <string>Merk</string>
                   </property>
@@ -541,7 +541,7 @@
                  </widget>
                 </item>
                 <item row="1" column="0">
-                 <widget class="QLabel" name="label_22">
+                 <widget class="QLabel" name="l_rechterHoorapparaatType">
                   <property name="text">
                    <string>Type</string>
                   </property>
@@ -555,7 +555,7 @@
                  </widget>
                 </item>
                 <item row="2" column="0">
-                 <widget class="QLabel" name="label_23">
+                 <widget class="QLabel" name="l_rechterHoorapparaatSerienummer">
                   <property name="text">
                    <string>Serienummer</string>
                   </property>
@@ -565,7 +565,7 @@
                  <widget class="QLineEdit" name="m_rechterHoorapparaatSerienummer"/>
                 </item>
                 <item row="3" column="0">
-                 <widget class="QLabel" name="label_24">
+                 <widget class="QLabel" name="l_rechterHoorapparaatPrijs">
                   <property name="text">
                    <string>Prijs (excl. BTW)</string>
                   </property>
@@ -578,13 +578,13 @@
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QGroupBox" name="groupBoxKlantRechtsApparaat_2">
+              <widget class="QGroupBox" name="g_linkerHoorapparaat">
                <property name="title">
                 <string>Links</string>
                </property>
                <layout class="QGridLayout" name="gridLayout_4">
                 <item row="0" column="0">
-                 <widget class="QLabel" name="label_25">
+                 <widget class="QLabel" name="l_linkerHoorapparaatMerk">
                   <property name="text">
                    <string>Merk</string>
                   </property>
@@ -598,7 +598,7 @@
                  </widget>
                 </item>
                 <item row="1" column="0">
-                 <widget class="QLabel" name="label_26">
+                 <widget class="QLabel" name="l_linkerHoorapparaatType">
                   <property name="text">
                    <string>Type</string>
                   </property>
@@ -612,7 +612,7 @@
                  </widget>
                 </item>
                 <item row="2" column="0">
-                 <widget class="QLabel" name="label_27">
+                 <widget class="QLabel" name="l_linkerHoorapparaatSerienummer">
                   <property name="text">
                    <string>Serienummer</string>
                   </property>
@@ -622,7 +622,7 @@
                  <widget class="QLineEdit" name="m_linkerHoorapparaatSerienummer"/>
                 </item>
                 <item row="3" column="0">
-                 <widget class="QLabel" name="label_28">
+                 <widget class="QLabel" name="l_linkerHoorapparaatPrijs">
                   <property name="text">
                    <string>Prijs (excl. BTW)</string>
                   </property>
@@ -638,7 +638,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="groupBox_2">
+           <widget class="QGroupBox" name="g_brieven">
             <property name="title">
              <string>Brieven</string>
             </property>
@@ -926,7 +926,7 @@
            <item row="2" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_13">
              <item>
-              <widget class="QLabel" name="label_36">
+              <widget class="QLabel" name="l_artsPostcode">
                <property name="text">
                 <string>Postcode</string>
                </property>

@@ -66,6 +66,10 @@ namespace Presenter
         void refreshKlantenLijst();
         void refreshMutualiteitenLijst();
 
+        void cleanupArtsTab();
+        void cleanupDossierTab();
+        void cleanupMutualiteitTab();
+
         View::Universum &m_view;
         Model::Universum &m_model;
 

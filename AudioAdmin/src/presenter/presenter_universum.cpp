@@ -41,23 +41,23 @@ Universum::Universum(View::Universum &view, Model::Universum &model)
     connect(&m_view, SIGNAL(openArtsTab()), this, SLOT(setupArts()));
     connect(&m_view, SIGNAL(openDossierTab()), this, SLOT(setupDossier()));
     connect(&m_view, SIGNAL(openMutualiteitTab()), this, SLOT(setupMutualiteit()));
+
     refreshArtsenLijst();
     refreshHoorapparatenLijst();
     refreshKlantenLijst();
     refreshMutualiteitenLijst();
-    if (m_model.getArtsen().size() > 0) 
-    {
+
+    cleanupArtsTab();
+    if (!m_model.getArtsen().empty())
         m_view.selecteerArts(m_model.getArtsen().front()->getId());
-        
-    }
-    if (m_model.getDossiers().size() > 0) 
-    {
+
+    cleanupDossierTab();
+    if (!m_model.getDossiers().empty())
         m_view.selecteerKlant(m_model.getDossiers().front()->getId());
-    }
-    if (m_model.getMutualiteiten().size() > 0) 
-    {
+
+    cleanupMutualiteitTab();
+    if (!m_model.getMutualiteiten().empty())
         m_view.selecteerMutualiteit(m_model.getMutualiteiten().front()->getId());
-    }
 }
 
 Universum::~Universum()
@@ -231,6 +231,74 @@ void Universum::refreshMutualiteitenLijst()
     }
 }
 
+void Universum::cleanupArtsTab()
+{
+    m_view.m_artsNaam->setText("");
+    m_view.m_artsVoornaam->setText("");
+    m_view.m_artsStraat->setText("");
+    m_view.m_artsPostcode->setValue(1000);
+    m_view.m_artsGemeente->setText("");
+    m_view.m_artsTelefoon->setText("");
+    m_view.m_artsEmail->setText("");
+    m_view.m_artsOpmerkingen->setText("");
+    m_view.g_artsgegevens->setEnabled(false);
+    m_view.b_artsVerwijderen->setEnabled(false);
+}
+
+void Universum::cleanupDossierTab()
+{
+    m_view.m_aanspreektitel->setCurrentIndex(-1);
+    m_view.m_klantNaam->setText("");
+    m_view.m_klantVoornaam->setText("");
+    m_view.m_klantStraat->setText("");
+    m_view.m_klantPostcode->setValue(1000);
+    m_view.m_klantGemeente->setText("");
+    m_view.m_klantTelefoon->setText("");
+    m_view.m_klantGeboorteDatum->setDate(QDate());
+    m_view.m_klantMutualiteit->setCurrentIndex(-1);
+    m_view.m_aansluitingsnummer->setText("");
+    m_view.m_plaatsAanpassing->setText("");
+    m_view.m_klantOpmerkingen->setText("");
+    m_view.m_datumProef->setDate(QDate());
+    m_view.m_datumNKO->setDate(QDate());
+    m_view.m_datumAdviseur->setDate(QDate());
+    m_view.m_datumMutualiteit->setDate(QDate());
+    m_view.m_datumBetaling->setDate(QDate());
+    m_view.m_datumAflevering->setDate(QDate());
+    m_view.m_datumWissel->setDate(QDate());
+    m_view.m_datumOHK->setDate(QDate());
+    m_view.m_datumOnderzoek->setDate(QDate());
+    m_view.m_klantArts->setCurrentIndex(-1);
+    m_view.m_linkerHoorapparaatMerk->setCurrentIndex(-1);
+    m_view.m_linkerHoorapparaatType->setCurrentIndex(-1);
+    m_view.m_linkerHoorapparaatSerienummer->setText("");
+    m_view.m_linkerHoorapparaatPrijs->setText("");
+    m_view.m_rechterHoorapparaatMerk->setCurrentIndex(-1);
+    m_view.m_rechterHoorapparaatType->setCurrentIndex(-1);
+    m_view.m_rechterHoorapparaatSerienummer->setText("");
+    m_view.m_rechterHoorapparaatPrijs->setText("");
+    m_view.g_klantgegevens->setEnabled(false);
+    m_view.g_datums->setEnabled(false);
+    m_view.g_brieven->setEnabled(false);
+    m_view.g_hoorapparaten->setEnabled(false);
+    m_view.g_meetgegevens->setEnabled(false);
+    m_view.g_klantArts->setEnabled(false);
+    m_view.b_dossierVerwijderen->setEnabled(false);
+}
+
+void Universum::cleanupMutualiteitTab()
+{
+    m_view.m_mutualiteitNaam->setText("");
+    m_view.m_mutualiteitStraat->setText("");
+    m_view.m_mutualiteitPostcode->setValue(1000);
+    m_view.m_mutualiteitGemeente->setText("");
+    m_view.m_mutualiteitTelefoon->setText("");
+    m_view.m_mutualiteitEmail->setText("");
+    m_view.m_mutualiteitOpmerkingen->setText("");
+    m_view.g_mutualiteitsgegevens->setEnabled(false);
+    m_view.b_mutualiteitVerwijderen->setEnabled(false);
+}
+
 void Universum::toonArts(int id)
 {
     teardownArts();
@@ -385,29 +453,49 @@ void Universum::teardownMutualiteit()
 
 void Universum::setupArts()
 {
-    Model::Arts *artsModel = m_model.getArts(m_arts);
-    Q_ASSERT(artsModel);
-    m_artsPresenter = new Presenter::Arts(m_view.getArts(), *artsModel);
-    m_artsPresenter->setup();
-    connect(m_artsPresenter, SIGNAL(artsGewijzigd(int)), this, SLOT(artsGewijzigd(int)));
+    cleanupArtsTab();
+
+    if (Model::Arts *artsModel = m_model.getArts(m_arts))
+    {
+        m_view.g_artsgegevens->setEnabled(true);
+        m_view.b_artsVerwijderen->setEnabled(true);
+        m_artsPresenter = new Presenter::Arts(m_view.getArts(), *artsModel);
+        m_artsPresenter->setup();
+        connect(m_artsPresenter, SIGNAL(artsGewijzigd(int)), this, SLOT(artsGewijzigd(int)));
+    }
 }
 
 void Universum::setupDossier()
 {
-    Model::Dossier *dossierModel = m_model.getDossier(m_dossier);
-    Q_ASSERT(dossierModel);
-    m_dossierPresenter = new Presenter::Dossier(m_view.getDossier(), *dossierModel);
-    m_dossierPresenter->attachToUniversum(&m_model);
-    m_dossierPresenter->setup();
-    connect(m_dossierPresenter, SIGNAL(dossierGewijzigd(int)), this, SLOT(dossierGewijzigd(int)));
-    connect(m_dossierPresenter, SIGNAL(destroyed()), this, SLOT(hoorapparaatGewijzigd()));
+    cleanupDossierTab();
+
+    if (Model::Dossier *dossierModel = m_model.getDossier(m_dossier))
+    {
+        m_view.g_klantgegevens->setEnabled(true);
+        m_view.g_datums->setEnabled(true);
+        m_view.g_brieven->setEnabled(true);
+        m_view.g_hoorapparaten->setEnabled(true);
+        m_view.g_meetgegevens->setEnabled(true);
+        m_view.g_klantArts->setEnabled(true);
+        m_view.b_dossierVerwijderen->setEnabled(true);
+        m_dossierPresenter = new Presenter::Dossier(m_view.getDossier(), *dossierModel);
+        m_dossierPresenter->attachToUniversum(&m_model);
+        m_dossierPresenter->setup();
+        connect(m_dossierPresenter, SIGNAL(dossierGewijzigd(int)), this, SLOT(dossierGewijzigd(int)));
+        connect(m_dossierPresenter, SIGNAL(destroyed()), this, SLOT(hoorapparaatGewijzigd()));
+    }
 }
 
 void Universum::setupMutualiteit()
 {
-    Model::Mutualiteit *mutualiteitModel = m_model.getMutualiteit(m_mutualiteit);
-    Q_ASSERT(mutualiteitModel);
-    m_mutualiteitPresenter = new Presenter::Mutualiteit(m_view.getMutualiteit(), *mutualiteitModel);
-    m_mutualiteitPresenter->setup();
-    connect(m_mutualiteitPresenter, SIGNAL(mutualiteitGewijzigd(int)), this, SLOT(mutualiteitGewijzigd(int)));
+    cleanupMutualiteitTab();
+
+    if (Model::Mutualiteit *mutualiteitModel = m_model.getMutualiteit(m_mutualiteit))
+    {
+        m_view.g_mutualiteitsgegevens->setEnabled(true);
+        m_view.b_mutualiteitVerwijderen->setEnabled(true);
+        m_mutualiteitPresenter = new Presenter::Mutualiteit(m_view.getMutualiteit(), *mutualiteitModel);
+        m_mutualiteitPresenter->setup();
+        connect(m_mutualiteitPresenter, SIGNAL(mutualiteitGewijzigd(int)), this, SLOT(mutualiteitGewijzigd(int)));
+    }
 }

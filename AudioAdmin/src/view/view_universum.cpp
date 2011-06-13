@@ -144,7 +144,7 @@ void Universum::omtrent()
 
 void Universum::bewarenBijAfsluiten()
 {
-    QMessageBox msgBox;
+    QMessageBox msgBox(this);
     msgBox.setLocale(QLocale(QLocale::Dutch, QLocale::Belgium));
     msgBox.setText("Niet alle wijzigingen zijn reeds bewaard");
     msgBox.setInformativeText("Wenst u uw wijzigingen te bewaren?");
@@ -294,6 +294,8 @@ void Universum::wijzigenMutualiteit(int id, const QString &naam, const QString &
 
 int Universum::artsIndexToId(int index) const
 {
+    if (index > m_artsenLijst->rowCount() || index < 0)
+        return -1;
     return m_artsenLijst->item(index, 0)->text().toInt();
 }
 
@@ -309,6 +311,8 @@ int Universum::artsIdToIndex(int id) const
 
 int Universum::klantIndexToId(int index) const
 {
+    if (index > m_klantenLijst->rowCount() || index < 0)
+        return -1;
     return m_klantenLijst->item(index, 0)->text().toInt();
 }
 
@@ -324,6 +328,8 @@ int Universum::klantIdToIndex(int id) const
 
 int Universum::mutualiteitIndexToId(int index) const
 {
+    if (index > m_mutualiteitenLijst->rowCount() || index < 0)
+        return -1;
     return m_mutualiteitenLijst->item(index, 0)->text().toInt();
 }
 
