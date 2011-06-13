@@ -139,7 +139,7 @@ bool Universum::openen()
 
 bool Universum::bewaren()
 {
-    QFile file("TEST" + m_bestandsNaam);    // AVOID OVERWRITING OUR PRECIOUS DATA FOR THE MOMENT!!
+    QFile file(m_bestandsNaam);
     if (!file.open(QIODevice::ReadWrite|QIODevice::Truncate))
     {
         return false;
