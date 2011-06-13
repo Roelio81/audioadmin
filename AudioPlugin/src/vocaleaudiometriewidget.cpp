@@ -246,14 +246,14 @@ void VocaleAudiometrieWidget::tekenData()
             switch (m_soort)
             {
                 case ZONDER:
-                    paint.drawLine(x-4, y-4, x+4, y-4);
-                    paint.drawLine(x-4, y-4, x, y+4);
-                    paint.drawLine(x, y+4, x+4, y-4);
+                    paint.drawLine(x-4, y+4, x+4, y+4);
+                    paint.drawLine(x-4, y+4, x, y-4);
+                    paint.drawLine(x, y-4, x+4, y+4);
                     break;
                 case MET:
                     {
                         paint.setBrush(QBrush(paint.pen().color(), Qt::SolidPattern));
-                        QPoint points[] = { QPoint(x-4, y-4), QPoint(x+4, y-4), QPoint(x, y+4) };
+                        QPoint points[] = { QPoint(x-4, y+4), QPoint(x+4, y+4), QPoint(x, y-4) };
                         paint.drawConvexPolygon(points, 3);
                         paint.setBrush(Qt::NoBrush);
                     }
