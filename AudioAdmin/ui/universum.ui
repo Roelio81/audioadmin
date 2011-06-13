@@ -374,7 +374,7 @@
               </widget>
              </item>
              <item row="8" column="1">
-              <widget class="QDateEdit" name="m_datumOHK">
+              <widget class="QDateEdit" name="m_datumOnderhoudsContract">
                <property name="displayFormat">
                 <string>dd-MM-yyyy</string>
                </property>
@@ -440,9 +440,9 @@
               </widget>
              </item>
              <item row="8" column="0">
-              <widget class="QLabel" name="l_datumOHK">
+              <widget class="QLabel" name="l_datumOnderhoudsContract">
                <property name="text">
-                <string>OHK</string>
+                <string>Onderhoudscontract</string>
                </property>
               </widget>
              </item>

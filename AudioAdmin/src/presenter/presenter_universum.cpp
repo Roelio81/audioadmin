@@ -266,7 +266,7 @@ void Universum::cleanupDossierTab()
     m_view.m_datumBetaling->setDate(QDate());
     m_view.m_datumAflevering->setDate(QDate());
     m_view.m_datumWissel->setDate(QDate());
-    m_view.m_datumOHK->setDate(QDate());
+    m_view.m_datumOnderhoudsContract->setDate(QDate());
     m_view.m_datumOnderzoek->setDate(QDate());
     m_view.m_klantArts->setCurrentIndex(-1);
     m_view.m_linkerHoorapparaatMerk->setCurrentIndex(-1);

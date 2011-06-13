@@ -24,7 +24,7 @@ Dossier::Dossier(int id)
 , m_betalingDatum(ongeldigeDatum)
 , m_afleveringDatum(ongeldigeDatum)
 , m_wisselDatum(ongeldigeDatum)
-, m_ohkDatum(ongeldigeDatum)
+, m_onderhoudsContractDatum(ongeldigeDatum)
 {
 }
 
@@ -40,12 +40,68 @@ void Dossier::fromDomElement(const QDomElement &e)
         {
             m_plaatsAanpassing = element.text();
         }
+        else if (element.tagName() == "data")
+        {
+            for (QDomElement ee = element.firstChildElement(); !ee.isNull(); ee = ee.nextSiblingElement())
+            {
+                QDate date = QDate::fromString(ee.text(), "yyyy-MM-dd");
+                if (ee.tagName() == "onderzoek")
+                    m_onderzoekDatum = date;
+                else if (ee.tagName() == "proef")
+                    m_proefDatum = date;
+                else if (ee.tagName() == "nkoRapport")
+                    m_nkoRapportDatum = date;
+                else if (ee.tagName() == "dokterAdv")
+                    m_dokterAdviesDatum = date;
+                else if (ee.tagName() == "akkoordMut")
+                    m_akkoordMutualiteitDatum = date;
+                else if (ee.tagName() == "betaling")
+                    m_betalingDatum = date;
+                else if (ee.tagName() == "aflevering")
+                    m_afleveringDatum = date;
+                else if (ee.tagName() == "wissel")
+                    m_wisselDatum = date;
+                else if (ee.tagName() == "onderhoudsContract")
+                    m_onderhoudsContractDatum = date;
+            }
+        }
+        else if (element.tagName() == "apparaten")
+        {
+            m_rechterHoorapparaatMerk = "";
+            m_rechterHoorapparaatType = "";
+            m_linkerHoorapparaatMerk = "";
+            m_linkerHoorapparaatType = "";
+            for (QDomElement ee = element.firstChildElement(); !ee.isNull(); ee = ee.nextSiblingElement())
+            {
+                Q_ASSERT(ee.tagName() == "apparaat");
+                QString plaats = ee.attribute("plaats");
+                QString merk = ee.attribute("merk");
+                QString type = ee.attribute("type");
+                QString serienummer = ee.firstChildElement("serienummer").text();
+                double prijs = ee.attribute("prijs").toDouble();
+                if (plaats == "rechts")
+                {
+                    m_rechterHoorapparaatMerk = merk;
+                    m_rechterHoorapparaatType = type;
+                    m_rechterHoorapparaatSerienummer = serienummer;
+                    m_rechterHoorapparaatPrijs = prijs;
+                }
+                else if (plaats == "links")
+                {
+                    m_linkerHoorapparaatMerk = merk;
+                    m_linkerHoorapparaatType = type;
+                    m_linkerHoorapparaatSerienummer = serienummer;
+                    m_linkerHoorapparaatPrijs = prijs;
+                }
+            }
+        }
         else if (element.tagName() == "brief")
         {
             m_briefKlantPostdatum = element.attribute("datum");
             for (QDomElement ee = element.firstChildElement(); !ee.isNull(); ee = ee.nextSiblingElement())
             {
-                if (ee.tagName() == "tekst") m_briefKlantTekstblok = ee.text().replace("\r\n", "\n");
+                if (ee.tagName() == "tekst")
+                    m_briefKlantTekstblok = ee.text().replace("\r\n", "\n");
             }
         }
         else if (element.tagName() == "nkoArts")
@@ -81,36 +137,6 @@ void Dossier::fromDomElement(const QDomElement &e)
                 }
             }
         }
-        else if (element.tagName() == "apparaten")
-        {
-            m_rechterHoorapparaatMerk = "";
-            m_rechterHoorapparaatType = "";
-            m_linkerHoorapparaatMerk = "";
-            m_linkerHoorapparaatType = "";
-            for (QDomElement ee = element.firstChildElement(); !ee.isNull(); ee = ee.nextSiblingElement())
-            {
-                Q_ASSERT(ee.tagName() == "apparaat");
-                QString plaats = ee.attribute("plaats");
-                QString merk = ee.attribute("merk");
-                QString type = ee.attribute("type");
-                QString serienummer = ee.attribute("serienummer");
-                double prijs = ee.attribute("prijs").toDouble();
-                if (plaats == "rechts")
-                {
-                    m_rechterHoorapparaatMerk = merk;
-                    m_rechterHoorapparaatType = type;
-                    m_rechterHoorapparaatSerienummer = serienummer;
-                    m_rechterHoorapparaatPrijs = prijs;
-                }
-                else if (plaats == "links")
-                {
-                    m_linkerHoorapparaatMerk = merk;
-                    m_linkerHoorapparaatType = type;
-                    m_linkerHoorapparaatSerienummer = serienummer;
-                    m_linkerHoorapparaatPrijs = prijs;
-                }
-            }
-        }
         else if (element.tagName() == "audiometrie")
         {
             m_meetgegevens.fromDomElement(element);
@@ -126,12 +152,127 @@ QDomElement Dossier::toDomElement(QDomDocument &d) const
     QDomElement aanpassing = d.createElement("aanpassing");
     aanpassing.appendChild(d.createTextNode(m_plaatsAanpassing));
     result.appendChild(aanpassing);
+    QDomElement data = d.createElement("data");
+    if (m_onderzoekDatum != ongeldigeDatum)
+    {
+        QDomElement datum = d.createElement("onderzoek");
+        datum.appendChild(d.createTextNode(m_onderzoekDatum.toString("yyyy-MM-dd")));
+        data.appendChild(datum);
+    }
+    if (m_proefDatum != ongeldigeDatum)
+    {
+        QDomElement datum = d.createElement("proef");
+        datum.appendChild(d.createTextNode(m_proefDatum.toString("yyyy-MM-dd")));
+        data.appendChild(datum);
+    }
+    if (m_nkoRapportDatum != ongeldigeDatum)
+    {
+        QDomElement datum = d.createElement("nkoRapport");
+        datum.appendChild(d.createTextNode(m_nkoRapportDatum.toString("yyyy-MM-dd")));
+        data.appendChild(datum);
+    }
+    if (m_dokterAdviesDatum != ongeldigeDatum)
+    {
+        QDomElement datum = d.createElement("dokterAdv");
+        datum.appendChild(d.createTextNode(m_dokterAdviesDatum.toString("yyyy-MM-dd")));
+        data.appendChild(datum);
+    }
+    if (m_akkoordMutualiteitDatum != ongeldigeDatum)
+    {
+        QDomElement datum = d.createElement("akkoordMut");
+        datum.appendChild(d.createTextNode(m_akkoordMutualiteitDatum.toString("yyyy-MM-dd")));
+        data.appendChild(datum);
+    }
+    if (m_betalingDatum != ongeldigeDatum)
+    {
+        QDomElement datum = d.createElement("betaling");
+        datum.appendChild(d.createTextNode(m_betalingDatum.toString("yyyy-MM-dd")));
+        data.appendChild(datum);
+    }
+    if (m_afleveringDatum != ongeldigeDatum)
+    {
+        QDomElement datum = d.createElement("aflevering");
+        datum.appendChild(d.createTextNode(m_afleveringDatum.toString("yyyy-MM-dd")));
+        data.appendChild(datum);
+    }
+    if (m_wisselDatum != ongeldigeDatum)
+    {
+        QDomElement datum = d.createElement("wissel");
+        datum.appendChild(d.createTextNode(m_wisselDatum.toString("yyyy-MM-dd")));
+        data.appendChild(datum);
+    }
+    if (m_onderhoudsContractDatum != ongeldigeDatum)
+    {
+        QDomElement datum = d.createElement("onderhoudsContract");
+        datum.appendChild(d.createTextNode(m_onderhoudsContractDatum.toString("yyyy-MM-dd")));
+        data.appendChild(datum);
+    }
+    result.appendChild(data);
+    QDomElement apparaten = d.createElement("apparaten");
+    if (!m_linkerHoorapparaatType.isEmpty() || !m_linkerHoorapparaatMerk.isEmpty())
+    {
+        QDomElement apparaat = d.createElement("apparaat");
+        apparaat.setAttribute("plaats", "links");
+        apparaat.setAttribute("merk", m_linkerHoorapparaatMerk);
+        apparaat.setAttribute("type", m_linkerHoorapparaatType);
+        apparaat.setAttribute("prijs", m_linkerHoorapparaatPrijs);
+        QDomElement serieNummer = d.createElement("serienummer");
+        serieNummer.appendChild(d.createTextNode(m_linkerHoorapparaatSerienummer));
+        apparaat.appendChild(serieNummer);
+        apparaten.appendChild(apparaat);
+    }
+    if (!m_rechterHoorapparaatType.isEmpty() || !m_rechterHoorapparaatMerk.isEmpty())
+    {
+        QDomElement apparaat = d.createElement("apparaat");
+        apparaat.setAttribute("plaats", "rechts");
+        apparaat.setAttribute("merk", m_rechterHoorapparaatMerk);
+        apparaat.setAttribute("type", m_rechterHoorapparaatType);
+        apparaat.setAttribute("prijs", m_rechterHoorapparaatPrijs);
+        QDomElement serieNummer = d.createElement("serienummer");
+        serieNummer.appendChild(d.createTextNode(m_rechterHoorapparaatSerienummer));
+        apparaat.appendChild(serieNummer);
+        apparaten.appendChild(apparaat);
+    }
+    result.appendChild(apparaten);
+    if (!m_briefKlantTekstblok.isEmpty())
+    {
+        QDomElement brief = d.createElement("brief");
+        brief.setAttribute("datum", m_briefKlantPostdatum);
+        QDomElement tekst = d.createElement("tekst");
+        tekst.appendChild(d.createTextNode(m_briefKlantTekstblok));
+        brief.appendChild(tekst);
+        result.appendChild(brief);
+    }
     QDomElement nkoArts = d.createElement("nkoArts");
     nkoArts.setAttribute("id", (m_arts >= 0) ? QString::number(m_arts) : "");
+    if (!m_briefArtsTekstblok.isEmpty())
+    {
+        QDomElement brief = d.createElement("brief");
+        brief.setAttribute("datum", m_briefArtsPostdatum);
+        QDomElement tekst = d.createElement("tekst");
+        tekst.appendChild(d.createTextNode(m_briefArtsTekstblok));
+        brief.appendChild(tekst);
+        QDomElement conclusie = d.createElement("conclusie");
+        conclusie.appendChild(d.createTextNode(m_briefArtsConclusie));
+        brief.appendChild(conclusie);
+        nkoArts.appendChild(brief);
+    }
     result.appendChild(nkoArts);
     QDomElement mutualiteit = d.createElement("mutualiteit");
     mutualiteit.setAttribute("id", (m_mutualiteit >= 0) ? QString::number(m_mutualiteit) : "");
     mutualiteit.setAttribute("aansluitingsnummer", m_aansluitingsnummer);
+    if (!m_briefMutualiteitTekstblok.isEmpty())
+    {
+        QDomElement brief = d.createElement("brief");
+        brief.setAttribute("datum", m_briefMutualiteitPostdatum);
+        QDomElement tekst = d.createElement("tekst");
+        tekst.appendChild(d.createTextNode(m_briefMutualiteitTekstblok));
+        brief.appendChild(tekst);
+        QDomElement conclusie = d.createElement("conclusie");
+        conclusie.appendChild(d.createTextNode(m_briefMutualiteitConclusie));
+        brief.appendChild(conclusie);
+        mutualiteit.appendChild(brief);
+    }
     result.appendChild(mutualiteit);
     QDomElement audiometrie = m_meetgegevens.toDomElement(d);
     result.appendChild(audiometrie);
@@ -303,9 +444,9 @@ QDate Dossier::getWisselDatum() const
     return m_wisselDatum;
 }
 
-QDate Dossier::getOHKDatum() const
+QDate Dossier::getOnderhoudsContractDatum() const
 {
-    return m_ohkDatum;
+    return m_onderhoudsContractDatum;
 }
 
 void Dossier::setArts(int value)
@@ -448,7 +589,7 @@ void Dossier::setWisselDatum(const QDate &value)
     m_wisselDatum = value;
 }
 
-void Dossier::setOHKDatum(const QDate &value)
+void Dossier::setOnderhoudsContractDatum(const QDate &value)
 {
-    m_ohkDatum = value;
+    m_onderhoudsContractDatum = value;
 }

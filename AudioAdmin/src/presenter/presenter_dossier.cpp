@@ -84,7 +84,7 @@ void Dossier::setup()
     m_view.setBetalingDatum(m_model.getBetalingDatum());
     m_view.setAfleveringDatum(m_model.getAfleveringDatum());
     m_view.setWisselDatum(m_model.getWisselDatum());
-    m_view.setOHKDatum(m_model.getOHKDatum());
+    m_view.setOnderhoudsContractDatum(m_model.getOnderhoudsContractDatum());
 }
 
 void Dossier::teardown()
@@ -241,9 +241,9 @@ void Dossier::teardown()
         m_model.setWisselDatum(m_view.getWisselDatum());
         gewijzigd = true;
     }
-    if (m_model.getOHKDatum() != m_view.getOHKDatum())
+    if (m_model.getOnderhoudsContractDatum() != m_view.getOnderhoudsContractDatum())
     {
-        m_model.setOHKDatum(m_view.getOHKDatum());
+        m_model.setOnderhoudsContractDatum(m_view.getOnderhoudsContractDatum());
         gewijzigd = true;
     }
 

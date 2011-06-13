@@ -31,8 +31,8 @@ QDomElement Arts::toDomElement(QDomDocument &d) const
 {
     QDomElement result = Entiteit::toDomElement(d);
     QDomElement voornaam = d.createElement("voornaam");
-    voornaam.setNodeValue(m_voornaam);
-    result.appendChild(voornaam);
+    voornaam.appendChild(d.createTextNode(m_voornaam));
+    result.insertAfter(voornaam, result.firstChildElement("naam"));
     result.setTagName("dokter");
     result.setAttribute("id", m_id);
     return result;

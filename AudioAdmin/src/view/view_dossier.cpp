@@ -230,9 +230,9 @@ QDate Dossier::getWisselDatum() const
     return m_universum.m_datumWissel->date();
 }
 
-QDate Dossier::getOHKDatum() const
+QDate Dossier::getOnderhoudsContractDatum() const
 {
-    return m_universum.m_datumOHK->date();
+    return m_universum.m_datumOnderhoudsContract->date();
 }
 
 void Dossier::setAanspreektitel(const QString &value)
@@ -478,9 +478,9 @@ void Dossier::setWisselDatum(const QDate &value)
     m_universum.m_datumWissel->setDate(value);
 }
 
-void Dossier::setOHKDatum(const QDate &value)
+void Dossier::setOnderhoudsContractDatum(const QDate &value)
 {
-    m_universum.m_datumOHK->setDate(value);
+    m_universum.m_datumOnderhoudsContract->setDate(value);
 }
 
 void Dossier::toonArts(int value)

@@ -52,7 +52,7 @@ namespace Model
         QDate getBetalingDatum() const;
         QDate getAfleveringDatum() const;
         QDate getWisselDatum() const;
-        QDate getOHKDatum() const;
+        QDate getOnderhoudsContractDatum() const;
 
         void setArts(int value);
         void setMutualiteit(int value);
@@ -82,7 +82,7 @@ namespace Model
         void setBetalingDatum(const QDate &value);
         void setAfleveringDatum(const QDate &value);
         void setWisselDatum(const QDate &value);
-        void setOHKDatum(const QDate &value);
+        void setOnderhoudsContractDatum(const QDate &value);
 
     private:
         const int m_id;
@@ -115,7 +115,7 @@ namespace Model
         QDate m_betalingDatum;
         QDate m_afleveringDatum;
         QDate m_wisselDatum;
-        QDate m_ohkDatum;
+        QDate m_onderhoudsContractDatum;
         Meetgegevens m_meetgegevens;
     };
 }

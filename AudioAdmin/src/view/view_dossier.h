@@ -55,7 +55,7 @@ namespace View
         QDate getBetalingDatum() const;
         QDate getAfleveringDatum() const;
         QDate getWisselDatum() const;
-        QDate getOHKDatum() const;
+        QDate getOnderhoudsContractDatum() const;
 
         void setAanspreektitel(const QString &value);
         void setNaam(const QString &value);
@@ -86,7 +86,7 @@ namespace View
         void setBetalingDatum(const QDate &value);
         void setAfleveringDatum(const QDate &value);
         void setWisselDatum(const QDate &value);
-        void setOHKDatum(const QDate &value);
+        void setOnderhoudsContractDatum(const QDate &value);
 
     public slots:
         void toonArts(int value);

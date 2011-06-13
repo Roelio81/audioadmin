@@ -42,12 +42,12 @@ void Klant::fromDomElement(const QDomElement &e)
 QDomElement Klant::toDomElement(QDomDocument &d) const
 {
     QDomElement result = Entiteit::toDomElement(d);
-    QDomElement aanspreektitel = d.createElement("aanspreektitel");
-    aanspreektitel.appendChild(d.createTextNode(m_voornaam));
-    result.appendChild(aanspreektitel);
     QDomElement voornaam = d.createElement("voornaam");
     voornaam.appendChild(d.createTextNode(m_voornaam));
-    result.appendChild(voornaam);
+    result.insertAfter(voornaam, result.firstChildElement("naam"));
+    QDomElement aanspreektitel = d.createElement("aanspreektitel");
+    aanspreektitel.appendChild(d.createTextNode(m_aanspreektitel));
+    result.insertAfter(aanspreektitel, result.firstChildElement("voornaam"));
     if (m_geboorteDatum != ongeldigeDatum)
     {
         QDomElement geboorteDatum = d.createElement("geboortedatum");
