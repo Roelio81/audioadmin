@@ -9,7 +9,7 @@ namespace
     QDate ongeldigeDatum(1900, 1, 1);
 }
 
-Dossier::Dossier(int id)
+Dossier::Dossier(int id, double standaardBtwPercentage)
 : m_id(id)
 , m_klant()
 , m_arts(-1)
@@ -25,6 +25,7 @@ Dossier::Dossier(int id)
 , m_afleveringDatum(ongeldigeDatum)
 , m_wisselDatum(ongeldigeDatum)
 , m_onderhoudsContractDatum(ongeldigeDatum)
+, m_factuur(standaardBtwPercentage)
 {
 }
 
@@ -114,8 +115,10 @@ void Dossier::fromDomElement(const QDomElement &e)
                     m_briefArtsPostdatum = ee.attribute("datum");
                     for (QDomElement eee = ee.firstChildElement(); !eee.isNull(); eee = eee.nextSiblingElement())
                     {
-                        if (eee.tagName() == "tekst") m_briefArtsTekstblok = eee.text().replace("\r\n", "\n");
-                        else if (eee.tagName() == "besluit") m_briefArtsConclusie = eee.text().replace("\r\n", "\n");
+                        if (eee.tagName() == "tekst")
+                            m_briefArtsTekstblok = eee.text().replace("\r\n", "\n");
+                        else if (eee.tagName() == "besluit")
+                            m_briefArtsConclusie = eee.text().replace("\r\n", "\n");
                     }
                 }
             }
@@ -131,8 +134,10 @@ void Dossier::fromDomElement(const QDomElement &e)
                     m_briefMutualiteitPostdatum = ee.attribute("datum");
                     for (QDomElement eee = ee.firstChildElement(); !eee.isNull(); eee = eee.nextSiblingElement())
                     {
-                        if (eee.tagName() == "tekst") m_briefMutualiteitTekstblok = eee.text().replace("\r\n", "\n");
-                        else if (eee.tagName() == "besluit") m_briefMutualiteitConclusie = eee.text().replace("\r\n", "\n");
+                        if (eee.tagName() == "tekst")
+                            m_briefMutualiteitTekstblok = eee.text().replace("\r\n", "\n");
+                        else if (eee.tagName() == "besluit")
+                            m_briefMutualiteitConclusie = eee.text().replace("\r\n", "\n");
                     }
                 }
             }
@@ -140,6 +145,10 @@ void Dossier::fromDomElement(const QDomElement &e)
         else if (element.tagName() == "audiometrie")
         {
             m_meetgegevens.fromDomElement(element);
+        }
+        else if (element.tagName() == "factuur")
+        {
+            m_factuur.fromDomElement(element);
         }
     }
 
@@ -305,6 +314,11 @@ Klant &Dossier::getKlant()
 Meetgegevens &Dossier::getMeetgegevens()
 {
     return m_meetgegevens;
+}
+
+Factuur &Dossier::getFactuur()
+{
+    return m_factuur;
 }
 
 int Dossier::getId() const

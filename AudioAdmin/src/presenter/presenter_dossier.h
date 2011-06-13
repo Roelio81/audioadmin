@@ -50,6 +50,7 @@ namespace Presenter
         void briefMutualiteitBewaren();
         void factuurTonen();
         void factuurSluiten();
+        void factuurBewaren();
         void meetgegevensTonen();
         void meetgegevensBewaren();
         void meetgegevensSluiten();

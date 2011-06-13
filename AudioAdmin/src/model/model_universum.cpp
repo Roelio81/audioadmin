@@ -27,14 +27,16 @@ Universum::~Universum()
 
 void Universum::fromDomElement(const QDomElement &root)
 {
+    // Eerst instellingen laden: dit is nodig voor de default BTW percentages...
+    QDomElement instellingen = root.firstChildElement("instellingen");
+    m_instellingen = new Instellingen();
+    if (!instellingen.isNull())
+        m_instellingen->fromDomElement(instellingen);
+
+    // Nu artsen, mutualiteiten en dossiers openen (kan in gelijk welke volgorde)
     for (QDomElement e = root.firstChildElement(); !e.isNull(); e = e.nextSiblingElement())
     {
-        if (e.tagName() == "instellingen")
-        {
-            m_instellingen = new Instellingen();
-            m_instellingen->fromDomElement(e);
-        }
-        else if (e.tagName() == "nkoArtsen")
+        if (e.tagName() == "nkoArtsen")
         {
             for (QDomElement artsElement = e.firstChildElement(); !artsElement.isNull(); artsElement = artsElement.nextSiblingElement())
             {
@@ -65,7 +67,7 @@ void Universum::fromDomElement(const QDomElement &root)
                 Q_ASSERT(dossierElement.tagName() == "dossier");
                 Q_ASSERT(dossierElement.hasAttribute("id"));
                 int dossierId = dossierElement.attribute("id").toInt();
-                Dossier *dossier = new Dossier(dossierId);
+                Dossier *dossier = new Dossier(dossierId, m_instellingen->getBtwPercentage());
                 dossier->fromDomElement(dossierElement);
                 m_dossierLijst.push_back(dossier);
             }
@@ -208,7 +210,8 @@ Dossier *Universum::toevoegenDossier(const QString &voornaam, const QString &naa
         Dossier *dossier = *itDossier;
         maxId = std::max(maxId, dossier->getId());
     }
-    Dossier *dossier = new Dossier(maxId+1);
+    Q_ASSERT(m_instellingen);
+    Dossier *dossier = new Dossier(maxId+1, m_instellingen->getBtwPercentage());
     dossier->getKlant().setVoornaam(voornaam);
     dossier->getKlant().setNaam(naam);
     m_dossierLijst.push_back(dossier);

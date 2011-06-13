@@ -472,8 +472,33 @@ void Dossier::setupBriefMutualiteit()
 
 void Dossier::setupFactuur()
 {
+    teardown();
+    setup();
+
     Q_ASSERT(m_factuur);
+    m_factuur->setKlantNaam(m_model.getKlant().getAanspreektitel() + " " + m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam());
+    m_factuur->setKlantStraat(m_model.getKlant().getStraat());
+    m_factuur->setKlantGemeente(QString::number(m_model.getKlant().getPostcode()) + " " + m_model.getKlant().getGemeente());
+
+    Q_ASSERT(m_universum);
+    Model::Instellingen *instellingen = m_universum->getInstellingen();
+    Q_ASSERT(instellingen);
+    m_factuur->setAudioloogNaam(instellingen->getNaam());
+    m_factuur->setAudioloogStraat(instellingen->getStraat());
+    m_factuur->setAudioloogGemeente(QString::number(instellingen->getPostcode()) + " " + instellingen->getGemeente());
+    m_factuur->setAudioloogTelefoon(instellingen->getTelefoon());
+    m_factuur->setAudioloogGSM(instellingen->getGsm());
+
+    m_factuur->setNummer(m_model.getFactuur().getNummer());
+    m_factuur->setDatum(m_model.getFactuur().getDatum());
+    m_factuur->setVervalDatum(m_model.getFactuur().getVervalDatum());
+    m_factuur->setKortingPercentage(m_model.getFactuur().getKortingPercentage());
+    m_factuur->setBtwPercentage(m_model.getFactuur().getBtwPercentage());
+    m_factuur->setCondities(m_model.getFactuur().getCondities());
+    m_factuur->setTekst(m_model.getFactuur().getTekst());
+
     connect(m_factuur, SIGNAL(factuurSluiten()), this, SLOT(factuurSluiten()));
+    connect(m_factuur, SIGNAL(factuurBewaren()), this, SLOT(factuurBewaren()));
 }
 
 void Dossier::setupMeetgegevens()
@@ -603,6 +628,19 @@ void Dossier::factuurSluiten()
     Q_ASSERT(m_factuur);
     m_factuur->close();
     m_factuur = 0;
+}
+
+void Dossier::factuurBewaren()
+{
+    Q_ASSERT(m_factuur);
+    m_model.getFactuur().setNummer(m_factuur->getNummer());
+    m_model.getFactuur().setDatum(m_factuur->getDatum());
+    m_model.getFactuur().setVervalDatum(m_factuur->getVervalDatum());
+    m_model.getFactuur().setKortingPercentage(m_factuur->getKortingPercentage());
+    m_model.getFactuur().setBtwPercentage(m_factuur->getBtwPercentage());
+    m_model.getFactuur().setCondities(m_factuur->getCondities());
+    m_model.getFactuur().setTekst(m_factuur->getTekst());
+    emit dossierGewijzigd(m_model.getId());
 }
 
 void Dossier::meetgegevensTonen()

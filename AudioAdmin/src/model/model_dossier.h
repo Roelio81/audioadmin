@@ -1,6 +1,7 @@
 #ifndef _MODEL_DOSSIER_H
 #define _MODEL_DOSSIER_H
 
+#include "model_factuur.h"
 #include "model_klant.h"
 #include "model_meetgegevens.h"
 
@@ -12,7 +13,7 @@ namespace Model
     class Dossier
     {
     public:
-        Dossier(int id);
+        explicit Dossier(int id, double standaardBtwPercentage);
         virtual ~Dossier();
 
         void fromDomElement(const QDomElement &e);
@@ -20,6 +21,7 @@ namespace Model
 
         Klant &getKlant();
         Meetgegevens &getMeetgegevens();
+        Factuur &getFactuur();
 
         int getId() const;
 
@@ -117,6 +119,7 @@ namespace Model
         QDate m_wisselDatum;
         QDate m_onderhoudsContractDatum;
         Meetgegevens m_meetgegevens;
+        Factuur m_factuur;
     };
 }
 
