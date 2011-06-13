@@ -78,7 +78,7 @@ void Dossier::fromDomElement(const QDomElement &e)
                 QString merk = ee.attribute("merk");
                 QString type = ee.attribute("type");
                 QString serienummer = ee.firstChildElement("serienummer").text();
-                double prijs = ee.attribute("prijs").toDouble();
+                double prijs = ee.firstChildElement("prijs").text().toDouble();
                 if (plaats == "rechts")
                 {
                     m_rechterHoorapparaatMerk = merk;
@@ -212,25 +212,41 @@ QDomElement Dossier::toDomElement(QDomDocument &d) const
     if (!m_linkerHoorapparaatType.isEmpty() || !m_linkerHoorapparaatMerk.isEmpty())
     {
         QDomElement apparaat = d.createElement("apparaat");
-        apparaat.setAttribute("plaats", "links");
         apparaat.setAttribute("merk", m_linkerHoorapparaatMerk);
         apparaat.setAttribute("type", m_linkerHoorapparaatType);
-        apparaat.setAttribute("prijs", m_linkerHoorapparaatPrijs);
-        QDomElement serieNummer = d.createElement("serienummer");
-        serieNummer.appendChild(d.createTextNode(m_linkerHoorapparaatSerienummer));
-        apparaat.appendChild(serieNummer);
+        apparaat.setAttribute("plaats", "links");
+        if (!m_linkerHoorapparaatSerienummer.isEmpty())
+        {
+            QDomElement serieNummer = d.createElement("serienummer");
+            serieNummer.appendChild(d.createTextNode(m_linkerHoorapparaatSerienummer));
+            apparaat.appendChild(serieNummer);
+        }
+        if (m_linkerHoorapparaatPrijs != 0.0)
+        {
+            QDomElement prijs = d.createElement("prijs");
+            prijs.appendChild(d.createTextNode(QString::number(m_linkerHoorapparaatPrijs, 'f', 0)));
+            apparaat.appendChild(prijs);
+        }
         apparaten.appendChild(apparaat);
     }
     if (!m_rechterHoorapparaatType.isEmpty() || !m_rechterHoorapparaatMerk.isEmpty())
     {
         QDomElement apparaat = d.createElement("apparaat");
-        apparaat.setAttribute("plaats", "rechts");
         apparaat.setAttribute("merk", m_rechterHoorapparaatMerk);
         apparaat.setAttribute("type", m_rechterHoorapparaatType);
-        apparaat.setAttribute("prijs", m_rechterHoorapparaatPrijs);
-        QDomElement serieNummer = d.createElement("serienummer");
-        serieNummer.appendChild(d.createTextNode(m_rechterHoorapparaatSerienummer));
-        apparaat.appendChild(serieNummer);
+        apparaat.setAttribute("plaats", "rechts");
+        if (!m_rechterHoorapparaatSerienummer.isEmpty())
+        {
+            QDomElement serieNummer = d.createElement("serienummer");
+            serieNummer.appendChild(d.createTextNode(m_rechterHoorapparaatSerienummer));
+            apparaat.appendChild(serieNummer);
+        }
+        if (m_rechterHoorapparaatPrijs != 0.0)
+        {
+            QDomElement prijs = d.createElement("prijs");
+            prijs.appendChild(d.createTextNode(QString::number(m_rechterHoorapparaatPrijs, 'f', 0)));
+            apparaat.appendChild(prijs);
+        }
         apparaten.appendChild(apparaat);
     }
     result.appendChild(apparaten);
