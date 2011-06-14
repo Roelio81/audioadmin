@@ -4,7 +4,8 @@
 
 using namespace Model;
 
-Instellingen::Instellingen()
+Instellingen::Instellingen(const Universum &universum)
+    : m_universum(universum)
 {
 }
 
@@ -110,123 +111,4 @@ QDomElement Instellingen::toDomElement(QDomDocument &d) const
     btwpct.appendChild(d.createTextNode(QString::number(m_btwPercentage)));
     result.appendChild(btwpct);
     return result;
-}
-
-QString Instellingen::getNaam() const
-{
-    return m_naam;
-}
-
-QString Instellingen::getStraat() const
-{
-    return m_straat;
-}
-
-int Instellingen::getPostcode() const
-{
-    return m_postcode;
-}
-
-QString Instellingen::getGemeente() const
-{
-    return m_gemeente;
-}
-
-QString Instellingen::getTelefoon() const
-{
-    return m_telefoon;
-}
-
-QString Instellingen::getGsm() const
-{
-    return m_gsm;
-}
-
-QString Instellingen::getEmail() const
-{
-    return m_email;
-}
-
-QString Instellingen::getOnderschrift() const
-{
-    return m_onderschrift;
-}
-QString Instellingen::getRiziv() const
-{
-    return m_riziv;
-}
-
-int Instellingen::getBtwPercentage() const
-{
-    return m_btwPercentage;
-}
-
-QString Instellingen::getBtwNummer() const
-{
-    return m_btwNummer;
-}
-
-QString Instellingen::getRekeningNummer() const
-{
-    return m_rekeningNummer;
-}
-
-void Instellingen::setNaam(const QString &value)
-{
-    m_naam = value;
-}
-
-void Instellingen::setStraat(const QString &value)
-{
-    m_straat = value;
-}
-
-void Instellingen::setPostcode(int value)
-{
-    m_postcode = value;
-}
-
-void Instellingen::setGemeente(const QString &value)
-{
-    m_gemeente = value;
-}
-
-void Instellingen::setTelefoon(const QString &value)
-{
-    m_telefoon = value;
-}
-
-void Instellingen::setGsm(const QString &value)
-{
-    m_gsm = value;
-}
-
-void Instellingen::setEmail(const QString &value)
-{
-    m_email = value;
-}
-
-void Instellingen::setOnderschrift(const QString &value)
-{
-    m_onderschrift = value;
-}
-
-void Instellingen::setRiziv(const QString &value)
-{
-    m_riziv = value;
-}
-
-void Instellingen::setBtwPercentage(int value)
-{
-    m_btwPercentage = value;
-}
-
-void Instellingen::setBtwNummer(const QString &value)
-{
-    m_btwNummer = value;
-}
-
-void Instellingen::setRekeningNummer(const QString &value)
-{
-    m_rekeningNummer = value;
 }

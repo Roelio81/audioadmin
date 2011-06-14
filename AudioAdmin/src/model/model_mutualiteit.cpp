@@ -25,8 +25,3 @@ QDomElement Mutualiteit::toDomElement(QDomDocument &d) const
     result.setAttribute("id", m_id);
     return result;
 }
-
-int Mutualiteit::getId() const
-{
-    return m_id;
-}

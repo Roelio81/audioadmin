@@ -1,4 +1,5 @@
 #include "presenter_dossier.h"
+#include "presenter_briefklant.h"
 #include "../model/model_arts.h"
 #include "../model/model_dossier.h"
 #include "../model/model_instellingen.h"
@@ -11,23 +12,13 @@
 #include "../view/view_factuur.h"
 #include "../view/view_meetgegevens.h"
 
-#include <QPainter>
-#include <QPrintDialog>
-#include <QPrinter>
-
 using namespace Presenter;
-
-namespace
-{
-    QDate ongeldigeDatum(1900, 1, 1);
-}
 
 Dossier::Dossier(View::Dossier &view, Model::Dossier &model)
 : m_view(view)
 , m_model(model)
 , m_universum(0)
 , m_briefArts(0)
-, m_briefKlant(0)
 , m_briefMutualiteit(0)
 , m_factuur(0)
 , m_meetgegevens(0)
@@ -277,17 +268,16 @@ void Dossier::setupBriefArts()
     m_briefArts->setArtsStraat(arts->getStraat());
     m_briefArts->setArtsGemeente(QString::number(arts->getPostcode()) + " " + arts->getGemeente());
 
-    Model::Instellingen *instellingen = m_universum->getInstellingen();
-    Q_ASSERT(instellingen);
-    m_briefArts->setAudioloogNaam(instellingen->getNaam());
-    m_briefArts->setAudioloogStraat(instellingen->getStraat());
-    m_briefArts->setAudioloogGemeente(QString::number(instellingen->getPostcode()) + " " + instellingen->getGemeente());
-    m_briefArts->setAudioloogTelefoon(instellingen->getTelefoon());
-    m_briefArts->setAudioloogGSM(instellingen->getGsm());
+    const Model::Instellingen &instellingen = m_universum->getInstellingen();
+    m_briefArts->setAudioloogNaam(instellingen.getNaam());
+    m_briefArts->setAudioloogStraat(instellingen.getStraat());
+    m_briefArts->setAudioloogGemeente(QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
+    m_briefArts->setAudioloogTelefoon(instellingen.getTelefoon());
+    m_briefArts->setAudioloogGSM(instellingen.getGsm());
 
     QString postDatum = m_model.getBriefArtsPostdatum();
     if (postDatum.isEmpty())
-        postDatum = instellingen->getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
+        postDatum = instellingen.getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
     m_briefArts->setPostdatum(postDatum);
     QString tekst = m_model.getBriefArtsTekstblok();
     if (tekst.isEmpty())
@@ -295,7 +285,7 @@ void Dossier::setupBriefArts()
         tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
         tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam();
         QDate geboorteDatum = m_model.getKlant().getGeboorteDatum();
-        if (geboorteDatum != ongeldigeDatum)
+        if (geboorteDatum != m_model.getUniversum().getInvalidDate())
         {
             tekst += " (" + QString(char(0xb0)) + " " + geboorteDatum.toString("dd-MM-yyyy") + "). ";
         }
@@ -345,51 +335,6 @@ void Dossier::setupBriefArts()
     connect(m_briefArts, SIGNAL(briefArtsBewaren()), this, SLOT(briefArtsBewaren()));
 }
 
-void Dossier::setupBriefKlant()
-{
-    teardown();
-    setup();
-
-    bool klantIsMan = (m_model.getKlant().getAanspreektitel() == "Dhr.");
-
-    Q_ASSERT(m_briefKlant);
-    m_briefKlant->setAanspreking(klantIsMan ? "Geachte meneer," : "Geachte mevrouw,");
-    m_briefKlant->setKlantNaam(m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam());
-    m_briefKlant->setKlantStraat(m_model.getKlant().getStraat());
-    m_briefKlant->setKlantGemeente(QString::number(m_model.getKlant().getPostcode()) + " " + m_model.getKlant().getGemeente());
-
-    Q_ASSERT(m_universum);
-    Model::Instellingen *instellingen = m_universum->getInstellingen();
-    Q_ASSERT(instellingen);
-    m_briefKlant->setAudioloogNaam(instellingen->getNaam());
-    m_briefKlant->setAudioloogStraat(instellingen->getStraat());
-    m_briefKlant->setAudioloogGemeente(QString::number(instellingen->getPostcode()) + " " + instellingen->getGemeente());
-    m_briefKlant->setAudioloogTelefoon(instellingen->getTelefoon());
-    m_briefKlant->setAudioloogGSM(instellingen->getGsm());
-
-    QString postDatum = m_model.getBriefKlantPostdatum();
-    if (postDatum.isEmpty())
-        postDatum = instellingen->getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
-    m_briefKlant->setPostdatum(postDatum);
-    QString tekst = m_model.getBriefKlantTekstblok();
-    if (tekst.isEmpty())
-    {
-        tekst = "Ingesloten vindt u de nodige documenten voor het ziekenfonds. Tevens vindt u 2 ";
-        tekst += "overschrijvingsformulieren, waarvan 1 voor ";
-        if (m_model.getAantalHoorapparaten() == 1)
-            tekst += "het hoorapparaat";
-        else
-            tekst += "de hoorapparaten";
-        tekst += ", incl. ... jaar garantie. Indien u 5 jaar garantie wenst, kan u het tweede ";
-        tekst += "overschrijvingsformulier gebruiken.";
-    }
-    m_briefKlant->setTekst(tekst);
-
-    connect(m_briefKlant, SIGNAL(briefKlantAfdrukken()) ,this, SLOT(briefKlantAfdrukken()));
-    connect(m_briefKlant, SIGNAL(briefKlantSluiten()), this, SLOT(briefKlantSluiten()));
-    connect(m_briefKlant, SIGNAL(briefKlantBewaren()), this, SLOT(briefKlantBewaren()));
-}
-
 void Dossier::setupBriefMutualiteit()
 {
     teardown();
@@ -406,17 +351,16 @@ void Dossier::setupBriefMutualiteit()
     m_briefMutualiteit->setMutualiteitStraat(mutualiteit->getStraat());
     m_briefMutualiteit->setMutualiteitGemeente(QString::number(mutualiteit->getPostcode()) + " " + mutualiteit->getGemeente());
 
-    Model::Instellingen *instellingen = m_universum->getInstellingen();
-    Q_ASSERT(instellingen);
-    m_briefMutualiteit->setAudioloogNaam(instellingen->getNaam());
-    m_briefMutualiteit->setAudioloogStraat(instellingen->getStraat());
-    m_briefMutualiteit->setAudioloogGemeente(QString::number(instellingen->getPostcode()) + " " + instellingen->getGemeente());
-    m_briefMutualiteit->setAudioloogTelefoon(instellingen->getTelefoon());
-    m_briefMutualiteit->setAudioloogGSM(instellingen->getGsm());
+    Model::Instellingen &instellingen = m_universum->getInstellingen();
+    m_briefMutualiteit->setAudioloogNaam(instellingen.getNaam());
+    m_briefMutualiteit->setAudioloogStraat(instellingen.getStraat());
+    m_briefMutualiteit->setAudioloogGemeente(QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
+    m_briefMutualiteit->setAudioloogTelefoon(instellingen.getTelefoon());
+    m_briefMutualiteit->setAudioloogGSM(instellingen.getGsm());
 
     QString postDatum = m_model.getBriefMutualiteitPostdatum();
     if (postDatum.isEmpty())
-        postDatum = instellingen->getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
+        postDatum = instellingen.getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
     m_briefMutualiteit->setPostdatum(postDatum);
     QString tekst = m_model.getBriefMutualiteitTekstblok();
     if (tekst.isEmpty())
@@ -424,7 +368,7 @@ void Dossier::setupBriefMutualiteit()
         tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
         tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam();
         QDate geboorteDatum = m_model.getKlant().getGeboorteDatum();
-        if (geboorteDatum != ongeldigeDatum)
+        if (geboorteDatum != m_model.getUniversum().getInvalidDate())
         {
             tekst += " (" + QString(char(0xb0)) + " " + geboorteDatum.toString("dd-MM-yyyy") + "). ";
         }
@@ -486,13 +430,12 @@ void Dossier::setupFactuur()
     m_factuur->setKlantGemeente(QString::number(m_model.getKlant().getPostcode()) + " " + m_model.getKlant().getGemeente());
 
     Q_ASSERT(m_universum);
-    Model::Instellingen *instellingen = m_universum->getInstellingen();
-    Q_ASSERT(instellingen);
-    m_factuur->setAudioloogNaam(instellingen->getNaam());
-    m_factuur->setAudioloogStraat(instellingen->getStraat());
-    m_factuur->setAudioloogGemeente(QString::number(instellingen->getPostcode()) + " " + instellingen->getGemeente());
-    m_factuur->setAudioloogTelefoon(instellingen->getTelefoon());
-    m_factuur->setAudioloogGSM(instellingen->getGsm());
+    Model::Instellingen &instellingen = m_universum->getInstellingen();
+    m_factuur->setAudioloogNaam(instellingen.getNaam());
+    m_factuur->setAudioloogStraat(instellingen.getStraat());
+    m_factuur->setAudioloogGemeente(QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
+    m_factuur->setAudioloogTelefoon(instellingen.getTelefoon());
+    m_factuur->setAudioloogGSM(instellingen.getGsm());
 
     m_factuur->setNummer(m_model.getFactuur().getNummer());
     m_factuur->setDatum(m_model.getFactuur().getDatum());
@@ -566,97 +509,19 @@ void Dossier::briefArtsBewaren()
 
 void Dossier::briefKlantTonen()
 {
-    if (!m_briefKlant)
+    // First make sure that we are fully up-to-date
+    teardown();
+    setup();
+
+    // Create a presenter and open the view
+    View::BriefKlant briefKlantView(m_view.getParentWindow());
+    BriefKlant briefKlant(briefKlantView, m_model.getBriefKlant());
+    briefKlant.setup();
+    if (briefKlantView.exec() == QDialog::Accepted)
     {
-        m_briefKlant = new View::BriefKlant(m_view.getParentWindow());
+        briefKlant.teardown();
+        emit dossierGewijzigd(m_model.getId());
     }
-
-    setupBriefKlant();
-    m_briefKlant->show();
-}
-
-void Dossier::briefKlantAfdrukken()
-{
-    Q_ASSERT(m_briefKlant);
-    Q_ASSERT(m_universum);
-    Model::Instellingen *instellingen = m_universum->getInstellingen();
-    Q_ASSERT(instellingen);
-    Model::Klant &klant = m_model.getKlant();
-
-    QPrintDialog printDialog(m_briefKlant);
-    if (printDialog.exec() != QDialog::Accepted)
-        return;
-
-    if (QPrinter *printer = printDialog.printer())
-    {
-        // Printer parameters uitzoeken
-        const int mmx = printer->width() / printer->widthMM();
-        const int mmy = printer->height() / printer->heightMM();
-        const int hmar = 25*mmx;
-        const int vmar = 20*mmy;
-
-        // Painter aanmaken en default font zetten
-        QPainter painter(printer);
-        QFont font("Arial");
-
-        // Adres van audioloog afdrukken...
-        font.setPointSize(14);
-        font.setBold(true);
-        font.setItalic(true);
-        painter.setFont(font);
-        painter.drawText(hmar, vmar, instellingen->getNaam());
-        font.setPointSize(11);
-        font.setBold(false);
-        painter.setFont(font);
-        int lineheight = painter.fontMetrics().height();
-        painter.drawText(hmar, vmar + (3*lineheight)/2, instellingen->getOnderschrift());
-        painter.drawText(hmar, vmar + (5*lineheight)/2, instellingen->getStraat());
-        painter.drawText(hmar, vmar + (7*lineheight)/2, QString::number(instellingen->getPostcode()) + " " + instellingen->getGemeente());
-        painter.drawText(hmar, vmar + (9*lineheight)/2, QString("Riziv: ") + instellingen->getRiziv());
-        painter.drawText(150*mmx, vmar + (5*lineheight)/2, QString("tel: ") + instellingen->getTelefoon());
-        painter.drawText(150*mmx, vmar + (7*lineheight)/2, QString("gsm: ") + instellingen->getGsm());
-        painter.drawText(150*mmx, vmar + (9*lineheight)/2, QString("e-mail: ") + instellingen->getEmail());
-        painter.drawLine(printer->paperRect().left(), 52*mmy, printer->paperRect().right(), 52*mmy);
-
-        // Postdatum afdrukken...
-        painter.drawText(hmar, 62*mmy, m_briefKlant->getPostdatum());
-
-        // Adres van de klant afdrukken...
-        font.setPointSize(12);
-        font.setItalic(false);
-        painter.setFont(font);
-        lineheight = painter.fontMetrics().height();
-        painter.drawText(150*mmx, 62*mmy + (0*lineheight), klant.getAanspreektitel() + " " + klant.getNaam() + " " + klant.getVoornaam());
-        painter.drawText(150*mmx, 62*mmy + (1*lineheight), klant.getStraat());
-        painter.drawText(150*mmx, 62*mmy + (2*lineheight), QString::number(klant.getPostcode()) + " " + klant.getGemeente());
-
-        // Tekst afdrukken
-        bool klantIsMan = (klant.getAanspreektitel() == "Dhr.");
-        QString tekst = klantIsMan ? "Geachte meneer," : "Geachte mevrouw,";
-        tekst += "\n\n";
-        tekst += m_briefKlant->getTekst();
-        tekst += "\n\n";
-        tekst += "Vriendelijke groeten, \n\n";
-        tekst += instellingen->getNaam();
-        QRect tekstRect(QPoint(hmar, vmar + (17*lineheight)),
-                        QPoint(printer->paperRect().right() - hmar, printer->paperRect().bottom() - vmar));
-        painter.drawText(tekstRect, tekst, Qt::AlignLeft|Qt::AlignTop);
-    }
-}
-
-void Dossier::briefKlantSluiten()
-{
-    Q_ASSERT(m_briefKlant);
-    m_briefKlant->close();
-    m_briefKlant = 0;
-}
-
-void Dossier::briefKlantBewaren()
-{
-    Q_ASSERT(m_briefKlant);
-    m_model.setBriefKlantPostdatum(m_briefKlant->getPostdatum());
-    m_model.setBriefKlantTekstblok(m_briefKlant->getTekst());
-    emit dossierGewijzigd(m_model.getId());
 }
 
 void Dossier::briefMutualiteitTonen()

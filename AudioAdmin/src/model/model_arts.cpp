@@ -37,18 +37,3 @@ QDomElement Arts::toDomElement(QDomDocument &d) const
     result.setAttribute("id", m_id);
     return result;
 }
-
-int Arts::getId() const
-{
-    return m_id;
-}
-
-QString Arts::getVoornaam() const
-{
-    return m_voornaam;
-}
-
-void Arts::setVoornaam(const QString &value)
-{
-    m_voornaam = value;
-}

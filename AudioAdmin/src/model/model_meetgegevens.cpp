@@ -247,26 +247,6 @@ int Meetgegevens::getROLOMetData(int dB)
     return m_roloDataMet[m_dbValuesToIndex[dB]];
 }
 
-int Meetgegevens::getLocalisatieZonder()
-{
-    return m_localisatieZonder;
-}
-
-int Meetgegevens::getLocalisatieRechts()
-{
-    return m_localisatieRechts;
-}
-
-int Meetgegevens::getLocalisatieLinks()
-{
-    return m_localisatieLinks;
-}
-
-int Meetgegevens::getLocalisatieBeide()
-{
-    return m_localisatieBeide;
-}
-
 void Meetgegevens::setLGRechtsData(int Hz, int dB)
 {
     Q_ASSERT(m_hzValuesToIndex.find(Hz) != m_hzValuesToIndex.end());
@@ -337,24 +317,4 @@ void  Meetgegevens::setROLOMetData(int dB, int percentage)
 {
     Q_ASSERT(m_dbValuesToIndex.find(dB) != m_dbValuesToIndex.end());
     m_roDataMet[m_dbValuesToIndex[dB]] = percentage;
-}
-
-void Meetgegevens::setLocalisatieZonder(int dB)
-{
-    m_localisatieZonder = dB;
-}
-
-void Meetgegevens::setLocalisatieRechts(int dB)
-{
-    m_localisatieRechts = dB;
-}
-
-void Meetgegevens::setLocalisatieLinks(int dB)
-{
-    m_localisatieLinks = dB;
-}
-
-void Meetgegevens::setLocalisatieBeide(int dB)
-{
-    m_localisatieBeide = dB;
 }

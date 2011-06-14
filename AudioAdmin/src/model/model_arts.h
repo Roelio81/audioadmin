@@ -11,19 +11,21 @@ namespace Model
     class Arts : public Entiteit
     {
     public:
-        Arts(int id);
+        explicit Arts(int id);
         virtual ~Arts();
 
         void fromDomElement(const QDomElement &e);
         QDomElement toDomElement(QDomDocument &d) const;
 
-        int getId() const;
+        // --- Getters ---
+        int getId() const { return m_id; }
+        QString getVoornaam() const { return m_voornaam; }
 
-        QString getVoornaam() const;
-
-        void setVoornaam(const QString &value);
+        // --- Setters ---
+        void setVoornaam(const QString &value) { m_voornaam = value; }
 
     private:
+        // --- Data members ---
         const int m_id;
         QString m_voornaam;
     };

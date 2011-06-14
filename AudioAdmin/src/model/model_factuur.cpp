@@ -1,4 +1,6 @@
 #include "model_factuur.h"
+#include "model_instellingen.h"
+#include "model_universum.h"
 
 #include <QDate>
 #include <QDomDocument>
@@ -6,86 +8,17 @@
 
 using namespace Model;
 
-Factuur::Factuur(double standaardBtwPercentage)
-    : m_datum(QDate::currentDate())
+Factuur::Factuur(const Universum &universum)
+    : m_universum(universum)
+    , m_datum(QDate::currentDate())
     , m_vervaldatum(QDate::currentDate().addMonths(1))
     , m_kortingPercentage(0.0)
-    , m_btwPercentage(standaardBtwPercentage)
+    , m_btwPercentage(universum.getInstellingen().getBtwPercentage())
 {
 }
 
 Factuur::~Factuur()
 {
-}
-
-QString Factuur::getNummer() const
-{
-    return m_nummer;
-}
-
-QDate Factuur::getDatum() const
-{
-    return m_datum;
-}
-
-QDate Factuur::getVervalDatum() const
-{
-    return m_vervaldatum;
-}
-
-double Factuur::getKortingPercentage() const
-{
-    return m_kortingPercentage;
-}
-
-double Factuur::getBtwPercentage() const
-{
-    return m_btwPercentage;
-}
-
-QString Factuur::getCondities() const
-{
-    return m_condities;
-}
-
-QString Factuur::getTekst() const
-{
-    return m_tekst;
-}
-
-void Factuur::setNummer(const QString &value)
-{
-    m_nummer = value;
-}
-
-void Factuur::setDatum(const QDate &value)
-{
-    m_datum = value;
-}
-
-void Factuur::setVervalDatum(const QDate &value)
-{
-    m_vervaldatum = value;
-}
-
-void Factuur::setKortingPercentage(double value)
-{
-    m_kortingPercentage = value;
-}
-
-void Factuur::setBtwPercentage(double value)
-{
-    m_btwPercentage = value;
-}
-
-void Factuur::setCondities(const QString &value)
-{
-    m_condities = value;
-}
-
-void Factuur::setTekst(const QString &value)
-{
-    m_tekst = value;
 }
 
 void Factuur::fromDomElement(const QDomElement &e)

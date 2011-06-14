@@ -10,16 +10,12 @@
 
 using namespace View;
 
-namespace
-{
-    QDate ongeldigeDatum(1900, 1, 1);
-}
-
 Universum::Universum(::QWidget *parent, Qt::WFlags f)
 : QMainWindow(parent, f)
 , m_arts(*this)
 , m_dossier(*this)
 , m_mutualiteit(*this)
+, m_etiketten(this)
 , m_instellingen(this)
 , m_huidigeTab(0)
 {

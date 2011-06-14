@@ -16,7 +16,7 @@ using namespace Model;
 
 Universum::Universum(const QString &bestandsNaam)
 : m_bestandsNaam(bestandsNaam)
-, m_instellingen(0)
+, m_instellingen(new Instellingen(*this))
 {
     openen();
 }
@@ -28,8 +28,8 @@ Universum::~Universum()
 void Universum::fromDomElement(const QDomElement &root)
 {
     // Eerst instellingen laden: dit is nodig voor de default BTW percentages...
+    Q_ASSERT(m_instellingen);
     QDomElement instellingen = root.firstChildElement("instellingen");
-    m_instellingen = new Instellingen();
     if (!instellingen.isNull())
         m_instellingen->fromDomElement(instellingen);
 
@@ -67,7 +67,7 @@ void Universum::fromDomElement(const QDomElement &root)
                 Q_ASSERT(dossierElement.tagName() == "dossier");
                 Q_ASSERT(dossierElement.hasAttribute("id"));
                 int dossierId = dossierElement.attribute("id").toInt();
-                Dossier *dossier = new Dossier(dossierId, m_instellingen->getBtwPercentage());
+                Dossier *dossier = new Dossier(dossierId, *this);
                 dossier->fromDomElement(dossierElement);
                 m_dossierLijst.push_back(dossier);
             }
@@ -79,6 +79,7 @@ QDomElement Universum::toDomElement(QDomDocument &domDoc) const
 {
     QDomElement result = domDoc.createElement("administratie");
 
+    Q_ASSERT(m_instellingen);
     QDomElement instellingen = m_instellingen->toDomElement(domDoc);
     result.appendChild(instellingen);
 
@@ -154,13 +155,6 @@ bool Universum::bewaren()
     return true;
 }
 
-Instellingen *Universum::getInstellingen()
-{
-    if (! m_instellingen)
-        m_instellingen = new Instellingen();
-    return m_instellingen;
-}
-
 Arts *Universum::toevoegenArts(const QString &voornaam, const QString &naam)
 {
     int maxId = 0;
@@ -210,8 +204,7 @@ Dossier *Universum::toevoegenDossier(const QString &voornaam, const QString &naa
         Dossier *dossier = *itDossier;
         maxId = std::max(maxId, dossier->getId());
     }
-    Q_ASSERT(m_instellingen);
-    Dossier *dossier = new Dossier(maxId+1, m_instellingen->getBtwPercentage());
+    Dossier *dossier = new Dossier(maxId+1, *this);
     dossier->getKlant().setVoornaam(voornaam);
     dossier->getKlant().setNaam(naam);
     m_dossierLijst.push_back(dossier);

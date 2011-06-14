@@ -1,6 +1,7 @@
 #ifndef _MODEL_UNIVERSUM_H
 #define _MODEL_UNIVERSUM_H
 
+#include <QDate>
 #include <QMap>
 #include <QString>
 #include <QVector>
@@ -18,11 +19,13 @@ namespace Model
     class Universum
     {
     public:
-        Universum(const QString &bestandsNaam);
+        explicit Universum(const QString &bestandsNaam);
         virtual ~Universum();
 
         void fromDomElement(const QDomElement &root);
         QDomElement toDomElement(QDomDocument &d) const;
+
+        QDate getInvalidDate() const { return QDate(1900, 1, 1); }
 
         bool openen();
         bool bewaren();
@@ -42,7 +45,8 @@ namespace Model
         QVector<Mutualiteit *> &getMutualiteiten();
         Mutualiteit *getMutualiteit(int id);
 
-        Instellingen *getInstellingen();
+        Instellingen &getInstellingen() { return *m_instellingen; }
+        const Instellingen &getInstellingen() const { return *m_instellingen; }
 
     private:
         void openInstellingen(QDomElement &element);

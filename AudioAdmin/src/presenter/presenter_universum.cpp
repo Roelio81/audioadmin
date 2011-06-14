@@ -9,12 +9,11 @@
 #include "../model/model_universum.h"
 #include "../view/view_universum.h"
 
-using namespace Presenter;
+#include <QPainter>
+#include <QPrinter>
+#include <QPrintDialog>
 
-namespace
-{
-    QDate ongeldigeDatum(1900, 1, 1);
-}
+using namespace Presenter;
 
 Universum::Universum(View::Universum &view, Model::Universum &model)
 : m_view(view)
@@ -91,17 +90,26 @@ void Universum::bewaren()
 void Universum::etiketten()
 {
     setupEtiketten();
-    connect(m_view.getEtiketten().b_ok, SIGNAL(clicked()), this, SLOT(okEtiketten()));
+    connect(m_view.getEtiketten().b_afdrukken, SIGNAL(clicked()), this, SLOT(afdrukkenEtiketten()));
     connect(m_view.getEtiketten().b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerEtiketten()));
-    m_view.getEtiketten().show();
-    disconnect(this, SLOT(okEtiketten()));
-    disconnect(this, SLOT(annuleerEtiketten()));
+    m_view.getEtiketten().exec();
+    disconnect(m_view.getEtiketten().b_afdrukken, SIGNAL(clicked()), this, SLOT(afdrukkenEtiketten()));
+    disconnect(m_view.getEtiketten().b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerEtiketten()));
 }
 
-void Universum::okEtiketten()
+void Universum::afdrukkenEtiketten()
 {
     teardownEtiketten();
     m_view.getEtiketten().hide();
+    QPrintDialog printDialog(&m_view);
+    if (printDialog.exec() != QDialog::Accepted)
+        return;
+
+    if (QPrinter *printer = printDialog.printer())
+    {
+        QPainter painter(printer);
+
+    }
 }
 
 void Universum::annuleerEtiketten()
@@ -146,21 +154,21 @@ void Universum::setupEtiketten()
 
 void Universum::setupInstellingen()
 {
-    Model::Instellingen *modelInstellingen = m_model.getInstellingen();
+    Model::Instellingen &modelInstellingen = m_model.getInstellingen();
     View::Instellingen &viewInstellingen = m_view.getInstellingen();
     Q_ASSERT(modelInstellingen);
-    viewInstellingen.setNaam(modelInstellingen->getNaam());
-    viewInstellingen.setStraat(modelInstellingen->getStraat());
-    viewInstellingen.setPostcode(modelInstellingen->getPostcode());
-    viewInstellingen.setGemeente(modelInstellingen->getGemeente());
-    viewInstellingen.setTelefoon(modelInstellingen->getTelefoon());
-    viewInstellingen.setGsm(modelInstellingen->getGsm());
-    viewInstellingen.setEmail(modelInstellingen->getEmail());
-    viewInstellingen.setOnderschrift(modelInstellingen->getOnderschrift());
-    viewInstellingen.setRiziv(modelInstellingen->getRiziv());
-    viewInstellingen.setBtwPercentage(modelInstellingen->getBtwPercentage());
-    viewInstellingen.setBtwNummer(modelInstellingen->getBtwNummer());
-    viewInstellingen.setRekeningNummer(modelInstellingen->getRekeningNummer());
+    viewInstellingen.setNaam(modelInstellingen.getNaam());
+    viewInstellingen.setStraat(modelInstellingen.getStraat());
+    viewInstellingen.setPostcode(modelInstellingen.getPostcode());
+    viewInstellingen.setGemeente(modelInstellingen.getGemeente());
+    viewInstellingen.setTelefoon(modelInstellingen.getTelefoon());
+    viewInstellingen.setGsm(modelInstellingen.getGsm());
+    viewInstellingen.setEmail(modelInstellingen.getEmail());
+    viewInstellingen.setOnderschrift(modelInstellingen.getOnderschrift());
+    viewInstellingen.setRiziv(modelInstellingen.getRiziv());
+    viewInstellingen.setBtwPercentage(modelInstellingen.getBtwPercentage());
+    viewInstellingen.setBtwNummer(modelInstellingen.getBtwNummer());
+    viewInstellingen.setRekeningNummer(modelInstellingen.getRekeningNummer());
 }
 
 void Universum::teardownEtiketten()
@@ -169,21 +177,21 @@ void Universum::teardownEtiketten()
 
 void Universum::teardownInstellingen()
 {
-    Model::Instellingen *modelInstellingen = m_model.getInstellingen();
+    Model::Instellingen &modelInstellingen = m_model.getInstellingen();
     View::Instellingen &viewInstellingen = m_view.getInstellingen();
     Q_ASSERT(modelInstellingen);
-    modelInstellingen->setNaam(viewInstellingen.getNaam());
-    modelInstellingen->setStraat(viewInstellingen.getStraat());
-    modelInstellingen->setPostcode(viewInstellingen.getPostcode());
-    modelInstellingen->setGemeente(viewInstellingen.getGemeente());
-    modelInstellingen->setTelefoon(viewInstellingen.getTelefoon());
-    modelInstellingen->setGsm(viewInstellingen.getGsm());
-    modelInstellingen->setEmail(viewInstellingen.getEmail());
-    modelInstellingen->setOnderschrift(viewInstellingen.getOnderschrift());
-    modelInstellingen->setRiziv(viewInstellingen.getRiziv());
-    modelInstellingen->setBtwPercentage(viewInstellingen.getBtwPercentage());
-    modelInstellingen->setBtwNummer(viewInstellingen.getBtwNummer());
-    modelInstellingen->setRekeningNummer(viewInstellingen.getRekeningNummer());
+    modelInstellingen.setNaam(viewInstellingen.getNaam());
+    modelInstellingen.setStraat(viewInstellingen.getStraat());
+    modelInstellingen.setPostcode(viewInstellingen.getPostcode());
+    modelInstellingen.setGemeente(viewInstellingen.getGemeente());
+    modelInstellingen.setTelefoon(viewInstellingen.getTelefoon());
+    modelInstellingen.setGsm(viewInstellingen.getGsm());
+    modelInstellingen.setEmail(viewInstellingen.getEmail());
+    modelInstellingen.setOnderschrift(viewInstellingen.getOnderschrift());
+    modelInstellingen.setRiziv(viewInstellingen.getRiziv());
+    modelInstellingen.setBtwPercentage(viewInstellingen.getBtwPercentage());
+    modelInstellingen.setBtwNummer(viewInstellingen.getBtwNummer());
+    modelInstellingen.setRekeningNummer(viewInstellingen.getRekeningNummer());
 }
 
 void Universum::refreshArtsenLijst()
@@ -259,20 +267,20 @@ void Universum::cleanupDossierTab()
     m_view.m_klantPostcode->setValue(1000);
     m_view.m_klantGemeente->setText("");
     m_view.m_klantTelefoon->setText("");
-    m_view.m_klantGeboorteDatum->setDate(ongeldigeDatum);
+    m_view.m_klantGeboorteDatum->setDate(m_model.getInvalidDate());
     m_view.m_klantMutualiteit->setCurrentIndex(-1);
     m_view.m_aansluitingsnummer->setText("");
     m_view.m_plaatsAanpassing->setText("");
     m_view.m_klantOpmerkingen->setText("");
-    m_view.m_datumProef->setDate(ongeldigeDatum);
-    m_view.m_datumNKO->setDate(ongeldigeDatum);
-    m_view.m_datumAdviseur->setDate(ongeldigeDatum);
-    m_view.m_datumMutualiteit->setDate(ongeldigeDatum);
-    m_view.m_datumBetaling->setDate(ongeldigeDatum);
-    m_view.m_datumAflevering->setDate(ongeldigeDatum);
-    m_view.m_datumWissel->setDate(ongeldigeDatum);
-    m_view.m_datumOnderhoudsContract->setDate(ongeldigeDatum);
-    m_view.m_datumOnderzoek->setDate(ongeldigeDatum);
+    m_view.m_datumProef->setDate(m_model.getInvalidDate());
+    m_view.m_datumNKO->setDate(m_model.getInvalidDate());
+    m_view.m_datumAdviseur->setDate(m_model.getInvalidDate());
+    m_view.m_datumMutualiteit->setDate(m_model.getInvalidDate());
+    m_view.m_datumBetaling->setDate(m_model.getInvalidDate());
+    m_view.m_datumAflevering->setDate(m_model.getInvalidDate());
+    m_view.m_datumWissel->setDate(m_model.getInvalidDate());
+    m_view.m_datumOnderhoudsContract->setDate(m_model.getInvalidDate());
+    m_view.m_datumOnderzoek->setDate(m_model.getInvalidDate());
     m_view.m_klantArts->setCurrentIndex(-1);
     m_view.m_linkerHoorapparaatMerk->setCurrentIndex(-1);
     m_view.m_linkerHoorapparaatType->setCurrentIndex(-1);

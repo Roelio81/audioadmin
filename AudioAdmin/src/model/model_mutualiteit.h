@@ -11,13 +11,14 @@ namespace Model
     class Mutualiteit : public Entiteit
     {
     public:
-        Mutualiteit(int id);
+        explicit Mutualiteit(int id);
         virtual ~Mutualiteit();
 
         void fromDomElement(const QDomElement &e);
         QDomElement toDomElement(QDomDocument &d) const;
 
-        int getId() const;
+        // --- Getters ---
+        int getId() const { return m_id; }
 
     private:
         const int m_id;

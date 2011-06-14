@@ -8,42 +8,48 @@ class QDomElement;
 
 namespace Model
 {
+    class Universum;
+
     class Instellingen
     {
     public:
-        Instellingen();
+        explicit Instellingen(const Universum &universum);
         virtual ~Instellingen();
 
         void fromDomElement(const QDomElement &e);
         QDomElement toDomElement(QDomDocument &d) const;
 
-        QString getNaam() const;
-        QString getStraat() const;
-        int getPostcode() const;
-        QString getGemeente() const;
-        QString getTelefoon() const;
-        QString getGsm() const;
-        QString getEmail() const;
-        QString getOnderschrift() const;
-        QString getRiziv() const;
-        int getBtwPercentage() const;
-        QString getBtwNummer() const;
-        QString getRekeningNummer() const;
+        // --- Getters ---
+        QString getNaam() const { return m_naam; }
+        QString getStraat() const { return m_straat; }
+        int getPostcode() const { return m_postcode; }
+        QString getGemeente() const { return m_gemeente; }
+        QString getTelefoon() const { return m_telefoon; }
+        QString getGsm() const { return m_gsm; }
+        QString getEmail() const { return m_email; }
+        QString getOnderschrift() const { return m_onderschrift; }
+        QString getRiziv() const { return m_riziv; }
+        int getBtwPercentage() const { return m_btwPercentage; }
+        QString getBtwNummer() const { return m_btwNummer; }
+        QString getRekeningNummer() const { return m_rekeningNummer; }
 
-        void setNaam(const QString &value);
-        void setStraat(const QString &value);
-        void setPostcode(int value);
-        void setGemeente(const QString &value);
-        void setTelefoon(const QString &value);
-        void setGsm(const QString &value);
-        void setEmail(const QString &value);
-        void setOnderschrift(const QString &value);
-        void setRiziv(const QString &value);
-        void setBtwPercentage(int value);
-        void setBtwNummer(const QString &value);
-        void setRekeningNummer(const QString &value);
+        // --- Setters ---
+        void setNaam(const QString &value) { m_naam = value; }
+        void setStraat(const QString &value) { m_straat = value; }
+        void setPostcode(int value) { m_postcode = value; }
+        void setGemeente(const QString &value) { m_gemeente = value; }
+        void setTelefoon(const QString &value) { m_telefoon = value; }
+        void setGsm(const QString &value) { m_gsm = value; }
+        void setEmail(const QString &value) { m_email = value; }
+        void setOnderschrift(const QString &value) { m_onderschrift = value; }
+        void setRiziv(const QString &value) { m_riziv = value; }
+        void setBtwPercentage(int value) { m_btwPercentage = value; }
+        void setBtwNummer(const QString &value) { m_btwNummer = value; }
+        void setRekeningNummer(const QString &value) { m_rekeningNummer = value; }
 
     private:
+        // --- Data members ---
+        const Universum &m_universum;
         QString m_naam;
         QString m_straat;
         int m_postcode;

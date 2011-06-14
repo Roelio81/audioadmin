@@ -30,7 +30,7 @@ namespace Presenter
         void afsluiten();
         void bewaren();
         void etiketten();
-        void okEtiketten();
+        void afdrukkenEtiketten();
         void annuleerEtiketten();
         void instellingen();
         void okInstellingen();

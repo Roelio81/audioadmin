@@ -12,12 +12,13 @@ namespace Model
     class Meetgegevens
     {
     public:
-        Meetgegevens();
+        explicit Meetgegevens();
         virtual ~Meetgegevens();
 
         void fromDomElement(const QDomElement &e);
         QDomElement toDomElement(QDomDocument &d) const;
 
+        // --- Getters ---
         int getLGRechtsData(int Hz);
         int getBGRechtsData(int Hz);
         int getUCLRechtsData(int Hz);
@@ -30,11 +31,12 @@ namespace Model
         int getROMetData(int dB);
         int getLOMetData(int dB);
         int getROLOMetData(int dB);
-        int getLocalisatieZonder();
-        int getLocalisatieRechts();
-        int getLocalisatieLinks();
-        int getLocalisatieBeide();
+        int getLocalisatieZonder() { return m_localisatieZonder; }
+        int getLocalisatieRechts() { return m_localisatieRechts; }
+        int getLocalisatieLinks() { return m_localisatieLinks; }
+        int getLocalisatieBeide() { return m_localisatieBeide; }
 
+        // --- Setters ---
         void setLGRechtsData(int Hz, int dB);
         void setBGRechtsData(int Hz, int dB);
         void setUCLRechtsData(int Hz, int dB);
@@ -47,12 +49,13 @@ namespace Model
         void setROMetData(int dB, int percentage);
         void setLOMetData(int dB, int percentage);
         void setROLOMetData(int dB, int percentage);
-        void setLocalisatieZonder(int dB);
-        void setLocalisatieRechts(int dB);
-        void setLocalisatieLinks(int dB);
-        void setLocalisatieBeide(int dB);
+        void setLocalisatieZonder(int dB) { m_localisatieZonder = dB; }
+        void setLocalisatieRechts(int dB) { m_localisatieRechts = dB; }
+        void setLocalisatieLinks(int dB) { m_localisatieLinks = dB; }
+        void setLocalisatieBeide(int dB) {m_localisatieBeide = dB; }
 
     private:
+        // --- Data members ---
         QVector<int> m_lgDataRechts;
         QVector<int> m_bgDataRechts;
         QVector<int> m_uclDataRechts;

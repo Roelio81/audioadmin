@@ -11,27 +11,30 @@ namespace Model
     class Entiteit
     {
     public:
-        Entiteit();
+        explicit Entiteit();
         virtual ~Entiteit();
 
         void fromDomElement(const QDomElement &e);
         QDomElement toDomElement(QDomDocument &d) const;
 
-        QString getNaam() const;
-        QString getStraat() const;
-        int getPostcode() const;
-        QString getGemeente() const;
-        QString getTelefoon() const;
-        QString getOpmerkingen() const;
+        // --- Getters ---
+        QString getNaam() const { return m_naam; }
+        QString getStraat() const { return m_straat; }
+        int getPostcode() const { return m_postcode; }
+        QString getGemeente() const { return m_gemeente; }
+        QString getTelefoon() const { return m_telefoon; }
+        QString getOpmerkingen() const { return m_opmerkingen; }
 
-        void setNaam(const QString &value);
-        void setStraat(const QString &value);
-        void setPostcode(int value);
-        void setGemeente(const QString &value);
-        void setTelefoon(const QString &value);
-        void setOpmerkingen(const QString &value);
+        // --- Setters ---
+        void setNaam(const QString &value) { m_naam = value; }
+        void setStraat(const QString &value) { m_straat = value; }
+        void setPostcode(int value) { m_postcode = value; }
+        void setGemeente(const QString &value) { m_gemeente = value; }
+        void setTelefoon(const QString &value) { m_telefoon = value; }
+        void setOpmerkingen(const QString &value) { m_opmerkingen = value; }
 
     private:
+        // --- Data members ---
         QString m_naam;
         QString m_straat;
         int m_postcode;

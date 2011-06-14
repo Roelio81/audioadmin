@@ -9,32 +9,38 @@ class QDomElement;
 
 namespace Model
 {
+    class Universum;
+
     class Factuur
     {
     public:
-        explicit Factuur(double standaardBtwPercentage);
+        explicit Factuur(const Universum &universum);
         virtual ~Factuur();
-
-        QString getNummer() const;
-        QDate getDatum() const;
-        QDate getVervalDatum() const;
-        double getKortingPercentage() const;
-        double getBtwPercentage() const;
-        QString getCondities() const;
-        QString getTekst() const;
-
-        void setNummer(const QString &value);
-        void setDatum(const QDate &value);
-        void setVervalDatum(const QDate &value);
-        void setKortingPercentage(double value);
-        void setBtwPercentage(double value);
-        void setCondities(const QString &value);
-        void setTekst(const QString &value);
 
         void fromDomElement(const QDomElement &e);
         QDomElement toDomElement(QDomDocument &d) const;
 
+        // --- Getters ---
+        QString getNummer() const { return m_nummer; }
+        QDate getDatum() const { return m_datum; }
+        QDate getVervalDatum() const { return m_vervaldatum; }
+        double getKortingPercentage() const { return m_kortingPercentage; }
+        double getBtwPercentage() const { return m_btwPercentage; }
+        QString getCondities() const { return m_condities; }
+        QString getTekst() const { return m_tekst; }
+
+        // --- Setters ---
+        void setNummer(const QString &value) { m_nummer = value; }
+        void setDatum(const QDate &value) { m_datum = value; }
+        void setVervalDatum(const QDate &value) { m_vervaldatum = value; }
+        void setKortingPercentage(double value) { m_kortingPercentage = value; }
+        void setBtwPercentage(double value) { m_btwPercentage = value; }
+        void setCondities(const QString &value) { m_condities = value; }
+        void setTekst(const QString &value) { m_tekst = value; }
+
     private:
+        // --- Data members ---
+        const Universum &m_universum;
         QString m_nummer;
         QDate m_datum;
         QDate m_vervaldatum;

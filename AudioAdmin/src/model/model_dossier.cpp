@@ -1,31 +1,29 @@
 #include "model_dossier.h"
+#include "model_universum.h"
 
 #include <QDomElement>
 
 using namespace Model;
 
-namespace
-{
-    QDate ongeldigeDatum(1900, 1, 1);
-}
-
-Dossier::Dossier(int id, double standaardBtwPercentage)
+Dossier::Dossier(int id, const Universum &universum)
 : m_id(id)
-, m_klant()
+, m_universum(universum)
 , m_arts(-1)
 , m_mutualiteit(-1)
 , m_rechterHoorapparaatPrijs(0.0)
 , m_linkerHoorapparaatPrijs(0.0)
-, m_onderzoekDatum(ongeldigeDatum)
-, m_proefDatum(ongeldigeDatum)
-, m_nkoRapportDatum(ongeldigeDatum)
-, m_dokterAdviesDatum(ongeldigeDatum)
-, m_akkoordMutualiteitDatum(ongeldigeDatum)
-, m_betalingDatum(ongeldigeDatum)
-, m_afleveringDatum(ongeldigeDatum)
-, m_wisselDatum(ongeldigeDatum)
-, m_onderhoudsContractDatum(ongeldigeDatum)
-, m_factuur(standaardBtwPercentage)
+, m_onderzoekDatum(universum.getInvalidDate())
+, m_proefDatum(universum.getInvalidDate())
+, m_nkoRapportDatum(universum.getInvalidDate())
+, m_dokterAdviesDatum(universum.getInvalidDate())
+, m_akkoordMutualiteitDatum(universum.getInvalidDate())
+, m_betalingDatum(universum.getInvalidDate())
+, m_afleveringDatum(universum.getInvalidDate())
+, m_wisselDatum(universum.getInvalidDate())
+, m_onderhoudsContractDatum(universum.getInvalidDate())
+, m_briefKlant(*this)
+, m_factuur(universum)
+, m_klant(universum)
 {
 }
 
@@ -98,12 +96,7 @@ void Dossier::fromDomElement(const QDomElement &e)
         }
         else if (element.tagName() == "brief")
         {
-            m_briefKlantPostdatum = element.attribute("datum");
-            for (QDomElement ee = element.firstChildElement(); !ee.isNull(); ee = ee.nextSiblingElement())
-            {
-                if (ee.tagName() == "tekst")
-                    m_briefKlantTekstblok = ee.text().replace("\r\n", "\n");
-            }
+            m_briefKlant.fromDomElement(element);
         }
         else if (element.tagName() == "nkoArts")
         {
@@ -162,55 +155,55 @@ QDomElement Dossier::toDomElement(QDomDocument &d) const
     aanpassing.appendChild(d.createTextNode(m_plaatsAanpassing));
     result.appendChild(aanpassing);
     QDomElement data = d.createElement("data");
-    if (m_onderzoekDatum != ongeldigeDatum)
+    if (m_onderzoekDatum != m_universum.getInvalidDate())
     {
         QDomElement datum = d.createElement("onderzoek");
         datum.appendChild(d.createTextNode(m_onderzoekDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_proefDatum != ongeldigeDatum)
+    if (m_proefDatum != m_universum.getInvalidDate())
     {
         QDomElement datum = d.createElement("proef");
         datum.appendChild(d.createTextNode(m_proefDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_nkoRapportDatum != ongeldigeDatum)
+    if (m_nkoRapportDatum != m_universum.getInvalidDate())
     {
         QDomElement datum = d.createElement("nkoRapport");
         datum.appendChild(d.createTextNode(m_nkoRapportDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_dokterAdviesDatum != ongeldigeDatum)
+    if (m_dokterAdviesDatum != m_universum.getInvalidDate())
     {
         QDomElement datum = d.createElement("dokterAdv");
         datum.appendChild(d.createTextNode(m_dokterAdviesDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_akkoordMutualiteitDatum != ongeldigeDatum)
+    if (m_akkoordMutualiteitDatum != m_universum.getInvalidDate())
     {
         QDomElement datum = d.createElement("akkoordMut");
         datum.appendChild(d.createTextNode(m_akkoordMutualiteitDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_betalingDatum != ongeldigeDatum)
+    if (m_betalingDatum != m_universum.getInvalidDate())
     {
         QDomElement datum = d.createElement("betaling");
         datum.appendChild(d.createTextNode(m_betalingDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_afleveringDatum != ongeldigeDatum)
+    if (m_afleveringDatum != m_universum.getInvalidDate())
     {
         QDomElement datum = d.createElement("aflevering");
         datum.appendChild(d.createTextNode(m_afleveringDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_wisselDatum != ongeldigeDatum)
+    if (m_wisselDatum != m_universum.getInvalidDate())
     {
         QDomElement datum = d.createElement("wissel");
         datum.appendChild(d.createTextNode(m_wisselDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_onderhoudsContractDatum != ongeldigeDatum)
+    if (m_onderhoudsContractDatum != m_universum.getInvalidDate())
     {
         QDomElement datum = d.createElement("onderhoudsContract");
         datum.appendChild(d.createTextNode(m_onderhoudsContractDatum.toString("yyyy-MM-dd")));
@@ -259,13 +252,9 @@ QDomElement Dossier::toDomElement(QDomDocument &d) const
         apparaten.appendChild(apparaat);
     }
     result.appendChild(apparaten);
-    if (!m_briefKlantTekstblok.isEmpty())
+    if (!m_briefKlant.getTekstblok().isEmpty())
     {
-        QDomElement brief = d.createElement("brief");
-        brief.setAttribute("datum", m_briefKlantPostdatum);
-        QDomElement tekst = d.createElement("tekst");
-        tekst.appendChild(d.createTextNode(m_briefKlantTekstblok));
-        brief.appendChild(tekst);
+        QDomElement brief = m_briefKlant.toDomElement(d);
         result.appendChild(brief);
     }
     QDomElement nkoArts = d.createElement("nkoArts");
@@ -306,320 +295,12 @@ QDomElement Dossier::toDomElement(QDomDocument &d) const
     return result;
 }
 
-Klant &Dossier::getKlant()
-{
-    return m_klant;
-}
-
-Meetgegevens &Dossier::getMeetgegevens()
-{
-    return m_meetgegevens;
-}
-
-Factuur &Dossier::getFactuur()
-{
-    return m_factuur;
-}
-
-int Dossier::getId() const
-{
-    return m_id;
-}
-
-int Dossier::getArts() const
-{
-    return m_arts;
-}
-
-int Dossier::getMutualiteit() const
-{
-    return m_mutualiteit;
-}
-
-QString Dossier::getAansluitingsnummer() const
-{
-    return m_aansluitingsnummer;
-}
-
-QString Dossier::getPlaatsAanpassing() const
-{
-    return m_plaatsAanpassing;
-}
-
-QString Dossier::getBriefArtsPostdatum() const
-{
-    return m_briefArtsPostdatum;
-}
-
-QString Dossier::getBriefArtsTekstblok() const
-{
-    return m_briefArtsTekstblok;
-}
-
-QString Dossier::getBriefArtsConclusie() const
-{
-    return m_briefArtsConclusie;
-}
-
-QString Dossier::getBriefKlantPostdatum() const
-{
-    return m_briefKlantPostdatum;
-}
-
-QString Dossier::getBriefKlantTekstblok() const
-{
-    return m_briefKlantTekstblok;
-}
-
-QString Dossier::getBriefMutualiteitPostdatum() const
-{
-    return m_briefMutualiteitPostdatum;
-}
-
-QString Dossier::getBriefMutualiteitTekstblok() const
-{
-    return m_briefMutualiteitTekstblok;
-}
-
-QString Dossier::getBriefMutualiteitConclusie() const
-{
-    return m_briefMutualiteitConclusie;
-}
-
-QString Dossier::getRechterHoorapparaatMerk() const
-{
-    return m_rechterHoorapparaatMerk;
-}
-
-QString Dossier::getRechterHoorapparaatType() const
-{
-    return m_rechterHoorapparaatType;
-}
-
-QString Dossier::getRechterHoorapparaatSerienummer() const
-{
-    return m_rechterHoorapparaatSerienummer;
-}
-
-double Dossier::getRechterHoorapparaatPrijs() const
-{
-    return m_rechterHoorapparaatPrijs;
-}
-
-QString Dossier::getLinkerHoorapparaatMerk() const
-{
-    return m_linkerHoorapparaatMerk;
-}
-
-QString Dossier::getLinkerHoorapparaatType() const
-{
-    return m_linkerHoorapparaatType;
-}
-
-QString Dossier::getLinkerHoorapparaatSerienummer() const
-{
-    return m_linkerHoorapparaatSerienummer;
-}
-
-double Dossier::getLinkerHoorapparaatPrijs() const
-{
-    return m_linkerHoorapparaatPrijs;
-}
-
 int Dossier::getAantalHoorapparaten() const
 {
     int aantal = 0;
-    if (!m_rechterHoorapparaatMerk.isEmpty() || !m_rechterHoorapparaatType.isEmpty()) aantal++;
-    if (!m_linkerHoorapparaatMerk.isEmpty() || !m_linkerHoorapparaatType.isEmpty()) aantal++;
+    if (!m_rechterHoorapparaatMerk.isEmpty() || !m_rechterHoorapparaatType.isEmpty())
+        ++aantal;
+    if (!m_linkerHoorapparaatMerk.isEmpty() || !m_linkerHoorapparaatType.isEmpty())
+        ++aantal;
     return aantal;
-}
-
-QDate Dossier::getOnderzoekDatum() const
-{
-    return m_onderzoekDatum;
-}
-
-QDate Dossier::getProefDatum() const
-{
-    return m_proefDatum;
-}
-
-QDate Dossier::getNKORapportDatum() const
-{
-    return m_nkoRapportDatum;
-}
-
-QDate Dossier::getDokterAdviesDatum() const
-{
-    return m_dokterAdviesDatum;
-}
-
-QDate Dossier::getAkkoordMutualiteitDatum() const
-{
-    return m_akkoordMutualiteitDatum;
-}
-
-QDate Dossier::getBetalingDatum() const
-{
-    return m_betalingDatum;
-}
-
-QDate Dossier::getAfleveringDatum() const
-{
-    return m_afleveringDatum;
-}
-
-QDate Dossier::getWisselDatum() const
-{
-    return m_wisselDatum;
-}
-
-QDate Dossier::getOnderhoudsContractDatum() const
-{
-    return m_onderhoudsContractDatum;
-}
-
-void Dossier::setArts(int value)
-{
-    m_arts = value;
-}
-
-void Dossier::setMutualiteit(int value)
-{
-    m_mutualiteit = value;
-}
-
-void Dossier::setAansluitingsnummer(const QString &value)
-{
-    m_aansluitingsnummer = value;
-}
-
-void Dossier::setPlaatsAanpassing(const QString &value)
-{
-    m_plaatsAanpassing = value;
-}
-
-void Dossier::setBriefArtsPostdatum(const QString &value)
-{
-    m_briefArtsPostdatum = value;
-}
-
-void Dossier::setBriefArtsTekstblok(const QString &value)
-{
-    m_briefArtsTekstblok = value;
-}
-
-void Dossier::setBriefArtsConclusie(const QString &value)
-{
-    m_briefArtsConclusie = value;
-}
-
-void Dossier::setBriefKlantPostdatum(const QString &value)
-{
-    m_briefKlantPostdatum = value;
-}
-
-void Dossier::setBriefKlantTekstblok(const QString &value)
-{
-    m_briefKlantTekstblok = value;
-}
-
-void Dossier::setBriefMutualiteitPostdatum(const QString &value)
-{
-    m_briefMutualiteitPostdatum = value;
-}
-
-void Dossier::setBriefMutualiteitTekstblok(const QString &value)
-{
-    m_briefMutualiteitTekstblok = value;
-}
-
-void Dossier::setBriefMutualiteitConclusie(const QString &value)
-{
-    m_briefMutualiteitConclusie = value;
-}
-
-void Dossier::setRechterHoorapparaatMerk(const QString &value)
-{
-    m_rechterHoorapparaatMerk = value;
-}
-
-void Dossier::setRechterHoorapparaatType(const QString &value)
-{
-    m_rechterHoorapparaatType = value;
-}
-
-void Dossier::setRechterHoorapparaatSerienummer(const QString &value)
-{
-    m_rechterHoorapparaatSerienummer = value;
-}
-
-void Dossier::setRechterHoorapparaatPrijs(double value)
-{
-    m_rechterHoorapparaatPrijs = value;
-}
-
-void Dossier::setLinkerHoorapparaatMerk(const QString &value)
-{
-    m_linkerHoorapparaatMerk = value;
-}
-
-void Dossier::setLinkerHoorapparaatType(const QString &value)
-{
-    m_linkerHoorapparaatType = value;
-}
-
-void Dossier::setLinkerHoorapparaatSerienummer(const QString &value)
-{
-    m_linkerHoorapparaatSerienummer = value;
-}
-
-void Dossier::setLinkerHoorapparaatPrijs(double value)
-{
-    m_linkerHoorapparaatPrijs = value;
-}
-
-void Dossier::setOnderzoekDatum(const QDate &value)
-{
-    m_onderzoekDatum = value;
-}
-
-void Dossier::setProefDatum(const QDate &value)
-{
-    m_proefDatum = value;
-}
-
-void Dossier::setNKORapportDatum(const QDate &value)
-{
-    m_nkoRapportDatum = value;
-}
-
-void Dossier::setDokterAdviesDatum(const QDate &value)
-{
-    m_dokterAdviesDatum = value;
-}
-
-void Dossier::setAkkoordMutualiteitDatum(const QDate &value)
-{
-    m_akkoordMutualiteitDatum = value;
-}
-
-void Dossier::setBetalingDatum(const QDate &value)
-{
-    m_betalingDatum = value;
-}
-
-void Dossier::setAfleveringDatum(const QDate &value)
-{
-    m_afleveringDatum = value;
-}
-
-void Dossier::setWisselDatum(const QDate &value)
-{
-    m_wisselDatum = value;
-}
-
-void Dossier::setOnderhoudsContractDatum(const QDate &value)
-{
-    m_onderhoudsContractDatum = value;
 }

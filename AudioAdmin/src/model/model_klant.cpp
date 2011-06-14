@@ -1,16 +1,14 @@
 #include "model_klant.h"
+#include "model_universum.h"
 
 #include <QDomElement>
 
 using namespace Model;
 
-namespace
-{
-    QDate ongeldigeDatum(1900, 1, 1);
-}
 
-Klant::Klant()
-: m_geboorteDatum(ongeldigeDatum)
+Klant::Klant(const Universum &universum)
+    : m_universum(universum)
+    , m_geboorteDatum(universum.getInvalidDate())
 {
 }
 
@@ -48,7 +46,7 @@ QDomElement Klant::toDomElement(QDomDocument &d) const
     QDomElement aanspreektitel = d.createElement("aanspreektitel");
     aanspreektitel.appendChild(d.createTextNode(m_aanspreektitel));
     result.insertAfter(aanspreektitel, result.firstChildElement("voornaam"));
-    if (m_geboorteDatum != ongeldigeDatum)
+    if (m_geboorteDatum != m_universum.getInvalidDate())
     {
         QDomElement geboorteDatum = d.createElement("geboortedatum");
         geboorteDatum.appendChild(d.createTextNode(m_geboorteDatum.toString("yyyy-MM-dd")));
@@ -57,34 +55,4 @@ QDomElement Klant::toDomElement(QDomDocument &d) const
 
     result.setTagName("klant");
     return result;
-}
-
-QString Klant::getAanspreektitel() const
-{
-    return m_aanspreektitel;
-}
-
-QString Klant::getVoornaam() const
-{
-    return m_voornaam;
-}
-
-QDate Klant::getGeboorteDatum() const
-{
-    return m_geboorteDatum;
-}
-
-void Klant::setAanspreektitel(const QString &value)
-{
-    m_aanspreektitel = value;
-}
-
-void Klant::setVoornaam(const QString &value)
-{
-    m_voornaam = value;
-}
-
-void Klant::setGeboorteDatum(const QDate &value)
-{
-    m_geboorteDatum = value;
 }

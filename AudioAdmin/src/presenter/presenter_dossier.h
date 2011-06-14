@@ -25,7 +25,7 @@ namespace Presenter
     {
     Q_OBJECT
     public:
-        Dossier(View::Dossier &view, Model::Dossier &model);
+        explicit Dossier(View::Dossier &view, Model::Dossier &model);
         virtual ~Dossier();
 
         void attachToUniversum(Model::Universum *universum);
@@ -43,9 +43,6 @@ namespace Presenter
         void briefArtsSluiten();
         void briefArtsBewaren();
         void briefKlantTonen();
-        void briefKlantAfdrukken();
-        void briefKlantSluiten();
-        void briefKlantBewaren();
         void briefMutualiteitTonen();
         void briefMutualiteitSluiten();
         void briefMutualiteitBewaren();
@@ -68,7 +65,6 @@ namespace Presenter
 
         Model::Universum *m_universum;
         View::BriefArts *m_briefArts;
-        View::BriefKlant *m_briefKlant;
         View::BriefMutualiteit *m_briefMutualiteit;
         View::Factuur *m_factuur;
         View::Meetgegevens *m_meetgegevens;

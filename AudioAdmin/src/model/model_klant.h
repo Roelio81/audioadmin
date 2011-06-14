@@ -10,24 +10,30 @@ class QDomElement;
 
 namespace Model
 {
+    class Universum;
+
     class Klant : public Entiteit
     {
     public:
-        Klant();
+        explicit Klant(const Universum &universum);
         virtual ~Klant();
 
         void fromDomElement(const QDomElement &e);
         QDomElement toDomElement(QDomDocument &d) const;
 
-        QString getAanspreektitel() const;
-        QString getVoornaam() const;
-        QDate getGeboorteDatum() const;
+        // --- Getters ---
+        QString getAanspreektitel() const { return m_aanspreektitel; }
+        QString getVoornaam() const { return m_voornaam; }
+        QDate getGeboorteDatum() const { return m_geboorteDatum; }
 
-        void setAanspreektitel(const QString &value);
-        void setVoornaam(const QString &value);
-        void setGeboorteDatum(const QDate &value);
+        // --- Setters ---
+        void setAanspreektitel(const QString &value) { m_aanspreektitel = value; }
+        void setVoornaam(const QString &value) { m_voornaam = value; }
+        void setGeboorteDatum(const QDate &value) { m_geboorteDatum = value; }
 
     private:
+        // --- Data members ---
+        const Universum &m_universum;
         QString m_aanspreektitel;
         QString m_voornaam;
         QDate m_geboorteDatum;
