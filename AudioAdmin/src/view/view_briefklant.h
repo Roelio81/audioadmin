@@ -29,6 +29,7 @@ namespace View
         QString getTekst() const;
 
     signals:
+        void briefKlantAfdrukken();
         void briefKlantSluiten();
         void briefKlantBewaren();
 

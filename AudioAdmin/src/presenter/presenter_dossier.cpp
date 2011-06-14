@@ -11,6 +11,10 @@
 #include "../view/view_factuur.h"
 #include "../view/view_meetgegevens.h"
 
+#include <QPainter>
+#include <QPrintDialog>
+#include <QPrinter>
+
 using namespace Presenter;
 
 namespace
@@ -381,6 +385,7 @@ void Dossier::setupBriefKlant()
     }
     m_briefKlant->setTekst(tekst);
 
+    connect(m_briefKlant, SIGNAL(briefKlantAfdrukken()) ,this, SLOT(briefKlantAfdrukken()));
     connect(m_briefKlant, SIGNAL(briefKlantSluiten()), this, SLOT(briefKlantSluiten()));
     connect(m_briefKlant, SIGNAL(briefKlantBewaren()), this, SLOT(briefKlantBewaren()));
 }
@@ -568,6 +573,75 @@ void Dossier::briefKlantTonen()
 
     setupBriefKlant();
     m_briefKlant->show();
+}
+
+void Dossier::briefKlantAfdrukken()
+{
+    Q_ASSERT(m_briefKlant);
+    Q_ASSERT(m_universum);
+    Model::Instellingen *instellingen = m_universum->getInstellingen();
+    Q_ASSERT(instellingen);
+    Model::Klant &klant = m_model.getKlant();
+
+    QPrintDialog printDialog(m_briefKlant);
+    if (printDialog.exec() != QDialog::Accepted)
+        return;
+
+    if (QPrinter *printer = printDialog.printer())
+    {
+        // Printer parameters uitzoeken
+        const int mmx = printer->width() / printer->widthMM();
+        const int mmy = printer->height() / printer->heightMM();
+        const int hmar = 25*mmx;
+        const int vmar = 20*mmy;
+
+        // Painter aanmaken en default font zetten
+        QPainter painter(printer);
+        QFont font("Arial");
+
+        // Adres van audioloog afdrukken...
+        font.setPointSize(14);
+        font.setBold(true);
+        font.setItalic(true);
+        painter.setFont(font);
+        painter.drawText(hmar, vmar, instellingen->getNaam());
+        font.setPointSize(11);
+        font.setBold(false);
+        painter.setFont(font);
+        int lineheight = painter.fontMetrics().height();
+        painter.drawText(hmar, vmar + (3*lineheight)/2, instellingen->getOnderschrift());
+        painter.drawText(hmar, vmar + (5*lineheight)/2, instellingen->getStraat());
+        painter.drawText(hmar, vmar + (7*lineheight)/2, QString::number(instellingen->getPostcode()) + " " + instellingen->getGemeente());
+        painter.drawText(hmar, vmar + (9*lineheight)/2, QString("Riziv: ") + instellingen->getRiziv());
+        painter.drawText(150*mmx, vmar + (5*lineheight)/2, QString("tel: ") + instellingen->getTelefoon());
+        painter.drawText(150*mmx, vmar + (7*lineheight)/2, QString("gsm: ") + instellingen->getGsm());
+        painter.drawText(150*mmx, vmar + (9*lineheight)/2, QString("e-mail: ") + instellingen->getEmail());
+        painter.drawLine(printer->paperRect().left(), 52*mmy, printer->paperRect().right(), 52*mmy);
+
+        // Postdatum afdrukken...
+        painter.drawText(hmar, 62*mmy, m_briefKlant->getPostdatum());
+
+        // Adres van de klant afdrukken...
+        font.setPointSize(12);
+        font.setItalic(false);
+        painter.setFont(font);
+        lineheight = painter.fontMetrics().height();
+        painter.drawText(150*mmx, 62*mmy + (0*lineheight), klant.getAanspreektitel() + " " + klant.getNaam() + " " + klant.getVoornaam());
+        painter.drawText(150*mmx, 62*mmy + (1*lineheight), klant.getStraat());
+        painter.drawText(150*mmx, 62*mmy + (2*lineheight), QString::number(klant.getPostcode()) + " " + klant.getGemeente());
+
+        // Tekst afdrukken
+        bool klantIsMan = (klant.getAanspreektitel() == "Dhr.");
+        QString tekst = klantIsMan ? "Geachte meneer," : "Geachte mevrouw,";
+        tekst += "\n\n";
+        tekst += m_briefKlant->getTekst();
+        tekst += "\n\n";
+        tekst += "Vriendelijke groeten, \n\n";
+        tekst += instellingen->getNaam();
+        QRect tekstRect(QPoint(hmar, vmar + (17*lineheight)),
+                        QPoint(printer->paperRect().right() - hmar, printer->paperRect().bottom() - vmar));
+        painter.drawText(tekstRect, tekst, Qt::AlignLeft|Qt::AlignTop);
+    }
 }
 
 void Dossier::briefKlantSluiten()

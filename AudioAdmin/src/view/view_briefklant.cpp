@@ -7,6 +7,7 @@ BriefKlant::BriefKlant(QWidget *parent)
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     setupUi(this);
+    connect(b_afdrukken, SIGNAL(clicked()), this, SIGNAL(briefKlantAfdrukken()));
     connect(b_ok, SIGNAL(clicked()), this, SLOT(okBriefKlant()));
     connect(b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerBriefKlant()));
 }
