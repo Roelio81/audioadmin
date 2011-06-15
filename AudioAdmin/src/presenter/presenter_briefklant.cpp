@@ -29,13 +29,10 @@ void BriefKlant::setup()
     const Model::Instellingen &instellingen = dossier.getUniversum().getInstellingen();
     bool klantIsMan = (klant.getAanspreektitel() == "Dhr.");
 
-    Q_ASSERT(m_briefKlant);
     m_view.setAanspreking(klantIsMan ? "Geachte meneer," : "Geachte mevrouw,");
     m_view.setKlantNaam(klant.getNaam() + " " + klant.getVoornaam());
     m_view.setKlantStraat(klant.getStraat());
     m_view.setKlantGemeente(QString::number(klant.getPostcode()) + " " + klant.getGemeente());
-
-    Q_ASSERT(m_universum);
     m_view.setAudioloogNaam(instellingen.getNaam());
     m_view.setAudioloogStraat(instellingen.getStraat());
     m_view.setAudioloogGemeente(QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
