@@ -3,11 +3,18 @@
 #include <QPainter>
 #include <QtGui>
 
+namespace
+{
+const int BORDER_TOP = 20;
+const int BORDER_LEFT = 40;
+const int INVALID_VALUE = -30;
+}
+
 TonaleAudiometrieWidget::TonaleAudiometrieWidget(QWidget *parent)
 : QWidget(parent)
-, m_lgData(11, -30)
-, m_bgData(11, -30)
-, m_uclData(11, -30)
+, m_lgData(11, INVALID_VALUE)
+, m_bgData(11, INVALID_VALUE)
+, m_uclData(11, INVALID_VALUE)
 , m_kant(RECHTS)
 , m_tekenMode(LG)
 {
@@ -90,30 +97,29 @@ void TonaleAudiometrieWidget::mouseReleaseEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton)
     {
         // We passen een vector aan op positie i zetten we waarde j: bepaal i en j
-        int i1 = (event->x() - 40 + rasterBreedte()/24) / (rasterBreedte()/12);
-        int i2 = (event->x() - 40 + rasterBreedte()/12) / (rasterBreedte()/6);
+        int i1 = (event->x() - BORDER_LEFT + rasterBreedte()/24) / (rasterBreedte()/12);
+        int i2 = (event->x() - BORDER_LEFT + rasterBreedte()/12) / (rasterBreedte()/6);
         int i = (i2 < 2) ? i2 : i1 - 2;
-        int j = static_cast<int> ((((event->y() - 20.0)/rasterHoogte() * 145.0) - 10.0) / 5.0 + 0.5) * 5;
-        if (j >= 0)
+        int j = static_cast<int> ((((event->y() - BORDER_TOP * 1.0)/rasterHoogte() * 145.0)) / 5.0 + 0.5) * 5 - 10;
+        if (j > 135 || j < 0)
+            j = INVALID_VALUE;
+        switch (m_tekenMode)
         {
-            switch (m_tekenMode)
-            {
-                case LG:
-                    m_lgData[i] = j;
-                    emit wijzigingLGwaarde();
-                    break;
-                case BG:
-                    m_bgData[i] = j;
-                    break;
-                case UCL:
-                    m_uclData[i] = j;
-                    break;
-                default:
-                    Q_ASSERT(false);
-            }
+            case LG:
+                m_lgData[i] = j;
+                emit wijzigingLGwaarde();
+                break;
+            case BG:
+                m_bgData[i] = j;
+                break;
+            case UCL:
+                m_uclData[i] = j;
+                break;
+            default:
+                Q_ASSERT(false);
+        }
 
         update();
-        }
     }
 }
 
@@ -131,29 +137,41 @@ void TonaleAudiometrieWidget::tekenLeegRaster()
     QPainter paint;
     paint.begin(&m_rooster);
 
-    // Teken de verticale assen
+    QFont boldFont;
+    boldFont.setBold(true);
+
+    // Paint the vertical axes
     int dB[] = {125, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 6000, 8000};
     for (int i = 0; i < 11; ++i)
     {
-        int x = 40 + ((i < 2) ? i*(rasterBreedte()/6) : (i+2)*(rasterBreedte()/12));
+        int x = BORDER_LEFT + ((i < 2) ? i*(rasterBreedte()/6) : (i+2)*(rasterBreedte()/12));
         paint.setPen(Qt::black);
         paint.drawText((i<4)?x-6:x-9, (i>2 && i%2==1) ? (34+rasterHoogte()) : 12, QString::number(dB[i]));
-        paint.setPen((i == 4) ? Qt::black : Qt::lightGray);
-        paint.drawLine(x, 20, x, 20 + rasterHoogte());
+        paint.setPen(QPen((i == 0 || i == 4) ? Qt::black : Qt::lightGray, (i == 0) ? 2 : 1));
+        paint.drawLine(x, BORDER_TOP, x, BORDER_TOP + rasterHoogte());
     }
+    paint.setPen(Qt::black);
+    paint.setFont(boldFont);
+    paint.drawText(BORDER_LEFT + rasterBreedte(), 34 + rasterHoogte(), "Hz");
+    paint.setFont(QFont());
 
-    // Teken de horizonale assen
+    // Paint the horizontal axes
     for (int i = 0; i < 30; ++i)
     {
-        int y = 20 + (static_cast<int> (i * rasterHoogte()/29.0));
+        int y = BORDER_TOP + (static_cast<int> (i * rasterHoogte()/29.0));
         if ((i != 0) && (i % 2 == 0))
         {
             paint.setPen(Qt::black);
             paint.drawText(15 + 6*(((22-i)/20) + (22-i <= 0 ? 0 : 1)), y + 5, QString::number((i - 2) * 5));
         }
-        paint.setPen((i == 2) ? Qt::black : Qt::lightGray);
-        paint.drawLine(40, y, 40 + rasterBreedte(), y);
+        paint.setPen(QPen((i == 2 || i == 29) ? Qt::black : Qt::lightGray, (i == 29) ? 2 : 1));
+        paint.drawLine(BORDER_LEFT+1, y, BORDER_LEFT+rasterBreedte(), y);
     }
+    paint.setPen(Qt::black);
+    paint.setFont(boldFont);
+    paint.drawText(19, 25, "dB");
+    paint.setFont(QFont());
+
     paint.end();
 }
 
@@ -174,10 +192,10 @@ void TonaleAudiometrieWidget::tekenData()
     yy = -1;
     for (int i = 0; i < 11; ++i)
     {
-        int x = 40 + ((i < 2) ? i*(rasterBreedte()/6) : (i+2)*(rasterBreedte()/12));
+        int x = BORDER_LEFT + ((i < 2) ? i*(rasterBreedte()/6) : (i+2)*(rasterBreedte()/12));
         if (m_lgData[i] >= 0)
         {
-            int y = 20 + static_cast<int> (((m_lgData[i]+10.0)/145.0)*rasterHoogte() + 0.5);
+            int y = BORDER_TOP + static_cast<int> (((m_lgData[i]+10.0)/145.0)*rasterHoogte() + 0.5);
             switch (m_kant)
             {
                 case RECHTS:
@@ -201,10 +219,10 @@ void TonaleAudiometrieWidget::tekenData()
     yy = -1;
     for (int i = 0; i < 11; ++i)
     {
-        int x = 40 + ((i < 2) ? i*(rasterBreedte()/6) : (i+2)*(rasterBreedte()/12));
+        int x = BORDER_LEFT + ((i < 2) ? i*(rasterBreedte()/6) : (i+2)*(rasterBreedte()/12));
         if (m_bgData[i] >= 0)
         {
-            int y = 20 + static_cast<int> (((m_bgData[i]+10.0)/145.0)*rasterHoogte() + 0.5);
+            int y = BORDER_TOP + static_cast<int> (((m_bgData[i]+10.0)/145.0)*rasterHoogte() + 0.5);
             switch (m_kant)
             {
                 case RECHTS:
@@ -237,10 +255,10 @@ void TonaleAudiometrieWidget::tekenData()
     yy = -1;
     for (int i = 0; i < 11; ++i)
     {
-        int x = 40 + ((i < 2) ? i*(rasterBreedte()/6) : (i+2)*(rasterBreedte()/12));
+        int x = BORDER_LEFT + ((i < 2) ? i*(rasterBreedte()/6) : (i+2)*(rasterBreedte()/12));
         if (m_uclData[i] >= 0)
         {
-            int y = 20 + static_cast<int> (((m_uclData[i]+10.0)/145.0)*rasterHoogte() + 0.5);
+            int y = BORDER_TOP + static_cast<int> (((m_uclData[i]+10.0)/145.0)*rasterHoogte() + 0.5);
             paint.drawLine(x-4, y-4, x+4, y-4);
             paint.drawLine(x-4, y-4, x, y+4);
             paint.drawLine(x, y+4, x+4, y-4);

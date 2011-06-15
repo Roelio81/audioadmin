@@ -3,11 +3,18 @@
 #include <QPainter>
 #include <QtGui>
 
+namespace
+{
+const int BORDER_TOP = 13;
+const int BORDER_LEFT = 40;
+const int INVALID_VALUE = -30;
+}
+
 VocaleAudiometrieWidget::VocaleAudiometrieWidget(QWidget *parent)
 : QWidget(parent)
-, m_roData(23, -30)
-, m_loData(23, -30)
-, m_roloData(23, -30)
+, m_roData(23, INVALID_VALUE)
+, m_loData(23, INVALID_VALUE)
+, m_roloData(23, INVALID_VALUE)
 , m_soort(ZONDER)
 , m_tekenMode(RO)
 {
@@ -75,30 +82,29 @@ void VocaleAudiometrieWidget::mouseReleaseEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton)
     {
         // We passen een vector aan op positie i zetten we waarde j: bepaal i en j
-        int i = (event->x() - 40 + rasterBreedte()/44) / (rasterBreedte()/22);
-        int j = 100 - static_cast<int> (((event->y() - 10.0)/rasterHoogte() * 100.0) / 5.0 + 0.5) * 5;
-        if (j >= 0)
+        int i = (event->x() - BORDER_LEFT + rasterBreedte()/44) / (rasterBreedte()/22);
+        int j = 100 - static_cast<int> (floor(((event->y() - BORDER_TOP * 1.0)/rasterHoogte() * 100.0) / 5.0 + 0.5)) * 5;
+        if (j < 0 || j > 100)
+            j = INVALID_VALUE;
+        switch (m_tekenMode)
         {
-            switch (m_tekenMode)
-            {
-                case RO:
-                    m_roData[i] = j;
-                    emit wijzigingROwaarde();
-                    break;
-                case LO:
-                    m_loData[i] = j;
-                    emit wijzigingLOwaarde();
-                    break;
-                case ROLO:
-                    m_roloData[i] = j;
-                    emit wijzigingROLOwaarde();
-                    break;
-                default:
-                    Q_ASSERT(false);
-            }
+            case RO:
+                m_roData[i] = j;
+                emit wijzigingROwaarde();
+                break;
+            case LO:
+                m_loData[i] = j;
+                emit wijzigingLOwaarde();
+                break;
+            case ROLO:
+                m_roloData[i] = j;
+                emit wijzigingROLOwaarde();
+                break;
+            default:
+                Q_ASSERT(false);
+        }
 
         update();
-        }
     }
 }
 
@@ -116,54 +122,67 @@ void VocaleAudiometrieWidget::tekenLeegRaster()
     QPainter paint;
     paint.begin(&m_rooster);
 
+    QFont boldFont;
+    boldFont.setBold(true);
+
+    // Paint the vertical axes
     for (int i = 0; i < 23; ++i)
     {
-        int x = 40 + i*rasterBreedte()/22;
+        int x = BORDER_LEFT + i*rasterBreedte()/22;
         paint.setPen(Qt::black);
         if ((i % 2 == 0) && (i != 0) && (i < 20))
             paint.drawText(x-6, rasterHoogte()+25, QString::number(i*5));
         else if (i == 20)
             paint.drawText(x-9, rasterHoogte()+25, QString::number(i*5));
 
-        paint.setPen((i == 8 || i == 11 || i == 14) ? Qt::black : Qt::lightGray);
-        paint.drawLine(x, 10, x, rasterHoogte()+10);
+        paint.setPen(QPen((i == 0 || i == 8 || i == 11 || i == 14) ? Qt::black : Qt::lightGray, (i == 0) ? 2 : 1));
+        paint.drawLine(x, BORDER_TOP, x, rasterHoogte()+BORDER_TOP);
     }
+    paint.setPen(Qt::black);
+    paint.setFont(boldFont);
+    paint.drawText(BORDER_LEFT+rasterBreedte(), 25+rasterHoogte(), "dB");
+    paint.setFont(QFont());
 
+    // Paint the horizontal axes
     for (int i = 0; i < 21; ++i)
     {
-        int y = 10 + i*rasterHoogte()/20;
+        int y = BORDER_TOP + i*rasterHoogte()/20;
         if (i % 2 == 0)
         {
             paint.setPen(Qt::black);
             paint.drawText(15 + 6*((i/20) + (i == 0 ? 0 : 1)), y+6, QString::number((20-i)*5));
         }
 
-        paint.setPen((i == 10) ? Qt::black : Qt::lightGray);
-        paint.drawLine(40, y, 40 + rasterBreedte(), y);
+        paint.setPen(QPen((i == 10 || i == 20) ? Qt::black : Qt::lightGray, (i == 20) ? 2 : 1));
+        paint.drawLine(BORDER_LEFT+1, y, BORDER_LEFT+rasterBreedte(), y);
     }
+    paint.setPen(Qt::black);
+    paint.setFont(boldFont);
+    paint.drawText(34, 8, "%");
+    paint.setFont(QFont());
 
     // Tekenen van de curve
-    int minY = 10;
-    int maxY = 10 + rasterHoogte();
+    int minY = BORDER_TOP;
+    int maxY = BORDER_TOP + rasterHoogte();
     paint.setPen(Qt::black);
-    for (int x = 40; x < 40 + 2*(rasterBreedte()/22); ++x)
+    for (int x = BORDER_LEFT; x < BORDER_LEFT + 2*(rasterBreedte()/22); ++x)
     {
-        double xx1 = (x - 40.0) / (4.0*(rasterBreedte()/22.0) / 20.0);
+        double xx1 = (x - BORDER_LEFT*1.0) / (4.0*(rasterBreedte()/22.0) / 20.0);
         double yy1 = (3.0/5.0)*xx1*xx1 - xx1;
-        double xx2 = (x - 40.0 + 1.0) / (4.0*(rasterBreedte()/22.0) / 20.0);
+        double xx2 = (x - BORDER_LEFT*1.0 + 1.0) / (4.0*(rasterBreedte()/22.0) / 20.0);
         double yy2 = (3.0/5.0)*xx2*xx2 - xx2;
-        int y1 = std::min(static_cast<int> (10 + ((100.0 - yy1) * rasterHoogte())/100.0), maxY);
-        int y2 = std::min(static_cast<int> (10 + ((100.0 - yy2) * rasterHoogte())/100.0), maxY);
+        int y1 = std::min(static_cast<int> (BORDER_TOP + ((100.0 - yy1) * rasterHoogte())/100.0), maxY);
+        int y2 = std::min(static_cast<int> (BORDER_TOP + ((100.0 - yy2) * rasterHoogte())/100.0), maxY);
         paint.drawLine(x, y1, x+1, y2);
     }
-    for (int x = 40 + 2*(rasterBreedte()/22); x < 40 + 4*(rasterBreedte()/22); ++x)
+    for (int x = BORDER_LEFT + 2*(rasterBreedte()/22); x < BORDER_LEFT + 4*(rasterBreedte()/22); ++x)
     {
-        double xx1 = (x - 40.0) / (4.0*(rasterBreedte()/22.0) / 20.0);
+        double xx1 = (x - BORDER_LEFT*1.0) / (4.0*(rasterBreedte()/22.0) / 20.0);
         double yy1 = (-3.0/5.0)*xx1*xx1 + 23.0*xx1 - 120.0;
-        double xx2 = (x - 40.0 + 1.0) / (4.0*(rasterBreedte()/22.0) / 20.0);
+        double xx2 = (x - BORDER_LEFT*1.0 + 1.0) / (4.0*(rasterBreedte()/22.0) / 20.0);
         double yy2 = (-3.0/5.0)*xx2*xx2 + 23.0*xx2 - 120.0;
-        int y1 = std::max(static_cast<int> (10 + ((100.0 - yy1) * rasterHoogte())/100.0), minY);
-        int y2 = std::max(static_cast<int> (10 + ((100.0 - yy2) * rasterHoogte())/100.0), minY);
+        int y1 = std::max(static_cast<int> (BORDER_TOP + ((100.0 - yy1) * rasterHoogte())/100.0), minY);
+        int y2 = std::max(static_cast<int> (BORDER_TOP + ((100.0 - yy2) * rasterHoogte())/100.0), minY);
         paint.drawLine(x, y1, x+1, y2);
     }
 }
@@ -182,10 +201,10 @@ void VocaleAudiometrieWidget::tekenData()
     yy = -1;
     for (int i = 0; i < 23; ++i)
     {
-        int x = 40 + i*rasterBreedte()/22;
+        int x = BORDER_LEFT + i*rasterBreedte()/22;
         if (m_roData[i] >= 0)
         {
-            int y = 10 + static_cast<int> (((100 - m_roData[i])/100.0)*rasterHoogte() + 0.5);
+            int y = BORDER_TOP + static_cast<int> (((100 - m_roData[i])/100.0)*rasterHoogte() + 0.5);
             switch (m_soort)
             {
                 case ZONDER:
@@ -211,10 +230,10 @@ void VocaleAudiometrieWidget::tekenData()
     yy = -1;
     for (int i = 0; i < 23; ++i)
     {
-        int x = 40 + i*rasterBreedte()/22;
+        int x = BORDER_LEFT + i*rasterBreedte()/22;
         if (m_loData[i] >= 0)
         {
-            int y = 10 + static_cast<int> (((100 - m_loData[i])/100.0)*rasterHoogte() + 0.5);
+            int y = BORDER_TOP + static_cast<int> (((100 - m_loData[i])/100.0)*rasterHoogte() + 0.5);
             switch (m_soort)
             {
                 case ZONDER:
@@ -239,10 +258,10 @@ void VocaleAudiometrieWidget::tekenData()
     yy = -1;
     for (int i = 0; i < 23; ++i)
     {
-        int x = 40 + i*rasterBreedte()/22;
+        int x = BORDER_LEFT + i*rasterBreedte()/22;
         if (m_roloData[i] >= 0)
         {
-            int y = 10 + static_cast<int> (((100 - m_roloData[i])/100.0)*rasterHoogte() + 0.5);
+            int y = BORDER_TOP + static_cast<int> (((100 - m_roloData[i])/100.0)*rasterHoogte() + 0.5);
             switch (m_soort)
             {
                 case ZONDER:
