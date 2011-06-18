@@ -156,7 +156,6 @@ void Universum::setupInstellingen()
 {
     Model::Instellingen &modelInstellingen = m_model.getInstellingen();
     View::Instellingen &viewInstellingen = m_view.getInstellingen();
-    Q_ASSERT(modelInstellingen);
     viewInstellingen.setNaam(modelInstellingen.getNaam());
     viewInstellingen.setStraat(modelInstellingen.getStraat());
     viewInstellingen.setPostcode(modelInstellingen.getPostcode());
@@ -179,7 +178,6 @@ void Universum::teardownInstellingen()
 {
     Model::Instellingen &modelInstellingen = m_model.getInstellingen();
     View::Instellingen &viewInstellingen = m_view.getInstellingen();
-    Q_ASSERT(modelInstellingen);
     modelInstellingen.setNaam(viewInstellingen.getNaam());
     modelInstellingen.setStraat(viewInstellingen.getStraat());
     modelInstellingen.setPostcode(viewInstellingen.getPostcode());
