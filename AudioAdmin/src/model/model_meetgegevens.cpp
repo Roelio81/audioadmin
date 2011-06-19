@@ -143,7 +143,7 @@ QDomElement Meetgegevens::toDomElement(QDomDocument &d) const
     {
         QDomElement element = d.createElement(vocaleNamen[i]);
         element.setAttribute("plaats", vocalePlaatsen[i]);
-        for (int j = 0; j < 11; ++j)
+        for (int j = 0; j < 22; ++j)
         {
             QDomElement meting = d.createElement("meting");
             meting.setAttribute("db", QString::number(5*j));
