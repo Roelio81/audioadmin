@@ -2,6 +2,7 @@
 #include "presenter_briefarts.h"
 #include "presenter_briefklant.h"
 #include "presenter_briefmutualiteit.h"
+#include "presenter_meetgegevens.h"
 #include "../model/model_arts.h"
 #include "../model/model_dossier.h"
 #include "../model/model_instellingen.h"
@@ -20,10 +21,7 @@ Dossier::Dossier(View::Dossier &view, Model::Dossier &model)
 : m_view(view)
 , m_model(model)
 , m_universum(0)
-, m_briefArts(0)
-, m_briefMutualiteit(0)
 , m_factuur(0)
-, m_meetgegevens(0)
 {
     connect(&m_view, SIGNAL(briefArtsTonen()), this, SLOT(briefArtsTonen()));
     connect(&m_view, SIGNAL(briefKlantTonen()), this, SLOT(briefKlantTonen()));
@@ -254,7 +252,6 @@ void Dossier::teardown()
     }
 }
 
-
 void Dossier::setupFactuur()
 {
     teardown();
@@ -283,37 +280,6 @@ void Dossier::setupFactuur()
 
     connect(m_factuur, SIGNAL(factuurSluiten()), this, SLOT(factuurSluiten()));
     connect(m_factuur, SIGNAL(factuurBewaren()), this, SLOT(factuurBewaren()));
-}
-
-void Dossier::setupMeetgegevens()
-{
-    Q_ASSERT(m_meetgegevens);
-    Model::Meetgegevens &model = m_model.getMeetgegevens();
-    int Hz[] = { 125, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 6000, 8000 };
-    for (int i = 0; i < 11; ++i)
-    {
-        m_meetgegevens->setLGRechtsData(Hz[i], model.getLGRechtsData(Hz[i]));
-        m_meetgegevens->setBGRechtsData(Hz[i], model.getBGRechtsData(Hz[i]));
-        m_meetgegevens->setUCLRechtsData(Hz[i], model.getUCLRechtsData(Hz[i]));
-        m_meetgegevens->setLGLinksData(Hz[i], model.getLGLinksData(Hz[i]));
-        m_meetgegevens->setBGLinksData(Hz[i], model.getBGLinksData(Hz[i]));
-        m_meetgegevens->setUCLLinksData(Hz[i], model.getUCLLinksData(Hz[i]));
-    }
-    for (int i = 0; i < 23; ++i)
-    {
-        m_meetgegevens->setROZonderData(5*i, model.getROZonderData(5*i));
-        m_meetgegevens->setLOZonderData(5*i, model.getLOZonderData(5*i));
-        m_meetgegevens->setROLOZonderData(5*i, model.getROLOZonderData(5*i));
-        m_meetgegevens->setROMetData(5*i, model.getROMetData(5*i));
-        m_meetgegevens->setLOMetData(5*i, model.getLOMetData(5*i));
-        m_meetgegevens->setROLOMetData(5*i, model.getROLOMetData(5*i));
-    }
-    m_meetgegevens->setLocalisatieZonder(model.getLocalisatieZonder());
-    m_meetgegevens->setLocalisatieRechts(model.getLocalisatieRechts());
-    m_meetgegevens->setLocalisatieLinks(model.getLocalisatieLinks());
-    m_meetgegevens->setLocalisatieBeide(model.getLocalisatieBeide());
-    connect(m_meetgegevens, SIGNAL(meetgegevensSluiten()), this, SLOT(meetgegevensSluiten()));
-    connect(m_meetgegevens, SIGNAL(meetgegevensBewaren()), this, SLOT(meetgegevensBewaren()));
 }
 
 void Dossier::briefArtsTonen()
@@ -400,48 +366,13 @@ void Dossier::factuurBewaren()
 
 void Dossier::meetgegevensTonen()
 {
-    if (!m_meetgegevens)
+    // Create a presenter and open the view
+    View::Meetgegevens meetgegevensView(m_view.getParentWindow());
+    Meetgegevens meetgegevens(meetgegevensView, m_model.getMeetgegevens());
+    meetgegevens.setup();
+    if (meetgegevensView.exec() == QDialog::Accepted)
     {
-        m_meetgegevens = new View::Meetgegevens(m_view.getParentWindow());
+        meetgegevens.teardown();
+        emit dossierGewijzigd(m_model.getId());
     }
-
-    setupMeetgegevens();
-    m_meetgegevens->show();
-}
-
-void Dossier::meetgegevensSluiten()
-{
-    Q_ASSERT(m_meetgegevens);
-    m_meetgegevens->close();
-    m_meetgegevens = 0;
-}
-
-void Dossier::meetgegevensBewaren()
-{
-    Q_ASSERT(m_meetgegevens);
-    Model::Meetgegevens &model = m_model.getMeetgegevens();
-    int Hz[] = { 125, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 6000, 8000 };
-    for (int i = 0; i < 11; ++i)
-    {
-        model.setLGRechtsData(Hz[i], m_meetgegevens->getLGRechtsData(Hz[i]));
-        model.setBGRechtsData(Hz[i], m_meetgegevens->getBGRechtsData(Hz[i]));
-        model.setUCLRechtsData(Hz[i], m_meetgegevens->getUCLRechtsData(Hz[i]));
-        model.setLGLinksData(Hz[i], m_meetgegevens->getLGLinksData(Hz[i]));
-        model.setBGLinksData(Hz[i], m_meetgegevens->getBGLinksData(Hz[i]));
-        model.setUCLLinksData(Hz[i], m_meetgegevens->getUCLLinksData(Hz[i]));
-    }
-    for (int i = 0; i < 23; ++i)
-    {
-        model.setROZonderData(5*i, m_meetgegevens->getROZonderData(5*i));
-        model.setLOZonderData(5*i, m_meetgegevens->getLOZonderData(5*i));
-        model.setROLOZonderData(5*i, m_meetgegevens->getROLOZonderData(5*i));
-        model.setROMetData(5*i, m_meetgegevens->getROMetData(5*i));
-        model.setLOMetData(5*i, m_meetgegevens->getLOMetData(5*i));
-        model.setROLOMetData(5*i, m_meetgegevens->getROLOMetData(5*i));
-    }
-    model.setLocalisatieZonder(m_meetgegevens->getLocalisatieZonder());
-    model.setLocalisatieRechts(m_meetgegevens->getLocalisatieRechts());
-    model.setLocalisatieLinks(m_meetgegevens->getLocalisatieLinks());
-    model.setLocalisatieBeide(m_meetgegevens->getLocalisatieBeide());
-    emit dossierGewijzigd(m_model.getId());
 }

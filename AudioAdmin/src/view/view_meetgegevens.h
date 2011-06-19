@@ -14,22 +14,36 @@ namespace View
         virtual ~Meetgegevens();
 
         // --- Getters ---
-        int getLGRechtsData(int Hz);
-        int getBGRechtsData(int Hz);
-        int getUCLRechtsData(int Hz);
-        int getLGLinksData(int Hz);
-        int getBGLinksData(int Hz);
-        int getUCLLinksData(int Hz);
-        int getROZonderData(int dB);
-        int getLOZonderData(int dB);
-        int getROLOZonderData(int dB);
-        int getROMetData(int dB);
-        int getLOMetData(int dB);
-        int getROLOMetData(int dB);
-        int getLocalisatieZonder();
-        int getLocalisatieRechts();
-        int getLocalisatieLinks();
-        int getLocalisatieBeide();
+        int getLGRechtsData(int Hz) const;
+        int getBGRechtsData(int Hz) const;
+        int getUCLRechtsData(int Hz) const;
+        int getLGLinksData(int Hz) const;
+        int getBGLinksData(int Hz) const;
+        int getUCLLinksData(int Hz) const;
+        int getROZonderData(int dB) const;
+        int getLOZonderData(int dB) const;
+        int getROLOZonderData(int dB) const;
+        int getROMetData(int dB) const;
+        int getLOMetData(int dB) const;
+        int getROLOMetData(int dB) const;
+        int getLocalisatieZonder() const;
+        int getLocalisatieRechts() const;
+        int getLocalisatieLinks() const;
+        int getLocalisatieBeide() const;
+        QPixmap getTonaleLinks() const;
+        QPixmap getTonaleRechts() const;
+        QPixmap getVocaleZonderApparaat() const;
+        QPixmap getVocaleMetApparaat() const;
+        QString getROZonder() const;
+        QString getLOZonder() const;
+        QString getROLOZonder() const;
+        QString getROMet() const;
+        QString getLOMet() const;
+        QString getROLOMet() const;
+        QString getROWinst() const;
+        QString getLOWinst() const;
+        QString getROLOWinst() const;
+
 
         // --- Setters ---
         void setLGRechtsData(int Hz, int dB);
@@ -49,10 +63,6 @@ namespace View
         void setLocalisatieLinks(int dB);
         void setLocalisatieBeide(int dB);
 
-    signals:
-        void meetgegevensSluiten();
-        void meetgegevensBewaren();
-
     private slots:
         void herberekenGemiddeldVerliesLinks();
         void herberekenGemiddeldVerliesRechts();
@@ -62,8 +72,6 @@ namespace View
         void herberekenROMet();
         void herberekenLOMet();
         void herberekenROLOMet();
-        void sluitMeetgegevens();
-        void bewaarMeetgegevens();
 
     private:
         void herberekenROWinst();

@@ -45,7 +45,8 @@ HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
     src/presenter/presenter_briefmutualiteit.h \
     src/model/model_briefmutualiteit.h \
     src/model/model_briefarts.h \
-    src/presenter/presenter_briefarts.h
+    src/presenter/presenter_briefarts.h \
+    src/presenter/presenter_meetgegevens.h
 MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml
@@ -85,6 +86,7 @@ SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
     src/presenter/presenter_briefmutualiteit.cpp \
     src/model/model_briefmutualiteit.cpp \
     src/model/model_briefarts.cpp \
-    src/presenter/presenter_briefarts.cpp
+    src/presenter/presenter_briefarts.cpp \
+    src/presenter/presenter_meetgegevens.cpp
 TEMPLATE = app
 UI_DIR = build

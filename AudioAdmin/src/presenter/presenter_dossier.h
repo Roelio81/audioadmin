@@ -46,21 +46,15 @@ namespace Presenter
         void factuurSluiten();
         void factuurBewaren();
         void meetgegevensTonen();
-        void meetgegevensBewaren();
-        void meetgegevensSluiten();
 
     private:
         void setupFactuur();
-        void setupMeetgegevens();
 
         View::Dossier &m_view;
         Model::Dossier &m_model;
 
         Model::Universum *m_universum;
-        View::BriefArts *m_briefArts;
-        View::BriefMutualiteit *m_briefMutualiteit;
         View::Factuur *m_factuur;
-        View::Meetgegevens *m_meetgegevens;
     };
 }
 

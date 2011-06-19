@@ -316,5 +316,5 @@ void  Meetgegevens::setLOMetData(int dB, int percentage)
 void  Meetgegevens::setROLOMetData(int dB, int percentage)
 {
     Q_ASSERT(m_dbValuesToIndex.find(dB) != m_dbValuesToIndex.end());
-    m_roDataMet[m_dbValuesToIndex[dB]] = percentage;
+    m_roloDataMet[m_dbValuesToIndex[dB]] = percentage;
 }
