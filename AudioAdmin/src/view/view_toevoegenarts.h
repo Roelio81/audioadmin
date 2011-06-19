@@ -10,9 +10,10 @@ namespace View
     {
     Q_OBJECT
     public:
-        ToevoegenArts(QWidget *parent = 0);
+        explicit ToevoegenArts(QWidget *parent = 0);
         virtual ~ToevoegenArts();
 
+        // --- Getters ---
         QString getVoornaam() const;
         QString getNaam() const;
     };

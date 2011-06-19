@@ -11,9 +11,10 @@ namespace View
     {
     Q_OBJECT
     public:
-        Instellingen(QWidget *parent = 0);
+        explicit Instellingen(QWidget *parent = 0);
         virtual ~Instellingen();
 
+        // --- Getters ---
         QString getNaam() const;
         QString getStraat() const;
         int getPostcode() const;
@@ -27,6 +28,7 @@ namespace View
         QString getBtwNummer() const;
         QString getRekeningNummer() const;
 
+        // --- Setters ---
         void setNaam(const QString &value);
         void setStraat(const QString &value);
         void setPostcode(const int &value);

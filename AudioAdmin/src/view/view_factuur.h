@@ -13,6 +13,16 @@ namespace View
         explicit Factuur(QWidget *parent = 0);
         virtual ~Factuur();
 
+        // --- Getters ---
+        QString getNummer() const;
+        QDate getDatum() const;
+        QDate getVervalDatum() const;
+        double getKortingPercentage() const;
+        double getBtwPercentage() const;
+        QString getCondities() const;
+        QString getTekst() const;
+
+        // --- Setters ---
         void setAudioloogNaam(const QString &value);
         void setAudioloogStraat(const QString &value);
         void setAudioloogGemeente(const QString &value);
@@ -28,14 +38,6 @@ namespace View
         void setBtwPercentage(double value);
         void setCondities(const QString &value);
         void setTekst(const QString &value);
-
-        QString getNummer() const;
-        QDate getDatum() const;
-        QDate getVervalDatum() const;
-        double getKortingPercentage() const;
-        double getBtwPercentage() const;
-        QString getCondities() const;
-        QString getTekst() const;
 
     signals:
         void factuurSluiten();

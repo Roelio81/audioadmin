@@ -1,6 +1,7 @@
 #ifndef _MODEL_DOSSIER_H
 #define _MODEL_DOSSIER_H
 
+#include "model_briefarts.h"
 #include "model_briefklant.h"
 #include "model_briefmutualiteit.h"
 #include "model_factuur.h"
@@ -30,9 +31,6 @@ namespace Model
         int getMutualiteit() const { return m_mutualiteit; }
         QString getAansluitingsnummer() const { return m_aansluitingsnummer; }
         QString getPlaatsAanpassing() const { return m_plaatsAanpassing; }
-        QString getBriefArtsPostdatum() const { return m_briefArtsPostdatum; }
-        QString getBriefArtsTekstblok() const { return m_briefArtsTekstblok; }
-        QString getBriefArtsConclusie() const { return m_briefArtsConclusie; }
         QString getRechterHoorapparaatMerk() const { return m_rechterHoorapparaatMerk; }
         QString getRechterHoorapparaatType() const { return m_rechterHoorapparaatType; }
         QString getRechterHoorapparaatSerienummer() const { return m_rechterHoorapparaatSerienummer; }
@@ -51,6 +49,8 @@ namespace Model
         QDate getAfleveringDatum() const { return m_afleveringDatum; }
         QDate getWisselDatum() const { return m_wisselDatum; }
         QDate getOnderhoudsContractDatum() const { return m_onderhoudsContractDatum; }
+        BriefArts &getBriefArts() { return m_briefArts; }
+        const BriefArts &getBriefArts() const { return m_briefArts; }
         BriefKlant &getBriefKlant() { return m_briefKlant; }
         const BriefKlant &getBriefKlant() const { return m_briefKlant; }
         BriefMutualiteit &getBriefMutualiteit() { return m_briefMutualiteit; }
@@ -67,9 +67,6 @@ namespace Model
         void setMutualiteit(int value) { m_mutualiteit = value; }
         void setAansluitingsnummer(const QString &value) { m_aansluitingsnummer = value; }
         void setPlaatsAanpassing(const QString &value) { m_plaatsAanpassing = value; }
-        void setBriefArtsPostdatum(const QString &value) { m_briefArtsPostdatum = value; }
-        void setBriefArtsTekstblok(const QString &value) { m_briefArtsTekstblok = value; }
-        void setBriefArtsConclusie(const QString &value) { m_briefArtsConclusie = value; }
         void setRechterHoorapparaatMerk(const QString &value) { m_rechterHoorapparaatMerk = value; }
         void setRechterHoorapparaatType(const QString &value) { m_rechterHoorapparaatType = value; }
         void setRechterHoorapparaatSerienummer(const QString &value) { m_rechterHoorapparaatSerienummer = value; }
@@ -96,9 +93,6 @@ namespace Model
         int m_mutualiteit;
         QString m_aansluitingsnummer;
         QString m_plaatsAanpassing;
-        QString m_briefArtsPostdatum;
-        QString m_briefArtsTekstblok;
-        QString m_briefArtsConclusie;
         QString m_rechterHoorapparaatMerk;
         QString m_rechterHoorapparaatType;
         QString m_rechterHoorapparaatSerienummer;
@@ -116,6 +110,7 @@ namespace Model
         QDate m_afleveringDatum;
         QDate m_wisselDatum;
         QDate m_onderhoudsContractDatum;
+        BriefArts m_briefArts;
         BriefKlant m_briefKlant;
         BriefMutualiteit m_briefMutualiteit;
         Factuur m_factuur;

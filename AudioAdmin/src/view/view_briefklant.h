@@ -10,9 +10,14 @@ namespace View
     {
     Q_OBJECT
     public:
-        BriefKlant(QWidget *parent = 0);
+        explicit BriefKlant(QWidget *parent = 0);
         virtual ~BriefKlant();
 
+        // --- Getters ---
+        QString getPostdatum() const;
+        QString getTekst() const;
+
+        // --- Setters ---
         void setAudioloogNaam(const QString &value);
         void setAudioloogStraat(const QString &value);
         void setAudioloogGemeente(const QString &value);
@@ -24,9 +29,6 @@ namespace View
         void setAanspreking(const QString &value);
         void setPostdatum(const QString &value);
         void setTekst(const QString &value);
-
-        QString getPostdatum() const;
-        QString getTekst() const;
 
     signals:
         void briefKlantAfdrukken();

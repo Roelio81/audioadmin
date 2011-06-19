@@ -12,9 +12,10 @@ namespace View
     {
     Q_OBJECT
     public:
-        Mutualiteit(Universum &universum);
+        explicit Mutualiteit(Universum &universum);
         virtual ~Mutualiteit();
 
+        // --- Getters ---
         QString getNaam() const;
         QString getStraat() const;
         int getPostcode() const;
@@ -22,6 +23,7 @@ namespace View
         QString getTelefoon() const;
         QString getOpmerkingen() const;
 
+        // --- Setters ---
         void setNaam(const QString &value);
         void setStraat(const QString &value);
         void setPostcode(int value);
@@ -30,6 +32,7 @@ namespace View
         void setOpmerkingen(const QString &value);
 
     private:
+        // --- Data members ---
         Universum &m_universum;
     };
 }

@@ -10,9 +10,10 @@ namespace View
     {
     Q_OBJECT
     public:
-        ToevoegenMutualiteit(QWidget *parent = 0);
+        explicit ToevoegenMutualiteit(QWidget *parent = 0);
         virtual ~ToevoegenMutualiteit();
 
+        // --- Getters ---
         QString getNaam() const;
     };
 }

@@ -13,11 +13,11 @@
 
 namespace View
 {
-    class Universum : public ::QMainWindow, public Ui::Universum
+    class Universum : public QMainWindow, public Ui::Universum
     {
     Q_OBJECT
     public:
-        Universum(::QWidget *parent = 0, Qt::WFlags f = 0);
+        explicit Universum(QWidget *parent = 0, Qt::WFlags f = 0);
         virtual ~Universum();
 
         Arts &getArts();
@@ -99,11 +99,13 @@ namespace View
     private:
         void closeEvent(QCloseEvent *event);
 
+        // --- Type definitions ---
         typedef QPair<double, QDate> PrijsDatumInfo;
         typedef QMap<QString, PrijsDatumInfo> HaarApparaatTypeMap;
         typedef QMap<QString, HaarApparaatTypeMap> HoorApparaatMap;
-        HoorApparaatMap m_hoorapparaatMerkToTypes;
 
+        // --- Data members ---
+        HoorApparaatMap m_hoorapparaatMerkToTypes;
         Arts m_arts;
         Dossier m_dossier;
         Mutualiteit m_mutualiteit;

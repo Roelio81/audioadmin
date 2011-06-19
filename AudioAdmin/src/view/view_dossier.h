@@ -13,7 +13,7 @@ namespace View
     {
     Q_OBJECT
     public:
-        Dossier(Universum &universum);
+        explicit Dossier(Universum &universum);
         virtual ~Dossier();
 
         QWidget *getParentWindow();
@@ -26,6 +26,7 @@ namespace View
         void toevoegenMutualiteit(int id, const QString &naam);
         void wijzigenMutualiteit(int id, const QString &naam);
 
+        // --- Getters ---
         QString getAanspreektitel() const;
         QString getNaam() const;
         QString getVoornaam() const;
@@ -57,6 +58,7 @@ namespace View
         QDate getWisselDatum() const;
         QDate getOnderhoudsContractDatum() const;
 
+        // --- Setters ---
         void setAanspreektitel(const QString &value);
         void setNaam(const QString &value);
         void setVoornaam(const QString &value);
@@ -107,6 +109,7 @@ namespace View
         void meetgegevensTonen();
 
     private:
+        // --- Data members ---
         Universum &m_universum;
         QMap<int, QString> m_artsIdToStraat;
         QMap<int, QString> m_artsIdToGemeente;

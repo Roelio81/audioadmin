@@ -40,8 +40,6 @@ namespace Presenter
 
     private slots:
         void briefArtsTonen();
-        void briefArtsSluiten();
-        void briefArtsBewaren();
         void briefKlantTonen();
         void briefMutualiteitTonen();
         void factuurTonen();
@@ -52,7 +50,6 @@ namespace Presenter
         void meetgegevensSluiten();
 
     private:
-        void setupBriefArts();
         void setupFactuur();
         void setupMeetgegevens();
 

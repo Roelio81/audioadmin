@@ -1,10 +1,10 @@
-#include "presenter_briefmutualiteit.h"
-#include "../model/model_briefmutualiteit.h"
+#include "presenter_briefarts.h"
+#include "../model/model_briefarts.h"
 #include "../model/model_dossier.h"
 #include "../model/model_instellingen.h"
-#include "../model/model_mutualiteit.h"
+#include "../model/model_arts.h"
 #include "../model/model_universum.h"
-#include "../view/view_briefmutualiteit.h"
+#include "../view/view_briefarts.h"
 
 #include <QPainter>
 #include <QPrintDialog>
@@ -12,29 +12,29 @@
 
 using namespace Presenter;
 
-BriefMutualiteit::BriefMutualiteit(View::BriefMutualiteit &view, Model::BriefMutualiteit &model)
+BriefArts::BriefArts(View::BriefArts &view, Model::BriefArts &model)
     : m_view(view)
     , m_model(model)
 {
 }
 
-BriefMutualiteit::~BriefMutualiteit()
+BriefArts::~BriefArts()
 {
 }
 
-void BriefMutualiteit::setup()
+void BriefArts::setup()
 {
     const Model::Dossier &dossier = m_model.getDossier();
     const Model::Klant &klant = dossier.getKlant();
     const Model::Instellingen &instellingen = dossier.getUniversum().getInstellingen();
     bool klantIsMan = (klant.getAanspreektitel() == "Dhr.");
 
-    Q_ASSERT(dossier.getMutualiteit() >= 0);
-    Model::Mutualiteit *mutualiteit = dossier.getUniversum().getMutualiteit(dossier.getMutualiteit());
-    Q_ASSERT(mutualiteit);
-    m_view.setMutualiteitNaam(mutualiteit->getNaam());
-    m_view.setMutualiteitStraat(mutualiteit->getStraat());
-    m_view.setMutualiteitGemeente(QString::number(mutualiteit->getPostcode()) + " " + mutualiteit->getGemeente());
+    Q_ASSERT(dossier.getArts() >= 0);
+    Model::Arts *arts = dossier.getUniversum().getArts(dossier.getArts());
+    Q_ASSERT(arts);
+    m_view.setArtsNaam(arts->getNaam() + " " + arts->getVoornaam());
+    m_view.setArtsStraat(arts->getStraat());
+    m_view.setArtsGemeente(QString::number(arts->getPostcode()) + " " + arts->getGemeente());
     m_view.setAudioloogNaam(instellingen.getNaam());
     m_view.setAudioloogStraat(instellingen.getStraat());
     m_view.setAudioloogGemeente(QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
@@ -75,7 +75,7 @@ void BriefMutualiteit::setup()
             else
             {
                 Q_ASSERT(dossier.getAantalHoorapparaten() == 2);
-                tekst += "stereofonsiche aanpassing met ";
+                tekst += "stereofonische aanpassing met ";
                 if (dossier.getLinkerHoorapparaatMerk() == dossier.getRechterHoorapparaatMerk() &&
                     dossier.getLinkerHoorapparaatType() == dossier.getRechterHoorapparaatType())
                 {
@@ -90,7 +90,6 @@ void BriefMutualiteit::setup()
                 }
             }
         }
-        tekst += "Gelieve ten spoedigste een goedkeuring te laten geworden op bovenstaan adres.";
     }
     m_view.setTekst(tekst);
     QString besluit = m_model.getConclusie();
@@ -103,7 +102,7 @@ void BriefMutualiteit::setup()
     connect(m_view.b_annuleren, SIGNAL(clicked()), &m_view, SLOT(reject()));
 }
 
-void BriefMutualiteit::teardown()
+void BriefArts::teardown()
 {
     m_model.setPostdatum(m_view.getPostdatum());
     m_model.setTekstblok(m_view.getTekst());
@@ -114,6 +113,6 @@ void BriefMutualiteit::teardown()
     disconnect(m_view.b_annuleren, SIGNAL(clicked()), &m_view, SLOT(reject()));
 }
 
-void BriefMutualiteit::print()
+void BriefArts::print()
 {
 }

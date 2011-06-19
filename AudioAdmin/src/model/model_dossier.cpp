@@ -21,6 +21,7 @@ Dossier::Dossier(int id, const Universum &universum)
 , m_afleveringDatum(universum.getInvalidDate())
 , m_wisselDatum(universum.getInvalidDate())
 , m_onderhoudsContractDatum(universum.getInvalidDate())
+, m_briefArts(*this)
 , m_briefKlant(*this)
 , m_briefMutualiteit(*this)
 , m_factuur(universum)
@@ -102,26 +103,15 @@ void Dossier::fromDomElement(const QDomElement &e)
         else if (element.tagName() == "nkoArts")
         {
             m_arts = element.attribute("id").isEmpty() ? -1 : element.attribute("id").toInt();
-            for (QDomElement ee = element.firstChildElement(); !ee.isNull(); ee = ee.nextSiblingElement())
-            {
-                if (ee.tagName() == "brief")
-                {
-                    m_briefArtsPostdatum = ee.attribute("datum");
-                    for (QDomElement eee = ee.firstChildElement(); !eee.isNull(); eee = eee.nextSiblingElement())
-                    {
-                        if (eee.tagName() == "tekst")
-                            m_briefArtsTekstblok = eee.text().replace("\r\n", "\n");
-                        else if (eee.tagName() == "besluit")
-                            m_briefArtsConclusie = eee.text().replace("\r\n", "\n");
-                    }
-                }
-            }
+            QDomElement brief = element.firstChildElement("brief");
+            if (!brief.isNull())
+                m_briefArts.fromDomElement(brief);
         }
         else if (element.tagName() == "mutualiteit")
         {
             m_mutualiteit = element.attribute("id").isEmpty() ? -1 : element.attribute("id").toInt();
             m_aansluitingsnummer = element.attribute("aansluitingsnummer");
-            QDomElement brief = e.firstChildElement("brief");
+            QDomElement brief = element.firstChildElement("brief");
             if (!brief.isNull())
                 m_briefMutualiteit.fromDomElement(brief);
         }
@@ -249,16 +239,9 @@ QDomElement Dossier::toDomElement(QDomDocument &d) const
     }
     QDomElement nkoArts = d.createElement("nkoArts");
     nkoArts.setAttribute("id", (m_arts >= 0) ? QString::number(m_arts) : "");
-    if (!m_briefArtsTekstblok.isEmpty())
+    if (!m_briefArts.getTekstblok().isEmpty())
     {
-        QDomElement brief = d.createElement("brief");
-        brief.setAttribute("datum", m_briefArtsPostdatum);
-        QDomElement tekst = d.createElement("tekst");
-        tekst.appendChild(d.createTextNode(m_briefArtsTekstblok));
-        brief.appendChild(tekst);
-        QDomElement conclusie = d.createElement("conclusie");
-        conclusie.appendChild(d.createTextNode(m_briefArtsConclusie));
-        brief.appendChild(conclusie);
+        QDomElement brief = m_briefArts.toDomElement(d);
         nkoArts.appendChild(brief);
     }
     result.appendChild(nkoArts);

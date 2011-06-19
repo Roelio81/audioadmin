@@ -12,7 +12,7 @@ namespace View
     {
     Q_OBJECT
     public:
-        Etiketten(QWidget *parent = 0);
+        explicit Etiketten(QWidget *parent = 0);
         virtual ~Etiketten();
 
         void leegPlaatsenAanpassing();
@@ -21,6 +21,7 @@ namespace View
         void afdrukken();
 
     private:
+        // --- Data members ---
         QStringList m_plaatsenAanpassing;
     };
 }

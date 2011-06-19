@@ -10,9 +10,15 @@ namespace View
     {
     Q_OBJECT
     public:
-        BriefMutualiteit(QWidget *parent = 0);
+        explicit BriefMutualiteit(QWidget *parent = 0);
         virtual ~BriefMutualiteit();
 
+        // --- Getters ---
+        QString getPostdatum() const;
+        QString getTekst() const;
+        QString getBesluit() const;
+
+        // --- Setters ---
         void setAudioloogNaam(const QString &value);
         void setAudioloogStraat(const QString &value);
         void setAudioloogGemeente(const QString &value);
@@ -24,10 +30,6 @@ namespace View
         void setPostdatum(const QString &value);
         void setTekst(const QString &value);
         void setBesluit(const QString &value);
-
-        QString getPostdatum() const;
-        QString getTekst() const;
-        QString getBesluit() const;
 
     signals:
         void briefMutualiteitSluiten();

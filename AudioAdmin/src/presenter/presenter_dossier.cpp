@@ -1,4 +1,5 @@
 #include "presenter_dossier.h"
+#include "presenter_briefarts.h"
 #include "presenter_briefklant.h"
 #include "presenter_briefmutualiteit.h"
 #include "../model/model_arts.h"
@@ -253,88 +254,6 @@ void Dossier::teardown()
     }
 }
 
-void Dossier::setupBriefArts()
-{
-    teardown();
-    setup();
-
-    bool klantIsMan = (m_model.getKlant().getAanspreektitel() == "Dhr.");
-
-    Q_ASSERT(m_briefArts);
-    Q_ASSERT(m_universum);
-    Q_ASSERT(m_model.getArts() >= 0);
-    Model::Arts *arts = m_universum->getArts(m_model.getArts());
-    Q_ASSERT(arts);
-    m_briefArts->setArtsNaam(arts->getNaam() + " " + arts->getVoornaam());
-    m_briefArts->setArtsStraat(arts->getStraat());
-    m_briefArts->setArtsGemeente(QString::number(arts->getPostcode()) + " " + arts->getGemeente());
-
-    const Model::Instellingen &instellingen = m_universum->getInstellingen();
-    m_briefArts->setAudioloogNaam(instellingen.getNaam());
-    m_briefArts->setAudioloogStraat(instellingen.getStraat());
-    m_briefArts->setAudioloogGemeente(QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
-    m_briefArts->setAudioloogTelefoon(instellingen.getTelefoon());
-    m_briefArts->setAudioloogGSM(instellingen.getGsm());
-
-    QString postDatum = m_model.getBriefArtsPostdatum();
-    if (postDatum.isEmpty())
-        postDatum = instellingen.getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
-    m_briefArts->setPostdatum(postDatum);
-    QString tekst = m_model.getBriefArtsTekstblok();
-    if (tekst.isEmpty())
-    {
-        tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
-        tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + m_model.getKlant().getNaam() + " " + m_model.getKlant().getVoornaam();
-        QDate geboorteDatum = m_model.getKlant().getGeboorteDatum();
-        if (geboorteDatum != m_model.getUniversum().getInvalidDate())
-        {
-            tekst += " (" + QString(char(0xb0)) + " " + geboorteDatum.toString("dd-MM-yyyy") + "). ";
-        }
-        if (m_model.getAantalHoorapparaten() > 0)
-        {
-            tekst += (klantIsMan ? QString("Mijnheer ") : QString("Mevrouw ")) + "heeft geopteerd voor een ";
-            if (m_model.getAantalHoorapparaten() == 1)
-            {
-                tekst += "monofonische aanpassing met ";
-                if (!m_model.getLinkerHoorapparaatMerk().isEmpty() || !m_model.getLinkerHoorapparaatType().isEmpty())
-                {
-                    tekst += "het apparaat ";
-                    tekst += m_model.getLinkerHoorapparaatMerk() + " " + m_model.getLinkerHoorapparaatType() + " (links). ";
-                }
-                else
-                {
-                    tekst += "het apparaat ";
-                    tekst += m_model.getRechterHoorapparaatMerk() + " " + m_model.getRechterHoorapparaatType() + " (rechts). ";
-                }
-            }
-            else
-            {
-                Q_ASSERT(m_model.getAantalHoorapparaten() == 2);
-                tekst += "stereofonische aanpassing met ";
-                if (m_model.getLinkerHoorapparaatMerk() == m_model.getRechterHoorapparaatMerk() &&
-                    m_model.getLinkerHoorapparaatType() == m_model.getRechterHoorapparaatType())
-                {
-                    tekst += "het apparaat ";
-                    tekst += m_model.getLinkerHoorapparaatMerk() + " " + m_model.getLinkerHoorapparaatType() + ". ";
-                }
-                else
-                {
-                    tekst += "de apparaten ";
-                    tekst += m_model.getRechterHoorapparaatMerk() + " " + m_model.getRechterHoorapparaatType() + " (rechts) en ";
-                    tekst += m_model.getLinkerHoorapparaatMerk() + " " + m_model.getLinkerHoorapparaatType() + " (links). ";
-                }
-            }
-        }
-    }
-    m_briefArts->setTekst(tekst);
-    QString besluit = m_model.getBriefArtsConclusie();
-    if (besluit.isEmpty())
-        besluit = "Indien u nog vragen hebt, kan u mij bereiken op bovenstaand nummer.";
-    m_briefArts->setBesluit(besluit);
-
-    connect(m_briefArts, SIGNAL(briefArtsSluiten()), this, SLOT(briefArtsSluiten()));
-    connect(m_briefArts, SIGNAL(briefArtsBewaren()), this, SLOT(briefArtsBewaren()));
-}
 
 void Dossier::setupFactuur()
 {
@@ -399,29 +318,19 @@ void Dossier::setupMeetgegevens()
 
 void Dossier::briefArtsTonen()
 {
-    if (!m_briefArts)
+    // First make sure that we are fully up-to-date
+    teardown();
+    setup();
+
+    // Create a presenter and open the view
+    View::BriefArts briefArtsView(m_view.getParentWindow());
+    BriefArts briefArts(briefArtsView, m_model.getBriefArts());
+    briefArts.setup();
+    if (briefArtsView.exec() == QDialog::Accepted)
     {
-        m_briefArts = new View::BriefArts(m_view.getParentWindow());
+        briefArts.teardown();
+        emit dossierGewijzigd(m_model.getId());
     }
-
-    setupBriefArts();
-    m_briefArts->show();
-}
-
-void Dossier::briefArtsSluiten()
-{
-    Q_ASSERT(m_briefArts);
-    m_briefArts->close();
-    m_briefArts = 0;
-}
-
-void Dossier::briefArtsBewaren()
-{
-    Q_ASSERT(m_briefArts);
-    m_model.setBriefArtsPostdatum(m_briefArts->getPostdatum());
-    m_model.setBriefArtsTekstblok(m_briefArts->getTekst());
-    m_model.setBriefArtsConclusie(m_briefArts->getBesluit());
-    emit dossierGewijzigd(m_model.getId());
 }
 
 void Dossier::briefKlantTonen()

@@ -10,9 +10,10 @@ namespace View
     {
     Q_OBJECT
     public:
-        Meetgegevens(QWidget *parent = 0);
+        explicit Meetgegevens(QWidget *parent = 0);
         virtual ~Meetgegevens();
 
+        // --- Getters ---
         int getLGRechtsData(int Hz);
         int getBGRechtsData(int Hz);
         int getUCLRechtsData(int Hz);
@@ -30,6 +31,7 @@ namespace View
         int getLocalisatieLinks();
         int getLocalisatieBeide();
 
+        // --- Setters ---
         void setLGRechtsData(int Hz, int dB);
         void setBGRechtsData(int Hz, int dB);
         void setUCLRechtsData(int Hz, int dB);
