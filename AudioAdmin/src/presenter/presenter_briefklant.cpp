@@ -86,8 +86,8 @@ void BriefKlant::print()
         // Determine some margins and printer settings
         const int mmx = printer->width() / printer->widthMM();
         const int mmy = printer->height() / printer->heightMM();
-        const int hmar = 25*mmx;
-        const int vmar = 20*mmy;
+        const int hmar = 25*mmx - printer->pageRect().left();
+        const int vmar = 20*mmy - printer->pageRect().top();
 
         // Make a painter and configure with a default font
         QPainter painter(printer);
