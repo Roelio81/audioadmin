@@ -46,14 +46,12 @@ void BriefKlant::setup()
     QString tekst = m_model.getTekstblok();
     if (tekst.isEmpty())
     {
-        tekst = "Ingesloten vindt u de nodige documenten voor het ziekenfonds. Tevens vindt u 2 ";
-        tekst += "overschrijvingsformulieren, waarvan 1 voor ";
+        tekst = "Ingesloten vindt u een overschrijving voor de opleg van ";
         if (dossier.getAantalHoorapparaten() == 1)
-            tekst += "het hoorapparaat";
+            tekst += "het hoorapparaat.";
         else
-            tekst += "de hoorapparaten";
-        tekst += ", incl. ... jaar garantie. Indien u 5 jaar garantie wenst, kan u het tweede ";
-        tekst += "overschrijvingsformulier gebruiken.";
+            tekst += "de hoorapparaten.";
+        tekst += "Tevens vindt u een tweede overschrijving die u kan gebruiken indien u 5 jaar garantie wenst i.p.v. ... jaar.";
     }
     m_view.setTekst(tekst);
 
