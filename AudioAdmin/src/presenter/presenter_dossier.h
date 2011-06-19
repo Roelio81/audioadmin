@@ -44,8 +44,6 @@ namespace Presenter
         void briefArtsBewaren();
         void briefKlantTonen();
         void briefMutualiteitTonen();
-        void briefMutualiteitSluiten();
-        void briefMutualiteitBewaren();
         void factuurTonen();
         void factuurSluiten();
         void factuurBewaren();
@@ -55,8 +53,6 @@ namespace Presenter
 
     private:
         void setupBriefArts();
-        void setupBriefKlant();
-        void setupBriefMutualiteit();
         void setupFactuur();
         void setupMeetgegevens();
 

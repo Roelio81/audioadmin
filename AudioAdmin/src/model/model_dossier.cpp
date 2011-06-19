@@ -22,6 +22,7 @@ Dossier::Dossier(int id, const Universum &universum)
 , m_wisselDatum(universum.getInvalidDate())
 , m_onderhoudsContractDatum(universum.getInvalidDate())
 , m_briefKlant(*this)
+, m_briefMutualiteit(*this)
 , m_factuur(universum)
 , m_klant(universum)
 {
@@ -120,20 +121,9 @@ void Dossier::fromDomElement(const QDomElement &e)
         {
             m_mutualiteit = element.attribute("id").isEmpty() ? -1 : element.attribute("id").toInt();
             m_aansluitingsnummer = element.attribute("aansluitingsnummer");
-            for (QDomElement ee = element.firstChildElement(); !ee.isNull(); ee = ee.nextSiblingElement())
-            {
-                if (ee.tagName() == "brief")
-                {
-                    m_briefMutualiteitPostdatum = ee.attribute("datum");
-                    for (QDomElement eee = ee.firstChildElement(); !eee.isNull(); eee = eee.nextSiblingElement())
-                    {
-                        if (eee.tagName() == "tekst")
-                            m_briefMutualiteitTekstblok = eee.text().replace("\r\n", "\n");
-                        else if (eee.tagName() == "besluit")
-                            m_briefMutualiteitConclusie = eee.text().replace("\r\n", "\n");
-                    }
-                }
-            }
+            QDomElement brief = e.firstChildElement("brief");
+            if (!brief.isNull())
+                m_briefMutualiteit.fromDomElement(brief);
         }
         else if (element.tagName() == "audiometrie")
         {
@@ -275,16 +265,9 @@ QDomElement Dossier::toDomElement(QDomDocument &d) const
     QDomElement mutualiteit = d.createElement("mutualiteit");
     mutualiteit.setAttribute("id", (m_mutualiteit >= 0) ? QString::number(m_mutualiteit) : "");
     mutualiteit.setAttribute("aansluitingsnummer", m_aansluitingsnummer);
-    if (!m_briefMutualiteitTekstblok.isEmpty())
+    if (!m_briefMutualiteit.getTekstblok().isEmpty())
     {
-        QDomElement brief = d.createElement("brief");
-        brief.setAttribute("datum", m_briefMutualiteitPostdatum);
-        QDomElement tekst = d.createElement("tekst");
-        tekst.appendChild(d.createTextNode(m_briefMutualiteitTekstblok));
-        brief.appendChild(tekst);
-        QDomElement conclusie = d.createElement("conclusie");
-        conclusie.appendChild(d.createTextNode(m_briefMutualiteitConclusie));
-        brief.appendChild(conclusie);
+        QDomElement brief = m_briefMutualiteit.toDomElement(d);
         mutualiteit.appendChild(brief);
     }
     result.appendChild(mutualiteit);

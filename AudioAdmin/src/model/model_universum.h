@@ -33,17 +33,17 @@ namespace Model
         Arts *toevoegenArts(const QString &voornaam, const QString &naam);
         void verwijderenArts(int id);
         QVector<Arts *> &getArtsen();
-        Arts *getArts(int id);
+        Arts *getArts(int id) const;
 
         Dossier *toevoegenDossier(const QString &voornaam, const QString &naam);
         void verwijderenDossier(int id);
         QVector<Dossier *> &getDossiers();
-        Dossier *getDossier(int klantId);
+        Dossier *getDossier(int klantId) const;
 
         Mutualiteit *toevoegenMutualiteit(const QString &naam);
         void verwijderenMutualiteit(int id);
         QVector<Mutualiteit *> &getMutualiteiten();
-        Mutualiteit *getMutualiteit(int id);
+        Mutualiteit *getMutualiteit(int id) const;
 
         Instellingen &getInstellingen() { return *m_instellingen; }
         const Instellingen &getInstellingen() const { return *m_instellingen; }
