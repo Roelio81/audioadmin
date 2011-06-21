@@ -133,20 +133,19 @@ void Universum::instellingen()
 
 void Universum::omtrent()
 {
-    QMessageBox::about(this, "Omtrent AudioAdmin", "<p>AudioAdmin 2.0</p>"
-        "<p>Vrijgegeven onder de GPL licentie, versie 3</p>"
-        "<p>Januari 2011</p>");
+    QMessageBox::about(this, tr("About AudioAdmin"), tr("<p>AudioAdmin 2.0</p>"
+                       "<p>Released under the GNU General Public License v3.0</p>"
+                       "<p>June 2011</p>"));
 }
 
 void Universum::bewarenBijAfsluiten()
 {
     QMessageBox msgBox(this);
-    msgBox.setLocale(QLocale(QLocale::Dutch, QLocale::Belgium));
-    msgBox.setText("Niet alle wijzigingen zijn reeds bewaard");
-    msgBox.setInformativeText("Wenst u uw wijzigingen te bewaren?");
+    msgBox.setText(tr("Not all changes were saved"));
+    msgBox.setInformativeText(tr("Do you want to save your pending changes?"));
     msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard);
-    msgBox.button(QMessageBox::Save)->setText("Bewaren");
-    msgBox.button(QMessageBox::Discard)->setText("Afsluiten zonder bewaren");
+    msgBox.button(QMessageBox::Save)->setText(tr("Save"));
+    msgBox.button(QMessageBox::Discard)->setText(tr("Exit without Save"));
     msgBox.setDefaultButton(QMessageBox::Save);
     if (msgBox.exec() == QMessageBox::Save)
         bewaren();
@@ -400,22 +399,35 @@ void Universum::toevoegenArts()
 
 void Universum::verwijderenArts()
 {
-    int row = m_artsenLijst->currentRow();
-    int column = m_artsenLijst->currentColumn();
-    int id = artsIndexToId(m_artsenLijst->currentRow());
-    emit artsVerwijderenSignal(id);
-    m_artsenLijst->removeRow(row);
-    if (row >= m_artsenLijst->rowCount())
-        --row;
-    m_artsenLijst->setCurrentCell(row, column);
-    emit artsSelectieSignal(artsIndexToId(row));
+    QMessageBox warning(this);
+    warning.addButton(QMessageBox::Yes);
+    warning.addButton(QMessageBox::No);
+    warning.button(QMessageBox::Yes)->setText(tr("Yes"));
+    warning.button(QMessageBox::No)->setText(tr("No"));
+    warning.setDefaultButton(QMessageBox::No);
+    warning.setText(tr("Are you sure you want to remove the selected physician?"));
+    warning.setWindowTitle(tr("Remove Physician"));
+    warning.setIcon(QMessageBox::Warning);
+    warning.exec();
+    if (warning.clickedButton() == warning.button(QMessageBox::Yes))
+    {
+        int row = m_artsenLijst->currentRow();
+        int column = m_artsenLijst->currentColumn();
+        int id = artsIndexToId(m_artsenLijst->currentRow());
+        emit artsVerwijderenSignal(id);
+        m_artsenLijst->removeRow(row);
+        if (row >= m_artsenLijst->rowCount())
+            --row;
+        m_artsenLijst->setCurrentCell(row, column);
+        emit artsSelectieSignal(artsIndexToId(row));
+    }
 }
 
 void Universum::zoekenArts()
 {
     static QString vorigeWaarde = "";
     bool ok = false;
-    QString naam = QInputDialog::getText(this, "Zoek arts", "Naam:", QLineEdit::Normal, vorigeWaarde, &ok);
+    QString naam = QInputDialog::getText(this, tr("Find Physician"), tr("Name:"), QLineEdit::Normal, vorigeWaarde, &ok);
     if (ok && !naam.isEmpty())
     {
         vorigeWaarde = naam;
@@ -444,22 +456,35 @@ void Universum::toevoegenDossier()
 
 void Universum::verwijderenDossier()
 {
-    int row = m_klantenLijst->currentRow();
-    int column = m_klantenLijst->currentColumn();
-    int id = klantIndexToId(m_klantenLijst->currentRow());
-    emit klantVerwijderenSignal(id);
-    m_klantenLijst->removeRow(row);
-    if (row >= m_klantenLijst->rowCount())
-        --row;
-    m_klantenLijst->setCurrentCell(row, column);
-    emit klantSelectieSignal(klantIndexToId(row));
+    QMessageBox warning(this);
+    warning.addButton(QMessageBox::Yes);
+    warning.addButton(QMessageBox::No);
+    warning.button(QMessageBox::Yes)->setText(tr("Yes"));
+    warning.button(QMessageBox::No)->setText(tr("No"));
+    warning.setDefaultButton(QMessageBox::No);
+    warning.setText(tr("Are you sure you want to remove the selected file?"));
+    warning.setWindowTitle(tr("Remove File"));
+    warning.setIcon(QMessageBox::Warning);
+    warning.exec();
+    if (warning.clickedButton() == warning.button(QMessageBox::Yes))
+    {
+        int row = m_klantenLijst->currentRow();
+        int column = m_klantenLijst->currentColumn();
+        int id = klantIndexToId(m_klantenLijst->currentRow());
+        emit klantVerwijderenSignal(id);
+        m_klantenLijst->removeRow(row);
+        if (row >= m_klantenLijst->rowCount())
+            --row;
+        m_klantenLijst->setCurrentCell(row, column);
+        emit klantSelectieSignal(klantIndexToId(row));
+    }
 }
 
 void Universum::zoekenDossier()
 {
     static QString vorigeWaarde = "";
     bool ok = false;
-    QString naam = QInputDialog::getText(this, "Zoek klant", "Naam:", QLineEdit::Normal, vorigeWaarde, &ok);
+    QString naam = QInputDialog::getText(this, tr("Find Customer"), tr("Name:"), QLineEdit::Normal, vorigeWaarde, &ok);
     if (ok && !naam.isEmpty())
     {
         vorigeWaarde = naam;
@@ -488,22 +513,35 @@ void Universum::toevoegenMutualiteit()
 
 void Universum::verwijderenMutualiteit()
 {
-    int row = m_mutualiteitenLijst->currentRow();
-    int column = m_mutualiteitenLijst->currentColumn();
-    int id = mutualiteitIndexToId(m_mutualiteitenLijst->currentRow());
-    emit mutualiteitVerwijderenSignal(id);
-    m_mutualiteitenLijst->removeRow(row);
-    if (row >= m_mutualiteitenLijst->rowCount())
-        --row;
-    m_mutualiteitenLijst->setCurrentCell(row, column);
-    emit mutualiteitSelectieSignal(mutualiteitIndexToId(row));
+    QMessageBox warning(this);
+    warning.addButton(QMessageBox::Yes);
+    warning.addButton(QMessageBox::No);
+    warning.button(QMessageBox::Yes)->setText(tr("Yes"));
+    warning.button(QMessageBox::No)->setText(tr("No"));
+    warning.setDefaultButton(QMessageBox::No);
+    warning.setText(tr("Are you sure you want to remove the selected insurance company?"));
+    warning.setWindowTitle(tr("Remove Insurance Company"));
+    warning.setIcon(QMessageBox::Warning);
+    warning.exec();
+    if (warning.clickedButton() == warning.button(QMessageBox::Yes))
+    {
+        int row = m_mutualiteitenLijst->currentRow();
+        int column = m_mutualiteitenLijst->currentColumn();
+        int id = mutualiteitIndexToId(m_mutualiteitenLijst->currentRow());
+        emit mutualiteitVerwijderenSignal(id);
+        m_mutualiteitenLijst->removeRow(row);
+        if (row >= m_mutualiteitenLijst->rowCount())
+            --row;
+        m_mutualiteitenLijst->setCurrentCell(row, column);
+        emit mutualiteitSelectieSignal(mutualiteitIndexToId(row));
+    }
 }
 
 void Universum::zoekenMutualiteit()
 {
     static QString vorigeWaarde = "";
     bool ok = false;
-    QString naam = QInputDialog::getText(this, "Zoek mutualiteit", "Naam:", QLineEdit::Normal, vorigeWaarde, &ok);
+    QString naam = QInputDialog::getText(this, "Zoek mutualiteit", tr("Name:"), QLineEdit::Normal, vorigeWaarde, &ok);
     if (ok && !naam.isEmpty())
     {
         vorigeWaarde = naam;

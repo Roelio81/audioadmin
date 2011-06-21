@@ -18,7 +18,7 @@
     <normaloff>:/icons/agt_softwareD-64.png</normaloff>:/icons/agt_softwareD-64.png</iconset>
   </property>
   <property name="locale">
-   <locale language="Dutch" country="Belgium"/>
+   <locale language="English" country="UnitedStates"/>
   </property>
   <property name="dockNestingEnabled">
    <bool>true</bool>
@@ -46,7 +46,7 @@
              </sizepolicy>
             </property>
             <property name="title">
-             <string>Klantgegevens</string>
+             <string>Customer data</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">
              <item>
@@ -64,7 +64,7 @@
                <item>
                 <widget class="QLabel" name="l_klantNaam">
                  <property name="text">
-                  <string>Naam</string>
+                  <string>Name</string>
                  </property>
                 </widget>
                </item>
@@ -74,7 +74,7 @@
                <item>
                 <widget class="QLabel" name="l_klantVoornaam">
                  <property name="text">
-                  <string>Voornaam</string>
+                  <string>First Name</string>
                  </property>
                 </widget>
                </item>
@@ -247,7 +247,7 @@
                <item>
                 <widget class="QLabel" name="l_klantOpmerkingen">
                  <property name="text">
-                  <string>Opmerkingen</string>
+                  <string>Remarks</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -290,7 +290,7 @@
              </size>
             </property>
             <property name="title">
-             <string>Datums</string>
+             <string>Dates</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_2">
              <item row="0" column="1">
@@ -464,7 +464,7 @@
                </size>
               </property>
               <property name="title">
-               <string>Arts</string>
+               <string>Physician</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
                <item row="0" column="0">
@@ -640,7 +640,7 @@
           <item>
            <widget class="QGroupBox" name="g_brieven">
             <property name="title">
-             <string>Brieven</string>
+             <string>Letters</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_7">
              <item row="0" column="0">
@@ -661,7 +661,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>Klant</string>
+                <string>Customer</string>
                </property>
               </widget>
              </item>
@@ -683,7 +683,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>Arts</string>
+                <string>Physician</string>
                </property>
               </widget>
              </item>
@@ -705,7 +705,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>Mutualiteit</string>
+                <string>Health Insurance</string>
                </property>
               </widget>
              </item>
@@ -727,7 +727,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>Factuur</string>
+                <string>Invoice</string>
                </property>
               </widget>
              </item>
@@ -770,12 +770,12 @@
           </column>
           <column>
            <property name="text">
-            <string>Naam</string>
+            <string>Name</string>
            </property>
           </column>
           <column>
            <property name="text">
-            <string>Straat</string>
+            <string>Street</string>
            </property>
           </column>
           <column>
@@ -807,8 +807,11 @@
           </item>
           <item>
            <widget class="QToolButton" name="b_dossierToevoegen">
+            <property name="toolTip">
+             <string>Add</string>
+            </property>
             <property name="text">
-             <string>Toevoegen</string>
+             <string>Add</string>
             </property>
             <property name="icon">
              <iconset>
@@ -822,8 +825,11 @@
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="toolTip">
+             <string>Remove</string>
+            </property>
             <property name="text">
-             <string>Verwijderen</string>
+             <string>Remove</string>
             </property>
             <property name="icon">
              <iconset>
@@ -834,8 +840,11 @@
           </item>
           <item>
            <widget class="QToolButton" name="b_dossierZoeken">
+            <property name="toolTip">
+             <string>Find</string>
+            </property>
             <property name="text">
-             <string>Zoeken</string>
+             <string>Find</string>
             </property>
             <property name="icon">
              <iconset>
@@ -883,7 +892,7 @@
              <item>
               <widget class="QLabel" name="l_artsNaam">
                <property name="text">
-                <string>Naam</string>
+                <string>Name</string>
                </property>
               </widget>
              </item>
@@ -893,7 +902,7 @@
              <item>
               <widget class="QLabel" name="l_artsVoornaam">
                <property name="text">
-                <string>Voornaam</string>
+                <string>First Name</string>
                </property>
               </widget>
              </item>
@@ -981,7 +990,7 @@
              <item>
               <widget class="QLabel" name="l_artsEmail">
                <property name="text">
-                <string>E-mail</string>
+                <string>Email</string>
                </property>
               </widget>
              </item>
@@ -995,7 +1004,7 @@
              <item>
               <widget class="QLabel" name="l_artsOpmerkingen">
                <property name="text">
-                <string>Opmerkingen</string>
+                <string>Remarks</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -1057,12 +1066,12 @@
           </column>
           <column>
            <property name="text">
-            <string>Naam</string>
+            <string>Name</string>
            </property>
           </column>
           <column>
            <property name="text">
-            <string>Straat</string>
+            <string>Street</string>
            </property>
           </column>
           <column>
@@ -1094,8 +1103,11 @@
           </item>
           <item>
            <widget class="QToolButton" name="b_artsToevoegen">
+            <property name="toolTip">
+             <string>Add</string>
+            </property>
             <property name="text">
-             <string>Toevoegen</string>
+             <string>Add</string>
             </property>
             <property name="icon">
              <iconset>
@@ -1109,8 +1121,11 @@
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="toolTip">
+             <string>Remove</string>
+            </property>
             <property name="text">
-             <string>Verwijderen</string>
+             <string>Remove</string>
             </property>
             <property name="icon">
              <iconset>
@@ -1121,8 +1136,11 @@
           </item>
           <item>
            <widget class="QToolButton" name="b_artsZoeken">
+            <property name="toolTip">
+             <string>Find</string>
+            </property>
             <property name="text">
-             <string>Zoeken</string>
+             <string>Find</string>
             </property>
             <property name="icon">
              <iconset>
@@ -1170,7 +1188,7 @@
              <item>
               <widget class="QLabel" name="l_mutualiteitNaam">
                <property name="text">
-                <string>Naam</string>
+                <string>Name</string>
                </property>
               </widget>
              </item>
@@ -1255,7 +1273,7 @@
              <item>
               <widget class="QLabel" name="l_mutualiteitEmail">
                <property name="text">
-                <string>E-mail</string>
+                <string>Email</string>
                </property>
               </widget>
              </item>
@@ -1269,7 +1287,7 @@
              <item>
               <widget class="QLabel" name="l_mutualiteitOpmerkingen">
                <property name="text">
-                <string>Opmerkingen</string>
+                <string>Remarks</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -1331,12 +1349,12 @@
           </column>
           <column>
            <property name="text">
-            <string>Naam</string>
+            <string>Name</string>
            </property>
           </column>
           <column>
            <property name="text">
-            <string>Straat</string>
+            <string>Street</string>
            </property>
           </column>
           <column>
@@ -1368,8 +1386,11 @@
           </item>
           <item>
            <widget class="QToolButton" name="b_mutualiteitToevoegen">
+            <property name="toolTip">
+             <string>Add</string>
+            </property>
             <property name="text">
-             <string>Toevoegen</string>
+             <string>Add</string>
             </property>
             <property name="icon">
              <iconset>
@@ -1383,8 +1404,11 @@
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="toolTip">
+             <string>Remove</string>
+            </property>
             <property name="text">
-             <string>Verwijderen</string>
+             <string>Remove</string>
             </property>
             <property name="icon">
              <iconset>
@@ -1395,8 +1419,11 @@
           </item>
           <item>
            <widget class="QToolButton" name="b_mutualiteitZoeken">
+            <property name="toolTip">
+             <string>Find</string>
+            </property>
             <property name="text">
-             <string>Zoeken</string>
+             <string>Find</string>
             </property>
             <property name="icon">
              <iconset>
@@ -1437,7 +1464,7 @@
    </property>
    <widget class="QMenu" name="menuBestand">
     <property name="title">
-     <string>Bestand</string>
+     <string>File</string>
     </property>
     <addaction name="actionBewaren"/>
     <addaction name="actionEtikettenAfdrukken"/>
@@ -1452,7 +1479,7 @@
    </widget>
    <widget class="QMenu" name="menuInstellingen">
     <property name="title">
-     <string>Instellingen</string>
+     <string>Settings</string>
     </property>
     <addaction name="actionInstellingen_wijzigen"/>
    </widget>
@@ -1483,7 +1510,7 @@
      <normaloff>:/icons/filesave-64.png</normaloff>:/icons/filesave-64.png</iconset>
    </property>
    <property name="text">
-    <string>Opslaan</string>
+    <string>Save</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -1495,7 +1522,7 @@
      <normaloff>:/icons/agt_print-64.png</normaloff>:/icons/agt_print-64.png</iconset>
    </property>
    <property name="text">
-    <string>Etiketten afdrukken...</string>
+    <string>Print labels...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -1503,12 +1530,12 @@
   </action>
   <action name="actionAfsluiten">
    <property name="text">
-    <string>Afsluiten</string>
+    <string>Exit</string>
    </property>
   </action>
   <action name="actionOmtrent">
    <property name="text">
-    <string>Omtrent AudioAdmin...</string>
+    <string>About AudioAdmin...</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
@@ -1520,7 +1547,7 @@
      <normaloff>:/icons/advancedsettings-64.png</normaloff>:/icons/advancedsettings-64.png</iconset>
    </property>
    <property name="text">
-    <string>Instellingen wijzigen...</string>
+    <string>Change settings...</string>
    </property>
    <property name="shortcut">
     <string>F6</string>

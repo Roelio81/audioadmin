@@ -90,3 +90,4 @@ SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
     src/presenter/presenter_meetgegevens.cpp
 TEMPLATE = app
 UI_DIR = build
+TRANSLATIONS = translations/audioadmin_nl.ts
