@@ -1,7 +1,5 @@
 #include "view_universum.h"
-#include "view_toevoegenarts.h"
-#include "view_toevoegenklant.h"
-#include "view_toevoegenmutualiteit.h"
+#include "view_adddialog.h"
 
 #include <QCloseEvent>
 #include <QFileDialog>
@@ -392,9 +390,9 @@ void Universum::selecteerMutualiteit(int currentRow, int, int previousRow, int)
 
 void Universum::toevoegenArts()
 {
-    ToevoegenArts dialog(this);
+    AddDialog dialog(true, this);
     if (dialog.exec() == QDialog::Accepted)
-        emit artsToevoegenSignal(dialog.getVoornaam(), dialog.getNaam());
+        emit artsToevoegenSignal(dialog.getFirstName(), dialog.getName());
 }
 
 void Universum::verwijderenArts()
@@ -449,9 +447,9 @@ void Universum::zoekenArts()
 
 void Universum::toevoegenDossier()
 {
-    ToevoegenKlant dialog(this);
+    AddDialog dialog(true, this);
     if (dialog.exec() == QDialog::Accepted)
-        emit klantToevoegenSignal(dialog.getVoornaam(), dialog.getNaam());
+        emit klantToevoegenSignal(dialog.getFirstName(), dialog.getName());
 }
 
 void Universum::verwijderenDossier()
@@ -506,9 +504,9 @@ void Universum::zoekenDossier()
 
 void Universum::toevoegenMutualiteit()
 {
-    ToevoegenMutualiteit dialog(this);
+    AddDialog dialog(false, this);
     if (dialog.exec() == QDialog::Accepted)
-        emit mutualiteitToevoegenSignal(dialog.getNaam());
+        emit mutualiteitToevoegenSignal(dialog.getName());
 }
 
 void Universum::verwijderenMutualiteit()

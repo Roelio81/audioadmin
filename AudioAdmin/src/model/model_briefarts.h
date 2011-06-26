@@ -21,7 +21,7 @@ namespace Model
 
         // --- Getters ---
         const Dossier &getDossier() { return m_dossier; }
-        QString getPostdatum() const { return m_postdatum; }
+        QString getPostalDate() const { return m_postdatum; }
         QString getTekstblok() const { return m_tekstblok; }
         QString getConclusie() const { return m_conclusie; }
 

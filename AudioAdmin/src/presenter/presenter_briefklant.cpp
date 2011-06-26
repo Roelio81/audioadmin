@@ -4,7 +4,7 @@
 #include "../model/model_instellingen.h"
 #include "../model/model_klant.h"
 #include "../model/model_universum.h"
-#include "../view/view_briefklant.h"
+#include "../view/view_letter.h"
 
 #include <QPainter>
 #include <QPrintDialog>
@@ -12,7 +12,7 @@
 
 using namespace Presenter;
 
-BriefKlant::BriefKlant(View::BriefKlant &view, Model::BriefKlant &model)
+BriefKlant::BriefKlant(View::Letter &view, Model::BriefKlant &model)
     : m_view(view)
     , m_model(model)
 {
@@ -29,20 +29,20 @@ void BriefKlant::setup()
     const Model::Instellingen &instellingen = dossier.getUniversum().getInstellingen();
     bool klantIsMan = (klant.getAanspreektitel() == "Dhr.");
 
-    m_view.setAanspreking(klantIsMan ? "Geachte meneer," : "Geachte mevrouw,");
-    m_view.setKlantNaam(klant.getNaam() + " " + klant.getVoornaam());
-    m_view.setKlantStraat(klant.getStraat());
-    m_view.setKlantGemeente(QString::number(klant.getPostcode()) + " " + klant.getGemeente());
-    m_view.setAudioloogNaam(instellingen.getNaam());
-    m_view.setAudioloogStraat(instellingen.getStraat());
-    m_view.setAudioloogGemeente(QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
-    m_view.setAudioloogTelefoon(instellingen.getTelefoon());
-    m_view.setAudioloogGSM(instellingen.getGsm());
+    m_view.setGreeting(klantIsMan ? "Geachte meneer," : "Geachte mevrouw,");
+    m_view.setAddresseeName(klant.getNaam() + " " + klant.getVoornaam());
+    m_view.setAddresseeStreet(klant.getStraat());
+    m_view.setAddresseeCity(QString::number(klant.getPostcode()) + " " + klant.getGemeente());
+    m_view.setSenderName(instellingen.getNaam());
+    m_view.setSenderStreet(instellingen.getStraat());
+    m_view.setSenderCity(QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
+    m_view.setSenderTelephone(instellingen.getTelefoon());
+    m_view.setSenderMobilePhone(instellingen.getGsm());
 
-    QString postDatum = m_model.getPostdatum();
-    if (postDatum.isEmpty())
-        postDatum = instellingen.getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
-    m_view.setPostdatum(postDatum);
+    QString postalDate = m_model.getPostdatum();
+    if (postalDate.isEmpty())
+        postalDate = instellingen.getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
+    m_view.setPostalDate(postalDate);
     QString tekst = m_model.getTekstblok();
     if (tekst.isEmpty())
     {
@@ -53,21 +53,17 @@ void BriefKlant::setup()
             tekst += "de hoorapparaten.";
         tekst += "Tevens vindt u een tweede overschrijving die u kan gebruiken indien u 5 jaar garantie wenst i.p.v. ... jaar.";
     }
-    m_view.setTekst(tekst);
+    m_view.setText(tekst);
 
-    connect(m_view.b_afdrukken, SIGNAL(clicked()), this, SLOT(print()));
-    connect(m_view.b_ok, SIGNAL(clicked()), &m_view, SLOT(accept()));
-    connect(m_view.b_annuleren, SIGNAL(clicked()), &m_view, SLOT(reject()));
+    connect(&m_view, SIGNAL(print()), this, SLOT(print()));
 }
 
 void BriefKlant::teardown()
 {
-    m_model.setPostdatum(m_view.getPostdatum());
-    m_model.setTekstblok(m_view.getTekst());
+    m_model.setPostdatum(m_view.getPostalDate());
+    m_model.setTekstblok(m_view.getText());
 
-    disconnect(m_view.b_afdrukken, SIGNAL(clicked()), this, SLOT(print()));
-    disconnect(m_view.b_ok, SIGNAL(clicked()), &m_view, SLOT(accept()));
-    disconnect(m_view.b_annuleren, SIGNAL(clicked()), &m_view, SLOT(reject()));
+    connect(&m_view, SIGNAL(print()), this, SLOT(print()));
 }
 
 void BriefKlant::print()
@@ -113,7 +109,7 @@ void BriefKlant::print()
         painter.drawLine(printer->paperRect().left(), 52*mmy, printer->paperRect().right(), 52*mmy);
 
         // Print the postal date
-        painter.drawText(hmar, 62*mmy, m_view.getPostdatum());
+        painter.drawText(hmar, 62*mmy, m_view.getPostalDate());
 
         // Print the client's address
         font.setPointSize(12);
@@ -128,7 +124,7 @@ void BriefKlant::print()
         bool klantIsMan = (klant.getAanspreektitel() == "Dhr.");
         QString tekst = klantIsMan ? "Geachte meneer," : "Geachte mevrouw,";
         tekst += "\n\n";
-        tekst += m_view.getTekst();
+        tekst += m_view.getText();
         tekst += "\n\n";
         tekst += "Vriendelijke groeten, \n\n";
         tekst += instellingen.getNaam();

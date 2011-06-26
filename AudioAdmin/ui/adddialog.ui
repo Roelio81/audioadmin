@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ToevoegenKlant</class>
- <widget class="QDialog" name="ToevoegenKlant">
+ <class>AddDialog</class>
+ <widget class="QDialog" name="AddDialog">
   <property name="windowModality">
    <enum>Qt::WindowModal</enum>
   </property>
@@ -10,11 +10,11 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>114</height>
+    <height>121</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Toevoegen klant</string>
+   <string>Add</string>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -23,24 +23,24 @@
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
-      <widget class="QLabel" name="l_voornaam">
+      <widget class="QLabel" name="l_firstName">
        <property name="text">
-        <string>Voornaam:</string>
+        <string>First name:</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QLineEdit" name="m_voornaam"/>
+      <widget class="QLineEdit" name="m_firstName"/>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="l_naam">
+      <widget class="QLabel" name="l_name">
        <property name="text">
-        <string>Naam:</string>
+        <string>Name:</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="m_naam"/>
+      <widget class="QLineEdit" name="m_name"/>
      </item>
     </layout>
    </item>
@@ -52,7 +52,7 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>10</height>
+       <height>17</height>
       </size>
      </property>
     </spacer>
@@ -74,7 +74,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>ToevoegenKlant</receiver>
+   <receiver>AddDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -90,7 +90,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>ToevoegenKlant</receiver>
+   <receiver>AddDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

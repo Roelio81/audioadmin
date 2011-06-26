@@ -2,200 +2,18 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="nl">
 <context>
-    <name>BriefArts</name>
+    <name>AddDialog</name>
     <message>
-        <source>Brief Arts</source>
-        <translation type="unfinished"></translation>
+        <source>Add</source>
+        <translation>Toevoegen</translation>
     </message>
     <message>
-        <source>Naam Audioloog</source>
-        <translation type="unfinished"></translation>
+        <source>First name:</source>
+        <translation>Voornaam:</translation>
     </message>
     <message>
-        <source>Gemeente, Postdatum</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Adres Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Postcode en Gemeente Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Telefoonnr Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>GSM Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Naam Arts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Adres Arts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Postcode en Gemeente Arts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Geachte dokter,</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BESLUIT:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Vriendelijke groeten,</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Afdrukken</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ok</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Annuleren</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>BriefKlant</name>
-    <message>
-        <source>Brief Klant</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Naam Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Gemeente, Postdatum</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Adres Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Postcode en Gemeente Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Telefoonnr Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>GSM Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Naam Klant</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Adres Klant</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Postcode en Gemeente Arts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Geachte m/m,</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Vriendelijke groeten,</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Afdrukken</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ok</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Annuleren</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>BriefMutualiteit</name>
-    <message>
-        <source>Brief Mutualiteit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Naam Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Gemeente, Postdatum</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Adres Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Postcode en Gemeente Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Telefoonnr Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>GSM Audioloog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Naam Mutualiteit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Adres Mutualiteit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Postcode en Gemeente Mutualiteit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Geachte geneesheer-adviseur,</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BESLUIT:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Vriendelijke groeten,</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Afdrukken</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ok</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Annuleren</source>
-        <translation type="unfinished"></translation>
+        <source>Name:</source>
+        <translation>Naam:</translation>
     </message>
 </context>
 <context>
@@ -396,6 +214,58 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>Letter</name>
+    <message>
+        <source>Letter</source>
+        <translation>Brief</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Postal date</source>
+        <translation>Postdatum</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translatorcomment>Adres</translatorcomment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>City</source>
+        <translation>Gemeente</translation>
+    </message>
+    <message>
+        <source>Telephone</source>
+        <translation>Telefoon</translation>
+    </message>
+    <message>
+        <source>Mobile phone</source>
+        <translation>GSM</translation>
+    </message>
+    <message>
+        <source>Street</source>
+        <translation>Straat</translation>
+    </message>
+    <message>
+        <source>Greeting,</source>
+        <translation>Geachte,</translation>
+    </message>
+    <message>
+        <source>CONCLUSION:</source>
+        <translation>BESLUIT:</translation>
+    </message>
+    <message>
+        <source>Kind regards,</source>
+        <translation>Met vriendelijke groeten,</translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation>Afdrukken</translation>
+    </message>
+</context>
+<context>
     <name>Meetgegevens</name>
     <message>
         <source>Meetgegevens</source>
@@ -519,47 +389,6 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Annuleren</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ToevoegenArts</name>
-    <message>
-        <source>Toevoegen arts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Voornaam:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Naam:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ToevoegenKlant</name>
-    <message>
-        <source>Toevoegen klant</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Voornaam:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Naam:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ToevoegenMutualiteit</name>
-    <message>
-        <source>Toevoegen mutualiteit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Naam:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

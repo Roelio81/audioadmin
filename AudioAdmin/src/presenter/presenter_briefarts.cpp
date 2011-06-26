@@ -5,7 +5,7 @@
 #include "../model/model_instellingen.h"
 #include "../model/model_arts.h"
 #include "../model/model_universum.h"
-#include "../view/view_briefarts.h"
+#include "../view/view_letter.h"
 #include "../view/view_meetgegevens.h"
 
 #include <QPainter>
@@ -14,7 +14,7 @@
 
 using namespace Presenter;
 
-BriefArts::BriefArts(View::BriefArts &view, Model::BriefArts &model)
+BriefArts::BriefArts(View::Letter &view, Model::BriefArts &model)
     : m_view(view)
     , m_model(model)
 {
@@ -31,22 +31,23 @@ void BriefArts::setup()
     const Model::Instellingen &instellingen = dossier.getUniversum().getInstellingen();
     bool klantIsMan = (klant.getAanspreektitel() == "Dhr.");
 
+    m_view.setGreeting("Geachte dokter,");
     Q_ASSERT(dossier.getArts() >= 0);
     Model::Arts *arts = dossier.getUniversum().getArts(dossier.getArts());
     Q_ASSERT(arts);
-    m_view.setArtsNaam(arts->getNaam() + " " + arts->getVoornaam());
-    m_view.setArtsStraat(arts->getStraat());
-    m_view.setArtsGemeente(QString::number(arts->getPostcode()) + " " + arts->getGemeente());
-    m_view.setAudioloogNaam(instellingen.getNaam());
-    m_view.setAudioloogStraat(instellingen.getStraat());
-    m_view.setAudioloogGemeente(QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
-    m_view.setAudioloogTelefoon(instellingen.getTelefoon());
-    m_view.setAudioloogGSM(instellingen.getGsm());
+    m_view.setAddresseeName(arts->getNaam() + " " + arts->getVoornaam());
+    m_view.setAddresseeStreet(arts->getStraat());
+    m_view.setAddresseeCity(QString::number(arts->getPostcode()) + " " + arts->getGemeente());
+    m_view.setSenderName(instellingen.getNaam());
+    m_view.setSenderStreet(instellingen.getStraat());
+    m_view.setSenderCity(QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
+    m_view.setSenderTelephone(instellingen.getTelefoon());
+    m_view.setSenderMobilePhone(instellingen.getGsm());
 
-    QString postDatum = m_model.getPostdatum();
-    if (postDatum.isEmpty())
-        postDatum = instellingen.getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
-    m_view.setPostdatum(postDatum);
+    QString postalDate = m_model.getPostalDate();
+    if (postalDate.isEmpty())
+        postalDate = instellingen.getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
+    m_view.setPostalDate(postalDate);
     QString tekst = m_model.getTekstblok();
     if (tekst.isEmpty())
     {
@@ -93,26 +94,22 @@ void BriefArts::setup()
             }
         }
     }
-    m_view.setTekst(tekst);
+    m_view.setText(tekst);
     QString besluit = m_model.getConclusie();
     if (besluit.isEmpty())
         besluit = "Indien u nog vragen hebt, kan u mij bereiken op bovenstaand nummer.";
-    m_view.setBesluit(besluit);
+    m_view.setConclusion(besluit);
 
-    connect(m_view.b_afdrukken, SIGNAL(clicked()), this, SLOT(print()));
-    connect(m_view.b_ok, SIGNAL(clicked()), &m_view, SLOT(accept()));
-    connect(m_view.b_annuleren, SIGNAL(clicked()), &m_view, SLOT(reject()));
+    connect(&m_view, SIGNAL(print()), this, SLOT(print()));
 }
 
 void BriefArts::teardown()
 {
-    m_model.setPostdatum(m_view.getPostdatum());
-    m_model.setTekstblok(m_view.getTekst());
-    m_model.setConclusie(m_view.getBesluit());
+    m_model.setPostdatum(m_view.getPostalDate());
+    m_model.setTekstblok(m_view.getText());
+    m_model.setConclusie(m_view.getConclusion());
 
-    disconnect(m_view.b_afdrukken, SIGNAL(clicked()), this, SLOT(print()));
-    disconnect(m_view.b_ok, SIGNAL(clicked()), &m_view, SLOT(accept()));
-    disconnect(m_view.b_annuleren, SIGNAL(clicked()), &m_view, SLOT(reject()));
+    disconnect(&m_view, SIGNAL(print()), this, SLOT(print()));
 }
 
 void BriefArts::print()
@@ -158,7 +155,7 @@ void BriefArts::print()
         painter.drawLine(printer->paperRect().left(), 52*mmy, printer->paperRect().right(), 52*mmy);
 
         // Print the postal date
-        painter.drawText(hmar, 62*mmy, m_view.getPostdatum());
+        painter.drawText(hmar, 62*mmy, m_view.getPostalDate());
 
         // Print the doctor's address
         font.setPointSize(12);
@@ -172,7 +169,7 @@ void BriefArts::print()
         // Print the actual text
         QString tekst = "Geachte dokter,";
         tekst += "\n\n";
-        tekst += m_view.getTekst();
+        tekst += m_view.getText();
         int y = vmar + 80*mmy;
         QRect tekstRect(QPoint(hmar, y),
                         QPoint(printer->paperRect().right() - hmar, vmar + 125*mmy));
@@ -301,7 +298,7 @@ void BriefArts::print()
         font.setBold(false);
         font.setUnderline(false);
         painter.setFont(font);
-        tekst = m_view.getBesluit() + "\n\n";
+        tekst = m_view.getConclusion() + "\n\n";
         tekst += "\n\n";
         tekst += "Vriendelijke groeten, \n\n";
         tekst += instellingen.getNaam();

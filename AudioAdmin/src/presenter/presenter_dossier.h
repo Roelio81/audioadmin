@@ -8,7 +8,7 @@ namespace View
     class Dossier;
     class BriefArts;
     class BriefKlant;
-    class BriefMutualiteit;
+    class Letter;
     class Factuur;
     class Meetgegevens;
 }

@@ -5,7 +5,7 @@
 
 namespace View
 {
-    class BriefKlant;
+    class Letter;
 }
 
 namespace Model
@@ -19,7 +19,7 @@ namespace Presenter
     {
     Q_OBJECT
     public:
-        explicit BriefKlant(View::BriefKlant &view, Model::BriefKlant &model);
+        explicit BriefKlant(View::Letter &view, Model::BriefKlant &model);
         virtual ~BriefKlant();
 
         void setup();
@@ -29,7 +29,7 @@ namespace Presenter
         void print();
 
     private:
-        View::BriefKlant &m_view;
+        View::Letter &m_view;
         Model::BriefKlant &m_model;
     };
 }

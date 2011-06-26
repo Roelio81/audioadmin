@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>BriefMutualiteit</class>
- <widget class="QDialog" name="BriefMutualiteit">
+ <class>Letter</class>
+ <widget class="QDialog" name="Letter">
   <property name="windowModality">
    <enum>Qt::WindowModal</enum>
   </property>
@@ -9,12 +9,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>547</width>
-    <height>622</height>
+    <width>434</width>
+    <height>521</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Brief Mutualiteit</string>
+   <string>Letter</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../icons.qrc">
@@ -24,8 +24,8 @@
    <locale language="Dutch" country="Belgium"/>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" colspan="2">
-    <widget class="QLabel" name="l_audioloogNaam">
+   <item row="0" column="0" colspan="3">
+    <widget class="QLabel" name="l_senderName">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -33,22 +33,22 @@
       </size>
      </property>
      <property name="text">
-      <string>Naam Audioloog</string>
+      <string>Name</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="2" colspan="3">
-    <widget class="QLineEdit" name="m_postdatum">
+   <item row="0" column="3" colspan="2">
+    <widget class="QLineEdit" name="m_postalDate">
      <property name="text">
-      <string>Gemeente, Postdatum</string>
+      <string>Postal date</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="QLabel" name="l_audioloogStraat">
+   <item row="1" column="0" colspan="3">
+    <widget class="QLabel" name="l_senderStreet">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -56,12 +56,12 @@
       </size>
      </property>
      <property name="text">
-      <string>Adres Audioloog</string>
+      <string>Address</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="0" colspan="2">
-    <widget class="QLabel" name="l_audioloogGemeente">
+   <item row="2" column="0" colspan="3">
+    <widget class="QLabel" name="l_senderCity">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -69,12 +69,12 @@
       </size>
      </property>
      <property name="text">
-      <string>Postcode en Gemeente Audioloog</string>
+      <string>City</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="0" colspan="2">
-    <widget class="QLabel" name="l_audioloogTelefoon">
+   <item row="3" column="0" colspan="3">
+    <widget class="QLabel" name="l_senderTelephone">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -82,12 +82,12 @@
       </size>
      </property>
      <property name="text">
-      <string>Telefoonnr Audioloog</string>
+      <string>Telephone</string>
      </property>
     </widget>
    </item>
-   <item row="4" column="0" colspan="2">
-    <widget class="QLabel" name="l_audioloogGSM">
+   <item row="4" column="0" colspan="3">
+    <widget class="QLabel" name="l_senderMobile">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -95,11 +95,11 @@
       </size>
      </property>
      <property name="text">
-      <string>GSM Audioloog</string>
+      <string>Mobile phone</string>
      </property>
     </widget>
    </item>
-   <item row="5" column="1">
+   <item row="5" column="1" colspan="2">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -115,8 +115,8 @@
      </property>
     </spacer>
    </item>
-   <item row="6" column="0" colspan="2">
-    <widget class="QLabel" name="l_mutualiteitNaam">
+   <item row="6" column="0" colspan="3">
+    <widget class="QLabel" name="l_addresseeName">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -124,12 +124,12 @@
       </size>
      </property>
      <property name="text">
-      <string>Naam Mutualiteit</string>
+      <string>Name</string>
      </property>
     </widget>
    </item>
-   <item row="7" column="0" colspan="2">
-    <widget class="QLabel" name="l_mutualiteitStraat">
+   <item row="7" column="0" colspan="3">
+    <widget class="QLabel" name="l_addresseeStreet">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -137,12 +137,12 @@
       </size>
      </property>
      <property name="text">
-      <string>Adres Mutualiteit</string>
+      <string>Street</string>
      </property>
     </widget>
    </item>
-   <item row="8" column="0" colspan="2">
-    <widget class="QLabel" name="l_mutualiteitGemeente">
+   <item row="8" column="0" colspan="3">
+    <widget class="QLabel" name="l_addresseeCity">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -150,11 +150,11 @@
       </size>
      </property>
      <property name="text">
-      <string>Postcode en Gemeente Mutualiteit</string>
+      <string>City</string>
      </property>
     </widget>
    </item>
-   <item row="9" column="1">
+   <item row="9" column="1" colspan="2">
     <spacer name="verticalSpacer_2">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -170,28 +170,28 @@
      </property>
     </spacer>
    </item>
-   <item row="10" column="0" colspan="2">
-    <widget class="QLabel" name="l_aanspreking">
+   <item row="10" column="0" colspan="3">
+    <widget class="QLabel" name="l_greeting">
      <property name="text">
-      <string>Geachte geneesheer-adviseur,</string>
+      <string>Greeting,</string>
      </property>
     </widget>
    </item>
    <item row="11" column="0" colspan="5">
-    <widget class="QPlainTextEdit" name="m_tekst"/>
+    <widget class="QPlainTextEdit" name="m_text"/>
    </item>
    <item row="12" column="0" colspan="2">
-    <widget class="QLabel" name="label_10">
+    <widget class="QLabel" name="l_conclusion">
      <property name="text">
-      <string>BESLUIT:</string>
+      <string>CONCLUSION:</string>
      </property>
     </widget>
    </item>
    <item row="13" column="0" colspan="5">
-    <widget class="QPlainTextEdit" name="m_besluit"/>
+    <widget class="QPlainTextEdit" name="m_conclusion"/>
    </item>
-   <item row="14" column="0" colspan="2">
-    <widget class="QLabel" name="label_12">
+   <item row="14" column="0" colspan="3">
+    <widget class="QLabel" name="l_regards">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -199,7 +199,7 @@
       </size>
      </property>
      <property name="text">
-      <string>Vriendelijke groeten,</string>
+      <string>Kind regards,</string>
      </property>
     </widget>
    </item>
@@ -219,8 +219,8 @@
      </property>
     </spacer>
    </item>
-   <item row="15" column="1">
-    <widget class="QLabel" name="l_audioloogNaam_2">
+   <item row="15" column="1" colspan="2">
+    <widget class="QLabel" name="l_senderName_2">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -228,11 +228,18 @@
       </size>
      </property>
      <property name="text">
-      <string>Naam Audioloog</string>
+      <string>Name</string>
      </property>
     </widget>
    </item>
-   <item row="16" column="1">
+   <item row="16" column="0" colspan="2">
+    <widget class="QPushButton" name="b_print">
+     <property name="text">
+      <string>Print</string>
+     </property>
+    </widget>
+   </item>
+   <item row="16" column="2" colspan="2">
     <spacer name="horizontalSpacer_2">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -245,24 +252,10 @@
      </property>
     </spacer>
    </item>
-   <item row="16" column="2">
-    <widget class="QPushButton" name="b_afdrukken">
-     <property name="text">
-      <string>Afdrukken</string>
-     </property>
-    </widget>
-   </item>
-   <item row="16" column="3">
-    <widget class="QPushButton" name="b_ok">
-     <property name="text">
-      <string>Ok</string>
-     </property>
-    </widget>
-   </item>
    <item row="16" column="4">
-    <widget class="QPushButton" name="b_annuleren">
-     <property name="text">
-      <string>Annuleren</string>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
      </property>
     </widget>
    </item>

@@ -5,7 +5,7 @@
 
 namespace View
 {
-    class BriefMutualiteit;
+    class Letter;
 }
 
 namespace Model
@@ -19,7 +19,7 @@ namespace Presenter
     {
     Q_OBJECT
     public:
-        explicit BriefMutualiteit(View::BriefMutualiteit &view, Model::BriefMutualiteit &model);
+        explicit BriefMutualiteit(View::Letter &view, Model::BriefMutualiteit &model);
         virtual ~BriefMutualiteit();
 
         void setup();
@@ -29,7 +29,7 @@ namespace Presenter
         void print();
 
     private:
-        View::BriefMutualiteit &m_view;
+        View::Letter &m_view;
         Model::BriefMutualiteit &m_model;
     };
 }

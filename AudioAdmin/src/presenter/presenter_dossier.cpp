@@ -9,9 +9,7 @@
 #include "../model/model_mutualiteit.h"
 #include "../model/model_universum.h"
 #include "../view/view_dossier.h"
-#include "../view/view_briefarts.h"
-#include "../view/view_briefklant.h"
-#include "../view/view_briefmutualiteit.h"
+#include "../view/view_letter.h"
 #include "../view/view_factuur.h"
 #include "../view/view_meetgegevens.h"
 
@@ -289,7 +287,7 @@ void Dossier::briefArtsTonen()
     setup();
 
     // Create a presenter and open the view
-    View::BriefArts briefArtsView(m_view.getParentWindow());
+    View::Letter briefArtsView(true, m_view.getParentWindow());
     BriefArts briefArts(briefArtsView, m_model.getBriefArts());
     briefArts.setup();
     if (briefArtsView.exec() == QDialog::Accepted)
@@ -306,7 +304,7 @@ void Dossier::briefKlantTonen()
     setup();
 
     // Create a presenter and open the view
-    View::BriefKlant briefKlantView(m_view.getParentWindow());
+    View::Letter briefKlantView(false, m_view.getParentWindow());
     BriefKlant briefKlant(briefKlantView, m_model.getBriefKlant());
     briefKlant.setup();
     if (briefKlantView.exec() == QDialog::Accepted)
@@ -323,7 +321,7 @@ void Dossier::briefMutualiteitTonen()
     setup();
 
     // Create a presenter and open the view
-    View::BriefMutualiteit briefMutualiteitView(m_view.getParentWindow());
+    View::Letter briefMutualiteitView(true, m_view.getParentWindow());
     BriefMutualiteit briefMutualiteit(briefMutualiteitView, m_model.getBriefMutualiteit());
     briefMutualiteit.setup();
     if (briefMutualiteitView.exec() == QDialog::Accepted)

@@ -1,16 +1,13 @@
 CONFIG += debug_and_release designer qt warn_on
 DESTDIR = bin
-FORMS = ui/briefarts.ui \
- ui/briefklant.ui \
- ui/briefmutualiteit.ui \
+FORMS = \
  ui/etiketten.ui \
  ui/factuur.ui \
  ui/instellingen.ui \
  ui/meetgegevens.ui \
  ui/universum.ui \
-    ui/toevoegenklant.ui \
-    ui/toevoegenarts.ui \
-    ui/toevoegenmutualiteit.ui
+    ui/adddialog.ui \
+    ui/letter.ui
 HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
  ../AudioPlugin/src/vocaleaudiometriewidget.h \
  src/model/model_arts.h \
@@ -27,9 +24,6 @@ HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
  src/presenter/presenter_mutualiteit.h \
  src/presenter/presenter_universum.h \
  src/view/view_arts.h \
- src/view/view_briefarts.h \
- src/view/view_briefklant.h \
- src/view/view_briefmutualiteit.h \
  src/view/view_dossier.h \
  src/view/view_etiketten.h \
  src/view/view_factuur.h \
@@ -37,16 +31,15 @@ HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
  src/view/view_meetgegevens.h \
  src/view/view_mutualiteit.h \
  src/view/view_universum.h \
-    src/view/view_toevoegenklant.h \
-    src/view/view_toevoegenarts.h \
-    src/view/view_toevoegenmutualiteit.h \
     src/presenter/presenter_briefklant.h \
     src/model/model_briefklant.h \
     src/presenter/presenter_briefmutualiteit.h \
     src/model/model_briefmutualiteit.h \
     src/model/model_briefarts.h \
     src/presenter/presenter_briefarts.h \
-    src/presenter/presenter_meetgegevens.h
+    src/presenter/presenter_meetgegevens.h \
+    src/view/view_adddialog.h \
+    src/view/view_letter.h
 MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml
@@ -68,9 +61,6 @@ SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
  src/presenter/presenter_mutualiteit.cpp \
  src/presenter/presenter_universum.cpp \
  src/view/view_arts.cpp \
- src/view/view_briefarts.cpp \
- src/view/view_briefklant.cpp \
- src/view/view_briefmutualiteit.cpp \
  src/view/view_dossier.cpp \
  src/view/view_etiketten.cpp \
  src/view/view_factuur.cpp \
@@ -78,16 +68,15 @@ SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
  src/view/view_meetgegevens.cpp \
  src/view/view_mutualiteit.cpp \
  src/view/view_universum.cpp \
-    src/view/view_toevoegenklant.cpp \
-    src/view/view_toevoegenarts.cpp \
-    src/view/view_toevoegenmutualiteit.cpp \
     src/presenter/presenter_briefklant.cpp \
     src/model/model_briefklant.cpp \
     src/presenter/presenter_briefmutualiteit.cpp \
     src/model/model_briefmutualiteit.cpp \
     src/model/model_briefarts.cpp \
     src/presenter/presenter_briefarts.cpp \
-    src/presenter/presenter_meetgegevens.cpp
+    src/presenter/presenter_meetgegevens.cpp \
+    src/view/view_adddialog.cpp \
+    src/view/view_letter.cpp
 TEMPLATE = app
 UI_DIR = build
 TRANSLATIONS = translations/audioadmin_nl.ts
