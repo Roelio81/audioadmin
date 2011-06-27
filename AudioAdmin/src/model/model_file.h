@@ -56,8 +56,8 @@ namespace Model
         const Letter &getBriefMutualiteit() const { return m_briefMutualiteit; }
         Invoice &getFactuur() { return m_invoice; }
         const Invoice &getFactuur() const { return m_invoice; }
-        Klant &getKlant() { return m_customer; }
-        const Klant &getKlant() const { return m_customer; }
+        Customer &getCustomer() { return m_customer; }
+        const Customer &getCustomer() const { return m_customer; }
         Measurements &getMeetgegevens() { return m_meetgegevens; }
         const Measurements &getMeetgegevens() const { return m_meetgegevens; }
 
@@ -113,7 +113,7 @@ namespace Model
         Letter m_letterCustomer;
         Letter m_briefMutualiteit;
         Invoice m_invoice;
-        Klant m_customer;
+        Customer m_customer;
         Measurements m_meetgegevens;
     };
 }

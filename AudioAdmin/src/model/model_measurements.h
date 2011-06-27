@@ -15,8 +15,9 @@ namespace Model
         explicit Measurements();
         virtual ~Measurements();
 
-        void fromDomElement(const QDomElement &e);
-        QDomElement toDomElement(QDomDocument &d) const;
+        // --- ISerializable ---
+        virtual void fromDomElement(const QDomElement &e);
+        virtual QDomElement toDomElement(QDomDocument &d) const;
 
         // --- Getters ---
         int getLGRechtsData(int Hz);

@@ -3,7 +3,7 @@
 #include "model_physician.h"
 #include "model_file.h"
 #include "model_settings.h"
-#include "model_insurance.h"
+#include "model_insurancecompany.h"
 
 #include <QDomDocument>
 #include <QDomElement>
@@ -14,11 +14,11 @@
 
 using namespace Model;
 
-Universe::Universe(const QString &bestandsNaam)
-: m_bestandsNaam(bestandsNaam)
-, m_instellingen(new Settings(*this))
+Universe::Universe(const QString &fileName)
+: m_fileName(fileName)
+, m_settings(new Settings(*this))
 {
-    openen();
+    open();
 }
 
 Universe::~Universe()
@@ -27,13 +27,13 @@ Universe::~Universe()
 
 void Universe::fromDomElement(const QDomElement &root)
 {
-    // Eerst instellingen laden: dit is nodig voor de default BTW percentages...
-    Q_ASSERT(m_instellingen);
+    // First load settings: we need this for the default VAT percentage...
+    Q_ASSERT(m_settings);
     QDomElement instellingen = root.firstChildElement("instellingen");
     if (!instellingen.isNull())
-        m_instellingen->fromDomElement(instellingen);
+        m_settings->fromDomElement(instellingen);
 
-    // Nu artsen, mutualiteiten en dossiers openen (kan in gelijk welke volgorde)
+    // Now load the entities, i.e., physicians, insurance companies and file (the order doesn't really matter)
     for (QDomElement e = root.firstChildElement(); !e.isNull(); e = e.nextSiblingElement())
     {
         if (e.tagName() == "nkoArtsen")
@@ -45,7 +45,7 @@ void Universe::fromDomElement(const QDomElement &root)
                 int artsId = artsElement.attribute("id").toInt();
                 Physician *arts = new Physician(artsId);
                 arts->fromDomElement(artsElement);
-                m_artsenLijst.push_back(arts);
+                m_physicians.push_back(arts);
             }
         }
         else if (e.tagName() == "mutualiteiten")
@@ -57,19 +57,19 @@ void Universe::fromDomElement(const QDomElement &root)
                 int mutId = mutElement.attribute("id").toInt();
                 InsuranceCompany *mutualiteit = new InsuranceCompany(mutId);
                 mutualiteit->fromDomElement(mutElement);
-                m_mutualiteitenLijst.push_back(mutualiteit);
+                m_insuranceCompanies.push_back(mutualiteit);
             }
         }
         else if (e.tagName() == "dossiers")
         {
-            for (QDomElement dossierElement = e.firstChildElement(); !dossierElement.isNull(); dossierElement = dossierElement.nextSiblingElement())
+            for (QDomElement fileElement = e.firstChildElement(); !fileElement.isNull(); fileElement = fileElement.nextSiblingElement())
             {
-                Q_ASSERT(dossierElement.tagName() == "dossier");
-                Q_ASSERT(dossierElement.hasAttribute("id"));
-                int dossierId = dossierElement.attribute("id").toInt();
-                File *dossier = new File(dossierId, *this);
-                dossier->fromDomElement(dossierElement);
-                m_dossierLijst.push_back(dossier);
+                Q_ASSERT(fileElement.tagName() == "dossier");
+                Q_ASSERT(fileElement.hasAttribute("id"));
+                int dossierId = fileElement.attribute("id").toInt();
+                File *file = new File(dossierId, *this);
+                file->fromDomElement(fileElement);
+                m_files.push_back(file);
             }
         }
     }
@@ -79,12 +79,12 @@ QDomElement Universe::toDomElement(QDomDocument &domDoc) const
 {
     QDomElement result = domDoc.createElement("administratie");
 
-    Q_ASSERT(m_instellingen);
-    QDomElement instellingen = m_instellingen->toDomElement(domDoc);
+    Q_ASSERT(m_settings);
+    QDomElement instellingen = m_settings->toDomElement(domDoc);
     result.appendChild(instellingen);
 
     QDomElement nkoArtsen = domDoc.createElement("nkoArtsen");
-    for (QVector<Physician *>::const_iterator itArts = m_artsenLijst.begin(); itArts != m_artsenLijst.end(); ++itArts)
+    for (QVector<Physician *>::const_iterator itArts = m_physicians.begin(); itArts != m_physicians.end(); ++itArts)
     {
         Physician *arts = *itArts;
         Q_ASSERT(arts);
@@ -93,7 +93,7 @@ QDomElement Universe::toDomElement(QDomDocument &domDoc) const
     result.appendChild(nkoArtsen);
 
     QDomElement mutualiteiten = domDoc.createElement("mutualiteiten");
-    for (QVector<InsuranceCompany *>::const_iterator itMutualiteit = m_mutualiteitenLijst.begin(); itMutualiteit != m_mutualiteitenLijst.end(); ++itMutualiteit)
+    for (QVector<InsuranceCompany *>::const_iterator itMutualiteit = m_insuranceCompanies.begin(); itMutualiteit != m_insuranceCompanies.end(); ++itMutualiteit)
     {
         InsuranceCompany *mutualiteit = *itMutualiteit;
         Q_ASSERT(mutualiteit);
@@ -102,7 +102,7 @@ QDomElement Universe::toDomElement(QDomDocument &domDoc) const
     result.appendChild(mutualiteiten);
 
     QDomElement dossiers = domDoc.createElement("dossiers");
-    for (QVector<File *>::const_iterator itDossier = m_dossierLijst.begin(); itDossier != m_dossierLijst.end(); ++itDossier)
+    for (QVector<File *>::const_iterator itDossier = m_files.begin(); itDossier != m_files.end(); ++itDossier)
     {
         File *dossier = *itDossier;
         Q_ASSERT(dossier);
@@ -113,38 +113,32 @@ QDomElement Universe::toDomElement(QDomDocument &domDoc) const
     return result;
 }
 
-bool Universe::openen()
+bool Universe::open()
 {
-    // Eerst het bestand proberen te openen alvorens het model leeg te maken
-    QFile file(m_bestandsNaam);
+    // First try to open the file before clearing the model
+    QFile file(m_fileName);
     if (!file.open(QIODevice::ReadOnly))
-    {
         return false;
-    }
 
-    m_artsenLijst.clear();
-    m_mutualiteitenLijst.clear();
-    m_dossierLijst.clear();
+    m_physicians.clear();
+    m_insuranceCompanies.clear();
+    m_files.clear();
 
     QDomDocument doc;
     if (!doc.setContent(&file))
-    {
         return false;
-    }
     QDomElement root = doc.documentElement();
-    Q_ASSERT( root.tagName() == "administratie");
+    Q_ASSERT(root.tagName() == "administratie");
 
     fromDomElement(root);
     return true;
 }
 
-bool Universe::bewaren()
+bool Universe::save()
 {
-    QFile file(m_bestandsNaam);
+    QFile file(m_fileName);
     if (!file.open(QIODevice::ReadWrite|QIODevice::Truncate))
-    {
         return false;
-    }
 
     QDomDocument doc;
     QDomElement element = toDomElement(doc);
@@ -155,39 +149,34 @@ bool Universe::bewaren()
     return true;
 }
 
-Physician *Universe::toevoegenArts(const QString &voornaam, const QString &naam)
+Physician *Universe::addPhysician(const QString &firstName, const QString &name)
 {
     int maxId = 0;
-    for (QVector<Physician *>::iterator itArts = m_artsenLijst.begin(); itArts != m_artsenLijst.end(); ++itArts)
+    for (QVector<Physician *>::iterator itArts = m_physicians.begin(); itArts != m_physicians.end(); ++itArts)
     {
-        Physician *arts = *itArts;
-        maxId = std::max(maxId, arts->getId());
+        Physician *physician = *itArts;
+        maxId = std::max(maxId, physician->getId());
     }
-    Physician *arts = new Physician(maxId+1);
-    arts->setFirstName(voornaam);
-    arts->setName(naam);
-    m_artsenLijst.push_back(arts);
-    return arts;
+    Physician *physician = new Physician(maxId+1);
+    physician->setFirstName(firstName);
+    physician->setName(name);
+    m_physicians.push_back(physician);
+    return physician;
 }
 
-void Universe::verwijderenArts(int id)
+void Universe::removePhysician(int id)
 {
-    Physician *arts = getArts(id);
+    Physician *arts = getPhysician(id);
     if (!arts)
         return;
-    int posInVector = m_artsenLijst.indexOf(arts, 0);
-    Q_ASSERT(posInVector >= 0 && posInVector < m_artsenLijst.size());
-    m_artsenLijst.erase(m_artsenLijst.begin() + posInVector);
+    int posInVector = m_physicians.indexOf(arts, 0);
+    Q_ASSERT(posInVector >= 0 && posInVector < m_physicians.size());
+    m_physicians.erase(m_physicians.begin() + posInVector);
 }
 
-QVector<Physician *> &Universe::getArtsen()
+Physician *Universe::getPhysician(int id) const
 {
-    return m_artsenLijst;
-}
-
-Physician *Universe::getArts(int id) const
-{
-    for (QVector<Physician *>::const_iterator itArts = m_artsenLijst.begin(); itArts != m_artsenLijst.end(); ++itArts)
+    for (QVector<Physician *>::const_iterator itArts = m_physicians.begin(); itArts != m_physicians.end(); ++itArts)
     {
         Physician *arts = *itArts;
         if (arts->getId() == id)
@@ -197,81 +186,71 @@ Physician *Universe::getArts(int id) const
 }
 
 
-File *Universe::toevoegenDossier(const QString &voornaam, const QString &naam)
+File *Universe::addFile(const QString &voornaam, const QString &naam)
 {
     int maxId = 0;
-    for (QVector<File *>::iterator itDossier = m_dossierLijst.begin(); itDossier != m_dossierLijst.end(); ++itDossier)
+    for (QVector<File *>::iterator itDossier = m_files.begin(); itDossier != m_files.end(); ++itDossier)
     {
         File *dossier = *itDossier;
         maxId = std::max(maxId, dossier->getId());
     }
     File *dossier = new File(maxId+1, *this);
-    dossier->getKlant().setVoornaam(voornaam);
-    dossier->getKlant().setName(naam);
-    m_dossierLijst.push_back(dossier);
+    dossier->getCustomer().setVoornaam(voornaam);
+    dossier->getCustomer().setName(naam);
+    m_files.push_back(dossier);
     return dossier;
 }
 
-void Universe::verwijderenDossier(int id)
+void Universe::removeFile(int id)
 {
-    File *dossier = getDossier(id);
+    File *dossier = getFile(id);
     if (dossier)
     {
-        int posInVector = m_dossierLijst.indexOf(dossier, 0);
-        Q_ASSERT(posInVector >= 0 && posInVector < m_dossierLijst.size());
-        m_dossierLijst.erase(m_dossierLijst.begin() + posInVector);
+        int posInVector = m_files.indexOf(dossier, 0);
+        Q_ASSERT(posInVector >= 0 && posInVector < m_files.size());
+        m_files.erase(m_files.begin() + posInVector);
     }
 }
 
-QVector<File *> &Universe::getDossiers()
+File *Universe::getFile(int id) const
 {
-    return m_dossierLijst;
-}
-
-File *Universe::getDossier(int id) const
-{
-    for (QVector<File *>::const_iterator itDossier = m_dossierLijst.begin(); itDossier != m_dossierLijst.end(); ++itDossier)
+    for (QVector<File *>::const_iterator itDossier = m_files.begin(); itDossier != m_files.end(); ++itDossier)
     {
-        File *dossier = *itDossier;
-        if (dossier->getId() == id)
-            return dossier;
+        File *file = *itDossier;
+        if (file->getId() == id)
+            return file;
     }
     return 0;
 }
 
-InsuranceCompany *Universe::toevoegenMutualiteit(const QString &naam)
+InsuranceCompany *Universe::addInsuranceCompany(const QString &naam)
 {
     int maxId = 0;
-    for (QVector<InsuranceCompany *>::iterator itMutualiteit = m_mutualiteitenLijst.begin(); itMutualiteit != m_mutualiteitenLijst.end(); ++itMutualiteit)
+    for (QVector<InsuranceCompany *>::iterator itMutualiteit = m_insuranceCompanies.begin(); itMutualiteit != m_insuranceCompanies.end(); ++itMutualiteit)
     {
         InsuranceCompany *mutualiteit = *itMutualiteit;
         maxId = std::max(maxId, mutualiteit->getId());
     }
     InsuranceCompany *mutualiteit = new InsuranceCompany(maxId+1);
     mutualiteit->setName(naam);
-    m_mutualiteitenLijst.push_back(mutualiteit);
+    m_insuranceCompanies.push_back(mutualiteit);
     return mutualiteit;
 }
 
-void Universe::verwijderenMutualiteit(int id)
+void Universe::removeInsuranceCompany(int id)
 {
-    InsuranceCompany *mutualiteit = getMutualiteit(id);
+    InsuranceCompany *mutualiteit = getInsuranceCompany(id);
     if (mutualiteit)
     {
-        int posInVector = m_mutualiteitenLijst.indexOf(mutualiteit, 0);
-        Q_ASSERT(posInVector >= 0 && posInVector < m_mutualiteitenLijst.size());
-        m_mutualiteitenLijst.erase(m_mutualiteitenLijst.begin() + posInVector);
+        int posInVector = m_insuranceCompanies.indexOf(mutualiteit, 0);
+        Q_ASSERT(posInVector >= 0 && posInVector < m_insuranceCompanies.size());
+        m_insuranceCompanies.erase(m_insuranceCompanies.begin() + posInVector);
     }
 }
 
-QVector<InsuranceCompany *> &Universe::getMutualiteiten()
+InsuranceCompany *Universe::getInsuranceCompany(int id) const
 {
-    return m_mutualiteitenLijst;
-}
-
-InsuranceCompany *Universe::getMutualiteit(int id) const
-{
-    for (QVector<InsuranceCompany *>::const_iterator itMutualiteit = m_mutualiteitenLijst.begin(); itMutualiteit != m_mutualiteitenLijst.end(); ++itMutualiteit)
+    for (QVector<InsuranceCompany *>::const_iterator itMutualiteit = m_insuranceCompanies.begin(); itMutualiteit != m_insuranceCompanies.end(); ++itMutualiteit)
     {
         InsuranceCompany *mutualiteit = *itMutualiteit;
         if (mutualiteit->getId() == id)

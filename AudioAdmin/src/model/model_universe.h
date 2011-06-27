@@ -22,40 +22,41 @@ namespace Model
         explicit Universe(const QString &bestandsNaam);
         virtual ~Universe();
 
-        void fromDomElement(const QDomElement &root);
-        QDomElement toDomElement(QDomDocument &d) const;
+        // Load the data from file
+        bool open();
+        // Save the data to file
+        bool save();
 
+        // --- ISerializable ---
+        virtual void fromDomElement(const QDomElement &root);
+        virtual QDomElement toDomElement(QDomDocument &d) const;
+
+        // --- Getters ---
         QDate getInvalidDate() const { return QDate(1900, 1, 1); }
+        const QVector<Physician *> &getPhysicians() { return m_physicians; }
+        const QVector<File *> &getFiles() { return m_files; }
+        const QVector<InsuranceCompany *> &getInsuranceCompanies() { return m_insuranceCompanies; }
+        Settings &getSettings() { return *m_settings; }
+        const Settings &getSettings() const { return *m_settings; }
+        Physician *getPhysician(int id) const;
+        File *getFile(int id) const;
+        InsuranceCompany *getInsuranceCompany(int id) const;
 
-        bool openen();
-        bool bewaren();
-
-        Physician *toevoegenArts(const QString &voornaam, const QString &naam);
-        void verwijderenArts(int id);
-        QVector<Physician *> &getArtsen();
-        Physician *getArts(int id) const;
-
-        File *toevoegenDossier(const QString &voornaam, const QString &naam);
-        void verwijderenDossier(int id);
-        QVector<File *> &getDossiers();
-        File *getDossier(int klantId) const;
-
-        InsuranceCompany *toevoegenMutualiteit(const QString &naam);
-        void verwijderenMutualiteit(int id);
-        QVector<InsuranceCompany *> &getMutualiteiten();
-        InsuranceCompany *getMutualiteit(int id) const;
-
-        Settings &getSettings() { return *m_instellingen; }
-        const Settings &getSettings() const { return *m_instellingen; }
+        // --- Methods to add and remove entities ---
+        Physician *addPhysician(const QString &firstName, const QString &name);
+        File *addFile(const QString &voornaam, const QString &naam);
+        InsuranceCompany *addInsuranceCompany(const QString &naam);
+        void removePhysician(int id);
+        void removeFile(int id);
+        void removeInsuranceCompany(int id);
 
     private:
-        void openInstellingen(QDomElement &element);
-
-        QString m_bestandsNaam;
-        QVector<Physician *> m_artsenLijst;
-        QVector<File *> m_dossierLijst;
-        QVector<InsuranceCompany *> m_mutualiteitenLijst;
-        Settings *m_instellingen;
+        // --- Data members ---
+        QString m_fileName;
+        QVector<Physician *> m_physicians;
+        QVector<File *> m_files;
+        QVector<InsuranceCompany *> m_insuranceCompanies;
+        Settings *m_settings;
     };
 }
 

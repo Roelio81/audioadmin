@@ -509,12 +509,12 @@ void File::toonBriefMutualiteit()
 
 void File::toonFactuur()
 {
-    emit factuurTonen();
+    emit showInvoice();
 }
 
 void File::toonMeetgegevens()
 {
-    emit meetgegevensTonen();
+    emit showMeasurements();
 }
 
 void File::toonMutualiteit(int value)

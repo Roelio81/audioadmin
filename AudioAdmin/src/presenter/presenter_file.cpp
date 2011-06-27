@@ -6,7 +6,7 @@
 #include "../model/model_physician.h"
 #include "../model/model_file.h"
 #include "../model/model_settings.h"
-#include "../model/model_insurance.h"
+#include "../model/model_insurancecompany.h"
 #include "../model/model_universe.h"
 #include "../view/view_file.h"
 #include "../view/view_letter.h"
@@ -18,40 +18,29 @@ using namespace Presenter;
 Dossier::Dossier(View::File &view, Model::File &model)
 : m_view(view)
 , m_model(model)
-, m_universum(0)
 , m_factuur(0)
 {
     connect(&m_view, SIGNAL(briefArtsTonen()), this, SLOT(briefArtsTonen()));
     connect(&m_view, SIGNAL(briefKlantTonen()), this, SLOT(briefKlantTonen()));
     connect(&m_view, SIGNAL(briefMutualiteitTonen()), this, SLOT(briefMutualiteitTonen()));
-    connect(&m_view, SIGNAL(factuurTonen()), this, SLOT(factuurTonen()));
-    connect(&m_view, SIGNAL(meetgegevensTonen()), this, SLOT(meetgegevensTonen()));
+    connect(&m_view, SIGNAL(showInvoice()), this, SLOT(showInvoice()));
+    connect(&m_view, SIGNAL(showMeasurements()), this, SLOT(showMeasurements()));
 }
 
 Dossier::~Dossier()
 {
 }
 
-void Dossier::attachToUniversum(Model::Universe *universum)
-{
-    m_universum = universum;
-}
-
-void Dossier::detachFromUniversum()
-{
-    m_universum = 0;
-}
-
 void Dossier::setup()
 {
-    Model::Klant &klantModel = m_model.getKlant();
+    Model::Customer &klantModel = m_model.getCustomer();
     m_view.leegAanspreektitels();
     m_view.toevoegenAanspreektitel("Dhr.");
     m_view.toevoegenAanspreektitel("Mevr.");
     m_view.setAanspreektitel(klantModel.getAanspreektitel());
     m_view.setNaam(klantModel.getName());
-    m_view.setVoornaam(klantModel.getVoornaam());
-    m_view.setStraat(klantModel.getStraat());
+    m_view.setVoornaam(klantModel.getFirstName());
+    m_view.setStraat(klantModel.getStreet());
     m_view.setPostcode(klantModel.getPostalCode());
     m_view.setGemeente(klantModel.getCity());
     m_view.setTelefoon(klantModel.getTelephone());
@@ -84,7 +73,7 @@ void Dossier::teardown()
 {
     bool changed = false;
     bool apparaatchanged = false;
-    Model::Klant &klantModel = m_model.getKlant();
+    Model::Customer &klantModel = m_model.getCustomer();
     if (klantModel.getAanspreektitel() != m_view.getAanspreektitel())
     {
         klantModel.setAanspreektitel(m_view.getAanspreektitel());
@@ -95,12 +84,12 @@ void Dossier::teardown()
         klantModel.setName(m_view.getNaam());
         changed = true;
     }
-    if (klantModel.getVoornaam() != m_view.getVoornaam())
+    if (klantModel.getFirstName() != m_view.getVoornaam())
     {
         klantModel.setVoornaam(m_view.getVoornaam());
         changed = true;
     }
-    if (klantModel.getStraat() != m_view.getStraat())
+    if (klantModel.getStreet() != m_view.getStraat())
     {
         klantModel.setStreet(m_view.getStraat());
         changed = true;
@@ -250,23 +239,22 @@ void Dossier::teardown()
     }
 }
 
-void Dossier::setupFactuur()
+void Dossier::setupInvoice()
 {
     teardown();
     setup();
 
     Q_ASSERT(m_factuur);
-    m_factuur->setKlantNaam(m_model.getKlant().getAanspreektitel() + " " + m_model.getKlant().getName() + " " + m_model.getKlant().getVoornaam());
-    m_factuur->setKlantStraat(m_model.getKlant().getStraat());
-    m_factuur->setKlantGemeente(QString::number(m_model.getKlant().getPostalCode()) + " " + m_model.getKlant().getCity());
+    m_factuur->setKlantNaam(m_model.getCustomer().getAanspreektitel() + " " + m_model.getCustomer().getName() + " " + m_model.getCustomer().getFirstName());
+    m_factuur->setKlantStraat(m_model.getCustomer().getStreet());
+    m_factuur->setKlantGemeente(QString::number(m_model.getCustomer().getPostalCode()) + " " + m_model.getCustomer().getCity());
 
-    Q_ASSERT(m_universum);
-    Model::Settings &instellingen = m_universum->getSettings();
-    m_factuur->setAudioloogNaam(instellingen.getName());
-    m_factuur->setAudioloogStraat(instellingen.getStreet());
-    m_factuur->setAudioloogGemeente(QString::number(instellingen.getPostalCode()) + " " + instellingen.getCity());
-    m_factuur->setAudioloogTelefoon(instellingen.getTelephone());
-    m_factuur->setAudioloogGSM(instellingen.getMobilePhone());
+    const Model::Settings &settings = m_model.getUniversum().getSettings();
+    m_factuur->setAudioloogNaam(settings.getName());
+    m_factuur->setAudioloogStraat(settings.getStreet());
+    m_factuur->setAudioloogGemeente(QString::number(settings.getPostalCode()) + " " + settings.getCity());
+    m_factuur->setAudioloogTelefoon(settings.getTelephone());
+    m_factuur->setAudioloogGSM(settings.getMobilePhone());
 
     m_factuur->setNummer(m_model.getFactuur().getNumber());
     m_factuur->setDatum(m_model.getFactuur().getDate());
@@ -331,14 +319,14 @@ void Dossier::briefMutualiteitTonen()
     }
 }
 
-void Dossier::factuurTonen()
+void Dossier::showInvoice()
 {
     if (!m_factuur)
     {
         m_factuur = new View::Factuur(m_view.getParentWindow());
     }
 
-    setupFactuur();
+    setupInvoice();
     m_factuur->show();
 }
 
@@ -362,7 +350,7 @@ void Dossier::factuurBewaren()
     emit edited(m_model.getId());
 }
 
-void Dossier::meetgegevensTonen()
+void Dossier::showMeasurements()
 {
     // Create a presenter and open the view
     View::Measurements meetgegevensView(m_view.getParentWindow());

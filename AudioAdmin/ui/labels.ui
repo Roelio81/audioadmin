@@ -17,7 +17,7 @@
    <enum>Qt::DefaultContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>Etiketten</string>
+   <string>Labels</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../icons.qrc">
@@ -102,7 +102,7 @@
      <item>
       <widget class="QPushButton" name="b_afdrukken">
        <property name="text">
-        <string>Afdrukken</string>
+        <string>Print</string>
        </property>
       </widget>
      </item>

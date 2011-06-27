@@ -28,9 +28,6 @@ namespace Presenter
         explicit Dossier(View::File &view, Model::File &model);
         virtual ~Dossier();
 
-        void attachToUniversum(Model::Universe *universum);
-        void detachFromUniversum();
-
         // --- IPresenter ---
         void setup();
         void teardown();
@@ -43,13 +40,13 @@ namespace Presenter
         void briefArtsTonen();
         void briefKlantTonen();
         void briefMutualiteitTonen();
-        void factuurTonen();
+        void showInvoice();
         void factuurSluiten();
         void factuurBewaren();
-        void meetgegevensTonen();
+        void showMeasurements();
 
     private:
-        void setupFactuur();
+        void setupInvoice();
 
         View::File &m_view;
         Model::File &m_model;

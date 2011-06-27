@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Instellingen</class>
- <widget class="QDialog" name="Instellingen">
+ <class>Settings</class>
+ <widget class="QDialog" name="Settings">
   <property name="windowModality">
    <enum>Qt::WindowModal</enum>
   </property>
@@ -17,7 +17,7 @@
    <enum>Qt::DefaultContextMenu</enum>
   </property>
   <property name="windowTitle">
-   <string>Instellingen</string>
+   <string>Settings</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../icons.qrc">

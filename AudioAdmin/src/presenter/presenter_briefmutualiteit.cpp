@@ -3,7 +3,7 @@
 #include "../model/model_letter.h"
 #include "../model/model_file.h"
 #include "../model/model_settings.h"
-#include "../model/model_insurance.h"
+#include "../model/model_insurancecompany.h"
 #include "../model/model_universe.h"
 #include "../view/view_letter.h"
 #include "../view/view_measurements.h"
@@ -27,33 +27,33 @@ BriefMutualiteit::~BriefMutualiteit()
 void BriefMutualiteit::setup()
 {
     const Model::File &file = m_model.getFile();
-    const Model::Klant &klant = file.getKlant();
-    const Model::Settings &instellingen = file.getUniversum().getSettings();
-    bool sex = (klant.getAanspreektitel() == "Dhr.");
+    const Model::Customer &customer = file.getCustomer();
+    const Model::Settings &settings = file.getUniversum().getSettings();
+    bool sex = (customer.getAanspreektitel() == "Dhr.");
 
     m_view.setGreeting("Geachte geneesheer-adviseur,");
     Q_ASSERT(file.getMutualiteit() >= 0);
-    Model::InsuranceCompany *mutualiteit = file.getUniversum().getMutualiteit(file.getMutualiteit());
-    Q_ASSERT(mutualiteit);
-    m_view.setAddresseeName(mutualiteit->getName());
-    m_view.setAddresseeStreet(mutualiteit->getStraat());
-    m_view.setAddresseeCity(QString::number(mutualiteit->getPostalCode()) + " " + mutualiteit->getCity());
-    m_view.setSenderName(instellingen.getName());
-    m_view.setSenderStreet(instellingen.getStreet());
-    m_view.setSenderCity(QString::number(instellingen.getPostalCode()) + " " + instellingen.getCity());
-    m_view.setSenderTelephone(instellingen.getTelephone());
-    m_view.setSenderMobilePhone(instellingen.getMobilePhone());
+    Model::InsuranceCompany *insuranceCompany = file.getUniversum().getInsuranceCompany(file.getMutualiteit());
+    Q_ASSERT(insuranceCompany);
+    m_view.setAddresseeName(insuranceCompany->getName());
+    m_view.setAddresseeStreet(insuranceCompany->getStreet());
+    m_view.setAddresseeCity(QString::number(insuranceCompany->getPostalCode()) + " " + insuranceCompany->getCity());
+    m_view.setSenderName(settings.getName());
+    m_view.setSenderStreet(settings.getStreet());
+    m_view.setSenderCity(QString::number(settings.getPostalCode()) + " " + settings.getCity());
+    m_view.setSenderTelephone(settings.getTelephone());
+    m_view.setSenderMobilePhone(settings.getMobilePhone());
 
     QString postalDate = m_model.getPostalDate();
     if (postalDate.isEmpty())
-        postalDate = instellingen.getCity() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
+        postalDate = settings.getCity() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
     m_view.setPostalDate(postalDate);
     QString text = m_model.getText();
     if (text.isEmpty())
     {
         text = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
-        text += (sex ? "mijnheer " : "mevrouw ") + klant.getName() + " " + klant.getVoornaam();
-        QDate dateOfBirth = klant.getGeboorteDatum();
+        text += (sex ? "mijnheer " : "mevrouw ") + customer.getName() + " " + customer.getFirstName();
+        QDate dateOfBirth = customer.getGeboorteDatum();
         if (dateOfBirth != file.getUniversum().getInvalidDate())
         {
             text += " (" + QString(char(0xb0)) + " " + dateOfBirth.toString("dd-MM-yyyy") + "). ";
@@ -116,7 +116,7 @@ void BriefMutualiteit::teardown()
 void BriefMutualiteit::print()
 {
     const Model::File &file = m_model.getFile();
-    const Model::InsuranceCompany *mutualiteit = file.getUniversum().getMutualiteit(file.getMutualiteit());
+    const Model::InsuranceCompany *mutualiteit = file.getUniversum().getInsuranceCompany(file.getMutualiteit());
     const Model::Settings &settings = file.getUniversum().getSettings();
 
     QPrintDialog printDialog(&m_view);
@@ -164,7 +164,7 @@ void BriefMutualiteit::print()
         painter.setFont(font);
         lineheight = painter.fontMetrics().height();
         painter.drawText(150*mmx, 62*mmy + (0*lineheight), mutualiteit->getName());
-        painter.drawText(150*mmx, 62*mmy + (1*lineheight), mutualiteit->getStraat());
+        painter.drawText(150*mmx, 62*mmy + (1*lineheight), mutualiteit->getStreet());
         painter.drawText(150*mmx, 62*mmy + (2*lineheight), QString::number(mutualiteit->getPostalCode()) + " " + mutualiteit->getCity());
 
         // Print the actual text

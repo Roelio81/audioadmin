@@ -110,8 +110,8 @@ namespace View
         void briefArtsTonen();
         void briefKlantTonen();
         void briefMutualiteitTonen();
-        void factuurTonen();
-        void meetgegevensTonen();
+        void showInvoice();
+        void showMeasurements();
 
     private:
         // --- Data members ---

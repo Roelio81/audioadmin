@@ -6,17 +6,17 @@
 using namespace Model;
 
 
-Klant::Klant(const Universe &universum)
+Customer::Customer(const Universe &universum)
     : m_universum(universum)
     , m_geboorteDatum(universum.getInvalidDate())
 {
 }
 
-Klant::~Klant()
+Customer::~Customer()
 {
 }
 
-void Klant::fromDomElement(const QDomElement &e)
+void Customer::fromDomElement(const QDomElement &e)
 {
     for (QDomElement element = e.firstChildElement(); !element.isNull(); element = element.nextSiblingElement())
     {
@@ -37,7 +37,7 @@ void Klant::fromDomElement(const QDomElement &e)
     Entity::fromDomElement(e);
 }
 
-QDomElement Klant::toDomElement(QDomDocument &d) const
+QDomElement Customer::toDomElement(QDomDocument &d) const
 {
     QDomElement result = Entity::toDomElement(d);
     QDomElement voornaam = d.createElement("voornaam");

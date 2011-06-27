@@ -28,20 +28,21 @@ namespace View
         Instellingen &getInstellingen();
 
         void bewarenBijAfsluiten();
-        void markeerArtsenLijstStatus(bool wijzigingen);
-        void leegArtsenLijst();
-        void toevoegenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
-        void wijzigenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
+        void clearPhysicianList();
+        void addPhysician(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
+        void changePhysician(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
         void leegHoorapparatenLijst();
         void toevoegenHoorapparaat(const QString &merk, const QString &type, double prijs, const QDate &datumPrijs);
-        void markeerKlantenLijstStatus(bool wijzigingen);
         void leegKlantenLijst();
-        void toevoegenKlant(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
-        void wijzigenKlant(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
-        void markeerMutualiteitenLijstStatus(bool wijzigingen);
+        void addCustomer(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
+        void changeCustomer(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
         void leegMutualiteitenLijst();
-        void toevoegenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
+        void addInsuranceCompany(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
         void wijzigenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
+
+        void setPhysicianListChanged(bool changed);
+        void setFileListChanged(bool changed);
+        void setInsuranceCompanyListChanged(bool changed);
 
         int artsIndexToId(int index) const;
         int artsIdToIndex(int id) const;
@@ -53,8 +54,8 @@ namespace View
         QSet<QString> getMerkHoorapparaten() const;
         QSet<QString> getTypeHoorapparaten(const QString &merk) const;
 
-        void selecteerArts(int id);
-        void selecteerKlant(int id);
+        void selectPhysician(int id);
+        void selectCustomer(int id);
         void selecteerMutualiteit(int id);
 
         // This method should disappear and be replaced with subpanels
@@ -71,18 +72,19 @@ namespace View
         void bewaren();
         void etikettenAfdrukken();
         void omtrent();
-        void selecteerArts(int currentRow, int currentColumn, int previousRow, int previousColumn);
-        void selecteerKlant(int currentRow, int currentColumn, int previousRow, int previousColumn);
+        void selectPhysician(int currentRow, int currentColumn, int previousRow, int previousColumn);
+        void selectCustomer(int currentRow, int currentColumn, int previousRow, int previousColumn);
         void selecteerMutualiteit(int currentRow, int currentColumn, int previousRow, int previousColumn);
-        void toevoegenArts();
-        void verwijderenArts();
-        void zoekenArts();
-        void toevoegenDossier();
-        void verwijderenDossier();
-        void zoekenDossier();
-        void toevoegenMutualiteit();
-        void verwijderenMutualiteit();
-        void zoekenMutualiteit();
+        void addPhysician();
+        void removePhysician();
+        void findPhysician();
+        void addFile();
+        void removeFile();
+        void findFile();
+        void addInsuranceCompany();
+        void removeInsuranceCompany();
+        void findInsuranceCompany();
+        void markTabChanged(int tabIndex, bool changed);
 
     signals:
         void afsluitenSignal();

@@ -35,22 +35,22 @@ namespace Presenter
         void instellingen();
         void okInstellingen();
         void annuleerInstellingen();
-        void toonArts(int id);
-        void toonDossier(int id);
-        void toonMutualiteit(int id);
-        void verwijderArts(int id);
-        void verwijderDossier(int id);
-        void verwijderMutualiteit(int id);
-        void toevoegenArts(QString voornaam, QString naam);
-        void toevoegenDossier(QString voornaam, QString naam);
+        void showPhysician(int id);
+        void showFile(int id);
+        void showInsuranceCompany(int id);
+        void removePhysician(int id);
+        void removeFile(int id);
+        void removeInsuranceCompany(int id);
+        void addPhysician(QString voornaam, QString naam);
+        void addFile(QString voornaam, QString naam);
         void toevoegenMutualiteit(QString naam);
         void editedPhysician(int id);
         void editedFile(int id);
         void editedInsuranceCompany(int id);
         void hoorapparaatGewijzigd();
-        void teardownArts();
-        void teardownDossier();
-        void teardownMutualiteit();
+        void teardownPhysician();
+        void teardownFile();
+        void teardownInsuranceCompany();
         void setupPhysician();
         void setupFile();
         void setupInsuranceCompany();
@@ -69,14 +69,14 @@ namespace Presenter
         View::Universe &m_view;
         Model::Universe &m_model;
 
-        Presenter::Physician *m_artsPresenter;
-        Presenter::Dossier *m_dossierPresenter;
-        Presenter::InsuranceCompany *m_mutualiteitPresenter;
+        Presenter::Physician *m_physicianPresenter;
+        Presenter::Dossier *m_filePresenter;
+        Presenter::InsuranceCompany *m_insuranceCompanyPresenter;
 
         int m_arts;
-        int m_dossier;
-        int m_mutualiteit;
-        bool m_gewijzigd;
+        int m_file;
+        int m_insuranceCompany;
+        bool m_changed;
     };
 }
 

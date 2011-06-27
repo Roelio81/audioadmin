@@ -30,9 +30,9 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tabDossier">
+      <widget class="QWidget" name="tabFile">
        <attribute name="title">
-        <string>Dossiers</string>
+        <string>Files</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="0" column="0">
@@ -162,7 +162,7 @@
                <item>
                 <widget class="QLabel" name="l_klantGeboorteDatum">
                  <property name="text">
-                  <string>Geboortedatum</string>
+                  <string>Date of birth</string>
                  </property>
                 </widget>
                </item>
@@ -529,7 +529,7 @@
                 <item row="0" column="0">
                  <widget class="QLabel" name="l_rechterHoorapparaatMerk">
                   <property name="text">
-                   <string>Merk</string>
+                   <string>Brand</string>
                   </property>
                  </widget>
                 </item>
@@ -557,7 +557,7 @@
                 <item row="2" column="0">
                  <widget class="QLabel" name="l_rechterHoorapparaatSerienummer">
                   <property name="text">
-                   <string>Serienummer</string>
+                   <string>Serial number</string>
                   </property>
                  </widget>
                 </item>
@@ -567,7 +567,7 @@
                 <item row="3" column="0">
                  <widget class="QLabel" name="l_rechterHoorapparaatPrijs">
                   <property name="text">
-                   <string>Prijs (excl. BTW)</string>
+                   <string>Price (VAT excl.)</string>
                   </property>
                  </widget>
                 </item>
@@ -586,7 +586,7 @@
                 <item row="0" column="0">
                  <widget class="QLabel" name="l_linkerHoorapparaatMerk">
                   <property name="text">
-                   <string>Merk</string>
+                   <string>Brand</string>
                   </property>
                  </widget>
                 </item>
@@ -614,7 +614,7 @@
                 <item row="2" column="0">
                  <widget class="QLabel" name="l_linkerHoorapparaatSerienummer">
                   <property name="text">
-                   <string>Serienummer</string>
+                   <string>Serial number</string>
                   </property>
                  </widget>
                 </item>
@@ -624,7 +624,7 @@
                 <item row="3" column="0">
                  <widget class="QLabel" name="l_linkerHoorapparaatPrijs">
                   <property name="text">
-                   <string>Prijs (excl. BTW)</string>
+                   <string>Price (VAT excl.)</string>
                   </property>
                  </widget>
                 </item>
@@ -870,9 +870,9 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabNko">
+      <widget class="QWidget" name="tabPhysician">
        <attribute name="title">
-        <string>Artsen</string>
+        <string>Physicians</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_10">
         <item row="0" column="0">
@@ -937,7 +937,7 @@
              <item>
               <widget class="QLabel" name="l_artsPostcode">
                <property name="text">
-                <string>Postcode</string>
+                <string>Postal code</string>
                </property>
               </widget>
              </item>
@@ -966,7 +966,7 @@
              <item>
               <widget class="QLabel" name="l_artsGemeente">
                <property name="text">
-                <string>Gemeente</string>
+                <string>City</string>
                </property>
               </widget>
              </item>
@@ -1004,7 +1004,7 @@
              <item>
               <widget class="QLabel" name="l_artsOpmerkingen">
                <property name="text">
-                <string>Remarks</string>
+                <string>Comments</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -1166,9 +1166,9 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tabMutualiteit">
+      <widget class="QWidget" name="tabInsuranceCompany">
        <attribute name="title">
-        <string>Mutualiteiten</string>
+        <string>Insurance Companies</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_12">
         <item row="0" column="0">
@@ -1216,7 +1216,7 @@
              <item>
               <widget class="QLabel" name="label_44">
                <property name="text">
-                <string>Postcode</string>
+                <string>Postal code</string>
                </property>
               </widget>
              </item>
@@ -1245,7 +1245,7 @@
              <item>
               <widget class="QLabel" name="l_mutualiteitGemeente">
                <property name="text">
-                <string>Gemeente</string>
+                <string>City</string>
                </property>
               </widget>
              </item>
@@ -1259,7 +1259,7 @@
              <item>
               <widget class="QLabel" name="l_mutualiteitTelefoon">
                <property name="text">
-                <string>Telefoon</string>
+                <string>Telephone</string>
                </property>
               </widget>
              </item>
@@ -1287,7 +1287,7 @@
              <item>
               <widget class="QLabel" name="l_mutualiteitOpmerkingen">
                <property name="text">
-                <string>Remarks</string>
+                <string>Comments</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -1488,9 +1488,9 @@
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar">
+  <widget class="QToolBar" name="toolbar">
    <property name="windowTitle">
-    <string>toolBar</string>
+    <string>Toolbar</string>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>

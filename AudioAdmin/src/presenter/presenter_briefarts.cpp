@@ -27,16 +27,16 @@ BriefArts::~BriefArts()
 void BriefArts::setup()
 {
     const Model::File &dossier = m_model.getFile();
-    const Model::Klant &klant = dossier.getKlant();
+    const Model::Customer &klant = dossier.getCustomer();
     const Model::Settings &instellingen = dossier.getUniversum().getSettings();
     bool klantIsMan = (klant.getAanspreektitel() == "Dhr.");
 
     m_view.setGreeting("Geachte dokter,");
     Q_ASSERT(dossier.getArts() >= 0);
-    Model::Physician *arts = dossier.getUniversum().getArts(dossier.getArts());
+    Model::Physician *arts = dossier.getUniversum().getPhysician(dossier.getArts());
     Q_ASSERT(arts);
     m_view.setAddresseeName(arts->getName() + " " + arts->getFirstName());
-    m_view.setAddresseeStreet(arts->getStraat());
+    m_view.setAddresseeStreet(arts->getStreet());
     m_view.setAddresseeCity(QString::number(arts->getPostalCode()) + " " + arts->getCity());
     m_view.setSenderName(instellingen.getName());
     m_view.setSenderStreet(instellingen.getStreet());
@@ -52,7 +52,7 @@ void BriefArts::setup()
     if (tekst.isEmpty())
     {
         tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
-        tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + klant.getName() + " " + klant.getVoornaam();
+        tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + klant.getName() + " " + klant.getFirstName();
         QDate geboorteDatum = klant.getGeboorteDatum();
         if (geboorteDatum != dossier.getUniversum().getInvalidDate())
         {
@@ -115,7 +115,7 @@ void BriefArts::teardown()
 void BriefArts::print()
 {
     const Model::File &dossier = m_model.getFile();
-    const Model::Physician *arts = dossier.getUniversum().getArts(dossier.getArts());
+    const Model::Physician *arts = dossier.getUniversum().getPhysician(dossier.getArts());
     const Model::Settings &instellingen = dossier.getUniversum().getSettings();
 
     QPrintDialog printDialog(&m_view);
@@ -163,7 +163,7 @@ void BriefArts::print()
         painter.setFont(font);
         lineheight = painter.fontMetrics().height();
         painter.drawText(150*mmx, 62*mmy + (0*lineheight), arts->getName() + " " + arts->getFirstName());
-        painter.drawText(150*mmx, 62*mmy + (1*lineheight), arts->getStraat());
+        painter.drawText(150*mmx, 62*mmy + (1*lineheight), arts->getStreet());
         painter.drawText(150*mmx, 62*mmy + (2*lineheight), QString::number(arts->getPostalCode()) + " " + arts->getCity());
 
         // Print the actual text

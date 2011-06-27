@@ -1,4 +1,4 @@
-#include "model_insurance.h"
+#include "model_insurancecompany.h"
 
 #include <QDomElement>
 

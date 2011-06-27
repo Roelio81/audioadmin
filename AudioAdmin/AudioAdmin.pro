@@ -23,7 +23,6 @@ HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
     src/model/model_invoice.h \
     src/model/model_customer.h \
     src/model/model_entity.h \
-    src/model/model_insurance.h \
     src/model/model_measurements.h \
     src/view/view_universe.h \
     src/view/view_settings.h \
@@ -37,7 +36,8 @@ HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
     src/presenter/presenter_physician.h \
     src/presenter/presenter_file.h \
     src/presenter/presenter_measurements.h \
-    src/presenter/presenter_insurancecompany.h
+    src/presenter/presenter_insurancecompany.h \
+    src/model/model_insurancecompany.h
 MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml

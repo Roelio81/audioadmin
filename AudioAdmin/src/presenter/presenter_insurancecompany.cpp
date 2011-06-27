@@ -1,5 +1,5 @@
 #include "presenter_insurancecompany.h"
-#include "../model/model_insurance.h"
+#include "../model/model_insurancecompany.h"
 #include "../view/view_insurancecompany.h"
 
 using namespace Presenter;
@@ -17,7 +17,7 @@ InsuranceCompany::~InsuranceCompany()
 void InsuranceCompany::setup()
 {
     m_view.setName(m_model.getName());
-    m_view.setStreet(m_model.getStraat());
+    m_view.setStreet(m_model.getStreet());
     m_view.setPostalCode(m_model.getPostalCode());
     m_view.setCity(m_model.getCity());
     m_view.setTelephone(m_model.getTelephone());
@@ -32,7 +32,7 @@ void InsuranceCompany::teardown()
         m_model.setName(m_view.getName());
         changed = true;
     }
-    if (m_model.getStraat() != m_view.getStreet())
+    if (m_model.getStreet() != m_view.getStreet())
     {
         m_model.setStreet(m_view.getStreet());
         changed = true;

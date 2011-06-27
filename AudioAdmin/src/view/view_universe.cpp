@@ -22,18 +22,18 @@ Universe::Universe(QWidget *parent, Qt::WFlags f)
     connect(m_ui.actionEtikettenAfdrukken, SIGNAL(triggered()), this, SLOT(etikettenAfdrukken()));
     connect(m_ui.actionInstellingen_wijzigen, SIGNAL(triggered()), this, SLOT(instellingen()));
     connect(m_ui.actionOmtrent, SIGNAL(triggered()), this, SLOT(omtrent()));
-    connect(m_ui.m_artsenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerArts(int, int, int, int)));
-    connect(m_ui.m_klantenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerKlant(int, int, int, int)));
+    connect(m_ui.m_artsenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selectPhysician(int, int, int, int)));
+    connect(m_ui.m_klantenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selectCustomer(int, int, int, int)));
     connect(m_ui.m_mutualiteitenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerMutualiteit(int, int, int, int)));
-    connect(m_ui.b_artsToevoegen, SIGNAL(clicked()), this, SLOT(toevoegenArts()));
-    connect(m_ui.b_artsVerwijderen, SIGNAL(clicked()), this, SLOT(verwijderenArts()));
-    connect(m_ui.b_artsZoeken, SIGNAL(clicked()), this, SLOT(zoekenArts()));
-    connect(m_ui.b_dossierToevoegen, SIGNAL(clicked()), this, SLOT(toevoegenDossier()));
-    connect(m_ui.b_dossierVerwijderen, SIGNAL(clicked()), this, SLOT(verwijderenDossier()));
-    connect(m_ui.b_dossierZoeken, SIGNAL(clicked()), this, SLOT(zoekenDossier()));
-    connect(m_ui.b_mutualiteitToevoegen, SIGNAL(clicked()), this, SLOT(toevoegenMutualiteit()));
-    connect(m_ui.b_mutualiteitVerwijderen, SIGNAL(clicked()), this, SLOT(verwijderenMutualiteit()));
-    connect(m_ui.b_mutualiteitZoeken, SIGNAL(clicked()), this, SLOT(zoekenMutualiteit()));
+    connect(m_ui.b_artsToevoegen, SIGNAL(clicked()), this, SLOT(addPhysician()));
+    connect(m_ui.b_artsVerwijderen, SIGNAL(clicked()), this, SLOT(removePhysician()));
+    connect(m_ui.b_artsZoeken, SIGNAL(clicked()), this, SLOT(findPhysician()));
+    connect(m_ui.b_dossierToevoegen, SIGNAL(clicked()), this, SLOT(addFile()));
+    connect(m_ui.b_dossierVerwijderen, SIGNAL(clicked()), this, SLOT(removeFile()));
+    connect(m_ui.b_dossierZoeken, SIGNAL(clicked()), this, SLOT(findFile()));
+    connect(m_ui.b_mutualiteitToevoegen, SIGNAL(clicked()), this, SLOT(addInsuranceCompany()));
+    connect(m_ui.b_mutualiteitVerwijderen, SIGNAL(clicked()), this, SLOT(removeInsuranceCompany()));
+    connect(m_ui.b_mutualiteitZoeken, SIGNAL(clicked()), this, SLOT(findInsuranceCompany()));
     connect(m_ui.m_rechterHoorapparaatMerk, SIGNAL(currentIndexChanged(int)), &m_dossier, SLOT(refreshRechterHoorapparaatLijst(int)));
     connect(m_ui.m_linkerHoorapparaatMerk, SIGNAL(currentIndexChanged(int)), &m_dossier, SLOT(refreshLinkerHoorapparaatLijst(int)));
     connect(m_ui.m_klantArts, SIGNAL(currentIndexChanged(int)), &m_dossier, SLOT(toonArts(int)));
@@ -149,21 +149,13 @@ void Universe::bewarenBijAfsluiten()
         bewaren();
 }
 
-void Universe::markeerArtsenLijstStatus(bool wijzigingen)
-{
-    if (wijzigingen)
-        m_ui.m_tabs->setTabText(1, "Artsen*");
-    else
-        m_ui.m_tabs->setTabText(1, "Artsen");
-}
-
-void Universe::leegArtsenLijst()
+void Universe::clearPhysicianList()
 {
     m_ui.m_artsenLijst->clearContents();
     m_dossier.leegArtsenLijst();
 }
 
-void Universe::toevoegenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
+void Universe::addPhysician(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
     m_dossier.toevoegenArts(id, naam, straat, QString::number(postcode) + " " + gemeente);
 
@@ -171,10 +163,10 @@ void Universe::toevoegenArts(int id, const QString &naam, const QString &straat,
     m_ui.m_artsenLijst->insertRow(index);
     m_ui.m_artsenLijst->setItem(index, 0, new QTableWidgetItem(QString::number(id)));
     m_ui.m_artsenLijst->item(index, 0)->setFlags(Qt::ItemIsSelectable);
-    wijzigenArts(id, naam, straat, postcode, gemeente);
+    changePhysician(id, naam, straat, postcode, gemeente);
 }
 
-void Universe::wijzigenArts(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
+void Universe::changePhysician(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
     m_dossier.wijzigenArts(id, naam, straat, QString::number(postcode) + " " + gemeente);
 
@@ -206,30 +198,22 @@ void Universe::toevoegenHoorapparaat(const QString &merk, const QString &type, d
     m_hoorapparaatMerkToTypes[merk][type] = info;
 }
 
-void Universe::markeerKlantenLijstStatus(bool wijzigingen)
-{
-    if (wijzigingen)
-        m_ui.m_tabs->setTabText(0, "Dossiers*");
-    else
-        m_ui.m_tabs->setTabText(0, "Dossiers");
-}
-
 void Universe::leegKlantenLijst()
 {
     m_ui.m_klantenLijst->clearContents();
     m_ui.m_klantenLijst->setRowCount(0);
 }
 
-void Universe::toevoegenKlant(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
+void Universe::addCustomer(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
     int index = m_ui.m_klantenLijst->rowCount();
     m_ui.m_klantenLijst->insertRow(index);
     m_ui.m_klantenLijst->setItem(index, 0, new QTableWidgetItem(QString::number(id)));
     m_ui.m_klantenLijst->item(index, 0)->setFlags(Qt::ItemIsSelectable);
-    wijzigenKlant(id, naam, straat, postcode, gemeente);
+    changeCustomer(id, naam, straat, postcode, gemeente);
 }
 
-void Universe::wijzigenKlant(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
+void Universe::changeCustomer(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
     int index = klantIdToIndex(id);
     m_ui.m_klantenLijst->setItem(index, 1, new QTableWidgetItem(naam));
@@ -243,12 +227,19 @@ void Universe::wijzigenKlant(int id, const QString &naam, const QString &straat,
     m_ui.m_klantenLijst->resizeRowToContents(index);
 }
 
-void Universe::markeerMutualiteitenLijstStatus(bool wijzigingen)
+void Universe::setPhysicianListChanged(bool changed)
 {
-    if (wijzigingen)
-        m_ui.m_tabs->setTabText(2, "Mutualiteiten*");
-    else
-        m_ui.m_tabs->setTabText(2, "Mutualiteiten");
+    markTabChanged(1, changed);
+}
+
+void Universe::setFileListChanged(bool changed)
+{
+    markTabChanged(0, changed);
+}
+
+void Universe::setInsuranceCompanyListChanged(bool changed)
+{
+    markTabChanged(2, changed);
 }
 
 void Universe::leegMutualiteitenLijst()
@@ -258,7 +249,7 @@ void Universe::leegMutualiteitenLijst()
     m_ui.m_klantMutualiteit->addItem("", QVariant(-1));
 }
 
-void Universe::toevoegenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
+void Universe::addInsuranceCompany(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
     m_dossier.toevoegenMutualiteit(id, naam);
 
@@ -346,12 +337,12 @@ QSet<QString> Universe::getTypeHoorapparaten(const QString &merk) const
     return m_hoorapparaatMerkToTypes[merk].keys().toSet();
 }
 
-void Universe::selecteerArts(int id)
+void Universe::selectPhysician(int id)
 {
     m_ui.m_artsenLijst->setCurrentCell(artsIdToIndex(id), 1);
 }
 
-void Universe::selecteerKlant(int id)
+void Universe::selectCustomer(int id)
 {
     m_ui.m_klantenLijst->setCurrentCell(klantIdToIndex(id), 1);
 }
@@ -361,7 +352,7 @@ void Universe::selecteerMutualiteit(int id)
     m_ui.m_mutualiteitenLijst->setCurrentCell(mutualiteitIdToIndex(id), 1);
 }
 
-void Universe::selecteerArts(int currentRow, int, int previousRow, int)
+void Universe::selectPhysician(int currentRow, int, int previousRow, int)
 {
     if (currentRow != previousRow)
         emit artsSelectieSignal(artsIndexToId(currentRow));
@@ -370,7 +361,7 @@ void Universe::selecteerArts(int currentRow, int, int previousRow, int)
     m_ui.g_artsgegevens->setEnabled(true);
 }
 
-void Universe::selecteerKlant(int currentRow, int, int previousRow, int)
+void Universe::selectCustomer(int currentRow, int, int previousRow, int)
 {
     if (currentRow != previousRow)
         emit klantSelectieSignal(klantIndexToId(currentRow));
@@ -393,14 +384,15 @@ void Universe::selecteerMutualiteit(int currentRow, int, int previousRow, int)
     m_ui.g_mutualiteitsgegevens->setEnabled(true);
 }
 
-void Universe::toevoegenArts()
+void Universe::addPhysician()
 {
     AddDialog dialog(true, this);
+    dialog.setWindowTitle(tr("Add Physician"));
     if (dialog.exec() == QDialog::Accepted)
         emit artsToevoegenSignal(dialog.getFirstName(), dialog.getName());
 }
 
-void Universe::verwijderenArts()
+void Universe::removePhysician()
 {
     QMessageBox warning(this);
     warning.addButton(QMessageBox::Yes);
@@ -426,22 +418,22 @@ void Universe::verwijderenArts()
     }
 }
 
-void Universe::zoekenArts()
+void Universe::findPhysician()
 {
-    static QString vorigeWaarde = "";
+    static QString previousValue = "";
     bool ok = false;
-    QString naam = QInputDialog::getText(this, tr("Find Physician"), tr("Name:"), QLineEdit::Normal, vorigeWaarde, &ok);
-    if (ok && !naam.isEmpty())
+    QString name = QInputDialog::getText(this, tr("Find Physician"), tr("Name:"), QLineEdit::Normal, previousValue, &ok);
+    if (ok && !name.isEmpty())
     {
-        vorigeWaarde = naam;
+        previousValue = name;
         int nofRows = m_ui.m_artsenLijst->rowCount();
         int currentRow = m_ui.m_artsenLijst->currentRow();
         for (int i = 0; i < nofRows; ++i)
         {
             int row =(i + currentRow + 1) % nofRows;
-            QTableWidgetItem *naamCell = m_ui.m_artsenLijst->item(row, 1);
-            Q_ASSERT(naamCell);
-            if (naamCell->text().contains(naam, Qt::CaseInsensitive))
+            QTableWidgetItem *nameCell = m_ui.m_artsenLijst->item(row, 1);
+            Q_ASSERT(nameCell);
+            if (nameCell->text().contains(name, Qt::CaseInsensitive))
             {
                 m_ui.m_artsenLijst->setCurrentCell(row, 1, QItemSelectionModel::ClearAndSelect);
                 return;
@@ -450,14 +442,15 @@ void Universe::zoekenArts()
     }
 }
 
-void Universe::toevoegenDossier()
+void Universe::addFile()
 {
     AddDialog dialog(true, this);
+    dialog.setWindowTitle(tr("Add File"));
     if (dialog.exec() == QDialog::Accepted)
         emit klantToevoegenSignal(dialog.getFirstName(), dialog.getName());
 }
 
-void Universe::verwijderenDossier()
+void Universe::removeFile()
 {
     QMessageBox warning(this);
     warning.addButton(QMessageBox::Yes);
@@ -483,22 +476,22 @@ void Universe::verwijderenDossier()
     }
 }
 
-void Universe::zoekenDossier()
+void Universe::findFile()
 {
-    static QString vorigeWaarde = "";
+    static QString previousValue = "";
     bool ok = false;
-    QString naam = QInputDialog::getText(this, tr("Find Customer"), tr("Name:"), QLineEdit::Normal, vorigeWaarde, &ok);
-    if (ok && !naam.isEmpty())
+    QString name = QInputDialog::getText(this, tr("Find Customer"), tr("Name:"), QLineEdit::Normal, previousValue, &ok);
+    if (ok && !name.isEmpty())
     {
-        vorigeWaarde = naam;
+        previousValue = name;
         int nofRows = m_ui.m_klantenLijst->rowCount();
         int currentRow = m_ui.m_klantenLijst->currentRow();
         for (int i = 0; i < nofRows; ++i)
         {
             int row =(i + currentRow + 1) % nofRows;
-            QTableWidgetItem *naamCell = m_ui.m_klantenLijst->item(row, 1);
-            Q_ASSERT(naamCell);
-            if (naamCell->text().contains(naam, Qt::CaseInsensitive))
+            QTableWidgetItem *nameCell = m_ui.m_klantenLijst->item(row, 1);
+            Q_ASSERT(nameCell);
+            if (nameCell->text().contains(name, Qt::CaseInsensitive))
             {
                 m_ui.m_klantenLijst->setCurrentCell(row, 1, QItemSelectionModel::ClearAndSelect);
                 return;
@@ -507,14 +500,15 @@ void Universe::zoekenDossier()
     }
 }
 
-void Universe::toevoegenMutualiteit()
+void Universe::addInsuranceCompany()
 {
     AddDialog dialog(false, this);
+    dialog.setWindowTitle(tr("Add Insurance Company"));
     if (dialog.exec() == QDialog::Accepted)
         emit mutualiteitToevoegenSignal(dialog.getName());
 }
 
-void Universe::verwijderenMutualiteit()
+void Universe::removeInsuranceCompany()
 {
     QMessageBox warning(this);
     warning.addButton(QMessageBox::Yes);
@@ -540,11 +534,11 @@ void Universe::verwijderenMutualiteit()
     }
 }
 
-void Universe::zoekenMutualiteit()
+void Universe::findInsuranceCompany()
 {
     static QString vorigeWaarde = "";
     bool ok = false;
-    QString naam = QInputDialog::getText(this, "Zoek mutualiteit", tr("Name:"), QLineEdit::Normal, vorigeWaarde, &ok);
+    QString naam = QInputDialog::getText(this, tr("Find Insurance Company"), tr("Name:"), QLineEdit::Normal, vorigeWaarde, &ok);
     if (ok && !naam.isEmpty())
     {
         vorigeWaarde = naam;
@@ -637,4 +631,13 @@ void Universe::cleanupTabInsuranceCompany()
     m_ui.m_mutualiteitOpmerkingen->setText("");
     m_ui.g_mutualiteitsgegevens->setEnabled(false);
     m_ui.b_mutualiteitVerwijderen->setEnabled(false);
+}
+
+void Universe::markTabChanged(int tabIndex, bool changed)
+{
+    QString tabText = m_ui.m_tabs->tabText(tabIndex).remove('*');
+    if (changed)
+        tabText += "*";
+    m_ui.m_tabs->setTabText(tabIndex, tabText);
+
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Meetgegevens</class>
- <widget class="QDialog" name="Meetgegevens">
+ <class>Measurements</class>
+ <widget class="QDialog" name="Measurements">
   <property name="windowModality">
    <enum>Qt::WindowModal</enum>
   </property>
@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Meetgegevens</string>
+   <string>Measurements</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../icons.qrc">

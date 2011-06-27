@@ -20,7 +20,7 @@ namespace Model
 
         // --- Getters ---
         QString getName() const { return m_name; }
-        QString getStraat() const { return m_straat; }
+        QString getStreet() const { return m_straat; }
         int getPostalCode() const { return m_postalCode; }
         QString getCity() const { return m_city; }
         QString getTelephone() const { return m_telephone; }

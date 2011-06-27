@@ -12,18 +12,19 @@ namespace Model
 {
     class Universe;
 
-    class Klant : public Entity
+    class Customer : public Entity
     {
     public:
-        explicit Klant(const Universe &universum);
-        virtual ~Klant();
+        explicit Customer(const Universe &universum);
+        virtual ~Customer();
 
-        void fromDomElement(const QDomElement &e);
-        QDomElement toDomElement(QDomDocument &d) const;
+        // --- ISerializable ---
+        virtual void fromDomElement(const QDomElement &e);
+        virtual QDomElement toDomElement(QDomDocument &d) const;
 
         // --- Getters ---
         QString getAanspreektitel() const { return m_aanspreektitel; }
-        QString getVoornaam() const { return m_voornaam; }
+        QString getFirstName() const { return m_voornaam; }
         QDate getGeboorteDatum() const { return m_geboorteDatum; }
 
         // --- Setters ---

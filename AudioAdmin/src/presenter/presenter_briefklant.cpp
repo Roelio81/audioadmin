@@ -25,13 +25,13 @@ BriefKlant::~BriefKlant()
 void BriefKlant::setup()
 {
     const Model::File &file = m_model.getFile();
-    const Model::Klant &klant = file.getKlant();
+    const Model::Customer &klant = file.getCustomer();
     const Model::Settings &instellingen = file.getUniversum().getSettings();
     bool sex = (klant.getAanspreektitel() == "Dhr.");
 
     m_view.setGreeting(sex ? "Geachte meneer," : "Geachte mevrouw,");
-    m_view.setAddresseeName(klant.getName() + " " + klant.getVoornaam());
-    m_view.setAddresseeStreet(klant.getStraat());
+    m_view.setAddresseeName(klant.getName() + " " + klant.getFirstName());
+    m_view.setAddresseeStreet(klant.getStreet());
     m_view.setAddresseeCity(QString::number(klant.getPostalCode()) + " " + klant.getCity());
     m_view.setSenderName(instellingen.getName());
     m_view.setSenderStreet(instellingen.getStreet());
@@ -69,7 +69,7 @@ void BriefKlant::teardown()
 void BriefKlant::print()
 {
     const Model::File &file = m_model.getFile();
-    const Model::Klant &klant = file.getKlant();
+    const Model::Customer &klant = file.getCustomer();
     const Model::Settings &settings = file.getUniversum().getSettings();
 
     QPrintDialog printDialog(&m_view);
@@ -116,8 +116,8 @@ void BriefKlant::print()
         font.setItalic(false);
         painter.setFont(font);
         lineheight = painter.fontMetrics().height();
-        painter.drawText(150*mmx, 62*mmy + (0*lineheight), klant.getAanspreektitel() + " " + klant.getName() + " " + klant.getVoornaam());
-        painter.drawText(150*mmx, 62*mmy + (1*lineheight), klant.getStraat());
+        painter.drawText(150*mmx, 62*mmy + (0*lineheight), klant.getAanspreektitel() + " " + klant.getName() + " " + klant.getFirstName());
+        painter.drawText(150*mmx, 62*mmy + (1*lineheight), klant.getStreet());
         painter.drawText(150*mmx, 62*mmy + (2*lineheight), QString::number(klant.getPostalCode()) + " " + klant.getCity());
 
         // Print the actual text

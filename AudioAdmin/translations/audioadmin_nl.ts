@@ -17,82 +17,7 @@
     </message>
 </context>
 <context>
-    <name>Instellingen</name>
-    <message>
-        <source>Instellingen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Straat (+ huisnummer / bus)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>GSM</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>E-mail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Onderschrift</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Riziv</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BTW nummer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rekeningnummer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ok</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Annuleren</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Contact data</source>
-        <translation>Contactgegevens</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Naam</translation>
-    </message>
-    <message>
-        <source>Postal code</source>
-        <translation>Postcode</translation>
-    </message>
-    <message>
-        <source>City</source>
-        <translation>Gemeente</translation>
-    </message>
-    <message>
-        <source>Telephone</source>
-        <translation>Telefoon</translation>
-    </message>
-    <message>
-        <source>Settings</source>
-        <translation>Instellingen</translation>
-    </message>
-    <message>
-        <source>VAT percentage</source>
-        <translation>BTW percentage</translation>
-    </message>
-</context>
-<context>
     <name>Invoice</name>
-    <message>
-        <source>Factuur</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Name</source>
         <translation>Naam</translation>
@@ -177,13 +102,13 @@ p, li { white-space: pre-wrap; }
         <source>Print</source>
         <translation>Afdrukken</translation>
     </message>
+    <message>
+        <source>Invoice</source>
+        <translation>Factuur</translation>
+    </message>
 </context>
 <context>
     <name>Labels</name>
-    <message>
-        <source>Etiketten</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Het onderzoek moet gebeurd zijn na</source>
         <translation type="unfinished"></translation>
@@ -197,12 +122,16 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Afdrukken</source>
+        <source>Annuleren</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Annuleren</source>
-        <translation type="unfinished"></translation>
+        <source>Labels</source>
+        <translation>Etiketten</translation>
+    </message>
+    <message>
+        <source>Print</source>
+        <translation>Afdrukken</translation>
     </message>
 </context>
 <context>
@@ -258,10 +187,10 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>Meetgegevens</name>
+    <name>Measurements</name>
     <message>
-        <source>Meetgegevens</source>
-        <translation type="unfinished"></translation>
+        <source>Measurements</source>
+        <translation>Meetgegevens</translation>
     </message>
     <message>
         <source>Tonale audiometrie</source>
@@ -385,14 +314,77 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>Settings</name>
+    <message>
+        <source>Settings</source>
+        <translation>Instellingen</translation>
+    </message>
+    <message>
+        <source>Contact data</source>
+        <translation>Contactgegevens</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Straat (+ huisnummer / bus)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Postal code</source>
+        <translation>Postcode</translation>
+    </message>
+    <message>
+        <source>City</source>
+        <translation>Gemeente</translation>
+    </message>
+    <message>
+        <source>Telephone</source>
+        <translation>Telefoon</translation>
+    </message>
+    <message>
+        <source>GSM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>E-mail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Onderschrift</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Riziv</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VAT percentage</source>
+        <translation>BTW percentage</translation>
+    </message>
+    <message>
+        <source>BTW nummer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rekeningnummer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Annuleren</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Universe</name>
     <message>
         <source>AudioAdmin</source>
         <translation>AudioAdmin</translation>
-    </message>
-    <message>
-        <source>Dossiers</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Customer data</source>
@@ -425,10 +417,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Telephone</source>
         <translation>Telefoon</translation>
-    </message>
-    <message>
-        <source>Geboortedatum</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>dd-MM-yyyy</source>
@@ -515,20 +503,8 @@ p, li { white-space: pre-wrap; }
         <translation>Rechts</translation>
     </message>
     <message>
-        <source>Merk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Type</source>
         <translation>Type</translation>
-    </message>
-    <message>
-        <source>Serienummer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Prijs (excl. BTW)</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Left</source>
@@ -567,19 +543,7 @@ p, li { white-space: pre-wrap; }
         <translation>Zoeken</translation>
     </message>
     <message>
-        <source>Artsen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Artsgegevens</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Postcode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Gemeente</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -589,14 +553,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Email</source>
         <translation>E-mail</translation>
-    </message>
-    <message>
-        <source>Remarks</source>
-        <translation type="unfinished">Opmerkingen</translation>
-    </message>
-    <message>
-        <source>Mutualiteiten</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Mutualiteitsgegevens</source>
@@ -615,16 +571,12 @@ p, li { white-space: pre-wrap; }
         <translation>Instellingen</translation>
     </message>
     <message>
-        <source>toolBar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Bewaren</translation>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <source>Print labels...</source>
@@ -632,7 +584,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -644,7 +596,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>F1</source>
-        <translation type="unfinished"></translation>
+        <translation>F1</translation>
     </message>
     <message>
         <source>Change settings...</source>
@@ -652,7 +604,43 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>F6</source>
-        <translation type="unfinished"></translation>
+        <translation>F6</translation>
+    </message>
+    <message>
+        <source>Brand</source>
+        <translation>Merk</translation>
+    </message>
+    <message>
+        <source>Serial number</source>
+        <translation>Serienummer</translation>
+    </message>
+    <message>
+        <source>Price (VAT excl.)</source>
+        <translation>Prijs (excl. BTW)</translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation>Dossiers</translation>
+    </message>
+    <message>
+        <source>Date of birth</source>
+        <translation>Geboortedatum</translation>
+    </message>
+    <message>
+        <source>Physicians</source>
+        <translation>Artsen</translation>
+    </message>
+    <message>
+        <source>Postal code</source>
+        <translation>Postcode</translation>
+    </message>
+    <message>
+        <source>Insurance Companies</source>
+        <translation>Mutualiteiten</translation>
+    </message>
+    <message>
+        <source>Toolbar</source>
+        <translation>Werkbalk</translation>
     </message>
 </context>
 <context>
@@ -724,6 +712,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Remove Insurance Company</source>
         <translation>Mutualiteit Verwijderen</translation>
+    </message>
+    <message>
+        <source>Add Physician</source>
+        <translation>Arts Toevoegen</translation>
+    </message>
+    <message>
+        <source>Add File</source>
+        <translation>Dossier Toevoegen</translation>
+    </message>
+    <message>
+        <source>Add Insurance Company</source>
+        <translation>Mutualiteit Toevoegen</translation>
+    </message>
+    <message>
+        <source>Find Insurance Company</source>
+        <translation>Mutualiteit Zoeken</translation>
     </message>
 </context>
 </TS>
