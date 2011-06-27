@@ -1,9 +1,9 @@
 #include "presenter_briefklant.h"
-#include "../model/model_briefklant.h"
-#include "../model/model_dossier.h"
-#include "../model/model_instellingen.h"
-#include "../model/model_klant.h"
-#include "../model/model_universum.h"
+#include "../model/model_letter.h"
+#include "../model/model_file.h"
+#include "../model/model_settings.h"
+#include "../model/model_customer.h"
+#include "../model/model_universe.h"
 #include "../view/view_letter.h"
 
 #include <QPainter>
@@ -12,7 +12,7 @@
 
 using namespace Presenter;
 
-BriefKlant::BriefKlant(View::Letter &view, Model::BriefKlant &model)
+BriefKlant::BriefKlant(View::Letter &view, Model::Letter &model)
     : m_view(view)
     , m_model(model)
 {
@@ -24,30 +24,30 @@ BriefKlant::~BriefKlant()
 
 void BriefKlant::setup()
 {
-    const Model::Dossier &dossier = m_model.getDossier();
-    const Model::Klant &klant = dossier.getKlant();
-    const Model::Instellingen &instellingen = dossier.getUniversum().getInstellingen();
-    bool klantIsMan = (klant.getAanspreektitel() == "Dhr.");
+    const Model::File &file = m_model.getFile();
+    const Model::Klant &klant = file.getKlant();
+    const Model::Settings &instellingen = file.getUniversum().getSettings();
+    bool sex = (klant.getAanspreektitel() == "Dhr.");
 
-    m_view.setGreeting(klantIsMan ? "Geachte meneer," : "Geachte mevrouw,");
-    m_view.setAddresseeName(klant.getNaam() + " " + klant.getVoornaam());
+    m_view.setGreeting(sex ? "Geachte meneer," : "Geachte mevrouw,");
+    m_view.setAddresseeName(klant.getName() + " " + klant.getVoornaam());
     m_view.setAddresseeStreet(klant.getStraat());
-    m_view.setAddresseeCity(QString::number(klant.getPostcode()) + " " + klant.getGemeente());
-    m_view.setSenderName(instellingen.getNaam());
-    m_view.setSenderStreet(instellingen.getStraat());
-    m_view.setSenderCity(QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
-    m_view.setSenderTelephone(instellingen.getTelefoon());
-    m_view.setSenderMobilePhone(instellingen.getGsm());
+    m_view.setAddresseeCity(QString::number(klant.getPostalCode()) + " " + klant.getCity());
+    m_view.setSenderName(instellingen.getName());
+    m_view.setSenderStreet(instellingen.getStreet());
+    m_view.setSenderCity(QString::number(instellingen.getPostalCode()) + " " + instellingen.getCity());
+    m_view.setSenderTelephone(instellingen.getTelephone());
+    m_view.setSenderMobilePhone(instellingen.getMobilePhone());
 
-    QString postalDate = m_model.getPostdatum();
+    QString postalDate = m_model.getPostalDate();
     if (postalDate.isEmpty())
-        postalDate = instellingen.getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
+        postalDate = instellingen.getCity() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
     m_view.setPostalDate(postalDate);
-    QString tekst = m_model.getTekstblok();
+    QString tekst = m_model.getText();
     if (tekst.isEmpty())
     {
         tekst = "Ingesloten vindt u een overschrijving voor de opleg van ";
-        if (dossier.getAantalHoorapparaten() == 1)
+        if (file.getAantalHoorapparaten() == 1)
             tekst += "het hoorapparaat.";
         else
             tekst += "de hoorapparaten.";
@@ -60,17 +60,17 @@ void BriefKlant::setup()
 
 void BriefKlant::teardown()
 {
-    m_model.setPostdatum(m_view.getPostalDate());
-    m_model.setTekstblok(m_view.getText());
+    m_model.setPostalDate(m_view.getPostalDate());
+    m_model.setText(m_view.getText());
 
     connect(&m_view, SIGNAL(print()), this, SLOT(print()));
 }
 
 void BriefKlant::print()
 {
-    const Model::Dossier &dossier = m_model.getDossier();
-    const Model::Klant &klant = dossier.getKlant();
-    const Model::Instellingen &instellingen = dossier.getUniversum().getInstellingen();
+    const Model::File &file = m_model.getFile();
+    const Model::Klant &klant = file.getKlant();
+    const Model::Settings &settings = file.getUniversum().getSettings();
 
     QPrintDialog printDialog(&m_view);
     printDialog.setEnabledOptions(QAbstractPrintDialog::None);
@@ -94,18 +94,18 @@ void BriefKlant::print()
         font.setBold(true);
         font.setItalic(true);
         painter.setFont(font);
-        painter.drawText(hmar, vmar, instellingen.getNaam());
+        painter.drawText(hmar, vmar, settings.getName());
         font.setPointSize(11);
         font.setBold(false);
         painter.setFont(font);
         int lineheight = painter.fontMetrics().height();
-        painter.drawText(hmar, vmar + (3*lineheight)/2, instellingen.getOnderschrift());
-        painter.drawText(hmar, vmar + (5*lineheight)/2, instellingen.getStraat());
-        painter.drawText(hmar, vmar + (7*lineheight)/2, QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
-        painter.drawText(hmar, vmar + (9*lineheight)/2, QString("Riziv: ") + instellingen.getRiziv());
-        painter.drawText(150*mmx, vmar + (5*lineheight)/2, QString("tel: ") + instellingen.getTelefoon());
-        painter.drawText(150*mmx, vmar + (7*lineheight)/2, QString("gsm: ") + instellingen.getGsm());
-        painter.drawText(150*mmx, vmar + (9*lineheight)/2, QString("e-mail: ") + instellingen.getEmail());
+        painter.drawText(hmar, vmar + (3*lineheight)/2, settings.getOnderschrift());
+        painter.drawText(hmar, vmar + (5*lineheight)/2, settings.getStreet());
+        painter.drawText(hmar, vmar + (7*lineheight)/2, QString::number(settings.getPostalCode()) + " " + settings.getCity());
+        painter.drawText(hmar, vmar + (9*lineheight)/2, QString("Riziv: ") + settings.getRiziv());
+        painter.drawText(150*mmx, vmar + (5*lineheight)/2, QString("tel: ") + settings.getTelephone());
+        painter.drawText(150*mmx, vmar + (7*lineheight)/2, QString("gsm: ") + settings.getMobilePhone());
+        painter.drawText(150*mmx, vmar + (9*lineheight)/2, QString("e-mail: ") + settings.getEmail());
         painter.drawLine(printer->paperRect().left(), 52*mmy, printer->paperRect().right(), 52*mmy);
 
         // Print the postal date
@@ -116,9 +116,9 @@ void BriefKlant::print()
         font.setItalic(false);
         painter.setFont(font);
         lineheight = painter.fontMetrics().height();
-        painter.drawText(150*mmx, 62*mmy + (0*lineheight), klant.getAanspreektitel() + " " + klant.getNaam() + " " + klant.getVoornaam());
+        painter.drawText(150*mmx, 62*mmy + (0*lineheight), klant.getAanspreektitel() + " " + klant.getName() + " " + klant.getVoornaam());
         painter.drawText(150*mmx, 62*mmy + (1*lineheight), klant.getStraat());
-        painter.drawText(150*mmx, 62*mmy + (2*lineheight), QString::number(klant.getPostcode()) + " " + klant.getGemeente());
+        painter.drawText(150*mmx, 62*mmy + (2*lineheight), QString::number(klant.getPostalCode()) + " " + klant.getCity());
 
         // Print the actual text
         bool klantIsMan = (klant.getAanspreektitel() == "Dhr.");
@@ -127,7 +127,7 @@ void BriefKlant::print()
         tekst += m_view.getText();
         tekst += "\n\n";
         tekst += "Vriendelijke groeten, \n\n";
-        tekst += instellingen.getNaam();
+        tekst += settings.getName();
         QRect tekstRect(QPoint(hmar, vmar + (17*lineheight)),
                         QPoint(printer->paperRect().right() - hmar, printer->paperRect().bottom() - vmar));
         painter.drawText(tekstRect, tekst, Qt::AlignLeft|Qt::AlignTop);

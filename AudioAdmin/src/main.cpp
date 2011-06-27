@@ -1,6 +1,6 @@
-#include "model/model_universum.h"
-#include "presenter/presenter_universum.h"
-#include "view/view_universum.h"
+#include "model/model_universe.h"
+#include "presenter/presenter_universe.h"
+#include "view/view_universe.h"
 
 #include <QApplication>
 #include <QTranslator>
@@ -14,8 +14,8 @@ int main(int argc, char ** argv)
     Q_ASSERT(translationFound);
     app.installTranslator(&translator);
 
-    View::Universum view;
-    Model::Universum model(QString("audio.xml"));
+    View::Universe view;
+    Model::Universe model(QString("audio.xml"));
     Presenter::Universum presenter(view, model);
     view.show();
     app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );

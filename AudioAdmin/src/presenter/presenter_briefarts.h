@@ -10,7 +10,7 @@ namespace View
 
 namespace Model
 {
-    class BriefArts;
+    class Letter;
 }
 
 namespace Presenter
@@ -19,7 +19,7 @@ namespace Presenter
     {
     Q_OBJECT
     public:
-        explicit BriefArts(View::Letter &view, Model::BriefArts &model);
+        explicit BriefArts(View::Letter &view, Model::Letter &model);
         virtual ~BriefArts();
 
         void setup();
@@ -30,7 +30,7 @@ namespace Presenter
 
     private:
         View::Letter &m_view;
-        Model::BriefArts &m_model;
+        Model::Letter &m_model;
     };
 }
 

@@ -1,12 +1,12 @@
 #include "presenter_briefarts.h"
-#include "presenter_meetgegevens.h"
-#include "../model/model_briefarts.h"
-#include "../model/model_dossier.h"
-#include "../model/model_instellingen.h"
-#include "../model/model_arts.h"
-#include "../model/model_universum.h"
+#include "presenter_measurements.h"
+#include "../model/model_letter.h"
+#include "../model/model_file.h"
+#include "../model/model_settings.h"
+#include "../model/model_physician.h"
+#include "../model/model_universe.h"
 #include "../view/view_letter.h"
-#include "../view/view_meetgegevens.h"
+#include "../view/view_measurements.h"
 
 #include <QPainter>
 #include <QPrintDialog>
@@ -14,7 +14,7 @@
 
 using namespace Presenter;
 
-BriefArts::BriefArts(View::Letter &view, Model::BriefArts &model)
+BriefArts::BriefArts(View::Letter &view, Model::Letter &model)
     : m_view(view)
     , m_model(model)
 {
@@ -26,33 +26,33 @@ BriefArts::~BriefArts()
 
 void BriefArts::setup()
 {
-    const Model::Dossier &dossier = m_model.getDossier();
+    const Model::File &dossier = m_model.getFile();
     const Model::Klant &klant = dossier.getKlant();
-    const Model::Instellingen &instellingen = dossier.getUniversum().getInstellingen();
+    const Model::Settings &instellingen = dossier.getUniversum().getSettings();
     bool klantIsMan = (klant.getAanspreektitel() == "Dhr.");
 
     m_view.setGreeting("Geachte dokter,");
     Q_ASSERT(dossier.getArts() >= 0);
-    Model::Arts *arts = dossier.getUniversum().getArts(dossier.getArts());
+    Model::Physician *arts = dossier.getUniversum().getArts(dossier.getArts());
     Q_ASSERT(arts);
-    m_view.setAddresseeName(arts->getNaam() + " " + arts->getVoornaam());
+    m_view.setAddresseeName(arts->getName() + " " + arts->getFirstName());
     m_view.setAddresseeStreet(arts->getStraat());
-    m_view.setAddresseeCity(QString::number(arts->getPostcode()) + " " + arts->getGemeente());
-    m_view.setSenderName(instellingen.getNaam());
-    m_view.setSenderStreet(instellingen.getStraat());
-    m_view.setSenderCity(QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
-    m_view.setSenderTelephone(instellingen.getTelefoon());
-    m_view.setSenderMobilePhone(instellingen.getGsm());
+    m_view.setAddresseeCity(QString::number(arts->getPostalCode()) + " " + arts->getCity());
+    m_view.setSenderName(instellingen.getName());
+    m_view.setSenderStreet(instellingen.getStreet());
+    m_view.setSenderCity(QString::number(instellingen.getPostalCode()) + " " + instellingen.getCity());
+    m_view.setSenderTelephone(instellingen.getTelephone());
+    m_view.setSenderMobilePhone(instellingen.getMobilePhone());
 
     QString postalDate = m_model.getPostalDate();
     if (postalDate.isEmpty())
-        postalDate = instellingen.getGemeente() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
+        postalDate = instellingen.getCity() + ", " + QDate::currentDate().toString("dd-MM-yyyy");
     m_view.setPostalDate(postalDate);
-    QString tekst = m_model.getTekstblok();
+    QString tekst = m_model.getText();
     if (tekst.isEmpty())
     {
         tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
-        tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + klant.getNaam() + " " + klant.getVoornaam();
+        tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + klant.getName() + " " + klant.getVoornaam();
         QDate geboorteDatum = klant.getGeboorteDatum();
         if (geboorteDatum != dossier.getUniversum().getInvalidDate())
         {
@@ -95,7 +95,7 @@ void BriefArts::setup()
         }
     }
     m_view.setText(tekst);
-    QString besluit = m_model.getConclusie();
+    QString besluit = m_model.getConclusion();
     if (besluit.isEmpty())
         besluit = "Indien u nog vragen hebt, kan u mij bereiken op bovenstaand nummer.";
     m_view.setConclusion(besluit);
@@ -105,18 +105,18 @@ void BriefArts::setup()
 
 void BriefArts::teardown()
 {
-    m_model.setPostdatum(m_view.getPostalDate());
-    m_model.setTekstblok(m_view.getText());
-    m_model.setConclusie(m_view.getConclusion());
+    m_model.setPostalDate(m_view.getPostalDate());
+    m_model.setText(m_view.getText());
+    m_model.setConclusion(m_view.getConclusion());
 
     disconnect(&m_view, SIGNAL(print()), this, SLOT(print()));
 }
 
 void BriefArts::print()
 {
-    const Model::Dossier &dossier = m_model.getDossier();
-    const Model::Arts *arts = dossier.getUniversum().getArts(dossier.getArts());
-    const Model::Instellingen &instellingen = dossier.getUniversum().getInstellingen();
+    const Model::File &dossier = m_model.getFile();
+    const Model::Physician *arts = dossier.getUniversum().getArts(dossier.getArts());
+    const Model::Settings &instellingen = dossier.getUniversum().getSettings();
 
     QPrintDialog printDialog(&m_view);
     printDialog.setEnabledOptions(QAbstractPrintDialog::None);
@@ -140,17 +140,17 @@ void BriefArts::print()
         font.setBold(true);
         font.setItalic(true);
         painter.setFont(font);
-        painter.drawText(hmar, vmar, instellingen.getNaam());
+        painter.drawText(hmar, vmar, instellingen.getName());
         font.setPointSize(11);
         font.setBold(false);
         painter.setFont(font);
         int lineheight = painter.fontMetrics().height();
         painter.drawText(hmar, vmar + (3*lineheight)/2, instellingen.getOnderschrift());
-        painter.drawText(hmar, vmar + (5*lineheight)/2, instellingen.getStraat());
-        painter.drawText(hmar, vmar + (7*lineheight)/2, QString::number(instellingen.getPostcode()) + " " + instellingen.getGemeente());
+        painter.drawText(hmar, vmar + (5*lineheight)/2, instellingen.getStreet());
+        painter.drawText(hmar, vmar + (7*lineheight)/2, QString::number(instellingen.getPostalCode()) + " " + instellingen.getCity());
         painter.drawText(hmar, vmar + (9*lineheight)/2, QString("Riziv: ") + instellingen.getRiziv());
-        painter.drawText(150*mmx, vmar + (5*lineheight)/2, QString("tel: ") + instellingen.getTelefoon());
-        painter.drawText(150*mmx, vmar + (7*lineheight)/2, QString("gsm: ") + instellingen.getGsm());
+        painter.drawText(150*mmx, vmar + (5*lineheight)/2, QString("tel: ") + instellingen.getTelephone());
+        painter.drawText(150*mmx, vmar + (7*lineheight)/2, QString("gsm: ") + instellingen.getMobilePhone());
         painter.drawText(150*mmx, vmar + (9*lineheight)/2, QString("e-mail: ") + instellingen.getEmail());
         painter.drawLine(printer->paperRect().left(), 52*mmy, printer->paperRect().right(), 52*mmy);
 
@@ -162,9 +162,9 @@ void BriefArts::print()
         font.setItalic(false);
         painter.setFont(font);
         lineheight = painter.fontMetrics().height();
-        painter.drawText(150*mmx, 62*mmy + (0*lineheight), arts->getNaam() + " " + arts->getVoornaam());
+        painter.drawText(150*mmx, 62*mmy + (0*lineheight), arts->getName() + " " + arts->getFirstName());
         painter.drawText(150*mmx, 62*mmy + (1*lineheight), arts->getStraat());
-        painter.drawText(150*mmx, 62*mmy + (2*lineheight), QString::number(arts->getPostcode()) + " " + arts->getGemeente());
+        painter.drawText(150*mmx, 62*mmy + (2*lineheight), QString::number(arts->getPostalCode()) + " " + arts->getCity());
 
         // Print the actual text
         QString tekst = "Geachte dokter,";
@@ -195,10 +195,10 @@ void BriefArts::print()
         y += lineheight;
 
         // Print tonale audiometrie
-        const Model::Meetgegevens &meetgegevensModel = dossier.getMeetgegevens();
-        View::Meetgegevens meetgegevensView(0);
+        const Model::Measurements &meetgegevensModel = dossier.getMeetgegevens();
+        View::Measurements meetgegevensView(0);
         meetgegevensView.setVisible(false);
-        Presenter::Meetgegevens meetgegevensPresenter(meetgegevensView, const_cast<Model::Meetgegevens &>(meetgegevensModel));
+        Presenter::Measurements meetgegevensPresenter(meetgegevensView, const_cast<Model::Measurements &>(meetgegevensModel));
         meetgegevensPresenter.setup();
         painter.drawPixmap(hmar, y, 90*mmx, 90*mmy, meetgegevensView.getTonaleRechts());
         painter.drawPixmap(hmar + 120*mmx, y, 90*mmx, 90*mmy, meetgegevensView.getTonaleLinks());
@@ -301,7 +301,7 @@ void BriefArts::print()
         tekst = m_view.getConclusion() + "\n\n";
         tekst += "\n\n";
         tekst += "Vriendelijke groeten, \n\n";
-        tekst += instellingen.getNaam();
+        tekst += instellingen.getName();
         tekstRect = QRect(QPoint(hmar, y),
                           QPoint(printer->paperRect().right() - hmar, printer->paperRect().bottom() - vmar));
         painter.drawText(tekstRect, tekst, Qt::AlignLeft|Qt::AlignTop);
