@@ -3,16 +3,16 @@
 
 #include <QDialog>
 #include <QString>
-#include "ui_instellingen.h"
+#include "ui_settings.h"
 
 namespace View
 {
-    class Instellingen : public QDialog, public Ui::Instellingen
+    class Settings : public QDialog
     {
     Q_OBJECT
     public:
-        explicit Instellingen(QWidget *parent = 0);
-        virtual ~Instellingen();
+        explicit Settings(QWidget *parent = 0);
+        virtual ~Settings();
 
         // --- Getters ---
         QString getNaam() const;
@@ -25,22 +25,26 @@ namespace View
         QString getOnderschrift() const;
         QString getRiziv() const;
         int getBtwPercentage() const;
-        QString getBtwNummer() const;
+        QString getVATNumber() const;
         QString getRekeningNummer() const;
 
         // --- Setters ---
-        void setNaam(const QString &value);
-        void setStraat(const QString &value);
-        void setPostcode(const int &value);
-        void setGemeente(const QString &value);
-        void setTelefoon(const QString &value);
-        void setGsm(const QString &value);
+        void setName(const QString &value);
+        void setStreet(const QString &value);
+        void setPostalCode(const int &value);
+        void setCity(const QString &value);
+        void setTelephone(const QString &value);
+        void setMobilePhone(const QString &value);
         void setEmail(const QString &value);
         void setOnderschrift(const QString &value);
         void setRiziv(const QString &value);
-        void setBtwPercentage(const int &value);
-        void setBtwNummer(const QString &value);
+        void setVATPercentage(const int &value);
+        void setVATNumber(const QString &value);
         void setRekeningNummer(const QString &value);
+
+    private:
+        // --- Data members ---
+        Ui::Settings m_ui;
     };
 }
 

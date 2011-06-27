@@ -20,7 +20,7 @@ Universe::Universe(QWidget *parent, Qt::WFlags f)
     m_ui.setupUi(this);
     connect(m_ui.actionBewaren, SIGNAL(triggered()), this, SLOT(bewaren()));
     connect(m_ui.actionEtikettenAfdrukken, SIGNAL(triggered()), this, SLOT(etikettenAfdrukken()));
-    connect(m_ui.actionInstellingen_wijzigen, SIGNAL(triggered()), this, SLOT(instellingen()));
+    connect(m_ui.actionInstellingen_wijzigen, SIGNAL(triggered()), this, SLOT(settings()));
     connect(m_ui.actionOmtrent, SIGNAL(triggered()), this, SLOT(omtrent()));
     connect(m_ui.m_artsenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selectPhysician(int, int, int, int)));
     connect(m_ui.m_klantenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selectCustomer(int, int, int, int)));
@@ -90,7 +90,7 @@ Etiketten &Universe::getEtiketten()
     return m_etiketten;
 }
 
-Instellingen &Universe::getInstellingen()
+Settings &Universe::getInstellingen()
 {
     return m_instellingen;
 }
@@ -124,9 +124,9 @@ void Universe::tabVeranderd(int nieuweTab)
     }
 }
 
-void Universe::instellingen()
+void Universe::settings()
 {
-    emit instellingenSignal();
+    emit openSettings();
 }
 
 void Universe::omtrent()

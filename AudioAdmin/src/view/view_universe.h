@@ -25,7 +25,7 @@ namespace View
         File &getDossier();
         InsuranceCompany &getMutualiteit();
         Etiketten &getEtiketten();
-        Instellingen &getInstellingen();
+        Settings &getInstellingen();
 
         void bewarenBijAfsluiten();
         void clearPhysicianList();
@@ -68,7 +68,7 @@ namespace View
 
     private slots:
         void tabVeranderd(int nieuweTab);
-        void instellingen();
+        void settings();
         void bewaren();
         void etikettenAfdrukken();
         void omtrent();
@@ -89,7 +89,7 @@ namespace View
     signals:
         void afsluitenSignal();
         void bewarenSignal();
-        void instellingenSignal();
+        void openSettings();
         void artsSelectieSignal(int id);
         void artsVerwijderenSignal(int id);
         void artsToevoegenSignal(QString voornaam, QString naam);
@@ -122,7 +122,7 @@ namespace View
         File m_dossier;
         InsuranceCompany m_mutualiteit;
         Etiketten m_etiketten;
-        Instellingen m_instellingen;
+        Settings m_instellingen;
         int m_huidigeTab;
     };
 }

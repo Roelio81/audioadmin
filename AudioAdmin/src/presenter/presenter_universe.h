@@ -32,9 +32,7 @@ namespace Presenter
         void etiketten();
         void afdrukkenEtiketten();
         void annuleerEtiketten();
-        void instellingen();
-        void okInstellingen();
-        void annuleerInstellingen();
+        void openSettings();
         void showPhysician(int id);
         void showFile(int id);
         void showInsuranceCompany(int id);
@@ -57,9 +55,9 @@ namespace Presenter
 
     private:
         void setupEtiketten();
-        void setupInstellingen();
+        void setupSettings();
         void teardownEtiketten();
-        void teardownInstellingen();
+        void teardownSettings();
 
         void refreshArtsenLijst();
         void refreshHoorapparatenLijst();

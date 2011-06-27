@@ -9,6 +9,11 @@ int main(int argc, char ** argv)
 {
     QApplication app( argc, argv );
 
+    // Since we don't have a full-blown qt_nl.ts file, we will have to mark some strings
+    // explicitly for translation here
+    QT_TRANSLATE_NOOP("QDialogButtonBox", "OK");
+    QT_TRANSLATE_NOOP("QDialogButtonBox", "Cancel");
+
     QTranslator translator;
     bool translationFound = translator.load("audioadmin_nl");
     Q_ASSERT(translationFound);

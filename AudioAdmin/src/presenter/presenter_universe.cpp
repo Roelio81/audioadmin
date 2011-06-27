@@ -29,7 +29,7 @@ Universum::Universum(View::Universe &view, Model::Universe &model)
     connect(&m_view, SIGNAL(afsluitenSignal()), this, SLOT(afsluiten()));
     connect(&m_view, SIGNAL(bewarenSignal()), this, SLOT(bewaren()));
     connect(&m_view, SIGNAL(etikettenSignal()), this, SLOT(etiketten()));
-    connect(&m_view, SIGNAL(instellingenSignal()), this, SLOT(instellingen()));
+    connect(&m_view, SIGNAL(openSettings()), this, SLOT(openSettings()));
     connect(&m_view, SIGNAL(artsSelectieSignal(int)), this, SLOT(showPhysician(int)));
     connect(&m_view, SIGNAL(artsVerwijderenSignal(int)), this, SLOT(removePhysician(int)));
     connect(&m_view, SIGNAL(artsToevoegenSignal(QString, QString)), this, SLOT(addPhysician(QString, QString)));
@@ -73,7 +73,7 @@ void Universum::afsluiten()
     teardownPhysician();
     teardownFile();
     teardownInsuranceCompany();
-    teardownInstellingen();
+    teardownSettings();
     if (m_changed)
         m_view.bewarenBijAfsluiten();
 }
@@ -117,25 +117,11 @@ void Universum::annuleerEtiketten()
     m_view.getEtiketten().hide();
 }
 
-void Universum::instellingen()
+void Universum::openSettings()
 {
-    setupInstellingen();
-    connect(m_view.getInstellingen().b_ok, SIGNAL(clicked()), this, SLOT(okInstellingen()));
-    connect(m_view.getInstellingen().b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerInstellingen()));
-    m_view.getInstellingen().show();
-    disconnect(this, SLOT(okInstellingen()));
-    disconnect(this, SLOT(annuleerInstellingen()));
-}
-
-void Universum::okInstellingen()
-{
-    teardownInstellingen();
-    m_view.getInstellingen().hide();
-}
-
-void Universum::annuleerInstellingen()
-{
-    m_view.getInstellingen().hide();
+    setupSettings();
+    if (m_view.getInstellingen().exec() == QDialog::Accepted)
+        teardownSettings();
 }
 
 void Universum::setupEtiketten()
@@ -152,32 +138,32 @@ void Universum::setupEtiketten()
     viewEtiketten.setDatumOnderzoek(QDate::currentDate().addYears(-2));
 }
 
-void Universum::setupInstellingen()
+void Universum::setupSettings()
 {
-    Model::Settings &modelInstellingen = m_model.getSettings();
-    View::Instellingen &viewInstellingen = m_view.getInstellingen();
-    viewInstellingen.setNaam(modelInstellingen.getName());
-    viewInstellingen.setStraat(modelInstellingen.getStreet());
-    viewInstellingen.setPostcode(modelInstellingen.getPostalCode());
-    viewInstellingen.setGemeente(modelInstellingen.getCity());
-    viewInstellingen.setTelefoon(modelInstellingen.getTelephone());
-    viewInstellingen.setGsm(modelInstellingen.getMobilePhone());
-    viewInstellingen.setEmail(modelInstellingen.getEmail());
-    viewInstellingen.setOnderschrift(modelInstellingen.getOnderschrift());
-    viewInstellingen.setRiziv(modelInstellingen.getRiziv());
-    viewInstellingen.setBtwPercentage(modelInstellingen.getVATPercentage());
-    viewInstellingen.setBtwNummer(modelInstellingen.getBtwNummer());
-    viewInstellingen.setRekeningNummer(modelInstellingen.getRekeningNummer());
+    Model::Settings &modelSettings = m_model.getSettings();
+    View::Settings &viewSettings = m_view.getInstellingen();
+    viewSettings.setName(modelSettings.getName());
+    viewSettings.setStreet(modelSettings.getStreet());
+    viewSettings.setPostalCode(modelSettings.getPostalCode());
+    viewSettings.setCity(modelSettings.getCity());
+    viewSettings.setTelephone(modelSettings.getTelephone());
+    viewSettings.setMobilePhone(modelSettings.getMobilePhone());
+    viewSettings.setEmail(modelSettings.getEmail());
+    viewSettings.setOnderschrift(modelSettings.getOnderschrift());
+    viewSettings.setRiziv(modelSettings.getRiziv());
+    viewSettings.setVATPercentage(modelSettings.getVATPercentage());
+    viewSettings.setVATNumber(modelSettings.getBtwNummer());
+    viewSettings.setRekeningNummer(modelSettings.getRekeningNummer());
 }
 
 void Universum::teardownEtiketten()
 {
 }
 
-void Universum::teardownInstellingen()
+void Universum::teardownSettings()
 {
     Model::Settings &modelInstellingen = m_model.getSettings();
-    View::Instellingen &viewInstellingen = m_view.getInstellingen();
+    View::Settings &viewInstellingen = m_view.getInstellingen();
     modelInstellingen.setName(viewInstellingen.getNaam());
     modelInstellingen.setStreet(viewInstellingen.getStraat());
     modelInstellingen.setPostalCode(viewInstellingen.getPostcode());
@@ -188,7 +174,7 @@ void Universum::teardownInstellingen()
     modelInstellingen.setOnderschrift(viewInstellingen.getOnderschrift());
     modelInstellingen.setRiziv(viewInstellingen.getRiziv());
     modelInstellingen.setBtwPercentage(viewInstellingen.getBtwPercentage());
-    modelInstellingen.setBtwNummer(viewInstellingen.getBtwNummer());
+    modelInstellingen.setBtwNummer(viewInstellingen.getVATNumber());
     modelInstellingen.setRekeningNummer(viewInstellingen.getRekeningNummer());
 }
 

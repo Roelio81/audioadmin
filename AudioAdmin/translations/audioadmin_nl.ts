@@ -213,10 +213,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Gemiddeld verlies (in dB)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -312,6 +308,21 @@ p, li { white-space: pre-wrap; }
         <source>Annuleren</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Average loss (in dB)</source>
+        <translation>Gemiddeld verlies (in dB)</translation>
+    </message>
+</context>
+<context>
+    <name>QDialogButtonBox</name>
+    <message>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Annuleren</translation>
+    </message>
 </context>
 <context>
     <name>Settings</name>
@@ -344,14 +355,6 @@ p, li { white-space: pre-wrap; }
         <translation>Telefoon</translation>
     </message>
     <message>
-        <source>GSM</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>E-mail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Onderschrift</source>
         <translation type="unfinished"></translation>
     </message>
@@ -364,19 +367,19 @@ p, li { white-space: pre-wrap; }
         <translation>BTW percentage</translation>
     </message>
     <message>
-        <source>BTW nummer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Rekeningnummer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <source>Mobile phone</source>
+        <translation>GSM</translation>
     </message>
     <message>
-        <source>Annuleren</source>
+        <source>Email</source>
+        <translation>E-mail</translation>
+    </message>
+    <message>
+        <source>VAT number</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

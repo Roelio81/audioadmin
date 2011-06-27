@@ -136,7 +136,7 @@
             <item>
              <widget class="QLabel" name="l_verliesRechts">
               <property name="text">
-               <string>Gemiddeld verlies (in dB)</string>
+               <string>Average loss (in dB)</string>
               </property>
              </widget>
             </item>
@@ -283,7 +283,7 @@
             <item>
              <widget class="QLabel" name="l_verliesLinks">
               <property name="text">
-               <string>Gemiddeld verlies (in dB)</string>
+               <string>Average loss (in dB)</string>
               </property>
              </widget>
             </item>

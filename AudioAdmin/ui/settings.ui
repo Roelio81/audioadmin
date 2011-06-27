@@ -108,7 +108,7 @@
       <item row="3" column="6">
        <widget class="QLabel" name="l_gsm">
         <property name="text">
-         <string>GSM</string>
+         <string>Mobile phone</string>
         </property>
        </widget>
       </item>
@@ -118,7 +118,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="l_email">
         <property name="text">
-         <string>E-mail</string>
+         <string>Email</string>
         </property>
        </widget>
       </item>
@@ -180,7 +180,7 @@
       <item row="1" column="0" colspan="2">
        <widget class="QLabel" name="l_btwnummer">
         <property name="text">
-         <string>BTW nummer</string>
+         <string>VAT number</string>
         </property>
        </widget>
       </item>
@@ -221,40 +221,49 @@
     </spacer>
    </item>
    <item row="3" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="b_ok">
-       <property name="text">
-        <string>Ok</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="b_annuleren">
-       <property name="text">
-        <string>Annuleren</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
  <resources>
   <include location="../icons.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>Settings</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>303</x>
+     <y>312</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>166</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>Settings</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>303</x>
+     <y>312</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>166</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
