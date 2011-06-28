@@ -380,7 +380,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>VAT number</source>
-        <translation type="unfinished"></translation>
+        <translation>BTW nummer</translation>
     </message>
 </context>
 <context>

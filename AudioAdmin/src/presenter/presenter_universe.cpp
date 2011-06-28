@@ -61,7 +61,7 @@ Universum::Universum(View::Universe &view, Model::Universe &model)
 
     m_view.cleanupTabInsuranceCompany();
     if (!m_model.getInsuranceCompanies().empty())
-        m_view.selecteerMutualiteit(m_model.getInsuranceCompanies().front()->getId());
+        m_view.selectInsuranceCompany(m_model.getInsuranceCompanies().front()->getId());
 }
 
 Universum::~Universum()
@@ -312,7 +312,7 @@ void Universum::toevoegenMutualiteit(QString naam)
     Q_ASSERT(insuranceCompany);
     m_view.setInsuranceCompanyListChanged(true);
     m_view.addInsuranceCompany(insuranceCompany->getId(), insuranceCompany->getName(), insuranceCompany->getStreet(), insuranceCompany->getPostalCode(), insuranceCompany->getCity());
-    m_view.selecteerMutualiteit(insuranceCompany->getId());
+    m_view.selectInsuranceCompany(insuranceCompany->getId());
     m_changed = true;
 }
 
@@ -385,11 +385,10 @@ void Universum::setupPhysician()
 
     if (Model::Physician *artsModel = m_model.getPhysician(m_arts))
     {
-//        m_view.g_artsgegevens->setEnabled(true);
-//        m_view.b_artsVerwijderen->setEnabled(true);
         m_physicianPresenter = new Presenter::Physician(m_view.getArts(), *artsModel);
         m_physicianPresenter->setup();
         connect(m_physicianPresenter, SIGNAL(edited(int)), this, SLOT(editedPhysician(int)));
+        m_view.enableWidgetsForPhysician();
     }
 }
 
@@ -399,17 +398,11 @@ void Universum::setupFile()
 
     if (Model::File *dossierModel = m_model.getFile(m_file))
     {
-//        m_view.g_klantgegevens->setEnabled(true);
-//        m_view.g_datums->setEnabled(true);
-//        m_view.g_brieven->setEnabled(true);
-//        m_view.g_hoorapparaten->setEnabled(true);
-//        m_view.g_meetgegevens->setEnabled(true);
-//        m_view.g_klantArts->setEnabled(true);
-//        m_view.b_dossierVerwijderen->setEnabled(true);
         m_filePresenter = new Presenter::Dossier(m_view.getDossier(), *dossierModel);
         m_filePresenter->setup();
         connect(m_filePresenter, SIGNAL(edited(int)), this, SLOT(editedFile(int)));
         connect(m_filePresenter, SIGNAL(destroyed()), this, SLOT(hoorapparaatGewijzigd()));
+        m_view.enableWidgetsForCustomer();
     }
 }
 
@@ -419,10 +412,9 @@ void Universum::setupInsuranceCompany()
 
     if (Model::InsuranceCompany *mutualiteitModel = m_model.getInsuranceCompany(m_insuranceCompany))
     {
-//        m_view.g_mutualiteitsgegevens->setEnabled(true);
-//        m_view.b_mutualiteitVerwijderen->setEnabled(true);
         m_insuranceCompanyPresenter = new Presenter::InsuranceCompany(m_view.getMutualiteit(), *mutualiteitModel);
         m_insuranceCompanyPresenter->setup();
         connect(m_insuranceCompanyPresenter, SIGNAL(edited(int)), this, SLOT(editedInsuranceCompany(int)));
+        m_view.enableWidgetsForInsuranceCompany();
     }
 }

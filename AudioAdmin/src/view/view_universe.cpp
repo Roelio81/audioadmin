@@ -24,7 +24,7 @@ Universe::Universe(QWidget *parent, Qt::WFlags f)
     connect(m_ui.actionOmtrent, SIGNAL(triggered()), this, SLOT(omtrent()));
     connect(m_ui.m_artsenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selectPhysician(int, int, int, int)));
     connect(m_ui.m_klantenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selectCustomer(int, int, int, int)));
-    connect(m_ui.m_mutualiteitenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selecteerMutualiteit(int, int, int, int)));
+    connect(m_ui.m_mutualiteitenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selectInsuranceCompany(int, int, int, int)));
     connect(m_ui.b_artsToevoegen, SIGNAL(clicked()), this, SLOT(addPhysician()));
     connect(m_ui.b_artsVerwijderen, SIGNAL(clicked()), this, SLOT(removePhysician()));
     connect(m_ui.b_artsZoeken, SIGNAL(clicked()), this, SLOT(findPhysician()));
@@ -347,7 +347,7 @@ void Universe::selectCustomer(int id)
     m_ui.m_klantenLijst->setCurrentCell(klantIdToIndex(id), 1);
 }
 
-void Universe::selecteerMutualiteit(int id)
+void Universe::selectInsuranceCompany(int id)
 {
     m_ui.m_mutualiteitenLijst->setCurrentCell(mutualiteitIdToIndex(id), 1);
 }
@@ -357,8 +357,7 @@ void Universe::selectPhysician(int currentRow, int, int previousRow, int)
     if (currentRow != previousRow)
         emit artsSelectieSignal(artsIndexToId(currentRow));
 
-    m_ui.b_artsVerwijderen->setEnabled(true);
-    m_ui.g_artsgegevens->setEnabled(true);
+    enableWidgetsForPhysician();
 }
 
 void Universe::selectCustomer(int currentRow, int, int previousRow, int)
@@ -366,22 +365,44 @@ void Universe::selectCustomer(int currentRow, int, int previousRow, int)
     if (currentRow != previousRow)
         emit klantSelectieSignal(klantIndexToId(currentRow));
 
-    m_ui.b_dossierVerwijderen->setEnabled(true);
-    m_ui.g_klantgegevens->setEnabled(true);
-    m_ui.g_datums->setEnabled(true);
-    m_ui.g_brieven->setEnabled(true);
-    m_ui.g_hoorapparaten->setEnabled(true);
-    m_ui.g_meetgegevens->setEnabled(true);
-    m_ui.g_klantArts->setEnabled(true);
+    enableWidgetsForCustomer();
 }
 
-void Universe::selecteerMutualiteit(int currentRow, int, int previousRow, int)
+void Universe::selectInsuranceCompany(int currentRow, int, int previousRow, int)
 {
     if (currentRow != previousRow)
         emit mutualiteitSelectieSignal(mutualiteitIndexToId(currentRow));
 
-    m_ui.b_mutualiteitVerwijderen->setEnabled(true);
-    m_ui.g_mutualiteitsgegevens->setEnabled(true);
+    enableWidgetsForInsuranceCompany();
+}
+
+void Universe::enableWidgetsForPhysician()
+{
+    bool selectedPhysician = !(m_ui.m_artsenLijst->selectionModel()->selectedIndexes().empty());
+
+    m_ui.b_artsVerwijderen->setEnabled(selectedPhysician);
+    m_ui.g_artsgegevens->setEnabled(selectedPhysician);
+}
+
+void Universe::enableWidgetsForCustomer()
+{
+    bool selectedCustomer = !(m_ui.m_klantenLijst->selectionModel()->selectedIndexes().empty());
+
+    m_ui.b_dossierVerwijderen->setEnabled(selectedCustomer);
+    m_ui.g_klantgegevens->setEnabled(selectedCustomer);
+    m_ui.g_datums->setEnabled(selectedCustomer);
+    m_ui.g_brieven->setEnabled(selectedCustomer);
+    m_ui.g_hoorapparaten->setEnabled(selectedCustomer);
+    m_ui.g_meetgegevens->setEnabled(selectedCustomer);
+    m_ui.g_klantArts->setEnabled(selectedCustomer);
+}
+
+void Universe::enableWidgetsForInsuranceCompany()
+{
+    bool selectedInsuranceCompany = !(m_ui.m_mutualiteitenLijst->selectionModel()->selectedIndexes().empty());
+
+    m_ui.b_mutualiteitVerwijderen->setEnabled(selectedInsuranceCompany);
+    m_ui.g_mutualiteitsgegevens->setEnabled(selectedInsuranceCompany);
 }
 
 void Universe::addPhysician()

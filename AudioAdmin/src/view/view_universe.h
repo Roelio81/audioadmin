@@ -56,7 +56,10 @@ namespace View
 
         void selectPhysician(int id);
         void selectCustomer(int id);
-        void selecteerMutualiteit(int id);
+        void selectInsuranceCompany(int id);
+        void enableWidgetsForPhysician();
+        void enableWidgetsForCustomer();
+        void enableWidgetsForInsuranceCompany();
 
         // This method should disappear and be replaced with subpanels
         Ui::Universe &getUi() { return m_ui; }
@@ -74,7 +77,7 @@ namespace View
         void omtrent();
         void selectPhysician(int currentRow, int currentColumn, int previousRow, int previousColumn);
         void selectCustomer(int currentRow, int currentColumn, int previousRow, int previousColumn);
-        void selecteerMutualiteit(int currentRow, int currentColumn, int previousRow, int previousColumn);
+        void selectInsuranceCompany(int currentRow, int currentColumn, int previousRow, int previousColumn);
         void addPhysician();
         void removePhysician();
         void findPhysician();
