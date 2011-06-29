@@ -11,7 +11,7 @@ using namespace View;
 Universe::Universe(QWidget *parent, Qt::WFlags f)
 : QMainWindow(parent, f)
 , m_arts(m_ui)
-, m_dossier(*this)
+, m_file(*this)
 , m_mutualiteit(m_ui)
 , m_etiketten(this)
 , m_instellingen(this)
@@ -34,15 +34,15 @@ Universe::Universe(QWidget *parent, Qt::WFlags f)
     connect(m_ui.b_mutualiteitToevoegen, SIGNAL(clicked()), this, SLOT(addInsuranceCompany()));
     connect(m_ui.b_mutualiteitVerwijderen, SIGNAL(clicked()), this, SLOT(removeInsuranceCompany()));
     connect(m_ui.b_mutualiteitZoeken, SIGNAL(clicked()), this, SLOT(findInsuranceCompany()));
-    connect(m_ui.m_rechterHoorapparaatMerk, SIGNAL(currentIndexChanged(int)), &m_dossier, SLOT(refreshRechterHoorapparaatLijst(int)));
-    connect(m_ui.m_linkerHoorapparaatMerk, SIGNAL(currentIndexChanged(int)), &m_dossier, SLOT(refreshLinkerHoorapparaatLijst(int)));
-    connect(m_ui.m_klantArts, SIGNAL(currentIndexChanged(int)), &m_dossier, SLOT(toonArts(int)));
-    connect(m_ui.m_klantMutualiteit, SIGNAL(currentIndexChanged(int)), &m_dossier, SLOT(toonMutualiteit(int)));
-    connect(m_ui.b_artsBrief, SIGNAL(clicked()), &m_dossier, SLOT(toonBriefArts()));
-    connect(m_ui.b_klantBrief, SIGNAL(clicked()), &m_dossier, SLOT(toonBriefKlant()));
-    connect(m_ui.b_mutualiteitBrief, SIGNAL(clicked()), &m_dossier, SLOT(toonBriefMutualiteit()));
-    connect(m_ui.b_factuur, SIGNAL(clicked()), &m_dossier, SLOT(toonFactuur()));
-    connect(m_ui.b_meetgegevens, SIGNAL(clicked()), &m_dossier, SLOT(toonMeetgegevens()));
+    connect(m_ui.m_rechterHoorapparaatMerk, SIGNAL(currentIndexChanged(int)), &m_file, SLOT(refreshRechterHoorapparaatLijst(int)));
+    connect(m_ui.m_linkerHoorapparaatMerk, SIGNAL(currentIndexChanged(int)), &m_file, SLOT(refreshLinkerHoorapparaatLijst(int)));
+    connect(m_ui.m_klantArts, SIGNAL(currentIndexChanged(int)), &m_file, SLOT(showPhysician(int)));
+    connect(m_ui.m_klantMutualiteit, SIGNAL(currentIndexChanged(int)), &m_file, SLOT(toonMutualiteit(int)));
+    connect(m_ui.b_artsBrief, SIGNAL(clicked()), &m_file, SLOT(toonBriefArts()));
+    connect(m_ui.b_klantBrief, SIGNAL(clicked()), &m_file, SLOT(toonBriefKlant()));
+    connect(m_ui.b_mutualiteitBrief, SIGNAL(clicked()), &m_file, SLOT(toonBriefMutualiteit()));
+    connect(m_ui.b_factuur, SIGNAL(clicked()), &m_file, SLOT(toonFactuur()));
+    connect(m_ui.b_meetgegevens, SIGNAL(clicked()), &m_file, SLOT(toonMeetgegevens()));
     connect(m_ui.m_tabs, SIGNAL(currentChanged(int)), this, SLOT(tabVeranderd(int)));
 
     // De kolombreedtes wat aanpassen
@@ -77,7 +77,7 @@ Physician &Universe::getArts()
 
 File &Universe::getDossier()
 {
-    return m_dossier;
+    return m_file;
 }
 
 InsuranceCompany &Universe::getMutualiteit()
@@ -152,12 +152,12 @@ void Universe::bewarenBijAfsluiten()
 void Universe::clearPhysicianList()
 {
     m_ui.m_artsenLijst->clearContents();
-    m_dossier.leegArtsenLijst();
+    m_file.clearPhysicianList();
 }
 
 void Universe::addPhysician(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
-    m_dossier.toevoegenArts(id, naam, straat, QString::number(postcode) + " " + gemeente);
+    m_file.addPhysician(id, naam, straat, QString::number(postcode) + " " + gemeente);
 
     int index = m_ui.m_artsenLijst->rowCount();
     m_ui.m_artsenLijst->insertRow(index);
@@ -168,7 +168,7 @@ void Universe::addPhysician(int id, const QString &naam, const QString &straat, 
 
 void Universe::changePhysician(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
-    m_dossier.wijzigenArts(id, naam, straat, QString::number(postcode) + " " + gemeente);
+    m_file.changePhysician(id, naam, straat, QString::number(postcode) + " " + gemeente);
 
     int index = artsIdToIndex(id);
     m_ui.m_artsenLijst->setItem(index, 1, new QTableWidgetItem(naam));
@@ -242,16 +242,15 @@ void Universe::setInsuranceCompanyListChanged(bool changed)
     markTabChanged(2, changed);
 }
 
-void Universe::leegMutualiteitenLijst()
+void Universe::clearInsuranceCompanyList()
 {
     m_ui.m_mutualiteitenLijst->clearContents();
-    m_ui.m_klantMutualiteit->clear();
-    m_ui.m_klantMutualiteit->addItem("", QVariant(-1));
+    m_file.clearInsuranceCompanyList();
 }
 
 void Universe::addInsuranceCompany(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
-    m_dossier.toevoegenMutualiteit(id, naam);
+    m_file.addInsuranceCompany(id, naam);
 
     int index = m_ui.m_mutualiteitenLijst->rowCount();
     m_ui.m_mutualiteitenLijst->insertRow(index);
@@ -262,7 +261,7 @@ void Universe::addInsuranceCompany(int id, const QString &naam, const QString &s
 
 void Universe::wijzigenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente)
 {
-    m_dossier.wijzigenMutualiteit(id, naam);
+    m_file.changeInsruanceCompany(id, naam);
 
     int index = mutualiteitIdToIndex(id);
     m_ui.m_mutualiteitenLijst->setItem(index, 1, new QTableWidgetItem(naam));

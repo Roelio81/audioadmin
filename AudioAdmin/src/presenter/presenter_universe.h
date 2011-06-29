@@ -59,10 +59,10 @@ namespace Presenter
         void teardownEtiketten();
         void teardownSettings();
 
-        void refreshArtsenLijst();
+        void refreshPhysicianList();
         void refreshHoorapparatenLijst();
         void refreshKlantenLijst();
-        void refreshMutualiteitenLijst();
+        void refreshInsuranceCompanyList();
 
         View::Universe &m_view;
         Model::Universe &m_model;

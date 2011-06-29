@@ -1,6 +1,7 @@
 #ifndef _VIEW_FILE_H
 #define _VIEW_FILE_H
 
+#include <QStandardItemModel>
 #include <QMap>
 #include <QObject>
 #include <QDate>
@@ -25,11 +26,12 @@ namespace View
 
         void leegAanspreektitels();
         void toevoegenAanspreektitel(const QString &value);
-        void leegArtsenLijst();
-        void toevoegenArts(int id, const QString &naam, const QString &straat, const QString &gemeente);
-        void wijzigenArts(int id, const QString &naam, const QString &straat, const QString &gemeente);
-        void toevoegenMutualiteit(int id, const QString &naam);
-        void wijzigenMutualiteit(int id, const QString &naam);
+        void clearPhysicianList();
+        void addPhysician(int id, const QString &naam, const QString &straat, const QString &gemeente);
+        void changePhysician(int id, const QString &naam, const QString &straat, const QString &gemeente);
+        void clearInsuranceCompanyList();
+        void addInsuranceCompany(int id, const QString &naam);
+        void changeInsruanceCompany(int id, const QString &naam);
 
         // --- Getters ---
         QString getAanspreektitel() const;
@@ -40,11 +42,11 @@ namespace View
         QString getGemeente() const;
         QString getTelefoon() const;
         QDate getGeboorteDatum() const;
-        int getMutualiteit() const;
+        int getInsuranceCompany() const;
         QString getAansluitingsnummer() const;
         QString getPlaatsAanpassing() const;
-        QString getOpmerkingen() const;
-        int getArts() const;
+        QString getComments() const;
+        int getPhysician() const;
         QString getRechterHoorapparaatMerk() const;
         QString getRechterHoorapparaatType() const;
         QString getRechterHoorapparaatSerienummer() const;
@@ -72,11 +74,11 @@ namespace View
         void setGemeente(const QString &value);
         void setTelefoon(const QString &value);
         void setGeboorteDatum(const QDate &value);
-        void setMutualiteit(int value);
+        void setInsuranceCompany(int value);
         void setAansluitingsnummer(const QString &value);
         void setPlaatsAanpassing(const QString &value);
         void setOpmerkingen(const QString &value);
-        void setArts(int value);
+        void setPhysician(int value);
         void setRechterHoorapparaatMerk(const QString &value);
         void setRechterHoorapparaatType(const QString &value);
         void setRechterHoorapparaatSerienummer(const QString &value);
@@ -96,7 +98,7 @@ namespace View
         void setOnderhoudsContractDatum(const QDate &value);
 
     public slots:
-        void toonArts(int value);
+        void showPhysician(int value);
         void toonBriefArts();
         void toonBriefKlant();
         void toonBriefMutualiteit();
@@ -117,8 +119,8 @@ namespace View
         // --- Data members ---
         Universe &m_universe;
         Ui::Universe &m_ui;
-        QMap<int, QString> m_artsIdToStraat;
-        QMap<int, QString> m_artsIdToGemeente;
+        QStandardItemModel m_physicianList;
+        QStandardItemModel m_insuranceCompanyList;
     };
 }
 

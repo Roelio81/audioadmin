@@ -36,7 +36,7 @@ namespace View
         void leegKlantenLijst();
         void addCustomer(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
         void changeCustomer(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
-        void leegMutualiteitenLijst();
+        void clearInsuranceCompanyList();
         void addInsuranceCompany(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
         void wijzigenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
 
@@ -122,7 +122,7 @@ namespace View
         Ui::Universe m_ui;
         HoorApparaatMap m_hoorapparaatMerkToTypes;
         Physician m_arts;
-        File m_dossier;
+        File m_file;
         InsuranceCompany m_mutualiteit;
         Etiketten m_etiketten;
         Settings m_instellingen;

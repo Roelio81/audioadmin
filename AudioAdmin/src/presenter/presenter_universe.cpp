@@ -46,10 +46,10 @@ Universum::Universum(View::Universe &view, Model::Universe &model)
     connect(&m_view, SIGNAL(openDossierTab()), this, SLOT(setupFile()));
     connect(&m_view, SIGNAL(openMutualiteitTab()), this, SLOT(setupInsuranceCompany()));
 
-    refreshArtsenLijst();
+    refreshPhysicianList();
     refreshHoorapparatenLijst();
     refreshKlantenLijst();
-    refreshMutualiteitenLijst();
+    refreshInsuranceCompanyList();
 
     m_view.cleanupTabPhysician();
     if (!m_model.getPhysicians().empty())
@@ -178,7 +178,7 @@ void Universum::teardownSettings()
     modelInstellingen.setRekeningNummer(viewInstellingen.getRekeningNummer());
 }
 
-void Universum::refreshArtsenLijst()
+void Universum::refreshPhysicianList()
 {
     m_view.clearPhysicianList();
     const QVector<Model::Physician *> &artsen = m_model.getPhysicians();
@@ -216,9 +216,9 @@ void Universum::refreshKlantenLijst()
     }
 } 
 
-void Universum::refreshMutualiteitenLijst()
+void Universum::refreshInsuranceCompanyList()
 {
-    m_view.leegMutualiteitenLijst();
+    m_view.clearInsuranceCompanyList();
     const QVector<Model::InsuranceCompany *> &mutualiteiten = m_model.getInsuranceCompanies();
     for (QVector<Model::InsuranceCompany *>::const_iterator itMutualiteit = mutualiteiten.begin(); itMutualiteit != mutualiteiten.end(); ++itMutualiteit)
     {

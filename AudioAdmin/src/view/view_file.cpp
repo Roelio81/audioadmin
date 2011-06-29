@@ -3,6 +3,13 @@
 
 using namespace View;
 
+namespace
+{
+    const int ROLE_ID = Qt::UserRole + 1;
+    const int ROLE_STREET = Qt::UserRole + 2;
+    const int ROLE_CITY = Qt::UserRole + 3;
+}
+
 File::File(Universe &universe)
 : m_universe(universe)
 , m_ui(universe.getUi())
@@ -28,33 +35,35 @@ void File::toevoegenAanspreektitel(const QString &value)
     m_ui.m_aanspreektitel->addItem(value);
 }
 
-void File::leegArtsenLijst()
+void File::clearPhysicianList()
 {
-    m_ui.m_klantArts->clear();
-    m_ui.m_klantArts->addItem("", QVariant(-1));
-    m_ui.l_klantArtsStraat->setText("");
-    m_ui.l_klantArtsGemeente->setText("");
-    m_artsIdToStraat.clear();
-    m_artsIdToGemeente.clear();
+    m_physicianList.clear();
+    m_physicianList.sort(0);
+    m_ui.m_klantArts->setModel(&m_physicianList);
+    addPhysician(-1, "", "", "");
 }
 
-void File::toevoegenArts(int id, const QString &naam, const QString &straat, const QString &gemeente)
+void File::addPhysician(int id, const QString &name, const QString &street, const QString &city)
 {
-    m_ui.m_klantArts->addItem(naam, QVariant(id));
-    m_artsIdToStraat[id] = straat;
-    m_artsIdToGemeente[id] = gemeente;
+    QStandardItem *item = new QStandardItem(name);
+    Q_ASSERT(item);
+    item->setData(QVariant(id), ROLE_ID);
+    item->setData(QVariant(street), ROLE_STREET);
+    item->setData(QVariant(city), ROLE_CITY);
+    m_physicianList.appendRow(item);
+    m_physicianList.sort(0);
 }
 
-void File::wijzigenArts(int id, const QString &naam, const QString &straat, const QString &gemeente)
+void File::changePhysician(int id, const QString &name, const QString &street, const QString &city)
 {
-    int nofArtsen = m_ui.m_klantArts->count();
-    for (int index = 0; index < nofArtsen; ++index)
+    for (int iRow = 0; iRow < m_physicianList.rowCount(); ++iRow)
     {
-        if (m_ui.m_klantArts->itemData(index).toInt() == id)
+        QStandardItem *item = m_physicianList.item(iRow);
+        if (item->data(ROLE_ID).toInt() == id)
         {
-            m_ui.m_klantArts->setItemText(index, naam);
-            m_artsIdToStraat[id] = straat;
-            m_artsIdToGemeente[id] = gemeente;
+            item->setText(name);
+            item->setData(QVariant(street), ROLE_STREET);
+            item->setData(QVariant(city), ROLE_CITY);
             return;
         }
     }
@@ -62,19 +71,31 @@ void File::wijzigenArts(int id, const QString &naam, const QString &straat, cons
     Q_ASSERT(false);
 }
 
-void File::toevoegenMutualiteit(int id, const QString &naam)
+void File::clearInsuranceCompanyList()
 {
-    m_ui.m_klantMutualiteit->addItem(naam, QVariant(id));
+    m_insuranceCompanyList.clear();
+    m_insuranceCompanyList.sort(0);
+    m_ui.m_klantMutualiteit->setModel(&m_insuranceCompanyList);
+    addInsuranceCompany(-1, "");
 }
 
-void File::wijzigenMutualiteit(int id, const QString &naam)
+void File::addInsuranceCompany(int id, const QString &name)
 {
-    int nofMutualiteiten = m_ui.m_klantMutualiteit->count();
-    for (int index = 0; index < nofMutualiteiten; ++index)
+    QStandardItem *item = new QStandardItem(name);
+    Q_ASSERT(item);
+    item->setData(QVariant(id), ROLE_ID);
+    m_insuranceCompanyList.appendRow(item);
+    m_insuranceCompanyList.sort(0);
+}
+
+void File::changeInsruanceCompany(int id, const QString &name)
+{
+    for (int iRow = 0; iRow < m_insuranceCompanyList.rowCount(); ++iRow)
     {
-        if (m_ui.m_klantMutualiteit->itemData(index).toInt() == id)
+        QStandardItem *item = m_insuranceCompanyList.item(iRow);
+        if (item->data(ROLE_ID).toInt() == id)
         {
-            m_ui.m_klantMutualiteit->setItemText(index, naam);
+            item->setText(name);
             return;
         }
     }
@@ -122,11 +143,10 @@ QDate File::getGeboorteDatum() const
     return m_ui.m_klantGeboorteDatum->date();
 }
 
-int File::getMutualiteit() const
+int File::getInsuranceCompany() const
 {
     int index = m_ui.m_klantMutualiteit->currentIndex();
-    int id = m_ui.m_klantMutualiteit->itemData(index).toInt();
-    return id;
+    return m_ui.m_klantMutualiteit->itemData(index, ROLE_ID).toInt();
 }
 
 QString File::getAansluitingsnummer() const
@@ -139,15 +159,15 @@ QString File::getPlaatsAanpassing() const
     return m_ui.m_plaatsAanpassing->text();
 }
 
-QString File::getOpmerkingen() const
+QString File::getComments() const
 {
     return m_ui.m_klantOpmerkingen->toPlainText();
 }
 
-int File::getArts() const
+int File::getPhysician() const
 {
     int index = m_ui.m_klantArts->currentIndex();
-    return m_ui.m_klantArts->itemData(index).toInt();
+    return m_ui.m_klantArts->itemData(index, ROLE_ID).toInt();
 }
 
 QString File::getRechterHoorapparaatMerk() const
@@ -280,14 +300,13 @@ void File::setGeboorteDatum(const QDate &value)
     m_ui.m_klantGeboorteDatum->setDate(value);
 }
 
-void File::setMutualiteit(int value)
+void File::setInsuranceCompany(int id)
 {
-    for (int index = 1; index < m_ui.m_klantMutualiteit->count(); ++index)
+    for (int iRow = 0; iRow < m_insuranceCompanyList.rowCount(); ++iRow)
     {
-        int id = m_ui.m_klantMutualiteit->itemData(index).toInt();
-        if (id == value)
+        if (id == m_ui.m_klantMutualiteit->itemData(iRow, ROLE_ID).toInt())
         {
-            m_ui.m_klantMutualiteit->setCurrentIndex(index);
+            m_ui.m_klantMutualiteit->setCurrentIndex(iRow);
             m_ui.b_mutualiteitBrief->setEnabled(true);
             return;
         }
@@ -312,14 +331,13 @@ void File::setOpmerkingen(const QString &value)
     m_ui.m_klantOpmerkingen->setPlainText(value);
 }
 
-void File::setArts(int value)
+void File::setPhysician(int id)
 {
-    for (int index = 1; index < m_ui.m_klantArts->count(); ++index)
+    for (int iRow = 0; iRow < m_physicianList.rowCount(); ++iRow)
     {
-        int id = m_ui.m_klantArts->itemData(index).toInt();
-        if (id == value)
+        if (id == m_ui.m_klantArts->itemData(iRow, ROLE_ID).toInt())
         {
-            m_ui.m_klantArts->setCurrentIndex(index);
+            m_ui.m_klantArts->setCurrentIndex(iRow);
             m_ui.b_artsBrief->setEnabled(true);
             return;
         }
@@ -484,12 +502,11 @@ void File::setOnderhoudsContractDatum(const QDate &value)
     m_ui.m_datumOnderhoudsContract->setDate(value);
 }
 
-void File::toonArts(int value)
+void File::showPhysician(int index)
 {
-    int artsId = m_ui.m_klantArts->itemData(value).toInt();
-    m_ui.l_klantArtsStraat->setText(m_artsIdToStraat.value(artsId, ""));
-    m_ui.l_klantArtsGemeente->setText(m_artsIdToGemeente.value(artsId, ""));
-    m_ui.b_artsBrief->setEnabled(value > 0);
+    m_ui.l_klantArtsStraat->setText(m_ui.m_klantArts->itemData(index, ROLE_STREET).toString());
+    m_ui.l_klantArtsGemeente->setText(m_ui.m_klantArts->itemData(index, ROLE_CITY).toString());
+    m_ui.b_artsBrief->setEnabled(m_ui.m_klantArts->itemData(index, ROLE_ID).toInt() >= 0);
 }
 
 void File::toonBriefArts()

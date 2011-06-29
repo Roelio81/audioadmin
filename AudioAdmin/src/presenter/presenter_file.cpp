@@ -46,10 +46,10 @@ void Dossier::setup()
     m_view.setTelefoon(klantModel.getTelephone());
     m_view.setGeboorteDatum(klantModel.getGeboorteDatum());
     m_view.setOpmerkingen(klantModel.getComments());
-    m_view.setMutualiteit(m_model.getMutualiteit());
+    m_view.setInsuranceCompany(m_model.getMutualiteit());
     m_view.setAansluitingsnummer(m_model.getAansluitingsnummer());
     m_view.setPlaatsAanpassing(m_model.getPlaatsAanpassing());
-    m_view.setArts(m_model.getArts());
+    m_view.setPhysician(m_model.getArts());
     m_view.setRechterHoorapparaatMerk(m_model.getRechterHoorapparaatMerk());
     m_view.setRechterHoorapparaatType(m_model.getRechterHoorapparaatType());
     m_view.setRechterHoorapparaatPrijs(m_model.getRechterHoorapparaatPrijs());
@@ -114,14 +114,14 @@ void Dossier::teardown()
         klantModel.setGeboorteDatum(m_view.getGeboorteDatum());
         changed = true;
     }
-    if (klantModel.getComments() != m_view.getOpmerkingen())
+    if (klantModel.getComments() != m_view.getComments())
     {
-        klantModel.setComments(m_view.getOpmerkingen());
+        klantModel.setComments(m_view.getComments());
         changed = true;
     }
-    if (m_model.getMutualiteit() != m_view.getMutualiteit())
+    if (m_model.getMutualiteit() != m_view.getInsuranceCompany())
     {
-        m_model.setMutualiteit(m_view.getMutualiteit());
+        m_model.setMutualiteit(m_view.getInsuranceCompany());
         changed = true;
     }
     if (m_model.getAansluitingsnummer() != m_view.getAansluitingsnummer())
@@ -134,9 +134,9 @@ void Dossier::teardown()
         m_model.setPlaatsAanpassing(m_view.getPlaatsAanpassing());
         changed = true;
     }
-    if (m_model.getArts() != m_view.getArts())
+    if (m_model.getArts() != m_view.getPhysician())
     {
-        m_model.setArts(m_view.getArts());
+        m_model.setArts(m_view.getPhysician());
         changed = true;
     }
     if (m_model.getRechterHoorapparaatMerk() != m_view.getRechterHoorapparaatMerk())
