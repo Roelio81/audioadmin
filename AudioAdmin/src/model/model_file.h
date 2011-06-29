@@ -25,9 +25,9 @@ namespace Model
 
         // --- Getters ---
         int getId() const { return m_id; }
-        const Universe &getUniversum() const { return m_universum; }
-        int getArts() const { return m_arts; }
-        int getMutualiteit() const { return m_mutualiteit; }
+        const Universe &getUniversum() const { return m_universe; }
+        int getArts() const { return m_physician; }
+        int getMutualiteit() const { return m_insuranceCompany; }
         QString getAansluitingsnummer() const { return m_aansluitingsnummer; }
         QString getPlaatsAanpassing() const { return m_plaatsAanpassing; }
         QString getRechterHoorapparaatMerk() const { return m_rechterHoorapparaatMerk; }
@@ -62,8 +62,8 @@ namespace Model
         const Measurements &getMeetgegevens() const { return m_meetgegevens; }
 
         // --- Setters ---
-        void setArts(int value) { m_arts = value; }
-        void setMutualiteit(int value) { m_mutualiteit = value; }
+        void setArts(int value) { m_physician = value; }
+        void setMutualiteit(int value) { m_insuranceCompany = value; }
         void setAansluitingsnummer(const QString &value) { m_aansluitingsnummer = value; }
         void setPlaatsAanpassing(const QString &value) { m_plaatsAanpassing = value; }
         void setRechterHoorapparaatMerk(const QString &value) { m_rechterHoorapparaatMerk = value; }
@@ -87,9 +87,9 @@ namespace Model
     private:
         // --- Data members ---
         const int m_id;
-        const Universe &m_universum;
-        int m_arts;
-        int m_mutualiteit;
+        const Universe &m_universe;
+        int m_physician;
+        int m_insuranceCompany;
         QString m_aansluitingsnummer;
         QString m_plaatsAanpassing;
         QString m_rechterHoorapparaatMerk;

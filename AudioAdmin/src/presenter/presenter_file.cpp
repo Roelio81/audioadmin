@@ -15,10 +15,10 @@
 
 using namespace Presenter;
 
-Dossier::Dossier(View::File &view, Model::File &model)
+File::File(View::File &view, Model::File &model)
 : m_view(view)
 , m_model(model)
-, m_factuur(0)
+, m_invoice(0)
 {
     connect(&m_view, SIGNAL(briefArtsTonen()), this, SLOT(briefArtsTonen()));
     connect(&m_view, SIGNAL(briefKlantTonen()), this, SLOT(briefKlantTonen()));
@@ -27,24 +27,24 @@ Dossier::Dossier(View::File &view, Model::File &model)
     connect(&m_view, SIGNAL(showMeasurements()), this, SLOT(showMeasurements()));
 }
 
-Dossier::~Dossier()
+File::~File()
 {
 }
 
-void Dossier::setup()
+void File::setup()
 {
     Model::Customer &klantModel = m_model.getCustomer();
     m_view.leegAanspreektitels();
     m_view.toevoegenAanspreektitel("Dhr.");
     m_view.toevoegenAanspreektitel("Mevr.");
-    m_view.setAanspreektitel(klantModel.getAanspreektitel());
+    m_view.setAanspreektitel(klantModel.getTitle());
     m_view.setNaam(klantModel.getName());
     m_view.setVoornaam(klantModel.getFirstName());
     m_view.setStraat(klantModel.getStreet());
     m_view.setPostcode(klantModel.getPostalCode());
     m_view.setGemeente(klantModel.getCity());
     m_view.setTelefoon(klantModel.getTelephone());
-    m_view.setGeboorteDatum(klantModel.getGeboorteDatum());
+    m_view.setGeboorteDatum(klantModel.getDateOfBirth());
     m_view.setOpmerkingen(klantModel.getComments());
     m_view.setInsuranceCompany(m_model.getMutualiteit());
     m_view.setAansluitingsnummer(m_model.getAansluitingsnummer());
@@ -69,14 +69,14 @@ void Dossier::setup()
     m_view.setOnderhoudsContractDatum(m_model.getOnderhoudsContractDatum());
 }
 
-void Dossier::teardown()
+void File::teardown()
 {
     bool changed = false;
     bool apparaatchanged = false;
     Model::Customer &klantModel = m_model.getCustomer();
-    if (klantModel.getAanspreektitel() != m_view.getAanspreektitel())
+    if (klantModel.getTitle() != m_view.getAanspreektitel())
     {
-        klantModel.setAanspreektitel(m_view.getAanspreektitel());
+        klantModel.setTitle(m_view.getAanspreektitel());
         changed = true;
     }
     if (klantModel.getName() != m_view.getNaam())
@@ -109,7 +109,7 @@ void Dossier::teardown()
         klantModel.setTelephone(m_view.getTelefoon());
         changed = true;
     }
-    if (klantModel.getGeboorteDatum() != m_view.getGeboorteDatum())
+    if (klantModel.getDateOfBirth() != m_view.getGeboorteDatum())
     {
         klantModel.setGeboorteDatum(m_view.getGeboorteDatum());
         changed = true;
@@ -239,36 +239,36 @@ void Dossier::teardown()
     }
 }
 
-void Dossier::setupInvoice()
+void File::setupInvoice()
 {
     teardown();
     setup();
 
-    Q_ASSERT(m_factuur);
-    m_factuur->setKlantNaam(m_model.getCustomer().getAanspreektitel() + " " + m_model.getCustomer().getName() + " " + m_model.getCustomer().getFirstName());
-    m_factuur->setKlantStraat(m_model.getCustomer().getStreet());
-    m_factuur->setKlantGemeente(QString::number(m_model.getCustomer().getPostalCode()) + " " + m_model.getCustomer().getCity());
+    Q_ASSERT(m_invoice);
+    m_invoice->setKlantNaam(m_model.getCustomer().getTitle() + " " + m_model.getCustomer().getName() + " " + m_model.getCustomer().getFirstName());
+    m_invoice->setKlantStraat(m_model.getCustomer().getStreet());
+    m_invoice->setKlantGemeente(QString::number(m_model.getCustomer().getPostalCode()) + " " + m_model.getCustomer().getCity());
 
     const Model::Settings &settings = m_model.getUniversum().getSettings();
-    m_factuur->setAudioloogNaam(settings.getName());
-    m_factuur->setAudioloogStraat(settings.getStreet());
-    m_factuur->setAudioloogGemeente(QString::number(settings.getPostalCode()) + " " + settings.getCity());
-    m_factuur->setAudioloogTelefoon(settings.getTelephone());
-    m_factuur->setAudioloogGSM(settings.getMobilePhone());
+    m_invoice->setAudioloogNaam(settings.getName());
+    m_invoice->setAudioloogStraat(settings.getStreet());
+    m_invoice->setAudioloogGemeente(QString::number(settings.getPostalCode()) + " " + settings.getCity());
+    m_invoice->setAudioloogTelefoon(settings.getTelephone());
+    m_invoice->setAudioloogGSM(settings.getMobilePhone());
 
-    m_factuur->setNummer(m_model.getFactuur().getNumber());
-    m_factuur->setDatum(m_model.getFactuur().getDate());
-    m_factuur->setVervalDatum(m_model.getFactuur().getExpirationDate());
-    m_factuur->setKortingPercentage(m_model.getFactuur().getReductionPercentage());
-    m_factuur->setBtwPercentage(m_model.getFactuur().getVATPercentage());
-    m_factuur->setCondities(m_model.getFactuur().getConditions());
-    m_factuur->setTekst(m_model.getFactuur().getText());
+    m_invoice->setNummer(m_model.getFactuur().getNumber());
+    m_invoice->setDatum(m_model.getFactuur().getDate());
+    m_invoice->setVervalDatum(m_model.getFactuur().getExpirationDate());
+    m_invoice->setKortingPercentage(m_model.getFactuur().getReductionPercentage());
+    m_invoice->setBtwPercentage(m_model.getFactuur().getVATPercentage());
+    m_invoice->setCondities(m_model.getFactuur().getConditions());
+    m_invoice->setTekst(m_model.getFactuur().getText());
 
-    connect(m_factuur, SIGNAL(factuurSluiten()), this, SLOT(factuurSluiten()));
-    connect(m_factuur, SIGNAL(factuurBewaren()), this, SLOT(factuurBewaren()));
+    connect(m_invoice, SIGNAL(factuurSluiten()), this, SLOT(factuurSluiten()));
+    connect(m_invoice, SIGNAL(factuurBewaren()), this, SLOT(factuurBewaren()));
 }
 
-void Dossier::briefArtsTonen()
+void File::briefArtsTonen()
 {
     // First make sure that we are fully up-to-date
     teardown();
@@ -285,7 +285,7 @@ void Dossier::briefArtsTonen()
     }
 }
 
-void Dossier::briefKlantTonen()
+void File::briefKlantTonen()
 {
     // First make sure that we are fully up-to-date
     teardown();
@@ -302,7 +302,7 @@ void Dossier::briefKlantTonen()
     }
 }
 
-void Dossier::briefMutualiteitTonen()
+void File::briefMutualiteitTonen()
 {
     // First make sure that we are fully up-to-date
     teardown();
@@ -319,38 +319,38 @@ void Dossier::briefMutualiteitTonen()
     }
 }
 
-void Dossier::showInvoice()
+void File::showInvoice()
 {
-    if (!m_factuur)
+    if (!m_invoice)
     {
-        m_factuur = new View::Factuur(m_view.getParentWindow());
+        m_invoice = new View::Factuur(m_view.getParentWindow());
     }
 
     setupInvoice();
-    m_factuur->show();
+    m_invoice->show();
 }
 
-void Dossier::factuurSluiten()
+void File::factuurSluiten()
 {
-    Q_ASSERT(m_factuur);
-    m_factuur->close();
-    m_factuur = 0;
+    Q_ASSERT(m_invoice);
+    m_invoice->close();
+    m_invoice = 0;
 }
 
-void Dossier::factuurBewaren()
+void File::factuurBewaren()
 {
-    Q_ASSERT(m_factuur);
-    m_model.getFactuur().setNumber(m_factuur->getNummer());
-    m_model.getFactuur().setDate(m_factuur->getDatum());
-    m_model.getFactuur().setExpirationDate(m_factuur->getVervalDatum());
-    m_model.getFactuur().setReductionPercentage(m_factuur->getKortingPercentage());
-    m_model.getFactuur().setVATPercentage(m_factuur->getBtwPercentage());
-    m_model.getFactuur().setConditions(m_factuur->getCondities());
-    m_model.getFactuur().setText(m_factuur->getTekst());
+    Q_ASSERT(m_invoice);
+    m_model.getFactuur().setNumber(m_invoice->getNummer());
+    m_model.getFactuur().setDate(m_invoice->getDatum());
+    m_model.getFactuur().setExpirationDate(m_invoice->getVervalDatum());
+    m_model.getFactuur().setReductionPercentage(m_invoice->getKortingPercentage());
+    m_model.getFactuur().setVATPercentage(m_invoice->getBtwPercentage());
+    m_model.getFactuur().setConditions(m_invoice->getCondities());
+    m_model.getFactuur().setText(m_invoice->getTekst());
     emit edited(m_model.getId());
 }
 
-void Dossier::showMeasurements()
+void File::showMeasurements()
 {
     // Create a presenter and open the view
     View::Measurements meetgegevensView(m_view.getParentWindow());

@@ -17,30 +17,30 @@ void Entity::fromDomElement(const QDomElement &e)
 {
     for (QDomElement element = e.firstChildElement(); !element.isNull(); element = element.nextSiblingElement())
     {
-        if (element.tagName() == "naam")
+        if (element.tagName() == "name")
         {
             m_name = element.text();
         }
-        else if (element.tagName() == "adres")
+        else if (element.tagName() == "address")
         {
             for (QDomElement subelement = element.firstChildElement(); !subelement.isNull(); subelement = subelement.nextSiblingElement())
             {
-                if (subelement.tagName() == "straat")
+                if (subelement.tagName() == "street")
                 {
-                    m_straat = subelement.text();
+                    m_street = subelement.text();
                 }
-                else if (subelement.tagName() == "gemeente")
+                else if (subelement.tagName() == "city")
                 {
                     m_city = subelement.text();
-                    m_postalCode = subelement.attribute("postcode").toInt();
+                    m_postalCode = subelement.attribute("postalCode").toInt();
                 }
             }
         }
-        else if (element.tagName() == "telefoon")
+        else if (element.tagName() == "telephone")
         {
             m_telephone = element.text();
         }
-        else if (element.tagName() == "opmerkingen")
+        else if (element.tagName() == "comments")
         {
             m_comments = element.text().replace("\r\n", "\n");
         }
@@ -49,24 +49,24 @@ void Entity::fromDomElement(const QDomElement &e)
 
 QDomElement Entity::toDomElement(QDomDocument &d) const
 {
-    QDomElement result = d.createElement("entiteit");
-    QDomElement naam = d.createElement("naam");
-    naam.appendChild(d.createTextNode(m_name));
-    result.appendChild(naam);
-    QDomElement adres = d.createElement("adres");
-    QDomElement straat = d.createElement("straat");
-    straat.appendChild(d.createTextNode(m_straat));
-    adres.appendChild(straat);
-    QDomElement gemeente = d.createElement("gemeente");
-    gemeente.appendChild(d.createTextNode(m_city));
-    gemeente.setAttribute("postcode", QString::number(m_postalCode));
-    adres.appendChild(gemeente);
-    result.appendChild(adres);
-    QDomElement telefoon = d.createElement("telefoon");
-    telefoon.appendChild(d.createTextNode(m_telephone));
-    result.appendChild(telefoon);
-    QDomElement opmerkingen = d.createElement("opmerkingen");
-    opmerkingen.appendChild(d.createTextNode(QString(m_comments).replace("\n", "\r\n")));
-    result.appendChild(opmerkingen);
+    QDomElement result = d.createElement("entity");
+    QDomElement name = d.createElement("name");
+    name.appendChild(d.createTextNode(m_name));
+    result.appendChild(name);
+    QDomElement address = d.createElement("address");
+    QDomElement street = d.createElement("street");
+    street.appendChild(d.createTextNode(m_street));
+    address.appendChild(street);
+    QDomElement city = d.createElement("city");
+    city.appendChild(d.createTextNode(m_city));
+    city.setAttribute("postalCode", QString::number(m_postalCode));
+    address.appendChild(city);
+    result.appendChild(address);
+    QDomElement telephone = d.createElement("telephone");
+    telephone.appendChild(d.createTextNode(m_telephone));
+    result.appendChild(telephone);
+    QDomElement comments = d.createElement("comments");
+    comments.appendChild(d.createTextNode(QString(m_comments).replace("\n", "\r\n")));
+    result.appendChild(comments);
     return result;
 }

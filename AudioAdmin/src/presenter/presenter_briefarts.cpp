@@ -29,7 +29,7 @@ void BriefArts::setup()
     const Model::File &dossier = m_model.getFile();
     const Model::Customer &klant = dossier.getCustomer();
     const Model::Settings &instellingen = dossier.getUniversum().getSettings();
-    bool klantIsMan = (klant.getAanspreektitel() == "Dhr.");
+    bool klantIsMan = (klant.getTitle() == "Dhr.");
 
     m_view.setGreeting("Geachte dokter,");
     Q_ASSERT(dossier.getArts() >= 0);
@@ -53,7 +53,7 @@ void BriefArts::setup()
     {
         tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
         tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + klant.getName() + " " + klant.getFirstName();
-        QDate geboorteDatum = klant.getGeboorteDatum();
+        QDate geboorteDatum = klant.getDateOfBirth();
         if (geboorteDatum != dossier.getUniversum().getInvalidDate())
         {
             tekst += " (" + QString(char(0xb0)) + " " + geboorteDatum.toString("dd-MM-yyyy") + "). ";

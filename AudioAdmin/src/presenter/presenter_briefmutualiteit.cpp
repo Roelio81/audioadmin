@@ -29,7 +29,7 @@ void BriefMutualiteit::setup()
     const Model::File &file = m_model.getFile();
     const Model::Customer &customer = file.getCustomer();
     const Model::Settings &settings = file.getUniversum().getSettings();
-    bool sex = (customer.getAanspreektitel() == "Dhr.");
+    bool sex = (customer.getTitle() == "Dhr.");
 
     m_view.setGreeting("Geachte geneesheer-adviseur,");
     Q_ASSERT(file.getMutualiteit() >= 0);
@@ -53,7 +53,7 @@ void BriefMutualiteit::setup()
     {
         text = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
         text += (sex ? "mijnheer " : "mevrouw ") + customer.getName() + " " + customer.getFirstName();
-        QDate dateOfBirth = customer.getGeboorteDatum();
+        QDate dateOfBirth = customer.getDateOfBirth();
         if (dateOfBirth != file.getUniversum().getInvalidDate())
         {
             text += " (" + QString(char(0xb0)) + " " + dateOfBirth.toString("dd-MM-yyyy") + "). ";

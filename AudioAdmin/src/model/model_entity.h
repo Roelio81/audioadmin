@@ -20,7 +20,7 @@ namespace Model
 
         // --- Getters ---
         QString getName() const { return m_name; }
-        QString getStreet() const { return m_straat; }
+        QString getStreet() const { return m_street; }
         int getPostalCode() const { return m_postalCode; }
         QString getCity() const { return m_city; }
         QString getTelephone() const { return m_telephone; }
@@ -28,7 +28,7 @@ namespace Model
 
         // --- Setters ---
         void setName(const QString &value) { m_name = value; }
-        void setStreet(const QString &value) { m_straat = value; }
+        void setStreet(const QString &value) { m_street = value; }
         void setPostalCode(int value) { m_postalCode = value; }
         void setCity(const QString &value) { m_city = value; }
         void setTelephone(const QString &value) { m_telephone = value; }
@@ -37,7 +37,7 @@ namespace Model
     private:
         // --- Data members ---
         QString m_name;
-        QString m_straat;
+        QString m_street;
         int m_postalCode;
         QString m_city;
         QString m_telephone;

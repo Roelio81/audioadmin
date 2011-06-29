@@ -21,7 +21,7 @@ int main(int argc, char ** argv)
 
     View::Universe view;
     Model::Universe model(QString("audio.xml"));
-    Presenter::Universum presenter(view, model);
+    Presenter::Universe presenter(view, model);
     view.show();
     app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
     return app.exec();

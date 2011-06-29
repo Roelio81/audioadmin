@@ -27,7 +27,7 @@ void BriefKlant::setup()
     const Model::File &file = m_model.getFile();
     const Model::Customer &klant = file.getCustomer();
     const Model::Settings &instellingen = file.getUniversum().getSettings();
-    bool sex = (klant.getAanspreektitel() == "Dhr.");
+    bool sex = (klant.getTitle() == "Dhr.");
 
     m_view.setGreeting(sex ? "Geachte meneer," : "Geachte mevrouw,");
     m_view.setAddresseeName(klant.getName() + " " + klant.getFirstName());
@@ -116,12 +116,12 @@ void BriefKlant::print()
         font.setItalic(false);
         painter.setFont(font);
         lineheight = painter.fontMetrics().height();
-        painter.drawText(150*mmx, 62*mmy + (0*lineheight), klant.getAanspreektitel() + " " + klant.getName() + " " + klant.getFirstName());
+        painter.drawText(150*mmx, 62*mmy + (0*lineheight), klant.getTitle() + " " + klant.getName() + " " + klant.getFirstName());
         painter.drawText(150*mmx, 62*mmy + (1*lineheight), klant.getStreet());
         painter.drawText(150*mmx, 62*mmy + (2*lineheight), QString::number(klant.getPostalCode()) + " " + klant.getCity());
 
         // Print the actual text
-        bool klantIsMan = (klant.getAanspreektitel() == "Dhr.");
+        bool klantIsMan = (klant.getTitle() == "Dhr.");
         QString tekst = klantIsMan ? "Geachte meneer," : "Geachte mevrouw,";
         tekst += "\n\n";
         tekst += m_view.getText();

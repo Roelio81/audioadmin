@@ -16,15 +16,15 @@ namespace Model
 namespace Presenter
 {
     class Physician;
-    class Dossier;
+    class File;
     class InsuranceCompany;
 	
-    class Universum : public ::QObject
+    class Universe : public ::QObject
     {
     Q_OBJECT
     public:
-        explicit Universum(View::Universe &view, Model::Universe &model);
-        virtual ~Universum();
+        explicit Universe(View::Universe &view, Model::Universe &model);
+        virtual ~Universe();
 
     private slots:
         void afsluiten();
@@ -68,7 +68,7 @@ namespace Presenter
         Model::Universe &m_model;
 
         Presenter::Physician *m_physicianPresenter;
-        Presenter::Dossier *m_filePresenter;
+        Presenter::File *m_filePresenter;
         Presenter::InsuranceCompany *m_insuranceCompanyPresenter;
 
         int m_arts;

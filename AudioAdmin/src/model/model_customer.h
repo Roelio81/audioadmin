@@ -1,5 +1,5 @@
-#ifndef _MODEL_KLANT_H
-#define _MODEL_KLANT_H
+#ifndef _MODEL_CUSTOMER_H
+#define _MODEL_CUSTOMER_H
 
 #include "model_entity.h"
 #include <QDate>
@@ -15,7 +15,7 @@ namespace Model
     class Customer : public Entity
     {
     public:
-        explicit Customer(const Universe &universum);
+        explicit Customer(const Universe &universe);
         virtual ~Customer();
 
         // --- ISerializable ---
@@ -23,22 +23,22 @@ namespace Model
         virtual QDomElement toDomElement(QDomDocument &d) const;
 
         // --- Getters ---
-        QString getAanspreektitel() const { return m_aanspreektitel; }
-        QString getFirstName() const { return m_voornaam; }
-        QDate getGeboorteDatum() const { return m_geboorteDatum; }
+        QString getTitle() const { return m_title; }
+        QString getFirstName() const { return m_firstName; }
+        QDate getDateOfBirth() const { return m_dateOfBirth; }
 
         // --- Setters ---
-        void setAanspreektitel(const QString &value) { m_aanspreektitel = value; }
-        void setVoornaam(const QString &value) { m_voornaam = value; }
-        void setGeboorteDatum(const QDate &value) { m_geboorteDatum = value; }
+        void setTitle(const QString &value) { m_title = value; }
+        void setVoornaam(const QString &value) { m_firstName = value; }
+        void setGeboorteDatum(const QDate &value) { m_dateOfBirth = value; }
 
     private:
         // --- Data members ---
-        const Universe &m_universum;
-        QString m_aanspreektitel;
-        QString m_voornaam;
-        QDate m_geboorteDatum;
+        const Universe &m_universe;
+        QString m_title;
+        QString m_firstName;
+        QDate m_dateOfBirth;
     };
 }
 
-#endif // _MODEL_KLANT_H
+#endif // _MODEL_CUSTOMER_H

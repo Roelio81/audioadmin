@@ -17,26 +17,26 @@ void Settings::fromDomElement(const QDomElement &e)
 {
     for (QDomElement element = e.firstChildElement(); !element.isNull(); element = element.nextSiblingElement())
     {
-        if (element.tagName() == "naam")
+        if (element.tagName() == "name")
         {
             m_name = element.text();
         }
-        else if (element.tagName() == "adres")
+        else if (element.tagName() == "address")
         {
             for (QDomElement subelement = element.firstChildElement(); !subelement.isNull(); subelement = subelement.nextSiblingElement())
             {
-                if (subelement.tagName() == "straat")
+                if (subelement.tagName() == "street")
                 {
                     m_street = subelement.text();
                 }
-                else if (subelement.tagName() == "gemeente")
+                else if (subelement.tagName() == "city")
                 {
                     m_city = subelement.text();
-                    m_postalCode = subelement.attribute("postcode").toInt();
+                    m_postalCode = subelement.attribute("postalCcode").toInt();
                 }
             }
         }
-        else if (element.tagName() == "telefoon")
+        else if (element.tagName() == "telephone")
         {
             m_telephone = element.text();
         }
@@ -73,11 +73,11 @@ void Settings::fromDomElement(const QDomElement &e)
 
 QDomElement Settings::toDomElement(QDomDocument &d) const
 {
-    QDomElement result = d.createElement("instellingen");
-    QDomElement naam = d.createElement("naam");
+    QDomElement result = d.createElement("settings");
+    QDomElement naam = d.createElement("name");
     naam.appendChild(d.createTextNode(m_name));
     result.appendChild(naam);
-    QDomElement adres = d.createElement("adres");
+    QDomElement adres = d.createElement("address");
     QDomElement straat = d.createElement("straat");
     straat.appendChild(d.createTextNode(m_street));
     adres.appendChild(straat);

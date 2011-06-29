@@ -21,12 +21,12 @@ namespace Model
 
 namespace Presenter
 {
-    class Dossier : public QObject
+    class File : public QObject
     {
     Q_OBJECT
     public:
-        explicit Dossier(View::File &view, Model::File &model);
-        virtual ~Dossier();
+        explicit File(View::File &view, Model::File &model);
+        virtual ~File();
 
         // --- IPresenter ---
         void setup();
@@ -52,7 +52,7 @@ namespace Presenter
         Model::File &m_model;
 
         Model::Universe *m_universum;
-        View::Factuur *m_factuur;
+        View::Factuur *m_invoice;
     };
 }
 

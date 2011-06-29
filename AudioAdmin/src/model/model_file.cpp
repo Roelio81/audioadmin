@@ -7,9 +7,9 @@ using namespace Model;
 
 File::File(int id, const Universe &universe)
 : m_id(id)
-, m_universum(universe)
-, m_arts(-1)
-, m_mutualiteit(-1)
+, m_universe(universe)
+, m_physician(-1)
+, m_insuranceCompany(-1)
 , m_rechterHoorapparaatPrijs(0.0)
 , m_linkerHoorapparaatPrijs(0.0)
 , m_onderzoekDatum(universe.getInvalidDate())
@@ -78,40 +78,40 @@ void File::fromDomElement(const QDomElement &e)
                 QString plaats = ee.attribute("plaats");
                 QString merk = ee.attribute("merk");
                 QString type = ee.attribute("type");
-                QString serienummer = ee.firstChildElement("serienummer").text();
+                QString serialNumber = ee.firstChildElement("serialNumber").text();
                 double prijs = ee.firstChildElement("prijs").text().toDouble();
                 if (plaats == "rechts")
                 {
                     m_rechterHoorapparaatMerk = merk;
                     m_rechterHoorapparaatType = type;
-                    m_rechterHoorapparaatSerienummer = serienummer;
+                    m_rechterHoorapparaatSerienummer = serialNumber;
                     m_rechterHoorapparaatPrijs = prijs;
                 }
                 else if (plaats == "links")
                 {
                     m_linkerHoorapparaatMerk = merk;
                     m_linkerHoorapparaatType = type;
-                    m_linkerHoorapparaatSerienummer = serienummer;
+                    m_linkerHoorapparaatSerienummer = serialNumber;
                     m_linkerHoorapparaatPrijs = prijs;
                 }
             }
         }
-        else if (element.tagName() == "brief")
+        else if (element.tagName() == "letter")
         {
             m_letterCustomer.fromDomElement(element);
         }
-        else if (element.tagName() == "nkoArts")
+        else if (element.tagName() == "physician")
         {
-            m_arts = element.attribute("id").isEmpty() ? -1 : element.attribute("id").toInt();
-            QDomElement brief = element.firstChildElement("brief");
+            m_physician = element.attribute("id").isEmpty() ? -1 : element.attribute("id").toInt();
+            QDomElement brief = element.firstChildElement("letter");
             if (!brief.isNull())
                 m_letterPhysician.fromDomElement(brief);
         }
-        else if (element.tagName() == "mutualiteit")
+        else if (element.tagName() == "insuranceCompany")
         {
-            m_mutualiteit = element.attribute("id").isEmpty() ? -1 : element.attribute("id").toInt();
+            m_insuranceCompany = element.attribute("id").isEmpty() ? -1 : element.attribute("id").toInt();
             m_aansluitingsnummer = element.attribute("aansluitingsnummer");
-            QDomElement brief = element.firstChildElement("brief");
+            QDomElement brief = element.firstChildElement("letter");
             if (!brief.isNull())
                 m_briefMutualiteit.fromDomElement(brief);
         }
@@ -119,7 +119,7 @@ void File::fromDomElement(const QDomElement &e)
         {
             m_meetgegevens.fromDomElement(element);
         }
-        else if (element.tagName() == "factuur")
+        else if (element.tagName() == "invoice")
         {
             m_invoice.fromDomElement(element);
         }
@@ -135,55 +135,55 @@ QDomElement File::toDomElement(QDomDocument &d) const
     aanpassing.appendChild(d.createTextNode(m_plaatsAanpassing));
     result.appendChild(aanpassing);
     QDomElement data = d.createElement("data");
-    if (m_onderzoekDatum != m_universum.getInvalidDate())
+    if (m_onderzoekDatum != m_universe.getInvalidDate())
     {
         QDomElement datum = d.createElement("onderzoek");
         datum.appendChild(d.createTextNode(m_onderzoekDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_proefDatum != m_universum.getInvalidDate())
+    if (m_proefDatum != m_universe.getInvalidDate())
     {
         QDomElement datum = d.createElement("proef");
         datum.appendChild(d.createTextNode(m_proefDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_nkoRapportDatum != m_universum.getInvalidDate())
+    if (m_nkoRapportDatum != m_universe.getInvalidDate())
     {
         QDomElement datum = d.createElement("nkoRapport");
         datum.appendChild(d.createTextNode(m_nkoRapportDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_dokterAdviesDatum != m_universum.getInvalidDate())
+    if (m_dokterAdviesDatum != m_universe.getInvalidDate())
     {
         QDomElement datum = d.createElement("dokterAdv");
         datum.appendChild(d.createTextNode(m_dokterAdviesDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_akkoordMutualiteitDatum != m_universum.getInvalidDate())
+    if (m_akkoordMutualiteitDatum != m_universe.getInvalidDate())
     {
         QDomElement datum = d.createElement("akkoordMut");
         datum.appendChild(d.createTextNode(m_akkoordMutualiteitDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_betalingDatum != m_universum.getInvalidDate())
+    if (m_betalingDatum != m_universe.getInvalidDate())
     {
         QDomElement datum = d.createElement("betaling");
         datum.appendChild(d.createTextNode(m_betalingDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_afleveringDatum != m_universum.getInvalidDate())
+    if (m_afleveringDatum != m_universe.getInvalidDate())
     {
         QDomElement datum = d.createElement("aflevering");
         datum.appendChild(d.createTextNode(m_afleveringDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_wisselDatum != m_universum.getInvalidDate())
+    if (m_wisselDatum != m_universe.getInvalidDate())
     {
         QDomElement datum = d.createElement("wissel");
         datum.appendChild(d.createTextNode(m_wisselDatum.toString("yyyy-MM-dd")));
         data.appendChild(datum);
     }
-    if (m_onderhoudsContractDatum != m_universum.getInvalidDate())
+    if (m_onderhoudsContractDatum != m_universe.getInvalidDate())
     {
         QDomElement datum = d.createElement("onderhoudsContract");
         datum.appendChild(d.createTextNode(m_onderhoudsContractDatum.toString("yyyy-MM-dd")));
@@ -199,9 +199,9 @@ QDomElement File::toDomElement(QDomDocument &d) const
         apparaat.setAttribute("plaats", "links");
         if (!m_linkerHoorapparaatSerienummer.isEmpty())
         {
-            QDomElement serieNummer = d.createElement("serienummer");
-            serieNummer.appendChild(d.createTextNode(m_linkerHoorapparaatSerienummer));
-            apparaat.appendChild(serieNummer);
+            QDomElement serialNumber = d.createElement("serialNumber");
+            serialNumber.appendChild(d.createTextNode(m_linkerHoorapparaatSerienummer));
+            apparaat.appendChild(serialNumber);
         }
         if (m_linkerHoorapparaatPrijs != 0.0)
         {
@@ -219,9 +219,9 @@ QDomElement File::toDomElement(QDomDocument &d) const
         apparaat.setAttribute("plaats", "rechts");
         if (!m_rechterHoorapparaatSerienummer.isEmpty())
         {
-            QDomElement serieNummer = d.createElement("serienummer");
-            serieNummer.appendChild(d.createTextNode(m_rechterHoorapparaatSerienummer));
-            apparaat.appendChild(serieNummer);
+            QDomElement serialNumber = d.createElement("serialNumber");
+            serialNumber.appendChild(d.createTextNode(m_rechterHoorapparaatSerienummer));
+            apparaat.appendChild(serialNumber);
         }
         if (m_rechterHoorapparaatPrijs != 0.0)
         {
@@ -237,16 +237,16 @@ QDomElement File::toDomElement(QDomDocument &d) const
         QDomElement brief = m_letterCustomer.toDomElement(d);
         result.appendChild(brief);
     }
-    QDomElement nkoArts = d.createElement("nkoArts");
-    nkoArts.setAttribute("id", (m_arts >= 0) ? QString::number(m_arts) : "");
+    QDomElement physician = d.createElement("physician");
+    physician.setAttribute("id", (m_physician >= 0) ? QString::number(m_physician) : "");
     if (!m_letterPhysician.getText().isEmpty())
     {
         QDomElement brief = m_letterPhysician.toDomElement(d);
-        nkoArts.appendChild(brief);
+        physician.appendChild(brief);
     }
-    result.appendChild(nkoArts);
+    result.appendChild(physician);
     QDomElement mutualiteit = d.createElement("mutualiteit");
-    mutualiteit.setAttribute("id", (m_mutualiteit >= 0) ? QString::number(m_mutualiteit) : "");
+    mutualiteit.setAttribute("id", (m_insuranceCompany >= 0) ? QString::number(m_insuranceCompany) : "");
     mutualiteit.setAttribute("aansluitingsnummer", m_aansluitingsnummer);
     if (!m_briefMutualiteit.getText().isEmpty())
     {
@@ -256,7 +256,7 @@ QDomElement File::toDomElement(QDomDocument &d) const
     result.appendChild(mutualiteit);
     QDomElement audiometrie = m_meetgegevens.toDomElement(d);
     result.appendChild(audiometrie);
-    result.setTagName("dossier");
+    result.setTagName("file");
     result.setAttribute("id", m_id);
     return result;
 }

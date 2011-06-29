@@ -15,7 +15,7 @@
 
 using namespace Presenter;
 
-Universum::Universum(View::Universe &view, Model::Universe &model)
+Universe::Universe(View::Universe &view, Model::Universe &model)
 : m_view(view)
 , m_model(model)
 , m_physicianPresenter(0)
@@ -64,11 +64,11 @@ Universum::Universum(View::Universe &view, Model::Universe &model)
         m_view.selectInsuranceCompany(m_model.getInsuranceCompanies().front()->getId());
 }
 
-Universum::~Universum()
+Universe::~Universe()
 {
 }
 
-void Universum::afsluiten()
+void Universe::afsluiten()
 {
     teardownPhysician();
     teardownFile();
@@ -78,7 +78,7 @@ void Universum::afsluiten()
         m_view.bewarenBijAfsluiten();
 }
 
-void Universum::bewaren()
+void Universe::bewaren()
 {
     m_model.save();
     m_view.setPhysicianListChanged(false);
@@ -87,7 +87,7 @@ void Universum::bewaren()
     m_changed = false;
 }
 
-void Universum::etiketten()
+void Universe::etiketten()
 {
     setupEtiketten();
     connect(m_view.getEtiketten().b_afdrukken, SIGNAL(clicked()), this, SLOT(afdrukkenEtiketten()));
@@ -97,7 +97,7 @@ void Universum::etiketten()
     disconnect(m_view.getEtiketten().b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerEtiketten()));
 }
 
-void Universum::afdrukkenEtiketten()
+void Universe::afdrukkenEtiketten()
 {
     teardownEtiketten();
     m_view.getEtiketten().hide();
@@ -112,19 +112,19 @@ void Universum::afdrukkenEtiketten()
     }
 }
 
-void Universum::annuleerEtiketten()
+void Universe::annuleerEtiketten()
 {
     m_view.getEtiketten().hide();
 }
 
-void Universum::openSettings()
+void Universe::openSettings()
 {
     setupSettings();
     if (m_view.getInstellingen().exec() == QDialog::Accepted)
         teardownSettings();
 }
 
-void Universum::setupEtiketten()
+void Universe::setupEtiketten()
 {
     View::Etiketten &viewEtiketten = m_view.getEtiketten();
     viewEtiketten.leegPlaatsenAanpassing();
@@ -138,7 +138,7 @@ void Universum::setupEtiketten()
     viewEtiketten.setDatumOnderzoek(QDate::currentDate().addYears(-2));
 }
 
-void Universum::setupSettings()
+void Universe::setupSettings()
 {
     Model::Settings &modelSettings = m_model.getSettings();
     View::Settings &viewSettings = m_view.getInstellingen();
@@ -156,11 +156,11 @@ void Universum::setupSettings()
     viewSettings.setRekeningNummer(modelSettings.getRekeningNummer());
 }
 
-void Universum::teardownEtiketten()
+void Universe::teardownEtiketten()
 {
 }
 
-void Universum::teardownSettings()
+void Universe::teardownSettings()
 {
     Model::Settings &modelInstellingen = m_model.getSettings();
     View::Settings &viewInstellingen = m_view.getInstellingen();
@@ -178,7 +178,7 @@ void Universum::teardownSettings()
     modelInstellingen.setRekeningNummer(viewInstellingen.getRekeningNummer());
 }
 
-void Universum::refreshPhysicianList()
+void Universe::refreshPhysicianList()
 {
     m_view.clearPhysicianList();
     const QVector<Model::Physician *> &artsen = m_model.getPhysicians();
@@ -190,7 +190,7 @@ void Universum::refreshPhysicianList()
     }
 } 
 
-void Universum::refreshHoorapparatenLijst()
+void Universe::refreshHoorapparatenLijst()
 {
     m_view.leegHoorapparatenLijst();
     const QVector<Model::File *> &dossiers = m_model.getFiles();
@@ -203,7 +203,7 @@ void Universum::refreshHoorapparatenLijst()
     }
 }
 
-void Universum::refreshKlantenLijst()
+void Universe::refreshKlantenLijst()
 {
     m_view.leegKlantenLijst();
     const QVector<Model::File *> &dossiers = m_model.getFiles();
@@ -216,7 +216,7 @@ void Universum::refreshKlantenLijst()
     }
 } 
 
-void Universum::refreshInsuranceCompanyList()
+void Universe::refreshInsuranceCompanyList()
 {
     m_view.clearInsuranceCompanyList();
     const QVector<Model::InsuranceCompany *> &mutualiteiten = m_model.getInsuranceCompanies();
@@ -228,28 +228,28 @@ void Universum::refreshInsuranceCompanyList()
     }
 }
 
-void Universum::showPhysician(int id)
+void Universe::showPhysician(int id)
 {
     teardownPhysician();
     m_arts = id;
     setupPhysician();
 }
 
-void Universum::showFile(int id)
+void Universe::showFile(int id)
 {
     teardownFile();
     m_file = id;
     setupFile();
     }
 
-void Universum::showInsuranceCompany(int id)
+void Universe::showInsuranceCompany(int id)
 {
     teardownInsuranceCompany();
     m_insuranceCompany = id;
     setupInsuranceCompany();
 }
 
-void Universum::removePhysician(int id)
+void Universe::removePhysician(int id)
 {
     if (m_physicianPresenter)
     {
@@ -261,7 +261,7 @@ void Universum::removePhysician(int id)
     m_changed = true;
 }
 
-void Universum::removeFile(int id)
+void Universe::removeFile(int id)
 {
     if (m_filePresenter)
     {
@@ -273,7 +273,7 @@ void Universum::removeFile(int id)
     m_changed = true;
 }
 
-void Universum::removeInsuranceCompany(int id)
+void Universe::removeInsuranceCompany(int id)
 {
     if (m_insuranceCompanyPresenter)
     {
@@ -285,7 +285,7 @@ void Universum::removeInsuranceCompany(int id)
     m_changed = true;
 }
 
-void Universum::addPhysician(QString voornaam, QString naam)
+void Universe::addPhysician(QString voornaam, QString naam)
 {
     Model::Physician *physician = m_model.addPhysician(voornaam, naam);
     Q_ASSERT(physician);
@@ -295,7 +295,7 @@ void Universum::addPhysician(QString voornaam, QString naam)
     m_changed = true;
 }
 
-void Universum::addFile(QString firstName, QString name)
+void Universe::addFile(QString firstName, QString name)
 {
     Model::File *file = m_model.addFile(firstName, name);
     Q_ASSERT(file);
@@ -306,7 +306,7 @@ void Universum::addFile(QString firstName, QString name)
     m_changed = true;
 }
 
-void Universum::toevoegenMutualiteit(QString naam)
+void Universe::toevoegenMutualiteit(QString naam)
 {
     Model::InsuranceCompany *insuranceCompany = m_model.addInsuranceCompany(naam);
     Q_ASSERT(insuranceCompany);
@@ -316,7 +316,7 @@ void Universum::toevoegenMutualiteit(QString naam)
     m_changed = true;
 }
 
-void Universum::editedPhysician(int id)
+void Universe::editedPhysician(int id)
 {
     Model::Physician *physician = m_model.getPhysician(id);
     Q_ASSERT(physician);
@@ -325,7 +325,7 @@ void Universum::editedPhysician(int id)
     m_changed = true;
 }
 
-void Universum::editedFile(int id)
+void Universe::editedFile(int id)
 {
     Model::File *dossier = m_model.getFile(id);
     Q_ASSERT(dossier);
@@ -335,7 +335,7 @@ void Universum::editedFile(int id)
     m_changed = true;
 }
 
-void Universum::editedInsuranceCompany(int id)
+void Universe::editedInsuranceCompany(int id)
 {
     Model::InsuranceCompany *insuranceCompany = m_model.getInsuranceCompany(id);
     Q_ASSERT(insuranceCompany);
@@ -344,12 +344,12 @@ void Universum::editedInsuranceCompany(int id)
     m_changed = true;
 }
 
-void Universum::hoorapparaatGewijzigd()
+void Universe::hoorapparaatGewijzigd()
 {
     refreshHoorapparatenLijst();
 }
 
-void Universum::teardownPhysician()
+void Universe::teardownPhysician()
 {
     if (!m_physicianPresenter)
         return;
@@ -359,7 +359,7 @@ void Universum::teardownPhysician()
     m_physicianPresenter = 0;
 }
 
-void Universum::teardownFile()
+void Universe::teardownFile()
 {
     if (!m_filePresenter)
         return;
@@ -369,7 +369,7 @@ void Universum::teardownFile()
     m_filePresenter = 0;
 }
 
-void Universum::teardownInsuranceCompany()
+void Universe::teardownInsuranceCompany()
 {
     if (!m_insuranceCompanyPresenter)
         return;
@@ -379,7 +379,7 @@ void Universum::teardownInsuranceCompany()
     m_insuranceCompanyPresenter = 0;
 }
 
-void Universum::setupPhysician()
+void Universe::setupPhysician()
 {
     m_view.cleanupTabPhysician();
 
@@ -392,13 +392,13 @@ void Universum::setupPhysician()
     }
 }
 
-void Universum::setupFile()
+void Universe::setupFile()
 {
     m_view.cleanupTabFile(m_model.getInvalidDate());
 
     if (Model::File *dossierModel = m_model.getFile(m_file))
     {
-        m_filePresenter = new Presenter::Dossier(m_view.getDossier(), *dossierModel);
+        m_filePresenter = new Presenter::File(m_view.getDossier(), *dossierModel);
         m_filePresenter->setup();
         connect(m_filePresenter, SIGNAL(edited(int)), this, SLOT(editedFile(int)));
         connect(m_filePresenter, SIGNAL(destroyed()), this, SLOT(hoorapparaatGewijzigd()));
@@ -406,7 +406,7 @@ void Universum::setupFile()
     }
 }
 
-void Universum::setupInsuranceCompany()
+void Universe::setupInsuranceCompany()
 {
     m_view.cleanupTabInsuranceCompany();
 

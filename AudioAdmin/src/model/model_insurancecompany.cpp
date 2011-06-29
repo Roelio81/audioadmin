@@ -21,7 +21,7 @@ void InsuranceCompany::fromDomElement(const QDomElement &e)
 QDomElement InsuranceCompany::toDomElement(QDomDocument &d) const
 {
     QDomElement result = Entity::toDomElement(d);
-    result.setTagName("mutualiteit");
+    result.setTagName("insuranceCompany");
     result.setAttribute("id", m_id);
     return result;
 }

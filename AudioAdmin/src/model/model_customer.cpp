@@ -6,9 +6,9 @@
 using namespace Model;
 
 
-Customer::Customer(const Universe &universum)
-    : m_universum(universum)
-    , m_geboorteDatum(universum.getInvalidDate())
+Customer::Customer(const Universe &universe)
+    : m_universe(universe)
+    , m_dateOfBirth(universe.getInvalidDate())
 {
 }
 
@@ -20,17 +20,17 @@ void Customer::fromDomElement(const QDomElement &e)
 {
     for (QDomElement element = e.firstChildElement(); !element.isNull(); element = element.nextSiblingElement())
     {
-        if (element.tagName() == "aanspreektitel")
+        if (element.tagName() == "title")
         {
-            m_aanspreektitel = element.text();
+            m_title = element.text();
         }
-        else if (element.tagName() == "voornaam")
+        else if (element.tagName() == "firstName")
         {
-            m_voornaam = element.text();
+            m_firstName = element.text();
         }
-        else if (element.tagName() == "geboortedatum")
+        else if (element.tagName() == "dateOfBirth")
         {
-            m_geboorteDatum = QDate::fromString(element.text(), "yyyy-MM-dd");
+            m_dateOfBirth = QDate::fromString(element.text(), "yyyy-MM-dd");
         }
     }
 
@@ -40,19 +40,19 @@ void Customer::fromDomElement(const QDomElement &e)
 QDomElement Customer::toDomElement(QDomDocument &d) const
 {
     QDomElement result = Entity::toDomElement(d);
-    QDomElement voornaam = d.createElement("voornaam");
-    voornaam.appendChild(d.createTextNode(m_voornaam));
-    result.insertAfter(voornaam, result.firstChildElement("naam"));
-    QDomElement aanspreektitel = d.createElement("aanspreektitel");
-    aanspreektitel.appendChild(d.createTextNode(m_aanspreektitel));
-    result.insertAfter(aanspreektitel, result.firstChildElement("voornaam"));
-    if (m_geboorteDatum != m_universum.getInvalidDate())
+    QDomElement voornaam = d.createElement("firstName");
+    voornaam.appendChild(d.createTextNode(m_firstName));
+    result.insertAfter(voornaam, result.firstChildElement("name"));
+    QDomElement aanspreektitel = d.createElement("title");
+    aanspreektitel.appendChild(d.createTextNode(m_title));
+    result.insertAfter(aanspreektitel, result.firstChildElement("firstName"));
+    if (m_dateOfBirth != m_universe.getInvalidDate())
     {
-        QDomElement geboorteDatum = d.createElement("geboortedatum");
-        geboorteDatum.appendChild(d.createTextNode(m_geboorteDatum.toString("yyyy-MM-dd")));
-        result.insertAfter(geboorteDatum, result.firstChildElement("telefoon"));
+        QDomElement geboorteDatum = d.createElement("dateOfBirth");
+        geboorteDatum.appendChild(d.createTextNode(m_dateOfBirth.toString("yyyy-MM-dd")));
+        result.insertAfter(geboorteDatum, result.firstChildElement("telephone"));
     }
 
-    result.setTagName("klant");
+    result.setTagName("customer");
     return result;
 }

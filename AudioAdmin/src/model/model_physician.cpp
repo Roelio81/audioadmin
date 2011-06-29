@@ -18,7 +18,7 @@ void Physician::fromDomElement(const QDomElement &e)
 {
     for (QDomElement element = e.firstChildElement(); !element.isNull(); element = element.nextSiblingElement())
     {
-        if (element.tagName() == "voornaam")
+        if (element.tagName() == "firstName")
         {
             m_firstName = element.text();
         }
@@ -30,10 +30,10 @@ void Physician::fromDomElement(const QDomElement &e)
 QDomElement Physician::toDomElement(QDomDocument &d) const
 {
     QDomElement result = Entity::toDomElement(d);
-    QDomElement voornaam = d.createElement("voornaam");
-    voornaam.appendChild(d.createTextNode(m_firstName));
-    result.insertAfter(voornaam, result.firstChildElement("naam"));
-    result.setTagName("dokter");
+    QDomElement firstName = d.createElement("firstName");
+    firstName.appendChild(d.createTextNode(m_firstName));
+    result.insertAfter(firstName, result.firstChildElement("name"));
+    result.setTagName("physician");
     result.setAttribute("id", m_id);
     return result;
 }
