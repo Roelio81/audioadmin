@@ -58,38 +58,38 @@ void BriefMutualiteit::setup()
         {
             text += " (" + QString(char(0xb0)) + " " + dateOfBirth.toString("dd-MM-yyyy") + "). ";
         }
-        if (file.getAantalHoorapparaten() > 0)
+        if (file.getNofHearingAids() > 0)
         {
             text += (sex ? QString("Mijnheer ") : QString("Mevrouw ")) + "heeft geopteerd voor een ";
-            if (file.getAantalHoorapparaten() == 1)
+            if (file.getNofHearingAids() == 1)
             {
                 text += "monofonische aanpassing met ";
-                if (!file.getLinkerHoorapparaatMerk().isEmpty() || !file.getLinkerHoorapparaatType().isEmpty())
+                if (!file.getLeftHearingAidBrand().isEmpty() || !file.getLeftHearingAidType().isEmpty())
                 {
                     text += "het apparaat ";
-                    text += file.getLinkerHoorapparaatMerk() + " " + file.getLinkerHoorapparaatType() + " (links). ";
+                    text += file.getLeftHearingAidBrand() + " " + file.getLeftHearingAidType() + " (links). ";
                 }
                 else
                 {
                     text += "het apparaat ";
-                    text += file.getRechterHoorapparaatMerk() + " " + file.getRechterHoorapparaatType() + " (rechts). ";
+                    text += file.getRightHearingAidBrand() + " " + file.getRightHearingAidType() + " (rechts). ";
                 }
             }
             else
             {
-                Q_ASSERT(file.getAantalHoorapparaten() == 2);
+                Q_ASSERT(file.getNofHearingAids() == 2);
                 text += "stereofonsiche aanpassing met ";
-                if (file.getLinkerHoorapparaatMerk() == file.getRechterHoorapparaatMerk() &&
-                    file.getLinkerHoorapparaatType() == file.getRechterHoorapparaatType())
+                if (file.getLeftHearingAidBrand() == file.getRightHearingAidBrand() &&
+                    file.getLeftHearingAidType() == file.getRightHearingAidType())
                 {
                     text += "het apparaat ";
-                    text += file.getLinkerHoorapparaatMerk() + " " + file.getLinkerHoorapparaatType() + ". ";
+                    text += file.getLeftHearingAidBrand() + " " + file.getLeftHearingAidType() + ". ";
                 }
                 else
                 {
                     text += "de apparaten ";
-                    text += file.getRechterHoorapparaatMerk() + " " + file.getRechterHoorapparaatType() + " (rechts) en ";
-                    text += file.getLinkerHoorapparaatMerk() + " " + file.getLinkerHoorapparaatType() + " (links). ";
+                    text += file.getRightHearingAidBrand() + " " + file.getRightHearingAidType() + " (rechts) en ";
+                    text += file.getLeftHearingAidBrand() + " " + file.getLeftHearingAidType() + " (links). ";
                 }
             }
         }
@@ -254,7 +254,7 @@ void BriefMutualiteit::print()
         painter.drawLine(hmar, y, hmar+120*mmx, y);
 
         // Print localization tests for stereophonic adjustments
-        if (file.getAantalHoorapparaten() == 2)
+        if (file.getNofHearingAids() == 2)
         {
             y += 2*lineheight;
             painter.drawText(hmar, y, "Localisatie testen");

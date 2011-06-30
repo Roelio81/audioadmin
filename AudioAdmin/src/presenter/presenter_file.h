@@ -28,12 +28,11 @@ namespace Presenter
 
     signals:
         void edited(int id);
-        void hoorapparaatGewijzigd();
 
     private slots:
-        void briefArtsTonen();
-        void briefKlantTonen();
-        void briefMutualiteitTonen();
+        void showLetterPhysician();
+        void showLetterCustomer();
+        void showLetterInsuranceCompany();
         void showInvoice();
         void showMeasurements();
 

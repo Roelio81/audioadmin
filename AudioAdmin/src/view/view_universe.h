@@ -21,24 +21,24 @@ namespace View
         explicit Universe(QWidget *parent = 0, Qt::WFlags f = 0);
         virtual ~Universe();
 
-        Physician &getArts();
-        File &getDossier();
-        InsuranceCompany &getMutualiteit();
-        Etiketten &getEtiketten();
+        Physician &getPhysician();
+        File &getFile();
+        InsuranceCompany &getInsuranceCompany();
+        Etiketten &getLabels();
         Settings &getSettings();
 
         void bewarenBijAfsluiten();
         void clearPhysicianList();
-        void addPhysician(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
-        void changePhysician(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
+        void addPhysician(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
+        void changePhysician(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
         void leegHoorapparatenLijst();
         void toevoegenHoorapparaat(const QString &merk, const QString &type, double prijs, const QDate &datumPrijs);
         void leegKlantenLijst();
-        void addCustomer(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
-        void changeCustomer(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
+        void addCustomer(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
+        void changeCustomer(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
         void clearInsuranceCompanyList();
-        void addInsuranceCompany(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
-        void wijzigenMutualiteit(int id, const QString &naam, const QString &straat, int postcode, const QString &gemeente);
+        void addInsuranceCompany(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
+        void changeInsuranceCompany(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
 
         void setPhysicianListChanged(bool changed);
         void setFileListChanged(bool changed);
@@ -70,11 +70,9 @@ namespace View
         void cleanupTabInsuranceCompany();
 
     private slots:
-        void tabVeranderd(int nieuweTab);
+        void tabChanged(int newTab);
         void settings();
-        void bewaren();
-        void etikettenAfdrukken();
-        void omtrent();
+        void about();
         void selectPhysician(int currentRow, int currentColumn, int previousRow, int previousColumn);
         void selectCustomer(int currentRow, int currentColumn, int previousRow, int previousColumn);
         void selectInsuranceCompany(int currentRow, int currentColumn, int previousRow, int previousColumn);
@@ -90,22 +88,22 @@ namespace View
         void markTabChanged(int tabIndex, bool changed);
 
     signals:
-        void afsluitenSignal();
-        void bewarenSignal();
+        void exitSignal();
+        void saveSignal();
         void openSettings();
         void artsSelectieSignal(int id);
         void artsVerwijderenSignal(int id);
-        void artsToevoegenSignal(QString voornaam, QString naam);
+        void artsToevoegenSignal(QString firstName, QString name);
         void klantSelectieSignal(int id);
         void klantVerwijderenSignal(int id);
-        void klantToevoegenSignal(QString voornaam, QString naam);
+        void klantToevoegenSignal(QString firstName, QString name);
         void mutualiteitSelectieSignal(int id);
         void mutualiteitVerwijderenSignal(int id);
-        void mutualiteitToevoegenSignal(QString naam);
-        void etikettenSignal();
-        void sluitDossierTab();
-        void sluitArtsTab();
-        void sluitMutualiteitTab();
+        void mutualiteitToevoegenSignal(QString name);
+        void labelSignal();
+        void closeFileTab();
+        void closePhysicianTab();
+        void closeInsuranceCompanyTab();
         void openDossierTab();
         void openArtsTab();
         void openMutualiteitTab();
@@ -114,20 +112,20 @@ namespace View
         void closeEvent(QCloseEvent *event);
 
         // --- Type definitions ---
-        typedef QPair<double, QDate> PrijsDatumInfo;
-        typedef QMap<QString, PrijsDatumInfo> HaarApparaatTypeMap;
-        typedef QMap<QString, HaarApparaatTypeMap> HoorApparaatMap;
+        typedef QPair<double, QDate> PriceDatePair;
+        typedef QMap<QString, PriceDatePair> TypeToPriceMap;
+        typedef QMap<QString, TypeToPriceMap> BrandToTypesAndPricesMap;
 
         // --- Data members ---
         Ui::Universe m_ui;
-        HoorApparaatMap m_hoorapparaatMerkToTypes;
-        Physician m_arts;
+        BrandToTypesAndPricesMap m_hoorapparaatMerkToTypes;
+        Physician m_physician;
         File m_file;
-        InsuranceCompany m_mutualiteit;
-        Etiketten m_etiketten;
-        Settings m_instellingen;
-        int m_huidigeTab;
+        InsuranceCompany m_insuranceCompany;
+        Etiketten m_labels;
+        Settings m_settings;
+        int m_currentTab;
     };
 }
 
-#endif // _VIEW_UNIVERSUM_H
+#endif // _VIEW_UNIVERSE_H

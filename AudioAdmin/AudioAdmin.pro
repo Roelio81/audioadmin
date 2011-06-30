@@ -72,9 +72,9 @@ SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
     src/view/view_labels.cpp \
     src/view/view_invoice.cpp \
     src/view/view_settings.cpp \
-    src/view/view_measurments.cpp \
     src/view/view_insurancecompany.cpp \
-    src/presenter/presenter_invoice.cpp
+    src/presenter/presenter_invoice.cpp \
+    src/view/view_measurements.cpp
 TEMPLATE = app
 UI_DIR = build
 TRANSLATIONS = translations/audioadmin_nl.ts

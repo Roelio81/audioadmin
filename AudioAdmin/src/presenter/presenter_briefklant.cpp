@@ -47,7 +47,7 @@ void BriefKlant::setup()
     if (tekst.isEmpty())
     {
         tekst = "Ingesloten vindt u een overschrijving voor de opleg van ";
-        if (file.getAantalHoorapparaten() == 1)
+        if (file.getNofHearingAids() == 1)
             tekst += "het hoorapparaat.";
         else
             tekst += "de hoorapparaten.";

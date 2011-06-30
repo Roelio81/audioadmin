@@ -26,9 +26,9 @@ Universe::Universe(View::Universe &view, Model::Universe &model)
 , m_insuranceCompany(0)
 , m_changed(false)
 {
-    connect(&m_view, SIGNAL(afsluitenSignal()), this, SLOT(afsluiten()));
-    connect(&m_view, SIGNAL(bewarenSignal()), this, SLOT(bewaren()));
-    connect(&m_view, SIGNAL(etikettenSignal()), this, SLOT(etiketten()));
+    connect(&m_view, SIGNAL(exitSignal()), this, SLOT(afsluiten()));
+    connect(&m_view, SIGNAL(saveSignal()), this, SLOT(bewaren()));
+    connect(&m_view, SIGNAL(labelSignal()), this, SLOT(etiketten()));
     connect(&m_view, SIGNAL(openSettings()), this, SLOT(openSettings()));
     connect(&m_view, SIGNAL(artsSelectieSignal(int)), this, SLOT(showPhysician(int)));
     connect(&m_view, SIGNAL(artsVerwijderenSignal(int)), this, SLOT(removePhysician(int)));
@@ -39,9 +39,9 @@ Universe::Universe(View::Universe &view, Model::Universe &model)
     connect(&m_view, SIGNAL(mutualiteitSelectieSignal(int)), this, SLOT(showInsuranceCompany(int)));
     connect(&m_view, SIGNAL(mutualiteitVerwijderenSignal(int)), this, SLOT(removeInsuranceCompany(int)));
     connect(&m_view, SIGNAL(mutualiteitToevoegenSignal(QString)), this, SLOT(toevoegenMutualiteit(QString)));
-    connect(&m_view, SIGNAL(sluitArtsTab()), this, SLOT(teardownPhysician()));
-    connect(&m_view, SIGNAL(sluitDossierTab()), this, SLOT(teardownFile()));
-    connect(&m_view, SIGNAL(sluitMutualiteitTab()), this, SLOT(teardownInsuranceCompany()));
+    connect(&m_view, SIGNAL(closeFileTab()), this, SLOT(teardownFile()));
+    connect(&m_view, SIGNAL(closePhysicianTab()), this, SLOT(teardownPhysician()));
+    connect(&m_view, SIGNAL(closeInsuranceCompanyTab()), this, SLOT(teardownInsuranceCompany()));
     connect(&m_view, SIGNAL(openArtsTab()), this, SLOT(setupPhysician()));
     connect(&m_view, SIGNAL(openDossierTab()), this, SLOT(setupFile()));
     connect(&m_view, SIGNAL(openMutualiteitTab()), this, SLOT(setupInsuranceCompany()));
@@ -90,17 +90,17 @@ void Universe::bewaren()
 void Universe::etiketten()
 {
     setupEtiketten();
-    connect(m_view.getEtiketten().b_afdrukken, SIGNAL(clicked()), this, SLOT(afdrukkenEtiketten()));
-    connect(m_view.getEtiketten().b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerEtiketten()));
-    m_view.getEtiketten().exec();
-    disconnect(m_view.getEtiketten().b_afdrukken, SIGNAL(clicked()), this, SLOT(afdrukkenEtiketten()));
-    disconnect(m_view.getEtiketten().b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerEtiketten()));
+    connect(m_view.getLabels().b_afdrukken, SIGNAL(clicked()), this, SLOT(afdrukkenEtiketten()));
+    connect(m_view.getLabels().b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerEtiketten()));
+    m_view.getLabels().exec();
+    disconnect(m_view.getLabels().b_afdrukken, SIGNAL(clicked()), this, SLOT(afdrukkenEtiketten()));
+    disconnect(m_view.getLabels().b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerEtiketten()));
 }
 
 void Universe::afdrukkenEtiketten()
 {
     teardownEtiketten();
-    m_view.getEtiketten().hide();
+    m_view.getLabels().hide();
     QPrintDialog printDialog(&m_view);
     if (printDialog.exec() != QDialog::Accepted)
         return;
@@ -114,7 +114,7 @@ void Universe::afdrukkenEtiketten()
 
 void Universe::annuleerEtiketten()
 {
-    m_view.getEtiketten().hide();
+    m_view.getLabels().hide();
 }
 
 void Universe::openSettings()
@@ -126,14 +126,14 @@ void Universe::openSettings()
 
 void Universe::setupEtiketten()
 {
-    View::Etiketten &viewEtiketten = m_view.getEtiketten();
+    View::Etiketten &viewEtiketten = m_view.getLabels();
     viewEtiketten.leegPlaatsenAanpassing();
     const QVector<Model::File *> &dossiers = m_model.getFiles();
     for (QVector<Model::File *>::const_iterator itDossier = dossiers.begin(); itDossier != dossiers.end(); ++itDossier)
     {
         Model::File *dossier = *itDossier;
         Q_ASSERT(dossier);
-        viewEtiketten.toevoegenPlaatsAanpassing(dossier->getPlaatsAanpassing());
+        viewEtiketten.toevoegenPlaatsAanpassing(dossier->getPlaceAdjustment());
     }
     viewEtiketten.setDatumOnderzoek(QDate::currentDate().addYears(-2));
 }
@@ -198,8 +198,8 @@ void Universe::refreshHoorapparatenLijst()
     {
         Model::File *dossier = *itDossier;
         Q_ASSERT(dossier);
-        m_view.toevoegenHoorapparaat(dossier->getRechterHoorapparaatMerk(), dossier->getRechterHoorapparaatType(), dossier->getRechterHoorapparaatPrijs(), dossier->getProefDatum());
-        m_view.toevoegenHoorapparaat(dossier->getLinkerHoorapparaatMerk(), dossier->getLinkerHoorapparaatType(), dossier->getLinkerHoorapparaatPrijs(), dossier->getProefDatum());
+        m_view.toevoegenHoorapparaat(dossier->getRightHearingAidBrand(), dossier->getRightHearingAidType(), dossier->getRightHearingAidPrice(), dossier->getTrialDate());
+        m_view.toevoegenHoorapparaat(dossier->getLeftHearingAidBrand(), dossier->getLeftHearingAidType(), dossier->getLeftHearingAidPrice(), dossier->getTrialDate());
     }
 }
 
@@ -340,7 +340,7 @@ void Universe::editedInsuranceCompany(int id)
     Model::InsuranceCompany *insuranceCompany = m_model.getInsuranceCompany(id);
     Q_ASSERT(insuranceCompany);
     m_view.setInsuranceCompanyListChanged(true);
-    m_view.wijzigenMutualiteit(insuranceCompany->getId(), insuranceCompany->getName(), insuranceCompany->getStreet(), insuranceCompany->getPostalCode(), insuranceCompany->getCity());
+    m_view.changeInsuranceCompany(insuranceCompany->getId(), insuranceCompany->getName(), insuranceCompany->getStreet(), insuranceCompany->getPostalCode(), insuranceCompany->getCity());
     m_changed = true;
 }
 
@@ -385,7 +385,7 @@ void Universe::setupPhysician()
 
     if (Model::Physician *artsModel = m_model.getPhysician(m_arts))
     {
-        m_physicianPresenter = new Presenter::Physician(m_view.getArts(), *artsModel);
+        m_physicianPresenter = new Presenter::Physician(m_view.getPhysician(), *artsModel);
         m_physicianPresenter->setup();
         connect(m_physicianPresenter, SIGNAL(edited(int)), this, SLOT(editedPhysician(int)));
         m_view.enableWidgetsForPhysician();
@@ -398,7 +398,7 @@ void Universe::setupFile()
 
     if (Model::File *dossierModel = m_model.getFile(m_file))
     {
-        m_filePresenter = new Presenter::File(m_view.getDossier(), *dossierModel);
+        m_filePresenter = new Presenter::File(m_view.getFile(), *dossierModel);
         m_filePresenter->setup();
         connect(m_filePresenter, SIGNAL(edited(int)), this, SLOT(editedFile(int)));
         connect(m_filePresenter, SIGNAL(destroyed()), this, SLOT(hoorapparaatGewijzigd()));
@@ -412,7 +412,7 @@ void Universe::setupInsuranceCompany()
 
     if (Model::InsuranceCompany *mutualiteitModel = m_model.getInsuranceCompany(m_insuranceCompany))
     {
-        m_insuranceCompanyPresenter = new Presenter::InsuranceCompany(m_view.getMutualiteit(), *mutualiteitModel);
+        m_insuranceCompanyPresenter = new Presenter::InsuranceCompany(m_view.getInsuranceCompany(), *mutualiteitModel);
         m_insuranceCompanyPresenter->setup();
         connect(m_insuranceCompanyPresenter, SIGNAL(edited(int)), this, SLOT(editedInsuranceCompany(int)));
         m_view.enableWidgetsForInsuranceCompany();

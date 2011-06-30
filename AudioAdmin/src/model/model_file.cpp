@@ -10,20 +10,20 @@ File::File(int id, const Universe &universe)
 , m_universe(universe)
 , m_physician(-1)
 , m_insuranceCompany(-1)
-, m_rechterHoorapparaatPrijs(0.0)
-, m_linkerHoorapparaatPrijs(0.0)
-, m_onderzoekDatum(universe.getInvalidDate())
-, m_proefDatum(universe.getInvalidDate())
-, m_nkoRapportDatum(universe.getInvalidDate())
-, m_dokterAdviesDatum(universe.getInvalidDate())
-, m_akkoordMutualiteitDatum(universe.getInvalidDate())
-, m_betalingDatum(universe.getInvalidDate())
-, m_afleveringDatum(universe.getInvalidDate())
-, m_wisselDatum(universe.getInvalidDate())
-, m_onderhoudsContractDatum(universe.getInvalidDate())
+, m_rightHearingAidPrice(0.0)
+, m_leftHearingAidPrice(0.0)
+, m_testDate(universe.getInvalidDate())
+, m_trialDate(universe.getInvalidDate())
+, m_physicianReportDate(universe.getInvalidDate())
+, m_physicianAdviceDate(universe.getInvalidDate())
+, m_insuranceAgreementDate(universe.getInvalidDate())
+, m_paymentDate(universe.getInvalidDate())
+, m_deliveryDate(universe.getInvalidDate())
+, m_exchangeDate(universe.getInvalidDate())
+, m_maintenanceContractDate(universe.getInvalidDate())
 , m_letterPhysician(*this, true)
 , m_letterCustomer(*this, false)
-, m_briefMutualiteit(*this, true)
+, m_letterInsuranceCompany(*this, true)
 , m_invoice(*this)
 , m_customer(universe)
 {
@@ -37,62 +37,62 @@ void File::fromDomElement(const QDomElement &e)
 {
     for (QDomElement element = e.firstChildElement(); !element.isNull(); element = element.nextSiblingElement())
     {
-        if (element.tagName() == "aanpassing")
+        if (element.tagName() == "adjustment")
         {
-            m_plaatsAanpassing = element.text();
+            m_placeAdjustment = element.text();
         }
-        else if (element.tagName() == "data")
+        else if (element.tagName() == "dates")
         {
             for (QDomElement ee = element.firstChildElement(); !ee.isNull(); ee = ee.nextSiblingElement())
             {
                 QDate date = QDate::fromString(ee.text(), "yyyy-MM-dd");
-                if (ee.tagName() == "onderzoek")
-                    m_onderzoekDatum = date;
-                else if (ee.tagName() == "proef")
-                    m_proefDatum = date;
-                else if (ee.tagName() == "nkoRapport")
-                    m_nkoRapportDatum = date;
-                else if (ee.tagName() == "dokterAdv")
-                    m_dokterAdviesDatum = date;
-                else if (ee.tagName() == "akkoordMut")
-                    m_akkoordMutualiteitDatum = date;
-                else if (ee.tagName() == "betaling")
-                    m_betalingDatum = date;
-                else if (ee.tagName() == "aflevering")
-                    m_afleveringDatum = date;
-                else if (ee.tagName() == "wissel")
-                    m_wisselDatum = date;
-                else if (ee.tagName() == "onderhoudsContract")
-                    m_onderhoudsContractDatum = date;
+                if (ee.tagName() == "test")
+                    m_testDate = date;
+                else if (ee.tagName() == "trial")
+                    m_trialDate = date;
+                else if (ee.tagName() == "physReport")
+                    m_physicianReportDate = date;
+                else if (ee.tagName() == "physAdvice")
+                    m_physicianAdviceDate = date;
+                else if (ee.tagName() == "insAgree")
+                    m_insuranceAgreementDate = date;
+                else if (ee.tagName() == "payment")
+                    m_paymentDate = date;
+                else if (ee.tagName() == "delivery")
+                    m_deliveryDate = date;
+                else if (ee.tagName() == "exchange")
+                    m_exchangeDate = date;
+                else if (ee.tagName() == "maintenanceContract")
+                    m_maintenanceContractDate = date;
             }
         }
-        else if (element.tagName() == "apparaten")
+        else if (element.tagName() == "hearingAids")
         {
-            m_rechterHoorapparaatMerk = "";
-            m_rechterHoorapparaatType = "";
-            m_linkerHoorapparaatMerk = "";
-            m_linkerHoorapparaatType = "";
+            m_rightHearingAidBrand = "";
+            m_rightHearingAidType = "";
+            m_leftHearingAidBrand = "";
+            m_leftHearingAidType = "";
             for (QDomElement ee = element.firstChildElement(); !ee.isNull(); ee = ee.nextSiblingElement())
             {
-                Q_ASSERT(ee.tagName() == "apparaat");
-                QString plaats = ee.attribute("plaats");
+                Q_ASSERT(ee.tagName() == "hearingAid");
+                QString place = ee.attribute("place");
                 QString merk = ee.attribute("merk");
                 QString type = ee.attribute("type");
                 QString serialNumber = ee.firstChildElement("serialNumber").text();
-                double prijs = ee.firstChildElement("prijs").text().toDouble();
-                if (plaats == "rechts")
+                double price = ee.firstChildElement("price").text().toDouble();
+                if (place == "right")
                 {
-                    m_rechterHoorapparaatMerk = merk;
-                    m_rechterHoorapparaatType = type;
-                    m_rechterHoorapparaatSerienummer = serialNumber;
-                    m_rechterHoorapparaatPrijs = prijs;
+                    m_rightHearingAidBrand = merk;
+                    m_rightHearingAidType = type;
+                    m_rightHearingAidSerialNumber = serialNumber;
+                    m_rightHearingAidPrice = price;
                 }
-                else if (plaats == "links")
+                else if (place == "left")
                 {
-                    m_linkerHoorapparaatMerk = merk;
-                    m_linkerHoorapparaatType = type;
-                    m_linkerHoorapparaatSerienummer = serialNumber;
-                    m_linkerHoorapparaatPrijs = prijs;
+                    m_leftHearingAidBrand = merk;
+                    m_leftHearingAidType = type;
+                    m_leftHearingAidSerialNumber = serialNumber;
+                    m_leftHearingAidPrice = price;
                 }
             }
         }
@@ -110,10 +110,10 @@ void File::fromDomElement(const QDomElement &e)
         else if (element.tagName() == "insuranceCompany")
         {
             m_insuranceCompany = element.attribute("id").isEmpty() ? -1 : element.attribute("id").toInt();
-            m_aansluitingsnummer = element.attribute("aansluitingsnummer");
+            m_memberNumber = element.attribute("memberNr");
             QDomElement brief = element.firstChildElement("letter");
             if (!brief.isNull())
-                m_briefMutualiteit.fromDomElement(brief);
+                m_letterInsuranceCompany.fromDomElement(brief);
         }
         else if (element.tagName() == "audiometrie")
         {
@@ -131,107 +131,107 @@ void File::fromDomElement(const QDomElement &e)
 QDomElement File::toDomElement(QDomDocument &d) const
 {
     QDomElement result = m_customer.toDomElement(d);
-    QDomElement aanpassing = d.createElement("aanpassing");
-    aanpassing.appendChild(d.createTextNode(m_plaatsAanpassing));
-    result.appendChild(aanpassing);
-    QDomElement data = d.createElement("data");
-    if (m_onderzoekDatum != m_universe.getInvalidDate())
+    QDomElement adjustment = d.createElement("adjustment");
+    adjustment.appendChild(d.createTextNode(m_placeAdjustment));
+    result.appendChild(adjustment);
+    QDomElement dates = d.createElement("dates");
+    if (m_testDate != m_universe.getInvalidDate())
     {
-        QDomElement datum = d.createElement("onderzoek");
-        datum.appendChild(d.createTextNode(m_onderzoekDatum.toString("yyyy-MM-dd")));
-        data.appendChild(datum);
+        QDomElement datum = d.createElement("test");
+        datum.appendChild(d.createTextNode(m_testDate.toString("yyyy-MM-dd")));
+        dates.appendChild(datum);
     }
-    if (m_proefDatum != m_universe.getInvalidDate())
+    if (m_trialDate != m_universe.getInvalidDate())
     {
-        QDomElement datum = d.createElement("proef");
-        datum.appendChild(d.createTextNode(m_proefDatum.toString("yyyy-MM-dd")));
-        data.appendChild(datum);
+        QDomElement datum = d.createElement("trial");
+        datum.appendChild(d.createTextNode(m_trialDate.toString("yyyy-MM-dd")));
+        dates.appendChild(datum);
     }
-    if (m_nkoRapportDatum != m_universe.getInvalidDate())
+    if (m_physicianReportDate != m_universe.getInvalidDate())
     {
-        QDomElement datum = d.createElement("nkoRapport");
-        datum.appendChild(d.createTextNode(m_nkoRapportDatum.toString("yyyy-MM-dd")));
-        data.appendChild(datum);
+        QDomElement datum = d.createElement("physReport");
+        datum.appendChild(d.createTextNode(m_physicianReportDate.toString("yyyy-MM-dd")));
+        dates.appendChild(datum);
     }
-    if (m_dokterAdviesDatum != m_universe.getInvalidDate())
+    if (m_physicianAdviceDate != m_universe.getInvalidDate())
     {
-        QDomElement datum = d.createElement("dokterAdv");
-        datum.appendChild(d.createTextNode(m_dokterAdviesDatum.toString("yyyy-MM-dd")));
-        data.appendChild(datum);
+        QDomElement date = d.createElement("physAdvice");
+        date.appendChild(d.createTextNode(m_physicianAdviceDate.toString("yyyy-MM-dd")));
+        dates.appendChild(date);
     }
-    if (m_akkoordMutualiteitDatum != m_universe.getInvalidDate())
+    if (m_insuranceAgreementDate != m_universe.getInvalidDate())
     {
-        QDomElement datum = d.createElement("akkoordMut");
-        datum.appendChild(d.createTextNode(m_akkoordMutualiteitDatum.toString("yyyy-MM-dd")));
-        data.appendChild(datum);
+        QDomElement date = d.createElement("insAgree");
+        date.appendChild(d.createTextNode(m_insuranceAgreementDate.toString("yyyy-MM-dd")));
+        dates.appendChild(date);
     }
-    if (m_betalingDatum != m_universe.getInvalidDate())
+    if (m_paymentDate != m_universe.getInvalidDate())
     {
-        QDomElement datum = d.createElement("betaling");
-        datum.appendChild(d.createTextNode(m_betalingDatum.toString("yyyy-MM-dd")));
-        data.appendChild(datum);
+        QDomElement date = d.createElement("payment");
+        date.appendChild(d.createTextNode(m_paymentDate.toString("yyyy-MM-dd")));
+        dates.appendChild(date);
     }
-    if (m_afleveringDatum != m_universe.getInvalidDate())
+    if (m_deliveryDate != m_universe.getInvalidDate())
     {
-        QDomElement datum = d.createElement("aflevering");
-        datum.appendChild(d.createTextNode(m_afleveringDatum.toString("yyyy-MM-dd")));
-        data.appendChild(datum);
+        QDomElement date = d.createElement("delivery");
+        date.appendChild(d.createTextNode(m_deliveryDate.toString("yyyy-MM-dd")));
+        dates.appendChild(date);
     }
-    if (m_wisselDatum != m_universe.getInvalidDate())
+    if (m_exchangeDate != m_universe.getInvalidDate())
     {
-        QDomElement datum = d.createElement("wissel");
-        datum.appendChild(d.createTextNode(m_wisselDatum.toString("yyyy-MM-dd")));
-        data.appendChild(datum);
+        QDomElement date = d.createElement("exchange");
+        date.appendChild(d.createTextNode(m_exchangeDate.toString("yyyy-MM-dd")));
+        dates.appendChild(date);
     }
-    if (m_onderhoudsContractDatum != m_universe.getInvalidDate())
+    if (m_maintenanceContractDate != m_universe.getInvalidDate())
     {
-        QDomElement datum = d.createElement("onderhoudsContract");
-        datum.appendChild(d.createTextNode(m_onderhoudsContractDatum.toString("yyyy-MM-dd")));
-        data.appendChild(datum);
+        QDomElement date = d.createElement("maintenanceContract");
+        date.appendChild(d.createTextNode(m_maintenanceContractDate.toString("yyyy-MM-dd")));
+        dates.appendChild(date);
     }
-    result.appendChild(data);
-    QDomElement apparaten = d.createElement("apparaten");
-    if (!m_linkerHoorapparaatType.isEmpty() || !m_linkerHoorapparaatMerk.isEmpty())
+    result.appendChild(dates);
+    QDomElement hearingAids = d.createElement("hearingAids");
+    if (!m_leftHearingAidType.isEmpty() || !m_leftHearingAidBrand.isEmpty())
     {
-        QDomElement apparaat = d.createElement("apparaat");
-        apparaat.setAttribute("merk", m_linkerHoorapparaatMerk);
-        apparaat.setAttribute("type", m_linkerHoorapparaatType);
-        apparaat.setAttribute("plaats", "links");
-        if (!m_linkerHoorapparaatSerienummer.isEmpty())
+        QDomElement hearingAid = d.createElement("hearingAid");
+        hearingAid.setAttribute("merk", m_leftHearingAidBrand);
+        hearingAid.setAttribute("type", m_leftHearingAidType);
+        hearingAid.setAttribute("place", "left");
+        if (!m_leftHearingAidSerialNumber.isEmpty())
         {
             QDomElement serialNumber = d.createElement("serialNumber");
-            serialNumber.appendChild(d.createTextNode(m_linkerHoorapparaatSerienummer));
-            apparaat.appendChild(serialNumber);
+            serialNumber.appendChild(d.createTextNode(m_leftHearingAidSerialNumber));
+            hearingAid.appendChild(serialNumber);
         }
-        if (m_linkerHoorapparaatPrijs != 0.0)
+        if (m_leftHearingAidPrice != 0.0)
         {
-            QDomElement prijs = d.createElement("prijs");
-            prijs.appendChild(d.createTextNode(QString::number(m_linkerHoorapparaatPrijs, 'f', 0)));
-            apparaat.appendChild(prijs);
+            QDomElement price = d.createElement("price");
+            price.appendChild(d.createTextNode(QString::number(m_leftHearingAidPrice, 'f', 0)));
+            hearingAid.appendChild(price);
         }
-        apparaten.appendChild(apparaat);
+        hearingAids.appendChild(hearingAid);
     }
-    if (!m_rechterHoorapparaatType.isEmpty() || !m_rechterHoorapparaatMerk.isEmpty())
+    if (!m_rightHearingAidType.isEmpty() || !m_rightHearingAidBrand.isEmpty())
     {
-        QDomElement apparaat = d.createElement("apparaat");
-        apparaat.setAttribute("merk", m_rechterHoorapparaatMerk);
-        apparaat.setAttribute("type", m_rechterHoorapparaatType);
-        apparaat.setAttribute("plaats", "rechts");
-        if (!m_rechterHoorapparaatSerienummer.isEmpty())
+        QDomElement hearingAids = d.createElement("hearingAids");
+        hearingAids.setAttribute("brand", m_rightHearingAidBrand);
+        hearingAids.setAttribute("type", m_rightHearingAidType);
+        hearingAids.setAttribute("place", "right");
+        if (!m_rightHearingAidSerialNumber.isEmpty())
         {
             QDomElement serialNumber = d.createElement("serialNumber");
-            serialNumber.appendChild(d.createTextNode(m_rechterHoorapparaatSerienummer));
-            apparaat.appendChild(serialNumber);
+            serialNumber.appendChild(d.createTextNode(m_rightHearingAidSerialNumber));
+            hearingAids.appendChild(serialNumber);
         }
-        if (m_rechterHoorapparaatPrijs != 0.0)
+        if (m_rightHearingAidPrice != 0.0)
         {
-            QDomElement prijs = d.createElement("prijs");
-            prijs.appendChild(d.createTextNode(QString::number(m_rechterHoorapparaatPrijs, 'f', 0)));
-            apparaat.appendChild(prijs);
+            QDomElement price = d.createElement("price");
+            price.appendChild(d.createTextNode(QString::number(m_rightHearingAidPrice, 'f', 0)));
+            hearingAids.appendChild(price);
         }
-        apparaten.appendChild(apparaat);
+        hearingAids.appendChild(hearingAids);
     }
-    result.appendChild(apparaten);
+    result.appendChild(hearingAids);
     if (!m_letterCustomer.getText().isEmpty())
     {
         QDomElement brief = m_letterCustomer.toDomElement(d);
@@ -245,15 +245,15 @@ QDomElement File::toDomElement(QDomDocument &d) const
         physician.appendChild(brief);
     }
     result.appendChild(physician);
-    QDomElement mutualiteit = d.createElement("mutualiteit");
-    mutualiteit.setAttribute("id", (m_insuranceCompany >= 0) ? QString::number(m_insuranceCompany) : "");
-    mutualiteit.setAttribute("aansluitingsnummer", m_aansluitingsnummer);
-    if (!m_briefMutualiteit.getText().isEmpty())
+    QDomElement insuranceCompany = d.createElement("insuranceCompany");
+    insuranceCompany.setAttribute("id", (m_insuranceCompany >= 0) ? QString::number(m_insuranceCompany) : "");
+    insuranceCompany.setAttribute("memberNr", m_memberNumber);
+    if (!m_letterInsuranceCompany.getText().isEmpty())
     {
-        QDomElement brief = m_briefMutualiteit.toDomElement(d);
-        mutualiteit.appendChild(brief);
+        QDomElement letter = m_letterInsuranceCompany.toDomElement(d);
+        insuranceCompany.appendChild(letter);
     }
-    result.appendChild(mutualiteit);
+    result.appendChild(insuranceCompany);
     QDomElement audiometrie = m_meetgegevens.toDomElement(d);
     result.appendChild(audiometrie);
     result.setTagName("file");
@@ -261,12 +261,12 @@ QDomElement File::toDomElement(QDomDocument &d) const
     return result;
 }
 
-int File::getAantalHoorapparaten() const
+int File::getNofHearingAids() const
 {
-    int aantal = 0;
-    if (!m_rechterHoorapparaatMerk.isEmpty() || !m_rechterHoorapparaatType.isEmpty())
-        ++aantal;
-    if (!m_linkerHoorapparaatMerk.isEmpty() || !m_linkerHoorapparaatType.isEmpty())
-        ++aantal;
-    return aantal;
+    int count = 0;
+    if (!m_rightHearingAidBrand.isEmpty() || !m_rightHearingAidType.isEmpty())
+        ++count;
+    if (!m_leftHearingAidBrand.isEmpty() || !m_leftHearingAidType.isEmpty())
+        ++count;
+    return count;
 }

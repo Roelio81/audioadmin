@@ -16,9 +16,9 @@ File::File(View::File &view, Model::File &model)
 : m_view(view)
 , m_model(model)
 {
-    connect(&m_view, SIGNAL(briefArtsTonen()), this, SLOT(briefArtsTonen()));
-    connect(&m_view, SIGNAL(briefKlantTonen()), this, SLOT(briefKlantTonen()));
-    connect(&m_view, SIGNAL(briefMutualiteitTonen()), this, SLOT(briefMutualiteitTonen()));
+    connect(&m_view, SIGNAL(showLetterPhysician()), this, SLOT(showLetterPhysician()));
+    connect(&m_view, SIGNAL(showLetterCustomer()), this, SLOT(showLetterCustomer()));
+    connect(&m_view, SIGNAL(showLetterInsuranceCompany()), this, SLOT(showLetterInsuranceCompany()));
     connect(&m_view, SIGNAL(showInvoice()), this, SLOT(showInvoice()));
     connect(&m_view, SIGNAL(showMeasurements()), this, SLOT(showMeasurements()));
 }
@@ -29,259 +29,248 @@ File::~File()
 
 void File::setup()
 {
-    Model::Customer &klantModel = m_model.getCustomer();
-    m_view.leegAanspreektitels();
-    m_view.toevoegenAanspreektitel("Dhr.");
-    m_view.toevoegenAanspreektitel("Mevr.");
-    m_view.setAanspreektitel(klantModel.getTitle());
-    m_view.setNaam(klantModel.getName());
-    m_view.setVoornaam(klantModel.getFirstName());
-    m_view.setStraat(klantModel.getStreet());
-    m_view.setPostcode(klantModel.getPostalCode());
-    m_view.setGemeente(klantModel.getCity());
-    m_view.setTelefoon(klantModel.getTelephone());
-    m_view.setGeboorteDatum(klantModel.getDateOfBirth());
-    m_view.setOpmerkingen(klantModel.getComments());
+    Model::Customer &customerModel = m_model.getCustomer();
+    m_view.clearTitles();
+    m_view.addTitle("Dhr.");
+    m_view.addTitle("Mevr.");
+    m_view.setTitle(customerModel.getTitle());
+    m_view.setName(customerModel.getName());
+    m_view.setFirstName(customerModel.getFirstName());
+    m_view.setStreet(customerModel.getStreet());
+    m_view.setPostalCode(customerModel.getPostalCode());
+    m_view.setCity(customerModel.getCity());
+    m_view.setTelephone(customerModel.getTelephone());
+    m_view.setDateOfBirth(customerModel.getDateOfBirth());
+    m_view.setComments(customerModel.getComments());
     m_view.setInsuranceCompany(m_model.getInsuranceCompany());
-    m_view.setAansluitingsnummer(m_model.getAansluitingsnummer());
-    m_view.setPlaatsAanpassing(m_model.getPlaatsAanpassing());
+    m_view.setMemberNumber(m_model.getMemberNumber());
+    m_view.setPlaceAdjustment(m_model.getPlaceAdjustment());
     m_view.setPhysician(m_model.getPhysician());
-    m_view.setRechterHoorapparaatMerk(m_model.getRechterHoorapparaatMerk());
-    m_view.setRechterHoorapparaatType(m_model.getRechterHoorapparaatType());
-    m_view.setRechterHoorapparaatPrijs(m_model.getRechterHoorapparaatPrijs());
-    m_view.setRechterHoorapparaatSerienummer(m_model.getRechterHoorapparaatSerienummer());
-    m_view.setLinkerHoorapparaatMerk(m_model.getLinkerHoorapparaatMerk());
-    m_view.setLinkerHoorapparaatType(m_model.getLinkerHoorapparaatType());
-    m_view.setLinkerHoorapparaatPrijs(m_model.getLinkerHoorapparaatPrijs());
-    m_view.setLinkerHoorapparaatSerienummer(m_model.getLinkerHoorapparaatSerienummer());
-    m_view.setOnderzoekDatum(m_model.getOnderzoekDatum());
-    m_view.setProefDatum(m_model.getProefDatum());
-    m_view.setNKORapportDatum(m_model.getNKORapportDatum());
-    m_view.setDokterAdviesDatum(m_model.getDokterAdviesDatum());
-    m_view.setAkkoordMutualiteitDatum(m_model.getAkkoordMutualiteitDatum());
-    m_view.setBetalingDatum(m_model.getBetalingDatum());
-    m_view.setAfleveringDatum(m_model.getAfleveringDatum());
-    m_view.setWisselDatum(m_model.getWisselDatum());
-    m_view.setOnderhoudsContractDatum(m_model.getOnderhoudsContractDatum());
+    m_view.setRightHearingAidBrand(m_model.getRightHearingAidBrand());
+    m_view.setRightHearingAidType(m_model.getRightHearingAidType());
+    m_view.setRightHearingAidPrice(m_model.getRightHearingAidPrice());
+    m_view.setRightHearingAidSerialNumber(m_model.getRightHearingAidSerialNumber());
+    m_view.setLeftHearingAidBrand(m_model.getLeftHearingAidBrand());
+    m_view.setLeftHearingAidType(m_model.getLeftHearingAidType());
+    m_view.setLeftHearingAidPrice(m_model.getLeftHearingAidPrice());
+    m_view.setLeftHearingAidSerialNumber(m_model.getLeftHearingAidSerialNumber());
+    m_view.setTestDate(m_model.getTestDate());
+    m_view.setTrialDate(m_model.getTrialDate());
+    m_view.setPhysicianReportDate(m_model.getPhysicianReportDate());
+    m_view.setPhysicianAdviceDate(m_model.getPhysicianAdviceDate());
+    m_view.setInsuranceAgreementDate(m_model.getInsuranceAgreementDate());
+    m_view.setPaymentDate(m_model.getPaymentDate());
+    m_view.setDeliveryDate(m_model.getDeliveryDate());
+    m_view.setExchangeDate(m_model.getExchangeDate());
+    m_view.setMaintenanceContractDate(m_model.getMaintenanceContractDate());
 }
 
 void File::teardown()
 {
     bool changed = false;
-    bool apparaatchanged = false;
-    Model::Customer &klantModel = m_model.getCustomer();
-    if (klantModel.getTitle() != m_view.getAanspreektitel())
+    Model::Customer &customerModel = m_model.getCustomer();
+    if (customerModel.getTitle() != m_view.getTitle())
     {
-        klantModel.setTitle(m_view.getAanspreektitel());
+        customerModel.setTitle(m_view.getTitle());
         changed = true;
     }
-    if (klantModel.getName() != m_view.getNaam())
+    if (customerModel.getName() != m_view.getName())
     {
-        klantModel.setName(m_view.getNaam());
+        customerModel.setName(m_view.getName());
         changed = true;
     }
-    if (klantModel.getFirstName() != m_view.getVoornaam())
+    if (customerModel.getFirstName() != m_view.getFirstName())
     {
-        klantModel.setVoornaam(m_view.getVoornaam());
+        customerModel.setVoornaam(m_view.getFirstName());
         changed = true;
     }
-    if (klantModel.getStreet() != m_view.getStraat())
+    if (customerModel.getStreet() != m_view.getStreet())
     {
-        klantModel.setStreet(m_view.getStraat());
+        customerModel.setStreet(m_view.getStreet());
         changed = true;
     }
-    if (klantModel.getPostalCode() != m_view.getPostcode())
+    if (customerModel.getPostalCode() != m_view.getPostalCode())
     {
-        klantModel.setPostalCode(m_view.getPostcode());
+        customerModel.setPostalCode(m_view.getPostalCode());
         changed = true;
     }
-    if (klantModel.getCity() != m_view.getGemeente())
+    if (customerModel.getCity() != m_view.getCity())
     {
-        klantModel.setCity(m_view.getGemeente());
+        customerModel.setCity(m_view.getCity());
         changed = true;
     }
-    if (klantModel.getTelephone() != m_view.getTelefoon())
+    if (customerModel.getTelephone() != m_view.getTelephone())
     {
-        klantModel.setTelephone(m_view.getTelefoon());
+        customerModel.setTelephone(m_view.getTelephone());
         changed = true;
     }
-    if (klantModel.getDateOfBirth() != m_view.getGeboorteDatum())
+    if (customerModel.getDateOfBirth() != m_view.getDateOfBirth())
     {
-        klantModel.setGeboorteDatum(m_view.getGeboorteDatum());
+        customerModel.setGeboorteDatum(m_view.getDateOfBirth());
         changed = true;
     }
-    if (klantModel.getComments() != m_view.getComments())
+    if (customerModel.getComments() != m_view.getComments())
     {
-        klantModel.setComments(m_view.getComments());
+        customerModel.setComments(m_view.getComments());
         changed = true;
     }
     if (m_model.getInsuranceCompany() != m_view.getInsuranceCompany())
     {
-        m_model.setMutualiteit(m_view.getInsuranceCompany());
+        m_model.setInsuranceCompany(m_view.getInsuranceCompany());
         changed = true;
     }
-    if (m_model.getAansluitingsnummer() != m_view.getAansluitingsnummer())
+    if (m_model.getMemberNumber() != m_view.getMemberNumber())
     {
-        m_model.setAansluitingsnummer(m_view.getAansluitingsnummer());
+        m_model.setMemberNumber(m_view.getMemberNumber());
         changed = true;
     }
-    if (m_model.getPlaatsAanpassing() != m_view.getPlaatsAanpassing())
+    if (m_model.getPlaceAdjustment() != m_view.getPlaceAdjustment())
     {
-        m_model.setPlaatsAanpassing(m_view.getPlaatsAanpassing());
+        m_model.setPlaceAdjustment(m_view.getPlaceAdjustment());
         changed = true;
     }
     if (m_model.getPhysician() != m_view.getPhysician())
     {
-        m_model.setArts(m_view.getPhysician());
+        m_model.setPhysician(m_view.getPhysician());
         changed = true;
     }
-    if (m_model.getRechterHoorapparaatMerk() != m_view.getRechterHoorapparaatMerk())
+    if (m_model.getRightHearingAidBrand() != m_view.getRightHearingAidBrand())
     {
-        m_model.setRechterHoorapparaatMerk(m_view.getRechterHoorapparaatMerk());
-        changed = true;
-        apparaatchanged = true;
-    }
-    if (m_model.getRechterHoorapparaatType() != m_view.getRechterHoorapparaatType())
-    {
-        m_model.setRechterHoorapparaatType(m_view.getRechterHoorapparaatType());
-        changed = true;
-        apparaatchanged = true;
-    }
-    if (m_model.getRechterHoorapparaatPrijs() != m_view.getRechterHoorapparaatPrijs())
-    {
-        m_model.setRechterHoorapparaatPrijs(m_view.getRechterHoorapparaatPrijs());
+        m_model.setRightHearingAidBrand(m_view.getRightHearingAidBrand());
         changed = true;
     }
-    if (m_model.getRechterHoorapparaatSerienummer() != m_view.getRechterHoorapparaatSerienummer())
+    if (m_model.getRightHearingAidType() != m_view.getRightHearingAidType())
     {
-        m_model.setRechterHoorapparaatSerienummer(m_view.getRechterHoorapparaatSerienummer());
+        m_model.setRightHearingAidType(m_view.getRightHearingAidType());
         changed = true;
     }
-    if (m_model.getLinkerHoorapparaatMerk() != m_view.getLinkerHoorapparaatMerk())
+    if (m_model.getRightHearingAidPrice() != m_view.getRightHearingAidPrice())
     {
-        m_model.setLinkerHoorapparaatMerk(m_view.getLinkerHoorapparaatMerk());
-        changed = true;
-        apparaatchanged = true;
-    }
-    if (m_model.getLinkerHoorapparaatType() != m_view.getLinkerHoorapparaatType())
-    {
-        m_model.setLinkerHoorapparaatType(m_view.getLinkerHoorapparaatType());
-        changed = true;
-        apparaatchanged = true;
-    }
-    if (m_model.getLinkerHoorapparaatPrijs() != m_view.getLinkerHoorapparaatPrijs())
-    {
-        m_model.setLinkerHoorapparaatPrijs(m_view.getLinkerHoorapparaatPrijs());
+        m_model.setRightHearingAidPrice(m_view.getRightHearingAidPrice());
         changed = true;
     }
-    if (m_model.getLinkerHoorapparaatSerienummer() != m_view.getLinkerHoorapparaatSerienummer())
+    if (m_model.getRightHearingAidSerialNumber() != m_view.getRightHearingAidSerialNumber())
     {
-        m_model.setLinkerHoorapparaatSerienummer(m_view.getLinkerHoorapparaatSerienummer());
+        m_model.setRightHearingAidSerialNumber(m_view.getRightHearingAidSerialNumber());
         changed = true;
     }
-    if (m_model.getOnderzoekDatum() != m_view.getOnderzoekDatum())
+    if (m_model.getLeftHearingAidBrand() != m_view.getLeftHearingAidBrand())
     {
-        m_model.setOnderzoekDatum(m_view.getOnderzoekDatum());
+        m_model.setLeftHearingAidBrand(m_view.getLeftHearingAidBrand());
         changed = true;
     }
-    if (m_model.getProefDatum() != m_view.getProefDatum())
+    if (m_model.getLeftHearingAidType() != m_view.getLeftHearingAidType())
     {
-        m_model.setProefDatum(m_view.getProefDatum());
+        m_model.setLeftHearingAidType(m_view.getLeftHearingAidType());
         changed = true;
     }
-    if (m_model.getNKORapportDatum() != m_view.getNKORapportDatum())
+    if (m_model.getLeftHearingAidPrice() != m_view.getLeftHearingAidPrice())
     {
-        m_model.setNKORapportDatum(m_view.getNKORapportDatum());
+        m_model.setLeftHearingAidPrice(m_view.getLeftHearingAidPrice());
         changed = true;
     }
-    if (m_model.getDokterAdviesDatum() != m_view.getDokterAdviesDatum())
+    if (m_model.getLeftHearingAidSerialNumber() != m_view.getLeftHearingAidSerialNumber())
     {
-        m_model.setDokterAdviesDatum(m_view.getDokterAdviesDatum());
+        m_model.setLeftHearingAidSerialNumber(m_view.getLeftHearingAidSerialNumber());
         changed = true;
     }
-    if (m_model.getAkkoordMutualiteitDatum() != m_view.getAkkoordMutualiteitDatum())
+    if (m_model.getTestDate() != m_view.getTestDate())
     {
-        m_model.setAkkoordMutualiteitDatum(m_view.getAkkoordMutualiteitDatum());
+        m_model.setTestDate(m_view.getTestDate());
         changed = true;
     }
-    if (m_model.getBetalingDatum() != m_view.getBetalingDatum())
+    if (m_model.getTrialDate() != m_view.getTrialDate())
     {
-        m_model.setBetalingDatum(m_view.getBetalingDatum());
+        m_model.setTrialDate(m_view.getTrialDate());
         changed = true;
     }
-    if (m_model.getAfleveringDatum() != m_view.getAfleveringDatum())
+    if (m_model.getPhysicianReportDate() != m_view.getPhysicianReportDate())
     {
-        m_model.setAfleveringDatum(m_view.getAfleveringDatum());
+        m_model.setPhysicianReportDate(m_view.getPhysicianReportDate());
         changed = true;
     }
-    if (m_model.getWisselDatum() != m_view.getWisselDatum())
+    if (m_model.getPhysicianAdviceDate() != m_view.getPhysicianAdviceDate())
     {
-        m_model.setWisselDatum(m_view.getWisselDatum());
+        m_model.setPhysicianAdviceDate(m_view.getPhysicianAdviceDate());
         changed = true;
     }
-    if (m_model.getOnderhoudsContractDatum() != m_view.getOnderhoudsContractDatum())
+    if (m_model.getInsuranceAgreementDate() != m_view.getInsuranceAgreementDate())
     {
-        m_model.setOnderhoudsContractDatum(m_view.getOnderhoudsContractDatum());
+        m_model.setInsuranceAgreementDate(m_view.getInsuranceAgreementDate());
+        changed = true;
+    }
+    if (m_model.getPaymentDate() != m_view.getPaymentDate())
+    {
+        m_model.setPaymentDate(m_view.getPaymentDate());
+        changed = true;
+    }
+    if (m_model.getDeliveryDate() != m_view.getDeliveryDate())
+    {
+        m_model.setDeliveryDate(m_view.getDeliveryDate());
+        changed = true;
+    }
+    if (m_model.getExchangeDate() != m_view.getExchangeDate())
+    {
+        m_model.setExchangeDate(m_view.getExchangeDate());
+        changed = true;
+    }
+    if (m_model.getMaintenanceContractDate() != m_view.getMaintenanceContractDate())
+    {
+        m_model.setMaintenanceContractDate(m_view.getMaintenanceContractDate());
         changed = true;
     }
 
     if (changed)
-    {
         emit edited(m_model.getId());
-    }
-    if (apparaatchanged)
-    {
-        emit hoorapparaatGewijzigd();
-    }
 }
 
-void File::briefArtsTonen()
+void File::showLetterPhysician()
 {
     // First make sure that we are fully up-to-date
     teardown();
     setup();
 
     // Create a presenter and open the view
-    View::Letter briefArtsView(true, m_view.getParentWindow());
-    BriefArts briefArts(briefArtsView, m_model.getBriefArts());
-    briefArts.setup();
-    if (briefArtsView.exec() == QDialog::Accepted)
+    View::Letter letterPhysicianView(true, m_view.getParentWindow());
+    BriefArts letterPhysician(letterPhysicianView, m_model.getLetterPhysician());
+    letterPhysician.setup();
+    if (letterPhysicianView.exec() == QDialog::Accepted)
     {
-        briefArts.teardown();
+        letterPhysician.teardown();
         emit edited(m_model.getId());
     }
 }
 
-void File::briefKlantTonen()
+void File::showLetterCustomer()
 {
     // First make sure that we are fully up-to-date
     teardown();
     setup();
 
     // Create a presenter and open the view
-    View::Letter briefKlantView(false, m_view.getParentWindow());
-    BriefKlant briefKlant(briefKlantView, m_model.getBriefKlant());
-    briefKlant.setup();
-    if (briefKlantView.exec() == QDialog::Accepted)
+    View::Letter letterCustomerView(false, m_view.getParentWindow());
+    BriefKlant letterCustomer(letterCustomerView, m_model.getLetterCustomer());
+    letterCustomer.setup();
+    if (letterCustomerView.exec() == QDialog::Accepted)
     {
-        briefKlant.teardown();
+        letterCustomer.teardown();
         emit edited(m_model.getId());
     }
 }
 
-void File::briefMutualiteitTonen()
+void File::showLetterInsuranceCompany()
 {
     // First make sure that we are fully up-to-date
     teardown();
     setup();
 
     // Create a presenter and open the view
-    View::Letter briefMutualiteitView(true, m_view.getParentWindow());
-    BriefMutualiteit briefMutualiteit(briefMutualiteitView, m_model.getBriefMutualiteit());
-    briefMutualiteit.setup();
-    if (briefMutualiteitView.exec() == QDialog::Accepted)
+    View::Letter letterInsuranceCompanyView(true, m_view.getParentWindow());
+    BriefMutualiteit letterInsuranceCompany(letterInsuranceCompanyView, m_model.getLetterInsuranceCompany());
+    letterInsuranceCompany.setup();
+    if (letterInsuranceCompanyView.exec() == QDialog::Accepted)
     {
-        briefMutualiteit.teardown();
+        letterInsuranceCompany.teardown();
         emit edited(m_model.getId());
     }
 }

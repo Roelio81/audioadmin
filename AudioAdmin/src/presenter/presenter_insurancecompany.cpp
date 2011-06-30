@@ -59,7 +59,5 @@ void InsuranceCompany::teardown()
     }
 
     if (changed)
-    {
         emit edited(m_model.getId());
-    }
 }

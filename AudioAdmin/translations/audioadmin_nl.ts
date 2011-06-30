@@ -394,20 +394,8 @@ p, li { white-space: pre-wrap; }
         <translation>Klantgegevens</translation>
     </message>
     <message>
-        <source>Aanspreektitel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Name</source>
         <translation>Naam</translation>
-    </message>
-    <message>
-        <source>First Name</source>
-        <translation>Voornaam</translation>
-    </message>
-    <message>
-        <source>Straat (+ huisnummer / bus)</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Postal Code</source>
@@ -418,68 +406,8 @@ p, li { white-space: pre-wrap; }
         <translation>Gemeente</translation>
     </message>
     <message>
-        <source>Telephone</source>
-        <translation>Telefoon</translation>
-    </message>
-    <message>
-        <source>dd-MM-yyyy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Health insurance</source>
-        <translation>Mutualiteit</translation>
-    </message>
-    <message>
-        <source>Aansluitingsnummer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Plaats aanpassing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Comments</source>
-        <translation>Opmerkingen</translation>
-    </message>
-    <message>
         <source>Dates</source>
         <translation>Datums</translation>
-    </message>
-    <message>
-        <source>Onderzoek</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Proef</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>NKO Rapport</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dokter adviseur</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Akkoord mut.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Payment</source>
-        <translation>Betaling</translation>
-    </message>
-    <message>
-        <source>Delivery</source>
-        <translation>Aflevering</translation>
-    </message>
-    <message>
-        <source>Exchange</source>
-        <translation>Wissel</translation>
-    </message>
-    <message>
-        <source>Maintenance contract</source>
-        <translation>Onderhoudscontract</translation>
     </message>
     <message>
         <source>Physician</source>
@@ -499,15 +427,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Hoorapparaten</source>
-        <translation type="unfinished"></translation>
+        <translation>Hearing aids</translation>
     </message>
     <message>
         <source>Right</source>
         <translation>Rechts</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Type</translation>
     </message>
     <message>
         <source>Left</source>
@@ -544,22 +468,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Find</source>
         <translation>Zoeken</translation>
-    </message>
-    <message>
-        <source>Artsgegevens</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Telefoon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Email</source>
-        <translation>E-mail</translation>
-    </message>
-    <message>
-        <source>Mutualiteitsgegevens</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File</source>
@@ -610,32 +518,12 @@ p, li { white-space: pre-wrap; }
         <translation>F6</translation>
     </message>
     <message>
-        <source>Brand</source>
-        <translation>Merk</translation>
-    </message>
-    <message>
-        <source>Serial number</source>
-        <translation>Serienummer</translation>
-    </message>
-    <message>
-        <source>Price (VAT excl.)</source>
-        <translation>Prijs (excl. BTW)</translation>
-    </message>
-    <message>
         <source>Files</source>
         <translation>Dossiers</translation>
     </message>
     <message>
-        <source>Date of birth</source>
-        <translation>Geboortedatum</translation>
-    </message>
-    <message>
         <source>Physicians</source>
         <translation>Artsen</translation>
-    </message>
-    <message>
-        <source>Postal code</source>
-        <translation>Postcode</translation>
     </message>
     <message>
         <source>Insurance Companies</source>
@@ -644,6 +532,122 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Toolbar</source>
         <translation>Werkbalk</translation>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation>Aanspreektitel:</translation>
+    </message>
+    <message>
+        <source>Name:</source>
+        <translation>Naam:</translation>
+    </message>
+    <message>
+        <source>First name:</source>
+        <translation>Voornaam:</translation>
+    </message>
+    <message>
+        <source>Street address:</source>
+        <translation>Straat (+ huisnummer / bus):</translation>
+    </message>
+    <message>
+        <source>Postal code:</source>
+        <translation>Postcode:</translation>
+    </message>
+    <message>
+        <source>City:</source>
+        <translation>Gemeente:</translation>
+    </message>
+    <message>
+        <source>Telephone:</source>
+        <translation>Telefoon:</translation>
+    </message>
+    <message>
+        <source>Date of birth:</source>
+        <translation>Geboortedatum:</translation>
+    </message>
+    <message>
+        <source>Health insurance:</source>
+        <translation>Mutualiteit:</translation>
+    </message>
+    <message>
+        <source>Member number:</source>
+        <translation>Aansluitingsnummer:</translation>
+    </message>
+    <message>
+        <source>Place adjustment:</source>
+        <translation>Plaats aanpassing:</translation>
+    </message>
+    <message>
+        <source>Comments:</source>
+        <translation>Opmerkingen:</translation>
+    </message>
+    <message>
+        <source>Test:</source>
+        <translation>Onderzoek:</translation>
+    </message>
+    <message>
+        <source>Trial:</source>
+        <translation>Proef:</translation>
+    </message>
+    <message>
+        <source>Physician report:</source>
+        <translation>NKO rapport:</translation>
+    </message>
+    <message>
+        <source>Physician advice:</source>
+        <translation>Dokter adviseur:</translation>
+    </message>
+    <message>
+        <source>Insurance agreement:</source>
+        <translation>Akkoord mutualiteit:</translation>
+    </message>
+    <message>
+        <source>Payment:</source>
+        <translation>Betaling:</translation>
+    </message>
+    <message>
+        <source>Delivery:</source>
+        <translation>Aflevering:</translation>
+    </message>
+    <message>
+        <source>Exchange:</source>
+        <translation>Wissel:</translation>
+    </message>
+    <message>
+        <source>Maintenance contract:</source>
+        <translation>Onderhoudscontract:</translation>
+    </message>
+    <message>
+        <source>Brand:</source>
+        <translation>Merk:</translation>
+    </message>
+    <message>
+        <source>Type:</source>
+        <translation>Type:</translation>
+    </message>
+    <message>
+        <source>Serial number:</source>
+        <translation>Serienummer:</translation>
+    </message>
+    <message>
+        <source>Price (VAT excl.):</source>
+        <translation>Prijs (excl. BTW):</translation>
+    </message>
+    <message>
+        <source>Physician data</source>
+        <translation>Artsgegevens</translation>
+    </message>
+    <message>
+        <source>Email:</source>
+        <translation>E-mail:</translation>
+    </message>
+    <message>
+        <source>Insurance company data</source>
+        <translation>Mutualiteitsgegevens</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation>dd-MM-yyyy</translation>
     </message>
 </context>
 <context>

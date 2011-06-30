@@ -54,7 +54,7 @@
                <item>
                 <widget class="QLabel" name="l_aanspreektitel">
                  <property name="text">
-                  <string>Aanspreektitel</string>
+                  <string>Title:</string>
                  </property>
                 </widget>
                </item>
@@ -64,7 +64,7 @@
                <item>
                 <widget class="QLabel" name="l_klantNaam">
                  <property name="text">
-                  <string>Name</string>
+                  <string>Name:</string>
                  </property>
                 </widget>
                </item>
@@ -74,7 +74,7 @@
                <item>
                 <widget class="QLabel" name="l_klantVoornaam">
                  <property name="text">
-                  <string>First Name</string>
+                  <string>First name:</string>
                  </property>
                 </widget>
                </item>
@@ -95,7 +95,7 @@
                <item>
                 <widget class="QLabel" name="l_klantStraat">
                  <property name="text">
-                  <string>Straat (+ huisnummer / bus)</string>
+                  <string>Street address:</string>
                  </property>
                 </widget>
                </item>
@@ -109,7 +109,7 @@
                <item>
                 <widget class="QLabel" name="l_klantPostcode">
                  <property name="text">
-                  <string>Postal Code</string>
+                  <string>Postal code:</string>
                  </property>
                 </widget>
                </item>
@@ -138,7 +138,7 @@
                <item>
                 <widget class="QLabel" name="l_klantGemeente">
                  <property name="text">
-                  <string>City</string>
+                  <string>City:</string>
                  </property>
                 </widget>
                </item>
@@ -152,7 +152,7 @@
                <item>
                 <widget class="QLabel" name="l_klantTelefoon">
                  <property name="text">
-                  <string>Telephone</string>
+                  <string>Telephone:</string>
                  </property>
                 </widget>
                </item>
@@ -162,7 +162,7 @@
                <item>
                 <widget class="QLabel" name="l_klantGeboorteDatum">
                  <property name="text">
-                  <string>Date of birth</string>
+                  <string>Date of birth:</string>
                  </property>
                 </widget>
                </item>
@@ -181,7 +181,7 @@
                   </size>
                  </property>
                  <property name="displayFormat">
-                  <string>dd-MM-yyyy</string>
+                  <string>yyyy-MM-dd</string>
                  </property>
                  <property name="calendarPopup">
                   <bool>true</bool>
@@ -195,7 +195,7 @@
                <item>
                 <widget class="QLabel" name="l_klantMutualiteit">
                  <property name="text">
-                  <string>Health insurance</string>
+                  <string>Health insurance:</string>
                  </property>
                 </widget>
                </item>
@@ -212,7 +212,7 @@
                <item>
                 <widget class="QLabel" name="l_aansluitingsnummer">
                  <property name="text">
-                  <string>Aansluitingsnummer</string>
+                  <string>Member number:</string>
                  </property>
                 </widget>
                </item>
@@ -233,7 +233,7 @@
                <item>
                 <widget class="QLabel" name="l_plaatsAanpassing">
                  <property name="text">
-                  <string>Plaats aanpassing</string>
+                  <string>Place adjustment:</string>
                  </property>
                 </widget>
                </item>
@@ -247,7 +247,7 @@
                <item>
                 <widget class="QLabel" name="l_klantOpmerkingen">
                  <property name="text">
-                  <string>Comments</string>
+                  <string>Comments:</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -296,7 +296,7 @@
              <item row="0" column="1">
               <widget class="QDateEdit" name="m_datumOnderzoek">
                <property name="displayFormat">
-                <string>dd-MM-yyyy</string>
+                <string>yyyy-MM-dd</string>
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
@@ -306,7 +306,7 @@
              <item row="1" column="1">
               <widget class="QDateEdit" name="m_datumProef">
                <property name="displayFormat">
-                <string>dd-MM-yyyy</string>
+                <string>yyyy-MM-dd</string>
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
@@ -316,7 +316,7 @@
              <item row="2" column="1">
               <widget class="QDateEdit" name="m_datumNKO">
                <property name="displayFormat">
-                <string>dd-MM-yyyy</string>
+                <string>yyyy-MM-dd</string>
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
@@ -326,7 +326,7 @@
              <item row="3" column="1">
               <widget class="QDateEdit" name="m_datumAdviseur">
                <property name="displayFormat">
-                <string>dd-MM-yyyy</string>
+                <string>yyyy-MM-dd</string>
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
@@ -336,7 +336,7 @@
              <item row="4" column="1">
               <widget class="QDateEdit" name="m_datumMutualiteit">
                <property name="displayFormat">
-                <string>dd-MM-yyyy</string>
+                <string>yyyy-MM-dd</string>
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
@@ -346,7 +346,7 @@
              <item row="5" column="1">
               <widget class="QDateEdit" name="m_datumBetaling">
                <property name="displayFormat">
-                <string>dd-MM-yyyy</string>
+                <string>yyyy-MM-dd</string>
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
@@ -356,7 +356,7 @@
              <item row="6" column="1">
               <widget class="QDateEdit" name="m_datumAflevering">
                <property name="displayFormat">
-                <string>dd-MM-yyyy</string>
+                <string>yyyy-MM-dd</string>
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
@@ -366,7 +366,7 @@
              <item row="7" column="1">
               <widget class="QDateEdit" name="m_datumWissel">
                <property name="displayFormat">
-                <string>dd-MM-yyyy</string>
+                <string>yyyy-MM-dd</string>
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
@@ -376,7 +376,7 @@
              <item row="8" column="1">
               <widget class="QDateEdit" name="m_datumOnderhoudsContract">
                <property name="displayFormat">
-                <string>dd-MM-yyyy</string>
+                <string>yyyy-MM-dd</string>
                </property>
                <property name="calendarPopup">
                 <bool>true</bool>
@@ -386,63 +386,63 @@
              <item row="0" column="0">
               <widget class="QLabel" name="l_datumOnderzoek">
                <property name="text">
-                <string>Onderzoek</string>
+                <string>Test:</string>
                </property>
               </widget>
              </item>
              <item row="1" column="0">
               <widget class="QLabel" name="l_datumProef">
                <property name="text">
-                <string>Proef</string>
+                <string>Trial:</string>
                </property>
               </widget>
              </item>
              <item row="2" column="0">
               <widget class="QLabel" name="l_datumNKO">
                <property name="text">
-                <string>NKO Rapport</string>
+                <string>Physician report:</string>
                </property>
               </widget>
              </item>
              <item row="3" column="0">
               <widget class="QLabel" name="l_datumAdviseur">
                <property name="text">
-                <string>Dokter adviseur</string>
+                <string>Physician advice:</string>
                </property>
               </widget>
              </item>
              <item row="4" column="0">
               <widget class="QLabel" name="l_datumMutualiteit">
                <property name="text">
-                <string>Akkoord mut.</string>
+                <string>Insurance agreement:</string>
                </property>
               </widget>
              </item>
              <item row="5" column="0">
               <widget class="QLabel" name="l_datumBetaling">
                <property name="text">
-                <string>Payment</string>
+                <string>Payment:</string>
                </property>
               </widget>
              </item>
              <item row="6" column="0">
               <widget class="QLabel" name="l_datumAflevering">
                <property name="text">
-                <string>Delivery</string>
+                <string>Delivery:</string>
                </property>
               </widget>
              </item>
              <item row="7" column="0">
               <widget class="QLabel" name="l_datumWissel">
                <property name="text">
-                <string>Exchange</string>
+                <string>Exchange:</string>
                </property>
               </widget>
              </item>
              <item row="8" column="0">
               <widget class="QLabel" name="l_datumOnderhoudsContract">
                <property name="text">
-                <string>Maintenance contract</string>
+                <string>Maintenance contract:</string>
                </property>
               </widget>
              </item>
@@ -529,7 +529,7 @@
                 <item row="0" column="0">
                  <widget class="QLabel" name="l_rechterHoorapparaatMerk">
                   <property name="text">
-                   <string>Brand</string>
+                   <string>Brand:</string>
                   </property>
                  </widget>
                 </item>
@@ -543,7 +543,7 @@
                 <item row="1" column="0">
                  <widget class="QLabel" name="l_rechterHoorapparaatType">
                   <property name="text">
-                   <string>Type</string>
+                   <string>Type:</string>
                   </property>
                  </widget>
                 </item>
@@ -557,7 +557,7 @@
                 <item row="2" column="0">
                  <widget class="QLabel" name="l_rechterHoorapparaatSerienummer">
                   <property name="text">
-                   <string>Serial number</string>
+                   <string>Serial number:</string>
                   </property>
                  </widget>
                 </item>
@@ -567,7 +567,7 @@
                 <item row="3" column="0">
                  <widget class="QLabel" name="l_rechterHoorapparaatPrijs">
                   <property name="text">
-                   <string>Price (VAT excl.)</string>
+                   <string>Price (VAT excl.):</string>
                   </property>
                  </widget>
                 </item>
@@ -586,7 +586,7 @@
                 <item row="0" column="0">
                  <widget class="QLabel" name="l_linkerHoorapparaatMerk">
                   <property name="text">
-                   <string>Brand</string>
+                   <string>Brand:</string>
                   </property>
                  </widget>
                 </item>
@@ -600,7 +600,7 @@
                 <item row="1" column="0">
                  <widget class="QLabel" name="l_linkerHoorapparaatType">
                   <property name="text">
-                   <string>Type</string>
+                   <string>Type:</string>
                   </property>
                  </widget>
                 </item>
@@ -614,7 +614,7 @@
                 <item row="2" column="0">
                  <widget class="QLabel" name="l_linkerHoorapparaatSerienummer">
                   <property name="text">
-                   <string>Serial number</string>
+                   <string>Serial number:</string>
                   </property>
                  </widget>
                 </item>
@@ -624,7 +624,7 @@
                 <item row="3" column="0">
                  <widget class="QLabel" name="l_linkerHoorapparaatPrijs">
                   <property name="text">
-                   <string>Price (VAT excl.)</string>
+                   <string>Price (VAT excl.):</string>
                   </property>
                  </widget>
                 </item>
@@ -884,7 +884,7 @@
            </sizepolicy>
           </property>
           <property name="title">
-           <string>Artsgegevens</string>
+           <string>Physician data</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_9">
            <item row="0" column="0">
@@ -892,7 +892,7 @@
              <item>
               <widget class="QLabel" name="l_artsNaam">
                <property name="text">
-                <string>Name</string>
+                <string>Name:</string>
                </property>
               </widget>
              </item>
@@ -902,7 +902,7 @@
              <item>
               <widget class="QLabel" name="l_artsVoornaam">
                <property name="text">
-                <string>First Name</string>
+                <string>First name:</string>
                </property>
               </widget>
              </item>
@@ -923,7 +923,7 @@
              <item>
               <widget class="QLabel" name="l_artsStraat">
                <property name="text">
-                <string>Straat (+ huisnummer / bus)</string>
+                <string>Street address:</string>
                </property>
               </widget>
              </item>
@@ -937,7 +937,7 @@
              <item>
               <widget class="QLabel" name="l_artsPostcode">
                <property name="text">
-                <string>Postal code</string>
+                <string>Postal code:</string>
                </property>
               </widget>
              </item>
@@ -966,7 +966,7 @@
              <item>
               <widget class="QLabel" name="l_artsGemeente">
                <property name="text">
-                <string>City</string>
+                <string>City:</string>
                </property>
               </widget>
              </item>
@@ -980,7 +980,7 @@
              <item>
               <widget class="QLabel" name="l_artsTelefoon">
                <property name="text">
-                <string>Telefoon</string>
+                <string>Telephone:</string>
                </property>
               </widget>
              </item>
@@ -990,7 +990,7 @@
              <item>
               <widget class="QLabel" name="l_artsEmail">
                <property name="text">
-                <string>Email</string>
+                <string>Email:</string>
                </property>
               </widget>
              </item>
@@ -1004,7 +1004,7 @@
              <item>
               <widget class="QLabel" name="l_artsOpmerkingen">
                <property name="text">
-                <string>Comments</string>
+                <string>Comments:</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -1180,7 +1180,7 @@
            </sizepolicy>
           </property>
           <property name="title">
-           <string>Mutualiteitsgegevens</string>
+           <string>Insurance company data</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_11">
            <item row="0" column="0">
@@ -1202,7 +1202,7 @@
              <item>
               <widget class="QLabel" name="l_mutualiteitStraat">
                <property name="text">
-                <string>Straat (+ huisnummer / bus)</string>
+                <string>Street address:</string>
                </property>
               </widget>
              </item>
@@ -1216,7 +1216,7 @@
              <item>
               <widget class="QLabel" name="label_44">
                <property name="text">
-                <string>Postal code</string>
+                <string>Postal code:</string>
                </property>
               </widget>
              </item>
@@ -1245,7 +1245,7 @@
              <item>
               <widget class="QLabel" name="l_mutualiteitGemeente">
                <property name="text">
-                <string>City</string>
+                <string>City:</string>
                </property>
               </widget>
              </item>
@@ -1259,7 +1259,7 @@
              <item>
               <widget class="QLabel" name="l_mutualiteitTelefoon">
                <property name="text">
-                <string>Telephone</string>
+                <string>Telephone:</string>
                </property>
               </widget>
              </item>
@@ -1273,7 +1273,7 @@
              <item>
               <widget class="QLabel" name="l_mutualiteitEmail">
                <property name="text">
-                <string>Email</string>
+                <string>Email:</string>
                </property>
               </widget>
              </item>
@@ -1287,7 +1287,7 @@
              <item>
               <widget class="QLabel" name="l_mutualiteitOpmerkingen">
                <property name="text">
-                <string>Comments</string>
+                <string>Comments:</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

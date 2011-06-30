@@ -38,7 +38,7 @@ QDomElement Letter::toDomElement(QDomDocument &d) const
     letter.appendChild(text);
     if (m_hasConclusion)
     {
-        QDomElement conclusion = d.createElement("conclusie");
+        QDomElement conclusion = d.createElement("conclusion");
         conclusion.appendChild(d.createTextNode(m_conclusion));
         letter.appendChild(conclusion);
     }
