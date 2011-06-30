@@ -2,51 +2,47 @@
 #define _VIEW_FACTUUR_H
 
 #include <QDialog>
-#include "ui_factuur.h"
+#include "ui_invoice.h"
 
 namespace View
 {
-    class Factuur : public QDialog, public Ui::Factuur
+    class Invoice : public QDialog
     {
     Q_OBJECT
     public:
-        explicit Factuur(QWidget *parent = 0);
-        virtual ~Factuur();
+        explicit Invoice(QWidget *parent = 0);
+        virtual ~Invoice();
 
         // --- Getters ---
-        QString getNummer() const;
-        QDate getDatum() const;
-        QDate getVervalDatum() const;
-        double getKortingPercentage() const;
-        double getBtwPercentage() const;
-        QString getCondities() const;
-        QString getTekst() const;
+        QString getNumber() const;
+        QDate getDate() const;
+        QDate getExpirationDate() const;
+        double getReductionPercentage() const;
+        double getVATPercentage() const;
+        QString getConditions() const;
+        QString getText() const;
 
         // --- Setters ---
-        void setAudioloogNaam(const QString &value);
-        void setAudioloogStraat(const QString &value);
-        void setAudioloogGemeente(const QString &value);
-        void setAudioloogTelefoon(const QString &value);
-        void setAudioloogGSM(const QString &value);
-        void setKlantNaam(const QString &value);
-        void setKlantStraat(const QString &value);
-        void setKlantGemeente(const QString &value);
-        void setNummer(const QString &value);
-        void setDatum(const QDate &value);
-        void setVervalDatum(const QDate &value);
-        void setKortingPercentage(double value);
-        void setBtwPercentage(double value);
-        void setCondities(const QString &value);
-        void setTekst(const QString &value);
+        void setName(const QString &value);
+        void setStreet(const QString &value);
+        void setCity(const QString &value);
+        void setTelephone(const QString &value);
+        void setMobilePhone(const QString &value);
+        void setCustomerName(const QString &value);
+        void setCustomerStreet(const QString &value);
+        void setCustomerCity(const QString &value);
+        void setNumber(const QString &value);
+        void setDate(const QDate &value);
+        void setExpirationDate(const QDate &value);
+        void setReductionPercentage(double value);
+        void setVATPercentage(double value);
+        void setConditions(const QString &value);
+        void setText(const QString &value);
 
-    signals:
-        void factuurSluiten();
-        void factuurBewaren();
-
-    private slots:
-        void okFactuur();
-        void annuleerFactuur();
+    private:
+        // --- Data members ---
+        Ui::Invoice m_ui;
     };
 }
 
-#endif // _VIEW_FACTUUR_H
+#endif // _VIEW_INVOICE_H

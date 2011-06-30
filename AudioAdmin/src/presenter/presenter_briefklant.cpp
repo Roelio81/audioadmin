@@ -26,7 +26,7 @@ void BriefKlant::setup()
 {
     const Model::File &file = m_model.getFile();
     const Model::Customer &klant = file.getCustomer();
-    const Model::Settings &instellingen = file.getUniversum().getSettings();
+    const Model::Settings &instellingen = file.getUniverse().getSettings();
     bool sex = (klant.getTitle() == "Dhr.");
 
     m_view.setGreeting(sex ? "Geachte meneer," : "Geachte mevrouw,");
@@ -70,7 +70,7 @@ void BriefKlant::print()
 {
     const Model::File &file = m_model.getFile();
     const Model::Customer &klant = file.getCustomer();
-    const Model::Settings &settings = file.getUniversum().getSettings();
+    const Model::Settings &settings = file.getUniverse().getSettings();
 
     QPrintDialog printDialog(&m_view);
     printDialog.setEnabledOptions(QAbstractPrintDialog::None);
@@ -99,10 +99,10 @@ void BriefKlant::print()
         font.setBold(false);
         painter.setFont(font);
         int lineheight = painter.fontMetrics().height();
-        painter.drawText(hmar, vmar + (3*lineheight)/2, settings.getOnderschrift());
+        painter.drawText(hmar, vmar + (3*lineheight)/2, settings.getCaption());
         painter.drawText(hmar, vmar + (5*lineheight)/2, settings.getStreet());
         painter.drawText(hmar, vmar + (7*lineheight)/2, QString::number(settings.getPostalCode()) + " " + settings.getCity());
-        painter.drawText(hmar, vmar + (9*lineheight)/2, QString("Riziv: ") + settings.getRiziv());
+        painter.drawText(hmar, vmar + (9*lineheight)/2, QString("Riziv: ") + settings.getNationalId());
         painter.drawText(150*mmx, vmar + (5*lineheight)/2, QString("tel: ") + settings.getTelephone());
         painter.drawText(150*mmx, vmar + (7*lineheight)/2, QString("gsm: ") + settings.getMobilePhone());
         painter.drawText(150*mmx, vmar + (9*lineheight)/2, QString("e-mail: ") + settings.getEmail());

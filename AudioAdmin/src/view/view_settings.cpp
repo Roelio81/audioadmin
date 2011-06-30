@@ -15,34 +15,34 @@ Settings::~Settings()
 {
 }
 
-QString Settings::getNaam() const
+QString Settings::getName() const
 {
-    return m_ui.m_naam->text();
+    return m_ui.m_name->text();
 }
 
-QString Settings::getStraat() const
+QString Settings::getStreet() const
 {
-    return m_ui.m_straat->text();
+    return m_ui.m_street->text();
 }
 
-int Settings::getPostcode() const
+int Settings::getPostalCode() const
 {
-    return m_ui.m_postcode->value();
+    return m_ui.m_postalCode->value();
 }
 
-QString Settings::getGemeente() const
+QString Settings::getCity() const
 {
-    return m_ui.m_gemeente->text();
+    return m_ui.m_city->text();
 }
 
-QString Settings::getTelefoon() const
+QString Settings::getTelephone() const
 {
-    return m_ui.m_telefoon->text();
+    return m_ui.m_telephone->text();
 }
 
-QString Settings::getGsm() const
+QString Settings::getMobilePhone() const
 {
-    return m_ui.m_gsm->text();
+    return m_ui.m_mobilePhone->text();
 }
 
 QString Settings::getEmail() const
@@ -50,59 +50,59 @@ QString Settings::getEmail() const
     return m_ui.m_email->text();
 }
 
-QString Settings::getOnderschrift() const
+QString Settings::getCaption() const
 {
-    return m_ui.m_onderschrift->text();
+    return m_ui.m_caption->text();
 }
 
-QString Settings::getRiziv() const
+QString Settings::getNationalId() const
 {
-    return m_ui.m_riziv->text();
+    return m_ui.m_nationalId->text();
 }
 
-int Settings::getBtwPercentage() const
+int Settings::getVATPercentage() const
 {
-    return m_ui.m_btwpercentage->value();
+    return m_ui.m_vatPercentage->value();
 }
 
 QString Settings::getVATNumber() const
 {
-    return m_ui.m_btwnummer->text();
+    return m_ui.m_vatNumber->text();
 }
 
-QString Settings::getRekeningNummer() const
+QString Settings::getBankAccount() const
 {
-    return m_ui.m_rekeningnummer->text();
+    return m_ui.m_bankAccount->text();
 }
 
 void Settings::setName(const QString &value)
 {
-    m_ui.m_naam->setText(value);
+    m_ui.m_name->setText(value);
 }
 
 void Settings::setStreet(const QString &value)
 {
-    m_ui.m_straat->setText(value);
+    m_ui.m_street->setText(value);
 }
 
 void Settings::setPostalCode(const int &value)
 {
-    m_ui.m_postcode->setValue(value);
+    m_ui.m_postalCode->setValue(value);
 }
 
 void Settings::setCity(const QString &value)
 {
-    m_ui.m_gemeente->setText(value);
+    m_ui.m_city->setText(value);
 }
 
 void Settings::setTelephone(const QString &value)
 {
-    m_ui.m_telefoon->setText(value);
+    m_ui.m_telephone->setText(value);
 }
 
 void Settings::setMobilePhone(const QString &value)
 {
-    m_ui.m_gsm->setText(value);
+    m_ui.m_mobilePhone->setText(value);
 }
 
 void Settings::setEmail(const QString &value)
@@ -110,27 +110,27 @@ void Settings::setEmail(const QString &value)
     m_ui.m_email->setText(value);
 }
 
-void Settings::setOnderschrift(const QString &value)
+void Settings::setCaption(const QString &value)
 {
-    m_ui.m_onderschrift->setText(value);
+    m_ui.m_caption->setText(value);
 }
 
-void Settings::setRiziv(const QString &value)
+void Settings::setNationalId(const QString &value)
 {
-    m_ui.m_riziv->setText(value);
+    m_ui.m_nationalId->setText(value);
 }
 
 void Settings::setVATPercentage(const int &value)
 {
-    m_ui.m_btwpercentage->setValue(value);
+    m_ui.m_vatPercentage->setValue(value);
 }
 
 void Settings::setVATNumber(const QString &value)
 {
-    m_ui.m_btwnummer->setText(value);
+    m_ui.m_vatNumber->setText(value);
 }
 
-void Settings::setRekeningNummer(const QString &value)
+void Settings::setBankAccount(const QString &value)
 {
-    m_ui.m_rekeningnummer->setText(value);
+    m_ui.m_bankAccount->setText(value);
 }

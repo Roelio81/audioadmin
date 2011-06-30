@@ -31,40 +31,40 @@
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
    <item row="0" column="0">
-    <widget class="QGroupBox" name="g_contactgegevens">
+    <widget class="QGroupBox" name="g_contactData">
      <property name="title">
       <string>Contact data</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
-       <widget class="QLabel" name="l_naam">
+       <widget class="QLabel" name="l_name">
         <property name="text">
-         <string>Name</string>
+         <string>Name:</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1" colspan="7">
-       <widget class="QLineEdit" name="m_naam"/>
+       <widget class="QLineEdit" name="m_name"/>
       </item>
       <item row="1" column="0" colspan="4">
-       <widget class="QLabel" name="l_straat">
+       <widget class="QLabel" name="l_street">
         <property name="text">
-         <string>Straat (+ huisnummer / bus)</string>
+         <string>Street address:</string>
         </property>
        </widget>
       </item>
       <item row="1" column="4" colspan="4">
-       <widget class="QLineEdit" name="m_straat"/>
+       <widget class="QLineEdit" name="m_street"/>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="l_postcode">
+       <widget class="QLabel" name="l_postalCode">
         <property name="text">
-         <string>Postal code</string>
+         <string>Postal code:</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1" colspan="2">
-       <widget class="QSpinBox" name="m_postcode">
+       <widget class="QSpinBox" name="m_postalCode">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -86,39 +86,39 @@
        </widget>
       </item>
       <item row="2" column="3" colspan="2">
-       <widget class="QLabel" name="l_gemeente">
+       <widget class="QLabel" name="l_city">
         <property name="text">
-         <string>City</string>
+         <string>City:</string>
         </property>
        </widget>
       </item>
       <item row="2" column="5" colspan="3">
-       <widget class="QLineEdit" name="m_gemeente"/>
+       <widget class="QLineEdit" name="m_city"/>
       </item>
       <item row="3" column="0">
-       <widget class="QLabel" name="l_telefoon">
+       <widget class="QLabel" name="l_telephone">
         <property name="text">
-         <string>Telephone</string>
+         <string>Telephone:</string>
         </property>
        </widget>
       </item>
       <item row="3" column="1" colspan="5">
-       <widget class="QLineEdit" name="m_telefoon"/>
+       <widget class="QLineEdit" name="m_telephone"/>
       </item>
       <item row="3" column="6">
-       <widget class="QLabel" name="l_gsm">
+       <widget class="QLabel" name="l_mobilePhone">
         <property name="text">
-         <string>Mobile phone</string>
+         <string>Mobile phone:</string>
         </property>
        </widget>
       </item>
       <item row="3" column="7">
-       <widget class="QLineEdit" name="m_gsm"/>
+       <widget class="QLineEdit" name="m_mobilePhone"/>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="l_email">
         <property name="text">
-         <string>Email</string>
+         <string>Email:</string>
         </property>
        </widget>
       </item>
@@ -126,43 +126,43 @@
        <widget class="QLineEdit" name="m_email"/>
       </item>
       <item row="5" column="0" colspan="2">
-       <widget class="QLabel" name="l_onderschrift">
+       <widget class="QLabel" name="l_caption">
         <property name="text">
-         <string>Onderschrift</string>
+         <string>Caption:</string>
         </property>
        </widget>
       </item>
       <item row="5" column="2" colspan="6">
-       <widget class="QLineEdit" name="m_onderschrift"/>
+       <widget class="QLineEdit" name="m_caption"/>
       </item>
      </layout>
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QGroupBox" name="g_instellingen">
+    <widget class="QGroupBox" name="g_settings">
      <property name="title">
       <string>Settings</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
-       <widget class="QLabel" name="l_riziv">
+       <widget class="QLabel" name="l_nationalId">
         <property name="text">
-         <string>Riziv</string>
+         <string>National ID:</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1" colspan="2">
-       <widget class="QLineEdit" name="m_riziv"/>
+       <widget class="QLineEdit" name="m_nationalId"/>
       </item>
       <item row="0" column="3">
-       <widget class="QLabel" name="l_btwpercentage">
+       <widget class="QLabel" name="l_vatPercentage">
         <property name="text">
-         <string>VAT percentage</string>
+         <string>VAT percentage:</string>
         </property>
        </widget>
       </item>
       <item row="0" column="4">
-       <widget class="QSpinBox" name="m_btwpercentage">
+       <widget class="QSpinBox" name="m_vatPercentage">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -178,24 +178,24 @@
        </widget>
       </item>
       <item row="1" column="0" colspan="2">
-       <widget class="QLabel" name="l_btwnummer">
+       <widget class="QLabel" name="l_vatNumber">
         <property name="text">
-         <string>VAT number</string>
+         <string>VAT number:</string>
         </property>
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QLineEdit" name="m_btwnummer"/>
+       <widget class="QLineEdit" name="m_vatNumber"/>
       </item>
       <item row="1" column="3">
-       <widget class="QLabel" name="l_rekeningnummer">
+       <widget class="QLabel" name="l_bankAccount">
         <property name="text">
-         <string>Rekeningnummer</string>
+         <string>Bank account:</string>
         </property>
        </widget>
       </item>
       <item row="1" column="4">
-       <widget class="QLineEdit" name="m_rekeningnummer">
+       <widget class="QLineEdit" name="m_bankAccount">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>

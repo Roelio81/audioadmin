@@ -2,137 +2,124 @@
 
 using namespace View;
 
-Factuur::Factuur(QWidget *parent) 
+Invoice::Invoice(QWidget *parent)
 : QDialog(parent)
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
-    setupUi(this);
-    connect(b_ok, SIGNAL(clicked()), this, SLOT(okFactuur()));
-    connect(b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerFactuur()));
+    m_ui.setupUi(this);
 }
 
-Factuur::~Factuur()
+Invoice::~Invoice()
 {
 }
 
-void Factuur::setAudioloogNaam(const QString &value)
+void Invoice::setName(const QString &value)
 {
-    l_audioloogNaam->setText(value);
+    m_ui.l_name->setText(value);
 }
 
-void Factuur::setAudioloogStraat(const QString &value)
+void Invoice::setStreet(const QString &value)
 {
-    l_audioloogStraat->setText(value);
+    m_ui.l_street->setText(value);
 }
 
-void Factuur::setAudioloogGemeente(const QString &value)
+void Invoice::setCity(const QString &value)
 {
-    l_audioloogGemeente->setText(value);
-    l_audioloogGemeente_2->setText(QString(value).remove(0, value.indexOf(" ") + 1) + ", ");
+    m_ui.l_city->setText(value);
+    m_ui.l_city_2->setText(QString(value).remove(0, value.indexOf(" ") + 1) + ", ");
 }
 
-void Factuur::setAudioloogTelefoon(const QString &value)
+void Invoice::setTelephone(const QString &value)
 {
-    l_audioloogTelefoon->setText(value);
+    m_ui.l_telephone->setText(value);
 }
 
-void Factuur::setAudioloogGSM(const QString &value)
+void Invoice::setMobilePhone(const QString &value)
 {
-    l_audioloogGSM->setText(value);
+    m_ui.l_mobilePhone->setText(value);
 }
 
-void Factuur::setKlantNaam(const QString &value)
+void Invoice::setCustomerName(const QString &value)
 {
-    l_klantNaam->setText(value);
+    m_ui.l_customerName->setText(value);
 }
 
-void Factuur::setKlantStraat(const QString &value)
+void Invoice::setCustomerStreet(const QString &value)
 {
-    l_klantStraat->setText(value);
+    m_ui.l_customerStreet->setText(value);
 }
 
-void Factuur::setKlantGemeente(const QString &value)
+void Invoice::setCustomerCity(const QString &value)
 {
-    l_klantGemeente->setText(value);
+    m_ui.l_customerCity->setText(value);
 }
 
-void Factuur::setNummer(const QString &value)
+void Invoice::setNumber(const QString &value)
 {
-    m_nummer->setText(value);
+    m_ui.m_invoiceNr->setText(value);
 }
 
-void Factuur::setDatum(const QDate &value)
+void Invoice::setDate(const QDate &value)
 {
-    m_datum->setDate(value);
+    m_ui.m_date->setDate(value);
 }
 
-void Factuur::setVervalDatum(const QDate &value)
+void Invoice::setExpirationDate(const QDate &value)
 {
-    m_vervaldatum->setDate(value);
+    m_ui.m_expirationDate->setDate(value);
 }
 
-void Factuur::setKortingPercentage(double value)
+void Invoice::setReductionPercentage(double value)
 {
-    m_kortingPercentage->setValue(value);
+    m_ui.m_reductionPercentage->setValue(value);
 }
 
-void Factuur::setBtwPercentage(double value)
+void Invoice::setVATPercentage(double value)
 {
-    m_btwPercentage->setValue(value);
+    m_ui.m_vatPercentage->setValue(value);
 }
 
-void Factuur::setCondities(const QString &value)
+void Invoice::setConditions(const QString &value)
 {
-    m_condities->setText(value);
+    m_ui.m_conditions->setText(value);
 }
 
-void Factuur::setTekst(const QString &value)
+void Invoice::setText(const QString &value)
 {
-    m_tekst->setPlainText(value);
+    m_ui.m_text->setPlainText(value);
 }
 
-QString Factuur::getNummer() const
+QString Invoice::getNumber() const
 {
-    return m_nummer->text();
+    return m_ui.m_invoiceNr->text();
 }
 
-QDate Factuur::getDatum() const
+QDate Invoice::getDate() const
 {
-    return m_datum->date();
+    return m_ui.m_date->date();
 }
 
-QDate Factuur::getVervalDatum() const
+QDate Invoice::getExpirationDate() const
 {
-    return m_vervaldatum->date();
+    return m_ui.m_expirationDate->date();
 }
 
-double Factuur::getKortingPercentage() const
+double Invoice::getReductionPercentage() const
 {
-    return m_kortingPercentage->value();
+    return m_ui.m_reductionPercentage->value();
 }
 
-double Factuur::getBtwPercentage() const
+double Invoice::getVATPercentage() const
 {
-    return m_btwPercentage->value();
+    return m_ui.m_vatPercentage->value();
 }
 
-QString Factuur::getCondities() const
+QString Invoice::getConditions() const
 {
-    return m_condities->text();
+    return m_ui.m_conditions->text();
 }
 
-QString Factuur::getTekst() const
+QString Invoice::getText() const
 {
-    return m_tekst->toPlainText();
-}
-
-void Factuur::okFactuur()
-{
-    emit factuurBewaren();
-    emit factuurSluiten();
-}
-
-void Factuur::annuleerFactuur()
-{
-    emit factuurSluiten();
+    return m_ui.m_text->toPlainText();
 }

@@ -5,7 +5,7 @@
 using namespace Model;
 
 Settings::Settings(const Universe &universum)
-    : m_universum(universum)
+    : m_universe(universum)
 {
 }
 
@@ -40,7 +40,7 @@ void Settings::fromDomElement(const QDomElement &e)
         {
             m_telephone = element.text();
         }
-        else if (element.tagName() == "gsm")
+        else if (element.tagName() == "mobile")
         {
             m_mobilePhone = element.text();
         }
@@ -48,25 +48,25 @@ void Settings::fromDomElement(const QDomElement &e)
         {
             m_email = element.text();
         }
-        else if (element.tagName() == "onderschrift")
+        else if (element.tagName() == "caption")
         {
-            m_onderschrift = element.text();
+            m_caption = element.text();
         }
-        else if (element.tagName() == "riziv")
+        else if (element.tagName() == "natId")
         {
-            m_riziv = element.text();
+            m_nationalId = element.text();
         }
-        else if (element.tagName() == "btwnr")
+        else if (element.tagName() == "vatNr")
         {
-            m_btwNummer = element.text();
+            m_vatNumber = element.text();
         }
-        else if (element.tagName() == "btwpct")
+        else if (element.tagName() == "vatPct")
         {
-            m_btwPercentage = element.text().toInt();
+            m_vatPercentage = element.text().toInt();
         }
-        else if (element.tagName() == "rekeningnr")
+        else if (element.tagName() == "bankAccount")
         {
-            m_rekeningNummer = element.text();
+            m_bankAccount = element.text();
         }
     }
 }
@@ -77,38 +77,38 @@ QDomElement Settings::toDomElement(QDomDocument &d) const
     QDomElement naam = d.createElement("name");
     naam.appendChild(d.createTextNode(m_name));
     result.appendChild(naam);
-    QDomElement adres = d.createElement("address");
-    QDomElement straat = d.createElement("straat");
-    straat.appendChild(d.createTextNode(m_street));
-    adres.appendChild(straat);
-    QDomElement gemeente = d.createElement("gemeente");
-    gemeente.appendChild(d.createTextNode(m_city));
-    gemeente.setAttribute("postcode", QString::number(m_postalCode));
-    adres.appendChild(gemeente);
-    result.appendChild(adres);
-    QDomElement telefoon = d.createElement("telefoon");
-    telefoon.appendChild(d.createTextNode(m_telephone));
-    result.appendChild(telefoon);
-    QDomElement gsm = d.createElement("gsm");
-    gsm.appendChild(d.createTextNode(m_mobilePhone));
-    result.appendChild(gsm);
-    QDomElement onderschrift = d.createElement("onderschrift");
-    onderschrift.appendChild(d.createTextNode(m_onderschrift));
-    result.appendChild(onderschrift);
+    QDomElement address = d.createElement("address");
+    QDomElement street = d.createElement("street");
+    street.appendChild(d.createTextNode(m_street));
+    address.appendChild(street);
+    QDomElement city = d.createElement("city");
+    city.appendChild(d.createTextNode(m_city));
+    city.setAttribute("postalCode", QString::number(m_postalCode));
+    address.appendChild(city);
+    result.appendChild(address);
+    QDomElement telephone = d.createElement("telephone");
+    telephone.appendChild(d.createTextNode(m_telephone));
+    result.appendChild(telephone);
+    QDomElement mobilePhone = d.createElement("mobile");
+    mobilePhone.appendChild(d.createTextNode(m_mobilePhone));
+    result.appendChild(mobilePhone);
+    QDomElement caption = d.createElement("caption");
+    caption.appendChild(d.createTextNode(m_caption));
+    result.appendChild(caption);
     QDomElement email = d.createElement("email");
     email.appendChild(d.createTextNode(m_email));
     result.appendChild(email);
-    QDomElement btwnr = d.createElement("btwnr");
-    btwnr.appendChild(d.createTextNode(m_btwNummer));
-    result.appendChild(btwnr);
-    QDomElement rekeningnr = d.createElement("rekeningnr");
-    rekeningnr.appendChild(d.createTextNode(m_rekeningNummer));
-    result.appendChild(rekeningnr);
-    QDomElement riziv = d.createElement("riziv");
-    riziv.appendChild(d.createTextNode(m_riziv));
-    result.appendChild(riziv);
-    QDomElement btwpct = d.createElement("btwpct");
-    btwpct.appendChild(d.createTextNode(QString::number(m_btwPercentage)));
-    result.appendChild(btwpct);
+    QDomElement vatNumber = d.createElement("vatNr");
+    vatNumber.appendChild(d.createTextNode(m_vatNumber));
+    result.appendChild(vatNumber);
+    QDomElement bankAccount = d.createElement("bankAccount");
+    bankAccount.appendChild(d.createTextNode(m_bankAccount));
+    result.appendChild(bankAccount);
+    QDomElement nationalId = d.createElement("natId");
+    nationalId.appendChild(d.createTextNode(m_nationalId));
+    result.appendChild(nationalId);
+    QDomElement vatPercentage = d.createElement("vatPct");
+    vatPercentage.appendChild(d.createTextNode(QString::number(m_vatPercentage)));
+    result.appendChild(vatPercentage);
     return result;
 }

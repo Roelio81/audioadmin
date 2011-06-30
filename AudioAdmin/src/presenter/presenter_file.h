@@ -6,17 +6,11 @@
 namespace View
 {
     class File;
-    class BriefArts;
-    class BriefKlant;
-    class Letter;
-    class Factuur;
-    class Measurements;
 }
 
 namespace Model
 {
     class File;
-    class Universe;
 }
 
 namespace Presenter
@@ -41,18 +35,12 @@ namespace Presenter
         void briefKlantTonen();
         void briefMutualiteitTonen();
         void showInvoice();
-        void factuurSluiten();
-        void factuurBewaren();
         void showMeasurements();
 
     private:
-        void setupInvoice();
-
+        // --- Data members ---
         View::File &m_view;
         Model::File &m_model;
-
-        Model::Universe *m_universum;
-        View::Factuur *m_invoice;
     };
 }
 

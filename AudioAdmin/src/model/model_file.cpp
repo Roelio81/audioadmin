@@ -24,7 +24,7 @@ File::File(int id, const Universe &universe)
 , m_letterPhysician(*this, true)
 , m_letterCustomer(*this, false)
 , m_briefMutualiteit(*this, true)
-, m_invoice(universe)
+, m_invoice(*this)
 , m_customer(universe)
 {
 }

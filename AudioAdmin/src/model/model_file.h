@@ -25,9 +25,9 @@ namespace Model
 
         // --- Getters ---
         int getId() const { return m_id; }
-        const Universe &getUniversum() const { return m_universe; }
-        int getArts() const { return m_physician; }
-        int getMutualiteit() const { return m_insuranceCompany; }
+        const Universe &getUniverse() const { return m_universe; }
+        int getPhysician() const { return m_physician; }
+        int getInsuranceCompany() const { return m_insuranceCompany; }
         QString getAansluitingsnummer() const { return m_aansluitingsnummer; }
         QString getPlaatsAanpassing() const { return m_plaatsAanpassing; }
         QString getRechterHoorapparaatMerk() const { return m_rechterHoorapparaatMerk; }
@@ -54,12 +54,12 @@ namespace Model
         const Letter &getBriefKlant() const { return m_letterCustomer; }
         Letter &getBriefMutualiteit() { return m_briefMutualiteit; }
         const Letter &getBriefMutualiteit() const { return m_briefMutualiteit; }
-        Invoice &getFactuur() { return m_invoice; }
-        const Invoice &getFactuur() const { return m_invoice; }
+        Invoice &getInvoice() { return m_invoice; }
+        const Invoice &getInvoice() const { return m_invoice; }
         Customer &getCustomer() { return m_customer; }
         const Customer &getCustomer() const { return m_customer; }
-        Measurements &getMeetgegevens() { return m_meetgegevens; }
-        const Measurements &getMeetgegevens() const { return m_meetgegevens; }
+        Measurements &getMeasurements() { return m_meetgegevens; }
+        const Measurements &getMeasurements() const { return m_meetgegevens; }
 
         // --- Setters ---
         void setArts(int value) { m_physician = value; }

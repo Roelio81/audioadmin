@@ -28,12 +28,12 @@ void BriefMutualiteit::setup()
 {
     const Model::File &file = m_model.getFile();
     const Model::Customer &customer = file.getCustomer();
-    const Model::Settings &settings = file.getUniversum().getSettings();
+    const Model::Settings &settings = file.getUniverse().getSettings();
     bool sex = (customer.getTitle() == "Dhr.");
 
     m_view.setGreeting("Geachte geneesheer-adviseur,");
-    Q_ASSERT(file.getMutualiteit() >= 0);
-    Model::InsuranceCompany *insuranceCompany = file.getUniversum().getInsuranceCompany(file.getMutualiteit());
+    Q_ASSERT(file.getInsuranceCompany() >= 0);
+    Model::InsuranceCompany *insuranceCompany = file.getUniverse().getInsuranceCompany(file.getInsuranceCompany());
     Q_ASSERT(insuranceCompany);
     m_view.setAddresseeName(insuranceCompany->getName());
     m_view.setAddresseeStreet(insuranceCompany->getStreet());
@@ -54,7 +54,7 @@ void BriefMutualiteit::setup()
         text = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
         text += (sex ? "mijnheer " : "mevrouw ") + customer.getName() + " " + customer.getFirstName();
         QDate dateOfBirth = customer.getDateOfBirth();
-        if (dateOfBirth != file.getUniversum().getInvalidDate())
+        if (dateOfBirth != file.getUniverse().getInvalidDate())
         {
             text += " (" + QString(char(0xb0)) + " " + dateOfBirth.toString("dd-MM-yyyy") + "). ";
         }
@@ -116,8 +116,8 @@ void BriefMutualiteit::teardown()
 void BriefMutualiteit::print()
 {
     const Model::File &file = m_model.getFile();
-    const Model::InsuranceCompany *mutualiteit = file.getUniversum().getInsuranceCompany(file.getMutualiteit());
-    const Model::Settings &settings = file.getUniversum().getSettings();
+    const Model::InsuranceCompany *mutualiteit = file.getUniverse().getInsuranceCompany(file.getInsuranceCompany());
+    const Model::Settings &settings = file.getUniverse().getSettings();
 
     QPrintDialog printDialog(&m_view);
     printDialog.setEnabledOptions(QAbstractPrintDialog::None);
@@ -146,10 +146,10 @@ void BriefMutualiteit::print()
         font.setBold(false);
         painter.setFont(font);
         int lineheight = painter.fontMetrics().height();
-        painter.drawText(hmar, vmar + (3*lineheight)/2, settings.getOnderschrift());
+        painter.drawText(hmar, vmar + (3*lineheight)/2, settings.getCaption());
         painter.drawText(hmar, vmar + (5*lineheight)/2, settings.getStreet());
         painter.drawText(hmar, vmar + (7*lineheight)/2, QString::number(settings.getPostalCode()) + " " + settings.getCity());
-        painter.drawText(hmar, vmar + (9*lineheight)/2, QString("Riziv: ") + settings.getRiziv());
+        painter.drawText(hmar, vmar + (9*lineheight)/2, QString("Riziv: ") + settings.getNationalId());
         painter.drawText(150*mmx, vmar + (5*lineheight)/2, QString("tel: ") + settings.getTelephone());
         painter.drawText(150*mmx, vmar + (7*lineheight)/2, QString("gsm: ") + settings.getMobilePhone());
         painter.drawText(150*mmx, vmar + (9*lineheight)/2, QString("e-mail: ") + settings.getEmail());
@@ -196,7 +196,7 @@ void BriefMutualiteit::print()
         y += lineheight;
 
         // Print tonale audiometrie
-        const Model::Measurements &meetgegevensModel = file.getMeetgegevens();
+        const Model::Measurements &meetgegevensModel = file.getMeasurements();
         View::Measurements meetgegevensView(0);
         meetgegevensView.setVisible(false);
         Presenter::Measurements meetgegevensPresenter(meetgegevensView, const_cast<Model::Measurements &>(meetgegevensModel));

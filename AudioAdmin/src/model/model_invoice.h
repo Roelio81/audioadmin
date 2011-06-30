@@ -9,12 +9,12 @@ class QDomElement;
 
 namespace Model
 {
-    class Universe;
+    class File;
 
     class Invoice
     {
     public:
-        explicit Invoice(const Universe &universe);
+        explicit Invoice(const File &file);
         virtual ~Invoice();
 
         // --- ISerializable ---
@@ -22,6 +22,7 @@ namespace Model
         virtual QDomElement toDomElement(QDomDocument &d) const;
 
         // --- Getters ---
+        const File &getFile() const { return m_file; }
         QString getNumber() const { return m_number; }
         QDate getDate() const { return m_date; }
         QDate getExpirationDate() const { return m_expirationDate; }
@@ -41,7 +42,7 @@ namespace Model
 
     private:
         // --- Data members ---
-        const Universe &m_universe;
+        const File &m_file;
         QString m_number;
         QDate m_date;
         QDate m_expirationDate;

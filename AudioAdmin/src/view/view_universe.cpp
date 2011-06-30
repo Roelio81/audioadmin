@@ -90,7 +90,7 @@ Etiketten &Universe::getEtiketten()
     return m_etiketten;
 }
 
-Settings &Universe::getInstellingen()
+Settings &Universe::getSettings()
 {
     return m_instellingen;
 }

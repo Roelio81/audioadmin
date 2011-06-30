@@ -25,7 +25,7 @@ namespace View
         File &getDossier();
         InsuranceCompany &getMutualiteit();
         Etiketten &getEtiketten();
-        Settings &getInstellingen();
+        Settings &getSettings();
 
         void bewarenBijAfsluiten();
         void clearPhysicianList();

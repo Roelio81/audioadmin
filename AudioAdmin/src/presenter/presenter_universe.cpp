@@ -120,7 +120,7 @@ void Universe::annuleerEtiketten()
 void Universe::openSettings()
 {
     setupSettings();
-    if (m_view.getInstellingen().exec() == QDialog::Accepted)
+    if (m_view.getSettings().exec() == QDialog::Accepted)
         teardownSettings();
 }
 
@@ -141,7 +141,7 @@ void Universe::setupEtiketten()
 void Universe::setupSettings()
 {
     Model::Settings &modelSettings = m_model.getSettings();
-    View::Settings &viewSettings = m_view.getInstellingen();
+    View::Settings &viewSettings = m_view.getSettings();
     viewSettings.setName(modelSettings.getName());
     viewSettings.setStreet(modelSettings.getStreet());
     viewSettings.setPostalCode(modelSettings.getPostalCode());
@@ -149,11 +149,11 @@ void Universe::setupSettings()
     viewSettings.setTelephone(modelSettings.getTelephone());
     viewSettings.setMobilePhone(modelSettings.getMobilePhone());
     viewSettings.setEmail(modelSettings.getEmail());
-    viewSettings.setOnderschrift(modelSettings.getOnderschrift());
-    viewSettings.setRiziv(modelSettings.getRiziv());
+    viewSettings.setCaption(modelSettings.getCaption());
+    viewSettings.setNationalId(modelSettings.getNationalId());
     viewSettings.setVATPercentage(modelSettings.getVATPercentage());
-    viewSettings.setVATNumber(modelSettings.getBtwNummer());
-    viewSettings.setRekeningNummer(modelSettings.getRekeningNummer());
+    viewSettings.setVATNumber(modelSettings.getVATNumber());
+    viewSettings.setBankAccount(modelSettings.getBankAccount());
 }
 
 void Universe::teardownEtiketten()
@@ -162,20 +162,20 @@ void Universe::teardownEtiketten()
 
 void Universe::teardownSettings()
 {
-    Model::Settings &modelInstellingen = m_model.getSettings();
-    View::Settings &viewInstellingen = m_view.getInstellingen();
-    modelInstellingen.setName(viewInstellingen.getNaam());
-    modelInstellingen.setStreet(viewInstellingen.getStraat());
-    modelInstellingen.setPostalCode(viewInstellingen.getPostcode());
-    modelInstellingen.setCity(viewInstellingen.getGemeente());
-    modelInstellingen.setTelephone(viewInstellingen.getTelefoon());
-    modelInstellingen.setMobilePhone(viewInstellingen.getGsm());
-    modelInstellingen.setEmail(viewInstellingen.getEmail());
-    modelInstellingen.setOnderschrift(viewInstellingen.getOnderschrift());
-    modelInstellingen.setRiziv(viewInstellingen.getRiziv());
-    modelInstellingen.setBtwPercentage(viewInstellingen.getBtwPercentage());
-    modelInstellingen.setBtwNummer(viewInstellingen.getVATNumber());
-    modelInstellingen.setRekeningNummer(viewInstellingen.getRekeningNummer());
+    Model::Settings &modelSettings = m_model.getSettings();
+    View::Settings &viewSettings = m_view.getSettings();
+    modelSettings.setName(viewSettings.getName());
+    modelSettings.setStreet(viewSettings.getStreet());
+    modelSettings.setPostalCode(viewSettings.getPostalCode());
+    modelSettings.setCity(viewSettings.getCity());
+    modelSettings.setTelephone(viewSettings.getTelephone());
+    modelSettings.setMobilePhone(viewSettings.getMobilePhone());
+    modelSettings.setEmail(viewSettings.getEmail());
+    modelSettings.setCaption(viewSettings.getCaption());
+    modelSettings.setNationalId(viewSettings.getNationalId());
+    modelSettings.setVATPercentage(viewSettings.getVATPercentage());
+    modelSettings.setVATNumber(viewSettings.getVATNumber());
+    modelSettings.setBankAccount(viewSettings.getBankAccount());
 }
 
 void Universe::refreshPhysicianList()

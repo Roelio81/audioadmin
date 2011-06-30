@@ -335,52 +335,52 @@ p, li { white-space: pre-wrap; }
         <translation>Contactgegevens</translation>
     </message>
     <message>
-        <source>Name</source>
-        <translation>Naam</translation>
+        <source>Name:</source>
+        <translation>Naam:</translation>
     </message>
     <message>
-        <source>Straat (+ huisnummer / bus)</source>
-        <translation type="unfinished"></translation>
+        <source>Street address:</source>
+        <translation>Straat (+ huisnummer / bus):</translation>
     </message>
     <message>
-        <source>Postal code</source>
-        <translation>Postcode</translation>
+        <source>Postal code:</source>
+        <translation>Postcode:</translation>
     </message>
     <message>
-        <source>City</source>
-        <translation>Gemeente</translation>
+        <source>City:</source>
+        <translation>Gemeente:</translation>
     </message>
     <message>
-        <source>Telephone</source>
-        <translation>Telefoon</translation>
+        <source>Telephone:</source>
+        <translation>Telefoon:</translation>
     </message>
     <message>
-        <source>Onderschrift</source>
-        <translation type="unfinished"></translation>
+        <source>Mobile phone:</source>
+        <translation>GSM:</translation>
     </message>
     <message>
-        <source>Riziv</source>
-        <translation type="unfinished"></translation>
+        <source>Email:</source>
+        <translation>E-mail:</translation>
     </message>
     <message>
-        <source>VAT percentage</source>
-        <translation>BTW percentage</translation>
+        <source>Caption:</source>
+        <translation>Onderschrift:</translation>
     </message>
     <message>
-        <source>Rekeningnummer</source>
-        <translation type="unfinished"></translation>
+        <source>National ID:</source>
+        <translation>Riziv:</translation>
     </message>
     <message>
-        <source>Mobile phone</source>
-        <translation>GSM</translation>
+        <source>VAT percentage:</source>
+        <translation>BTW percentage:</translation>
     </message>
     <message>
-        <source>Email</source>
-        <translation>E-mail</translation>
+        <source>VAT number:</source>
+        <translation>BTW nummer:</translation>
     </message>
     <message>
-        <source>VAT number</source>
-        <translation>BTW nummer</translation>
+        <source>Bank account:</source>
+        <translation>Rekeningnummer:</translation>
     </message>
 </context>
 <context>

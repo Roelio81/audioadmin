@@ -2,12 +2,9 @@
 #include "presenter_briefarts.h"
 #include "presenter_briefklant.h"
 #include "presenter_briefmutualiteit.h"
+#include "presenter_invoice.h"
 #include "presenter_measurements.h"
-#include "../model/model_physician.h"
 #include "../model/model_file.h"
-#include "../model/model_settings.h"
-#include "../model/model_insurancecompany.h"
-#include "../model/model_universe.h"
 #include "../view/view_file.h"
 #include "../view/view_letter.h"
 #include "../view/view_invoice.h"
@@ -18,7 +15,6 @@ using namespace Presenter;
 File::File(View::File &view, Model::File &model)
 : m_view(view)
 , m_model(model)
-, m_invoice(0)
 {
     connect(&m_view, SIGNAL(briefArtsTonen()), this, SLOT(briefArtsTonen()));
     connect(&m_view, SIGNAL(briefKlantTonen()), this, SLOT(briefKlantTonen()));
@@ -46,10 +42,10 @@ void File::setup()
     m_view.setTelefoon(klantModel.getTelephone());
     m_view.setGeboorteDatum(klantModel.getDateOfBirth());
     m_view.setOpmerkingen(klantModel.getComments());
-    m_view.setInsuranceCompany(m_model.getMutualiteit());
+    m_view.setInsuranceCompany(m_model.getInsuranceCompany());
     m_view.setAansluitingsnummer(m_model.getAansluitingsnummer());
     m_view.setPlaatsAanpassing(m_model.getPlaatsAanpassing());
-    m_view.setPhysician(m_model.getArts());
+    m_view.setPhysician(m_model.getPhysician());
     m_view.setRechterHoorapparaatMerk(m_model.getRechterHoorapparaatMerk());
     m_view.setRechterHoorapparaatType(m_model.getRechterHoorapparaatType());
     m_view.setRechterHoorapparaatPrijs(m_model.getRechterHoorapparaatPrijs());
@@ -119,7 +115,7 @@ void File::teardown()
         klantModel.setComments(m_view.getComments());
         changed = true;
     }
-    if (m_model.getMutualiteit() != m_view.getInsuranceCompany())
+    if (m_model.getInsuranceCompany() != m_view.getInsuranceCompany())
     {
         m_model.setMutualiteit(m_view.getInsuranceCompany());
         changed = true;
@@ -134,7 +130,7 @@ void File::teardown()
         m_model.setPlaatsAanpassing(m_view.getPlaatsAanpassing());
         changed = true;
     }
-    if (m_model.getArts() != m_view.getPhysician())
+    if (m_model.getPhysician() != m_view.getPhysician())
     {
         m_model.setArts(m_view.getPhysician());
         changed = true;
@@ -239,35 +235,6 @@ void File::teardown()
     }
 }
 
-void File::setupInvoice()
-{
-    teardown();
-    setup();
-
-    Q_ASSERT(m_invoice);
-    m_invoice->setKlantNaam(m_model.getCustomer().getTitle() + " " + m_model.getCustomer().getName() + " " + m_model.getCustomer().getFirstName());
-    m_invoice->setKlantStraat(m_model.getCustomer().getStreet());
-    m_invoice->setKlantGemeente(QString::number(m_model.getCustomer().getPostalCode()) + " " + m_model.getCustomer().getCity());
-
-    const Model::Settings &settings = m_model.getUniversum().getSettings();
-    m_invoice->setAudioloogNaam(settings.getName());
-    m_invoice->setAudioloogStraat(settings.getStreet());
-    m_invoice->setAudioloogGemeente(QString::number(settings.getPostalCode()) + " " + settings.getCity());
-    m_invoice->setAudioloogTelefoon(settings.getTelephone());
-    m_invoice->setAudioloogGSM(settings.getMobilePhone());
-
-    m_invoice->setNummer(m_model.getFactuur().getNumber());
-    m_invoice->setDatum(m_model.getFactuur().getDate());
-    m_invoice->setVervalDatum(m_model.getFactuur().getExpirationDate());
-    m_invoice->setKortingPercentage(m_model.getFactuur().getReductionPercentage());
-    m_invoice->setBtwPercentage(m_model.getFactuur().getVATPercentage());
-    m_invoice->setCondities(m_model.getFactuur().getConditions());
-    m_invoice->setTekst(m_model.getFactuur().getText());
-
-    connect(m_invoice, SIGNAL(factuurSluiten()), this, SLOT(factuurSluiten()));
-    connect(m_invoice, SIGNAL(factuurBewaren()), this, SLOT(factuurBewaren()));
-}
-
 void File::briefArtsTonen()
 {
     // First make sure that we are fully up-to-date
@@ -321,44 +288,30 @@ void File::briefMutualiteitTonen()
 
 void File::showInvoice()
 {
-    if (!m_invoice)
+    // First make sure that we are fully up-to-date
+    teardown();
+    setup();
+
+    // Create a presenter and open the view
+    View::Invoice invoiceView(m_view.getParentWindow());
+    Invoice invoice(invoiceView, m_model.getInvoice());
+    invoice.setup();
+    if (invoiceView.exec() == QDialog::Accepted)
     {
-        m_invoice = new View::Factuur(m_view.getParentWindow());
+        invoice.teardown();
+        emit edited(m_model.getId());
     }
-
-    setupInvoice();
-    m_invoice->show();
-}
-
-void File::factuurSluiten()
-{
-    Q_ASSERT(m_invoice);
-    m_invoice->close();
-    m_invoice = 0;
-}
-
-void File::factuurBewaren()
-{
-    Q_ASSERT(m_invoice);
-    m_model.getFactuur().setNumber(m_invoice->getNummer());
-    m_model.getFactuur().setDate(m_invoice->getDatum());
-    m_model.getFactuur().setExpirationDate(m_invoice->getVervalDatum());
-    m_model.getFactuur().setReductionPercentage(m_invoice->getKortingPercentage());
-    m_model.getFactuur().setVATPercentage(m_invoice->getBtwPercentage());
-    m_model.getFactuur().setConditions(m_invoice->getCondities());
-    m_model.getFactuur().setText(m_invoice->getTekst());
-    emit edited(m_model.getId());
 }
 
 void File::showMeasurements()
 {
     // Create a presenter and open the view
-    View::Measurements meetgegevensView(m_view.getParentWindow());
-    Measurements meetgegevens(meetgegevensView, m_model.getMeetgegevens());
-    meetgegevens.setup();
-    if (meetgegevensView.exec() == QDialog::Accepted)
+    View::Measurements measurementsView(m_view.getParentWindow());
+    Measurements measurements(measurementsView, m_model.getMeasurements());
+    measurements.setup();
+    if (measurementsView.exec() == QDialog::Accepted)
     {
-        meetgegevens.teardown();
+        measurements.teardown();
         emit edited(m_model.getId());
     }
 }

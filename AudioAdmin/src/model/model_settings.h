@@ -1,5 +1,5 @@
-#ifndef _MODEL_INSTELLINGEN_H
-#define _MODEL_INSTELLINGEN_H
+#ifndef _MODEL_SETTINGS_H
+#define _MODEL_SETTINGS_H
 
 #include <QString>
 
@@ -13,7 +13,7 @@ namespace Model
     class Settings
     {
     public:
-        explicit Settings(const Universe &universum);
+        explicit Settings(const Universe &universe);
         virtual ~Settings();
 
         // --- ISerializable ---
@@ -28,11 +28,11 @@ namespace Model
         QString getTelephone() const { return m_telephone; }
         QString getMobilePhone() const { return m_mobilePhone; }
         QString getEmail() const { return m_email; }
-        QString getOnderschrift() const { return m_onderschrift; }
-        QString getRiziv() const { return m_riziv; }
-        int getVATPercentage() const { return m_btwPercentage; }
-        QString getBtwNummer() const { return m_btwNummer; }
-        QString getRekeningNummer() const { return m_rekeningNummer; }
+        QString getCaption() const { return m_caption; }
+        QString getNationalId() const { return m_nationalId; }
+        int getVATPercentage() const { return m_vatPercentage; }
+        QString getVATNumber() const { return m_vatNumber; }
+        QString getBankAccount() const { return m_bankAccount; }
 
         // --- Setters ---
         void setName(const QString &value) { m_name = value; }
@@ -42,15 +42,15 @@ namespace Model
         void setTelephone(const QString &value) { m_telephone = value; }
         void setMobilePhone(const QString &value) { m_mobilePhone = value; }
         void setEmail(const QString &value) { m_email = value; }
-        void setOnderschrift(const QString &value) { m_onderschrift = value; }
-        void setRiziv(const QString &value) { m_riziv = value; }
-        void setBtwPercentage(int value) { m_btwPercentage = value; }
-        void setBtwNummer(const QString &value) { m_btwNummer = value; }
-        void setRekeningNummer(const QString &value) { m_rekeningNummer = value; }
+        void setCaption(const QString &value) { m_caption = value; }
+        void setNationalId(const QString &value) { m_nationalId = value; }
+        void setVATPercentage(int value) { m_vatPercentage = value; }
+        void setVATNumber(const QString &value) { m_vatNumber = value; }
+        void setBankAccount(const QString &value) { m_bankAccount = value; }
 
     private:
         // --- Data members ---
-        const Universe &m_universum;
+        const Universe &m_universe;
         QString m_name;
         QString m_street;
         int m_postalCode;
@@ -58,12 +58,12 @@ namespace Model
         QString m_telephone;
         QString m_mobilePhone;
         QString m_email;
-        QString m_onderschrift;
-        QString m_riziv;
-        int m_btwPercentage;
-        QString m_btwNummer;
-        QString m_rekeningNummer;
+        QString m_caption;
+        QString m_nationalId;
+        int m_vatPercentage;
+        QString m_vatNumber;
+        QString m_bankAccount;
     };
 }
 
-#endif // _MODEL_INSTELLINGEN_H
+#endif // _MODEL_SETTINGS_H

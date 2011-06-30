@@ -1,5 +1,5 @@
-#ifndef _VIEW_INSTELLINGEN_H
-#define _VIEW_INSTELLINGEN_H
+#ifndef _VIEW_SETTINGS_H
+#define _VIEW_SETTINGS_H
 
 #include <QDialog>
 #include <QString>
@@ -15,18 +15,18 @@ namespace View
         virtual ~Settings();
 
         // --- Getters ---
-        QString getNaam() const;
-        QString getStraat() const;
-        int getPostcode() const;
-        QString getGemeente() const;
-        QString getTelefoon() const;
-        QString getGsm() const;
+        QString getName() const;
+        QString getStreet() const;
+        int getPostalCode() const;
+        QString getCity() const;
+        QString getTelephone() const;
+        QString getMobilePhone() const;
         QString getEmail() const;
-        QString getOnderschrift() const;
-        QString getRiziv() const;
-        int getBtwPercentage() const;
+        QString getCaption() const;
+        QString getNationalId() const;
+        int getVATPercentage() const;
         QString getVATNumber() const;
-        QString getRekeningNummer() const;
+        QString getBankAccount() const;
 
         // --- Setters ---
         void setName(const QString &value);
@@ -36,11 +36,11 @@ namespace View
         void setTelephone(const QString &value);
         void setMobilePhone(const QString &value);
         void setEmail(const QString &value);
-        void setOnderschrift(const QString &value);
-        void setRiziv(const QString &value);
+        void setCaption(const QString &value);
+        void setNationalId(const QString &value);
         void setVATPercentage(const int &value);
         void setVATNumber(const QString &value);
-        void setRekeningNummer(const QString &value);
+        void setBankAccount(const QString &value);
 
     private:
         // --- Data members ---
@@ -48,4 +48,4 @@ namespace View
     };
 }
 
-#endif // _VIEW_INSTELLINGEN_H
+#endif // _VIEW_SETTINGS_H

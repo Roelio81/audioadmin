@@ -1,4 +1,5 @@
 #include "model_invoice.h"
+#include "model_file.h"
 #include "model_settings.h"
 #include "model_universe.h"
 
@@ -8,12 +9,12 @@
 
 using namespace Model;
 
-Invoice::Invoice(const Universe &universe)
-    : m_universe(universe)
+Invoice::Invoice(const File &file)
+    : m_file(file)
     , m_date(QDate::currentDate())
     , m_expirationDate(QDate::currentDate().addMonths(1))
     , m_reductionPercentage(0.0)
-    , m_vatPercentage(universe.getSettings().getVATPercentage())
+    , m_vatPercentage(file.getUniverse().getSettings().getVATPercentage())
 {
 }
 

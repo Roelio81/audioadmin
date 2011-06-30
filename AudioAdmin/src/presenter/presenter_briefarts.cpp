@@ -28,12 +28,12 @@ void BriefArts::setup()
 {
     const Model::File &dossier = m_model.getFile();
     const Model::Customer &klant = dossier.getCustomer();
-    const Model::Settings &instellingen = dossier.getUniversum().getSettings();
+    const Model::Settings &instellingen = dossier.getUniverse().getSettings();
     bool klantIsMan = (klant.getTitle() == "Dhr.");
 
     m_view.setGreeting("Geachte dokter,");
-    Q_ASSERT(dossier.getArts() >= 0);
-    Model::Physician *arts = dossier.getUniversum().getPhysician(dossier.getArts());
+    Q_ASSERT(dossier.getPhysician() >= 0);
+    Model::Physician *arts = dossier.getUniverse().getPhysician(dossier.getPhysician());
     Q_ASSERT(arts);
     m_view.setAddresseeName(arts->getName() + " " + arts->getFirstName());
     m_view.setAddresseeStreet(arts->getStreet());
@@ -54,7 +54,7 @@ void BriefArts::setup()
         tekst = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
         tekst += (klantIsMan ? "mijnheer " : "mevrouw ") + klant.getName() + " " + klant.getFirstName();
         QDate geboorteDatum = klant.getDateOfBirth();
-        if (geboorteDatum != dossier.getUniversum().getInvalidDate())
+        if (geboorteDatum != dossier.getUniverse().getInvalidDate())
         {
             tekst += " (" + QString(char(0xb0)) + " " + geboorteDatum.toString("dd-MM-yyyy") + "). ";
         }
@@ -115,8 +115,8 @@ void BriefArts::teardown()
 void BriefArts::print()
 {
     const Model::File &dossier = m_model.getFile();
-    const Model::Physician *arts = dossier.getUniversum().getPhysician(dossier.getArts());
-    const Model::Settings &instellingen = dossier.getUniversum().getSettings();
+    const Model::Physician *arts = dossier.getUniverse().getPhysician(dossier.getPhysician());
+    const Model::Settings &instellingen = dossier.getUniverse().getSettings();
 
     QPrintDialog printDialog(&m_view);
     printDialog.setEnabledOptions(QAbstractPrintDialog::None);
@@ -145,10 +145,10 @@ void BriefArts::print()
         font.setBold(false);
         painter.setFont(font);
         int lineheight = painter.fontMetrics().height();
-        painter.drawText(hmar, vmar + (3*lineheight)/2, instellingen.getOnderschrift());
+        painter.drawText(hmar, vmar + (3*lineheight)/2, instellingen.getCaption());
         painter.drawText(hmar, vmar + (5*lineheight)/2, instellingen.getStreet());
         painter.drawText(hmar, vmar + (7*lineheight)/2, QString::number(instellingen.getPostalCode()) + " " + instellingen.getCity());
-        painter.drawText(hmar, vmar + (9*lineheight)/2, QString("Riziv: ") + instellingen.getRiziv());
+        painter.drawText(hmar, vmar + (9*lineheight)/2, QString("Riziv: ") + instellingen.getNationalId());
         painter.drawText(150*mmx, vmar + (5*lineheight)/2, QString("tel: ") + instellingen.getTelephone());
         painter.drawText(150*mmx, vmar + (7*lineheight)/2, QString("gsm: ") + instellingen.getMobilePhone());
         painter.drawText(150*mmx, vmar + (9*lineheight)/2, QString("e-mail: ") + instellingen.getEmail());
@@ -195,7 +195,7 @@ void BriefArts::print()
         y += lineheight;
 
         // Print tonale audiometrie
-        const Model::Measurements &meetgegevensModel = dossier.getMeetgegevens();
+        const Model::Measurements &meetgegevensModel = dossier.getMeasurements();
         View::Measurements meetgegevensView(0);
         meetgegevensView.setVisible(false);
         Presenter::Measurements meetgegevensPresenter(meetgegevensView, const_cast<Model::Measurements &>(meetgegevensModel));
