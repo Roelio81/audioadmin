@@ -27,11 +27,9 @@ namespace Presenter
         virtual ~Universe();
 
     private slots:
-        void afsluiten();
-        void bewaren();
-        void etiketten();
-        void afdrukkenEtiketten();
-        void annuleerEtiketten();
+        void exit();
+        void save();
+        void openLabels();
         void openSettings();
         void showPhysician(int id);
         void showFile(int id);
@@ -41,7 +39,7 @@ namespace Presenter
         void removeInsuranceCompany(int id);
         void addPhysician(QString voornaam, QString naam);
         void addFile(QString voornaam, QString naam);
-        void toevoegenMutualiteit(QString naam);
+        void addInsuranceCompany(QString naam);
         void editedPhysician(int id);
         void editedFile(int id);
         void editedInsuranceCompany(int id);
@@ -54,11 +52,6 @@ namespace Presenter
         void setupInsuranceCompany();
 
     private:
-        void setupEtiketten();
-        void setupSettings();
-        void teardownEtiketten();
-        void teardownSettings();
-
         void refreshPhysicianList();
         void refreshHoorapparatenLijst();
         void refreshKlantenLijst();

@@ -19,8 +19,8 @@ Universe::Universe(QWidget *parent, Qt::WFlags f)
 {
     m_ui.setupUi(this);
     connect(m_ui.actionBewaren, SIGNAL(triggered()), this, SIGNAL(saveSignal()));
-    connect(m_ui.actionEtikettenAfdrukken, SIGNAL(triggered()), this, SIGNAL(labelSignal()));
-    connect(m_ui.actionInstellingen_wijzigen, SIGNAL(triggered()), this, SLOT(settings()));
+    connect(m_ui.actionEtikettenAfdrukken, SIGNAL(triggered()), this, SIGNAL(openLabels()));
+    connect(m_ui.actionInstellingen_wijzigen, SIGNAL(triggered()), this, SIGNAL(openSettings()));
     connect(m_ui.actionOmtrent, SIGNAL(triggered()), this, SLOT(about()));
     connect(m_ui.m_artsenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selectPhysician(int, int, int, int)));
     connect(m_ui.m_klantenLijst, SIGNAL(currentCellChanged(int, int, int, int)), this, SLOT(selectCustomer(int, int, int, int)));
@@ -85,7 +85,7 @@ InsuranceCompany &Universe::getInsuranceCompany()
     return m_insuranceCompany;
 }
 
-Etiketten &Universe::getLabels()
+Labels &Universe::getLabels()
 {
     return m_labels;
 }
@@ -114,11 +114,6 @@ void Universe::tabChanged(int nieuweTab)
     }
 }
 
-void Universe::settings()
-{
-    emit openSettings();
-}
-
 void Universe::about()
 {
     QMessageBox::about(this, tr("About AudioAdmin"), tr("<p>AudioAdmin 2.0</p>"
@@ -126,7 +121,7 @@ void Universe::about()
                        "<p>June 2011</p>"));
 }
 
-void Universe::bewarenBijAfsluiten()
+void Universe::saveAtExit()
 {
     QMessageBox msgBox(this);
     msgBox.setText(tr("Not all changes were saved"));

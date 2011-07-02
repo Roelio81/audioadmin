@@ -1,5 +1,5 @@
-#ifndef _PRESENTER_ARTS_H
-#define _PRESENTER_ARTS_H
+#ifndef _PRESENTER_PHYSICIAN_H
+#define _PRESENTER_PHYSICIAN_H
 
 #include <QObject>
 
@@ -35,4 +35,4 @@ namespace Presenter
     };
 }
 
-#endif // _PRESENTER_ARTS_H
+#endif // _PRESENTER_PHYSICIAN_H

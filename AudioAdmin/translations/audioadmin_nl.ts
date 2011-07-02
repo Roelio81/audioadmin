@@ -110,28 +110,24 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Labels</name>
     <message>
-        <source>Het onderzoek moet gebeurd zijn na</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Plaats aanpassing moet de volgende zijn</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Opgelet: gelieve etiketten van het type 63,5 x 38,1 mm (21 stuks per vel) te gebruiken</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Annuleren</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Labels</source>
         <translation>Etiketten</translation>
     </message>
     <message>
-        <source>Print</source>
-        <translation>Afdrukken</translation>
+        <source>Tests done after:</source>
+        <translation>Onderzoek gebeurd na:</translation>
+    </message>
+    <message>
+        <source>Place adjustment:</source>
+        <translation>Plaats aanpassing:</translation>
+    </message>
+    <message>
+        <source>Attention: please use labels of the following type: 63,5 x 38,1 mm (21 pieces per A4 sheet)</source>
+        <translation>Opgelet: gelieve etiketten van het type 63,5 x 38,1 mm (21 stuks per vel) te gebruiken</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation>dd-MM-yyyy</translation>
     </message>
 </context>
 <context>

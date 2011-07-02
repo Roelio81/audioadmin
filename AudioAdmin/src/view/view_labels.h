@@ -1,29 +1,30 @@
-#ifndef _VIEW_ETIKETTEN_H
-#define _VIEW_ETIKETTEN_H
+#ifndef _VIEW_LABELS_H
+#define _VIEW_LABELS_H
 
-#include "ui_etiketten.h"
+#include "ui_labels.h"
 #include <QDate>
 #include <QDialog>
 #include <QStringList>
 
 namespace View
 {
-    class Etiketten : public QDialog, public Ui::Etiketten
+    class Labels : public QDialog
     {
     Q_OBJECT
     public:
-        explicit Etiketten(QWidget *parent = 0);
-        virtual ~Etiketten();
+        explicit Labels(QWidget *parent = 0);
+        virtual ~Labels();
 
-        void leegPlaatsenAanpassing();
-        void toevoegenPlaatsAanpassing(const QString &value);
-        void setDatumOnderzoek(const QDate &value);
-        void afdrukken();
+        void clearPlacesAdjustment();
+        void addPlaceAdjustment(const QString &value);
+        void setTestDate(const QDate &value);
+        void print();
 
     private:
         // --- Data members ---
-        QStringList m_plaatsenAanpassing;
+        QStringList m_placesAdjustment;
+        Ui::Labels m_ui;
     };
 }
 
-#endif // _VIEW_ETIKETTEN_H
+#endif // _VIEW_LABELS_H

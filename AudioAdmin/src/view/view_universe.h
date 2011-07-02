@@ -24,10 +24,10 @@ namespace View
         Physician &getPhysician();
         File &getFile();
         InsuranceCompany &getInsuranceCompany();
-        Etiketten &getLabels();
+        Labels &getLabels();
         Settings &getSettings();
 
-        void bewarenBijAfsluiten();
+        void saveAtExit();
         void clearPhysicianList();
         void addPhysician(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
         void changePhysician(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
@@ -71,7 +71,6 @@ namespace View
 
     private slots:
         void tabChanged(int newTab);
-        void settings();
         void about();
         void selectPhysician(int currentRow, int currentColumn, int previousRow, int previousColumn);
         void selectCustomer(int currentRow, int currentColumn, int previousRow, int previousColumn);
@@ -100,7 +99,7 @@ namespace View
         void mutualiteitSelectieSignal(int id);
         void mutualiteitVerwijderenSignal(int id);
         void mutualiteitToevoegenSignal(QString name);
-        void labelSignal();
+        void openLabels();
         void closeFileTab();
         void closePhysicianTab();
         void closeInsuranceCompanyTab();
@@ -122,7 +121,7 @@ namespace View
         Physician m_physician;
         File m_file;
         InsuranceCompany m_insuranceCompany;
-        Etiketten m_labels;
+        Labels m_labels;
         Settings m_settings;
         int m_currentTab;
     };

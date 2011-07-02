@@ -2,16 +2,13 @@
 #include "presenter_physician.h"
 #include "presenter_file.h"
 #include "presenter_insurancecompany.h"
+#include "presenter_labels.h"
+#include "presenter_settings.h"
 #include "../model/model_physician.h"
 #include "../model/model_file.h"
-#include "../model/model_settings.h"
 #include "../model/model_insurancecompany.h"
 #include "../model/model_universe.h"
 #include "../view/view_universe.h"
-
-#include <QPainter>
-#include <QPrinter>
-#include <QPrintDialog>
 
 using namespace Presenter;
 
@@ -26,9 +23,9 @@ Universe::Universe(View::Universe &view, Model::Universe &model)
 , m_insuranceCompany(0)
 , m_changed(false)
 {
-    connect(&m_view, SIGNAL(exitSignal()), this, SLOT(afsluiten()));
-    connect(&m_view, SIGNAL(saveSignal()), this, SLOT(bewaren()));
-    connect(&m_view, SIGNAL(labelSignal()), this, SLOT(etiketten()));
+    connect(&m_view, SIGNAL(exitSignal()), this, SLOT(exit()));
+    connect(&m_view, SIGNAL(saveSignal()), this, SLOT(save()));
+    connect(&m_view, SIGNAL(openLabels()), this, SLOT(openLabels()));
     connect(&m_view, SIGNAL(openSettings()), this, SLOT(openSettings()));
     connect(&m_view, SIGNAL(artsSelectieSignal(int)), this, SLOT(showPhysician(int)));
     connect(&m_view, SIGNAL(artsVerwijderenSignal(int)), this, SLOT(removePhysician(int)));
@@ -38,7 +35,7 @@ Universe::Universe(View::Universe &view, Model::Universe &model)
     connect(&m_view, SIGNAL(klantToevoegenSignal(QString, QString)), this, SLOT(addFile(QString, QString)));
     connect(&m_view, SIGNAL(mutualiteitSelectieSignal(int)), this, SLOT(showInsuranceCompany(int)));
     connect(&m_view, SIGNAL(mutualiteitVerwijderenSignal(int)), this, SLOT(removeInsuranceCompany(int)));
-    connect(&m_view, SIGNAL(mutualiteitToevoegenSignal(QString)), this, SLOT(toevoegenMutualiteit(QString)));
+    connect(&m_view, SIGNAL(mutualiteitToevoegenSignal(QString)), this, SLOT(addInsuranceCompany(QString)));
     connect(&m_view, SIGNAL(closeFileTab()), this, SLOT(teardownFile()));
     connect(&m_view, SIGNAL(closePhysicianTab()), this, SLOT(teardownPhysician()));
     connect(&m_view, SIGNAL(closeInsuranceCompanyTab()), this, SLOT(teardownInsuranceCompany()));
@@ -68,17 +65,16 @@ Universe::~Universe()
 {
 }
 
-void Universe::afsluiten()
+void Universe::exit()
 {
     teardownPhysician();
     teardownFile();
     teardownInsuranceCompany();
-    teardownSettings();
     if (m_changed)
-        m_view.bewarenBijAfsluiten();
+        m_view.saveAtExit();
 }
 
-void Universe::bewaren()
+void Universe::save()
 {
     m_model.save();
     m_view.setPhysicianListChanged(false);
@@ -87,95 +83,20 @@ void Universe::bewaren()
     m_changed = false;
 }
 
-void Universe::etiketten()
-{
-    setupEtiketten();
-    connect(m_view.getLabels().b_afdrukken, SIGNAL(clicked()), this, SLOT(afdrukkenEtiketten()));
-    connect(m_view.getLabels().b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerEtiketten()));
-    m_view.getLabels().exec();
-    disconnect(m_view.getLabels().b_afdrukken, SIGNAL(clicked()), this, SLOT(afdrukkenEtiketten()));
-    disconnect(m_view.getLabels().b_annuleren, SIGNAL(clicked()), this, SLOT(annuleerEtiketten()));
-}
-
-void Universe::afdrukkenEtiketten()
-{
-    teardownEtiketten();
-    m_view.getLabels().hide();
-    QPrintDialog printDialog(&m_view);
-    if (printDialog.exec() != QDialog::Accepted)
-        return;
-
-    if (QPrinter *printer = printDialog.printer())
-    {
-        QPainter painter(printer);
-
-    }
-}
-
-void Universe::annuleerEtiketten()
-{
-    m_view.getLabels().hide();
-}
-
 void Universe::openSettings()
 {
-    setupSettings();
+    Settings settings(m_view.getSettings(), m_model.getSettings());
+    settings.setup();
     if (m_view.getSettings().exec() == QDialog::Accepted)
-        teardownSettings();
+        settings.teardown();
 }
 
-void Universe::setupEtiketten()
+void Universe::openLabels()
 {
-    View::Etiketten &viewEtiketten = m_view.getLabels();
-    viewEtiketten.leegPlaatsenAanpassing();
-    const QVector<Model::File *> &dossiers = m_model.getFiles();
-    for (QVector<Model::File *>::const_iterator itDossier = dossiers.begin(); itDossier != dossiers.end(); ++itDossier)
-    {
-        Model::File *dossier = *itDossier;
-        Q_ASSERT(dossier);
-        viewEtiketten.toevoegenPlaatsAanpassing(dossier->getPlaceAdjustment());
-    }
-    viewEtiketten.setDatumOnderzoek(QDate::currentDate().addYears(-2));
-}
-
-void Universe::setupSettings()
-{
-    Model::Settings &modelSettings = m_model.getSettings();
-    View::Settings &viewSettings = m_view.getSettings();
-    viewSettings.setName(modelSettings.getName());
-    viewSettings.setStreet(modelSettings.getStreet());
-    viewSettings.setPostalCode(modelSettings.getPostalCode());
-    viewSettings.setCity(modelSettings.getCity());
-    viewSettings.setTelephone(modelSettings.getTelephone());
-    viewSettings.setMobilePhone(modelSettings.getMobilePhone());
-    viewSettings.setEmail(modelSettings.getEmail());
-    viewSettings.setCaption(modelSettings.getCaption());
-    viewSettings.setNationalId(modelSettings.getNationalId());
-    viewSettings.setVATPercentage(modelSettings.getVATPercentage());
-    viewSettings.setVATNumber(modelSettings.getVATNumber());
-    viewSettings.setBankAccount(modelSettings.getBankAccount());
-}
-
-void Universe::teardownEtiketten()
-{
-}
-
-void Universe::teardownSettings()
-{
-    Model::Settings &modelSettings = m_model.getSettings();
-    View::Settings &viewSettings = m_view.getSettings();
-    modelSettings.setName(viewSettings.getName());
-    modelSettings.setStreet(viewSettings.getStreet());
-    modelSettings.setPostalCode(viewSettings.getPostalCode());
-    modelSettings.setCity(viewSettings.getCity());
-    modelSettings.setTelephone(viewSettings.getTelephone());
-    modelSettings.setMobilePhone(viewSettings.getMobilePhone());
-    modelSettings.setEmail(viewSettings.getEmail());
-    modelSettings.setCaption(viewSettings.getCaption());
-    modelSettings.setNationalId(viewSettings.getNationalId());
-    modelSettings.setVATPercentage(viewSettings.getVATPercentage());
-    modelSettings.setVATNumber(viewSettings.getVATNumber());
-    modelSettings.setBankAccount(viewSettings.getBankAccount());
+    Labels labels(m_view.getLabels(), m_model);
+    labels.setup();
+    if (m_view.getLabels().exec() == QDialog::Accepted)
+        labels.teardown();
 }
 
 void Universe::refreshPhysicianList()
@@ -306,7 +227,7 @@ void Universe::addFile(QString firstName, QString name)
     m_changed = true;
 }
 
-void Universe::toevoegenMutualiteit(QString naam)
+void Universe::addInsuranceCompany(QString naam)
 {
     Model::InsuranceCompany *insuranceCompany = m_model.addInsuranceCompany(naam);
     Q_ASSERT(insuranceCompany);

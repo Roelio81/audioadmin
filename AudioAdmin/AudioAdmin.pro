@@ -38,7 +38,9 @@ HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
     src/presenter/presenter_measurements.h \
     src/presenter/presenter_insurancecompany.h \
     src/model/model_insurancecompany.h \
-    src/presenter/presenter_invoice.h
+    src/presenter/presenter_invoice.h \
+    src/presenter/presenter_labels.h \
+    src/presenter/presenter_settings.h
 MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml
@@ -74,7 +76,9 @@ SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
     src/view/view_settings.cpp \
     src/view/view_insurancecompany.cpp \
     src/presenter/presenter_invoice.cpp \
-    src/view/view_measurements.cpp
+    src/view/view_measurements.cpp \
+    src/presenter/presenter_labels.cpp \
+    src/presenter/presenter_settings.cpp
 TEMPLATE = app
 UI_DIR = build
 TRANSLATIONS = translations/audioadmin_nl.ts

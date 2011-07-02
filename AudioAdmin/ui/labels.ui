@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>436</width>
-    <height>196</height>
+    <width>456</width>
+    <height>168</height>
    </rect>
   </property>
   <property name="contextMenuPolicy">
@@ -36,24 +36,28 @@
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
-      <widget class="QCheckBox" name="c_onderzoekNa">
+      <widget class="QCheckBox" name="c_testsAfter">
        <property name="text">
-        <string>Het onderzoek moet gebeurd zijn na</string>
+        <string>Tests done after:</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QDateEdit" name="m_onderzoekNa"/>
+      <widget class="QDateEdit" name="m_testsAfter">
+       <property name="displayFormat">
+        <string>yyyy-MM-dd</string>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QCheckBox" name="c_plaats">
+      <widget class="QCheckBox" name="c_placeAdjustment">
        <property name="text">
-        <string>Plaats aanpassing moet de volgende zijn</string>
+        <string>Place adjustment:</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QComboBox" name="m_plaats">
+      <widget class="QComboBox" name="m_placeAdjustment">
        <property name="editable">
         <bool>true</bool>
        </property>
@@ -78,47 +82,56 @@
     </spacer>
    </item>
    <item>
-    <widget class="QLabel" name="l_opgelet">
+    <widget class="QLabel" name="l_attention">
      <property name="text">
-      <string>Opgelet: gelieve etiketten van het type 63,5 x 38,1 mm (21 stuks per vel) te gebruiken</string>
+      <string>Attention: please use labels of the following type: 63,5 x 38,1 mm (21 pieces per A4 sheet)</string>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="b_afdrukken">
-       <property name="text">
-        <string>Print</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="b_annuleren">
-       <property name="text">
-        <string>Annuleren</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
  <resources>
   <include location="../icons.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>Labels</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>227</x>
+     <y>175</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>227</x>
+     <y>97</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>Labels</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>227</x>
+     <y>175</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>227</x>
+     <y>97</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
