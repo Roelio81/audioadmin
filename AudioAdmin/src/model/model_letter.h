@@ -21,10 +21,11 @@ namespace Model
         virtual QDomElement toDomElement(QDomDocument &d) const;
 
         // --- Getters ---
-        const File &getFile() { return m_file; }
+        const File &getFile() const { return m_file; }
         QString getPostalDate() const { return m_postalDate; }
         QString getText() const { return m_text; }
         QString getConclusion() const { return m_conclusion; }
+        bool hasConclusion() const { return m_hasConclusion; }
 
         // --- Setters ---
         void setPostalDate(const QString &value) { m_postalDate = value; }

@@ -1,7 +1,7 @@
-#ifndef _PRESENTER_DOSSIER_H
-#define _PRESENTER_DOSSIER_H
+#ifndef _PRESENTER_FILE_H
+#define _PRESENTER_FILE_H
 
-#include <QObject>
+#include "presenter_customer.h"
 
 namespace View
 {
@@ -30,6 +30,7 @@ namespace Presenter
         void edited(int id);
 
     private slots:
+        void customerEdited();
         void showLetterPhysician();
         void showLetterCustomer();
         void showLetterInsuranceCompany();
@@ -40,7 +41,8 @@ namespace Presenter
         // --- Data members ---
         View::File &m_view;
         Model::File &m_model;
+        Customer m_customer;
     };
 }
 
-#endif // _PRESENTER_DOSSIER_H
+#endif // _PRESENTER_FILE_H

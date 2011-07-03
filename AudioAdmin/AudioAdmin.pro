@@ -10,9 +10,6 @@ FORMS = \
     ui/settings.ui
 HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
  ../AudioPlugin/src/vocaleaudiometriewidget.h \
-    src/presenter/presenter_briefklant.h \
-    src/presenter/presenter_briefmutualiteit.h \
-    src/presenter/presenter_briefarts.h \
     src/view/view_adddialog.h \
     src/view/view_letter.h \
     src/model/model_file.h \
@@ -40,7 +37,13 @@ HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
     src/model/model_insurancecompany.h \
     src/presenter/presenter_invoice.h \
     src/presenter/presenter_labels.h \
-    src/presenter/presenter_settings.h
+    src/presenter/presenter_settings.h \
+    src/presenter/presenter_letter.h \
+    src/presenter/presenter_letterphysician.h \
+    src/presenter/presenter_customer.h \
+    src/view/view_customer.h \
+    src/presenter/presenter_letterinsurancecompany.h \
+    src/presenter/presenter_lettercustomer.h
 MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml
@@ -48,9 +51,6 @@ RESOURCES += icons.qrc
 SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
  ../AudioPlugin/src/vocaleaudiometriewidget.cpp \
  src/main.cpp \
-    src/presenter/presenter_briefklant.cpp \
-    src/presenter/presenter_briefmutualiteit.cpp \
-    src/presenter/presenter_briefarts.cpp \
     src/view/view_adddialog.cpp \
     src/view/view_letter.cpp \
     src/model/model_file.cpp \
@@ -78,7 +78,13 @@ SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
     src/presenter/presenter_invoice.cpp \
     src/view/view_measurements.cpp \
     src/presenter/presenter_labels.cpp \
-    src/presenter/presenter_settings.cpp
+    src/presenter/presenter_settings.cpp \
+    src/presenter/presenter_letter.cpp \
+    src/presenter/presenter_letterphysician.cpp \
+    src/presenter/presenter_customer.cpp \
+    src/view/view_customer.cpp \
+    src/presenter/presenter_letterinsurancecompany.cpp \
+    src/presenter/presenter_lettercustomer.cpp
 TEMPLATE = app
 UI_DIR = build
 TRANSLATIONS = translations/audioadmin_nl.ts

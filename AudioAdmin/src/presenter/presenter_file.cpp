@@ -1,7 +1,7 @@
 #include "presenter_file.h"
-#include "presenter_briefarts.h"
-#include "presenter_briefklant.h"
-#include "presenter_briefmutualiteit.h"
+#include "presenter_letterphysician.h"
+#include "presenter_lettercustomer.h"
+#include "presenter_letterinsurancecompany.h"
 #include "presenter_invoice.h"
 #include "presenter_measurements.h"
 #include "../model/model_file.h"
@@ -15,6 +15,7 @@ using namespace Presenter;
 File::File(View::File &view, Model::File &model)
 : m_view(view)
 , m_model(model)
+, m_customer(view.getCustomer(), model.getCustomer())
 {
     connect(&m_view, SIGNAL(showLetterPhysician()), this, SLOT(showLetterPhysician()));
     connect(&m_view, SIGNAL(showLetterCustomer()), this, SLOT(showLetterCustomer()));
@@ -29,19 +30,9 @@ File::~File()
 
 void File::setup()
 {
-    Model::Customer &customerModel = m_model.getCustomer();
-    m_view.clearTitles();
-    m_view.addTitle("Dhr.");
-    m_view.addTitle("Mevr.");
-    m_view.setTitle(customerModel.getTitle());
-    m_view.setName(customerModel.getName());
-    m_view.setFirstName(customerModel.getFirstName());
-    m_view.setStreet(customerModel.getStreet());
-    m_view.setPostalCode(customerModel.getPostalCode());
-    m_view.setCity(customerModel.getCity());
-    m_view.setTelephone(customerModel.getTelephone());
-    m_view.setDateOfBirth(customerModel.getDateOfBirth());
-    m_view.setComments(customerModel.getComments());
+    m_customer.setup();
+    connect(&m_customer, SIGNAL(edited()), this, SLOT(customerEdited()));
+
     m_view.setInsuranceCompany(m_model.getInsuranceCompany());
     m_view.setMemberNumber(m_model.getMemberNumber());
     m_view.setPlaceAdjustment(m_model.getPlaceAdjustment());
@@ -67,53 +58,12 @@ void File::setup()
 
 void File::teardown()
 {
+    // Tear down the customer (in case it is changed we will receive a notification and emit the edited signal)
+    m_customer.teardown();
+    disconnect(&m_customer, SIGNAL(edited()), this, SLOT(customerEdited()));
+
+    // Tear down the other fields of the file (remember changes, we will emit the edited signal)
     bool changed = false;
-    Model::Customer &customerModel = m_model.getCustomer();
-    if (customerModel.getTitle() != m_view.getTitle())
-    {
-        customerModel.setTitle(m_view.getTitle());
-        changed = true;
-    }
-    if (customerModel.getName() != m_view.getName())
-    {
-        customerModel.setName(m_view.getName());
-        changed = true;
-    }
-    if (customerModel.getFirstName() != m_view.getFirstName())
-    {
-        customerModel.setVoornaam(m_view.getFirstName());
-        changed = true;
-    }
-    if (customerModel.getStreet() != m_view.getStreet())
-    {
-        customerModel.setStreet(m_view.getStreet());
-        changed = true;
-    }
-    if (customerModel.getPostalCode() != m_view.getPostalCode())
-    {
-        customerModel.setPostalCode(m_view.getPostalCode());
-        changed = true;
-    }
-    if (customerModel.getCity() != m_view.getCity())
-    {
-        customerModel.setCity(m_view.getCity());
-        changed = true;
-    }
-    if (customerModel.getTelephone() != m_view.getTelephone())
-    {
-        customerModel.setTelephone(m_view.getTelephone());
-        changed = true;
-    }
-    if (customerModel.getDateOfBirth() != m_view.getDateOfBirth())
-    {
-        customerModel.setGeboorteDatum(m_view.getDateOfBirth());
-        changed = true;
-    }
-    if (customerModel.getComments() != m_view.getComments())
-    {
-        customerModel.setComments(m_view.getComments());
-        changed = true;
-    }
     if (m_model.getInsuranceCompany() != m_view.getInsuranceCompany())
     {
         m_model.setInsuranceCompany(m_view.getInsuranceCompany());
@@ -224,6 +174,11 @@ void File::teardown()
         emit edited(m_model.getId());
 }
 
+void File::customerEdited()
+{
+    emit edited(m_model.getId());
+}
+
 void File::showLetterPhysician()
 {
     // First make sure that we are fully up-to-date
@@ -232,7 +187,7 @@ void File::showLetterPhysician()
 
     // Create a presenter and open the view
     View::Letter letterPhysicianView(true, m_view.getParentWindow());
-    BriefArts letterPhysician(letterPhysicianView, m_model.getLetterPhysician());
+    LetterPhysician letterPhysician(letterPhysicianView, m_model.getLetterPhysician());
     letterPhysician.setup();
     if (letterPhysicianView.exec() == QDialog::Accepted)
     {
@@ -249,7 +204,7 @@ void File::showLetterCustomer()
 
     // Create a presenter and open the view
     View::Letter letterCustomerView(false, m_view.getParentWindow());
-    BriefKlant letterCustomer(letterCustomerView, m_model.getLetterCustomer());
+    LetterCustomer letterCustomer(letterCustomerView, m_model.getLetterCustomer());
     letterCustomer.setup();
     if (letterCustomerView.exec() == QDialog::Accepted)
     {
@@ -266,7 +221,7 @@ void File::showLetterInsuranceCompany()
 
     // Create a presenter and open the view
     View::Letter letterInsuranceCompanyView(true, m_view.getParentWindow());
-    BriefMutualiteit letterInsuranceCompany(letterInsuranceCompanyView, m_model.getLetterInsuranceCompany());
+    LetterInsuranceCompany letterInsuranceCompany(letterInsuranceCompanyView, m_model.getLetterInsuranceCompany());
     letterInsuranceCompany.setup();
     if (letterInsuranceCompanyView.exec() == QDialog::Accepted)
     {

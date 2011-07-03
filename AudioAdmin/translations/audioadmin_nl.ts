@@ -189,14 +189,6 @@ p, li { white-space: pre-wrap; }
         <translation>Meetgegevens</translation>
     </message>
     <message>
-        <source>Tonale audiometrie</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tonale audiometrie rechts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>L.G.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -211,14 +203,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>...</source>
         <translation>...</translation>
-    </message>
-    <message>
-        <source>Tonale audiometrie links</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Vocale audiometrie</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Zonder hoorapparaat (onder koptelefoon)</source>
@@ -241,10 +225,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Resultaten</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Prothetische winst</source>
         <translation type="unfinished"></translation>
     </message>
@@ -262,14 +242,6 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Met apparaat&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Winst&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -297,16 +269,154 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Annuleren</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Average loss (in dB)</source>
         <translation>Gemiddeld verlies (in dB)</translation>
+    </message>
+    <message>
+        <source>Pure tone audiometry</source>
+        <translation>Tonale audiometrie</translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation>Rechts</translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation>Links</translation>
+    </message>
+    <message>
+        <source>Speech audiometry</source>
+        <translation>Vocale audiometrie</translation>
+    </message>
+    <message>
+        <source>Results</source>
+        <translation>Resultaten</translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline;&quot;&gt;Gain&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline;&quot;&gt;Winst&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>Presenter::Customer</name>
+    <message>
+        <source>Mr.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mrs.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Presenter::Letter</name>
+    <message>
+        <source>In case you still have questions, you can reach me at the number at the header.</source>
+        <translation>Indien u nog vragen hebt, kan u mij bereiken op bovenstaand nummer.</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation>dd-MM-yyyy</translation>
+    </message>
+    <message>
+        <source>Conclusion:</source>
+        <translation>Besluit:</translation>
+    </message>
+    <message>
+        <source>Kind regards,</source>
+        <translation>Met vriendelijke groeten,</translation>
+    </message>
+    <message>
+        <source>Test results:</source>
+        <translation>Testresultaten:</translation>
+    </message>
+    <message>
+        <source>Localization tests</source>
+        <translation>Localisatie testen</translation>
+    </message>
+    <message>
+        <source>Nat.ID: </source>
+        <translation>Riziv: </translation>
+    </message>
+    <message>
+        <source>tel.: </source>
+        <translation>tel: </translation>
+    </message>
+    <message>
+        <source>mobile: </source>
+        <translation>gsm: </translation>
+    </message>
+    <message>
+        <source>email: </source>
+        <translation>e-mail: </translation>
+    </message>
+    <message>
+        <source>Pure tone audiometry: right</source>
+        <translation>Tonale audiometrie rechts</translation>
+    </message>
+    <message>
+        <source>Pure tone audiometry: left</source>
+        <translation>Tonale audiometrie links</translation>
+    </message>
+    <message>
+        <source>Speech audiometry without hearing aid</source>
+        <translation>Vocale audiometrie zonder hoorapparaat</translation>
+    </message>
+    <message>
+        <source>Speech audiometry with hearing aid</source>
+        <translation>Vocale audiometrie met hoorapparaat</translation>
+    </message>
+    <message>
+        <source>Prosthetic gain</source>
+        <translation>Prothetische winst</translation>
+    </message>
+    <message>
+        <source>- H.A.</source>
+        <translation>- H.A.</translation>
+    </message>
+    <message>
+        <source>+ H.A.</source>
+        <translation>+ H.A.</translation>
+    </message>
+    <message>
+        <source>gain</source>
+        <translation>winst</translation>
+    </message>
+    <message>
+        <source>right</source>
+        <translation>rechts</translation>
+    </message>
+    <message>
+        <source>left</source>
+        <translation>links</translation>
+    </message>
+    <message>
+        <source>bilateral</source>
+        <translation>bilateraal</translation>
+    </message>
+    <message>
+        <source>Without hearing aids</source>
+        <translation>Zonder apparaten</translation>
+    </message>
+    <message>
+        <source>With 1 hearing aid (right)</source>
+        <translation>Met 1 apparaat (rechts)</translation>
+    </message>
+    <message>
+        <source>With 1 hearing aid (left)</source>
+        <translation>Met 1 apparaat (links)</translation>
+    </message>
+    <message>
+        <source>With 2 hearing aids</source>
+        <translation>Met 2 apparaten</translation>
     </message>
 </context>
 <context>

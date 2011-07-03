@@ -39,9 +39,6 @@ void Measurements::setup()
     m_view.setLocalisatieRechts(m_model.getLocalisatieRechts());
     m_view.setLocalisatieLinks(m_model.getLocalisatieLinks());
     m_view.setLocalisatieBeide(m_model.getLocalisatieBeide());
-
-    connect(m_view.b_ok, SIGNAL(clicked()), &m_view, SLOT(accept()));
-    connect(m_view.b_annuleren, SIGNAL(clicked()), &m_view, SLOT(reject()));
 }
 
 void Measurements::teardown()
@@ -69,7 +66,4 @@ void Measurements::teardown()
     m_model.setLocalisatieRechts(m_view.getLocalisatieRechts());
     m_model.setLocalisatieLinks(m_view.getLocalisatieLinks());
     m_model.setLocalisatieBeide(m_view.getLocalisatieBeide());
-
-    disconnect(m_view.b_ok, SIGNAL(clicked()), &m_view, SLOT(accept()));
-    disconnect(m_view.b_annuleren, SIGNAL(clicked()), &m_view, SLOT(reject()));
 }

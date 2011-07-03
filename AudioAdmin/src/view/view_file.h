@@ -1,6 +1,7 @@
 #ifndef _VIEW_FILE_H
 #define _VIEW_FILE_H
 
+#include "view_customer.h"
 #include <QStandardItemModel>
 #include <QMap>
 #include <QObject>
@@ -24,8 +25,6 @@ namespace View
 
         QWidget *getParentWindow();
 
-        void clearTitles();
-        void addTitle(const QString &value);
         void clearPhysicianList();
         void addPhysician(int id, const QString &naam, const QString &straat, const QString &gemeente);
         void changePhysician(int id, const QString &naam, const QString &straat, const QString &gemeente);
@@ -34,18 +33,11 @@ namespace View
         void changeInsruanceCompany(int id, const QString &naam);
 
         // --- Getters ---
-        QString getTitle() const;
-        QString getName() const;
-        QString getFirstName() const;
-        QString getStreet() const;
-        int getPostalCode() const;
-        QString getCity() const;
-        QString getTelephone() const;
-        QDate getDateOfBirth() const;
+        Customer &getCustomer() { return m_customer; }
+        Universe &getUniverse() { return m_universe; }
         int getInsuranceCompany() const;
         QString getMemberNumber() const;
         QString getPlaceAdjustment() const;
-        QString getComments() const;
         int getPhysician() const;
         QString getRightHearingAidBrand() const;
         QString getRightHearingAidType() const;
@@ -66,18 +58,9 @@ namespace View
         QDate getMaintenanceContractDate() const;
 
         // --- Setters ---
-        void setTitle(const QString &value);
-        void setName(const QString &value);
-        void setFirstName(const QString &value);
-        void setStreet(const QString &value);
-        void setPostalCode(int value);
-        void setCity(const QString &value);
-        void setTelephone(const QString &value);
-        void setDateOfBirth(const QDate &value);
         void setInsuranceCompany(int value);
         void setMemberNumber(const QString &value);
         void setPlaceAdjustment(const QString &value);
-        void setComments(const QString &value);
         void setPhysician(int value);
         void setRightHearingAidBrand(const QString &value);
         void setRightHearingAidType(const QString &value);
@@ -116,6 +99,7 @@ namespace View
         Ui::Universe &m_ui;
         QStandardItemModel m_physicianList;
         QStandardItemModel m_insuranceCompanyList;
+        Customer m_customer;
     };
 }
 

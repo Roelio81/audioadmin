@@ -1,12 +1,12 @@
-#ifndef _VIEW_MEETGEGEVENS_H
-#define _VIEW_MEETGEGEVENS_H
+#ifndef _VIEW_MEASUREMENTS_H
+#define _VIEW_MEASUREMENTS_H
 
 #include <QDialog>
-#include "ui_meetgegevens.h"
+#include "ui_measurements.h"
 
 namespace View
 {
-    class Measurements : public QDialog, public Ui::Meetgegevens
+    class Measurements : public QDialog
     {
     Q_OBJECT
     public:
@@ -77,7 +77,10 @@ namespace View
         void herberekenROWinst();
         void herberekenLOWinst();
         void herberekenROLOWinst();
+
+        // --- Data members ---
+        Ui::Measurements m_ui;
     };
 }
 
-#endif // _VIEW_MEETGEGEVENS_H
+#endif // _VIEW_MEASUREMENTS_H

@@ -8,6 +8,7 @@ using namespace Model;
 
 Customer::Customer(const Universe &universe)
     : m_universe(universe)
+    , m_title(MR)
     , m_dateOfBirth(universe.getInvalidDate())
 {
 }
@@ -22,7 +23,12 @@ void Customer::fromDomElement(const QDomElement &e)
     {
         if (element.tagName() == "title")
         {
-            m_title = element.text();
+            if (element.text() == "mr.")
+                m_title = MR;
+            else if (element.text() == "mrs.")
+                m_title = MRS;
+            else
+                Q_ASSERT(false);    // Incorrect title!
         }
         else if (element.tagName() == "firstName")
         {
@@ -43,9 +49,19 @@ QDomElement Customer::toDomElement(QDomDocument &d) const
     QDomElement voornaam = d.createElement("firstName");
     voornaam.appendChild(d.createTextNode(m_firstName));
     result.insertAfter(voornaam, result.firstChildElement("name"));
-    QDomElement aanspreektitel = d.createElement("title");
-    aanspreektitel.appendChild(d.createTextNode(m_title));
-    result.insertAfter(aanspreektitel, result.firstChildElement("firstName"));
+    QString titleString;
+    switch (m_title)
+    {
+    case MR:
+        titleString = "mr.";
+        break;
+    case MRS:
+        titleString = "mrs.";
+        break;
+    }
+    QDomElement title = d.createElement("title");
+    title.appendChild(d.createTextNode(titleString));
+    result.insertAfter(title, result.firstChildElement("firstName"));
     if (m_dateOfBirth != m_universe.getInvalidDate())
     {
         QDomElement geboorteDatum = d.createElement("dateOfBirth");

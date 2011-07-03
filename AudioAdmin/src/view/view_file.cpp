@@ -13,6 +13,7 @@ namespace
 File::File(Universe &universe)
 : m_universe(universe)
 , m_ui(universe.getUi())
+, m_customer(*this)
 {
 }
 
@@ -23,16 +24,6 @@ File::~File()
 QWidget *File::getParentWindow()
 {
     return &m_universe;
-}
-
-void File::clearTitles()
-{
-    m_ui.m_aanspreektitel->clear();
-}
-
-void File::addTitle(const QString &value)
-{
-    m_ui.m_aanspreektitel->addItem(value);
 }
 
 void File::clearPhysicianList()
@@ -103,46 +94,6 @@ void File::changeInsruanceCompany(int id, const QString &name)
     Q_ASSERT(false);
 }
 
-QString File::getTitle() const
-{
-    return m_ui.m_aanspreektitel->currentText();
-}
-
-QString File::getName() const
-{
-    return m_ui.m_klantNaam->text();
-}
-
-QString File::getFirstName() const
-{
-    return m_ui.m_klantVoornaam->text();
-}
-
-QString File::getStreet() const
-{
-    return m_ui.m_klantStraat->text();
-}
-
-int File::getPostalCode() const
-{
-    return m_ui.m_klantPostcode->value();
-}
-
-QString File::getCity() const
-{
-    return m_ui.m_klantGemeente->text();
-}
-
-QString File::getTelephone() const
-{
-    return m_ui.m_klantTelefoon->text();
-}
-
-QDate File::getDateOfBirth() const
-{
-    return m_ui.m_klantGeboorteDatum->date();
-}
-
 int File::getInsuranceCompany() const
 {
     int index = m_ui.m_klantMutualiteit->currentIndex();
@@ -157,11 +108,6 @@ QString File::getMemberNumber() const
 QString File::getPlaceAdjustment() const
 {
     return m_ui.m_plaatsAanpassing->text();
-}
-
-QString File::getComments() const
-{
-    return m_ui.m_klantOpmerkingen->toPlainText();
 }
 
 int File::getPhysician() const
@@ -256,50 +202,6 @@ QDate File::getMaintenanceContractDate() const
     return m_ui.m_datumOnderhoudsContract->date();
 }
 
-void File::setTitle(const QString &value)
-{
-    int index = value.isEmpty() ? 0 : m_ui.m_aanspreektitel->findText(value);
-    Q_ASSERT(index >= 0);
-    m_ui.m_aanspreektitel->setCurrentIndex(index);
-}
-
-void File::setName(const QString &value)
-{
-    m_ui.m_klantNaam->setText(value);
-    m_ui.b_meetgegevens->setEnabled(value != "");
-    m_ui.b_klantBrief->setEnabled(value != "");
-}
-
-void File::setFirstName(const QString &value)
-{
-    m_ui.m_klantVoornaam->setText(value);
-}
-
-void File::setStreet(const QString &value)
-{
-    m_ui.m_klantStraat->setText(value);
-}
-
-void File::setPostalCode(int value)
-{
-    m_ui.m_klantPostcode->setValue(value);
-}
-
-void File::setCity(const QString &value)
-{
-    m_ui.m_klantGemeente->setText(value);
-}
-
-void File::setTelephone(const QString &value)
-{
-    m_ui.m_klantTelefoon->setText(value);
-}
-
-void File::setDateOfBirth(const QDate &value)
-{
-    m_ui.m_klantGeboorteDatum->setDate(value);
-}
-
 void File::setInsuranceCompany(int id)
 {
     for (int iRow = 0; iRow < m_insuranceCompanyList.rowCount(); ++iRow)
@@ -324,11 +226,6 @@ void File::setMemberNumber(const QString &value)
 void File::setPlaceAdjustment(const QString &value)
 {
     m_ui.m_plaatsAanpassing->setText(value);
-}
-
-void File::setComments(const QString &value)
-{
-    m_ui.m_klantOpmerkingen->setPlainText(value);
 }
 
 void File::setPhysician(int id)

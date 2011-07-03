@@ -1,5 +1,5 @@
-#ifndef _MODEL_UNIVERSUM_H
-#define _MODEL_UNIVERSUM_H
+#ifndef _MODEL_UNIVERSE_H
+#define _MODEL_UNIVERSE_H
 
 #include <QDate>
 #include <QMap>
@@ -60,4 +60,4 @@ namespace Model
     };
 }
 
-#endif // _MODEL_UNIVERSUM_H
+#endif // _MODEL_UNIVERSE_H

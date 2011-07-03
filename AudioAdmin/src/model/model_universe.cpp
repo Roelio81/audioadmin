@@ -196,7 +196,7 @@ File *Universe::addFile(const QString &voornaam, const QString &naam)
         maxId = std::max(maxId, dossier->getId());
     }
     File *dossier = new File(maxId+1, *this);
-    dossier->getCustomer().setVoornaam(voornaam);
+    dossier->getCustomer().setFirstName(voornaam);
     dossier->getCustomer().setName(naam);
     m_files.push_back(dossier);
     return dossier;

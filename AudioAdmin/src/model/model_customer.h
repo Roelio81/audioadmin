@@ -18,24 +18,27 @@ namespace Model
         explicit Customer(const Universe &universe);
         virtual ~Customer();
 
+        // Possible titles
+        enum Title { MR, MRS };
+
         // --- ISerializable ---
         virtual void fromDomElement(const QDomElement &e);
         virtual QDomElement toDomElement(QDomDocument &d) const;
 
         // --- Getters ---
-        QString getTitle() const { return m_title; }
+        Title getTitle() const { return m_title; }
         QString getFirstName() const { return m_firstName; }
         QDate getDateOfBirth() const { return m_dateOfBirth; }
 
         // --- Setters ---
-        void setTitle(const QString &value) { m_title = value; }
-        void setVoornaam(const QString &value) { m_firstName = value; }
-        void setGeboorteDatum(const QDate &value) { m_dateOfBirth = value; }
+        void setTitle(const Title &value) { m_title = value; }
+        void setFirstName(const QString &value) { m_firstName = value; }
+        void setDateOfBirth(const QDate &value) { m_dateOfBirth = value; }
 
     private:
         // --- Data members ---
         const Universe &m_universe;
-        QString m_title;
+        Title m_title;
         QString m_firstName;
         QDate m_dateOfBirth;
     };
