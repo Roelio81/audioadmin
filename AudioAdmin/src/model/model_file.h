@@ -58,8 +58,8 @@ namespace Model
         const Invoice &getInvoice() const { return m_invoice; }
         Customer &getCustomer() { return m_customer; }
         const Customer &getCustomer() const { return m_customer; }
-        Measurements &getMeasurements() { return m_meetgegevens; }
-        const Measurements &getMeasurements() const { return m_meetgegevens; }
+        Measurements &getMeasurements() { return m_measurements; }
+        const Measurements &getMeasurements() const { return m_measurements; }
 
         // --- Setters ---
         void setPhysician(int value) { m_physician = value; }
@@ -114,7 +114,7 @@ namespace Model
         Letter m_letterInsuranceCompany;
         Invoice m_invoice;
         Customer m_customer;
-        Measurements m_meetgegevens;
+        Measurements m_measurements;
     };
 }
 

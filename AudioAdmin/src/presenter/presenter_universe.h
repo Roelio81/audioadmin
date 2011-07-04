@@ -1,5 +1,5 @@
-#ifndef _PRESENTER_UNIVERSUM_H
-#define _PRESENTER_UNIVERSUM_H
+#ifndef _PRESENTER_UNIVERSE_H
+#define _PRESENTER_UNIVERSE_H
 
 #include <QObject>
 
@@ -37,9 +37,9 @@ namespace Presenter
         void removePhysician(int id);
         void removeFile(int id);
         void removeInsuranceCompany(int id);
-        void addPhysician(QString voornaam, QString naam);
-        void addFile(QString voornaam, QString naam);
-        void addInsuranceCompany(QString naam);
+        void addPhysician(QString firstName, QString name);
+        void addFile(QString firstName, QString name);
+        void addInsuranceCompany(QString name);
         void editedPhysician(int id);
         void editedFile(int id);
         void editedInsuranceCompany(int id);
@@ -64,11 +64,11 @@ namespace Presenter
         Presenter::File *m_filePresenter;
         Presenter::InsuranceCompany *m_insuranceCompanyPresenter;
 
-        int m_arts;
+        int m_physician;
         int m_file;
         int m_insuranceCompany;
         bool m_changed;
     };
 }
 
-#endif // _PRESENTER_UNIVERSUM_H
+#endif // _PRESENTER_UNIVERSE_H

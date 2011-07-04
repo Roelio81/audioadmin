@@ -38,37 +38,37 @@ void Universe::fromDomElement(const QDomElement &root)
     {
         if (e.tagName() == "physicians")
         {
-            for (QDomElement artsElement = e.firstChildElement(); !artsElement.isNull(); artsElement = artsElement.nextSiblingElement())
+            for (QDomElement ePhysician = e.firstChildElement(); !ePhysician.isNull(); ePhysician = ePhysician.nextSiblingElement())
             {
-                Q_ASSERT(artsElement.tagName() == "physician");
-                Q_ASSERT(artsElement.hasAttribute("id"));
-                int id = artsElement.attribute("id").toInt();
+                Q_ASSERT(ePhysician.tagName() == "physician");
+                Q_ASSERT(ePhysician.hasAttribute("id"));
+                int id = ePhysician.attribute("id").toInt();
                 Physician *physician = new Physician(id);
-                physician->fromDomElement(artsElement);
+                physician->fromDomElement(ePhysician);
                 m_physicians.push_back(physician);
             }
         }
         else if (e.tagName() == "insuranceCompanies")
         {
-            for (QDomElement mutElement = e.firstChildElement(); !mutElement.isNull(); mutElement = mutElement.nextSiblingElement())
+            for (QDomElement eInsuranceCompany = e.firstChildElement(); !eInsuranceCompany.isNull(); eInsuranceCompany = eInsuranceCompany.nextSiblingElement())
             {
-                Q_ASSERT(mutElement.tagName() == "insuranceCompany");
-                Q_ASSERT(mutElement.hasAttribute("id"));
-                int id = mutElement.attribute("id").toInt();
-                InsuranceCompany *mutualiteit = new InsuranceCompany(id);
-                mutualiteit->fromDomElement(mutElement);
-                m_insuranceCompanies.push_back(mutualiteit);
+                Q_ASSERT(eInsuranceCompany.tagName() == "insuranceCompany");
+                Q_ASSERT(eInsuranceCompany.hasAttribute("id"));
+                int id = eInsuranceCompany.attribute("id").toInt();
+                InsuranceCompany *insuranceCompany = new InsuranceCompany(id);
+                insuranceCompany->fromDomElement(eInsuranceCompany);
+                m_insuranceCompanies.push_back(insuranceCompany);
             }
         }
         else if (e.tagName() == "files")
         {
-            for (QDomElement fileElement = e.firstChildElement(); !fileElement.isNull(); fileElement = fileElement.nextSiblingElement())
+            for (QDomElement eFile = e.firstChildElement(); !eFile.isNull(); eFile = eFile.nextSiblingElement())
             {
-                Q_ASSERT(fileElement.tagName() == "file");
-                Q_ASSERT(fileElement.hasAttribute("id"));
-                int id = fileElement.attribute("id").toInt();
+                Q_ASSERT(eFile.tagName() == "file");
+                Q_ASSERT(eFile.hasAttribute("id"));
+                int id = eFile.attribute("id").toInt();
                 File *file = new File(id, *this);
-                file->fromDomElement(fileElement);
+                file->fromDomElement(eFile);
                 m_files.push_back(file);
             }
         }
@@ -153,9 +153,9 @@ bool Universe::save()
 Physician *Universe::addPhysician(const QString &firstName, const QString &name)
 {
     int maxId = 0;
-    for (QVector<Physician *>::iterator itArts = m_physicians.begin(); itArts != m_physicians.end(); ++itArts)
+    for (QVector<Physician *>::iterator it = m_physicians.begin(); it != m_physicians.end(); ++it)
     {
-        Physician *physician = *itArts;
+        Physician *physician = *it;
         maxId = std::max(maxId, physician->getId());
     }
     Physician *physician = new Physician(maxId+1);
@@ -167,39 +167,39 @@ Physician *Universe::addPhysician(const QString &firstName, const QString &name)
 
 void Universe::removePhysician(int id)
 {
-    Physician *arts = getPhysician(id);
-    if (!arts)
+    Physician *physician = getPhysician(id);
+    if (!physician)
         return;
-    int posInVector = m_physicians.indexOf(arts, 0);
+    int posInVector = m_physicians.indexOf(physician, 0);
     Q_ASSERT(posInVector >= 0 && posInVector < m_physicians.size());
     m_physicians.erase(m_physicians.begin() + posInVector);
 }
 
 Physician *Universe::getPhysician(int id) const
 {
-    for (QVector<Physician *>::const_iterator itArts = m_physicians.begin(); itArts != m_physicians.end(); ++itArts)
+    for (QVector<Physician *>::const_iterator it = m_physicians.begin(); it != m_physicians.end(); ++it)
     {
-        Physician *arts = *itArts;
-        if (arts->getId() == id)
-            return arts;
+        Physician *physician = *it;
+        if (physician->getId() == id)
+            return physician;
     }
     return 0;
 }
 
 
-File *Universe::addFile(const QString &voornaam, const QString &naam)
+File *Universe::addFile(const QString &firstName, const QString &name)
 {
     int maxId = 0;
-    for (QVector<File *>::iterator itDossier = m_files.begin(); itDossier != m_files.end(); ++itDossier)
+    for (QVector<File *>::iterator it = m_files.begin(); it != m_files.end(); ++it)
     {
-        File *dossier = *itDossier;
-        maxId = std::max(maxId, dossier->getId());
+        File *file = *it;
+        maxId = std::max(maxId, file->getId());
     }
-    File *dossier = new File(maxId+1, *this);
-    dossier->getCustomer().setFirstName(voornaam);
-    dossier->getCustomer().setName(naam);
-    m_files.push_back(dossier);
-    return dossier;
+    File *file = new File(maxId+1, *this);
+    file->getCustomer().setFirstName(firstName);
+    file->getCustomer().setName(name);
+    m_files.push_back(file);
+    return file;
 }
 
 void Universe::removeFile(int id)
@@ -215,25 +215,25 @@ void Universe::removeFile(int id)
 
 File *Universe::getFile(int id) const
 {
-    for (QVector<File *>::const_iterator itDossier = m_files.begin(); itDossier != m_files.end(); ++itDossier)
+    for (QVector<File *>::const_iterator it = m_files.begin(); it != m_files.end(); ++it)
     {
-        File *file = *itDossier;
+        File *file = *it;
         if (file->getId() == id)
             return file;
     }
     return 0;
 }
 
-InsuranceCompany *Universe::addInsuranceCompany(const QString &naam)
+InsuranceCompany *Universe::addInsuranceCompany(const QString &name)
 {
     int maxId = 0;
-    for (QVector<InsuranceCompany *>::iterator itMutualiteit = m_insuranceCompanies.begin(); itMutualiteit != m_insuranceCompanies.end(); ++itMutualiteit)
+    for (QVector<InsuranceCompany *>::iterator it = m_insuranceCompanies.begin(); it != m_insuranceCompanies.end(); ++it)
     {
-        InsuranceCompany *mutualiteit = *itMutualiteit;
-        maxId = std::max(maxId, mutualiteit->getId());
+        InsuranceCompany *insuranceCompany = *it;
+        maxId = std::max(maxId, insuranceCompany->getId());
     }
     InsuranceCompany *insuranceCompany = new InsuranceCompany(maxId+1);
-    insuranceCompany->setName(naam);
+    insuranceCompany->setName(name);
     m_insuranceCompanies.push_back(insuranceCompany);
     return insuranceCompany;
 }
@@ -251,9 +251,9 @@ void Universe::removeInsuranceCompany(int id)
 
 InsuranceCompany *Universe::getInsuranceCompany(int id) const
 {
-    for (QVector<InsuranceCompany *>::const_iterator itMutualiteit = m_insuranceCompanies.begin(); itMutualiteit != m_insuranceCompanies.end(); ++itMutualiteit)
+    for (QVector<InsuranceCompany *>::const_iterator it = m_insuranceCompanies.begin(); it != m_insuranceCompanies.end(); ++it)
     {
-        InsuranceCompany *insuranceCompany = *itMutualiteit;
+        InsuranceCompany *insuranceCompany = *it;
         if (insuranceCompany->getId() == id)
             return insuranceCompany;
     }

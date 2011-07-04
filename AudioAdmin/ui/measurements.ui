@@ -96,7 +96,7 @@
                </size>
               </property>
               <property name="text">
-               <string>L.G.</string>
+               <string>A.C.</string>
               </property>
               <property name="checked">
                <bool>true</bool>
@@ -112,7 +112,7 @@
                </size>
               </property>
               <property name="text">
-               <string>B.G.</string>
+               <string>B.C.</string>
               </property>
              </widget>
             </item>
@@ -243,7 +243,7 @@
                </size>
               </property>
               <property name="text">
-               <string>L.G.</string>
+               <string>A.C.</string>
               </property>
               <property name="checked">
                <bool>true</bool>
@@ -259,7 +259,7 @@
                </size>
               </property>
               <property name="text">
-               <string>B.G.</string>
+               <string>B.C.</string>
               </property>
              </widget>
             </item>
@@ -341,7 +341,7 @@
        <item row="0" column="0">
         <widget class="QGroupBox" name="g_vocaleAudiometrieZonder">
          <property name="title">
-          <string>Zonder hoorapparaat (onder koptelefoon)</string>
+          <string>Without hearing aids (headphones)</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0" rowspan="5">
@@ -376,7 +376,7 @@
           <item row="1" column="1">
            <widget class="QRadioButton" name="m_roZA">
             <property name="text">
-             <string>R.O.</string>
+             <string>R.E.</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -386,14 +386,14 @@
           <item row="2" column="1">
            <widget class="QRadioButton" name="m_loZA">
             <property name="text">
-             <string>L.O.</string>
+             <string>L.E.</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
            <widget class="QRadioButton" name="m_roloZA">
             <property name="text">
-             <string>(R.O. + L.O.)</string>
+             <string>(R.E. + L.E.)</string>
             </property>
            </widget>
           </item>
@@ -416,7 +416,7 @@
        <item row="1" column="0">
         <widget class="QGroupBox" name="g_vocaleAudiometrieMet">
          <property name="title">
-          <string>Met hoorapparaat (in vrij veld)</string>
+          <string>With hearing aids (open field)</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_7">
           <item row="0" column="0" rowspan="5">
@@ -451,7 +451,7 @@
           <item row="1" column="1">
            <widget class="QRadioButton" name="m_roMA">
             <property name="text">
-             <string>R.O.</string>
+             <string>R.E.</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -461,14 +461,14 @@
           <item row="2" column="1">
            <widget class="QRadioButton" name="m_loMA">
             <property name="text">
-             <string>L.O.</string>
+             <string>L.E.</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
            <widget class="QRadioButton" name="m_roloMA">
             <property name="text">
-             <string>(R.O. + L.O.)</string>
+             <string>(R.E. + L.E.)</string>
             </property>
            </widget>
           </item>
@@ -498,7 +498,7 @@
        <item row="0" column="0">
         <widget class="QGroupBox" name="g_prothetischeWinst">
          <property name="title">
-          <string>Prothetische winst</string>
+          <string>Prosthetic gain</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="1">
@@ -508,7 +508,7 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Zonder apparaat&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline;&quot;&gt;Without hearing aids&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -519,7 +519,7 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Met apparaat&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline;&quot;&gt;With hearing aids&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -537,7 +537,7 @@ p, li { white-space: pre-wrap; }
           <item row="1" column="0">
            <widget class="QLabel" name="l_RO">
             <property name="text">
-             <string>R.O.</string>
+             <string>R.E.</string>
             </property>
            </widget>
           </item>
@@ -574,7 +574,7 @@ p, li { white-space: pre-wrap; }
           <item row="2" column="0">
            <widget class="QLabel" name="l_LO">
             <property name="text">
-             <string>L.O.</string>
+             <string>L.E.</string>
             </property>
            </widget>
           </item>
@@ -611,7 +611,7 @@ p, li { white-space: pre-wrap; }
           <item row="3" column="0">
            <widget class="QLabel" name="l_ROLO">
             <property name="text">
-             <string>(R.O. + L.O.)</string>
+             <string>(R.E. + L.E.)</string>
             </property>
            </widget>
           </item>
@@ -651,13 +651,13 @@ p, li { white-space: pre-wrap; }
        <item row="1" column="0">
         <widget class="QGroupBox" name="g_localisatieTesten">
          <property name="title">
-          <string>Localisatietesten</string>
+          <string>Localization tests</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0" rowspan="2">
            <widget class="QLabel" name="label_20">
             <property name="text">
-             <string>Met 2 apparaten</string>
+             <string>With 2 hearing aids</string>
             </property>
            </widget>
           </item>
@@ -700,7 +700,7 @@ p, li { white-space: pre-wrap; }
           <item row="0" column="4" rowspan="2">
            <widget class="QLabel" name="label_22">
             <property name="text">
-             <string>Met apparaat rechts</string>
+             <string>With 1 hearing aid (right)</string>
             </property>
            </widget>
           </item>
@@ -730,7 +730,7 @@ p, li { white-space: pre-wrap; }
           <item row="2" column="0">
            <widget class="QLabel" name="label_21">
             <property name="text">
-             <string>Zonder apparaten</string>
+             <string>Without hearing aids</string>
             </property>
            </widget>
           </item>
@@ -760,7 +760,7 @@ p, li { white-space: pre-wrap; }
           <item row="2" column="4">
            <widget class="QLabel" name="label_23">
             <property name="text">
-             <string>Met apparaat links</string>
+             <string>With 1 hearing aid (left)</string>
             </property>
            </widget>
           </item>

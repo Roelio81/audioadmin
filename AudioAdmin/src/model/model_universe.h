@@ -19,7 +19,7 @@ namespace Model
     class Universe
     {
     public:
-        explicit Universe(const QString &bestandsNaam);
+        explicit Universe(const QString &fileName);
         virtual ~Universe();
 
         // Load the data from file
@@ -44,8 +44,8 @@ namespace Model
 
         // --- Methods to add and remove entities ---
         Physician *addPhysician(const QString &firstName, const QString &name);
-        File *addFile(const QString &voornaam, const QString &naam);
-        InsuranceCompany *addInsuranceCompany(const QString &naam);
+        File *addFile(const QString &firstName, const QString &name);
+        InsuranceCompany *addInsuranceCompany(const QString &name);
         void removePhysician(int id);
         void removeFile(int id);
         void removeInsuranceCompany(int id);

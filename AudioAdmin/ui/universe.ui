@@ -38,7 +38,7 @@
         <item row="0" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_9">
           <item>
-           <widget class="QGroupBox" name="g_klantgegevens">
+           <widget class="QGroupBox" name="g_customerData">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -52,34 +52,34 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_2">
                <item>
-                <widget class="QLabel" name="l_aanspreektitel">
+                <widget class="QLabel" name="l_customerTitle">
                  <property name="text">
                   <string>Title:</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="m_aanspreektitel"/>
+                <widget class="QComboBox" name="m_customerTitle"/>
                </item>
                <item>
-                <widget class="QLabel" name="l_klantNaam">
+                <widget class="QLabel" name="l_customerName">
                  <property name="text">
                   <string>Name:</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_klantNaam"/>
+                <widget class="QLineEdit" name="m_customerName"/>
                </item>
                <item>
-                <widget class="QLabel" name="l_klantVoornaam">
+                <widget class="QLabel" name="l_customerFirstName">
                  <property name="text">
                   <string>First name:</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_klantVoornaam">
+                <widget class="QLineEdit" name="m_customerFirstName">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -93,28 +93,28 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_3">
                <item>
-                <widget class="QLabel" name="l_klantStraat">
+                <widget class="QLabel" name="l_customerStreet">
                  <property name="text">
                   <string>Street address:</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_klantStraat"/>
+                <widget class="QLineEdit" name="m_customerStreet"/>
                </item>
               </layout>
              </item>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_4">
                <item>
-                <widget class="QLabel" name="l_klantPostcode">
+                <widget class="QLabel" name="l_customerPostalCode">
                  <property name="text">
                   <string>Postal code:</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QSpinBox" name="m_klantPostcode">
+                <widget class="QSpinBox" name="m_customerPostalCode">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -136,38 +136,38 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="l_klantGemeente">
+                <widget class="QLabel" name="l_customerCity">
                  <property name="text">
                   <string>City:</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_klantGemeente"/>
+                <widget class="QLineEdit" name="m_customerCity"/>
                </item>
               </layout>
              </item>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_5">
                <item>
-                <widget class="QLabel" name="l_klantTelefoon">
+                <widget class="QLabel" name="l_customerTelephone">
                  <property name="text">
                   <string>Telephone:</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_klantTelefoon"/>
+                <widget class="QLineEdit" name="m_customerTelephone"/>
                </item>
                <item>
-                <widget class="QLabel" name="l_klantGeboorteDatum">
+                <widget class="QLabel" name="l_customerDateOfBirth">
                  <property name="text">
                   <string>Date of birth:</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QDateEdit" name="m_klantGeboorteDatum">
+                <widget class="QDateEdit" name="m_customerDateOfBirth">
                  <property name="minimumSize">
                   <size>
                    <width>100</width>
@@ -193,14 +193,14 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_6">
                <item>
-                <widget class="QLabel" name="l_klantMutualiteit">
+                <widget class="QLabel" name="l_customerInsurance">
                  <property name="text">
                   <string>Health insurance:</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="m_klantMutualiteit">
+                <widget class="QComboBox" name="m_customerInsurance">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -210,14 +210,14 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="l_aansluitingsnummer">
+                <widget class="QLabel" name="l_memberNr">
                  <property name="text">
                   <string>Member number:</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_aansluitingsnummer">
+                <widget class="QLineEdit" name="m_memberNr">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -231,21 +231,21 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_7">
                <item>
-                <widget class="QLabel" name="l_plaatsAanpassing">
+                <widget class="QLabel" name="l_placeAdjustment">
                  <property name="text">
                   <string>Place adjustment:</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="m_plaatsAanpassing"/>
+                <widget class="QLineEdit" name="m_placeAdjustment"/>
                </item>
               </layout>
              </item>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_8">
                <item>
-                <widget class="QLabel" name="l_klantOpmerkingen">
+                <widget class="QLabel" name="l_customerComments">
                  <property name="text">
                   <string>Comments:</string>
                  </property>
@@ -255,7 +255,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QTextEdit" name="m_klantOpmerkingen">
+                <widget class="QTextEdit" name="m_customerComments">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                    <horstretch>0</horstretch>
@@ -276,7 +276,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="g_datums">
+           <widget class="QGroupBox" name="g_dates">
             <property name="sizePolicy">
              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -294,7 +294,7 @@
             </property>
             <layout class="QGridLayout" name="gridLayout_2">
              <item row="0" column="1">
-              <widget class="QDateEdit" name="m_datumOnderzoek">
+              <widget class="QDateEdit" name="m_dateTest">
                <property name="displayFormat">
                 <string>yyyy-MM-dd</string>
                </property>
@@ -304,7 +304,7 @@
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QDateEdit" name="m_datumProef">
+              <widget class="QDateEdit" name="m_dateTrial">
                <property name="displayFormat">
                 <string>yyyy-MM-dd</string>
                </property>
@@ -314,7 +314,7 @@
               </widget>
              </item>
              <item row="2" column="1">
-              <widget class="QDateEdit" name="m_datumNKO">
+              <widget class="QDateEdit" name="m_dateReport">
                <property name="displayFormat">
                 <string>yyyy-MM-dd</string>
                </property>
@@ -324,7 +324,7 @@
               </widget>
              </item>
              <item row="3" column="1">
-              <widget class="QDateEdit" name="m_datumAdviseur">
+              <widget class="QDateEdit" name="m_dateAdvice">
                <property name="displayFormat">
                 <string>yyyy-MM-dd</string>
                </property>
@@ -334,7 +334,7 @@
               </widget>
              </item>
              <item row="4" column="1">
-              <widget class="QDateEdit" name="m_datumMutualiteit">
+              <widget class="QDateEdit" name="m_dateInsurance">
                <property name="displayFormat">
                 <string>yyyy-MM-dd</string>
                </property>
@@ -344,7 +344,7 @@
               </widget>
              </item>
              <item row="5" column="1">
-              <widget class="QDateEdit" name="m_datumBetaling">
+              <widget class="QDateEdit" name="m_datePayment">
                <property name="displayFormat">
                 <string>yyyy-MM-dd</string>
                </property>
@@ -354,7 +354,7 @@
               </widget>
              </item>
              <item row="6" column="1">
-              <widget class="QDateEdit" name="m_datumAflevering">
+              <widget class="QDateEdit" name="m_dateDelivery">
                <property name="displayFormat">
                 <string>yyyy-MM-dd</string>
                </property>
@@ -364,7 +364,7 @@
               </widget>
              </item>
              <item row="7" column="1">
-              <widget class="QDateEdit" name="m_datumWissel">
+              <widget class="QDateEdit" name="m_dateExchange">
                <property name="displayFormat">
                 <string>yyyy-MM-dd</string>
                </property>
@@ -374,7 +374,7 @@
               </widget>
              </item>
              <item row="8" column="1">
-              <widget class="QDateEdit" name="m_datumOnderhoudsContract">
+              <widget class="QDateEdit" name="m_dateMaintenance">
                <property name="displayFormat">
                 <string>yyyy-MM-dd</string>
                </property>
@@ -384,63 +384,63 @@
               </widget>
              </item>
              <item row="0" column="0">
-              <widget class="QLabel" name="l_datumOnderzoek">
+              <widget class="QLabel" name="l_dateTest">
                <property name="text">
                 <string>Test:</string>
                </property>
               </widget>
              </item>
              <item row="1" column="0">
-              <widget class="QLabel" name="l_datumProef">
+              <widget class="QLabel" name="l_dateTrial">
                <property name="text">
                 <string>Trial:</string>
                </property>
               </widget>
              </item>
              <item row="2" column="0">
-              <widget class="QLabel" name="l_datumNKO">
+              <widget class="QLabel" name="l_dateReport">
                <property name="text">
                 <string>Physician report:</string>
                </property>
               </widget>
              </item>
              <item row="3" column="0">
-              <widget class="QLabel" name="l_datumAdviseur">
+              <widget class="QLabel" name="l_dateAdvice">
                <property name="text">
                 <string>Physician advice:</string>
                </property>
               </widget>
              </item>
              <item row="4" column="0">
-              <widget class="QLabel" name="l_datumMutualiteit">
+              <widget class="QLabel" name="l_dateInsurance">
                <property name="text">
                 <string>Insurance agreement:</string>
                </property>
               </widget>
              </item>
              <item row="5" column="0">
-              <widget class="QLabel" name="l_datumBetaling">
+              <widget class="QLabel" name="l_datePayment">
                <property name="text">
                 <string>Payment:</string>
                </property>
               </widget>
              </item>
              <item row="6" column="0">
-              <widget class="QLabel" name="l_datumAflevering">
+              <widget class="QLabel" name="l_dateDelivery">
                <property name="text">
                 <string>Delivery:</string>
                </property>
               </widget>
              </item>
              <item row="7" column="0">
-              <widget class="QLabel" name="l_datumWissel">
+              <widget class="QLabel" name="l_dateExchange">
                <property name="text">
                 <string>Exchange:</string>
                </property>
               </widget>
              </item>
              <item row="8" column="0">
-              <widget class="QLabel" name="l_datumOnderhoudsContract">
+              <widget class="QLabel" name="l_dateMaintenance">
                <property name="text">
                 <string>Maintenance contract:</string>
                </property>
@@ -456,7 +456,7 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QGroupBox" name="g_klantArts">
+             <widget class="QGroupBox" name="g_customerPhysician">
               <property name="minimumSize">
                <size>
                 <width>300</width>
@@ -468,17 +468,17 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
                <item row="0" column="0">
-                <widget class="QComboBox" name="m_klantArts"/>
+                <widget class="QComboBox" name="m_customerPhysician"/>
                </item>
                <item row="1" column="0">
-                <widget class="QLabel" name="l_klantArtsStraat">
+                <widget class="QLabel" name="l_customerPhysicianStreet">
                  <property name="text">
                   <string>Street</string>
                  </property>
                 </widget>
                </item>
                <item row="2" column="0">
-                <widget class="QLabel" name="l_klantArtsGemeente">
+                <widget class="QLabel" name="l_customerPhysicianCity">
                  <property name="text">
                   <string>City</string>
                  </property>
@@ -488,13 +488,13 @@
              </widget>
             </item>
             <item>
-             <widget class="QGroupBox" name="g_meetgegevens">
+             <widget class="QGroupBox" name="g_measurements">
               <property name="title">
                <string>Measurements</string>
               </property>
               <layout class="QGridLayout" name="gridLayout">
                <item row="0" column="0">
-                <widget class="QPushButton" name="b_meetgegevens">
+                <widget class="QPushButton" name="b_measurements">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -515,121 +515,121 @@
            </layout>
           </item>
           <item>
-           <widget class="QGroupBox" name="g_hoorapparaten">
+           <widget class="QGroupBox" name="g_hearingAids">
             <property name="title">
-             <string>Hoorapparaten</string>
+             <string>Hearing aids</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_5">
              <item row="0" column="0">
-              <widget class="QGroupBox" name="g_rechterHoorapparaat">
+              <widget class="QGroupBox" name="g_rightHearingAid">
                <property name="title">
                 <string>Right</string>
                </property>
                <layout class="QGridLayout" name="gridLayout_3">
                 <item row="0" column="0">
-                 <widget class="QLabel" name="l_rechterHoorapparaatMerk">
+                 <widget class="QLabel" name="l_rightHearingAidBrand">
                   <property name="text">
                    <string>Brand:</string>
                   </property>
                  </widget>
                 </item>
                 <item row="0" column="1">
-                 <widget class="QComboBox" name="m_rechterHoorapparaatMerk">
+                 <widget class="QComboBox" name="m_rightHearingAidBrand">
                   <property name="editable">
                    <bool>true</bool>
                   </property>
                  </widget>
                 </item>
                 <item row="1" column="0">
-                 <widget class="QLabel" name="l_rechterHoorapparaatType">
+                 <widget class="QLabel" name="l_rightHearingAidType">
                   <property name="text">
                    <string>Type:</string>
                   </property>
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QComboBox" name="m_rechterHoorapparaatType">
+                 <widget class="QComboBox" name="m_rightHearingAidType">
                   <property name="editable">
                    <bool>true</bool>
                   </property>
                  </widget>
                 </item>
                 <item row="2" column="0">
-                 <widget class="QLabel" name="l_rechterHoorapparaatSerienummer">
+                 <widget class="QLabel" name="l_rightHearingAidSerialNr">
                   <property name="text">
                    <string>Serial number:</string>
                   </property>
                  </widget>
                 </item>
                 <item row="2" column="1">
-                 <widget class="QLineEdit" name="m_rechterHoorapparaatSerienummer"/>
+                 <widget class="QLineEdit" name="m_rightHearingAidSerialNr"/>
                 </item>
                 <item row="3" column="0">
-                 <widget class="QLabel" name="l_rechterHoorapparaatPrijs">
+                 <widget class="QLabel" name="l_rightHearingAidPrice">
                   <property name="text">
                    <string>Price (VAT excl.):</string>
                   </property>
                  </widget>
                 </item>
                 <item row="3" column="1">
-                 <widget class="QLineEdit" name="m_rechterHoorapparaatPrijs"/>
+                 <widget class="QLineEdit" name="m_rightHearingAidPrice"/>
                 </item>
                </layout>
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QGroupBox" name="g_linkerHoorapparaat">
+              <widget class="QGroupBox" name="g_leftHearingAid">
                <property name="title">
                 <string>Left</string>
                </property>
                <layout class="QGridLayout" name="gridLayout_4">
                 <item row="0" column="0">
-                 <widget class="QLabel" name="l_linkerHoorapparaatMerk">
+                 <widget class="QLabel" name="l_leftHearingAidBrand">
                   <property name="text">
                    <string>Brand:</string>
                   </property>
                  </widget>
                 </item>
                 <item row="0" column="1">
-                 <widget class="QComboBox" name="m_linkerHoorapparaatMerk">
+                 <widget class="QComboBox" name="m_leftHearingAidBrand">
                   <property name="editable">
                    <bool>true</bool>
                   </property>
                  </widget>
                 </item>
                 <item row="1" column="0">
-                 <widget class="QLabel" name="l_linkerHoorapparaatType">
+                 <widget class="QLabel" name="l_leftHearingAidType">
                   <property name="text">
                    <string>Type:</string>
                   </property>
                  </widget>
                 </item>
                 <item row="1" column="1">
-                 <widget class="QComboBox" name="m_linkerHoorapparaatType">
+                 <widget class="QComboBox" name="m_leftHearingAidType">
                   <property name="editable">
                    <bool>true</bool>
                   </property>
                  </widget>
                 </item>
                 <item row="2" column="0">
-                 <widget class="QLabel" name="l_linkerHoorapparaatSerienummer">
+                 <widget class="QLabel" name="l_leftHearingAidSerialNr">
                   <property name="text">
                    <string>Serial number:</string>
                   </property>
                  </widget>
                 </item>
                 <item row="2" column="1">
-                 <widget class="QLineEdit" name="m_linkerHoorapparaatSerienummer"/>
+                 <widget class="QLineEdit" name="m_leftHearingAidSerialNr"/>
                 </item>
                 <item row="3" column="0">
-                 <widget class="QLabel" name="l_linkerHoorapparaatPrijs">
+                 <widget class="QLabel" name="l_leftHearingAidPrice">
                   <property name="text">
                    <string>Price (VAT excl.):</string>
                   </property>
                  </widget>
                 </item>
                 <item row="3" column="1">
-                 <widget class="QLineEdit" name="m_linkerHoorapparaatPrijs"/>
+                 <widget class="QLineEdit" name="m_leftHearingAidPrice"/>
                 </item>
                </layout>
               </widget>
@@ -638,13 +638,13 @@
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="g_brieven">
+           <widget class="QGroupBox" name="g_letters">
             <property name="title">
              <string>Letters</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_7">
              <item row="0" column="0">
-              <widget class="QPushButton" name="b_klantBrief">
+              <widget class="QPushButton" name="b_letterCustomer">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -666,7 +666,7 @@
               </widget>
              </item>
              <item row="1" column="0">
-              <widget class="QPushButton" name="b_artsBrief">
+              <widget class="QPushButton" name="b_letterPhysician">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -688,7 +688,7 @@
               </widget>
              </item>
              <item row="2" column="0">
-              <widget class="QPushButton" name="b_mutualiteitBrief">
+              <widget class="QPushButton" name="b_letterInsurance">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -710,7 +710,7 @@
               </widget>
              </item>
              <item row="3" column="0">
-              <widget class="QPushButton" name="b_factuur">
+              <widget class="QPushButton" name="b_invoice">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -753,7 +753,7 @@
          </spacer>
         </item>
         <item row="3" column="0">
-         <widget class="QTableWidget" name="m_klantenLijst">
+         <widget class="QTableWidget" name="m_customerList">
           <property name="selectionMode">
            <enum>QAbstractItemView::SingleSelection</enum>
           </property>
@@ -806,7 +806,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QToolButton" name="b_dossierToevoegen">
+           <widget class="QToolButton" name="b_fileAdd">
             <property name="toolTip">
              <string>Add</string>
             </property>
@@ -821,7 +821,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_dossierVerwijderen">
+           <widget class="QToolButton" name="b_fileRemove">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -839,7 +839,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_dossierZoeken">
+           <widget class="QToolButton" name="b_fileFind">
             <property name="toolTip">
              <string>Find</string>
             </property>
@@ -876,7 +876,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_10">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="g_artsgegevens">
+         <widget class="QGroupBox" name="g_physicianData">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -890,24 +890,24 @@
            <item row="0" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_11">
              <item>
-              <widget class="QLabel" name="l_artsNaam">
+              <widget class="QLabel" name="l_physicianName">
                <property name="text">
                 <string>Name:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_artsNaam"/>
+              <widget class="QLineEdit" name="m_physicianName"/>
              </item>
              <item>
-              <widget class="QLabel" name="l_artsVoornaam">
+              <widget class="QLabel" name="l_physicianFirstName">
                <property name="text">
                 <string>First name:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_artsVoornaam">
+              <widget class="QLineEdit" name="m_physicianFirstName">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -921,28 +921,28 @@
            <item row="1" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_12">
              <item>
-              <widget class="QLabel" name="l_artsStraat">
+              <widget class="QLabel" name="l_physicianStreet">
                <property name="text">
                 <string>Street address:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_artsStraat"/>
+              <widget class="QLineEdit" name="m_physicianStreet"/>
              </item>
             </layout>
            </item>
            <item row="2" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_13">
              <item>
-              <widget class="QLabel" name="l_artsPostcode">
+              <widget class="QLabel" name="l_physicianPostalCode">
                <property name="text">
                 <string>Postal code:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="m_artsPostcode">
+              <widget class="QSpinBox" name="m_physicianPostalCode">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -964,45 +964,45 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="l_artsGemeente">
+              <widget class="QLabel" name="l_physicianCity">
                <property name="text">
                 <string>City:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_artsGemeente"/>
+              <widget class="QLineEdit" name="m_physicianCity"/>
              </item>
             </layout>
            </item>
            <item row="3" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_14">
              <item>
-              <widget class="QLabel" name="l_artsTelefoon">
+              <widget class="QLabel" name="l_physicianTelephone">
                <property name="text">
                 <string>Telephone:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_artsTelefoon"/>
+              <widget class="QLineEdit" name="m_physicianTelephone"/>
              </item>
              <item>
-              <widget class="QLabel" name="l_artsEmail">
+              <widget class="QLabel" name="l_physicianEmail">
                <property name="text">
                 <string>Email:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_artsEmail"/>
+              <widget class="QLineEdit" name="m_physicianEmail"/>
              </item>
             </layout>
            </item>
            <item row="4" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_17">
              <item>
-              <widget class="QLabel" name="l_artsOpmerkingen">
+              <widget class="QLabel" name="l_physicianComments">
                <property name="text">
                 <string>Comments:</string>
                </property>
@@ -1012,7 +1012,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QTextEdit" name="m_artsOpmerkingen">
+              <widget class="QTextEdit" name="m_physicianComments">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -1049,7 +1049,7 @@
          </spacer>
         </item>
         <item row="2" column="0">
-         <widget class="QTableWidget" name="m_artsenLijst">
+         <widget class="QTableWidget" name="m_physicianList">
           <property name="selectionMode">
            <enum>QAbstractItemView::SingleSelection</enum>
           </property>
@@ -1102,7 +1102,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QToolButton" name="b_artsToevoegen">
+           <widget class="QToolButton" name="b_physicianAdd">
             <property name="toolTip">
              <string>Add</string>
             </property>
@@ -1117,7 +1117,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_artsVerwijderen">
+           <widget class="QToolButton" name="b_physicianRemove">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -1135,7 +1135,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_artsZoeken">
+           <widget class="QToolButton" name="b_physicianFind">
             <property name="toolTip">
              <string>Find</string>
             </property>
@@ -1172,7 +1172,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_12">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="g_mutualiteitsgegevens">
+         <widget class="QGroupBox" name="g_insuranceCompanyData">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -1186,42 +1186,42 @@
            <item row="0" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_15">
              <item>
-              <widget class="QLabel" name="l_mutualiteitNaam">
+              <widget class="QLabel" name="l_insuranceCompanyName">
                <property name="text">
                 <string>Name</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_mutualiteitNaam"/>
+              <widget class="QLineEdit" name="m_insuranceCompanyName"/>
              </item>
             </layout>
            </item>
            <item row="1" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_16">
              <item>
-              <widget class="QLabel" name="l_mutualiteitStraat">
+              <widget class="QLabel" name="l_insuranceCompanyStreet">
                <property name="text">
                 <string>Street address:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_mutualiteitStraat"/>
+              <widget class="QLineEdit" name="m_insuranceCompanyStreet"/>
              </item>
             </layout>
            </item>
            <item row="2" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_19">
              <item>
-              <widget class="QLabel" name="label_44">
+              <widget class="QLabel" name="l_insuranceCompanyPostalCode">
                <property name="text">
                 <string>Postal code:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="m_mutualiteitPostcode">
+              <widget class="QSpinBox" name="m_insuranceCompanyPostalCode">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -1243,49 +1243,49 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="l_mutualiteitGemeente">
+              <widget class="QLabel" name="l_insuranceCompanyCity">
                <property name="text">
                 <string>City:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_mutualiteitGemeente"/>
+              <widget class="QLineEdit" name="m_insuranceCompanyCity"/>
              </item>
             </layout>
            </item>
            <item row="3" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_20">
              <item>
-              <widget class="QLabel" name="l_mutualiteitTelefoon">
+              <widget class="QLabel" name="l_insuranceCompanyTelephone">
                <property name="text">
                 <string>Telephone:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_mutualiteitTelefoon">
+              <widget class="QLineEdit" name="m_insuranceCompanyTelephone">
                <property name="text">
                 <string/>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="l_mutualiteitEmail">
+              <widget class="QLabel" name="l_insuranceCompanyEmail">
                <property name="text">
                 <string>Email:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="m_mutualiteitEmail"/>
+              <widget class="QLineEdit" name="m_insuranceCompanyEmail"/>
              </item>
             </layout>
            </item>
            <item row="4" column="0">
             <layout class="QHBoxLayout" name="horizontalLayout_21">
              <item>
-              <widget class="QLabel" name="l_mutualiteitOpmerkingen">
+              <widget class="QLabel" name="l_insuranceCompanyComments">
                <property name="text">
                 <string>Comments:</string>
                </property>
@@ -1295,7 +1295,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QTextEdit" name="m_mutualiteitOpmerkingen">
+              <widget class="QTextEdit" name="m_insuranceCompanyComments">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -1332,7 +1332,7 @@
          </spacer>
         </item>
         <item row="2" column="0">
-         <widget class="QTableWidget" name="m_mutualiteitenLijst">
+         <widget class="QTableWidget" name="m_insuranceCompanyList">
           <property name="selectionMode">
            <enum>QAbstractItemView::SingleSelection</enum>
           </property>
@@ -1385,7 +1385,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QToolButton" name="b_mutualiteitToevoegen">
+           <widget class="QToolButton" name="b_insuranceCompanyAdd">
             <property name="toolTip">
              <string>Add</string>
             </property>
@@ -1400,7 +1400,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_mutualiteitVerwijderen">
+           <widget class="QToolButton" name="b_insuranceCompanyRemove">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -1418,7 +1418,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="b_mutualiteitZoeken">
+           <widget class="QToolButton" name="b_insuranceCompanyFind">
             <property name="toolTip">
              <string>Find</string>
             </property>
@@ -1462,29 +1462,29 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuBestand">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionBewaren"/>
-    <addaction name="actionEtikettenAfdrukken"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionLabels"/>
     <addaction name="separator"/>
-    <addaction name="actionAfsluiten"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionOmtrent"/>
+    <addaction name="actionAbout"/>
    </widget>
-   <widget class="QMenu" name="menuInstellingen">
+   <widget class="QMenu" name="menuSettings">
     <property name="title">
      <string>Settings</string>
     </property>
-    <addaction name="actionInstellingen_wijzigen"/>
+    <addaction name="actionSettings"/>
    </widget>
-   <addaction name="menuBestand"/>
-   <addaction name="menuInstellingen"/>
+   <addaction name="menuFile"/>
+   <addaction name="menuSettings"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -1499,12 +1499,12 @@
     <bool>false</bool>
    </attribute>
    <addaction name="separator"/>
-   <addaction name="actionBewaren"/>
-   <addaction name="actionEtikettenAfdrukken"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionLabels"/>
    <addaction name="separator"/>
-   <addaction name="actionInstellingen_wijzigen"/>
+   <addaction name="actionSettings"/>
   </widget>
-  <action name="actionBewaren">
+  <action name="actionSave">
    <property name="icon">
     <iconset resource="../icons.qrc">
      <normaloff>:/icons/filesave-64.png</normaloff>:/icons/filesave-64.png</iconset>
@@ -1516,7 +1516,7 @@
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="actionEtikettenAfdrukken">
+  <action name="actionLabels">
    <property name="icon">
     <iconset resource="../icons.qrc">
      <normaloff>:/icons/agt_print-64.png</normaloff>:/icons/agt_print-64.png</iconset>
@@ -1528,12 +1528,12 @@
     <string>Ctrl+P</string>
    </property>
   </action>
-  <action name="actionAfsluiten">
+  <action name="actionExit">
    <property name="text">
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionOmtrent">
+  <action name="actionAbout">
    <property name="text">
     <string>About AudioAdmin...</string>
    </property>
@@ -1541,7 +1541,7 @@
     <string>F1</string>
    </property>
   </action>
-  <action name="actionInstellingen_wijzigen">
+  <action name="actionSettings">
    <property name="icon">
     <iconset resource="../icons.qrc">
      <normaloff>:/icons/advancedsettings-64.png</normaloff>:/icons/advancedsettings-64.png</iconset>
@@ -1559,7 +1559,7 @@
  </resources>
  <connections>
   <connection>
-   <sender>actionAfsluiten</sender>
+   <sender>actionExit</sender>
    <signal>triggered()</signal>
    <receiver>Universe</receiver>
    <slot>close()</slot>

@@ -1,5 +1,5 @@
-#ifndef PRESENTER_MEETGEGEVENS_H
-#define PRESENTER_MEETGEGEVENS_H
+#ifndef PRESENTER_MEASUREMENTS_H
+#define PRESENTER_MEASUREMENTS_H
 
 #include <QObject>
 
@@ -31,4 +31,4 @@ namespace Presenter
     };
 }
 
-#endif // PRESENTER_MEETGEGEVENS_H
+#endif // PRESENTER_MEASUREMENTS_H

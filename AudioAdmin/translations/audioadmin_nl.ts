@@ -189,84 +189,16 @@ p, li { white-space: pre-wrap; }
         <translation>Meetgegevens</translation>
     </message>
     <message>
-        <source>L.G.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>B.G.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>U.C.L.</source>
-        <translation type="unfinished"></translation>
+        <translation>U.C.L.</translation>
     </message>
     <message>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <source>Zonder hoorapparaat (onder koptelefoon)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>R.O.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>L.O.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>(R.O. + L.O.)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Met hoorapparaat (in vrij veld)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Prothetische winst</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Zonder apparaat&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Met apparaat&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Localisatietesten</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Met 2 apparaten</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>%</source>
         <translation>%</translation>
-    </message>
-    <message>
-        <source>Met apparaat rechts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Zonder apparaten</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Met apparaat links</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Average loss (in dB)</source>
@@ -304,16 +236,92 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline;&quot;&gt;Winst&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
+    <message>
+        <source>A.C.</source>
+        <translation>L.G.</translation>
+    </message>
+    <message>
+        <source>B.C.</source>
+        <translation>B.G.</translation>
+    </message>
+    <message>
+        <source>Prosthetic gain</source>
+        <translation>Prothetische winst</translation>
+    </message>
+    <message>
+        <source>Localization tests</source>
+        <translation>Localisatietesten</translation>
+    </message>
+    <message>
+        <source>Without hearing aids</source>
+        <translation>Zonder apparaten</translation>
+    </message>
+    <message>
+        <source>With 2 hearing aids</source>
+        <translation>Met 2 apparaten</translation>
+    </message>
+    <message>
+        <source>With 1 hearing aid (right)</source>
+        <translation>Met 1 apparaat (rechts)</translation>
+    </message>
+    <message>
+        <source>With 1 hearing aid (left)</source>
+        <translation>Met 1 apparaat (links)</translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline;&quot;&gt;Without hearing aids&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline;&quot;&gt;Zonder apparaat&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline;&quot;&gt;With hearing aids&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; text-decoration: underline;&quot;&gt;Met apparaat&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>R.E.</source>
+        <translation>R.O.</translation>
+    </message>
+    <message>
+        <source>L.E.</source>
+        <translation>L.O.</translation>
+    </message>
+    <message>
+        <source>(R.E. + L.E.)</source>
+        <translation>(R.O. + L.O.)</translation>
+    </message>
+    <message>
+        <source>Without hearing aids (headphones)</source>
+        <translation>Zonder hoorapparaat (onder koptelefoon)</translation>
+    </message>
+    <message>
+        <source>With hearing aids (open field)</source>
+        <translation>Met hoorapparaat (in vrij veld)</translation>
+    </message>
 </context>
 <context>
     <name>Presenter::Customer</name>
     <message>
         <source>Mr.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dhr.</translation>
     </message>
     <message>
         <source>Mrs.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mevr.</translation>
     </message>
 </context>
 <context>
@@ -340,7 +348,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Localization tests</source>
-        <translation>Localisatie testen</translation>
+        <translation>Localisatietesten</translation>
     </message>
     <message>
         <source>Nat.ID: </source>
@@ -530,10 +538,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Measurements...</source>
         <translation>Meetgegevens...</translation>
-    </message>
-    <message>
-        <source>Hoorapparaten</source>
-        <translation>Hearing aids</translation>
     </message>
     <message>
         <source>Right</source>
@@ -754,6 +758,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>yyyy-MM-dd</source>
         <translation>dd-MM-yyyy</translation>
+    </message>
+    <message>
+        <source>Hearing aids</source>
+        <translation>Hoorapparaten</translation>
     </message>
 </context>
 <context>

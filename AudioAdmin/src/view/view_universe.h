@@ -29,30 +29,30 @@ namespace View
 
         void saveAtExit();
         void clearPhysicianList();
-        void addPhysician(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
-        void changePhysician(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
-        void leegHoorapparatenLijst();
-        void toevoegenHoorapparaat(const QString &merk, const QString &type, double prijs, const QDate &datumPrijs);
-        void leegKlantenLijst();
-        void addCustomer(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
-        void changeCustomer(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
+        void addPhysician(int id, const QString &name, const QString &straat, int postcode, const QString &city);
+        void changePhysician(int id, const QString &name, const QString &straat, int postcode, const QString &city);
+        void clearHearingAidList();
+        void addHearingAid(const QString &brand, const QString &type, double price, const QDate &datePrice);
+        void clearCustomerList();
+        void addCustomer(int id, const QString &name, const QString &straat, int postcode, const QString &city);
+        void changeCustomer(int id, const QString &name, const QString &straat, int postcode, const QString &city);
         void clearInsuranceCompanyList();
-        void addInsuranceCompany(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
-        void changeInsuranceCompany(int id, const QString &name, const QString &straat, int postcode, const QString &gemeente);
+        void addInsuranceCompany(int id, const QString &name, const QString &straat, int postcode, const QString &city);
+        void changeInsuranceCompany(int id, const QString &name, const QString &straat, int postcode, const QString &city);
 
         void setPhysicianListChanged(bool changed);
         void setFileListChanged(bool changed);
         void setInsuranceCompanyListChanged(bool changed);
 
-        int artsIndexToId(int index) const;
-        int artsIdToIndex(int id) const;
-        int klantIndexToId(int index) const;
-        int klantIdToIndex(int id) const;
-        int mutualiteitIndexToId(int index) const;
-        int mutualiteitIdToIndex(int id) const;
+        int physicianIndexToId(int index) const;
+        int physicianIdToIndex(int id) const;
+        int customerIndexToId(int index) const;
+        int customerIdToIndex(int id) const;
+        int insuranceCompanyIndexToId(int index) const;
+        int insuranceCompanyIdToIndex(int id) const;
 
-        QSet<QString> getMerkHoorapparaten() const;
-        QSet<QString> getTypeHoorapparaten(const QString &merk) const;
+        QSet<QString> getHearingAidBrands() const;
+        QSet<QString> getHearingAidTypes(const QString &brand) const;
 
         void selectPhysician(int id);
         void selectCustomer(int id);
@@ -117,7 +117,7 @@ namespace View
 
         // --- Data members ---
         Ui::Universe m_ui;
-        BrandToTypesAndPricesMap m_hoorapparaatMerkToTypes;
+        BrandToTypesAndPricesMap m_hearingAidBrandToTypes;
         Physician m_physician;
         File m_file;
         InsuranceCompany m_insuranceCompany;

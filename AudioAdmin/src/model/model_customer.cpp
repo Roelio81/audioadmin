@@ -46,9 +46,9 @@ void Customer::fromDomElement(const QDomElement &e)
 QDomElement Customer::toDomElement(QDomDocument &d) const
 {
     QDomElement result = Entity::toDomElement(d);
-    QDomElement voornaam = d.createElement("firstName");
-    voornaam.appendChild(d.createTextNode(m_firstName));
-    result.insertAfter(voornaam, result.firstChildElement("name"));
+    QDomElement firstName = d.createElement("firstName");
+    firstName.appendChild(d.createTextNode(m_firstName));
+    result.insertAfter(firstName, result.firstChildElement("name"));
     QString titleString;
     switch (m_title)
     {

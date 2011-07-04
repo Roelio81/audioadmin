@@ -4,7 +4,7 @@
 using namespace View;
 
 Physician::Physician(Ui::Universe &universe)
-: m_universe(universe)
+: m_ui(universe)
 {
 }
 
@@ -14,70 +14,70 @@ Physician::~Physician()
 
 QString Physician::getName() const
 {
-    return m_universe.m_artsNaam->text();
+    return m_ui.m_physicianName->text();
 }
 
 QString Physician::getFirstName() const
 {
-    return m_universe.m_artsVoornaam->text();
+    return m_ui.m_physicianFirstName->text();
 }
 
 QString Physician::getStreet() const
 {
-    return m_universe.m_artsStraat->text();
+    return m_ui.m_physicianStreet->text();
 }
 
 int Physician::getPostalCode() const
 {
-    return m_universe.m_artsPostcode->value();
+    return m_ui.m_physicianPostalCode->value();
 }
 
 QString Physician::getCity() const
 {
-    return m_universe.m_artsGemeente->text();
+    return m_ui.m_physicianCity->text();
 }
 
 QString Physician::getTelephone() const
 {
-    return m_universe.m_artsTelefoon->text();
+    return m_ui.m_physicianTelephone->text();
 }
 
 QString Physician::getComments() const
 {
-    return m_universe.m_artsOpmerkingen->toPlainText();
+    return m_ui.m_physicianComments->toPlainText();
 }
 
 void Physician::setName(const QString &value)
 {
-    m_universe.m_artsNaam->setText(value);
+    m_ui.m_physicianName->setText(value);
 }
 
 void Physician::setFirstName(const QString &value)
 {
-    m_universe.m_artsVoornaam->setText(value);
+    m_ui.m_physicianFirstName->setText(value);
 }
 
 void Physician::setStreet(const QString &value)
 {
-    m_universe.m_artsStraat->setText(value);
+    m_ui.m_physicianStreet->setText(value);
 }
 
 void Physician::setPostalCode(int value)
 {
-    m_universe.m_artsPostcode->setValue(value);
+    m_ui.m_physicianPostalCode->setValue(value);
 }
 
 void Physician::setCity(const QString &value)
 {
-    m_universe.m_artsGemeente->setText(value);
+    m_ui.m_physicianCity->setText(value);
 }
 
 void Physician::setTelephone(const QString &value)
 {
-    m_universe.m_artsTelefoon->setText(value);
+    m_ui.m_physicianTelephone->setText(value);
 }
 
 void Physician::setComments(const QString &value)
 {
-    m_universe.m_artsOpmerkingen->setPlainText(value);
+    m_ui.m_physicianComments->setPlainText(value);
 }

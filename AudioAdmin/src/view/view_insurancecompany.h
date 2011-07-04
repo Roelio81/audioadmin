@@ -16,7 +16,7 @@ namespace View
     {
     Q_OBJECT
     public:
-        explicit InsuranceCompany(Ui::Universe &universum);
+        explicit InsuranceCompany(Ui::Universe &universe);
         virtual ~InsuranceCompany();
 
         // --- Getters ---
@@ -37,7 +37,7 @@ namespace View
 
     private:
         // --- Data members ---
-        Ui::Universe &m_universum;
+        Ui::Universe &m_universe;
     };
 }
 

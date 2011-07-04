@@ -4,8 +4,8 @@
 
 using namespace Model;
 
-Settings::Settings(const Universe &universum)
-    : m_universe(universum)
+Settings::Settings(const Universe &universe)
+    : m_universe(universe)
 {
 }
 
@@ -74,9 +74,9 @@ void Settings::fromDomElement(const QDomElement &e)
 QDomElement Settings::toDomElement(QDomDocument &d) const
 {
     QDomElement result = d.createElement("settings");
-    QDomElement naam = d.createElement("name");
-    naam.appendChild(d.createTextNode(m_name));
-    result.appendChild(naam);
+    QDomElement name = d.createElement("name");
+    name.appendChild(d.createTextNode(m_name));
+    result.appendChild(name);
     QDomElement address = d.createElement("address");
     QDomElement street = d.createElement("street");
     street.appendChild(d.createTextNode(m_street));

@@ -1,5 +1,5 @@
-#ifndef _VIEW_ARTS_H
-#define _VIEW_ARTS_H
+#ifndef _VIEW_PHYSICIAN_H
+#define _VIEW_PHYSICIAN_H
 
 #include <QObject>
 #include <QDate>
@@ -15,7 +15,7 @@ namespace View
     {
     Q_OBJECT
     public:
-        explicit Physician(Ui::Universe &universum);
+        explicit Physician(Ui::Universe &universe);
         virtual ~Physician();
 
         // --- Getters ---
@@ -38,8 +38,8 @@ namespace View
 
     private:
         // --- Data members ---
-        Ui::Universe &m_universe;
+        Ui::Universe &m_ui;
     };
 }
 
-#endif // _VIEW_ARTS_H
+#endif // _VIEW_PHYSICIAN_H

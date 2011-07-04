@@ -19,26 +19,26 @@ void Measurements::setup()
     int Hz[] = { 125, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 6000, 8000 };
     for (int i = 0; i < 11; ++i)
     {
-        m_view.setLGRechtsData(Hz[i], m_model.getLGRechtsData(Hz[i]));
-        m_view.setBGRechtsData(Hz[i], m_model.getBGRechtsData(Hz[i]));
-        m_view.setUCLRechtsData(Hz[i], m_model.getUCLRechtsData(Hz[i]));
-        m_view.setLGLinksData(Hz[i], m_model.getLGLinksData(Hz[i]));
-        m_view.setBGLinksData(Hz[i], m_model.getBGLinksData(Hz[i]));
-        m_view.setUCLLinksData(Hz[i], m_model.getUCLLinksData(Hz[i]));
+        m_view.setLGRechtsData(Hz[i], m_model.getACRightData(Hz[i]));
+        m_view.setBGRechtsData(Hz[i], m_model.getBCRightData(Hz[i]));
+        m_view.setUCLRechtsData(Hz[i], m_model.getUCLRightData(Hz[i]));
+        m_view.setLGLinksData(Hz[i], m_model.getACLeftData(Hz[i]));
+        m_view.setBGLinksData(Hz[i], m_model.getBCLeftData(Hz[i]));
+        m_view.setUCLLinksData(Hz[i], m_model.getUCLLeftData(Hz[i]));
     }
     for (int i = 0; i < 23; ++i)
     {
-        m_view.setROZonderData(5*i, m_model.getROZonderData(5*i));
-        m_view.setLOZonderData(5*i, m_model.getLOZonderData(5*i));
-        m_view.setROLOZonderData(5*i, m_model.getROLOZonderData(5*i));
-        m_view.setROMetData(5*i, m_model.getROMetData(5*i));
-        m_view.setLOMetData(5*i, m_model.getLOMetData(5*i));
-        m_view.setROLOMetData(5*i, m_model.getROLOMetData(5*i));
+        m_view.setROZonderData(5*i, m_model.getREWithoutData(5*i));
+        m_view.setLOZonderData(5*i, m_model.getLEWithoutData(5*i));
+        m_view.setROLOZonderData(5*i, m_model.getRELEWithoutData(5*i));
+        m_view.setROMetData(5*i, m_model.getREWithData(5*i));
+        m_view.setLOMetData(5*i, m_model.getLEWithData(5*i));
+        m_view.setROLOMetData(5*i, m_model.getRELEWithData(5*i));
     }
-    m_view.setLocalisatieZonder(m_model.getLocalisatieZonder());
-    m_view.setLocalisatieRechts(m_model.getLocalisatieRechts());
-    m_view.setLocalisatieLinks(m_model.getLocalisatieLinks());
-    m_view.setLocalisatieBeide(m_model.getLocalisatieBeide());
+    m_view.setLocalisatieZonder(m_model.getLocalizationWithout());
+    m_view.setLocalisatieRechts(m_model.getLocalizationRight());
+    m_view.setLocalisatieLinks(m_model.getLocalizationLeft());
+    m_view.setLocalisatieBeide(m_model.getLocalizationBoth());
 }
 
 void Measurements::teardown()
@@ -46,24 +46,24 @@ void Measurements::teardown()
     int Hz[] = { 125, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 6000, 8000 };
     for (int i = 0; i < 11; ++i)
     {
-        m_model.setLGRechtsData(Hz[i], m_view.getLGRechtsData(Hz[i]));
-        m_model.setBGRechtsData(Hz[i], m_view.getBGRechtsData(Hz[i]));
-        m_model.setUCLRechtsData(Hz[i], m_view.getUCLRechtsData(Hz[i]));
-        m_model.setLGLinksData(Hz[i], m_view.getLGLinksData(Hz[i]));
-        m_model.setBGLinksData(Hz[i], m_view.getBGLinksData(Hz[i]));
-        m_model.setUCLLinksData(Hz[i], m_view.getUCLLinksData(Hz[i]));
+        m_model.setACRightData(Hz[i], m_view.getLGRechtsData(Hz[i]));
+        m_model.setBCRightData(Hz[i], m_view.getBGRechtsData(Hz[i]));
+        m_model.setUCLRightData(Hz[i], m_view.getUCLRechtsData(Hz[i]));
+        m_model.setACLeftData(Hz[i], m_view.getLGLinksData(Hz[i]));
+        m_model.setBCLeftData(Hz[i], m_view.getBGLinksData(Hz[i]));
+        m_model.setUCLLeftData(Hz[i], m_view.getUCLLinksData(Hz[i]));
     }
     for (int i = 0; i < 23; ++i)
     {
-        m_model.setROZonderData(5*i, m_view.getROZonderData(5*i));
-        m_model.setLOZonderData(5*i, m_view.getLOZonderData(5*i));
-        m_model.setROLOZonderData(5*i, m_view.getROLOZonderData(5*i));
-        m_model.setROMetData(5*i, m_view.getROMetData(5*i));
-        m_model.setLOMetData(5*i, m_view.getLOMetData(5*i));
-        m_model.setROLOMetData(5*i, m_view.getROLOMetData(5*i));
+        m_model.setREWithoutData(5*i, m_view.getROZonderData(5*i));
+        m_model.setLEWithoutData(5*i, m_view.getLOZonderData(5*i));
+        m_model.setRELEWithoutData(5*i, m_view.getROLOZonderData(5*i));
+        m_model.setREWithData(5*i, m_view.getROMetData(5*i));
+        m_model.setLEWithData(5*i, m_view.getLOMetData(5*i));
+        m_model.setRELEWithData(5*i, m_view.getROLOMetData(5*i));
     }
-    m_model.setLocalisatieZonder(m_view.getLocalisatieZonder());
-    m_model.setLocalisatieRechts(m_view.getLocalisatieRechts());
-    m_model.setLocalisatieLinks(m_view.getLocalisatieLinks());
-    m_model.setLocalisatieBeide(m_view.getLocalisatieBeide());
+    m_model.setLocalizationWithout(m_view.getLocalisatieZonder());
+    m_model.setLocalizationRight(m_view.getLocalisatieRechts());
+    m_model.setLocalizationLeft(m_view.getLocalisatieLinks());
+    m_model.setLocalizationBoth(m_view.getLocalisatieBeide());
 }

@@ -1,5 +1,5 @@
-#ifndef _PRESENTER_MUTUALITEIT_H
-#define _PRESENTER_MUTUALITEIT_H
+#ifndef _PRESENTER_INSURANCECOMPANY_H
+#define _PRESENTER_INSURANCECOMPANY_H
 
 #include <QObject>
 
@@ -35,4 +35,4 @@ namespace Presenter
     };
 }
 
-#endif // _PRESENTER_MUTUALITEIT_H
+#endif // _PRESENTER_INSURANCECOMPANY_H

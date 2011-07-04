@@ -26,11 +26,11 @@ namespace View
         QWidget *getParentWindow();
 
         void clearPhysicianList();
-        void addPhysician(int id, const QString &naam, const QString &straat, const QString &gemeente);
-        void changePhysician(int id, const QString &naam, const QString &straat, const QString &gemeente);
+        void addPhysician(int id, const QString &name, const QString &street, const QString &city);
+        void changePhysician(int id, const QString &name, const QString &street, const QString &city);
         void clearInsuranceCompanyList();
-        void addInsuranceCompany(int id, const QString &naam);
-        void changeInsruanceCompany(int id, const QString &naam);
+        void addInsuranceCompany(int id, const QString &name);
+        void changeInsruanceCompany(int id, const QString &name);
 
         // --- Getters ---
         Customer &getCustomer() { return m_customer; }

@@ -18,7 +18,7 @@ Universe::Universe(View::Universe &view, Model::Universe &model)
 , m_physicianPresenter(0)
 , m_filePresenter(0)
 , m_insuranceCompanyPresenter(0)
-, m_arts(0)
+, m_physician(0)
 , m_file(0)
 , m_insuranceCompany(0)
 , m_changed(false)
@@ -113,20 +113,20 @@ void Universe::refreshPhysicianList()
 
 void Universe::refreshHoorapparatenLijst()
 {
-    m_view.leegHoorapparatenLijst();
+    m_view.clearHearingAidList();
     const QVector<Model::File *> &dossiers = m_model.getFiles();
     for (QVector<Model::File *>::const_iterator itDossier = dossiers.begin(); itDossier != dossiers.end(); ++itDossier)
     {
         Model::File *dossier = *itDossier;
         Q_ASSERT(dossier);
-        m_view.toevoegenHoorapparaat(dossier->getRightHearingAidBrand(), dossier->getRightHearingAidType(), dossier->getRightHearingAidPrice(), dossier->getTrialDate());
-        m_view.toevoegenHoorapparaat(dossier->getLeftHearingAidBrand(), dossier->getLeftHearingAidType(), dossier->getLeftHearingAidPrice(), dossier->getTrialDate());
+        m_view.addHearingAid(dossier->getRightHearingAidBrand(), dossier->getRightHearingAidType(), dossier->getRightHearingAidPrice(), dossier->getTrialDate());
+        m_view.addHearingAid(dossier->getLeftHearingAidBrand(), dossier->getLeftHearingAidType(), dossier->getLeftHearingAidPrice(), dossier->getTrialDate());
     }
 }
 
 void Universe::refreshKlantenLijst()
 {
-    m_view.leegKlantenLijst();
+    m_view.clearCustomerList();
     const QVector<Model::File *> &dossiers = m_model.getFiles();
     for (QVector<Model::File *>::const_iterator itDossier = dossiers.begin(); itDossier != dossiers.end(); ++itDossier)
     {
@@ -152,7 +152,7 @@ void Universe::refreshInsuranceCompanyList()
 void Universe::showPhysician(int id)
 {
     teardownPhysician();
-    m_arts = id;
+    m_physician = id;
     setupPhysician();
 }
 
@@ -206,9 +206,9 @@ void Universe::removeInsuranceCompany(int id)
     m_changed = true;
 }
 
-void Universe::addPhysician(QString voornaam, QString naam)
+void Universe::addPhysician(QString firstName, QString name)
 {
-    Model::Physician *physician = m_model.addPhysician(voornaam, naam);
+    Model::Physician *physician = m_model.addPhysician(firstName, name);
     Q_ASSERT(physician);
     m_view.setPhysicianListChanged(true);
     m_view.addPhysician(physician->getId(), physician->getName() + " " + physician->getFirstName(), physician->getStreet(), physician->getPostalCode(), physician->getCity());
@@ -227,9 +227,9 @@ void Universe::addFile(QString firstName, QString name)
     m_changed = true;
 }
 
-void Universe::addInsuranceCompany(QString naam)
+void Universe::addInsuranceCompany(QString name)
 {
-    Model::InsuranceCompany *insuranceCompany = m_model.addInsuranceCompany(naam);
+    Model::InsuranceCompany *insuranceCompany = m_model.addInsuranceCompany(name);
     Q_ASSERT(insuranceCompany);
     m_view.setInsuranceCompanyListChanged(true);
     m_view.addInsuranceCompany(insuranceCompany->getId(), insuranceCompany->getName(), insuranceCompany->getStreet(), insuranceCompany->getPostalCode(), insuranceCompany->getCity());
@@ -304,7 +304,7 @@ void Universe::setupPhysician()
 {
     m_view.cleanupTabPhysician();
 
-    if (Model::Physician *artsModel = m_model.getPhysician(m_arts))
+    if (Model::Physician *artsModel = m_model.getPhysician(m_physician))
     {
         m_physicianPresenter = new Presenter::Physician(m_view.getPhysician(), *artsModel);
         m_physicianPresenter->setup();

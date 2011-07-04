@@ -115,9 +115,9 @@ void File::fromDomElement(const QDomElement &e)
             if (!brief.isNull())
                 m_letterInsuranceCompany.fromDomElement(brief);
         }
-        else if (element.tagName() == "audiometrie")
+        else if (element.tagName() == "audiometry")
         {
-            m_meetgegevens.fromDomElement(element);
+            m_measurements.fromDomElement(element);
         }
         else if (element.tagName() == "invoice")
         {
@@ -254,8 +254,8 @@ QDomElement File::toDomElement(QDomDocument &d) const
         insuranceCompany.appendChild(letter);
     }
     result.appendChild(insuranceCompany);
-    QDomElement audiometrie = m_meetgegevens.toDomElement(d);
-    result.appendChild(audiometrie);
+    QDomElement audiometry = m_measurements.toDomElement(d);
+    result.appendChild(audiometry);
     result.setTagName("file");
     result.setAttribute("id", m_id);
     return result;
