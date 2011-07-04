@@ -43,7 +43,7 @@ namespace Presenter
         void editedPhysician(int id);
         void editedFile(int id);
         void editedInsuranceCompany(int id);
-        void hoorapparaatGewijzigd();
+        void editedHearingAids();
         void teardownPhysician();
         void teardownFile();
         void teardownInsuranceCompany();
@@ -53,8 +53,8 @@ namespace Presenter
 
     private:
         void refreshPhysicianList();
-        void refreshHoorapparatenLijst();
-        void refreshKlantenLijst();
+        void refreshHearingAidsList();
+        void refreshCustomerList();
         void refreshInsuranceCompanyList();
 
         View::Universe &m_view;

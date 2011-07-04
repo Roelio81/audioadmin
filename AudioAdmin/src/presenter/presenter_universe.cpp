@@ -27,25 +27,25 @@ Universe::Universe(View::Universe &view, Model::Universe &model)
     connect(&m_view, SIGNAL(saveSignal()), this, SLOT(save()));
     connect(&m_view, SIGNAL(openLabels()), this, SLOT(openLabels()));
     connect(&m_view, SIGNAL(openSettings()), this, SLOT(openSettings()));
-    connect(&m_view, SIGNAL(artsSelectieSignal(int)), this, SLOT(showPhysician(int)));
-    connect(&m_view, SIGNAL(artsVerwijderenSignal(int)), this, SLOT(removePhysician(int)));
-    connect(&m_view, SIGNAL(artsToevoegenSignal(QString, QString)), this, SLOT(addPhysician(QString, QString)));
-    connect(&m_view, SIGNAL(klantSelectieSignal(int)), this, SLOT(showFile(int)));
-    connect(&m_view, SIGNAL(klantVerwijderenSignal(int)), this, SLOT(removeFile(int)));
-    connect(&m_view, SIGNAL(klantToevoegenSignal(QString, QString)), this, SLOT(addFile(QString, QString)));
-    connect(&m_view, SIGNAL(mutualiteitSelectieSignal(int)), this, SLOT(showInsuranceCompany(int)));
-    connect(&m_view, SIGNAL(mutualiteitVerwijderenSignal(int)), this, SLOT(removeInsuranceCompany(int)));
-    connect(&m_view, SIGNAL(mutualiteitToevoegenSignal(QString)), this, SLOT(addInsuranceCompany(QString)));
+    connect(&m_view, SIGNAL(selectPhysicianSignal(int)), this, SLOT(showPhysician(int)));
+    connect(&m_view, SIGNAL(removePhysicianSignal(int)), this, SLOT(removePhysician(int)));
+    connect(&m_view, SIGNAL(addPhysicianSignal(QString, QString)), this, SLOT(addPhysician(QString, QString)));
+    connect(&m_view, SIGNAL(selectCustomerSignal(int)), this, SLOT(showFile(int)));
+    connect(&m_view, SIGNAL(removeCustomerSignal(int)), this, SLOT(removeFile(int)));
+    connect(&m_view, SIGNAL(addCustomerSignal(QString, QString)), this, SLOT(addFile(QString, QString)));
+    connect(&m_view, SIGNAL(selectInsuranceCompanySignal(int)), this, SLOT(showInsuranceCompany(int)));
+    connect(&m_view, SIGNAL(removeInsuranceCompanySignal(int)), this, SLOT(removeInsuranceCompany(int)));
+    connect(&m_view, SIGNAL(addInsuranceCompanySignal(QString)), this, SLOT(addInsuranceCompany(QString)));
     connect(&m_view, SIGNAL(closeFileTab()), this, SLOT(teardownFile()));
     connect(&m_view, SIGNAL(closePhysicianTab()), this, SLOT(teardownPhysician()));
     connect(&m_view, SIGNAL(closeInsuranceCompanyTab()), this, SLOT(teardownInsuranceCompany()));
-    connect(&m_view, SIGNAL(openArtsTab()), this, SLOT(setupPhysician()));
-    connect(&m_view, SIGNAL(openDossierTab()), this, SLOT(setupFile()));
-    connect(&m_view, SIGNAL(openMutualiteitTab()), this, SLOT(setupInsuranceCompany()));
+    connect(&m_view, SIGNAL(openFileTab()), this, SLOT(setupFile()));
+    connect(&m_view, SIGNAL(openPhysicianTab()), this, SLOT(setupPhysician()));
+    connect(&m_view, SIGNAL(openInsuranceCompanyTab()), this, SLOT(setupInsuranceCompany()));
 
     refreshPhysicianList();
-    refreshHoorapparatenLijst();
-    refreshKlantenLijst();
+    refreshHearingAidsList();
+    refreshCustomerList();
     refreshInsuranceCompanyList();
 
     m_view.cleanupTabPhysician();
@@ -102,50 +102,50 @@ void Universe::openLabels()
 void Universe::refreshPhysicianList()
 {
     m_view.clearPhysicianList();
-    const QVector<Model::Physician *> &artsen = m_model.getPhysicians();
-    for (QVector<Model::Physician *>::const_iterator itArts = artsen.begin(); itArts != artsen.end(); ++itArts)
+    const QVector<Model::Physician *> &physician = m_model.getPhysicians();
+    for (QVector<Model::Physician *>::const_iterator it = physician.begin(); it != physician.end(); ++it)
     {
-        Q_ASSERT(*itArts);
-        Model::Physician &arts = *(*itArts);
-        m_view.addPhysician(arts.getId(), arts.getName() + " " + arts.getFirstName(), arts.getStreet(), arts.getPostalCode(), arts.getCity());
+        Q_ASSERT(*it);
+        Model::Physician *physician = *it;
+        m_view.addPhysician(physician->getId(), physician->getName() + " " + physician->getFirstName(), physician->getStreet(), physician->getPostalCode(), physician->getCity());
     }
 } 
 
-void Universe::refreshHoorapparatenLijst()
+void Universe::refreshHearingAidsList()
 {
     m_view.clearHearingAidList();
-    const QVector<Model::File *> &dossiers = m_model.getFiles();
-    for (QVector<Model::File *>::const_iterator itDossier = dossiers.begin(); itDossier != dossiers.end(); ++itDossier)
+    const QVector<Model::File *> &files = m_model.getFiles();
+    for (QVector<Model::File *>::const_iterator it = files.begin(); it != files.end(); ++it)
     {
-        Model::File *dossier = *itDossier;
-        Q_ASSERT(dossier);
-        m_view.addHearingAid(dossier->getRightHearingAidBrand(), dossier->getRightHearingAidType(), dossier->getRightHearingAidPrice(), dossier->getTrialDate());
-        m_view.addHearingAid(dossier->getLeftHearingAidBrand(), dossier->getLeftHearingAidType(), dossier->getLeftHearingAidPrice(), dossier->getTrialDate());
+        Model::File *file = *it;
+        Q_ASSERT(file);
+        m_view.addHearingAid(file->getRightHearingAidBrand(), file->getRightHearingAidType(), file->getRightHearingAidPrice(), file->getTrialDate());
+        m_view.addHearingAid(file->getLeftHearingAidBrand(), file->getLeftHearingAidType(), file->getLeftHearingAidPrice(), file->getTrialDate());
     }
 }
 
-void Universe::refreshKlantenLijst()
+void Universe::refreshCustomerList()
 {
     m_view.clearCustomerList();
-    const QVector<Model::File *> &dossiers = m_model.getFiles();
-    for (QVector<Model::File *>::const_iterator itDossier = dossiers.begin(); itDossier != dossiers.end(); ++itDossier)
+    const QVector<Model::File *> &files = m_model.getFiles();
+    for (QVector<Model::File *>::const_iterator it = files.begin(); it != files.end(); ++it)
     {
-        Model::File *dossier = *itDossier;
-        Q_ASSERT(dossier);
-        Model::Customer &klant = dossier->getCustomer();
-        m_view.addCustomer(dossier->getId(), klant.getName() + " " + klant.getFirstName(), klant.getStreet(), klant.getPostalCode(), klant.getCity());
+        Model::File *file = *it;
+        Q_ASSERT(file);
+        Model::Customer &customer = file->getCustomer();
+        m_view.addCustomer(file->getId(), customer.getName() + " " + customer.getFirstName(), customer.getStreet(), customer.getPostalCode(), customer.getCity());
     }
 } 
 
 void Universe::refreshInsuranceCompanyList()
 {
     m_view.clearInsuranceCompanyList();
-    const QVector<Model::InsuranceCompany *> &mutualiteiten = m_model.getInsuranceCompanies();
-    for (QVector<Model::InsuranceCompany *>::const_iterator itMutualiteit = mutualiteiten.begin(); itMutualiteit != mutualiteiten.end(); ++itMutualiteit)
+    const QVector<Model::InsuranceCompany *> &insuranceCompanies = m_model.getInsuranceCompanies();
+    for (QVector<Model::InsuranceCompany *>::const_iterator it = insuranceCompanies.begin(); it != insuranceCompanies.end(); ++it)
     {
-        Q_ASSERT(*itMutualiteit);
-        Model::InsuranceCompany &mutualiteit = *(*itMutualiteit);
-        m_view.addInsuranceCompany(mutualiteit.getId(), mutualiteit.getName(), mutualiteit.getStreet(), mutualiteit.getPostalCode(), mutualiteit.getCity());
+        Q_ASSERT(*it);
+        Model::InsuranceCompany *insuranceCompany = *it;
+        m_view.addInsuranceCompany(insuranceCompany->getId(), insuranceCompany->getName(), insuranceCompany->getStreet(), insuranceCompany->getPostalCode(), insuranceCompany->getCity());
     }
 }
 
@@ -248,11 +248,11 @@ void Universe::editedPhysician(int id)
 
 void Universe::editedFile(int id)
 {
-    Model::File *dossier = m_model.getFile(id);
-    Q_ASSERT(dossier);
-    const Model::Customer &customer = dossier->getCustomer();
+    Model::File *file = m_model.getFile(id);
+    Q_ASSERT(file);
+    const Model::Customer &customer = file->getCustomer();
     m_view.setFileListChanged(true);
-    m_view.changeCustomer(dossier->getId(), customer.getName() + " " + customer.getFirstName(), customer.getStreet(), customer.getPostalCode(), customer.getCity());
+    m_view.changeCustomer(file->getId(), customer.getName() + " " + customer.getFirstName(), customer.getStreet(), customer.getPostalCode(), customer.getCity());
     m_changed = true;
 }
 
@@ -265,9 +265,9 @@ void Universe::editedInsuranceCompany(int id)
     m_changed = true;
 }
 
-void Universe::hoorapparaatGewijzigd()
+void Universe::editedHearingAids()
 {
-    refreshHoorapparatenLijst();
+    refreshHearingAidsList();
 }
 
 void Universe::teardownPhysician()
@@ -304,9 +304,9 @@ void Universe::setupPhysician()
 {
     m_view.cleanupTabPhysician();
 
-    if (Model::Physician *artsModel = m_model.getPhysician(m_physician))
+    if (Model::Physician *model = m_model.getPhysician(m_physician))
     {
-        m_physicianPresenter = new Presenter::Physician(m_view.getPhysician(), *artsModel);
+        m_physicianPresenter = new Presenter::Physician(m_view.getPhysician(), *model);
         m_physicianPresenter->setup();
         connect(m_physicianPresenter, SIGNAL(edited(int)), this, SLOT(editedPhysician(int)));
         m_view.enableWidgetsForPhysician();
@@ -317,12 +317,12 @@ void Universe::setupFile()
 {
     m_view.cleanupTabFile(m_model.getInvalidDate());
 
-    if (Model::File *dossierModel = m_model.getFile(m_file))
+    if (Model::File *model = m_model.getFile(m_file))
     {
-        m_filePresenter = new Presenter::File(m_view.getFile(), *dossierModel);
+        m_filePresenter = new Presenter::File(m_view.getFile(), *model);
         m_filePresenter->setup();
         connect(m_filePresenter, SIGNAL(edited(int)), this, SLOT(editedFile(int)));
-        connect(m_filePresenter, SIGNAL(destroyed()), this, SLOT(hoorapparaatGewijzigd()));
+        connect(m_filePresenter, SIGNAL(destroyed()), this, SLOT(editedHearingAids()));
         m_view.enableWidgetsForCustomer();
     }
 }
@@ -331,9 +331,9 @@ void Universe::setupInsuranceCompany()
 {
     m_view.cleanupTabInsuranceCompany();
 
-    if (Model::InsuranceCompany *mutualiteitModel = m_model.getInsuranceCompany(m_insuranceCompany))
+    if (Model::InsuranceCompany *model = m_model.getInsuranceCompany(m_insuranceCompany))
     {
-        m_insuranceCompanyPresenter = new Presenter::InsuranceCompany(m_view.getInsuranceCompany(), *mutualiteitModel);
+        m_insuranceCompanyPresenter = new Presenter::InsuranceCompany(m_view.getInsuranceCompany(), *model);
         m_insuranceCompanyPresenter->setup();
         connect(m_insuranceCompanyPresenter, SIGNAL(edited(int)), this, SLOT(editedInsuranceCompany(int)));
         m_view.enableWidgetsForInsuranceCompany();

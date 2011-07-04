@@ -8,8 +8,8 @@ FORMS = \
     ui/universe.ui \
     ui/invoice.ui \
     ui/settings.ui
-HEADERS = ../AudioPlugin/src/tonaleaudiometriewidget.h \
- ../AudioPlugin/src/vocaleaudiometriewidget.h \
+HEADERS = ../AudioPlugin/src/puretoneaudiometrywidget.h \
+ ../AudioPlugin/src/speechaudiometrywidget.h \
     src/view/view_adddialog.h \
     src/view/view_letter.h \
     src/model/model_file.h \
@@ -48,8 +48,8 @@ MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml
 RESOURCES += icons.qrc
-SOURCES = ../AudioPlugin/src/tonaleaudiometriewidget.cpp \
- ../AudioPlugin/src/vocaleaudiometriewidget.cpp \
+SOURCES = ../AudioPlugin/src/puretoneaudiometrywidget.cpp \
+ ../AudioPlugin/src/speechaudiometrywidget.cpp \
  src/main.cpp \
     src/view/view_adddialog.cpp \
     src/view/view_letter.cpp \

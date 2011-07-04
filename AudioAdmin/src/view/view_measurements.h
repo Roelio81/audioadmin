@@ -14,22 +14,22 @@ namespace View
         virtual ~Measurements();
 
         // --- Getters ---
-        int getLGRechtsData(int Hz) const;
-        int getBGRechtsData(int Hz) const;
-        int getUCLRechtsData(int Hz) const;
-        int getLGLinksData(int Hz) const;
-        int getBGLinksData(int Hz) const;
-        int getUCLLinksData(int Hz) const;
-        int getROZonderData(int dB) const;
-        int getLOZonderData(int dB) const;
-        int getROLOZonderData(int dB) const;
-        int getROMetData(int dB) const;
-        int getLOMetData(int dB) const;
-        int getROLOMetData(int dB) const;
-        int getLocalisatieZonder() const;
-        int getLocalisatieRechts() const;
-        int getLocalisatieLinks() const;
-        int getLocalisatieBeide() const;
+        int getACRightData(int Hz) const;
+        int getBCRightData(int Hz) const;
+        int getUCLRightData(int Hz) const;
+        int getACLeftData(int Hz) const;
+        int getBCLeftData(int Hz) const;
+        int getUCLLeftData(int Hz) const;
+        int getREWithoutData(int dB) const;
+        int getLEWithoutData(int dB) const;
+        int getRELEWithoutData(int dB) const;
+        int getREWithData(int dB) const;
+        int getLEWithData(int dB) const;
+        int getRELEWithData(int dB) const;
+        int getLocalizationWithout() const;
+        int getLocalizationRight() const;
+        int getLocalizationLeft() const;
+        int getLocalizationBoth() const;
         QPixmap getTonaleLinks() const;
         QPixmap getTonaleRechts() const;
         QPixmap getVocaleZonderApparaat() const;

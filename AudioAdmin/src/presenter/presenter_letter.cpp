@@ -221,22 +221,22 @@ void Letter::print()
                 painter.drawLine(hmar, y, hmar+100*mmx, y);
                 y += lineheight;
                 painter.drawText(hmar+2*mmx, y, tr("Without hearing aids"));
-                painter.drawText(hmar+75*mmx, y, QString::number(measurementsView.getLocalisatieZonder()) + " %");
+                painter.drawText(hmar+75*mmx, y, QString::number(measurementsView.getLocalizationWithout()) + " %");
                 y += 2*mmx;
                 painter.drawLine(hmar, y, hmar+100*mmx, y);
                 y += lineheight;
                 painter.drawText(hmar+2*mmx, y, tr("With 1 hearing aid (right)"));
-                painter.drawText(hmar+75*mmx, y, QString::number(measurementsView.getLocalisatieRechts()) + " %");
+                painter.drawText(hmar+75*mmx, y, QString::number(measurementsView.getLocalizationRight()) + " %");
                 y += 2*mmx;
                 painter.drawLine(hmar, y, hmar+100*mmx, y);
                 y += lineheight;
                 painter.drawText(hmar+2*mmx, y, tr("With 1 hearing aid (left)"));
-                painter.drawText(hmar+75*mmx, y, QString::number(measurementsView.getLocalisatieLinks()) + " %");
+                painter.drawText(hmar+75*mmx, y, QString::number(measurementsView.getLocalizationLeft()) + " %");
                 y += 2*mmx;
                 painter.drawLine(hmar, y, hmar+100*mmx, y);
                 y += lineheight;
                 painter.drawText(hmar+2*mmx, y, tr("With 2 hearing aids"));
-                painter.drawText(hmar+75*mmx, y, QString::number(measurementsView.getLocalisatieBeide()) + " %");
+                painter.drawText(hmar+75*mmx, y, QString::number(measurementsView.getLocalizationBoth()) + " %");
                 y += 2*mmx;
                 painter.drawLine(hmar, y, hmar+100*mmx, y);
             }

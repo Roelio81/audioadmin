@@ -1,12 +1,12 @@
 #include "audioplugins.h"
-#include "tonaleaudiometrieplugin.h"
-#include "vocaleaudiometrieplugin.h"
+#include "puretoneaudiometryplugin.h"
+#include "speechaudiometryplugin.h"
 
 AudioPlugins::AudioPlugins(QObject *parent)
 : QObject(parent)
 {
-	m_plugins.append(new VocaleAudiometriePlugin(this));
-	m_plugins.append(new TonaleAudiometriePlugin(this));
+        m_plugins.append(new SpeechAudiometryPlugin(this));
+        m_plugins.append(new PureToneAudiometryPlugin(this));
 }
 
 QList<QDesignerCustomWidgetInterface*> AudioPlugins::customWidgets() const

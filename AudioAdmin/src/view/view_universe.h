@@ -90,22 +90,22 @@ namespace View
         void exitSignal();
         void saveSignal();
         void openSettings();
-        void artsSelectieSignal(int id);
-        void artsVerwijderenSignal(int id);
-        void artsToevoegenSignal(QString firstName, QString name);
-        void klantSelectieSignal(int id);
-        void klantVerwijderenSignal(int id);
-        void klantToevoegenSignal(QString firstName, QString name);
-        void mutualiteitSelectieSignal(int id);
-        void mutualiteitVerwijderenSignal(int id);
-        void mutualiteitToevoegenSignal(QString name);
+        void selectPhysicianSignal(int id);
+        void removePhysicianSignal(int id);
+        void addPhysicianSignal(QString firstName, QString name);
+        void selectCustomerSignal(int id);
+        void removeCustomerSignal(int id);
+        void addCustomerSignal(QString firstName, QString name);
+        void selectInsuranceCompanySignal(int id);
+        void removeInsuranceCompanySignal(int id);
+        void addInsuranceCompanySignal(QString name);
         void openLabels();
         void closeFileTab();
         void closePhysicianTab();
         void closeInsuranceCompanyTab();
-        void openDossierTab();
-        void openArtsTab();
-        void openMutualiteitTab();
+        void openFileTab();
+        void openPhysicianTab();
+        void openInsuranceCompanyTab();
 
     private:
         void closeEvent(QCloseEvent *event);

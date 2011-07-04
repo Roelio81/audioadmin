@@ -108,9 +108,9 @@ void Universe::tabChanged(int newTab)
 
     switch (m_currentTab)
     {
-    case 0: emit openDossierTab(); break;
-    case 1: emit openArtsTab(); break;
-    case 2: emit openMutualiteitTab(); break;
+    case 0: emit openFileTab(); break;
+    case 1: emit openPhysicianTab(); break;
+    case 2: emit openInsuranceCompanyTab(); break;
     }
 }
 
@@ -339,7 +339,7 @@ void Universe::selectInsuranceCompany(int id)
 void Universe::selectPhysician(int currentRow, int, int previousRow, int)
 {
     if (currentRow != previousRow)
-        emit artsSelectieSignal(physicianIndexToId(currentRow));
+        emit selectPhysicianSignal(physicianIndexToId(currentRow));
 
     enableWidgetsForPhysician();
 }
@@ -347,7 +347,7 @@ void Universe::selectPhysician(int currentRow, int, int previousRow, int)
 void Universe::selectCustomer(int currentRow, int, int previousRow, int)
 {
     if (currentRow != previousRow)
-        emit klantSelectieSignal(customerIndexToId(currentRow));
+        emit selectCustomerSignal(customerIndexToId(currentRow));
 
     enableWidgetsForCustomer();
 }
@@ -355,7 +355,7 @@ void Universe::selectCustomer(int currentRow, int, int previousRow, int)
 void Universe::selectInsuranceCompany(int currentRow, int, int previousRow, int)
 {
     if (currentRow != previousRow)
-        emit mutualiteitSelectieSignal(insuranceCompanyIndexToId(currentRow));
+        emit selectInsuranceCompanySignal(insuranceCompanyIndexToId(currentRow));
 
     enableWidgetsForInsuranceCompany();
 }
@@ -394,7 +394,7 @@ void Universe::addPhysician()
     AddDialog dialog(true, this);
     dialog.setWindowTitle(tr("Add Physician"));
     if (dialog.exec() == QDialog::Accepted)
-        emit artsToevoegenSignal(dialog.getFirstName(), dialog.getName());
+        emit addPhysicianSignal(dialog.getFirstName(), dialog.getName());
 }
 
 void Universe::removePhysician()
@@ -414,12 +414,12 @@ void Universe::removePhysician()
         int row = m_ui.m_physicianList->currentRow();
         int column = m_ui.m_physicianList->currentColumn();
         int id = physicianIndexToId(m_ui.m_physicianList->currentRow());
-        emit artsVerwijderenSignal(id);
+        emit removePhysicianSignal(id);
         m_ui.m_physicianList->removeRow(row);
         if (row >= m_ui.m_physicianList->rowCount())
             --row;
         m_ui.m_physicianList->setCurrentCell(row, column);
-        emit artsSelectieSignal(physicianIndexToId(row));
+        emit selectPhysicianSignal(physicianIndexToId(row));
     }
 }
 
@@ -452,7 +452,7 @@ void Universe::addFile()
     AddDialog dialog(true, this);
     dialog.setWindowTitle(tr("Add File"));
     if (dialog.exec() == QDialog::Accepted)
-        emit klantToevoegenSignal(dialog.getFirstName(), dialog.getName());
+        emit addCustomerSignal(dialog.getFirstName(), dialog.getName());
 }
 
 void Universe::removeFile()
@@ -472,12 +472,12 @@ void Universe::removeFile()
         int row = m_ui.m_customerList->currentRow();
         int column = m_ui.m_customerList->currentColumn();
         int id = customerIndexToId(m_ui.m_customerList->currentRow());
-        emit klantVerwijderenSignal(id);
+        emit removeCustomerSignal(id);
         m_ui.m_customerList->removeRow(row);
         if (row >= m_ui.m_customerList->rowCount())
             --row;
         m_ui.m_customerList->setCurrentCell(row, column);
-        emit klantSelectieSignal(customerIndexToId(row));
+        emit selectCustomerSignal(customerIndexToId(row));
     }
 }
 
@@ -510,7 +510,7 @@ void Universe::addInsuranceCompany()
     AddDialog dialog(false, this);
     dialog.setWindowTitle(tr("Add Insurance Company"));
     if (dialog.exec() == QDialog::Accepted)
-        emit mutualiteitToevoegenSignal(dialog.getName());
+        emit addInsuranceCompanySignal(dialog.getName());
 }
 
 void Universe::removeInsuranceCompany()
@@ -530,12 +530,12 @@ void Universe::removeInsuranceCompany()
         int row = m_ui.m_insuranceCompanyList->currentRow();
         int column = m_ui.m_insuranceCompanyList->currentColumn();
         int id = insuranceCompanyIndexToId(m_ui.m_insuranceCompanyList->currentRow());
-        emit mutualiteitVerwijderenSignal(id);
+        emit removeInsuranceCompanySignal(id);
         m_ui.m_insuranceCompanyList->removeRow(row);
         if (row >= m_ui.m_insuranceCompanyList->rowCount())
             --row;
         m_ui.m_insuranceCompanyList->setCurrentCell(row, column);
-        emit mutualiteitSelectieSignal(insuranceCompanyIndexToId(row));
+        emit selectInsuranceCompanySignal(insuranceCompanyIndexToId(row));
     }
 }
 

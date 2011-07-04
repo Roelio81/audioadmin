@@ -103,17 +103,17 @@ void File::fromDomElement(const QDomElement &e)
         else if (element.tagName() == "physician")
         {
             m_physician = element.attribute("id").isEmpty() ? -1 : element.attribute("id").toInt();
-            QDomElement brief = element.firstChildElement("letter");
-            if (!brief.isNull())
-                m_letterPhysician.fromDomElement(brief);
+            QDomElement letter = element.firstChildElement("letter");
+            if (!letter.isNull())
+                m_letterPhysician.fromDomElement(letter);
         }
         else if (element.tagName() == "insuranceCompany")
         {
             m_insuranceCompany = element.attribute("id").isEmpty() ? -1 : element.attribute("id").toInt();
             m_memberNumber = element.attribute("memberNr");
-            QDomElement brief = element.firstChildElement("letter");
-            if (!brief.isNull())
-                m_letterInsuranceCompany.fromDomElement(brief);
+            QDomElement letter = element.firstChildElement("letter");
+            if (!letter.isNull())
+                m_letterInsuranceCompany.fromDomElement(letter);
         }
         else if (element.tagName() == "audiometry")
         {
@@ -234,15 +234,15 @@ QDomElement File::toDomElement(QDomDocument &d) const
     result.appendChild(hearingAids);
     if (!m_letterCustomer.getText().isEmpty())
     {
-        QDomElement brief = m_letterCustomer.toDomElement(d);
-        result.appendChild(brief);
+        QDomElement letter = m_letterCustomer.toDomElement(d);
+        result.appendChild(letter);
     }
     QDomElement physician = d.createElement("physician");
     physician.setAttribute("id", (m_physician >= 0) ? QString::number(m_physician) : "");
     if (!m_letterPhysician.getText().isEmpty())
     {
-        QDomElement brief = m_letterPhysician.toDomElement(d);
-        physician.appendChild(brief);
+        QDomElement letter = m_letterPhysician.toDomElement(d);
+        physician.appendChild(letter);
     }
     result.appendChild(physician);
     QDomElement insuranceCompany = d.createElement("insuranceCompany");

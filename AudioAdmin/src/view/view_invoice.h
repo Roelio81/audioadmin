@@ -1,5 +1,5 @@
-#ifndef _VIEW_FACTUUR_H
-#define _VIEW_FACTUUR_H
+#ifndef _VIEW_INVOICE_H
+#define _VIEW_INVOICE_H
 
 #include <QDialog>
 #include "ui_invoice.h"

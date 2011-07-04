@@ -60,7 +60,7 @@
            </spacer>
           </item>
           <item row="0" column="1">
-           <widget class="TonaleAudiometrieWidget" name="m_tonaleAudiometrieRechts" native="true">
+           <widget class="PureToneAudiometryWidget" name="m_tonaleAudiometrieRechts" native="true">
             <property name="minimumSize">
              <size>
               <width>320</width>
@@ -207,7 +207,7 @@
            </spacer>
           </item>
           <item row="0" column="1">
-           <widget class="TonaleAudiometrieWidget" name="m_tonaleAudiometrieLinks" native="true">
+           <widget class="PureToneAudiometryWidget" name="m_tonaleAudiometrieLinks" native="true">
             <property name="minimumSize">
              <size>
               <width>320</width>
@@ -345,7 +345,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0" rowspan="5">
-           <widget class="VocaleAudiometrieWidget" name="m_vocaleAudiometrieZonder" native="true">
+           <widget class="SpeechAudiometryWidget" name="m_vocaleAudiometrieZonder" native="true">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -420,7 +420,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_7">
           <item row="0" column="0" rowspan="5">
-           <widget class="VocaleAudiometrieWidget" name="m_vocaleAudiometrieMet" native="true">
+           <widget class="SpeechAudiometryWidget" name="m_vocaleAudiometrieMet" native="true">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -818,14 +818,14 @@ p, li { white-space: pre-wrap; }
  </widget>
  <customwidgets>
   <customwidget>
-   <class>VocaleAudiometrieWidget</class>
+   <class>SpeechAudiometryWidget</class>
    <extends>QWidget</extends>
-   <header>../../AudioPlugin/src/vocaleaudiometriewidget.h</header>
+   <header>../../AudioPlugin/src/speechaudiometrywidget.h</header>
   </customwidget>
   <customwidget>
-   <class>TonaleAudiometrieWidget</class>
+   <class>PureToneAudiometryWidget</class>
    <extends>QWidget</extends>
-   <header>../../AudioPlugin/src/tonaleaudiometriewidget.h</header>
+   <header>../../AudioPlugin/src/puretoneaudiometrywidget.h</header>
   </customwidget>
  </customwidgets>
  <resources>
@@ -836,7 +836,7 @@ p, li { white-space: pre-wrap; }
    <sender>m_bgLinks</sender>
    <signal>clicked()</signal>
    <receiver>m_tonaleAudiometrieLinks</receiver>
-   <slot>checkBG()</slot>
+   <slot>checkBC()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>553</x>
@@ -852,7 +852,7 @@ p, li { white-space: pre-wrap; }
    <sender>m_lgLinks</sender>
    <signal>clicked()</signal>
    <receiver>m_tonaleAudiometrieLinks</receiver>
-   <slot>checkLG()</slot>
+   <slot>checkAC()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>445</x>
@@ -884,7 +884,7 @@ p, li { white-space: pre-wrap; }
    <sender>m_bgRechts</sender>
    <signal>clicked()</signal>
    <receiver>m_tonaleAudiometrieRechts</receiver>
-   <slot>checkBG()</slot>
+   <slot>checkBC()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>195</x>
@@ -900,7 +900,7 @@ p, li { white-space: pre-wrap; }
    <sender>m_lgRechts</sender>
    <signal>clicked()</signal>
    <receiver>m_tonaleAudiometrieRechts</receiver>
-   <slot>checkLG()</slot>
+   <slot>checkAC()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>87</x>
@@ -932,7 +932,7 @@ p, li { white-space: pre-wrap; }
    <sender>m_roZA</sender>
    <signal>clicked()</signal>
    <receiver>m_vocaleAudiometrieZonder</receiver>
-   <slot>checkRO()</slot>
+   <slot>checkRE()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>674</x>
@@ -948,7 +948,7 @@ p, li { white-space: pre-wrap; }
    <sender>m_loZA</sender>
    <signal>clicked()</signal>
    <receiver>m_vocaleAudiometrieZonder</receiver>
-   <slot>checkLO()</slot>
+   <slot>checkLE()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>674</x>
@@ -964,7 +964,7 @@ p, li { white-space: pre-wrap; }
    <sender>m_roloZA</sender>
    <signal>clicked()</signal>
    <receiver>m_vocaleAudiometrieZonder</receiver>
-   <slot>checkROLO()</slot>
+   <slot>checkRELE()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>674</x>
@@ -980,7 +980,7 @@ p, li { white-space: pre-wrap; }
    <sender>m_roMA</sender>
    <signal>clicked()</signal>
    <receiver>m_vocaleAudiometrieMet</receiver>
-   <slot>checkRO()</slot>
+   <slot>checkRE()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>674</x>
@@ -996,7 +996,7 @@ p, li { white-space: pre-wrap; }
    <sender>m_loMA</sender>
    <signal>clicked()</signal>
    <receiver>m_vocaleAudiometrieMet</receiver>
-   <slot>checkLO()</slot>
+   <slot>checkLE()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>674</x>
@@ -1012,7 +1012,7 @@ p, li { white-space: pre-wrap; }
    <sender>m_roloMA</sender>
    <signal>clicked()</signal>
    <receiver>m_vocaleAudiometrieMet</receiver>
-   <slot>checkROLO()</slot>
+   <slot>checkRELE()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>674</x>

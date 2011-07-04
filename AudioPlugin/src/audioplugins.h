@@ -2,14 +2,14 @@
 #include <qplugin.h>
 
 class AudioPlugins : public QObject, public QDesignerCustomWidgetCollectionInterface
-{
-	Q_OBJECT
-	Q_INTERFACES(QDesignerCustomWidgetCollectionInterface)
+    {
+    Q_OBJECT
+    Q_INTERFACES(QDesignerCustomWidgetCollectionInterface)
 
-	public:
-		AudioPlugins(QObject *parent = 0);
-		virtual QList<QDesignerCustomWidgetInterface*> customWidgets() const;
+    public:
+        explicit AudioPlugins(QObject *parent = 0);
+        virtual QList<QDesignerCustomWidgetInterface*> customWidgets() const;
 
-	private:
-		QList<QDesignerCustomWidgetInterface*> m_plugins;
-};
+    private:
+        QList<QDesignerCustomWidgetInterface*> m_plugins;
+    };
