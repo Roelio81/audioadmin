@@ -8,6 +8,8 @@ class AudioPlugins : public QObject, public QDesignerCustomWidgetCollectionInter
 
     public:
         explicit AudioPlugins(QObject *parent = 0);
+
+        // --- QDesignerCustomWidgetCollectionInterface ---
         virtual QList<QDesignerCustomWidgetInterface*> customWidgets() const;
 
     private:

@@ -7,56 +7,56 @@
 
 SpeechAudiometryPlugin::SpeechAudiometryPlugin(QObject *parent)
 : QObject(parent)
-{
-	m_initialized = false;
-}
+    {
+    m_initialized = false;
+    }
 
 QString SpeechAudiometryPlugin::name() const
-{
-        return "SpeechAudiometryWidget";
-}
+    {
+    return "SpeechAudiometryWidget";
+    }
 
 QString SpeechAudiometryPlugin::group() const
-{
-	return "AudioAdmin Widgets";
-}
+    {
+    return "AudioAdmin Widgets";
+    }
 
 QString SpeechAudiometryPlugin::toolTip() const
-{
-	return "";
-}
+    {
+    return "";
+    }
 
 QString SpeechAudiometryPlugin::whatsThis() const
-{
-	return "";
-}
+    {
+    return "";
+    }
 
 QString SpeechAudiometryPlugin::includeFile() const
-{
-        return "../../AudioPlugin/src/speechaudiometrywidget.h";
-}
+    {
+    return "../../AudioPlugin/src/speechaudiometrywidget.h";
+    }
 
 QIcon SpeechAudiometryPlugin::icon() const
-{
-	return QIcon();
-}
+    {
+    return QIcon();
+    }
 
 bool SpeechAudiometryPlugin::isContainer() const
-{
-	return false;
-}
+    {
+    return false;
+    }
 
 QWidget *SpeechAudiometryPlugin::createWidget(QWidget *parent)
-{
-        return new SpeechAudiometryWidget(parent);
-}
+    {
+    return new SpeechAudiometryWidget(parent);
+    }
 
 bool SpeechAudiometryPlugin::isInitialized() const
-{
-	return m_initialized;
-}
+    {
+    return m_initialized;
+    }
 
 void SpeechAudiometryPlugin::initialize(QDesignerFormEditorInterface *formEditor)
-{
-	m_initialized = true;
-}
+    {
+    m_initialized = true;
+    }

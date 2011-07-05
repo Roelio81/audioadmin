@@ -23,8 +23,8 @@ namespace Presenter
         virtual ~File();
 
         // --- IPresenter ---
-        void setup();
-        void teardown();
+        virtual void setup();
+        virtual void teardown();
 
     signals:
         void edited(int id);

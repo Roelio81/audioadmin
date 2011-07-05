@@ -19,7 +19,6 @@ namespace Presenter
         virtual QString getAddresseeStreet() const;
         virtual QString getAddresseeCity() const;
         virtual QString getDefaultText() const;
-
     };
 }
 

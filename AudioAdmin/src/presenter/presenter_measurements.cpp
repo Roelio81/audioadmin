@@ -19,26 +19,26 @@ void Measurements::setup()
     int Hz[] = { 125, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 6000, 8000 };
     for (int i = 0; i < 11; ++i)
     {
-        m_view.setLGRechtsData(Hz[i], m_model.getACRightData(Hz[i]));
-        m_view.setBGRechtsData(Hz[i], m_model.getBCRightData(Hz[i]));
-        m_view.setUCLRechtsData(Hz[i], m_model.getUCLRightData(Hz[i]));
-        m_view.setLGLinksData(Hz[i], m_model.getACLeftData(Hz[i]));
-        m_view.setBGLinksData(Hz[i], m_model.getBCLeftData(Hz[i]));
-        m_view.setUCLLinksData(Hz[i], m_model.getUCLLeftData(Hz[i]));
+        m_view.setACRightData(Hz[i], m_model.getACRightData(Hz[i]));
+        m_view.setBCRightData(Hz[i], m_model.getBCRightData(Hz[i]));
+        m_view.setUCLRightData(Hz[i], m_model.getUCLRightData(Hz[i]));
+        m_view.setACLeftData(Hz[i], m_model.getACLeftData(Hz[i]));
+        m_view.setBCLeftData(Hz[i], m_model.getBCLeftData(Hz[i]));
+        m_view.setUCLLeftData(Hz[i], m_model.getUCLLeftData(Hz[i]));
     }
     for (int i = 0; i < 23; ++i)
     {
-        m_view.setROZonderData(5*i, m_model.getREWithoutData(5*i));
-        m_view.setLOZonderData(5*i, m_model.getLEWithoutData(5*i));
-        m_view.setROLOZonderData(5*i, m_model.getRELEWithoutData(5*i));
-        m_view.setROMetData(5*i, m_model.getREWithData(5*i));
-        m_view.setLOMetData(5*i, m_model.getLEWithData(5*i));
-        m_view.setROLOMetData(5*i, m_model.getRELEWithData(5*i));
+        m_view.setREWithoutData(5*i, m_model.getREWithoutData(5*i));
+        m_view.setLEWithoutData(5*i, m_model.getLEWithoutData(5*i));
+        m_view.setRELEWithoutData(5*i, m_model.getRELEWithoutData(5*i));
+        m_view.setROWithData(5*i, m_model.getREWithData(5*i));
+        m_view.setLOWithData(5*i, m_model.getLEWithData(5*i));
+        m_view.setROLOWithData(5*i, m_model.getRELEWithData(5*i));
     }
-    m_view.setLocalisatieZonder(m_model.getLocalizationWithout());
-    m_view.setLocalisatieRechts(m_model.getLocalizationRight());
-    m_view.setLocalisatieLinks(m_model.getLocalizationLeft());
-    m_view.setLocalisatieBeide(m_model.getLocalizationBoth());
+    m_view.setLocalizationWithout(m_model.getLocalizationWithout());
+    m_view.setLocalizationWithRight(m_model.getLocalizationRight());
+    m_view.setLocalizationWithLeft(m_model.getLocalizationLeft());
+    m_view.setLocalizationWithBoth(m_model.getLocalizationBoth());
 }
 
 void Measurements::teardown()

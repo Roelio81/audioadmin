@@ -15,16 +15,16 @@ class PureToneAudiometryPlugin : public QObject, public QDesignerCustomWidgetInt
         explicit PureToneAudiometryPlugin(QObject *parent = 0);
 
         // --- QDesignerCustomWidgetInterface ---
-        QString name() const;
-        QString group() const;
-        QString toolTip() const;
-        QString whatsThis() const;
-        QString includeFile() const;
-        QIcon icon() const;
-        bool isContainer() const;
-        QWidget *createWidget(QWidget *parent);
-        bool isInitialized() const;
-        void initialize(QDesignerFormEditorInterface *formEditor);
+        virtual QString name() const;
+        virtual QString group() const;
+        virtual QString toolTip() const;
+        virtual QString whatsThis() const;
+        virtual QString includeFile() const;
+        virtual QIcon icon() const;
+        virtual bool isContainer() const;
+        virtual QWidget *createWidget(QWidget *parent);
+        virtual bool isInitialized() const;
+        virtual void initialize(QDesignerFormEditorInterface *formEditor);
 
     private:
         // --- Data members ---

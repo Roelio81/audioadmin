@@ -79,7 +79,7 @@ void File::addInsuranceCompany(int id, const QString &name)
     m_insuranceCompanyList.sort(0);
 }
 
-void File::changeInsruanceCompany(int id, const QString &name)
+void File::changeInsuranceCompany(int id, const QString &name)
 {
     for (int iRow = 0; iRow < m_insuranceCompanyList.rowCount(); ++iRow)
     {
@@ -411,7 +411,7 @@ void File::showInsuranceCompany(int value)
     m_ui.b_letterInsurance->setEnabled(value > 0);
 }
 
-void File::refreshRechterHoorapparaatLijst(int index)
+void File::refreshRightHearingAidList(int index)
 {
     QString brand = m_ui.m_rightHearingAidBrand->itemText(index);
     QSet<QString> types = m_universe.getHearingAidTypes(brand);
@@ -420,7 +420,7 @@ void File::refreshRechterHoorapparaatLijst(int index)
         m_ui.m_rightHearingAidType->addItem(*it);
 }
 
-void File::refreshLinkerHoorapparaatLijst(int index)
+void File::refreshLeftHearingAidList(int index)
 {
     QString brand = m_ui.m_leftHearingAidBrand->itemText(index);
     QSet<QString> types = m_universe.getHearingAidTypes(brand);

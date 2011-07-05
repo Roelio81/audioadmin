@@ -23,8 +23,8 @@ namespace Presenter
         virtual ~Invoice();
 
         // --- IPresenter ---
-        void setup();
-        void teardown();
+        virtual void setup();
+        virtual void teardown();
 
     private:
         View::Invoice &m_view;

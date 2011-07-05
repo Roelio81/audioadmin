@@ -7,56 +7,56 @@
 
 PureToneAudiometryPlugin::PureToneAudiometryPlugin(QObject *parent)
 : QObject(parent)
-{
-        m_initialized = false;
-}
+    {
+    m_initialized = false;
+    }
 
 QString PureToneAudiometryPlugin::name() const
-{
-        return "PureToneAudiometryWidget";
-}
+    {
+    return "PureToneAudiometryWidget";
+    }
 
 QString PureToneAudiometryPlugin::group() const
-{
-	return "AudioAdmin Widgets";
-}
+    {
+    return "AudioAdmin Widgets";
+    }
 
 QString PureToneAudiometryPlugin::toolTip() const
-{
-	return "";
-}
+    {
+    return "";
+    }
 
 QString PureToneAudiometryPlugin::whatsThis() const
-{
-	return "";
-}
+    {
+    return "";
+    }
 
 QString PureToneAudiometryPlugin::includeFile() const
-{
-        return "../../AudioPlugin/src/puretoneaudiometrywidget.h";
-}
+    {
+    return "../../AudioPlugin/src/puretoneaudiometrywidget.h";
+    }
 
 QIcon PureToneAudiometryPlugin::icon() const
-{
-	return QIcon();
-}
+    {
+    return QIcon();
+    }
 
 bool PureToneAudiometryPlugin::isContainer() const
-{
-	return false;
-}
+    {
+    return false;
+    }
 
 QWidget *PureToneAudiometryPlugin::createWidget(QWidget *parent)
-{
-        return new PureToneAudiometryWidget(parent);
-}
+    {
+    return new PureToneAudiometryWidget(parent);
+    }
 
 bool PureToneAudiometryPlugin::isInitialized() const
-{
-        return m_initialized;
-}
+    {
+    return m_initialized;
+    }
 
 void PureToneAudiometryPlugin::initialize(QDesignerFormEditorInterface *formEditor)
-{
-        m_initialized = true;
-}
+    {
+    m_initialized = true;
+    }

@@ -41,8 +41,3 @@ void Labels::setTestDate(const QDate &value)
 {
     m_ui.m_testsAfter->setDate(value);
 }
-
-void Labels::print()
-{
-    // Start printing
-}

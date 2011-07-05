@@ -157,19 +157,19 @@ void Letter::print()
             painter.drawText(hmar + 120*mmx, y, tr("Pure tone audiometry: left"));
             y += lineheight;
 
-            painter.drawPixmap(hmar, y, 90*mmx, 90*mmy, measurementsView.getTonaleRechts());
-            painter.drawPixmap(hmar + 120*mmx, y, 90*mmx, 90*mmy, measurementsView.getTonaleLinks());
+            painter.drawPixmap(hmar, y, 90*mmx, 90*mmy, measurementsView.getPureToneAudiometryRight());
+            painter.drawPixmap(hmar + 120*mmx, y, 90*mmx, 90*mmy, measurementsView.getPureToneAudiometryLeft());
 
             // Print speech audiometry
             y += 100*mmy;
             painter.drawText(hmar, y, tr("Speech audiometry without hearing aid"));
             y += lineheight;
-            painter.drawPixmap(hmar, y,  150*mmx, 60*mmy, measurementsView.getVocaleZonderApparaat());
+            painter.drawPixmap(hmar, y,  150*mmx, 60*mmy, measurementsView.getSpeechAudiometryWithoutAid());
             printer->newPage();
             y = vmar;
             painter.drawText(hmar, y, tr("Speech audiometry with hearing aid"));
             y += lineheight;
-            painter.drawPixmap(hmar, y, 150*mmx, 60*mmy, measurementsView.getVocaleMetApparaat());
+            painter.drawPixmap(hmar, y, 150*mmx, 60*mmy, measurementsView.getSpeechAudiometryWithAid());
 
             // Print table with the results
             y += 75*mmy;
@@ -189,23 +189,23 @@ void Letter::print()
             painter.drawLine(hmar, y, hmar+120*mmx, y);
             y += lineheight;
             painter.drawText(hmar+2*mmx, y, tr("right"));
-            painter.drawText(hmar+52*mmx, y, measurementsView.getROZonder());
-            painter.drawText(hmar+77*mmx, y, measurementsView.getROMet());
-            painter.drawText(hmar+102*mmx, y, measurementsView.getROWinst());
+            painter.drawText(hmar+52*mmx, y, measurementsView.getREWithout());
+            painter.drawText(hmar+77*mmx, y, measurementsView.getREWith());
+            painter.drawText(hmar+102*mmx, y, measurementsView.getREGain());
             y += 2*mmy;
             painter.drawLine(hmar, y, hmar+120*mmx, y);
             y += lineheight;
             painter.drawText(hmar+2*mmx, y, tr("left"));
-            painter.drawText(hmar+52*mmx, y, measurementsView.getLOZonder());
-            painter.drawText(hmar+77*mmx, y, measurementsView.getLOMet());
-            painter.drawText(hmar+102*mmx, y, measurementsView.getLOWinst());
+            painter.drawText(hmar+52*mmx, y, measurementsView.getLEWithout());
+            painter.drawText(hmar+77*mmx, y, measurementsView.getLEWith());
+            painter.drawText(hmar+102*mmx, y, measurementsView.getLEGain());
             y += 2*mmy;
             painter.drawLine(hmar, y, hmar+120*mmx, y);
             y += lineheight;
             painter.drawText(hmar+2*mmx, y, tr("bilateral"));
-            painter.drawText(hmar+52*mmx, y, measurementsView.getROLOZonder());
-            painter.drawText(hmar+77*mmx, y, measurementsView.getROLOMet());
-            painter.drawText(hmar+102*mmx, y, measurementsView.getROLOWinst());
+            painter.drawText(hmar+52*mmx, y, measurementsView.getRELEWithout());
+            painter.drawText(hmar+77*mmx, y, measurementsView.getRELEWith());
+            painter.drawText(hmar+102*mmx, y, measurementsView.getRELEGain());
             y += 2*mmy;
             painter.drawLine(hmar, y, hmar+120*mmx, y);
 

@@ -22,8 +22,9 @@ namespace Presenter
         explicit Measurements(View::Measurements &view, Model::Measurements &model);
         virtual ~Measurements();
 
-        void setup();
-        void teardown();
+        // --- IPresenter ---
+        virtual void setup();
+        virtual void teardown();
 
     private:
         View::Measurements &m_view;

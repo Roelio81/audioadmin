@@ -60,7 +60,7 @@
            </spacer>
           </item>
           <item row="0" column="1">
-           <widget class="PureToneAudiometryWidget" name="m_tonaleAudiometrieRechts" native="true">
+           <widget class="PureToneAudiometryWidget" name="m_pureToneAudiometryRight" native="true">
             <property name="minimumSize">
              <size>
               <width>320</width>
@@ -88,7 +88,7 @@
           <item row="1" column="1">
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QRadioButton" name="m_lgRechts">
+             <widget class="QRadioButton" name="m_acRight">
               <property name="minimumSize">
                <size>
                 <width>60</width>
@@ -104,7 +104,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="m_bgRechts">
+             <widget class="QRadioButton" name="m_bcRight">
               <property name="minimumSize">
                <size>
                 <width>60</width>
@@ -134,7 +134,7 @@
           <item row="2" column="1">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
-             <widget class="QLabel" name="l_verliesRechts">
+             <widget class="QLabel" name="l_lossRight">
               <property name="text">
                <string>Average loss (in dB)</string>
               </property>
@@ -157,7 +157,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QLabel" name="m_verliesRechts">
+             <widget class="QLabel" name="m_lossRight">
               <property name="text">
                <string>...</string>
               </property>
@@ -207,7 +207,7 @@
            </spacer>
           </item>
           <item row="0" column="1">
-           <widget class="PureToneAudiometryWidget" name="m_tonaleAudiometrieLinks" native="true">
+           <widget class="PureToneAudiometryWidget" name="m_pureToneAudiometryLeft" native="true">
             <property name="minimumSize">
              <size>
               <width>320</width>
@@ -235,7 +235,7 @@
           <item row="1" column="1">
            <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
-             <widget class="QRadioButton" name="m_lgLinks">
+             <widget class="QRadioButton" name="m_acLeft">
               <property name="minimumSize">
                <size>
                 <width>60</width>
@@ -251,7 +251,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="m_bgLinks">
+             <widget class="QRadioButton" name="m_bcLeft">
               <property name="minimumSize">
                <size>
                 <width>60</width>
@@ -264,7 +264,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="m_uclLinks">
+             <widget class="QRadioButton" name="m_uclLeft">
               <property name="minimumSize">
                <size>
                 <width>60</width>
@@ -281,7 +281,7 @@
           <item row="2" column="1">
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
-             <widget class="QLabel" name="l_verliesLinks">
+             <widget class="QLabel" name="l_lossLeft">
               <property name="text">
                <string>Average loss (in dB)</string>
               </property>
@@ -304,7 +304,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QLabel" name="m_verliesLinks">
+             <widget class="QLabel" name="m_lossLeft">
               <property name="text">
                <string>...</string>
               </property>
@@ -339,13 +339,13 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_8">
        <item row="0" column="0">
-        <widget class="QGroupBox" name="g_vocaleAudiometrieZonder">
+        <widget class="QGroupBox" name="g_speechAudiometryWithout">
          <property name="title">
           <string>Without hearing aids (headphones)</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0" rowspan="5">
-           <widget class="SpeechAudiometryWidget" name="m_vocaleAudiometrieZonder" native="true">
+           <widget class="SpeechAudiometryWidget" name="m_speechAudiometryWithoutAid" native="true">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -374,7 +374,7 @@
            </spacer>
           </item>
           <item row="1" column="1">
-           <widget class="QRadioButton" name="m_roZA">
+           <widget class="QRadioButton" name="m_reWithout">
             <property name="text">
              <string>R.E.</string>
             </property>
@@ -384,14 +384,14 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QRadioButton" name="m_loZA">
+           <widget class="QRadioButton" name="m_leWithout">
             <property name="text">
              <string>L.E.</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QRadioButton" name="m_roloZA">
+           <widget class="QRadioButton" name="m_releWithout">
             <property name="text">
              <string>(R.E. + L.E.)</string>
             </property>
@@ -414,13 +414,13 @@
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QGroupBox" name="g_vocaleAudiometrieMet">
+        <widget class="QGroupBox" name="g_speechAudiometryWith">
          <property name="title">
           <string>With hearing aids (open field)</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_7">
           <item row="0" column="0" rowspan="5">
-           <widget class="SpeechAudiometryWidget" name="m_vocaleAudiometrieMet" native="true">
+           <widget class="SpeechAudiometryWidget" name="m_speechAudiometryWithAid" native="true">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>0</horstretch>
@@ -449,7 +449,7 @@
            </spacer>
           </item>
           <item row="1" column="1">
-           <widget class="QRadioButton" name="m_roMA">
+           <widget class="QRadioButton" name="m_reWith">
             <property name="text">
              <string>R.E.</string>
             </property>
@@ -459,14 +459,14 @@
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QRadioButton" name="m_loMA">
+           <widget class="QRadioButton" name="m_leWith">
             <property name="text">
              <string>L.E.</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QRadioButton" name="m_roloMA">
+           <widget class="QRadioButton" name="m_releWith">
             <property name="text">
              <string>(R.E. + L.E.)</string>
             </property>
@@ -502,7 +502,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="1">
-           <widget class="QLabel" name="l_zonderApparaat">
+           <widget class="QLabel" name="l_without">
             <property name="text">
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -513,7 +513,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QLabel" name="l_metApparaat">
+           <widget class="QLabel" name="l_with">
             <property name="text">
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -535,14 +535,14 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="l_RO">
+           <widget class="QLabel" name="l_RE">
             <property name="text">
              <string>R.E.</string>
             </property>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLabel" name="m_zonderApparaatRO">
+           <widget class="QLabel" name="m_withoutAidRE">
             <property name="text">
              <string>...</string>
             </property>
@@ -552,7 +552,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QLabel" name="m_metApparaatRO">
+           <widget class="QLabel" name="m_withAidRE">
             <property name="text">
              <string>...</string>
             </property>
@@ -562,7 +562,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="1" column="3">
-           <widget class="QLabel" name="m_winstRO">
+           <widget class="QLabel" name="m_gainRE">
             <property name="text">
              <string>...</string>
             </property>
@@ -572,14 +572,14 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="l_LO">
+           <widget class="QLabel" name="l_LE">
             <property name="text">
              <string>L.E.</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLabel" name="m_zonderApparaatLO">
+           <widget class="QLabel" name="m_withoutAidLE">
             <property name="text">
              <string>...</string>
             </property>
@@ -589,7 +589,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="QLabel" name="m_metApparaatLO">
+           <widget class="QLabel" name="m_withAidLE">
             <property name="text">
              <string>...</string>
             </property>
@@ -599,7 +599,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="2" column="3">
-           <widget class="QLabel" name="m_winstLO">
+           <widget class="QLabel" name="m_gainLE">
             <property name="text">
              <string>...</string>
             </property>
@@ -609,14 +609,14 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QLabel" name="l_ROLO">
+           <widget class="QLabel" name="l_RELE">
             <property name="text">
              <string>(R.E. + L.E.)</string>
             </property>
            </widget>
           </item>
           <item row="3" column="1">
-           <widget class="QLabel" name="m_zonderApparaatROLO">
+           <widget class="QLabel" name="m_withoutAidRELE">
             <property name="text">
              <string>...</string>
             </property>
@@ -626,7 +626,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="3" column="2">
-           <widget class="QLabel" name="m_metApparaatROLO">
+           <widget class="QLabel" name="m_withAidRELE">
             <property name="text">
              <string>...</string>
             </property>
@@ -636,7 +636,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="3" column="3">
-           <widget class="QLabel" name="m_winstROLO">
+           <widget class="QLabel" name="m_gainRELE">
             <property name="text">
              <string>...</string>
             </property>
@@ -649,20 +649,20 @@ p, li { white-space: pre-wrap; }
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QGroupBox" name="g_localisatieTesten">
+        <widget class="QGroupBox" name="g_localizationTests">
          <property name="title">
           <string>Localization tests</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0" rowspan="2">
-           <widget class="QLabel" name="label_20">
+           <widget class="QLabel" name="l_localizationWithBoth">
             <property name="text">
              <string>With 2 hearing aids</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1" rowspan="2">
-           <widget class="QLineEdit" name="m_localisatieMetTwee">
+           <widget class="QLineEdit" name="m_localizationWithBoth">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -678,7 +678,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="0" column="2" rowspan="2" colspan="2">
-           <widget class="QLabel" name="label_16">
+           <widget class="QLabel" name="l_percentage">
             <property name="text">
              <string>%</string>
             </property>
@@ -698,14 +698,14 @@ p, li { white-space: pre-wrap; }
            </spacer>
           </item>
           <item row="0" column="4" rowspan="2">
-           <widget class="QLabel" name="label_22">
+           <widget class="QLabel" name="l_localizationWithRight">
             <property name="text">
              <string>With 1 hearing aid (right)</string>
             </property>
            </widget>
           </item>
           <item row="0" column="5" rowspan="2">
-           <widget class="QLineEdit" name="m_localisatieMetRechts">
+           <widget class="QLineEdit" name="m_localizationWithRight">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -721,21 +721,21 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="0" column="6" rowspan="2">
-           <widget class="QLabel" name="label_18">
+           <widget class="QLabel" name="l_percentage_3">
             <property name="text">
              <string>%</string>
             </property>
            </widget>
           </item>
           <item row="2" column="0">
-           <widget class="QLabel" name="label_21">
+           <widget class="QLabel" name="l_localizationWithout">
             <property name="text">
              <string>Without hearing aids</string>
             </property>
            </widget>
           </item>
           <item row="2" column="1">
-           <widget class="QLineEdit" name="m_localisatieZonder">
+           <widget class="QLineEdit" name="m_localizationWithout">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -751,21 +751,21 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="2" column="2" colspan="2">
-           <widget class="QLabel" name="label_17">
+           <widget class="QLabel" name="l_percentage_2">
             <property name="text">
              <string>%</string>
             </property>
            </widget>
           </item>
           <item row="2" column="4">
-           <widget class="QLabel" name="label_23">
+           <widget class="QLabel" name="l_localizationWithLeft">
             <property name="text">
              <string>With 1 hearing aid (left)</string>
             </property>
            </widget>
           </item>
           <item row="2" column="5">
-           <widget class="QLineEdit" name="m_localisatieMetLinks">
+           <widget class="QLineEdit" name="m_localizationWithLeft">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -781,7 +781,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item row="2" column="6">
-           <widget class="QLabel" name="label_19">
+           <widget class="QLabel" name="l_percentage_4">
             <property name="text">
              <string>%</string>
             </property>
@@ -833,9 +833,9 @@ p, li { white-space: pre-wrap; }
  </resources>
  <connections>
   <connection>
-   <sender>m_bgLinks</sender>
+   <sender>m_bcLeft</sender>
    <signal>clicked()</signal>
-   <receiver>m_tonaleAudiometrieLinks</receiver>
+   <receiver>m_pureToneAudiometryLeft</receiver>
    <slot>checkBC()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -849,9 +849,9 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>m_lgLinks</sender>
+   <sender>m_acLeft</sender>
    <signal>clicked()</signal>
-   <receiver>m_tonaleAudiometrieLinks</receiver>
+   <receiver>m_pureToneAudiometryLeft</receiver>
    <slot>checkAC()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -865,9 +865,9 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>m_uclLinks</sender>
+   <sender>m_uclLeft</sender>
    <signal>clicked()</signal>
-   <receiver>m_tonaleAudiometrieLinks</receiver>
+   <receiver>m_pureToneAudiometryLeft</receiver>
    <slot>checkUCL()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -881,9 +881,9 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>m_bgRechts</sender>
+   <sender>m_bcRight</sender>
    <signal>clicked()</signal>
-   <receiver>m_tonaleAudiometrieRechts</receiver>
+   <receiver>m_pureToneAudiometryRight</receiver>
    <slot>checkBC()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -897,9 +897,9 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>m_lgRechts</sender>
+   <sender>m_acRight</sender>
    <signal>clicked()</signal>
-   <receiver>m_tonaleAudiometrieRechts</receiver>
+   <receiver>m_pureToneAudiometryRight</receiver>
    <slot>checkAC()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -915,7 +915,7 @@ p, li { white-space: pre-wrap; }
   <connection>
    <sender>m_uclRechts</sender>
    <signal>clicked()</signal>
-   <receiver>m_tonaleAudiometrieRechts</receiver>
+   <receiver>m_pureToneAudiometryRight</receiver>
    <slot>checkUCL()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -929,9 +929,9 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>m_roZA</sender>
+   <sender>m_reWithout</sender>
    <signal>clicked()</signal>
-   <receiver>m_vocaleAudiometrieZonder</receiver>
+   <receiver>m_speechAudiometryWithoutAid</receiver>
    <slot>checkRE()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -945,9 +945,9 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>m_loZA</sender>
+   <sender>m_leWithout</sender>
    <signal>clicked()</signal>
-   <receiver>m_vocaleAudiometrieZonder</receiver>
+   <receiver>m_speechAudiometryWithoutAid</receiver>
    <slot>checkLE()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -961,9 +961,9 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>m_roloZA</sender>
+   <sender>m_releWithout</sender>
    <signal>clicked()</signal>
-   <receiver>m_vocaleAudiometrieZonder</receiver>
+   <receiver>m_speechAudiometryWithoutAid</receiver>
    <slot>checkRELE()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -977,9 +977,9 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>m_roMA</sender>
+   <sender>m_reWith</sender>
    <signal>clicked()</signal>
-   <receiver>m_vocaleAudiometrieMet</receiver>
+   <receiver>m_speechAudiometryWithAid</receiver>
    <slot>checkRE()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -993,9 +993,9 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>m_loMA</sender>
+   <sender>m_leWith</sender>
    <signal>clicked()</signal>
-   <receiver>m_vocaleAudiometrieMet</receiver>
+   <receiver>m_speechAudiometryWithAid</receiver>
    <slot>checkLE()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1009,9 +1009,9 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
-   <sender>m_roloMA</sender>
+   <sender>m_releWith</sender>
    <signal>clicked()</signal>
-   <receiver>m_vocaleAudiometrieMet</receiver>
+   <receiver>m_speechAudiometryWithAid</receiver>
    <slot>checkRELE()</slot>
    <hints>
     <hint type="sourcelabel">

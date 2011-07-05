@@ -29,19 +29,19 @@ void SpeechAudiometryWidget::setKind(Kind kind)
     m_kind = kind;
 }
 
-void SpeechAudiometryWidget::setROdata(int dB, int percentage)
+void SpeechAudiometryWidget::setREData(int dB, int percentage)
 {
     m_reData[dB/5] = percentage;
     emit changedREvalue();
 }
 
-void SpeechAudiometryWidget::setLOdata(int dB, int percentage)
+void SpeechAudiometryWidget::setLEData(int dB, int percentage)
 {
     m_leData[dB/5] = percentage;
     emit changedLEvalue();
 }
 
-void SpeechAudiometryWidget::setROLOdata(int dB, int percentage)
+void SpeechAudiometryWidget::setRELEData(int dB, int percentage)
 {
     m_releData[dB/5] = percentage;
     emit changedRELEvalue();

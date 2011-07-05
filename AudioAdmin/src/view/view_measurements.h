@@ -30,53 +30,53 @@ namespace View
         int getLocalizationRight() const;
         int getLocalizationLeft() const;
         int getLocalizationBoth() const;
-        QPixmap getTonaleLinks() const;
-        QPixmap getTonaleRechts() const;
-        QPixmap getVocaleZonderApparaat() const;
-        QPixmap getVocaleMetApparaat() const;
-        QString getROZonder() const;
-        QString getLOZonder() const;
-        QString getROLOZonder() const;
-        QString getROMet() const;
-        QString getLOMet() const;
-        QString getROLOMet() const;
-        QString getROWinst() const;
-        QString getLOWinst() const;
-        QString getROLOWinst() const;
+        QPixmap getPureToneAudiometryLeft() const;
+        QPixmap getPureToneAudiometryRight() const;
+        QPixmap getSpeechAudiometryWithoutAid() const;
+        QPixmap getSpeechAudiometryWithAid() const;
+        QString getREWithout() const;
+        QString getLEWithout() const;
+        QString getRELEWithout() const;
+        QString getREWith() const;
+        QString getLEWith() const;
+        QString getRELEWith() const;
+        QString getREGain() const;
+        QString getLEGain() const;
+        QString getRELEGain() const;
 
 
         // --- Setters ---
-        void setLGRechtsData(int Hz, int dB);
-        void setBGRechtsData(int Hz, int dB);
-        void setUCLRechtsData(int Hz, int dB);
-        void setLGLinksData(int Hz, int dB);
-        void setBGLinksData(int Hz, int dB);
-        void setUCLLinksData(int Hz, int dB);
-        void setROZonderData(int dB, int percentage);
-        void setLOZonderData(int dB, int percentage);
-        void setROLOZonderData(int dB, int percentage);
-        void setROMetData(int dB, int percentage);
-        void setLOMetData(int dB, int percentage);
-        void setROLOMetData(int dB, int percentage);
-        void setLocalisatieZonder(int dB);
-        void setLocalisatieRechts(int dB);
-        void setLocalisatieLinks(int dB);
-        void setLocalisatieBeide(int dB);
+        void setACRightData(int Hz, int dB);
+        void setBCRightData(int Hz, int dB);
+        void setUCLRightData(int Hz, int dB);
+        void setACLeftData(int Hz, int dB);
+        void setBCLeftData(int Hz, int dB);
+        void setUCLLeftData(int Hz, int dB);
+        void setREWithoutData(int dB, int percentage);
+        void setLEWithoutData(int dB, int percentage);
+        void setRELEWithoutData(int dB, int percentage);
+        void setROWithData(int dB, int percentage);
+        void setLOWithData(int dB, int percentage);
+        void setROLOWithData(int dB, int percentage);
+        void setLocalizationWithout(int dB);
+        void setLocalizationWithRight(int dB);
+        void setLocalizationWithLeft(int dB);
+        void setLocalizationWithBoth(int dB);
 
     private slots:
-        void herberekenGemiddeldVerliesLinks();
-        void herberekenGemiddeldVerliesRechts();
-        void herberekenROZonder();
-        void herberekenLOZonder();
-        void herberekenROLOZonder();
-        void herberekenROMet();
-        void herberekenLOMet();
-        void herberekenROLOMet();
+        void recalculateAverageLossLeft();
+        void recalculateAverageLossRight();
+        void recalculateREWithoutAid();
+        void recalculateLEWithoutAid();
+        void recalculateRELEWithoutAid();
+        void recalculateREWithAid();
+        void recalculateLEWithAid();
+        void recalculateRELEWithAid();
 
     private:
-        void herberekenROWinst();
-        void herberekenLOWinst();
-        void herberekenROLOWinst();
+        void recalculateREGain();
+        void recalculateLEGain();
+        void recalculateRELEGain();
 
         // --- Data members ---
         Ui::Measurements m_ui;

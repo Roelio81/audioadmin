@@ -9,18 +9,18 @@ Measurements::Measurements(QWidget *parent)
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     m_ui.setupUi(this);
-    connect(m_ui.m_tonaleAudiometrieLinks, SIGNAL(changedACvalue()), this, SLOT(herberekenGemiddeldVerliesLinks()));
-    connect(m_ui.m_tonaleAudiometrieRechts, SIGNAL(changedACvalue()), this, SLOT(herberekenGemiddeldVerliesRechts()));
-    connect(m_ui.m_vocaleAudiometrieZonder, SIGNAL(changedREvalue()), this, SLOT(herberekenROZonder()));
-    connect(m_ui.m_vocaleAudiometrieZonder, SIGNAL(changedLEvalue()), this, SLOT(herberekenLOZonder()));
-    connect(m_ui.m_vocaleAudiometrieZonder, SIGNAL(changedRELEvalue()), this, SLOT(herberekenROLOZonder()));
-    connect(m_ui.m_vocaleAudiometrieMet, SIGNAL(changedREvalue()), this, SLOT(herberekenROMet()));
-    connect(m_ui.m_vocaleAudiometrieMet, SIGNAL(changedLEvalue()), this, SLOT(herberekenLOMet()));
-    connect(m_ui.m_vocaleAudiometrieMet, SIGNAL(changedRELEvalue()), this, SLOT(herberekenROLOMet()));
-    m_ui.m_tonaleAudiometrieLinks->setSide(PureToneAudiometryWidget::LEFT);
-    m_ui.m_tonaleAudiometrieRechts->setSide(PureToneAudiometryWidget::RIGHT);
-    m_ui.m_vocaleAudiometrieZonder->setKind(SpeechAudiometryWidget::WITHOUT);
-    m_ui.m_vocaleAudiometrieMet->setKind(SpeechAudiometryWidget::WITH);
+    connect(m_ui.m_pureToneAudiometryLeft, SIGNAL(changedACvalue()), this, SLOT(recalculateAverageLossLeft()));
+    connect(m_ui.m_pureToneAudiometryRight, SIGNAL(changedACvalue()), this, SLOT(recalculateAverageLossRight()));
+    connect(m_ui.m_speechAudiometryWithoutAid, SIGNAL(changedREvalue()), this, SLOT(recalculateREWithoutAid()));
+    connect(m_ui.m_speechAudiometryWithoutAid, SIGNAL(changedLEvalue()), this, SLOT(recalculateLEWithoutAid()));
+    connect(m_ui.m_speechAudiometryWithoutAid, SIGNAL(changedRELEvalue()), this, SLOT(recalculateRELEWithoutAid()));
+    connect(m_ui.m_speechAudiometryWithAid, SIGNAL(changedREvalue()), this, SLOT(recalculateREWithAid()));
+    connect(m_ui.m_speechAudiometryWithAid, SIGNAL(changedLEvalue()), this, SLOT(recalculateLEWithAid()));
+    connect(m_ui.m_speechAudiometryWithAid, SIGNAL(changedRELEvalue()), this, SLOT(recalculateRELEWithAid()));
+    m_ui.m_pureToneAudiometryLeft->setSide(PureToneAudiometryWidget::LEFT);
+    m_ui.m_pureToneAudiometryRight->setSide(PureToneAudiometryWidget::RIGHT);
+    m_ui.m_speechAudiometryWithoutAid->setKind(SpeechAudiometryWidget::WITHOUT);
+    m_ui.m_speechAudiometryWithAid->setKind(SpeechAudiometryWidget::WITH);
 }
 
 Measurements::~Measurements()
@@ -29,433 +29,433 @@ Measurements::~Measurements()
 
 int Measurements::getACRightData(int Hz) const
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieRechts);
-    return m_ui.m_tonaleAudiometrieRechts->getACdata(Hz);
+    Q_ASSERT(m_ui.m_pureToneAudiometryRight);
+    return m_ui.m_pureToneAudiometryRight->getACdata(Hz);
 }
 
 int Measurements::getBCRightData(int Hz) const
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieRechts);
-    return m_ui.m_tonaleAudiometrieRechts->getBCdata(Hz);
+    Q_ASSERT(m_ui.m_pureToneAudiometryRight);
+    return m_ui.m_pureToneAudiometryRight->getBCdata(Hz);
 }
 
 int Measurements::getUCLRightData(int Hz) const
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieRechts);
-    return m_ui.m_tonaleAudiometrieRechts->getUCLdata(Hz);
+    Q_ASSERT(m_ui.m_pureToneAudiometryRight);
+    return m_ui.m_pureToneAudiometryRight->getUCLdata(Hz);
 }
 
 int Measurements::getACLeftData(int Hz) const
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieLinks);
-    return m_ui.m_tonaleAudiometrieLinks->getACdata(Hz);
+    Q_ASSERT(m_ui.m_pureToneAudiometryLeft);
+    return m_ui.m_pureToneAudiometryLeft->getACdata(Hz);
 }
 
 int Measurements::getBCLeftData(int Hz) const
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieLinks);
-    return m_ui.m_tonaleAudiometrieLinks->getBCdata(Hz);
+    Q_ASSERT(m_ui.m_pureToneAudiometryLeft);
+    return m_ui.m_pureToneAudiometryLeft->getBCdata(Hz);
 }
 
 int Measurements::getUCLLeftData(int Hz) const
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieLinks);
-    return m_ui.m_tonaleAudiometrieLinks->getUCLdata(Hz);
+    Q_ASSERT(m_ui.m_pureToneAudiometryLeft);
+    return m_ui.m_pureToneAudiometryLeft->getUCLdata(Hz);
 }
 
 int Measurements::getREWithoutData(int dB) const
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieZonder);
-    return m_ui.m_vocaleAudiometrieZonder->getREdata(dB);
+    Q_ASSERT(m_ui.m_speechAudiometryWithoutAid);
+    return m_ui.m_speechAudiometryWithoutAid->getREdata(dB);
 }
 
 int Measurements::getLEWithoutData(int dB) const
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieZonder);
-    return m_ui.m_vocaleAudiometrieZonder->getLEdata(dB);
+    Q_ASSERT(m_ui.m_speechAudiometryWithoutAid);
+    return m_ui.m_speechAudiometryWithoutAid->getLEdata(dB);
 }
 
 int Measurements::getRELEWithoutData(int dB) const
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieZonder);
-    return m_ui.m_vocaleAudiometrieZonder->getRELEdata(dB);
+    Q_ASSERT(m_ui.m_speechAudiometryWithoutAid);
+    return m_ui.m_speechAudiometryWithoutAid->getRELEdata(dB);
 }
 
 int Measurements::getREWithData(int dB) const
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieMet);
-    return m_ui.m_vocaleAudiometrieMet->getREdata(dB);
+    Q_ASSERT(m_ui.m_speechAudiometryWithAid);
+    return m_ui.m_speechAudiometryWithAid->getREdata(dB);
 }
 
 int Measurements::getLEWithData(int dB) const
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieMet);
-    return m_ui.m_vocaleAudiometrieMet->getLEdata(dB);
+    Q_ASSERT(m_ui.m_speechAudiometryWithAid);
+    return m_ui.m_speechAudiometryWithAid->getLEdata(dB);
 }
 
 int Measurements::getRELEWithData(int dB) const
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieMet);
-    return m_ui.m_vocaleAudiometrieMet->getRELEdata(dB);
+    Q_ASSERT(m_ui.m_speechAudiometryWithAid);
+    return m_ui.m_speechAudiometryWithAid->getRELEdata(dB);
 }
 
 int Measurements::getLocalizationWithout() const
 {
-    Q_ASSERT(m_ui.m_localisatieZonder);
-    return m_ui.m_localisatieZonder->text().isEmpty() ? -10 : m_ui.m_localisatieZonder->text().toInt();
+    Q_ASSERT(m_ui.m_localizationWithout);
+    return m_ui.m_localizationWithout->text().isEmpty() ? -10 : m_ui.m_localizationWithout->text().toInt();
 }
 
 int Measurements::getLocalizationRight() const
 {
-    Q_ASSERT(m_ui.m_localisatieMetRechts);
-    return m_ui.m_localisatieMetRechts->text().isEmpty() ? -10 : m_ui.m_localisatieMetRechts->text().toInt();
+    Q_ASSERT(m_ui.m_localizationWithRight);
+    return m_ui.m_localizationWithRight->text().isEmpty() ? -10 : m_ui.m_localizationWithRight->text().toInt();
 }
 
 int Measurements::getLocalizationLeft() const
 {
-    Q_ASSERT(m_ui.m_localisatieMetLinks);
-    return m_ui.m_localisatieMetLinks->text().isEmpty() ? -10 : m_ui.m_localisatieMetLinks->text().toInt();
+    Q_ASSERT(m_ui.m_localizationWithLeft);
+    return m_ui.m_localizationWithLeft->text().isEmpty() ? -10 : m_ui.m_localizationWithLeft->text().toInt();
 }
 
 int Measurements::getLocalizationBoth() const
 {
-    Q_ASSERT(m_ui.m_localisatieMetTwee);
-    return m_ui.m_localisatieMetTwee->text().isEmpty() ? -10 : m_ui.m_localisatieMetTwee->text().toInt();
+    Q_ASSERT(m_ui.m_localizationWithBoth);
+    return m_ui.m_localizationWithBoth->text().isEmpty() ? -10 : m_ui.m_localizationWithBoth->text().toInt();
 }
 
-QPixmap Measurements::getTonaleLinks() const
+QPixmap Measurements::getPureToneAudiometryLeft() const
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieLinks);
+    Q_ASSERT(m_ui.m_pureToneAudiometryLeft);
     QPixmap result(320, 320);
     QPainter painter(&result);
     painter.fillRect(result.rect(), Qt::white);
-    m_ui.m_tonaleAudiometrieLinks->render(&painter, QPoint(), QRegion(), QWidget::DrawChildren);
+    m_ui.m_pureToneAudiometryLeft->render(&painter, QPoint(), QRegion(), QWidget::DrawChildren);
     return result;
 }
 
-QPixmap Measurements::getTonaleRechts() const
+QPixmap Measurements::getPureToneAudiometryRight() const
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieRechts);
+    Q_ASSERT(m_ui.m_pureToneAudiometryRight);
     QPixmap result(320, 320);
     QPainter painter(&result);
     painter.fillRect(result.rect(), Qt::white);
-    m_ui.m_tonaleAudiometrieRechts->render(&painter, QPoint(), QRegion(), QWidget::DrawChildren);
+    m_ui.m_pureToneAudiometryRight->render(&painter, QPoint(), QRegion(), QWidget::DrawChildren);
     return result;
 }
 
-QPixmap Measurements::getVocaleZonderApparaat() const
+QPixmap Measurements::getSpeechAudiometryWithoutAid() const
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieZonder);
+    Q_ASSERT(m_ui.m_speechAudiometryWithoutAid);
     QPixmap result(560, 200);
     QPainter painter(&result);
     painter.fillRect(result.rect(), Qt::white);
-    m_ui.m_vocaleAudiometrieZonder->render(&painter, QPoint(), QRegion(), QWidget::DrawChildren);
+    m_ui.m_speechAudiometryWithoutAid->render(&painter, QPoint(), QRegion(), QWidget::DrawChildren);
     return result;
 }
 
-QPixmap Measurements::getVocaleMetApparaat() const
+QPixmap Measurements::getSpeechAudiometryWithAid() const
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieMet);
+    Q_ASSERT(m_ui.m_speechAudiometryWithAid);
     QPixmap result(560, 200);
     QPainter painter(&result);
     painter.fillRect(result.rect(), Qt::white);
-    m_ui.m_vocaleAudiometrieMet->render(&painter, QPoint(), QRegion(), QWidget::DrawChildren);
+    m_ui.m_speechAudiometryWithAid->render(&painter, QPoint(), QRegion(), QWidget::DrawChildren);
     return result;
 }
 
-QString Measurements::getROZonder() const
+QString Measurements::getREWithout() const
 {
-    Q_ASSERT(m_ui.m_zonderApparaatRO);
-    return m_ui.m_zonderApparaatRO->text();
+    Q_ASSERT(m_ui.m_withoutAidRE);
+    return m_ui.m_withoutAidRE->text();
 }
 
-QString Measurements::getLOZonder() const
+QString Measurements::getLEWithout() const
 {
-    Q_ASSERT(m_ui.m_zonderApparaatLO);
-    return m_ui.m_zonderApparaatLO->text();
+    Q_ASSERT(m_ui.m_withoutAidLE);
+    return m_ui.m_withoutAidLE->text();
 }
 
-QString Measurements::getROLOZonder() const
+QString Measurements::getRELEWithout() const
 {
-    Q_ASSERT(m_ui.m_zonderApparaatROLO);
-    return m_ui.m_zonderApparaatROLO->text();
+    Q_ASSERT(m_ui.m_withoutAidRELE);
+    return m_ui.m_withoutAidRELE->text();
 }
 
-QString Measurements::getROMet() const
+QString Measurements::getREWith() const
 {
-    Q_ASSERT(m_ui.m_metApparaatRO);
-    return m_ui.m_metApparaatRO->text();
+    Q_ASSERT(m_ui.m_withAidRE);
+    return m_ui.m_withAidRE->text();
 }
 
-QString Measurements::getLOMet() const
+QString Measurements::getLEWith() const
 {
-    Q_ASSERT(m_ui.m_metApparaatLO);
-    return m_ui.m_metApparaatLO->text();
+    Q_ASSERT(m_ui.m_withAidLE);
+    return m_ui.m_withAidLE->text();
 }
 
-QString Measurements::getROLOMet() const
+QString Measurements::getRELEWith() const
 {
-    Q_ASSERT(m_ui.m_metApparaatROLO);
-    return m_ui.m_metApparaatROLO->text();
+    Q_ASSERT(m_ui.m_withAidRELE);
+    return m_ui.m_withAidRELE->text();
 }
 
-QString Measurements::getROWinst() const
+QString Measurements::getREGain() const
 {
-    Q_ASSERT(m_ui.m_winstRO);
-    return m_ui.m_winstRO->text();
+    Q_ASSERT(m_ui.m_gainRE);
+    return m_ui.m_gainRE->text();
 }
 
-QString Measurements::getLOWinst() const
+QString Measurements::getLEGain() const
 {
-    Q_ASSERT(m_ui.m_winstLO);
-    return m_ui.m_winstLO->text();
+    Q_ASSERT(m_ui.m_gainLE);
+    return m_ui.m_gainLE->text();
 }
 
-QString Measurements::getROLOWinst() const
+QString Measurements::getRELEGain() const
 {
-    Q_ASSERT(m_ui.m_winstROLO);
-    return m_ui.m_winstROLO->text();
+    Q_ASSERT(m_ui.m_gainRELE);
+    return m_ui.m_gainRELE->text();
 }
 
-void Measurements::setLGRechtsData(int Hz, int dB)
+void Measurements::setACRightData(int Hz, int dB)
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieRechts);
-    m_ui.m_tonaleAudiometrieRechts->setACdata(Hz, dB);
+    Q_ASSERT(m_ui.m_pureToneAudiometryRight);
+    m_ui.m_pureToneAudiometryRight->setACdata(Hz, dB);
 }
 
-void Measurements::setBGRechtsData(int Hz, int dB)
+void Measurements::setBCRightData(int Hz, int dB)
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieRechts);
-    m_ui.m_tonaleAudiometrieRechts->setBCdata(Hz, dB);
+    Q_ASSERT(m_ui.m_pureToneAudiometryRight);
+    m_ui.m_pureToneAudiometryRight->setBCdata(Hz, dB);
 }
 
-void Measurements::setUCLRechtsData(int Hz, int dB)
+void Measurements::setUCLRightData(int Hz, int dB)
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieRechts);
-    m_ui.m_tonaleAudiometrieRechts->setUCLdata(Hz, dB);
+    Q_ASSERT(m_ui.m_pureToneAudiometryRight);
+    m_ui.m_pureToneAudiometryRight->setUCLdata(Hz, dB);
 }
 
-void Measurements::setLGLinksData(int Hz, int dB)
+void Measurements::setACLeftData(int Hz, int dB)
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieLinks);
-    m_ui.m_tonaleAudiometrieLinks->setACdata(Hz, dB);
+    Q_ASSERT(m_ui.m_pureToneAudiometryLeft);
+    m_ui.m_pureToneAudiometryLeft->setACdata(Hz, dB);
 }
 
-void Measurements::setBGLinksData(int Hz, int dB)
+void Measurements::setBCLeftData(int Hz, int dB)
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieLinks);
-    m_ui.m_tonaleAudiometrieLinks->setBCdata(Hz, dB);
+    Q_ASSERT(m_ui.m_pureToneAudiometryLeft);
+    m_ui.m_pureToneAudiometryLeft->setBCdata(Hz, dB);
 }
 
-void Measurements::setUCLLinksData(int Hz, int dB)
+void Measurements::setUCLLeftData(int Hz, int dB)
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieLinks);
-    m_ui.m_tonaleAudiometrieLinks->setUCLdata(Hz, dB);
+    Q_ASSERT(m_ui.m_pureToneAudiometryLeft);
+    m_ui.m_pureToneAudiometryLeft->setUCLdata(Hz, dB);
 }
 
-void Measurements::setROZonderData(int dB, int percentage)
+void Measurements::setREWithoutData(int dB, int percentage)
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieZonder);
-    m_ui.m_vocaleAudiometrieZonder->setROdata(dB, percentage);
+    Q_ASSERT(m_ui.m_speechAudiometryWithoutAid);
+    m_ui.m_speechAudiometryWithoutAid->setREData(dB, percentage);
 }
 
-void Measurements::setLOZonderData(int dB, int percentage)
+void Measurements::setLEWithoutData(int dB, int percentage)
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieZonder);
-    m_ui.m_vocaleAudiometrieZonder->setLOdata(dB, percentage);
+    Q_ASSERT(m_ui.m_speechAudiometryWithoutAid);
+    m_ui.m_speechAudiometryWithoutAid->setLEData(dB, percentage);
 }
 
-void Measurements::setROLOZonderData(int dB, int percentage)
+void Measurements::setRELEWithoutData(int dB, int percentage)
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieZonder);
-    m_ui.m_vocaleAudiometrieZonder->setROLOdata(dB, percentage);
+    Q_ASSERT(m_ui.m_speechAudiometryWithoutAid);
+    m_ui.m_speechAudiometryWithoutAid->setRELEData(dB, percentage);
 }
 
-void Measurements::setROMetData(int dB, int percentage)
+void Measurements::setROWithData(int dB, int percentage)
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieMet);
-    m_ui.m_vocaleAudiometrieMet->setROdata(dB, percentage);
+    Q_ASSERT(m_ui.m_speechAudiometryWithAid);
+    m_ui.m_speechAudiometryWithAid->setREData(dB, percentage);
 }
 
-void Measurements::setLOMetData(int dB, int percentage)
+void Measurements::setLOWithData(int dB, int percentage)
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieMet);
-    m_ui.m_vocaleAudiometrieMet->setLOdata(dB, percentage);
+    Q_ASSERT(m_ui.m_speechAudiometryWithAid);
+    m_ui.m_speechAudiometryWithAid->setLEData(dB, percentage);
 }
 
-void Measurements::setROLOMetData(int dB, int percentage)
+void Measurements::setROLOWithData(int dB, int percentage)
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieMet);
-    m_ui.m_vocaleAudiometrieMet->setROLOdata(dB, percentage);
+    Q_ASSERT(m_ui.m_speechAudiometryWithAid);
+    m_ui.m_speechAudiometryWithAid->setRELEData(dB, percentage);
 }
 
-void Measurements::setLocalisatieZonder(int dB)
+void Measurements::setLocalizationWithout(int dB)
 {
-    Q_ASSERT(m_ui.m_localisatieZonder);
-    m_ui.m_localisatieZonder->setText(dB > 0 ? QString::number(dB) : "");
+    Q_ASSERT(m_ui.m_localizationWithout);
+    m_ui.m_localizationWithout->setText(dB > 0 ? QString::number(dB) : "");
 }
 
-void Measurements::setLocalisatieRechts(int dB)
+void Measurements::setLocalizationWithRight(int dB)
 {
-    Q_ASSERT(m_ui.m_localisatieMetRechts);
-    m_ui.m_localisatieMetRechts->setText(dB > 0 ? QString::number(dB) : "");
+    Q_ASSERT(m_ui.m_localizationWithRight);
+    m_ui.m_localizationWithRight->setText(dB > 0 ? QString::number(dB) : "");
 }
 
-void Measurements::setLocalisatieLinks(int dB)
+void Measurements::setLocalizationWithLeft(int dB)
 {
-    Q_ASSERT(m_ui.m_localisatieMetLinks);
-    m_ui.m_localisatieMetLinks->setText(dB > 0 ? QString::number(dB) : "");
+    Q_ASSERT(m_ui.m_localizationWithLeft);
+    m_ui.m_localizationWithLeft->setText(dB > 0 ? QString::number(dB) : "");
 }
 
-void Measurements::setLocalisatieBeide(int dB)
+void Measurements::setLocalizationWithBoth(int dB)
 {
-    Q_ASSERT(m_ui.m_localisatieMetTwee);
-    m_ui.m_localisatieMetTwee->setText(dB > 0 ? QString::number(dB) : "");
+    Q_ASSERT(m_ui.m_localizationWithBoth);
+    m_ui.m_localizationWithBoth->setText(dB > 0 ? QString::number(dB) : "");
 }
 
-void Measurements::herberekenGemiddeldVerliesLinks()
+void Measurements::recalculateAverageLossLeft()
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieLinks && m_ui.m_verliesLinks);
-    int m1 = m_ui.m_tonaleAudiometrieLinks->getACdata(1000);
-    int m2 = m_ui.m_tonaleAudiometrieLinks->getACdata(2000);
-    int m3 = m_ui.m_tonaleAudiometrieLinks->getACdata(4000);
+    Q_ASSERT(m_ui.m_pureToneAudiometryLeft && m_ui.m_lossLeft);
+    int m1 = m_ui.m_pureToneAudiometryLeft->getACdata(1000);
+    int m2 = m_ui.m_pureToneAudiometryLeft->getACdata(2000);
+    int m3 = m_ui.m_pureToneAudiometryLeft->getACdata(4000);
     if (m1 >= 0 && m2 >= 0 && m3 >= 0)
-        m_ui.m_verliesLinks->setText(QString::number((m1+m2+m3) / 3) + " %");
+        m_ui.m_lossLeft->setText(QString::number((m1+m2+m3) / 3) + " %");
     else
-        m_ui.m_verliesLinks->setText("N/A");
+        m_ui.m_lossLeft->setText(tr("N/A"));
 }
 
-void Measurements::herberekenGemiddeldVerliesRechts()
+void Measurements::recalculateAverageLossRight()
 {
-    Q_ASSERT(m_ui.m_tonaleAudiometrieRechts && m_ui.m_verliesRechts);
-    int m1 = m_ui.m_tonaleAudiometrieRechts->getACdata(1000);
-    int m2 = m_ui.m_tonaleAudiometrieRechts->getACdata(2000);
-    int m3 = m_ui.m_tonaleAudiometrieRechts->getACdata(4000);
+    Q_ASSERT(m_ui.m_pureToneAudiometryRight && m_ui.m_lossRight);
+    int m1 = m_ui.m_pureToneAudiometryRight->getACdata(1000);
+    int m2 = m_ui.m_pureToneAudiometryRight->getACdata(2000);
+    int m3 = m_ui.m_pureToneAudiometryRight->getACdata(4000);
     if (m1 >= 0 && m2 >= 0 && m3 >= 0)
-        m_ui.m_verliesRechts->setText(QString::number((m1+m2+m3) / 3) + " %");
+        m_ui.m_lossRight->setText(QString::number((m1+m2+m3) / 3) + " %");
     else
-        m_ui.m_verliesRechts->setText("N/A");
+        m_ui.m_lossRight->setText(tr("N/A"));
 }
 
-void Measurements::herberekenROZonder()
+void Measurements::recalculateREWithoutAid()
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieZonder);
-    int m1 = m_ui.m_vocaleAudiometrieZonder->getREdata(40);
-    int m2 = m_ui.m_vocaleAudiometrieZonder->getREdata(55);
-    int m3 = m_ui.m_vocaleAudiometrieZonder->getREdata(70);
+    Q_ASSERT(m_ui.m_speechAudiometryWithoutAid);
+    int m1 = m_ui.m_speechAudiometryWithoutAid->getREdata(40);
+    int m2 = m_ui.m_speechAudiometryWithoutAid->getREdata(55);
+    int m3 = m_ui.m_speechAudiometryWithoutAid->getREdata(70);
     if (m1 >= 0 && m2 >= 0 && m3 >= 0)
-        m_ui.m_zonderApparaatRO->setText(QString::number((m1+m2+m3) / 3) + " %");
+        m_ui.m_withoutAidRE->setText(QString::number((m1+m2+m3) / 3) + " %");
     else
-        m_ui.m_zonderApparaatRO->setText("N/A");
-    herberekenROWinst();
+        m_ui.m_withoutAidRE->setText(tr("N/A"));
+    recalculateREGain();
 }
 
-void Measurements::herberekenLOZonder()
+void Measurements::recalculateLEWithoutAid()
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieMet);
-    int m1 = m_ui.m_vocaleAudiometrieZonder->getLEdata(40);
-    int m2 = m_ui.m_vocaleAudiometrieZonder->getLEdata(55);
-    int m3 = m_ui.m_vocaleAudiometrieZonder->getLEdata(70);
+    Q_ASSERT(m_ui.m_speechAudiometryWithAid);
+    int m1 = m_ui.m_speechAudiometryWithoutAid->getLEdata(40);
+    int m2 = m_ui.m_speechAudiometryWithoutAid->getLEdata(55);
+    int m3 = m_ui.m_speechAudiometryWithoutAid->getLEdata(70);
     if (m1 >= 0 && m2 >= 0 && m3 >= 0)
-        m_ui.m_zonderApparaatLO->setText(QString::number((m1+m2+m3) / 3) + " %");
+        m_ui.m_withoutAidLE->setText(QString::number((m1+m2+m3) / 3) + " %");
     else
-        m_ui.m_zonderApparaatLO->setText("N/A");
-    herberekenLOWinst();
+        m_ui.m_withoutAidLE->setText(tr("N/A"));
+    recalculateLEGain();
 }
 
-void Measurements::herberekenROLOZonder()
+void Measurements::recalculateRELEWithoutAid()
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieZonder);
-    int m1 = m_ui.m_vocaleAudiometrieZonder->getRELEdata(40);
-    int m2 = m_ui.m_vocaleAudiometrieZonder->getRELEdata(55);
-    int m3 = m_ui.m_vocaleAudiometrieZonder->getRELEdata(70);
+    Q_ASSERT(m_ui.m_speechAudiometryWithoutAid);
+    int m1 = m_ui.m_speechAudiometryWithoutAid->getRELEdata(40);
+    int m2 = m_ui.m_speechAudiometryWithoutAid->getRELEdata(55);
+    int m3 = m_ui.m_speechAudiometryWithoutAid->getRELEdata(70);
     if (m1 >= 0 && m2 >= 0 && m3 >= 0)
-        m_ui.m_zonderApparaatROLO->setText(QString::number((m1+m2+m3) / 3) + " %");
+        m_ui.m_withoutAidRELE->setText(QString::number((m1+m2+m3) / 3) + " %");
     else
-        m_ui.m_zonderApparaatROLO->setText("N/A");
-    herberekenROLOWinst();
+        m_ui.m_withoutAidRELE->setText(tr("N/A"));
+    recalculateRELEGain();
 }
 
-void Measurements::herberekenROMet()
+void Measurements::recalculateREWithAid()
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieMet);
-    int m1 = m_ui.m_vocaleAudiometrieMet->getREdata(40);
-    int m2 = m_ui.m_vocaleAudiometrieMet->getREdata(55);
-    int m3 = m_ui.m_vocaleAudiometrieMet->getREdata(70);
+    Q_ASSERT(m_ui.m_speechAudiometryWithAid);
+    int m1 = m_ui.m_speechAudiometryWithAid->getREdata(40);
+    int m2 = m_ui.m_speechAudiometryWithAid->getREdata(55);
+    int m3 = m_ui.m_speechAudiometryWithAid->getREdata(70);
     if (m1 >= 0 && m2 >= 0 && m3 >= 0)
-        m_ui.m_metApparaatRO->setText(QString::number((m1+m2+m3) / 3) + " %");
+        m_ui.m_withAidRE->setText(QString::number((m1+m2+m3) / 3) + " %");
     else
-        m_ui.m_metApparaatRO->setText("N/A");
-    herberekenROWinst();
+        m_ui.m_withAidRE->setText(tr("N/A"));
+    recalculateREGain();
 }
 
-void Measurements::herberekenLOMet()
+void Measurements::recalculateLEWithAid()
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieMet);
-    int m1 = m_ui.m_vocaleAudiometrieMet->getLEdata(40);
-    int m2 = m_ui.m_vocaleAudiometrieMet->getLEdata(55);
-    int m3 = m_ui.m_vocaleAudiometrieMet->getLEdata(70);
+    Q_ASSERT(m_ui.m_speechAudiometryWithAid);
+    int m1 = m_ui.m_speechAudiometryWithAid->getLEdata(40);
+    int m2 = m_ui.m_speechAudiometryWithAid->getLEdata(55);
+    int m3 = m_ui.m_speechAudiometryWithAid->getLEdata(70);
     if (m1 >= 0 && m2 >= 0 && m3 >= 0)
-        m_ui.m_metApparaatLO->setText(QString::number((m1+m2+m3) / 3) + " %");
+        m_ui.m_withAidLE->setText(QString::number((m1+m2+m3) / 3) + " %");
     else
-        m_ui.m_metApparaatLO->setText("N/A");
-    herberekenLOWinst();
+        m_ui.m_withAidLE->setText(tr("N/A"));
+    recalculateLEGain();
 }
 
-void Measurements::herberekenROLOMet()
+void Measurements::recalculateRELEWithAid()
 {
-    Q_ASSERT(m_ui.m_vocaleAudiometrieMet);
-    int m1 = m_ui.m_vocaleAudiometrieMet->getRELEdata(40);
-    int m2 = m_ui.m_vocaleAudiometrieMet->getRELEdata(55);
-    int m3 = m_ui.m_vocaleAudiometrieMet->getRELEdata(70);
+    Q_ASSERT(m_ui.m_speechAudiometryWithAid);
+    int m1 = m_ui.m_speechAudiometryWithAid->getRELEdata(40);
+    int m2 = m_ui.m_speechAudiometryWithAid->getRELEdata(55);
+    int m3 = m_ui.m_speechAudiometryWithAid->getRELEdata(70);
     if (m1 >= 0 && m2 >= 0 && m3 >= 0)
-        m_ui.m_metApparaatROLO->setText(QString::number((m1+m2+m3) / 3) + " %");
+        m_ui.m_withAidRELE->setText(QString::number((m1+m2+m3) / 3) + " %");
     else
-        m_ui.m_metApparaatROLO->setText("N/A");
-    herberekenROLOWinst();
+        m_ui.m_withAidRELE->setText(tr("N/A"));
+    recalculateRELEGain();
 }
 
-void Measurements::herberekenROWinst()
+void Measurements::recalculateREGain()
 {
-    Q_ASSERT(m_ui.m_zonderApparaatRO && m_ui.m_metApparaatRO);
-    if ((m_ui.m_zonderApparaatRO->text() != "N/A") && (m_ui.m_metApparaatRO->text() != "N/A"))
+    Q_ASSERT(m_ui.m_withoutAidRE && m_ui.m_withAidRE);
+    if ((m_ui.m_withoutAidRE->text() != tr("N/A")) && (m_ui.m_withAidRE->text() != tr("N/A")))
     {
-        int withAid = QString(m_ui.m_metApparaatRO->text()).remove(" %").toInt();
-        int withoutAid = QString(m_ui.m_zonderApparaatRO->text()).remove(" %").toInt();
-        m_ui.m_winstRO->setText(QString::number(withAid - withoutAid));
+        int withAid = QString(m_ui.m_withAidRE->text()).remove(" %").toInt();
+        int withoutAid = QString(m_ui.m_withoutAidRE->text()).remove(" %").toInt();
+        m_ui.m_gainRE->setText(QString::number(withAid - withoutAid));
     }
     else
     {
-        m_ui.m_winstRO->setText("N/A");
+        m_ui.m_gainRE->setText(tr("N/A"));
     }
 }
 
-void Measurements::herberekenLOWinst()
+void Measurements::recalculateLEGain()
 {
-    Q_ASSERT(m_ui.m_zonderApparaatLO && m_ui.m_metApparaatLO);
-    if ((m_ui.m_zonderApparaatLO->text() != "N/A") && (m_ui.m_metApparaatLO->text() != "N/A"))
+    Q_ASSERT(m_ui.m_withoutAidLE && m_ui.m_withAidLE);
+    if ((m_ui.m_withoutAidLE->text() != tr("N/A")) && (m_ui.m_withAidLE->text() != tr("N/A")))
     {
-        int withAid = QString(m_ui.m_metApparaatLO->text()).remove(" %").toInt();
-        int withoutAid = QString(m_ui.m_zonderApparaatLO->text()).remove(" %").toInt();
-        m_ui.m_winstLO->setText(QString::number(withAid - withoutAid));
+        int withAid = QString(m_ui.m_withAidLE->text()).remove(" %").toInt();
+        int withoutAid = QString(m_ui.m_withoutAidLE->text()).remove(" %").toInt();
+        m_ui.m_gainLE->setText(QString::number(withAid - withoutAid));
     }
     else
     {
-        m_ui.m_winstLO->setText("N/A");
+        m_ui.m_gainLE->setText(tr("N/A"));
     }
 }
 
-void Measurements::herberekenROLOWinst()
+void Measurements::recalculateRELEGain()
 {
-    Q_ASSERT(m_ui.m_zonderApparaatROLO && m_ui.m_metApparaatROLO);
-    if ((m_ui.m_zonderApparaatROLO->text() != "N/A") && (m_ui.m_metApparaatROLO->text() != "N/A"))
+    Q_ASSERT(m_ui.m_withoutAidRELE && m_ui.m_withAidRELE);
+    if ((m_ui.m_withoutAidRELE->text() != tr("N/A")) && (m_ui.m_withAidRELE->text() != tr("N/A")))
 {
-    int withAid = QString(m_ui.m_metApparaatROLO->text()).remove(" %").toInt();
-    int withoutAid = QString(m_ui.m_zonderApparaatROLO->text()).remove(" %").toInt();
-    m_ui.m_winstROLO->setText(QString::number(withAid - withoutAid));
+    int withAid = QString(m_ui.m_withAidRELE->text()).remove(" %").toInt();
+    int withoutAid = QString(m_ui.m_withoutAidRELE->text()).remove(" %").toInt();
+    m_ui.m_gainRELE->setText(QString::number(withAid - withoutAid));
 }
     else
     {
-        m_ui.m_winstROLO->setText("N/A");
+        m_ui.m_gainRELE->setText(tr("N/A"));
     }
 }

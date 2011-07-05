@@ -15,9 +15,9 @@ class SpeechAudiometryWidget : public QWidget
 
         typedef enum { WITHOUT, WITH } Kind;
         void setKind(Kind kind);
-        void setROdata(int dB, int percentage);
-        void setLOdata(int dB, int percentage);
-        void setROLOdata(int dB, int percentage);
+        void setREData(int dB, int percentage);
+        void setLEData(int dB, int percentage);
+        void setRELEData(int dB, int percentage);
 
         int getREdata(int dB);
         int getLEdata(int dB);

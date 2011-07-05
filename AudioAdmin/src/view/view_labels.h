@@ -18,7 +18,6 @@ namespace View
         void clearPlacesAdjustment();
         void addPlaceAdjustment(const QString &value);
         void setTestDate(const QDate &value);
-        void print();
 
     private:
         // --- Data members ---

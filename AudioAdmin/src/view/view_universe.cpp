@@ -34,8 +34,8 @@ Universe::Universe(QWidget *parent, Qt::WFlags f)
     connect(m_ui.b_insuranceCompanyAdd, SIGNAL(clicked()), this, SLOT(addInsuranceCompany()));
     connect(m_ui.b_insuranceCompanyRemove, SIGNAL(clicked()), this, SLOT(removeInsuranceCompany()));
     connect(m_ui.b_insuranceCompanyFind, SIGNAL(clicked()), this, SLOT(findInsuranceCompany()));
-    connect(m_ui.m_rightHearingAidBrand, SIGNAL(currentIndexChanged(int)), &m_file, SLOT(refreshRechterHoorapparaatLijst(int)));
-    connect(m_ui.m_leftHearingAidBrand, SIGNAL(currentIndexChanged(int)), &m_file, SLOT(refreshLinkerHoorapparaatLijst(int)));
+    connect(m_ui.m_rightHearingAidBrand, SIGNAL(currentIndexChanged(int)), &m_file, SLOT(refreshRightHearingAidList(int)));
+    connect(m_ui.m_leftHearingAidBrand, SIGNAL(currentIndexChanged(int)), &m_file, SLOT(refreshLeftHearingAidList(int)));
     connect(m_ui.m_customerPhysician, SIGNAL(currentIndexChanged(int)), &m_file, SLOT(showPhysician(int)));
     connect(m_ui.m_customerInsurance, SIGNAL(currentIndexChanged(int)), &m_file, SLOT(showInsuranceCompany(int)));
     connect(m_ui.b_letterCustomer, SIGNAL(clicked()), &m_file, SIGNAL(showLetterCustomer()));
@@ -246,7 +246,7 @@ void Universe::addInsuranceCompany(int id, const QString &name, const QString &s
 
 void Universe::changeInsuranceCompany(int id, const QString &name, const QString &street, int postalCode, const QString &city)
 {
-    m_file.changeInsruanceCompany(id, name);
+    m_file.changeInsuranceCompany(id, name);
 
     int index = insuranceCompanyIdToIndex(id);
     m_ui.m_insuranceCompanyList->setItem(index, 1, new QTableWidgetItem(name));

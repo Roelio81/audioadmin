@@ -30,7 +30,7 @@ namespace View
         void changePhysician(int id, const QString &name, const QString &street, const QString &city);
         void clearInsuranceCompanyList();
         void addInsuranceCompany(int id, const QString &name);
-        void changeInsruanceCompany(int id, const QString &name);
+        void changeInsuranceCompany(int id, const QString &name);
 
         // --- Getters ---
         Customer &getCustomer() { return m_customer; }
@@ -83,8 +83,8 @@ namespace View
     public slots:
         void showPhysician(int value);
         void showInsuranceCompany(int value);
-        void refreshRechterHoorapparaatLijst(int indexMerk);
-        void refreshLinkerHoorapparaatLijst(int indexMerk);
+        void refreshRightHearingAidList(int indexMerk);
+        void refreshLeftHearingAidList(int indexMerk);
 
     signals:
         void showLetterCustomer();
