@@ -428,6 +428,147 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>Presenter::LetterCustomer</name>
+    <message>
+        <source>Dear Mr,</source>
+        <translation>Geachte meneer,</translation>
+    </message>
+    <message>
+        <source>Dear Mrs,</source>
+        <translation>Geachte mevrouw,</translation>
+    </message>
+    <message>
+        <source>Dear,</source>
+        <translation>Geachte,</translation>
+    </message>
+    <message>
+        <source>You will also find a second transfer you can use to extend warranty from ... years to 5 years.</source>
+        <translation>Tevens vindt u een tweede overschrijving die u kan gebruiken indien u 5 jaar garantie wenst i.p.v. ... jaar.</translation>
+    </message>
+    <message>
+        <source>Enclosed is a transfer for the imposition of the hearing aid.</source>
+        <translation>Ingesloten vindt u een overschrijving voor de opleg van het hoorapparaat.</translation>
+    </message>
+    <message>
+        <source>Enclosed is a transfer for the imposition of the hearing aids.</source>
+        <translation>Ingesloten vindt u een overschrijving voor de opleg van de hoorapparaten.</translation>
+    </message>
+</context>
+<context>
+    <name>Presenter::LetterInsuranceCompany</name>
+    <message>
+        <source>Enclosed is the test report for hearing correction of %1 %2%3.</source>
+        <translation>Ingesloten vindt u het proefrapport ter gehoorcorrectie van %1 %2%3.</translation>
+    </message>
+    <message>
+        <source>Mr. has opted for a binaural adaptation with the device %1.</source>
+        <translation>Mijnheer heeft geopteerd voor een stereofonische aanpassing met het apparaat %1.</translation>
+    </message>
+    <message>
+        <source>Mr. has opted for a binaural adjustment with the devices %1 (right) and %2 (left).</source>
+        <translation>Mijnheer heeft geopteerd voor een stereofonische aanpassing met de apparaten %1 (rechts) en %2 (links).</translation>
+    </message>
+    <message>
+        <source>Mr. has opted for a monaural adjustment with the device %1 (left).</source>
+        <translation>Mijnheer heeft geopteerd voor een monofonische aanpassing met het apparaat %1 (links).</translation>
+    </message>
+    <message>
+        <source>Mr. has opted for a monaural adjustment with the device %1 (right).</source>
+        <translation>Mijnheer heeft geopteerd voor een monofonische aanpassing met het apparaat %1 (rechts).</translation>
+    </message>
+    <message>
+        <source>Mrs. has opted for a binaural adaptation with the device %1.</source>
+        <translation>Mevrouw heeft geopteerd voor een stereofonische aanpassing met het apparaat %1.</translation>
+    </message>
+    <message>
+        <source>Mrs. has opted for a binaural adjustment with the devices %1 (right) and %2 (left).</source>
+        <translation>Mevrouw heeft geopteerd voor een stereofonische aanpassing met de apparaten %1 (rechts) en %2 (links).</translation>
+    </message>
+    <message>
+        <source>Mrs. has opted for a monaural adjustment with the device %1 (left).</source>
+        <translation>Mevrouw heeft geopteerd voor een monofonische aanpassing met het apparaat %1 (links).</translation>
+    </message>
+    <message>
+        <source>Mrs. has opted for a monaural adjustment with the device %1 (right).</source>
+        <translation>Mevrouw heeft geopteerd voor een monofonische aanpassing met het apparaat %1 (rechts).</translation>
+    </message>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation>dd-MM-yyyy</translation>
+    </message>
+    <message>
+        <source>Please send an approval as soon as possible to the above address.</source>
+        <translation>Gelieve ten spoedigste een goedkeuring te laten geworden op bovenstaand adres.</translation>
+    </message>
+    <message>
+        <source>Mr</source>
+        <translation>mijnheer</translation>
+    </message>
+    <message>
+        <source>Mrs</source>
+        <translation>mevrouw</translation>
+    </message>
+    <message>
+        <source>Dear consultant,</source>
+        <translation>Geachte geneesheer-adviseur,</translation>
+    </message>
+</context>
+<context>
+    <name>Presenter::LetterPhysician</name>
+    <message>
+        <source>yyyy-MM-dd</source>
+        <translation>dd-MM-yyyy</translation>
+    </message>
+    <message>
+        <source>Enclosed is the test report for hearing correction of %1 %2%3.</source>
+        <translation>Ingesloten vindt u het proefrapport ter gehoorcorrectie van %1 %2%3.</translation>
+    </message>
+    <message>
+        <source>Mr. has opted for a binaural adaptation with the device %1.</source>
+        <translation>Mijnheer heeft geopteerd voor een stereofonische aanpassing met het apparaat %1.</translation>
+    </message>
+    <message>
+        <source>Mr. has opted for a binaural adjustment with the devices %1 (right) and %2 (left).</source>
+        <translation>Mijnheer heeft geopteerd voor een stereofonische aanpassing met de apparaten %1 (rechts) en %2 (links).</translation>
+    </message>
+    <message>
+        <source>Mr. has opted for a monaural adjustment with the device %1 (left).</source>
+        <translation>Mijnheer heeft geopteerd voor een monofonische aanpassing met het apparaat %1 (links).</translation>
+    </message>
+    <message>
+        <source>Mr. has opted for a monaural adjustment with the device %1 (right).</source>
+        <translation>Mijnheer heeft geopteerd voor een monofonische aanpassing met het apparaat %1 (rechts).</translation>
+    </message>
+    <message>
+        <source>Mrs. has opted for a binaural adaptation with the device %1.</source>
+        <translation>Mevrouw heeft geopteerd voor een stereofonische aanpassing met het apparaat %1.</translation>
+    </message>
+    <message>
+        <source>Mrs. has opted for a binaural adjustment with the devices %1 (right) and %2 (left).</source>
+        <translation>Mevrouw heeft geopteerd voor een stereofonische aanpassing met de apparaten %1 (rechts) en %2 (links).</translation>
+    </message>
+    <message>
+        <source>Mrs. has opted for a monaural adjustment with the device %1 (left).</source>
+        <translation>Mevrouw heeft geopteerd voor een monofonische aanpassing met het apparaat %1 (links).</translation>
+    </message>
+    <message>
+        <source>Mrs. has opted for a monaural adjustment with the device %1 (right).</source>
+        <translation>Mevrouw heeft geopteerd voor een monofonische aanpassing met het apparaat %1 (rechts).</translation>
+    </message>
+    <message>
+        <source>Dear doctor,</source>
+        <translation>Geachte dokter,</translation>
+    </message>
+    <message>
+        <source>Mr</source>
+        <translation>mijnheer</translation>
+    </message>
+    <message>
+        <source>Mrs</source>
+        <translation>mevrouw</translation>
+    </message>
+</context>
+<context>
     <name>QDialogButtonBox</name>
     <message>
         <source>OK</source>
@@ -762,6 +903,13 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Hearing aids</source>
         <translation>Hoorapparaten</translation>
+    </message>
+</context>
+<context>
+    <name>View::Measurements</name>
+    <message>
+        <source>N/A</source>
+        <translation>N/A</translation>
     </message>
 </context>
 <context>

@@ -16,7 +16,7 @@ LetterPhysician::~LetterPhysician()
 
 QString LetterPhysician::getGreeting() const
 {
-    return "Geachte dokter,";
+    return tr("Dear doctor,");
 }
 
 QString LetterPhysician::getAddresseeName() const
@@ -52,61 +52,58 @@ QString LetterPhysician::getDefaultText() const
     const Model::File &file = getModel().getFile();
     const Model::Customer &customer = file.getCustomer();
 
-    QString titleUpperCase;
-    QString titleLowerCase;
+    QString title;
     switch (customer.getTitle())
     {
         case Model::Customer::MR:
-            titleUpperCase = "Mijnheer";
-            titleLowerCase = "mijnheer";
+            title = tr("Mr");
             break;
         case Model::Customer::MRS:
-            titleUpperCase = "Mevrouw";
-            titleLowerCase = "mevrouw";
+            title = tr("Mrs");
             break;
     }
 
-    QString text = "Ingesloten vindt u het proefrapport ter gehoorcorrectie van ";
-    text += titleLowerCase + " " + customer.getName() + " " + customer.getFirstName();
-    QDate geboorteDatum = customer.getDateOfBirth();
-    if (geboorteDatum != file.getUniverse().getInvalidDate())
+    // Determine some chunks of text that will be added to the default letter
+    QString text;
+    QString nameString = (customer.getName() + " " + customer.getFirstName());
+    QDate dateOfBirth = customer.getDateOfBirth();
+    QString dateOfBirthString;
+    if (dateOfBirth != file.getUniverse().getInvalidDate())
+        dateOfBirthString = " (" + QString(char(0xb0)) + " " + dateOfBirth.toString(tr("yyyy-MM-dd")) + ")";
+    QString leftBrandAndType = file.getLeftHearingAidBrand() + " " + file.getLeftHearingAidType();
+    QString rightBrandAndType = file.getRightHearingAidBrand() + " " + file.getRightHearingAidType();
+    bool hasLeftSide = (!leftBrandAndType.trimmed().isEmpty());
+    bool hasRightSide = (!rightBrandAndType.trimmed().isEmpty());
+
+    // Create the default text by combining the previously created strings
+    text = tr("Enclosed is the test report for hearing correction of %1 %2%3.").arg(title, nameString, dateOfBirthString);
+    text += "  ";
+    switch (customer.getTitle())
     {
-        text += " (" + QString(char(0xb0)) + " " + geboorteDatum.toString("dd-MM-yyyy") + "). ";
-    }
-    if (file.getNofHearingAids() > 0)
-    {
-        text += titleUpperCase + " heeft geopteerd voor een ";
-        if (file.getNofHearingAids() == 1)
-        {
-            text += "monofonische aanpassing met ";
-            if (!file.getLeftHearingAidBrand().isEmpty() || !file.getLeftHearingAidType().isEmpty())
+        case Model::Customer::MR:
             {
-                text += "het apparaat ";
-                text += file.getLeftHearingAidBrand() + " " + file.getLeftHearingAidType() + " (links). ";
+            if (hasLeftSide && hasRightSide && (leftBrandAndType == rightBrandAndType))
+                text += tr("Mr. has opted for a binaural adaptation with the device %1.").arg(leftBrandAndType);
+            else if (hasLeftSide && hasRightSide)
+                text += tr("Mr. has opted for a binaural adjustment with the devices %1 (right) and %2 (left).").arg(rightBrandAndType, leftBrandAndType);
+            else if (hasLeftSide)
+                text += tr("Mr. has opted for a monaural adjustment with the device %1 (left).").arg(leftBrandAndType);
+            else if (hasRightSide)
+                text += tr("Mr. has opted for a monaural adjustment with the device %1 (right).").arg(rightBrandAndType);
             }
-            else
+            break;
+        case Model::Customer::MRS:
             {
-                text += "het apparaat ";
-                text += file.getRightHearingAidBrand() + " " + file.getRightHearingAidType() + " (rechts). ";
+            if (hasLeftSide && hasRightSide && (leftBrandAndType == rightBrandAndType))
+                text += tr("Mrs. has opted for a binaural adaptation with the device %1.").arg(leftBrandAndType);
+            else if (hasLeftSide && hasRightSide)
+                text += tr("Mrs. has opted for a binaural adjustment with the devices %1 (right) and %2 (left).").arg(rightBrandAndType, leftBrandAndType);
+            else if (hasLeftSide)
+                text += tr("Mrs. has opted for a monaural adjustment with the device %1 (left).").arg(leftBrandAndType);
+            else if (hasRightSide)
+                text += tr("Mrs. has opted for a monaural adjustment with the device %1 (right).").arg(rightBrandAndType);
             }
-        }
-        else
-        {
-            Q_ASSERT(file.getNofHearingAids() == 2);
-            text += "stereofonische aanpassing met ";
-            if (file.getLeftHearingAidBrand() == file.getRightHearingAidBrand() &&
-                file.getLeftHearingAidType() == file.getRightHearingAidType())
-            {
-                text += "het apparaat ";
-                text += file.getLeftHearingAidBrand() + " " + file.getLeftHearingAidType() + ". ";
-            }
-            else
-            {
-                text += "de apparaten ";
-                text += file.getRightHearingAidBrand() + " " + file.getRightHearingAidType() + " (rechts) en ";
-                text += file.getLeftHearingAidBrand() + " " + file.getLeftHearingAidType() + " (links). ";
-            }
-        }
+            break;
     }
 
     return text;

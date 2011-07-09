@@ -28,13 +28,13 @@ QString LetterCustomer::getGreeting() const
     switch (customer.getTitle())
     {
         case Model::Customer::MR:
-            return "Geachte meneer,";
+            return tr("Dear Mr,");
         case Model::Customer::MRS:
-            return "Geachte mevrouw,";
+            return tr("Dear Mrs,");
     }
 
     Q_ASSERT(false);
-    return "Geachte,";
+    return tr("Dear,");
 }
 
 QString LetterCustomer::getAddresseeName() const
@@ -61,11 +61,12 @@ QString LetterCustomer::getAddresseeCity() const
 QString LetterCustomer::getDefaultText() const
 {
     const Model::File &file = getModel().getFile();
-    QString text = "Ingesloten vindt u een overschrijving voor de opleg van ";
+    QString text;
     if (file.getNofHearingAids() == 1)
-        text += "het hoorapparaat.";
+        text += tr("Enclosed is a transfer for the imposition of the hearing aid.");
     else
-        text += "de hoorapparaten.";
-    text += "Tevens vindt u een tweede overschrijving die u kan gebruiken indien u 5 jaar garantie wenst i.p.v. ... jaar.";
+        text += tr("Enclosed is a transfer for the imposition of the hearing aids.");
+    text += "  ";
+    text += tr("You will also find a second transfer you can use to extend warranty from ... years to 5 years.");
     return text;
 }

@@ -32,7 +32,7 @@ void Settings::fromDomElement(const QDomElement &e)
                 else if (subelement.tagName() == "city")
                 {
                     m_city = subelement.text();
-                    m_postalCode = subelement.attribute("postalCcode").toInt();
+                    m_postalCode = subelement.attribute("postalCode").toInt();
                 }
             }
         }
