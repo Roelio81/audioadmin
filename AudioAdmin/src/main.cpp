@@ -22,7 +22,7 @@ int main(int argc, char ** argv)
     View::Universe view;
     Model::Universe model(QString("audio.xml"));
     Presenter::Universe presenter(view, model);
-    view.show();
+    view.showMaximized();
     app.connect( &app, SIGNAL( lastWindowClosed() ), &app, SLOT( quit() ) );
     return app.exec();
 }
