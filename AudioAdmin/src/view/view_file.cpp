@@ -418,6 +418,7 @@ void File::refreshRightHearingAidList(int index)
     m_ui.m_rightHearingAidType->clear();
     for (QSet<QString>::iterator it = types.begin(); it != types.end(); ++it)
         m_ui.m_rightHearingAidType->addItem(*it);
+    m_ui.b_invoice->setEnabled(m_ui.m_rightHearingAidBrand->currentIndex() > 0 || m_ui.m_leftHearingAidBrand->currentIndex() > 0);
 }
 
 void File::refreshLeftHearingAidList(int index)
@@ -427,4 +428,5 @@ void File::refreshLeftHearingAidList(int index)
     m_ui.m_leftHearingAidType->clear();
     for (QSet<QString>::iterator it = types.begin(); it != types.end(); ++it)
         m_ui.m_leftHearingAidType->addItem(*it);
+    m_ui.b_invoice->setEnabled(m_ui.m_rightHearingAidBrand->currentIndex() > 0 || m_ui.m_leftHearingAidBrand->currentIndex() > 0);
 }

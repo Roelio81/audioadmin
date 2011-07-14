@@ -76,20 +76,20 @@ void File::fromDomElement(const QDomElement &e)
             {
                 Q_ASSERT(ee.tagName() == "hearingAid");
                 QString place = ee.attribute("place");
-                QString merk = ee.attribute("merk");
+                QString brand = ee.attribute("brand");
                 QString type = ee.attribute("type");
                 QString serialNumber = ee.firstChildElement("serialNumber").text();
                 double price = ee.firstChildElement("price").text().toDouble();
                 if (place == "right")
                 {
-                    m_rightHearingAidBrand = merk;
+                    m_rightHearingAidBrand = brand;
                     m_rightHearingAidType = type;
                     m_rightHearingAidSerialNumber = serialNumber;
                     m_rightHearingAidPrice = price;
                 }
                 else if (place == "left")
                 {
-                    m_leftHearingAidBrand = merk;
+                    m_leftHearingAidBrand = brand;
                     m_leftHearingAidType = type;
                     m_leftHearingAidSerialNumber = serialNumber;
                     m_leftHearingAidPrice = price;
@@ -194,7 +194,7 @@ QDomElement File::toDomElement(QDomDocument &d) const
     if (!m_leftHearingAidType.isEmpty() || !m_leftHearingAidBrand.isEmpty())
     {
         QDomElement hearingAid = d.createElement("hearingAid");
-        hearingAid.setAttribute("merk", m_leftHearingAidBrand);
+        hearingAid.setAttribute("brand", m_leftHearingAidBrand);
         hearingAid.setAttribute("type", m_leftHearingAidType);
         hearingAid.setAttribute("place", "left");
         if (!m_leftHearingAidSerialNumber.isEmpty())
