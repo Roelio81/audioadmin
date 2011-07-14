@@ -93,7 +93,7 @@ void Universe::openSettings()
 
 void Universe::openLabels()
 {
-    Labels labels(m_view.getLabels(), m_model);
+    Labels labels(m_view.getLabels(), m_model.getLabels());
     labels.setup();
     if (m_view.getLabels().exec() == QDialog::Accepted)
         labels.teardown();

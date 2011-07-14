@@ -10,7 +10,7 @@ namespace View
 
 namespace Model
 {
-    class Universe;
+    class Labels;
 }
 
 namespace Presenter
@@ -19,7 +19,7 @@ namespace Presenter
     {
     Q_OBJECT
     public:
-        explicit Labels(View::Labels &view, Model::Universe &model);
+        explicit Labels(View::Labels &view, Model::Labels &model);
         virtual ~Labels();
 
         // --- IPresenter ---
@@ -32,7 +32,7 @@ namespace Presenter
     private:
         // --- Data members ---
         View::Labels &m_view;
-        Model::Universe &m_model;
+        Model::Labels &m_model;
     };
 
 }

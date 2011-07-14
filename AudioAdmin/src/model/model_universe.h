@@ -11,10 +11,11 @@ class QDomElement;
 
 namespace Model
 {
-    class Physician;
     class File;
-    class Settings;
     class InsuranceCompany;
+    class Labels;
+    class Physician;
+    class Settings;
 
     class Universe
     {
@@ -37,6 +38,7 @@ namespace Model
         const QVector<File *> &getFiles() { return m_files; }
         const QVector<InsuranceCompany *> &getInsuranceCompanies() { return m_insuranceCompanies; }
         Settings &getSettings() { return *m_settings; }
+        Labels &getLabels() { return *m_labels; }
         const Settings &getSettings() const { return *m_settings; }
         Physician *getPhysician(int id) const;
         File *getFile(int id) const;
@@ -57,6 +59,7 @@ namespace Model
         QVector<File *> m_files;
         QVector<InsuranceCompany *> m_insuranceCompanies;
         Settings *m_settings;
+        Labels *m_labels;
     };
 }
 

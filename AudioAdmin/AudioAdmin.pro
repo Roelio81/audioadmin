@@ -43,7 +43,8 @@ HEADERS = ../AudioPlugin/src/puretoneaudiometrywidget.h \
     src/presenter/presenter_customer.h \
     src/view/view_customer.h \
     src/presenter/presenter_letterinsurancecompany.h \
-    src/presenter/presenter_lettercustomer.h
+    src/presenter/presenter_lettercustomer.h \
+    src/model/model_labels.h
 MOC_DIR = build
 OBJECTS_DIR = build
 QT = core gui xml
@@ -84,7 +85,8 @@ SOURCES = ../AudioPlugin/src/puretoneaudiometrywidget.cpp \
     src/presenter/presenter_customer.cpp \
     src/view/view_customer.cpp \
     src/presenter/presenter_letterinsurancecompany.cpp \
-    src/presenter/presenter_lettercustomer.cpp
+    src/presenter/presenter_lettercustomer.cpp \
+    src/model/model_labels.cpp
 TEMPLATE = app
 UI_DIR = build
 TRANSLATIONS = translations/audioadmin_nl.ts

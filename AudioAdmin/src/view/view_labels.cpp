@@ -57,6 +57,11 @@ void Labels::addPlaceAdjustment(const QString &value)
     }
 }
 
+void Labels::setPlaceAdjustment(const QString &value)
+{
+    m_ui.m_placeAdjustment->setEditText(value);
+}
+
 void Labels::setTestDate(const QDate &value)
 {
     m_ui.m_testsAfter->setDate(value);

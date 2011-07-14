@@ -1,9 +1,10 @@
 #include "model_universe.h"
 
-#include "model_physician.h"
 #include "model_file.h"
-#include "model_settings.h"
 #include "model_insurancecompany.h"
+#include "model_labels.h"
+#include "model_physician.h"
+#include "model_settings.h"
 
 #include <QDomDocument>
 #include <QDomElement>
@@ -17,12 +18,15 @@ using namespace Model;
 Universe::Universe(const QString &fileName)
 : m_fileName(fileName)
 , m_settings(new Settings(*this))
+, m_labels(new Labels(*this))
 {
     open();
 }
 
 Universe::~Universe()
 {
+    delete m_settings;
+    delete m_labels;
 }
 
 void Universe::fromDomElement(const QDomElement &root)

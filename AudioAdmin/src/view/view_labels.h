@@ -24,6 +24,7 @@ namespace View
         // --- Setters ---
         void clearPlacesAdjustment();
         void addPlaceAdjustment(const QString &value);
+        void setPlaceAdjustment(const QString &value);
         void setTestDate(const QDate &value);
 
     private:
