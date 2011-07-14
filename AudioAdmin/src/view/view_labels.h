@@ -15,6 +15,13 @@ namespace View
         explicit Labels(QWidget *parent = 0);
         virtual ~Labels();
 
+        // --- Getters ---
+        QString getPlaceAdjustment() const;
+        QDate getTestDate() const;
+        bool isAdjustmentPlaceChecked() const;
+        bool isTestDateChecked() const;
+
+        // --- Setters ---
         void clearPlacesAdjustment();
         void addPlaceAdjustment(const QString &value);
         void setTestDate(const QDate &value);

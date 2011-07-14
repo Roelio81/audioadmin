@@ -19,6 +19,26 @@ Labels::~Labels()
 {
 }
 
+QString Labels::getPlaceAdjustment() const
+{
+    return m_ui.m_placeAdjustment->currentText();
+}
+
+QDate Labels::getTestDate() const
+{
+    return m_ui.m_testsAfter->date();
+}
+
+bool Labels::isAdjustmentPlaceChecked() const
+{
+    return m_ui.c_placeAdjustment->isChecked();
+}
+
+bool Labels::isTestDateChecked() const
+{
+    return m_ui.c_testsAfter->isChecked();
+}
+
 void Labels::clearPlacesAdjustment()
 {
     m_placesAdjustment.clear();
