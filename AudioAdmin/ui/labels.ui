@@ -84,7 +84,7 @@
    <item>
     <widget class="QLabel" name="l_attention">
      <property name="text">
-      <string>Attention: please use labels of the following type: 63,5 x 38,1 mm (21 pieces per A4 sheet)</string>
+      <string>Attention: please use labels of the following type: 66 x 38.1 mm (21 pieces per A4 sheet)</string>
      </property>
     </widget>
    </item>

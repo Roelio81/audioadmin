@@ -122,8 +122,8 @@ p, li { white-space: pre-wrap; }
         <translation>Plaats aanpassing:</translation>
     </message>
     <message>
-        <source>Attention: please use labels of the following type: 63,5 x 38,1 mm (21 pieces per A4 sheet)</source>
-        <translation>Opgelet: gelieve etiketten van het type 63,5 x 38,1 mm (21 stuks per vel) te gebruiken</translation>
+        <source>Attention: please use labels of the following type: 66 x 38.1 mm (21 pieces per A4 sheet)</source>
+        <translation>Opgelet: gelieve etiketten van het type 66 x 38,1 mm (21 stuks per vel) te gebruiken</translation>
     </message>
     <message>
         <source>yyyy-MM-dd</source>

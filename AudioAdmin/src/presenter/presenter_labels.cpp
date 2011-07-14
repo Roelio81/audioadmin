@@ -60,9 +60,9 @@ void Labels::print()
                 if ((labelNr > 0) && (labelNr % 21 == 0))
                     printer->newPage();
 
-                // Print the name, address and city (each label is 63.5mm x 38.1mm)
+                // Print the name, address and city (each label is 66mm x 38.1mm)
                 Model::Customer &customer = file->getCustomer();
-                int x = (labelNr % 3)*66*mmx + hmar;
+                int x = (labelNr % 3)*70*mmx + hmar;
                 int y = ((labelNr / 3)%7)*38.1*mmy + (lineheight) + vmar;
                 painter.drawText(x, y, customer.getFirstName() + " " + customer.getName());
                 y += lineheight;
