@@ -34,9 +34,9 @@ namespace Model
 
         // --- Getters ---
         QDate getInvalidDate() const { return QDate(1900, 1, 1); }
-        const QVector<Physician *> &getPhysicians() { return m_physicians; }
-        const QVector<File *> &getFiles() { return m_files; }
-        const QVector<InsuranceCompany *> &getInsuranceCompanies() { return m_insuranceCompanies; }
+        const QVector<Physician *> &getPhysicians() const { return m_physicians; }
+        const QVector<File *> &getFiles() const { return m_files; }
+        const QVector<InsuranceCompany *> &getInsuranceCompanies() const { return m_insuranceCompanies; }
         Settings &getSettings() { return *m_settings; }
         Labels &getLabels() { return *m_labels; }
         const Settings &getSettings() const { return *m_settings; }
