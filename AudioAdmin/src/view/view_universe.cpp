@@ -8,6 +8,27 @@
 
 using namespace View;
 
+namespace
+{
+class CaseInsensitiveTableWidgetItem : public QTableWidgetItem
+    {
+    public:
+        CaseInsensitiveTableWidgetItem(const QString &text)
+            : QTableWidgetItem(text)
+            {
+            }
+
+        virtual ~CaseInsensitiveTableWidgetItem()
+            {
+            }
+
+        virtual bool operator< ( const QTableWidgetItem & other) const
+            {
+            return (text().toUpper() < other.text().toUpper());
+            }
+    };
+}
+
 Universe::Universe(QWidget *parent, Qt::WFlags f)
 : QMainWindow(parent, f)
 , m_physician(m_ui)
@@ -146,7 +167,7 @@ void Universe::addPhysician(int id, const QString &name, const QString &street, 
 
     int index = m_ui.m_physicianList->rowCount();
     m_ui.m_physicianList->insertRow(index);
-    m_ui.m_physicianList->setItem(index, 0, new QTableWidgetItem(QString::number(id)));
+    m_ui.m_physicianList->setItem(index, 0, new CaseInsensitiveTableWidgetItem(QString::number(id)));
     m_ui.m_physicianList->item(index, 0)->setFlags(Qt::ItemIsSelectable);
     changePhysician(id, name, street, postalCode, city);
 }
@@ -156,10 +177,10 @@ void Universe::changePhysician(int id, const QString &name, const QString &stree
     m_file.changePhysician(id, name, street, QString::number(postalCode) + " " + city);
 
     int index = physicianIdToIndex(id);
-    m_ui.m_physicianList->setItem(index, 1, new QTableWidgetItem(name));
-    m_ui.m_physicianList->setItem(index, 2, new QTableWidgetItem(street));
-    m_ui.m_physicianList->setItem(index, 3, new QTableWidgetItem(QString::number(postalCode)));
-    m_ui.m_physicianList->setItem(index, 4, new QTableWidgetItem(city));
+    m_ui.m_physicianList->setItem(index, 1, new CaseInsensitiveTableWidgetItem(name));
+    m_ui.m_physicianList->setItem(index, 2, new CaseInsensitiveTableWidgetItem(street));
+    m_ui.m_physicianList->setItem(index, 3, new CaseInsensitiveTableWidgetItem(QString::number(postalCode)));
+    m_ui.m_physicianList->setItem(index, 4, new CaseInsensitiveTableWidgetItem(city));
     m_ui.m_physicianList->item(index, 1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
     m_ui.m_physicianList->item(index, 2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
     m_ui.m_physicianList->item(index, 3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
@@ -193,7 +214,7 @@ void Universe::addCustomer(int id, const QString &name, const QString &street, i
 {
     int index = m_ui.m_customerList->rowCount();
     m_ui.m_customerList->insertRow(index);
-    m_ui.m_customerList->setItem(index, 0, new QTableWidgetItem(QString::number(id)));
+    m_ui.m_customerList->setItem(index, 0, new CaseInsensitiveTableWidgetItem(QString::number(id)));
     m_ui.m_customerList->item(index, 0)->setFlags(Qt::ItemIsSelectable);
     changeCustomer(id, name, street, postalCode, city);
 }
@@ -201,10 +222,10 @@ void Universe::addCustomer(int id, const QString &name, const QString &street, i
 void Universe::changeCustomer(int id, const QString &name, const QString &street, int postalCode, const QString &city)
 {
     int index = customerIdToIndex(id);
-    m_ui.m_customerList->setItem(index, 1, new QTableWidgetItem(name));
-    m_ui.m_customerList->setItem(index, 2, new QTableWidgetItem(street));
-    m_ui.m_customerList->setItem(index, 3, new QTableWidgetItem(QString::number(postalCode)));
-    m_ui.m_customerList->setItem(index, 4, new QTableWidgetItem(city));
+    m_ui.m_customerList->setItem(index, 1, new CaseInsensitiveTableWidgetItem(name));
+    m_ui.m_customerList->setItem(index, 2, new CaseInsensitiveTableWidgetItem(street));
+    m_ui.m_customerList->setItem(index, 3, new CaseInsensitiveTableWidgetItem(QString::number(postalCode)));
+    m_ui.m_customerList->setItem(index, 4, new CaseInsensitiveTableWidgetItem(city));
     m_ui.m_customerList->item(index, 1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
     m_ui.m_customerList->item(index, 2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
     m_ui.m_customerList->item(index, 3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
@@ -239,7 +260,7 @@ void Universe::addInsuranceCompany(int id, const QString &name, const QString &s
 
     int index = m_ui.m_insuranceCompanyList->rowCount();
     m_ui.m_insuranceCompanyList->insertRow(index);
-    m_ui.m_insuranceCompanyList->setItem(index, 0, new QTableWidgetItem(QString::number(id)));
+    m_ui.m_insuranceCompanyList->setItem(index, 0, new CaseInsensitiveTableWidgetItem(QString::number(id)));
     m_ui.m_insuranceCompanyList->item(index, 0)->setFlags(Qt::ItemIsSelectable);
     changeInsuranceCompany(id, name, street, postalCode, city);
 }
@@ -249,10 +270,10 @@ void Universe::changeInsuranceCompany(int id, const QString &name, const QString
     m_file.changeInsuranceCompany(id, name);
 
     int index = insuranceCompanyIdToIndex(id);
-    m_ui.m_insuranceCompanyList->setItem(index, 1, new QTableWidgetItem(name));
-    m_ui.m_insuranceCompanyList->setItem(index, 2, new QTableWidgetItem(street));
-    m_ui.m_insuranceCompanyList->setItem(index, 3, new QTableWidgetItem(QString::number(postalCode)));
-    m_ui.m_insuranceCompanyList->setItem(index, 4, new QTableWidgetItem(city));
+    m_ui.m_insuranceCompanyList->setItem(index, 1, new CaseInsensitiveTableWidgetItem(name));
+    m_ui.m_insuranceCompanyList->setItem(index, 2, new CaseInsensitiveTableWidgetItem(street));
+    m_ui.m_insuranceCompanyList->setItem(index, 3, new CaseInsensitiveTableWidgetItem(QString::number(postalCode)));
+    m_ui.m_insuranceCompanyList->setItem(index, 4, new CaseInsensitiveTableWidgetItem(city));
     m_ui.m_insuranceCompanyList->item(index, 1)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
     m_ui.m_insuranceCompanyList->item(index, 2)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
     m_ui.m_insuranceCompanyList->item(index, 3)->setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
