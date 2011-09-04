@@ -177,6 +177,13 @@ void Universe::removePhysician(int id)
     int posInVector = m_physicians.indexOf(physician, 0);
     Q_ASSERT(posInVector >= 0 && posInVector < m_physicians.size());
     m_physicians.erase(m_physicians.begin() + posInVector);
+    for (QVector<File *>::const_iterator it = m_files.begin(); it != m_files.end(); ++it)
+    {
+        File *file = *it;
+        Q_ASSERT(file);
+        if (file->getPhysician() == id)
+            file->setPhysician(-1);
+    }
 }
 
 Physician *Universe::getPhysician(int id) const
@@ -245,11 +252,17 @@ InsuranceCompany *Universe::addInsuranceCompany(const QString &name)
 void Universe::removeInsuranceCompany(int id)
 {
     InsuranceCompany *insuranceCompany = getInsuranceCompany(id);
-    if (insuranceCompany)
+    if (!insuranceCompany)
+        return;
+    int posInVector = m_insuranceCompanies.indexOf(insuranceCompany, 0);
+    Q_ASSERT(posInVector >= 0 && posInVector < m_insuranceCompanies.size());
+    m_insuranceCompanies.erase(m_insuranceCompanies.begin() + posInVector);
+    for (QVector<File *>::const_iterator it = m_files.begin(); it != m_files.end(); ++it)
     {
-        int posInVector = m_insuranceCompanies.indexOf(insuranceCompany, 0);
-        Q_ASSERT(posInVector >= 0 && posInVector < m_insuranceCompanies.size());
-        m_insuranceCompanies.erase(m_insuranceCompanies.begin() + posInVector);
+        File *file = *it;
+        Q_ASSERT(file);
+        if (file->getInsuranceCompany() == id)
+            file->setInsuranceCompany(-1);
     }
 }
 

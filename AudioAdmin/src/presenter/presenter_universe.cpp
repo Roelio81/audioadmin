@@ -179,6 +179,7 @@ void Universe::removePhysician(int id)
     }
     m_model.removePhysician(id);
     m_view.setPhysicianListChanged(true);
+    m_view.setFileListChanged(true);
     m_changed = true;
 }
 
@@ -203,6 +204,7 @@ void Universe::removeInsuranceCompany(int id)
     }
     m_model.removeInsuranceCompany(id);
     m_view.setInsuranceCompanyListChanged(true);
+    m_view.setFileListChanged(true);
     m_changed = true;
 }
 
