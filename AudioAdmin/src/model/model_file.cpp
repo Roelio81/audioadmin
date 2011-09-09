@@ -213,23 +213,23 @@ QDomElement File::toDomElement(QDomDocument &d) const
     }
     if (!m_rightHearingAidType.isEmpty() || !m_rightHearingAidBrand.isEmpty())
     {
-        QDomElement hearingAids = d.createElement("hearingAids");
-        hearingAids.setAttribute("brand", m_rightHearingAidBrand);
-        hearingAids.setAttribute("type", m_rightHearingAidType);
-        hearingAids.setAttribute("place", "right");
+        QDomElement hearingAid = d.createElement("hearingAids");
+        hearingAid.setAttribute("brand", m_rightHearingAidBrand);
+        hearingAid.setAttribute("type", m_rightHearingAidType);
+        hearingAid.setAttribute("place", "right");
         if (!m_rightHearingAidSerialNumber.isEmpty())
         {
             QDomElement serialNumber = d.createElement("serialNumber");
             serialNumber.appendChild(d.createTextNode(m_rightHearingAidSerialNumber));
-            hearingAids.appendChild(serialNumber);
+            hearingAid.appendChild(serialNumber);
         }
         if (m_rightHearingAidPrice != 0.0)
         {
             QDomElement price = d.createElement("price");
             price.appendChild(d.createTextNode(QString::number(m_rightHearingAidPrice, 'f', 0)));
-            hearingAids.appendChild(price);
+            hearingAid.appendChild(price);
         }
-        hearingAids.appendChild(hearingAids);
+        hearingAids.appendChild(hearingAid);
     }
     result.appendChild(hearingAids);
     if (!m_letterCustomer.getText().isEmpty())
