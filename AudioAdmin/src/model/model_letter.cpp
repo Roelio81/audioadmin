@@ -33,9 +33,12 @@ QDomElement Letter::toDomElement(QDomDocument &d) const
 {
     QDomElement letter = d.createElement("letter");
     letter.setAttribute("date", m_postalDate);
-    QDomElement text = d.createElement("text");
-    text.appendChild(d.createTextNode(m_text));
-    letter.appendChild(text);
+    if (!m_text.isEmpty())
+    {
+        QDomElement text = d.createElement("text");
+        text.appendChild(d.createTextNode(m_text));
+        letter.appendChild(text);
+    }
     if (m_hasConclusion)
     {
         QDomElement conclusion = d.createElement("conclusion");

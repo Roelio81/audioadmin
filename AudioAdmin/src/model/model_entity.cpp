@@ -62,9 +62,12 @@ QDomElement Entity::toDomElement(QDomDocument &d) const
     city.setAttribute("postalCode", QString::number(m_postalCode));
     address.appendChild(city);
     result.appendChild(address);
-    QDomElement telephone = d.createElement("telephone");
-    telephone.appendChild(d.createTextNode(m_telephone));
-    result.appendChild(telephone);
+    if (!m_telephone.isEmpty())
+    {
+        QDomElement telephone = d.createElement("telephone");
+        telephone.appendChild(d.createTextNode(m_telephone));
+        result.appendChild(telephone);
+    }
     QDomElement comments = d.createElement("comments");
     comments.appendChild(d.createTextNode(QString(m_comments).replace("\n", "\r\n")));
     result.appendChild(comments);

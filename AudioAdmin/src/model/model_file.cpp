@@ -213,7 +213,7 @@ QDomElement File::toDomElement(QDomDocument &d) const
     }
     if (!m_rightHearingAidType.isEmpty() || !m_rightHearingAidBrand.isEmpty())
     {
-        QDomElement hearingAid = d.createElement("hearingAids");
+        QDomElement hearingAid = d.createElement("hearingAid");
         hearingAid.setAttribute("brand", m_rightHearingAidBrand);
         hearingAid.setAttribute("type", m_rightHearingAidType);
         hearingAid.setAttribute("place", "right");
@@ -232,14 +232,14 @@ QDomElement File::toDomElement(QDomDocument &d) const
         hearingAids.appendChild(hearingAid);
     }
     result.appendChild(hearingAids);
-    if (!m_letterCustomer.getText().isEmpty())
+    if (!m_letterCustomer.isEmpty())
     {
         QDomElement letter = m_letterCustomer.toDomElement(d);
         result.appendChild(letter);
     }
     QDomElement physician = d.createElement("physician");
     physician.setAttribute("id", (m_physician >= 0) ? QString::number(m_physician) : "");
-    if (!m_letterPhysician.getText().isEmpty())
+    if (!m_letterPhysician.isEmpty())
     {
         QDomElement letter = m_letterPhysician.toDomElement(d);
         physician.appendChild(letter);
@@ -248,7 +248,7 @@ QDomElement File::toDomElement(QDomDocument &d) const
     QDomElement insuranceCompany = d.createElement("insuranceCompany");
     insuranceCompany.setAttribute("id", (m_insuranceCompany >= 0) ? QString::number(m_insuranceCompany) : "");
     insuranceCompany.setAttribute("memberNr", m_memberNumber);
-    if (!m_letterInsuranceCompany.getText().isEmpty())
+    if (!m_letterInsuranceCompany.isEmpty())
     {
         QDomElement letter = m_letterInsuranceCompany.toDomElement(d);
         insuranceCompany.appendChild(letter);

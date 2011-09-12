@@ -143,7 +143,7 @@ QDomElement Measurements::toDomElement(QDomDocument &d) const
     {
         QDomElement element = d.createElement(namesSpeech[i]);
         element.setAttribute("place", placesSpeech[i]);
-        for (int j = 0; j < 22; ++j)
+        for (int j = 0; j < 23; ++j)
         {
             QDomElement measurment = d.createElement("measurement");
             measurment.setAttribute("db", QString::number(5*j));
@@ -155,21 +155,33 @@ QDomElement Measurements::toDomElement(QDomDocument &d) const
     result.appendChild(speech);
 
     QDomElement localization = d.createElement("localization");
-    QDomElement localizationWidthout = d.createElement("withoutHA");
-    localizationWidthout.setAttribute("db", QString::number(m_localizationWithout));
-    localization.appendChild(localizationWidthout);
-    QDomElement localizationRight = d.createElement("withHA");
-    localizationRight.setAttribute("db", QString::number(m_localizationRight));
-    localizationRight.setAttribute("place", "right");
-    localization.appendChild(localizationRight);
-    QDomElement localizationLeft = d.createElement("withHA");
-    localizationLeft.setAttribute("db", QString::number(m_localizationLeft));
-    localizationLeft.setAttribute("place", "left");
-    localization.appendChild(localizationLeft);
-    QDomElement localizationBoth = d.createElement("withHA");
-    localizationBoth.setAttribute("db", QString::number(m_localizationBoth));
-    localizationBoth.setAttribute("place", "both");
-    localization.appendChild(localizationBoth);
+    if (m_localizationWithout != -10)
+    {
+        QDomElement localizationWithout = d.createElement("withoutHA");
+        localizationWithout.setAttribute("db", QString::number(m_localizationWithout));
+        localization.appendChild(localizationWithout);
+    }
+    if (m_localizationRight != -10)
+    {
+        QDomElement localizationRight = d.createElement("withHA");
+        localizationRight.setAttribute("db", QString::number(m_localizationRight));
+        localizationRight.setAttribute("place", "right");
+        localization.appendChild(localizationRight);
+    }
+    if (m_localizationLeft != -10)
+    {
+        QDomElement localizationLeft = d.createElement("withHA");
+        localizationLeft.setAttribute("db", QString::number(m_localizationLeft));
+        localizationLeft.setAttribute("place", "left");
+        localization.appendChild(localizationLeft);
+    }
+    if (m_localizationBoth != -10)
+    {
+        QDomElement localizationBoth = d.createElement("withHA");
+        localizationBoth.setAttribute("db", QString::number(m_localizationBoth));
+        localizationBoth.setAttribute("place", "both");
+        localization.appendChild(localizationBoth);
+    }
     result.appendChild(localization);
 
     return result;

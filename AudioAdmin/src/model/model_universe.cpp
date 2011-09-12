@@ -142,7 +142,7 @@ bool Universe::open()
 bool Universe::save()
 {
     QFile file(m_fileName);
-    if (!file.open(QIODevice::ReadWrite|QIODevice::Truncate))
+    if (!file.open(QIODevice::WriteOnly|QIODevice::Truncate))
         return false;
 
     QDomDocument doc;

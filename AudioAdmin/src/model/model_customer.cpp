@@ -66,7 +66,7 @@ QDomElement Customer::toDomElement(QDomDocument &d) const
     {
         QDomElement geboorteDatum = d.createElement("dateOfBirth");
         geboorteDatum.appendChild(d.createTextNode(m_dateOfBirth.toString("yyyy-MM-dd")));
-        result.insertAfter(geboorteDatum, result.firstChildElement("telephone"));
+        result.insertBefore(geboorteDatum, result.firstChildElement("comments"));
     }
 
     result.setTagName("customer");

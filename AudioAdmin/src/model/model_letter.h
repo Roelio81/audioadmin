@@ -26,6 +26,7 @@ namespace Model
         QString getText() const { return m_text; }
         QString getConclusion() const { return m_conclusion; }
         bool hasConclusion() const { return m_hasConclusion; }
+        bool isEmpty() const { return (m_postalDate.isEmpty() && m_text.isEmpty() && (!m_hasConclusion || m_conclusion.isEmpty())); }
 
         // --- Setters ---
         void setPostalDate(const QString &value) { m_postalDate = value; }
