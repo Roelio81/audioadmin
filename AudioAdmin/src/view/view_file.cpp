@@ -248,22 +248,17 @@ void File::setRightHearingAidBrand(const QString &value)
 {
     QSet<QString> brands = m_universe.getHearingAidBrands();
     m_ui.m_rightHearingAidBrand->clear();
-    int index = 0;
     bool itemFound = false;
-    for (QSet<QString>::iterator it = brands.begin(); it != brands.end(); ++it, ++index)
+    for (QSet<QString>::iterator it = brands.begin(); it != brands.end(); ++it)
     {
         m_ui.m_rightHearingAidBrand->addItem(*it);
         if (*it == value)
-        {
-            m_ui.m_rightHearingAidBrand->setCurrentIndex(index);
             itemFound = true;
-        }
     }
     if (! itemFound)
-    {
         m_ui.m_rightHearingAidBrand->addItem(value);
-        m_ui.m_rightHearingAidBrand->setCurrentIndex(index);
-    }
+
+    m_ui.m_rightHearingAidBrand->setCurrentIndex(m_ui.m_rightHearingAidBrand->findText(value));
 }
 
 void File::setRightHearingAidType(const QString &value)
@@ -271,22 +266,17 @@ void File::setRightHearingAidType(const QString &value)
     QString brand = getRightHearingAidBrand();
     QSet<QString> types = m_universe.getHearingAidTypes(brand);
     m_ui.m_rightHearingAidType->setEditText(value);
-    int index = 0;
     bool itemFound = false;
-    for (QSet<QString>::iterator it = types.begin(); it != types.end(); ++it, ++index)
+    for (QSet<QString>::iterator it = types.begin(); it != types.end(); ++it)
     {
         m_ui.m_rightHearingAidType->addItem(*it);
         if (*it == value)
-        {
-            m_ui.m_rightHearingAidType->setCurrentIndex(index);
             itemFound = true;
-        }
     }
     if (! itemFound)
-    {
         m_ui.m_rightHearingAidType->addItem(value);
-        m_ui.m_rightHearingAidType->setCurrentIndex(index);
-    }
+
+    m_ui.m_rightHearingAidType->setCurrentIndex(m_ui.m_rightHearingAidType->findText(value));
 }
 
 void File::setRightHearingAidSerialNumber(const QString &value)
@@ -303,22 +293,17 @@ void File::setLeftHearingAidBrand(const QString &value)
 {
     QSet<QString> brands = m_universe.getHearingAidBrands();
     m_ui.m_leftHearingAidBrand->clear();
-    int index = 0;
     bool itemFound = false;
-    for (QSet<QString>::iterator it = brands.begin(); it != brands.end(); ++it, ++index)
+    for (QSet<QString>::iterator it = brands.begin(); it != brands.end(); ++it)
     {
         m_ui.m_leftHearingAidBrand->addItem(*it);
         if (*it == value)
-        {
-            m_ui.m_leftHearingAidBrand->setCurrentIndex(index);
             itemFound = true;
-        }
     }
     if (! itemFound)
-    {
         m_ui.m_leftHearingAidBrand->addItem(value);
-        m_ui.m_leftHearingAidBrand->setCurrentIndex(index);
-    }
+
+    m_ui.m_leftHearingAidBrand->setCurrentIndex(m_ui.m_leftHearingAidBrand->findText(value));
 }
 
 void File::setLeftHearingAidType(const QString &value)
@@ -326,22 +311,17 @@ void File::setLeftHearingAidType(const QString &value)
     QString brand = getLeftHearingAidBrand();
     QSet<QString> types = m_universe.getHearingAidTypes(brand);
     m_ui.m_leftHearingAidType->setEditText(value);
-    int index = 0;
     bool itemFound = false;
-    for (QSet<QString>::iterator it = types.begin(); it != types.end(); ++it, ++index)
+    for (QSet<QString>::iterator it = types.begin(); it != types.end(); ++it)
     {
         m_ui.m_leftHearingAidType->addItem(*it);
         if (*it == value)
-        {
-            m_ui.m_leftHearingAidType->setCurrentIndex(index);
             itemFound = true;
-        }
     }
     if (! itemFound)
-    {
         m_ui.m_leftHearingAidType->addItem(value);
-        m_ui.m_leftHearingAidType->setCurrentIndex(index);
-    }
+
+    m_ui.m_leftHearingAidType->setCurrentIndex(m_ui.m_leftHearingAidType->findText(value));
 }
 
 void File::setLeftHearingAidSerialNumber(const QString &value)
