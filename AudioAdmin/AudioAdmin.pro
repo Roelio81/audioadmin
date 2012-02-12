@@ -1,4 +1,4 @@
-CONFIG += debug_and_release designer qt warn_on
+CONFIG += debug_and_release qt warn_on
 DESTDIR = bin
 FORMS = \
     ui/adddialog.ui \
