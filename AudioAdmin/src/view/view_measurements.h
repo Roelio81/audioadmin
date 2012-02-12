@@ -30,10 +30,12 @@ namespace View
         int getLocalizationRight() const;
         int getLocalizationLeft() const;
         int getLocalizationBoth() const;
-        QPixmap getPureToneAudiometryLeft() const;
         QPixmap getPureToneAudiometryRight() const;
+        QPixmap getPureToneAudiometryLeft() const;
         QPixmap getSpeechAudiometryWithoutAid() const;
         QPixmap getSpeechAudiometryWithAid() const;
+        QString getAverageLossRight() const;
+        QString getAverageLossLeft() const;
         QString getREWithout() const;
         QString getLEWithout() const;
         QString getRELEWithout() const;
@@ -64,8 +66,8 @@ namespace View
         void setLocalizationWithBoth(int dB);
 
     private slots:
-        void recalculateAverageLossLeft();
         void recalculateAverageLossRight();
+        void recalculateAverageLossLeft();
         void recalculateREWithoutAid();
         void recalculateLEWithoutAid();
         void recalculateRELEWithoutAid();

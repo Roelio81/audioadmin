@@ -426,6 +426,10 @@ p, li { white-space: pre-wrap; }
         <source>With 2 hearing aids</source>
         <translation>Met 2 apparaten</translation>
     </message>
+    <message>
+        <source>Average loss (in dB)</source>
+        <translation>Gemiddeld verlies (in dB)</translation>
+    </message>
 </context>
 <context>
     <name>Presenter::LetterCustomer</name>

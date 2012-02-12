@@ -156,12 +156,24 @@ void Letter::print()
             painter.drawText(hmar, y, tr("Pure tone audiometry: right"));
             painter.drawText(hmar + 120*mmx, y, tr("Pure tone audiometry: left"));
             y += lineheight;
-
             painter.drawPixmap(hmar, y, 90*mmx, 90*mmy, measurementsView.getPureToneAudiometryRight());
             painter.drawPixmap(hmar + 120*mmx, y, 90*mmx, 90*mmy, measurementsView.getPureToneAudiometryLeft());
 
+            // Print average loss
+            y += 95*mmy;
+            font.setPointSize(10);
+            font.setItalic(false);
+            painter.setFont(font);
+            lineheight = painter.fontMetrics().height();
+            painter.drawText(hmar + 15*mmx, y, tr("Average loss (in dB)") + "   " + measurementsView.getAverageLossRight());
+            painter.drawText(hmar + 135*mmx, y, tr("Average loss (in dB)") + "   " + measurementsView.getAverageLossLeft());
+
             // Print speech audiometry
-            y += 100*mmy;
+            font.setPointSize(12);
+            font.setItalic(true);
+            painter.setFont(font);
+            lineheight = painter.fontMetrics().height();
+            y += 2*lineheight;
             painter.drawText(hmar, y, tr("Speech audiometry without hearing aid"));
             y += lineheight;
             painter.drawPixmap(hmar, y,  150*mmx, 60*mmy, measurementsView.getSpeechAudiometryWithoutAid());

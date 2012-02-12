@@ -9,8 +9,8 @@ Measurements::Measurements(QWidget *parent)
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
     m_ui.setupUi(this);
-    connect(m_ui.m_pureToneAudiometryLeft, SIGNAL(changedACvalue()), this, SLOT(recalculateAverageLossLeft()));
     connect(m_ui.m_pureToneAudiometryRight, SIGNAL(changedACvalue()), this, SLOT(recalculateAverageLossRight()));
+    connect(m_ui.m_pureToneAudiometryLeft, SIGNAL(changedACvalue()), this, SLOT(recalculateAverageLossLeft()));
     connect(m_ui.m_speechAudiometryWithoutAid, SIGNAL(changedREvalue()), this, SLOT(recalculateREWithoutAid()));
     connect(m_ui.m_speechAudiometryWithoutAid, SIGNAL(changedLEvalue()), this, SLOT(recalculateLEWithoutAid()));
     connect(m_ui.m_speechAudiometryWithoutAid, SIGNAL(changedRELEvalue()), this, SLOT(recalculateRELEWithoutAid()));
@@ -163,6 +163,31 @@ QPixmap Measurements::getSpeechAudiometryWithAid() const
     return result;
 }
 
+QString Measurements::getAverageLossRight() const
+{
+    Q_ASSERT(m_ui.m_pureToneAudiometryRight);
+    int m1 = m_ui.m_pureToneAudiometryRight->getACdata(1000);
+    int m2 = m_ui.m_pureToneAudiometryRight->getACdata(2000);
+    int m3 = m_ui.m_pureToneAudiometryRight->getACdata(4000);
+    if (m1 >= 0 && m2 >= 0 && m3 >= 0)
+        return QString::number((m1+m2+m3) / 3) + " %";
+    else
+        return tr("N/A");
+
+}
+
+QString Measurements::getAverageLossLeft() const
+{
+    Q_ASSERT(m_ui.m_pureToneAudiometryLeft);
+    int m1 = m_ui.m_pureToneAudiometryLeft->getACdata(1000);
+    int m2 = m_ui.m_pureToneAudiometryLeft->getACdata(2000);
+    int m3 = m_ui.m_pureToneAudiometryLeft->getACdata(4000);
+    if (m1 >= 0 && m2 >= 0 && m3 >= 0)
+        return QString::number((m1+m2+m3) / 3) + " %";
+    else
+        return tr("N/A");
+}
+
 QString Measurements::getREWithout() const
 {
     Q_ASSERT(m_ui.m_withoutAidRE);
@@ -313,28 +338,16 @@ void Measurements::setLocalizationWithBoth(int dB)
     m_ui.m_localizationWithBoth->setText(dB > 0 ? QString::number(dB) : "");
 }
 
-void Measurements::recalculateAverageLossLeft()
-{
-    Q_ASSERT(m_ui.m_pureToneAudiometryLeft && m_ui.m_lossLeft);
-    int m1 = m_ui.m_pureToneAudiometryLeft->getACdata(1000);
-    int m2 = m_ui.m_pureToneAudiometryLeft->getACdata(2000);
-    int m3 = m_ui.m_pureToneAudiometryLeft->getACdata(4000);
-    if (m1 >= 0 && m2 >= 0 && m3 >= 0)
-        m_ui.m_lossLeft->setText(QString::number((m1+m2+m3) / 3) + " %");
-    else
-        m_ui.m_lossLeft->setText(tr("N/A"));
-}
-
 void Measurements::recalculateAverageLossRight()
 {
-    Q_ASSERT(m_ui.m_pureToneAudiometryRight && m_ui.m_lossRight);
-    int m1 = m_ui.m_pureToneAudiometryRight->getACdata(1000);
-    int m2 = m_ui.m_pureToneAudiometryRight->getACdata(2000);
-    int m3 = m_ui.m_pureToneAudiometryRight->getACdata(4000);
-    if (m1 >= 0 && m2 >= 0 && m3 >= 0)
-        m_ui.m_lossRight->setText(QString::number((m1+m2+m3) / 3) + " %");
-    else
-        m_ui.m_lossRight->setText(tr("N/A"));
+    Q_ASSERT(m_ui.m_lossRight);
+    m_ui.m_lossRight->setText(getAverageLossRight());
+}
+
+void Measurements::recalculateAverageLossLeft()
+{
+    Q_ASSERT(m_ui.m_lossLeft);
+    m_ui.m_lossLeft->setText(getAverageLossLeft());
 }
 
 void Measurements::recalculateREWithoutAid()
