@@ -136,7 +136,7 @@
             <item>
              <widget class="QLabel" name="l_lossRight">
               <property name="text">
-               <string>Average loss (in dB)</string>
+               <string>Average loss</string>
               </property>
              </widget>
             </item>
@@ -283,7 +283,7 @@
             <item>
              <widget class="QLabel" name="l_lossLeft">
               <property name="text">
-               <string>Average loss (in dB)</string>
+               <string>Average loss</string>
               </property>
              </widget>
             </item>

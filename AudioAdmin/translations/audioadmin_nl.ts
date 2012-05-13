@@ -202,7 +202,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Average loss (in dB)</source>
-        <translation>Gemiddeld verlies (in dB)</translation>
+        <translation type="obsolete">Gemiddeld verlies (in dB)</translation>
     </message>
     <message>
         <source>Pure tone audiometry</source>
@@ -311,6 +311,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>With hearing aids (open field)</source>
         <translation>Met hoorapparaat (in vrij veld)</translation>
+    </message>
+    <message>
+        <source>Average loss</source>
+        <translation>Gemiddeld verlies</translation>
     </message>
 </context>
 <context>
@@ -428,7 +432,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Average loss (in dB)</source>
-        <translation>Gemiddeld verlies (in dB)</translation>
+        <translation type="obsolete">Gemiddeld verlies (in dB)</translation>
+    </message>
+    <message>
+        <source>Average loss</source>
+        <translation>Gemiddeld verlies</translation>
     </message>
 </context>
 <context>

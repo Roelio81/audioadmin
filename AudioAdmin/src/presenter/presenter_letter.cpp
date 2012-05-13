@@ -165,8 +165,8 @@ void Letter::print()
             font.setItalic(false);
             painter.setFont(font);
             lineheight = painter.fontMetrics().height();
-            painter.drawText(hmar + 15*mmx, y, tr("Average loss (in dB)") + "   " + measurementsView.getAverageLossRight());
-            painter.drawText(hmar + 135*mmx, y, tr("Average loss (in dB)") + "   " + measurementsView.getAverageLossLeft());
+            painter.drawText(hmar + 15*mmx, y, tr("Average loss") + "   " + measurementsView.getAverageLossRight());
+            painter.drawText(hmar + 135*mmx, y, tr("Average loss") + "   " + measurementsView.getAverageLossLeft());
 
             // Print speech audiometry
             font.setPointSize(12);

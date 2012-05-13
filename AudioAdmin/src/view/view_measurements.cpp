@@ -170,7 +170,7 @@ QString Measurements::getAverageLossRight() const
     int m2 = m_ui.m_pureToneAudiometryRight->getACdata(2000);
     int m3 = m_ui.m_pureToneAudiometryRight->getACdata(4000);
     if (m1 >= 0 && m2 >= 0 && m3 >= 0)
-        return QString::number((m1+m2+m3) / 3) + " %";
+        return QString::number((m1+m2+m3) / 3) + " dB";
     else
         return tr("N/A");
 
@@ -183,7 +183,7 @@ QString Measurements::getAverageLossLeft() const
     int m2 = m_ui.m_pureToneAudiometryLeft->getACdata(2000);
     int m3 = m_ui.m_pureToneAudiometryLeft->getACdata(4000);
     if (m1 >= 0 && m2 >= 0 && m3 >= 0)
-        return QString::number((m1+m2+m3) / 3) + " %";
+        return QString::number((m1+m2+m3) / 3) + " dB";
     else
         return tr("N/A");
 }
