@@ -1,7 +1,6 @@
 #include "view_labels.h"
 
 #include <QList>
-#include <QPrinterInfo>
 
 using namespace View;
 

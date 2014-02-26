@@ -29,7 +29,7 @@ class CaseInsensitiveTableWidgetItem : public QTableWidgetItem
     };
 }
 
-Universe::Universe(QWidget *parent, Qt::WFlags f)
+Universe::Universe(QWidget *parent, Qt::WindowFlags f)
 : QMainWindow(parent, f)
 , m_physician(m_ui)
 , m_file(*this)

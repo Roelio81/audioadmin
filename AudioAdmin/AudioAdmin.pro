@@ -47,7 +47,7 @@ HEADERS = ../AudioPlugin/src/puretoneaudiometrywidget.h \
     src/model/model_labels.h
 MOC_DIR = build
 OBJECTS_DIR = build
-QT = core gui xml
+QT = core gui xml widgets printsupport
 RESOURCES += icons.qrc
 SOURCES = ../AudioPlugin/src/puretoneaudiometrywidget.cpp \
  ../AudioPlugin/src/speechaudiometrywidget.cpp \

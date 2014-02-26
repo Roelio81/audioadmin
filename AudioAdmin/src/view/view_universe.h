@@ -18,7 +18,7 @@ namespace View
     {
     Q_OBJECT
     public:
-        explicit Universe(QWidget *parent = 0, Qt::WFlags f = 0);
+        explicit Universe(QWidget *parent = 0, Qt::WindowFlags f = 0);
         virtual ~Universe();
 
         Physician &getPhysician();
