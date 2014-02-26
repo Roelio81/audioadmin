@@ -28,9 +28,9 @@ QString LetterCustomer::getGreeting() const
     switch (customer.getTitle())
     {
         case Model::Customer::MR:
-            return tr("Dear Mr,");
+            return tr("Dear Mr %1,").arg(customer.getName());
         case Model::Customer::MRS:
-            return tr("Dear Mrs,");
+            return tr("Dear Mrs %1,").arg(customer.getName());
     }
 
     Q_ASSERT(false);

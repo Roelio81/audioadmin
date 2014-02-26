@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="nl">
+<TS version="2.1" language="nl">
 <context>
     <name>AddDialog</name>
     <message>
@@ -442,12 +442,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Presenter::LetterCustomer</name>
     <message>
-        <source>Dear Mr,</source>
-        <translation>Geachte meneer,</translation>
+        <source>Dear Mr %1,</source>
+        <translation>Geachte mijnheer %1,</translation>
     </message>
     <message>
-        <source>Dear Mrs,</source>
-        <translation>Geachte mevrouw,</translation>
+        <source>Dear Mrs %1,</source>
+        <translation>Geachte mevrouw %1,</translation>
     </message>
     <message>
         <source>Dear,</source>
