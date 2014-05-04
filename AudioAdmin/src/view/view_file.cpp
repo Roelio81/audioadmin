@@ -209,7 +209,7 @@ void File::setInsuranceCompany(int id)
         if (id == m_ui.m_customerInsurance->itemData(iRow, ROLE_ID).toInt())
         {
             m_ui.m_customerInsurance->setCurrentIndex(iRow);
-            m_ui.b_letterInsurance->setEnabled(true);
+            m_ui.b_letterInsurance->setEnabled(id >= 0);
             return;
         }
     }
@@ -235,7 +235,7 @@ void File::setPhysician(int id)
         if (id == m_ui.m_customerPhysician->itemData(iRow, ROLE_ID).toInt())
         {
             m_ui.m_customerPhysician->setCurrentIndex(iRow);
-            m_ui.b_letterPhysician->setEnabled(true);
+            m_ui.b_letterPhysician->setEnabled(id >= 0);
             return;
         }
     }
