@@ -1,0 +1,3 @@
+Administration program for audiologists.
+Possibility to add audiograms for customers, print letters to physicians, print labels for mailings, make invoices, ...
+Currently this is still tailored to the Flemish regulations (and hence only available in Dutch at the moment) but as soon as milestone 1 is reached, we will investigate in translating this program into french (since it is mostly applicable to the situation in Wallonia as well)
