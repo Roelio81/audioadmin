@@ -17,7 +17,7 @@ using namespace Model;
 
 Universe::Universe(const QString &fileName)
 : m_fileName(fileName)
-, m_settings(new Settings(*this))
+, m_settings(new Settings())
 , m_labels(new Labels(*this))
 {
     open();

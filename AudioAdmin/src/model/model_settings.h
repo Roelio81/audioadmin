@@ -8,12 +8,10 @@ class QDomElement;
 
 namespace Model
 {
-    class Universe;
-
     class Settings
     {
     public:
-        explicit Settings(const Universe &universe);
+        explicit Settings();
         virtual ~Settings();
 
         // --- ISerializable ---
@@ -50,7 +48,6 @@ namespace Model
 
     private:
         // --- Data members ---
-        const Universe &m_universe;
         QString m_name;
         QString m_street;
         int m_postalCode;

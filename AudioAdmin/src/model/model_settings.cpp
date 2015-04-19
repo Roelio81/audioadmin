@@ -4,8 +4,7 @@
 
 using namespace Model;
 
-Settings::Settings(const Universe &universe)
-    : m_universe(universe)
+Settings::Settings()
 {
 }
 

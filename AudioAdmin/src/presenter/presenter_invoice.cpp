@@ -24,7 +24,18 @@ void Invoice::setup()
     const Model::Customer &customer = file.getCustomer();
     const Model::Settings &settings = file.getUniverse().getSettings();
 
-    m_view.setCustomerName(customer.getTitle() + " " + customer.getName() + " " + customer.getFirstName());
+    QString title;
+    switch (customer.getTitle())
+    {
+        case Model::Customer::MR:
+            title = tr("Mr");
+            break;
+        case Model::Customer::MRS:
+            title = tr("Mrs");
+            break;
+    }
+
+    m_view.setCustomerName(title + " " + customer.getName() + " " + customer.getFirstName());
     m_view.setCustomerStreet(customer.getStreet());
     m_view.setCustomerCity(QString::number(customer.getPostalCode()) + " " + customer.getCity());
     m_view.setName(settings.getName());
