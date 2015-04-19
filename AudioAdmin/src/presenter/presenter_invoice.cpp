@@ -28,10 +28,10 @@ void Invoice::setup()
     switch (customer.getTitle())
     {
         case Model::Customer::MR:
-            title = tr("Mr");
+            title = tr("Mr.");
             break;
         case Model::Customer::MRS:
-            title = tr("Mrs");
+            title = tr("Mrs.");
             break;
     }
 

@@ -201,10 +201,6 @@ p, li { white-space: pre-wrap; }
         <translation>%</translation>
     </message>
     <message>
-        <source>Average loss (in dB)</source>
-        <translation type="obsolete">Gemiddeld verlies (in dB)</translation>
-    </message>
-    <message>
         <source>Pure tone audiometry</source>
         <translation>Tonale audiometrie</translation>
     </message>
@@ -329,6 +325,17 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>Presenter::Invoice</name>
+    <message>
+        <source>Mr.</source>
+        <translation>Dhr.</translation>
+    </message>
+    <message>
+        <source>Mrs.</source>
+        <translation>Mevr.</translation>
+    </message>
+</context>
+<context>
     <name>Presenter::Letter</name>
     <message>
         <source>In case you still have questions, you can reach me at the number at the header.</source>
@@ -429,10 +436,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>With 2 hearing aids</source>
         <translation>Met 2 apparaten</translation>
-    </message>
-    <message>
-        <source>Average loss (in dB)</source>
-        <translation type="obsolete">Gemiddeld verlies (in dB)</translation>
     </message>
     <message>
         <source>Average loss</source>
