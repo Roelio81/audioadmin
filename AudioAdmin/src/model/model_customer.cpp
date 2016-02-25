@@ -10,6 +10,7 @@ Customer::Customer(const Universe &universe)
     : m_universe(universe)
     , m_title(MR)
     , m_dateOfBirth(universe.getInvalidDate())
+    , m_isDeceased(false)
 {
 }
 
@@ -37,6 +38,10 @@ void Customer::fromDomElement(const QDomElement &e)
         else if (element.tagName() == "dateOfBirth")
         {
             m_dateOfBirth = QDate::fromString(element.text(), "yyyy-MM-dd");
+        }
+        else if (element.tagName() == "isDeceased")
+        {
+            m_isDeceased = static_cast<bool>(element.text().toInt());
         }
     }
 
@@ -68,6 +73,9 @@ QDomElement Customer::toDomElement(QDomDocument &d) const
         geboorteDatum.appendChild(d.createTextNode(m_dateOfBirth.toString("yyyy-MM-dd")));
         result.insertBefore(geboorteDatum, result.firstChildElement("comments"));
     }
+    QDomElement isDeceased = d.createElement("isDeceased");
+    isDeceased.appendChild(d.createTextNode(m_isDeceased ? "1" : "0"));
+    result.insertAfter(isDeceased, result.firstChildElement("firstName"));
 
     result.setTagName("customer");
     return result;

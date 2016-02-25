@@ -188,6 +188,13 @@
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="m_isDeceased">
+                 <property name="text">
+                  <string>Deceased</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </item>
              <item>

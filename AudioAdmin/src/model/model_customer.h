@@ -29,11 +29,13 @@ namespace Model
         Title getTitle() const { return m_title; }
         QString getFirstName() const { return m_firstName; }
         QDate getDateOfBirth() const { return m_dateOfBirth; }
+        bool isDeceased() const { return m_isDeceased; }
 
         // --- Setters ---
         void setTitle(const Title &value) { m_title = value; }
         void setFirstName(const QString &value) { m_firstName = value; }
         void setDateOfBirth(const QDate &value) { m_dateOfBirth = value; }
+        void setDeceased(const bool value) { m_isDeceased = value; }
 
     private:
         // --- Data members ---
@@ -41,6 +43,7 @@ namespace Model
         Title m_title;
         QString m_firstName;
         QDate m_dateOfBirth;
+        bool m_isDeceased;
     };
 }
 

@@ -919,6 +919,10 @@ p, li { white-space: pre-wrap; }
         <source>Hearing aids</source>
         <translation>Hoorapparaten</translation>
     </message>
+    <message>
+        <source>Deceased</source>
+        <translation>Overleden</translation>
+    </message>
 </context>
 <context>
     <name>View::Measurements</name>

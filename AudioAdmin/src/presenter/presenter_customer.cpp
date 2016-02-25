@@ -56,6 +56,7 @@ void Customer::setup()
     m_view.setTelephone(m_model.getTelephone());
     m_view.setDateOfBirth(m_model.getDateOfBirth());
     m_view.setComments(m_model.getComments());
+    m_view.setDeceased(m_model.isDeceased());
 }
 
 void Customer::teardown()
@@ -104,6 +105,11 @@ void Customer::teardown()
     if (m_model.getComments() != m_view.getComments())
     {
         m_model.setComments(m_view.getComments());
+        changed = true;
+    }
+    if (m_model.isDeceased() != m_view.isDeceased())
+    {
+        m_model.setDeceased(m_view.isDeceased());
         changed = true;
     }
 

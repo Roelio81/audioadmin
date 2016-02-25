@@ -32,6 +32,7 @@ namespace View
         QString getTelephone() const;
         QDate getDateOfBirth() const;
         QString getComments() const;
+        bool isDeceased() const;
 
         // --- Setters ---
         void setTitle(const QString &value);
@@ -43,6 +44,7 @@ namespace View
         void setTelephone(const QString &value);
         void setDateOfBirth(const QDate &value);
         void setComments(const QString &value);
+        void setDeceased(bool value);
 
     private:
         Ui::Universe &m_ui;

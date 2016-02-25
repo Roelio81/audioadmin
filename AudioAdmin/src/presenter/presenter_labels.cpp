@@ -51,8 +51,9 @@ void Labels::print()
             Model::File *file = *itFile;
             Q_ASSERT(file);
             bool passesTestDateCheck = (!m_view.isTestDateChecked()) || (file->getTestDate() >= m_view.getTestDate());
-            bool passesAdjustmentPlaceChecked = (!m_view.isAdjustmentPlaceChecked()) || (file->getPlaceAdjustment() == m_view.getPlaceAdjustment());
-            if (passesTestDateCheck && passesAdjustmentPlaceChecked)
+            bool passesAdjustmentPlaceChecked = (!m_view.isAdjustmentPlaceChecked()) || !QString::compare(file->getPlaceAdjustment(), m_view.getPlaceAdjustment(), Qt::CaseInsensitive);
+            bool passesDeceasedTest = !file->getCustomer().isDeceased();
+            if (passesTestDateCheck && passesAdjustmentPlaceChecked && passesDeceasedTest)
             {
                 // This label passes both checks and should be printed
 

@@ -69,6 +69,11 @@ QString Customer::getComments() const
     return m_ui.m_customerComments->toPlainText();
 }
 
+bool Customer::isDeceased() const
+{
+    return m_ui.m_isDeceased->isChecked();
+}
+
 void Customer::setTitle(const QString &value)
 {
     int index = value.isEmpty() ? 0 : m_ui.m_customerTitle->findText(value);
@@ -116,4 +121,9 @@ void Customer::setDateOfBirth(const QDate &value)
 void Customer::setComments(const QString &value)
 {
     m_ui.m_customerComments->setPlainText(value);
+}
+
+void Customer::setDeceased(bool value)
+{
+    m_ui.m_isDeceased->setChecked(value);
 }
